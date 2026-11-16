@@ -19,7 +19,7 @@ export default function SearchBox() {
           (s) =>
             s.includes(query) ||
             RESULTS.tickers[s].name.toUpperCase().includes(query),
-        )
+        ).sort()
   const showNotCovered = query.length > 0 && matches.length === 0
 
   return (
