@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
 import Sidebar from '@/components/Sidebar'
-import { NAV_LINKS, SITE_NAME, SITE_URL, PRICE_DATE, ENGINE_VERSION } from '@/lib/site'
+import SearchBox from '@/components/SearchBox'
+import MarketStrip from '@/components/MarketStrip'
+import { SITE_NAME, SITE_URL, PRICE_DATE, ENGINE_VERSION } from '@/lib/site'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -26,19 +28,18 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       <body>
         <header className="site-header">
           <div className="wrap">
-            <div className="brand">
-              <Link href="/">The Stock Check</Link>
-              <span className="tagline">
-                Check any stock before you buy — every number shown, every source named.
-              </span>
+            <div className="header-top">
+              <div className="brand">
+                <Link href="/">The Stock Check</Link>
+                <span className="tagline">
+                  Check any stock before you buy — every number shown, every source named.
+                </span>
+              </div>
+              <div className="header-search">
+                <SearchBox />
+              </div>
             </div>
-            <nav className="site-nav" aria-label="Main navigation">
-              {NAV_LINKS.map((l) => (
-                <Link key={l.href} href={l.href}>
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
+            <MarketStrip />
           </div>
         </header>
         <div className="shell">

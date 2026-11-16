@@ -16,6 +16,13 @@ What refreshes nightly (this script):
     is scaled by the price ratio (see _update_price_fields — the stored
     trailing_eps_adjusted is rounded to 2dp, so price/eps would be wrong;
     TSLA proves it: 390.22/0.98 = 398.18 != stored 399.17)
+  * market snapshot — lib/data/market.json: S&P 500 / Nasdaq / Dow / VIX
+    closes with prev close, point change and % change (yfinance), plus the
+    10Y Treasury yield from the FRED DGS10 CSV (urllib, no key; latest
+    value dated on or before the close date — FRED can lag a day, so the
+    10Y's own as_of is recorded in the file and may be one trading day
+    behind the indices). Refreshed in the live path only, gated the same
+    way as the tickers, written at the same time as results.json.
 
 What NEVER refreshes here (stays exactly as in base_inputs.json):
   fundamentals, Story/Financials scores, sector multiples, Damodaran ERP /
@@ -50,7 +57,12 @@ fetch failure or empty history -> FAIL; any missing close -> FAIL; any
 ticker's |new price vs stored price| > 25% day-over-day -> FAIL (likely bad
 data); fewer than 200 history bars -> FAIL; any engine output missing a
 ticker or with a null triangulated_fv where the stored one was non-null
--> FAIL. On any failure: exit non-zero and write NOTHING. Everything is
+-> FAIL. Market gates, same all-or-nothing rule: any index/10Y fetch
+failure or missing close -> FAIL; the four indices disagreeing on the
+latest close date, or disagreeing with the tickers' price_date -> FAIL;
+|^GSPC/^IXIC/^DJI change_pct| > 25% -> FAIL (likely bad data); NO
+magnitude gate on VIX (it can legitimately move >25% in a day) or on the
+10Y. On any failure: exit non-zero and write NOTHING. Everything is
 computed in memory and staged in a temp dir; files are written only after
 all gates pass.
 
@@ -70,6 +82,8 @@ import re
 import subprocess
 import sys
 import tempfile
+import urllib.error
+import urllib.request
 from zoneinfo import ZoneInfo
 
 import yfinance as yf
@@ -78,11 +92,19 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENGINE_DIR = os.path.join(ROOT, "scripts", "engine")
 BASE_INPUTS = os.path.join(ENGINE_DIR, "base_inputs.json")
 SITE_RESULTS = os.path.join(ROOT, "lib", "data", "results.json")
+MARKET_JSON = os.path.join(ROOT, "lib", "data", "market.json")
 SITEMAP = os.path.join(ROOT, "public", "sitemap.xml")
 
 V13_TICKERS = ["NVDA", "AAPL", "MSFT", "GOOGL", "NVO"]
 BATCH2_TICKERS = ["AMZN", "META", "TSLA", "AVGO", "BRK-B", "LLY", "JPM", "V"]
 ALL_TICKERS = V13_TICKERS + BATCH2_TICKERS
+
+# Market snapshot (lib/data/market.json): (yfinance symbol, display label).
+MARKET_SYMBOLS = [("^GSPC", "S&P 500"), ("^IXIC", "Nasdaq"),
+                  ("^DJI", "Dow"), ("^VIX", "VIX")]
+FRED_DGS10_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10"
+MARKET_SOURCE = "Yahoo Finance (indices, VIX); FRED DGS10 (10Y Treasury)"
+MAX_INDEX_MOVE = 0.25  # |change_pct| above this for ^GSPC/^IXIC/^DJI = bad data, FAIL
 
 MAX_DAY_MOVE = 0.25   # |new/old - 1| above this = bad data, FAIL
 MIN_BARS = 200        # fetch_inputs.py requires len(close) >= 200
@@ -225,6 +247,93 @@ def refresh_ticker(base_rec, hist):
     bar_date = hist.index[-1].date().isoformat()
     rec["price_date"] = bar_date
     return rec, bar_date
+
+
+# --------------------------------------------------------------------- market
+def fetch_fred_dgs10(close_date):
+    """Latest FRED DGS10 (10Y Treasury, %) dated on or before close_date.
+    FRED can lag a day behind the close (and is blank on bond holidays,
+    e.g. 2026-11-11 Veterans Day), so the returned (value, date) may be
+    one trading day behind the indices — the date is recorded in
+    market.json, never assumed. Returns (value_pct, as_of_str)."""
+    try:
+        with urllib.request.urlopen(FRED_DGS10_URL, timeout=30) as r:
+            text = r.read().decode("utf-8")
+    except (urllib.error.URLError, TimeoutError, OSError) as e:
+        fail(f"FRED DGS10 fetch failed: {e}")
+    best = None
+    for line in text.splitlines():
+        parts = line.strip().split(",")
+        if len(parts) != 2:
+            continue
+        d, v = parts[0].strip(), parts[1].strip()
+        if not v:  # blank = no observation that day (bond holiday)
+            continue
+        try:
+            val = float(v)
+            day = datetime.date.fromisoformat(d)
+        except ValueError:
+            continue
+        if day <= close_date and (best is None or day > best[1]):
+            best = (val, day)
+    if best is None:
+        fail(f"FRED DGS10: no value on or before {close_date}")
+    return round(best[0], 2), best[1].isoformat()
+
+
+def fetch_market(as_of_arg, end):
+    """Market snapshot for the close date: the 4 index/VIX closes with
+    prev close, point change and % change (yfinance), plus the 10Y from
+    FRED. as_of_arg/end follow cmd_live: end is exclusive (as_of + 1d)
+    when pinned, None for the latest close. Returns (market_dict,
+    close_date_str). Raises SystemExit on any gate trip."""
+    if as_of_arg:
+        start = (datetime.date.fromisoformat(as_of_arg)
+                 - datetime.timedelta(days=10)).isoformat()
+    else:
+        start = (datetime.date.today()
+                 - datetime.timedelta(days=10)).isoformat()
+    indices = []
+    close_dates = set()
+    for symbol, label in MARKET_SYMBOLS:
+        try:
+            hist = yf.Ticker(symbol).history(start=start, end=end,
+                                              auto_adjust=False)
+        except Exception as e:  # noqa: BLE001 — any yfinance failure is a gate trip
+            fail(f"{symbol}: yfinance fetch failed: {e}")
+        if hist is None or hist.empty or "Close" not in hist:
+            fail(f"{symbol}: yfinance returned empty history (end={end})")
+        hist = drop_intraday_bar(hist)
+        close = hist["Close"]
+        if len(close) < 2:
+            fail(f"{symbol}: fewer than 2 bars — no prev close")
+        last_close = float(close.iloc[-1])
+        prev_close = float(close.iloc[-2])
+        if last_close != last_close or prev_close != prev_close:  # NaN
+            fail(f"{symbol}: missing close")
+        c2, p2 = round(last_close, 2), round(prev_close, 2)
+        ch = round(c2 - p2, 2)
+        pct = round(ch / p2, 4)
+        if symbol != "^VIX" and abs(pct) > MAX_INDEX_MOVE:
+            fail(f"{symbol}: change {pct:+.2%} exceeds "
+                 f"{MAX_INDEX_MOVE:.0%} gate — likely bad data")
+        bar_date = hist.index[-1].date().isoformat()
+        close_dates.add(bar_date)
+        indices.append({"symbol": symbol, "label": label, "close": c2,
+                        "prev_close": p2, "change": ch, "change_pct": pct})
+        print(f"    {label} ({symbol}): {p2:.2f} -> {c2:.2f} "
+              f"({ch:+.2f}, {pct:+.2%}), close date {bar_date}")
+    if len(close_dates) != 1:
+        fail(f"market indices disagree on latest close date: "
+             f"{sorted(close_dates)}")
+    close_date = close_dates.pop()
+    close_d = datetime.date.fromisoformat(close_date)
+    value_10y, as_of_10y = fetch_fred_dgs10(close_d)
+    print(f"    10Y Treasury (FRED DGS10): {value_10y:.2f}% as of {as_of_10y}")
+    market = {"as_of": close_date, "source": MARKET_SOURCE,
+              "indices": indices,
+              "treasury_10y": {"value_pct": value_10y, "as_of": as_of_10y}}
+    return market, close_date
 
 
 # -------------------------------------------------------------------- engines
@@ -396,6 +505,14 @@ def cmd_live(as_of_arg):
         fail(f"tickers disagree on latest close date: {sorted(bar_dates)}")
     price_date = bar_dates.pop()
 
+    # 1b. Market snapshot, also IN MEMORY (no writes yet). Its close date
+    # must agree with the tickers' price_date — a mismatch is bad data.
+    print("\n  fetching market indices + 10Y ...")
+    market, market_close_date = fetch_market(as_of_arg, end)
+    if market_close_date != price_date:
+        fail(f"market close date {market_close_date} != ticker "
+             f"price_date {price_date}")
+
     # 2. Run both engines staged; gate their outputs.
     inputs = split_inputs(new_tickers, as_of, price_date)
     results = run_engines_staged(inputs)
@@ -407,36 +524,48 @@ def cmd_live(as_of_arg):
     #    no empty commit, no pointless redeploy).
     print(f"\n{'ticker':<7} {'price old->new':>22} {'FV old->new':>22} "
           f"{'verdict old->new':>20}")
-    changed = False
+    changed_tickers = False
     flips = []
     for t in ALL_TICKERS:
         old, new = stored["tickers"][t], merged["tickers"][t]
         p_ch = old["price"] != new["price"]
         f_ch = old["triangulated_fv"] != new["triangulated_fv"]
         v_ch = old["verdict"] != new["verdict"]
-        changed |= p_ch or f_ch or v_ch
+        changed_tickers |= p_ch or f_ch or v_ch
         if v_ch:
             flips.append(t)
         mark = "  <-- VERDICT FLIP" if v_ch else ""
         print(f"{t:<7} ${old['price']:>8.2f} -> ${new['price']:>8.2f}  "
               f"${old['triangulated_fv']:>8.2f} -> ${new['triangulated_fv']:>8.2f}  "
               f"{old['verdict']:>6} -> {new['verdict']:<6}{mark}")
+    stored_market = (load_json(MARKET_JSON)
+                     if os.path.exists(MARKET_JSON) else None)
+    changed_market = stored_market != market
+    changed = changed_tickers or changed_market
     print(f"\nCHANGED={'yes' if changed else 'no'}  "
-          f"(as_of {stored['as_of']} -> {as_of}, "
+          f"(tickers={'yes' if changed_tickers else 'no'}, "
+          f"market={'yes' if changed_market else 'no'}; "
+          f"as_of {stored['as_of']} -> {as_of}, "
           f"price_date {stored['price_date']} -> {price_date})")
     if flips:
         print(f"VERDICT FLIPS: {', '.join(flips)}")
     if not changed:
-        print("no price / FV / verdict change for any ticker — "
+        print("no price / FV / verdict / market change — "
               "writing nothing; site keeps serving the last good build.")
         return 0
 
     # 4. Changed — now write. (Inputs + per-engine results first,
-    #    then the site file, then the sitemap.)
-    for key in ("v13", "batch2"):
-        write_json(os.path.join(ENGINE_DIR, key, "inputs.json"), inputs[key])
-        write_json(os.path.join(ENGINE_DIR, key, "results.json"), results[key])
-    write_json(SITE_RESULTS, merged)
+    #    then the site file, then market.json, then the sitemap.)
+    if changed_tickers:
+        for key in ("v13", "batch2"):
+            write_json(os.path.join(ENGINE_DIR, key, "inputs.json"), inputs[key])
+            write_json(os.path.join(ENGINE_DIR, key, "results.json"), results[key])
+        write_json(SITE_RESULTS, merged)
+    if changed_market:
+        write_json(MARKET_JSON, market)
+        print(f"  market.json: as_of {market['as_of']}, "
+              f"10Y {market['treasury_10y']['value_pct']:.2f}% "
+              f"as of {market['treasury_10y']['as_of']}")
     ts = (datetime.datetime.now(datetime.timezone.utc)
           .strftime("%Y-%m-%dT%H:%M:%SZ"))
     sitemap = open(SITEMAP).read()
@@ -452,7 +581,7 @@ def cmd_live(as_of_arg):
     print("\nrunning `npm run build` ...")
     r = subprocess.run(["npm", "run", "build"], cwd=ROOT)
     if r.returncode != 0:
-        fail("`npm run build` failed after refresh — results.json was "
+        fail("`npm run build` failed after refresh — a data file was "
              "written; fix the build before deploying")
     print("build: OK")
     return 0

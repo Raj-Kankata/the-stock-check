@@ -1,0 +1,42 @@
+{
+  "as_of": "2026-11-13",
+  "source": "Yahoo Finance (indices, VIX); FRED DGS10 (10Y Treasury)",
+  "indices": [
+    {
+      "symbol": "^GSPC",
+      "label": "S&P 500",
+      "close": 7561.67,
+      "prev_close": 7592.4,
+      "change": -30.73,
+      "change_pct": -0.004
+    },
+    {
+      "symbol": "^IXIC",
+      "label": "Nasdaq",
+      "close": 25136.27,
+      "prev_close": 25366.09,
+      "change": -229.82,
+      "change_pct": -0.0091
+    },
+    {
+      "symbol": "^DJI",
+      "label": "Dow",
+      "close": 52347.55,
+      "prev_close": 52297.09,
+      "change": 50.46,
+      "change_pct": 0.001
+    },
+    {
+      "symbol": "^VIX",
+      "label": "VIX",
+      "close": 19.3,
+      "prev_close": 18.7,
+      "change": 0.6,
+      "change_pct": 0.0321
+    }
+  ],
+  "treasury_10y": {
+    "value_pct": 5.1,
+    "as_of": "2026-11-12"
+  }
+}

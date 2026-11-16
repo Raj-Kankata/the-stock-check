@@ -89,6 +89,20 @@ python3 scripts/nightly_refresh.py [--as-of YYYY-MM-DD] # live refresh
   empty commit, no redeploy). A mid-session manual run never
   uses today's still-trading bar: if the last bar is dated today (US/Eastern)
   and it is before 16:00 ET, the bar is dropped.
+- **Market snapshot (live refresh only):** the same run fetches the S&P 500,
+  Nasdaq, Dow and VIX closes via yfinance (close, prev close, point change,
+  % change) and the 10Y Treasury yield from the FRED DGS10 CSV (urllib, no
+  key), and writes `lib/data/market.json` at the same time as
+  `lib/data/results.json` — but only if the market values actually changed
+  (a market-only change still writes `market.json` on its own; a night with
+  no ticker or market change writes nothing). FRED can lag a day behind the
+  close (and is blank on bond holidays), so the 10Y is the latest FRED value
+  dated on or before the close date and its own `as_of` is recorded in the
+  file — e.g. the Nov-13 snapshot carries the 10Y at 5.10% as of Nov 12,
+  because FRED had not yet published a Nov-13 DGS10 value (the U.S.
+  Treasury's own daily par-yield table put the Nov-13 10Y at 5.15%; the
+  nightly run picks that up once FRED publishes it). `--dry-run` and
+  `--check-technicals` do not touch the market snapshot.
 - **What stays on its own cadence (NOT refreshed here):** fundamentals
   (quarterly, via the Fundamentals refresh), Story/Financials scores
   (weekly, Story-Tracker), sector multiples (quarterly, FactSet), Damodaran
@@ -100,9 +114,13 @@ python3 scripts/nightly_refresh.py [--as-of YYYY-MM-DD] # live refresh
   price more than 25% from its stored price → FAIL (likely bad data); fewer
   than 200 history bars → FAIL; any engine output missing a ticker or with
   a null triangulated_fv where the stored one was non-null → FAIL; tickers
-  disagreeing on the latest close date → FAIL. On any failure the script
-  exits non-zero and writes NOTHING (everything is computed in memory and
-  staged in a temp dir first).
+  disagreeing on the latest close date → FAIL. Market gates, same
+  all-or-nothing rule: any index/10Y fetch failure or missing close → FAIL;
+  the four indices disagreeing on the latest close date, or disagreeing
+  with the tickers' price_date → FAIL; any of ^GSPC/^IXIC/^DJI moving more
+  than 25% day-over-day → FAIL; NO magnitude gate on VIX or the 10Y. On any
+  failure the script exits non-zero and writes NOTHING (everything is
+  computed in memory and staged in a temp dir first).
 - **Dry run** re-runs both engines on the frozen base inputs and requires
   triangulated_fv, overall_score and verdict to match `lib/data/results.json`
   EXACTLY for all 13 tickers (verified 13/13 PASS on 2026-11-16).

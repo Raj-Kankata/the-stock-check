@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
 import { ENGINE_VERSION, PILLAR_WEIGHTS, PRICE_DATE } from '@/lib/site'
 import { Card, StockRow, StockTableHead } from '@/components/ui'
-import SearchBox from '@/components/SearchBox'
+import GridPreview from '@/components/GridPreview'
 
 export const metadata: Metadata = {
   title: 'Check any stock before you buy',
@@ -23,8 +23,6 @@ export default function HomePage() {
         three independent legs — and shows you every number, so you can check the work yourself.
       </p>
 
-      <SearchBox />
-
       <Card title="Popular tickers">
         <table>
           <thead>
@@ -43,6 +41,16 @@ export default function HomePage() {
           {PRICE_DATE} close. The scored universe expands as more names are run through the
           engine; no score is ever guessed for an unscored ticker.
         </p>
+      </Card>
+
+      <Card title="Try the fair-value grid">
+        <p>
+          The grid shows what a stock&apos;s DCF fair value would be under different
+          assumptions. Each row is a free-cash-flow growth rate, from 0% to 20%; each
+          column is a risk-free rate, from 4.0% to 6.0%. Click any cell to compare it
+          with that stock&apos;s DCF leg.
+        </p>
+        <GridPreview />
       </Card>
 
       <Card title="What you get">
