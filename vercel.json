@@ -1,0 +1,1 @@
+{"$schema":"https://openapi.vercel.sh/vercel.json","headers":[{"headers":[{"key":"Strict-Transport-Security","value":"max-age=63072000"}],"source":"/(.*)"}],"redirects":[{"destination":"https://www.thestockcheck.com/:path*","has":[{"type":"host","value":"thestockcheck.com"}],"permanent":true,"source":"/:path*"}]}

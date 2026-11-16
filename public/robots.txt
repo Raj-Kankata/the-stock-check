@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://www.thestockcheck.com
+Sitemap: https://www.thestockcheck.com/sitemap.xml
