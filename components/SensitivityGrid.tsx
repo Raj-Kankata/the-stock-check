@@ -38,6 +38,16 @@ export default function SensitivityGrid({
 
   const growthRows = Object.keys(values)
   const rfCols = Object.keys(values[growthRows[0]])
+  // The two grid rows the decision growth sits between (else-branch only;
+  // an exact row match is handled by the highlighted-cell branch below).
+  const decisionGrowthPct = decisionGrowth !== null ? decisionGrowth * 100 : null
+  const growthNums = growthRows.map((g) => parseFloat(g)).filter((n) => Number.isFinite(n))
+  const belowRows = decisionGrowthPct !== null ? growthNums.filter((n) => n <= decisionGrowthPct) : []
+  const aboveRows = decisionGrowthPct !== null ? growthNums.filter((n) => n > decisionGrowthPct) : []
+  const betweenRows =
+    belowRows.length > 0 && aboveRows.length > 0
+      ? `${Math.max(...belowRows)}% and ${Math.min(...aboveRows)}%`
+      : growthRows.join(' and ')
   const selectedValue =
     sel !== null ? values[sel.growth]?.[sel.rf] : undefined
 
@@ -81,7 +91,7 @@ export default function SensitivityGrid({
       <p className="footnote">
         {decisionGrowthLabel !== null && growthRows.includes(decisionGrowthLabel)
           ? `Highlighted cell (growth ${decisionGrowthLabel} × rf 5.0%) is the decision DCF leg: ${money(decisionLeg)}. `
-          : `The decision DCF leg (${money(decisionLeg)}) sits between two grid rows — its growth is ${decisionGrowth !== null ? `${(decisionGrowth * 100).toFixed(2)}%` : 'n/a'}, between the ${growthRows.join(' and ')} rows at rf 5.0%. `}
+          : `The decision DCF leg (${money(decisionLeg)}) sits between two grid rows — its growth is ${decisionGrowth !== null ? `${(decisionGrowth * 100).toFixed(2)}%` : 'n/a'}, between the ${betweenRows} rows at rf 5.0%. `}
         Click any cell to compare it with the decision leg.
       </p>
       {sel && selectedValue !== undefined && (

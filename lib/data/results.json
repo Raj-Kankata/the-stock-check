@@ -182,10 +182,10 @@
             "inputs": {
               "ema20": 193.27,
               "ema50": 206.86,
-              "ema200": 205.85,
+              "ema200": 205.56,
               "rsi14": 24.9,
               "macd_hist": -4.12,
-              "price_vs_200d_pct": -0.209
+              "price_vs_200d_pct": -0.208
             }
           }
         },
@@ -224,7 +224,7 @@
       ],
       "cons": [
         "Operating cash flow is only 70% of net income \u2014 a large slice of profit is not cash yet.",
-        "Downtrend: price $162.85 sits below its 20-day EMA ($193.27) and 200-day EMA ($205.85); RSI 24.9 \u2014 timing is poor even if the business is fine.",
+        "Downtrend: price $162.85 sits below its 20-day EMA ($193.27) and 200-day EMA ($205.56); RSI 24.9 \u2014 timing is poor even if the business is fine.",
         "Insiders are net sellers \u2014 5 sales, 4,297,200 shares, $960M, 0 buys in 90d."
       ],
       "stock_verdicts": {
@@ -399,10 +399,10 @@
             "inputs": {
               "ema20": 346.55,
               "ema50": 338.75,
-              "ema200": 310.66,
+              "ema200": 310.26,
               "rsi14": 60.6,
               "macd_hist": 0.89,
-              "price_vs_200d_pct": 0.147
+              "price_vs_200d_pct": 0.148
             }
           }
         },
@@ -614,7 +614,7 @@
             "inputs": {
               "ema20": 528.29,
               "ema50": 516.07,
-              "ema200": 472.99,
+              "ema200": 472.77,
               "rsi14": 48.8,
               "macd_hist": -1.83,
               "price_vs_200d_pct": 0.108
@@ -828,10 +828,10 @@
             "inputs": {
               "ema20": 302.82,
               "ema50": 320.81,
-              "ema200": 331.16,
+              "ema200": 331.87,
               "rsi14": 40.6,
               "macd_hist": 1.31,
-              "price_vs_200d_pct": -0.107
+              "price_vs_200d_pct": -0.109
             }
           }
         },
@@ -869,7 +869,7 @@
       "cons": [
         "Triangulated fair value $168.03 is -43% below the $295.77 price \u2014 even the most generous leg ($235.74) sits below the price.",
         "Free-cash-flow conversion is weak: FCF is only 14% of net income \u2014 capex is eating the cash the business earns.",
-        "Downtrend: price $295.77 sits below its 20-day EMA ($302.82) and 200-day EMA ($331.16); RSI 40.6 \u2014 timing is poor even if the business is fine.",
+        "Downtrend: price $295.77 sits below its 20-day EMA ($302.82) and 200-day EMA ($331.87); RSI 40.6 \u2014 timing is poor even if the business is fine.",
         "Our Story-Tracker rates it 'Out' (Story 56.2, Financials 46.1)."
       ],
       "stock_verdicts": {
@@ -1008,7 +1008,7 @@
             "inputs": {
               "ema20": 40.28,
               "ema50": 40.84,
-              "ema200": 43.82,
+              "ema200": 43.84,
               "rsi14": 58.1,
               "macd_hist": 0.24,
               "price_vs_200d_pct": -0.05
@@ -1224,10 +1224,10 @@
             "inputs": {
               "ema20": 259.39,
               "ema50": 256.52,
-              "ema200": 248.86,
+              "ema200": 248.48,
               "rsi14": 57.4,
               "macd_hist": 1.7,
-              "price_vs_200d_pct": 0.072
+              "price_vs_200d_pct": 0.073
             }
           }
         },
@@ -1446,10 +1446,10 @@
             "inputs": {
               "ema20": 642.8,
               "ema50": 654.11,
-              "ema200": 635.82,
+              "ema200": 635.18,
               "rsi14": 47.8,
               "macd_hist": 2.36,
-              "price_vs_200d_pct": 0.009
+              "price_vs_200d_pct": 0.01
             }
           }
         },

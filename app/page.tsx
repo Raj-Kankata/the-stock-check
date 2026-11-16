@@ -97,9 +97,8 @@ export default function HomePage() {
           security.
         </p>
         <p>
-          Prices are as of the {PRICE_DATE} close. Scores and fair values come from engine v1.3
-          (SPEC v1.1 FINAL, {ENGINE_VERSION}). Data may be delayed and can contain errors — verify
-          before trading. Past performance does not guarantee future results.
+          Prices are as of the {PRICE_DATE} close. Scores and fair values come from {ENGINE_VERSION}.
+          Data may be delayed and can contain errors — verify before trading. Past performance does not guarantee future results.
         </p>
       </Card>
 

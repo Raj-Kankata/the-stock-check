@@ -1,0 +1,715 @@
+{
+  "as_of": "2026-11-16",
+  "price_date": "2026-11-13",
+  "sources": {
+    "price_technicals_financials": "Yahoo Finance via yfinance 1.8.0, fetched 2026-11-15; price/EMA/RSI/MACD cross-checked against Stock Verdicts card values (exact match, see METHOD.md)",
+    "fcf_ttm": "Yahoo quarterly cashflow, Free Cash Flow row summed over last 4 quarters; cross-checked: NVDA $127.01B, AAPL $136.06B, MSFT $59.96B, GOOGL $19.75B match independent search results",
+    "story_financials": "Story-Tracker scored.json, run 2026-11-08 (latest); GOOGL proxied by GOOG",
+    "stock_verdicts": "research report 2026-11-15, stockverdicts.com live pages",
+    "googl_gain": "Alphabet Q2 2026 10-Q via web search: $99.0B unrealised gain on equity securities, $278M realised",
+    "nvo_div_yield": "FinanceCharts 2026-11-09",
+    "sector_multiples": "FactSet Earnings Insight, 13 Nov 2026, S&P 500 Sector-Level Forward 12-Month P/E Ratios (p.34); saved as ../recalibration/data/sector_multiples_factset_2026-11-13.csv; cross-checked vs Yardeni 14 Nov 2026, Oppenheimer/FactSet 30 Oct 2026, FactSet 5 Nov 2026",
+    "oneoff_rule": "ONEOFF-v1 \u2014 see ../recalibration/RECALIBRATION.md \u00a72 and ../recalibration/data/oneoff_cases.json; GOOGL after-tax amounts from Alphabet Q1/Q2/Q3 2026 earnings releases (SEC EDGAR); NVO adjusted figures are the company's own disclosed non-GAAP figures (Form 6-K, 6 May 2026)",
+    "capm_crosscheck": "CAPM cross-check inputs (NEW in v1.3, cross-check only \u2014 decision legs unchanged). Raw betas: Yahoo Finance info.beta via yfinance 1.8.0, fetched 2026-11-15, https://finance.yahoo.com/quote/<TICKER> (saved in data/betas_yahoo_2026-11-15.json; identical to the beta values already carried in v1.2 inputs.json). 10Y Treasury 5.10% as of 2026-11-12: FRED series DGS10, https://fred.stlouisfed.org/series/dgs10. Damodaran implied ERP 4.41% as of 2026-11-01 (Trailing 12 month, with adjusted payout): https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm. Both verified 2026-11-15; full record in data/capm_inputs_2026-11-15.json.",
+    "batch2_fragments": "Batch-2 fragments gathered 2026-11-16 (yfinance 1.8.0; prices/technicals at the 2026-11-13 close; Yahoo info fields live 2026-11-16). Per-ticker provenance in fragments/<TICKER>_SOURCES.md. Key sets verified identical to the v1.3 MSFT entry (extra oneoff_adjustments key only where GOOGL/NVO carry it).",
+    "batch2_capm": "CAPM block copied VERBATIM from v1.3 inputs.json (10Y 5.10% 2026-11-12, Damodaran implied ERP 4.41% 2026-11-01). Raw betas are the batch-2 fragments' own Yahoo info.beta values, fetched 2026-11-16.",
+    "jpm_debt_to_equity": "JPM debt_to_equity_ratio 1.3795 computed at batch-2 assembly from the latest annual balance sheet (FY2025, 2025-12-31, Yahoo via yfinance, re-fetched 2026-11-16): Total Debt $499,982M / Stockholders Equity $362,438M. Yahoo info.debtToEquity is null for JPM. See fragments/JPM_SOURCES.md.",
+    "jpm_fcf_skip": "JPM fcf_per_share_ttm set to null at batch-2 assembly (gatherer's Yahoo-row value -$30.41 retained in JPM_SOURCES.md for traceability, NOT scored). Bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row for JPM equals operating cash flow, which includes deposit/trading flows; StockAnalysis publishes no FCF for JPM. Engine uses the existing NVO skip path: FV = mean of PEGY + Forward legs.",
+    "v_forward_eps_verify": "V forwardEps re-fetched live 2026-11-16 via yfinance = 17.14041, unchanged \u2014 fragment keeps Yahoo $17.14 per the v1.3 method, flagged (S&P Global consensus FY2027 EPS $15.03 differs; see fragments/V_SOURCES.md).",
+    "batch2_near_misses_unadjusted": "AMZN Q1'26, META Q3'26 and JPM Q2'26 ONEOFF-v1 T1 near-misses stay UNADJUSTED per the frozen rule (flagged only). BRK-B keeps the Yahoo-method revenue CAGR (EDGAR operating-revenue alternative 7.14% flagged)."
+  },
+  "discarded_yahoo_fields": {
+    "info.freeCashflow": "Stale/wrong (NVDA $41.8B, MSFT $3.0B, GOOGL -$1.2B vs computed TTM $127.0B/$60.0B/$19.7B). Recomputed from quarterly cashflow instead.",
+    "info.dividendYield": "Inconsistent units across tickers (NVDA 0.61, NVO 4.32 as raw values). Used trailingAnnualDividendYield instead, except NVO (see override).",
+    "info.dividendRate": "NVDA 1.0 and NVO 1.8 do not match known per-share dividends; not used."
+  },
+  "capm": {
+    "ten_year_treasury_pct": 5.1,
+    "ten_year_treasury_asof": "2026-11-12",
+    "ten_year_treasury_source": "FRED series DGS10",
+    "ten_year_treasury_url": "https://fred.stlouisfed.org/series/dgs10",
+    "damodaran_implied_erp_pct": 4.41,
+    "damodaran_implied_erp_asof": "2026-11-01",
+    "damodaran_implied_erp_variant": "Trailing 12 month, with adjusted payout",
+    "damodaran_implied_erp_source": "Aswath Damodaran, NYU Stern (monthly implied ERP update)",
+    "damodaran_implied_erp_url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm",
+    "beta_adjustment": "beta_adjusted = 0.67 x raw beta + 0.33 (Bloomberg-style, as used by USA Economy Now)",
+    "capm_discount_formula": "r_capm = 10Y Treasury + beta_adjusted x Damodaran implied ERP",
+    "terminal_growth": 0.025,
+    "horizon_years": 5,
+    "status": "CROSS-CHECK ONLY (SPEC v1.1 \u00a73(a)) \u2014 the CAPM DCF leg is shown next to the flat-discount DCF leg and does NOT change any fair value, score or verdict until its backtest effect is measured.",
+    "sensitivity_grid": {
+      "growth_pct": [
+        0,
+        5,
+        10,
+        15,
+        20
+      ],
+      "rf_pct": [
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0
+      ],
+      "construction": "Grid of the DECISION DCF leg: discount = rf + locked spread, where locked spread = locked discount - locked rf 5.00% (5.0pp low-beta, 7.0pp NVDA). The rf 5.0% column reproduces the decision DCF leg exactly where the base growth is a grid row (NVDA, 20%); for AAPL (13.78%), MSFT (17.64%) and GOOGL (14.85%) the decision leg sits between two grid rows. Growth capped at 20% (SPEC v1.1); no 40% rows. Same base FCF/share as the decision leg (NVDA normalised $4.80; others own TTM FCF/share; NVO skipped \u2014 DKK basis unverified)."
+    }
+  },
+  "tickers": {
+    "NVDA": {
+      "name": "NVIDIA Corporation",
+      "sector": "Technology",
+      "currency_financials": "USD",
+      "price": 162.85,
+      "price_date": "2026-11-13",
+      "forward_eps": 15.85369,
+      "trailing_eps": 7.91,
+      "forward_pe": 10.27,
+      "trailing_pe": 20.59,
+      "trailing_pe_adjusted": null,
+      "trailing_eps_adjusted": null,
+      "peg_ratio_yahoo": 0.2,
+      "implied_5y_eps_growth": 1.0294,
+      "earnings_growth_yahoo_1y": 1.278,
+      "revenue_growth_yahoo": 1.059,
+      "revenue_cagr_3y_annual": 1.0005,
+      "dividend_yield": 0.0017,
+      "dividend_yield_source": "Yahoo trailingAnnualDividendYield",
+      "roe": 1.17211,
+      "roa": 0.53572,
+      "net_margin": 0.63663,
+      "operating_margin": 0.65213996,
+      "gross_margin": 0.74674004,
+      "debt_to_equity_ratio": 0.16971,
+      "total_debt_latest_annual": 11040000000.0,
+      "beta": 2.247,
+      "revenue_ttm": 302969000000.0,
+      "net_income_ttm": 192879000000.0,
+      "net_income_ttm_adjusted": null,
+      "ocf_ttm": 134360000000.0,
+      "fcf_ttm": 127006000000.0,
+      "fcf_per_share_ttm": 5.21,
+      "fcf_per_share_note": "USD per share; shares = NI_TTM/trailing EPS (total shares).",
+      "shares_implied_total": 24384197219,
+      "ocf_pct_net_income_ttm": 0.697,
+      "ocf_pct_net_income_adjusted": null,
+      "accruals_sloan_latest_annual": 0.0839,
+      "receivables_to_revenue_latest": 0.178,
+      "receivables_ratio_change_pp": 0.14,
+      "fcf_conversion_fcf_div_ni_ttm": 0.658,
+      "fcf_margin_fcf_div_rev_ttm": 0.419,
+      "technicals": {
+        "ema20": 193.27,
+        "ema50": 206.86,
+        "ema200": 205.56,
+        "rsi14": 24.9,
+        "macd_line": -14.23,
+        "macd_signal": -10.11,
+        "macd_hist": -4.12,
+        "price_vs_200d_pct": -0.208,
+        "ret_6m": -0.267,
+        "ret_12m": -0.127,
+        "high_52w": 239.24000549316406
+      },
+      "analysts": {
+        "n_opinions": 53,
+        "target_mean": 276.56415,
+        "target_high": 515.0,
+        "target_low": 170.0,
+        "target_spread_div_mean": 1.247
+      },
+      "insider_90d": {
+        "n_rows": 150,
+        "sales_90d": 5,
+        "buys_90d": 0,
+        "sale_shares_90d": 4297200,
+        "buy_shares_90d": 0,
+        "sale_value_90d_usd": 959950681.0,
+        "note": ""
+      },
+      "story_tracker": {
+        "story": 65.8,
+        "financials": 73.5,
+        "quadrant": "Hold, don't add",
+        "story_sub": {
+          "fwd": 93.5,
+          "lead": 50.7,
+          "rev": 47.2,
+          "theme": 56.2,
+          "theme_name": "AI Semicon"
+        },
+        "fin_sub": {
+          "rev": 89.5,
+          "prof": 72.5,
+          "cf": 84.5,
+          "acc": 40.2
+        },
+        "proxy_note": null
+      },
+      "stock_verdicts": {
+        "verdict": "Growth",
+        "signal": "Strong Buy \u00b7 weak trend",
+        "price": 162.85,
+        "ladder": [
+          185.52,
+          247.36,
+          309.19,
+          371.03
+        ],
+        "scores": [
+          69,
+          100,
+          100,
+          18
+        ],
+        "trust": 94,
+        "ocf_pct_ni": 70
+      },
+      "flags": [
+        "Insider 90d: 5 sales, 4,297,200 shares, $960M \u2014 matches Stock Verdicts' 25 sales / 4,332,118 shares in 3 months within 0.8% (window difference)."
+      ],
+      "gics_sector": "Information Technology",
+      "sector_multiple": 18.0,
+      "sector_multiple_asof": "2026-11-13",
+      "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
+      "sector_multiple_cap_floor": [
+        10.0,
+        35.0
+      ],
+      "sector_multiple_cap_floor_binds": false,
+      "beta_source": "https://finance.yahoo.com/quote/NVDA",
+      "beta_asof": "2026-11-15",
+      "beta_adjusted": 1.83549
+    },
+    "AAPL": {
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "currency_financials": "USD",
+      "price": 356.27,
+      "price_date": "2026-11-13",
+      "forward_eps": 10.57152,
+      "trailing_eps": 8.98,
+      "forward_pe": 33.7,
+      "trailing_pe": 39.67,
+      "trailing_pe_adjusted": null,
+      "trailing_eps_adjusted": null,
+      "peg_ratio_yahoo": 2.88,
+      "implied_5y_eps_growth": 0.1378,
+      "earnings_growth_yahoo_1y": 0.141,
+      "revenue_growth_yahoo": 0.117,
+      "revenue_cagr_3y_annual": 0.077,
+      "dividend_yield": 0.003,
+      "dividend_yield_source": "Yahoo trailingAnnualDividendYield",
+      "roe": 1.42257,
+      "roa": 0.25868,
+      "net_margin": 0.27604,
+      "operating_margin": 0.33009997,
+      "gross_margin": 0.48786,
+      "debt_to_equity_ratio": 0.84286,
+      "total_debt_latest_annual": 80111000000.0,
+      "beta": 1.089,
+      "revenue_ttm": 478834000000.0,
+      "net_income_ttm": 132175000000.0,
+      "net_income_ttm_adjusted": null,
+      "ocf_ttm": 145097000000.0,
+      "fcf_ttm": 136056000000.0,
+      "fcf_per_share_ttm": 9.24,
+      "fcf_per_share_note": "USD per share; shares = NI_TTM/trailing EPS (total shares).",
+      "shares_implied_total": 14718819599,
+      "ocf_pct_net_income_ttm": 1.098,
+      "ocf_pct_net_income_adjusted": null,
+      "accruals_sloan_latest_annual": -0.0319,
+      "receivables_to_revenue_latest": 0.092,
+      "receivables_ratio_change_pp": -0.41,
+      "fcf_conversion_fcf_div_ni_ttm": 1.029,
+      "fcf_margin_fcf_div_rev_ttm": 0.284,
+      "technicals": {
+        "ema20": 346.55,
+        "ema50": 338.75,
+        "ema200": 310.26,
+        "rsi14": 60.6,
+        "macd_line": 4.17,
+        "macd_signal": 3.28,
+        "macd_hist": 0.89,
+        "price_vs_200d_pct": 0.148,
+        "ret_6m": 0.196,
+        "ret_12m": 0.332,
+        "high_52w": 356.2699890136719
+      },
+      "analysts": {
+        "n_opinions": 39,
+        "target_mean": 345.6313,
+        "target_high": 425.0,
+        "target_low": 250.0,
+        "target_spread_div_mean": 0.506
+      },
+      "insider_90d": {
+        "n_rows": 87,
+        "sales_90d": 16,
+        "buys_90d": 0,
+        "sale_shares_90d": 287813,
+        "buy_shares_90d": 0,
+        "sale_value_90d_usd": 95830956.0,
+        "note": ""
+      },
+      "story_tracker": {
+        "story": 62.4,
+        "financials": 53.5,
+        "quadrant": "Speculative",
+        "story_sub": {
+          "fwd": 55.8,
+          "lead": 83.4,
+          "rev": 47.2,
+          "theme": 56.2,
+          "theme_name": "Consumer"
+        },
+        "fin_sub": {
+          "rev": 52.3,
+          "prof": 42.9,
+          "cf": 58.7,
+          "acc": 66.0
+        },
+        "proxy_note": null
+      },
+      "stock_verdicts": {
+        "verdict": "Avoid",
+        "signal": "Overvalued (\u2265 exit)",
+        "price": 356.27,
+        "ladder": [
+          161.95,
+          196.66,
+          231.36,
+          254.5
+        ],
+        "scores": [
+          32,
+          63,
+          88,
+          100
+        ],
+        "trust": 100,
+        "ocf_pct_ni": 110
+      },
+      "flags": [],
+      "gics_sector": "Information Technology",
+      "sector_multiple": 18.0,
+      "sector_multiple_asof": "2026-11-13",
+      "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
+      "sector_multiple_cap_floor": [
+        10.0,
+        35.0
+      ],
+      "sector_multiple_cap_floor_binds": false,
+      "beta_source": "https://finance.yahoo.com/quote/AAPL",
+      "beta_asof": "2026-11-15",
+      "beta_adjusted": 1.05963
+    },
+    "MSFT": {
+      "name": "Microsoft Corporation",
+      "sector": "Technology",
+      "currency_financials": "USD",
+      "price": 523.88,
+      "price_date": "2026-11-13",
+      "forward_eps": 24.19569,
+      "trailing_eps": 19.16,
+      "forward_pe": 21.65,
+      "trailing_pe": 27.34,
+      "trailing_pe_adjusted": null,
+      "trailing_eps_adjusted": null,
+      "peg_ratio_yahoo": 1.55,
+      "implied_5y_eps_growth": 0.1764,
+      "earnings_growth_yahoo_1y": 0.323,
+      "revenue_growth_yahoo": 0.188,
+      "revenue_cagr_3y_annual": 0.1612,
+      "dividend_yield": 0.0071,
+      "dividend_yield_source": "Yahoo trailingAnnualDividendYield",
+      "roe": 0.34221,
+      "roa": 0.14408,
+      "net_margin": 0.41169998,
+      "operating_margin": 0.47104,
+      "gross_margin": 0.67657,
+      "debt_to_equity_ratio": 0.28465,
+      "total_debt_latest_annual": 56826000000.0,
+      "beta": 1.045,
+      "revenue_ttm": 346445000000.0,
+      "net_income_ttm": 142631000000.0,
+      "net_income_ttm_adjusted": null,
+      "ocf_ttm": 195878000000.0,
+      "fcf_ttm": 59957000000.0,
+      "fcf_per_share_ttm": 8.05,
+      "fcf_per_share_note": "USD per share; shares = NI_TTM/trailing EPS (total shares).",
+      "shares_implied_total": 7444206681,
+      "ocf_pct_net_income_ttm": 1.373,
+      "ocf_pct_net_income_adjusted": null,
+      "accruals_sloan_latest_annual": -0.0649,
+      "receivables_to_revenue_latest": 0.244,
+      "receivables_ratio_change_pp": -0.44,
+      "fcf_conversion_fcf_div_ni_ttm": 0.42,
+      "fcf_margin_fcf_div_rev_ttm": 0.173,
+      "technicals": {
+        "ema20": 528.29,
+        "ema50": 516.07,
+        "ema200": 472.77,
+        "rsi14": 48.8,
+        "macd_line": 2.02,
+        "macd_signal": 3.84,
+        "macd_hist": -1.83,
+        "price_vs_200d_pct": 0.108,
+        "ret_6m": 0.237,
+        "ret_12m": 0.032,
+        "high_52w": 555.7999877929688
+      },
+      "analysts": {
+        "n_opinions": 54,
+        "target_mean": 636.12427,
+        "target_high": 870.0,
+        "target_low": 440.0,
+        "target_spread_div_mean": 0.676
+      },
+      "insider_90d": {
+        "n_rows": 91,
+        "sales_90d": 5,
+        "buys_90d": 0,
+        "sale_shares_90d": 147809,
+        "buy_shares_90d": 0,
+        "sale_value_90d_usd": 74769313.0,
+        "note": ""
+      },
+      "story_tracker": {
+        "story": 78.6,
+        "financials": 49.3,
+        "quadrant": "Speculative",
+        "story_sub": {
+          "fwd": 73.5,
+          "lead": 80.3,
+          "rev": 91.5,
+          "theme": 70.0,
+          "theme_name": "Cloud / App"
+        },
+        "fin_sub": {
+          "rev": 52.8,
+          "prof": 51.7,
+          "cf": 57.9,
+          "acc": 31.7
+        },
+        "proxy_note": null
+      },
+      "stock_verdicts": {
+        "verdict": "Growth",
+        "signal": "Buy \u00b7 trend up",
+        "price": 523.88,
+        "ladder": [
+          522.43,
+          696.57,
+          870.71,
+          1044.85
+        ],
+        "scores": [
+          47,
+          52,
+          87,
+          67
+        ],
+        "trust": 100,
+        "ocf_pct_ni": 137
+      },
+      "flags": [],
+      "gics_sector": "Information Technology",
+      "sector_multiple": 18.0,
+      "sector_multiple_asof": "2026-11-13",
+      "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
+      "sector_multiple_cap_floor": [
+        10.0,
+        35.0
+      ],
+      "sector_multiple_cap_floor_binds": false,
+      "beta_source": "https://finance.yahoo.com/quote/MSFT",
+      "beta_asof": "2026-11-15",
+      "beta_adjusted": 1.03015
+    },
+    "GOOGL": {
+      "name": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "currency_financials": "USD",
+      "price": 295.77,
+      "price_date": "2026-11-13",
+      "forward_eps": 15.43511,
+      "trailing_eps": 19.15,
+      "forward_pe": 19.16,
+      "trailing_pe": 15.44,
+      "trailing_pe_adjusted": 26.65,
+      "trailing_eps_adjusted": 11.1,
+      "peg_ratio_yahoo": 1.04,
+      "implied_5y_eps_growth": 0.1485,
+      "earnings_growth_yahoo_1y": -0.253,
+      "revenue_growth_yahoo": 0.247,
+      "revenue_cagr_3y_annual": 0.1251,
+      "dividend_yield": 0.0029,
+      "dividend_yield_source": "Yahoo trailingAnnualDividendYield",
+      "roe": 0.44286,
+      "roa": 0.12743,
+      "net_margin": 0.50031,
+      "operating_margin": 0.33321,
+      "gross_margin": 0.60857,
+      "debt_to_equity_ratio": 0.22187,
+      "total_debt_latest_annual": 59291000000.0,
+      "beta": 1.226,
+      "revenue_ttm": 471098000000.0,
+      "net_income_ttm": 235694000000.0,
+      "net_income_ttm_adjusted": 136594000000.0,
+      "ocf_ttm": 179551000000.0,
+      "fcf_ttm": 19747000000.0,
+      "fcf_per_share_ttm": 1.6,
+      "fcf_per_share_note": "USD per share; shares = NI_TTM/trailing EPS (total shares).",
+      "shares_implied_total": 12307780679,
+      "ocf_pct_net_income_ttm": 0.762,
+      "ocf_pct_net_income_adjusted": 1.314,
+      "accruals_sloan_latest_annual": -0.0547,
+      "receivables_to_revenue_latest": 0.156,
+      "receivables_ratio_change_pp": 0.66,
+      "fcf_conversion_fcf_div_ni_ttm": 0.084,
+      "fcf_margin_fcf_div_rev_ttm": 0.042,
+      "technicals": {
+        "ema20": 302.82,
+        "ema50": 320.81,
+        "ema200": 331.87,
+        "rsi14": 40.6,
+        "macd_line": -12.26,
+        "macd_signal": -13.57,
+        "macd_hist": 1.31,
+        "price_vs_200d_pct": -0.109,
+        "ret_6m": -0.255,
+        "ret_12m": 0.038,
+        "high_52w": 402.6199951171875
+      },
+      "analysts": {
+        "n_opinions": 53,
+        "target_mean": 400.37357,
+        "target_high": 500.0,
+        "target_low": 300.0,
+        "target_spread_div_mean": 0.5
+      },
+      "insider_90d": {
+        "n_rows": 17,
+        "sales_90d": 0,
+        "buys_90d": 0,
+        "sale_shares_90d": 0,
+        "buy_shares_90d": 0,
+        "sale_value_90d_usd": 0.0,
+        "note": ""
+      },
+      "story_tracker": {
+        "story": 56.2,
+        "financials": 46.1,
+        "quadrant": "Out",
+        "story_sub": {
+          "fwd": 78.9,
+          "lead": 42.6,
+          "rev": 47.2,
+          "theme": 42.5,
+          "theme_name": "Consumer Internet"
+        },
+        "fin_sub": {
+          "rev": 67.1,
+          "prof": 40.4,
+          "cf": 30.7,
+          "acc": 38.7
+        },
+        "proxy_note": "GOOG used as proxy for GOOGL (same company, class C vs A); price leadership may differ slightly."
+      },
+      "stock_verdicts": {
+        "verdict": "Growth",
+        "signal": "Watch (wait for dip) \u00b7 weak trend",
+        "price": 295.77,
+        "ladder": [
+          209.2,
+          278.94,
+          348.67,
+          418.4
+        ],
+        "scores": [
+          60,
+          51,
+          80,
+          27
+        ],
+        "trust": 100,
+        "ocf_pct_ni": 76
+      },
+      "flags": [
+        "TTM net income $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$36.9B pre-tax (+$28.7B after tax), Q2 +$99.0B pre-tax (+$77.1B after tax, $278M realised), Q3 -$8.7B pre-tax (-$6.7B after tax). Net after-tax one-off +$99.1B removed (ONEOFF-v1). Adjusted NI $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 used for Quality/PEGT. Note: v1.1 removed only the Q2 pre-tax gain and got $136.663B \u2014 the two errors almost exactly cancel; see RECALIBRATION.md \u00a72.2."
+      ],
+      "gics_sector": "Communication Services",
+      "sector_multiple": 16.8,
+      "sector_multiple_asof": "2026-11-13",
+      "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
+      "sector_multiple_cap_floor": [
+        10.0,
+        35.0
+      ],
+      "sector_multiple_cap_floor_binds": false,
+      "oneoff_adjustments": [
+        {
+          "quarter": "2026-03-31",
+          "item": "Unrealised gain on non-marketable equity securities",
+          "amount_after_tax_usd_b": 28.7,
+          "amount_pre_tax_usd_b": 36.9
+        },
+        {
+          "quarter": "2026-06-30",
+          "item": "Unrealised gain on equity securities ($77.544B non-marketable + $21.399B marketable + $0.278B realised)",
+          "amount_after_tax_usd_b": 77.1,
+          "amount_pre_tax_usd_b": 99.031
+        },
+        {
+          "quarter": "2026-09-30",
+          "item": "Net loss on equity securities (negative one-off \u2014 added back)",
+          "amount_after_tax_usd_b": -6.7,
+          "amount_pre_tax_usd_b": -8.664
+        }
+      ],
+      "beta_source": "https://finance.yahoo.com/quote/GOOGL",
+      "beta_asof": "2026-11-15",
+      "beta_adjusted": 1.15142
+    },
+    "NVO": {
+      "name": "Novo Nordisk A/S",
+      "sector": "Healthcare",
+      "currency_financials": "DKK",
+      "price": 41.63,
+      "price_date": "2026-11-13",
+      "forward_eps": 3.4394274,
+      "trailing_eps": 3.96,
+      "forward_pe": 12.1,
+      "trailing_pe": 10.51,
+      "trailing_pe_adjusted": 12.64,
+      "trailing_eps_adjusted": 3.29,
+      "peg_ratio_yahoo": 4.31,
+      "implied_5y_eps_growth": 0.0244,
+      "earnings_growth_yahoo_1y": -0.158,
+      "revenue_growth_yahoo": 0.056,
+      "revenue_cagr_3y_annual": 0.2043,
+      "dividend_yield": 0.0434,
+      "dividend_yield_source": "FinanceCharts, NVO dividend yield 4.34% as of 2026-11-09; range across sources 3.08% (StockAnalysis, $1.28/yr) to 4.40% (CompaniesMarketCap). Yahoo 28.78% discarded as an ADR data error.",
+      "roe": 0.58384,
+      "roa": 0.19054002,
+      "net_margin": 0.33921,
+      "operating_margin": 0.50778997,
+      "gross_margin": 0.83333,
+      "debt_to_equity_ratio": 0.61744,
+      "total_debt_latest_annual": 130958000000.0,
+      "beta": 0.368,
+      "revenue_ttm": 333650000000.0,
+      "net_income_ttm": 113177000000.0,
+      "net_income_ttm_adjusted": 94099000000.0,
+      "ocf_ttm": 127325000000.0,
+      "fcf_ttm": 44969000000.0,
+      "fcf_per_share_ttm": null,
+      "fcf_per_share_note": "USD per share; shares = NI_TTM/trailing EPS (total shares). NVO: FCF is in DKK, per-share USD not computed \u2014 use FCF margin instead.",
+      "shares_implied_total": null,
+      "ocf_pct_net_income_ttm": 1.125,
+      "ocf_pct_net_income_adjusted": 1.353,
+      "accruals_sloan_latest_annual": -0.0307,
+      "receivables_to_revenue_latest": 0.229,
+      "receivables_ratio_change_pp": -1.85,
+      "fcf_conversion_fcf_div_ni_ttm": 0.397,
+      "fcf_margin_fcf_div_rev_ttm": 0.135,
+      "technicals": {
+        "ema20": 40.28,
+        "ema50": 40.84,
+        "ema200": 43.84,
+        "rsi14": 58.1,
+        "macd_line": 0.39,
+        "macd_signal": 0.15,
+        "macd_hist": 0.24,
+        "price_vs_200d_pct": -0.05,
+        "ret_6m": -0.06,
+        "ret_12m": -0.141,
+        "high_52w": 63.97999954223633
+      },
+      "analysts": {
+        "n_opinions": 12,
+        "target_mean": 45.540123,
+        "target_high": 64.32134,
+        "target_low": 39.582344,
+        "target_spread_div_mean": 0.543
+      },
+      "insider_90d": {
+        "n_rows": 0,
+        "sales_90d": 0,
+        "buys_90d": 0,
+        "sale_shares_90d": 0,
+        "buy_shares_90d": 0,
+        "sale_value_90d_usd": 0.0,
+        "note": ""
+      },
+      "story_tracker": {
+        "story": 38.3,
+        "financials": 47.9,
+        "quadrant": "Out",
+        "story_sub": {
+          "fwd": 16.2,
+          "lead": 43.5,
+          "rev": 47.2,
+          "theme": 67.5,
+          "theme_name": "Healthcare"
+        },
+        "fin_sub": {
+          "rev": 33.7,
+          "prof": 37.4,
+          "cf": 49.6,
+          "acc": 83.5
+        },
+        "proxy_note": null
+      },
+      "stock_verdicts": {
+        "verdict": "Growth",
+        "signal": "Strong Buy \u00b7 trend up",
+        "price": 41.63,
+        "ladder": [
+          62.45,
+          83.26,
+          104.08,
+          124.89
+        ],
+        "scores": [
+          68,
+          36,
+          88,
+          70
+        ],
+        "trust": 83,
+        "ocf_pct_ni": 116
+      },
+      "flags": [
+        "ADR, financials reported in DKK; per-share USD FCF not computed. Yahoo dividend yield 28.78% discarded; 4.34% used (range 3.08-4.40%). Yahoo insider feed empty for this ADR \u2014 insider sub-score is neutral/missing, not 'no selling'.",
+        "ONEOFF-v1: Q1 2026 net profit DKK 48,557M includes a DKK 26,760M non-cash reversal of a provision for US 340B sales rebates; company-disclosed adjusted net profit DKK 29,479M. Adjusted TTM NI DKK 94,099M, adjusted EPS USD $3.29, adjusted trailing P/E 12.64 used for Quality/PEGT (see RECALIBRATION.md \u00a72.2)."
+      ],
+      "gics_sector": "Health Care",
+      "sector_multiple": 20.0,
+      "sector_multiple_asof": "2026-11-13",
+      "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
+      "sector_multiple_cap_floor": [
+        10.0,
+        35.0
+      ],
+      "sector_multiple_cap_floor_binds": false,
+      "revenue_ttm_adjusted": 306890000000.0,
+      "oneoff_adjustments": [
+        {
+          "quarter": "2026-03-31",
+          "item": "Reversal of provision for US 340B Drug Pricing Program sales rebates (non-cash, non-recurring)",
+          "amount_dkk_m": 26760,
+          "amount_usd_b": 4.2,
+          "flows_through_revenue": true,
+          "company_disclosed_adjusted_net_profit_dkk_m": 29479,
+          "company_disclosed_adjusted_eps_dkk": 6.63
+        }
+      ],
+      "beta_source": "https://finance.yahoo.com/quote/NVO",
+      "beta_asof": "2026-11-15",
+      "beta_adjusted": 0.57656
+    }
+  }
+}

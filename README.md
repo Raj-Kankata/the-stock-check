@@ -54,3 +54,66 @@ Output lands in `out/`.
 - Stack: Next.js 16 (App Router, TypeScript, static export), no backend, no API routes,
   no analytics, no sign-in. Data is baked in at build time from
   `lib/data/results.json` (scoring-engine-v1.3, SPEC v1.1 FINAL).
+
+## Nightly refresh (`scripts/nightly_refresh.py`)
+
+The data pipeline for the GitHub Actions nightly job (~05:20 UTC; the workflow
+YAML itself is separate — this script only fetches, gates, scores and writes,
+it never commits or pushes). Engines are FROZEN (scoring-engine-v1.3 and
+v1.3-batch2, SPEC v1.1 FINAL): verbatim copies live at
+`scripts/engine/v13/engine.py` and `scripts/engine/batch2/engine.py`, and the
+frozen Nov-13-close base inputs at `scripts/engine/base_inputs.json` (13
+tickers merged from both engines' `inputs.json`, entries byte-identical).
+
+```bash
+python3 scripts/nightly_refresh.py --dry-run            # reproduction gate, no fetching
+python3 scripts/nightly_refresh.py --check-technicals   # recompute Nov-13 technicals, compare vs stored
+python3 scripts/nightly_refresh.py [--as-of YYYY-MM-DD] # live refresh
+```
+
+- **Live refresh:** for each of the 13 tickers, fetches 1y history via yfinance
+  and recomputes technicals with the exact `fetch_inputs.py` formulas
+  (EMA20/50/200, RSI14 Wilder, MACD 12/26/9, ret_6m/ret_12m, high_52w,
+  price_vs_200d_pct), then updates price, price_date and the price-derived
+  fields only: trailing_pe = price/trailing_eps, forward_pe =
+  price/forward_eps, dividend_yield scaled to preserve dividend-per-share.
+  `trailing_pe_adjusted` is scaled by the price ratio, not recomputed as
+  price/trailing_eps_adjusted — the stored adjusted EPS is rounded to 2dp
+  (TSLA proves it: 390.22/0.98 = 398.18 ≠ stored 399.17). On success it
+  writes fresh `inputs.json` into `scripts/engine/v13/` and `batch2/`, runs
+  both engines, merges into `lib/data/results.json` (top-level exactly as
+  v1.3's output; as_of = today UTC, price_date = latest completed close),
+  updates all `public/sitemap.xml` lastmod entries to the refresh timestamp,
+  and runs `npm run build` as a final gate. If no ticker's price, FV or
+  verdict changed, it writes nothing at all (no as_of/lastmod bumps, no
+  empty commit, no redeploy). A mid-session manual run never
+  uses today's still-trading bar: if the last bar is dated today (US/Eastern)
+  and it is before 16:00 ET, the bar is dropped.
+- **What stays on its own cadence (NOT refreshed here):** fundamentals
+  (quarterly, via the Fundamentals refresh), Story/Financials scores
+  (weekly, Story-Tracker), sector multiples (quarterly, FactSet), Damodaran
+  ERP / 10Y Treasury for the CAPM cross-check (monthly), ONEOFF adjustments
+  (manual, only when a material one-off is verified). The nightly job
+  reuses all of these exactly as frozen in `base_inputs.json`.
+- **Safety gates (live mode, before writing anything):** any yfinance fetch
+  failure or empty history → FAIL; missing close → FAIL; any ticker's new
+  price more than 25% from its stored price → FAIL (likely bad data); fewer
+  than 200 history bars → FAIL; any engine output missing a ticker or with
+  a null triangulated_fv where the stored one was non-null → FAIL; tickers
+  disagreeing on the latest close date → FAIL. On any failure the script
+  exits non-zero and writes NOTHING (everything is computed in memory and
+  staged in a temp dir first).
+- **Dry run** re-runs both engines on the frozen base inputs and requires
+  triangulated_fv, overall_score and verdict to match `lib/data/results.json`
+  EXACTLY for all 13 tickers (verified 13/13 PASS on 2026-11-16).
+  **Check-technicals** is informational: it re-fetches 1y history ending
+  2026-11-13 and reports per-field match vs the stored Nov-13 technicals.
+  On 2026-11-16 it matched 123/143 fields exactly — all 11 fields for the
+  five v1.3 tickers; for the eight batch-2 tickers only EMA200 (±0.02–0.47),
+  its knock-on price_vs_200d_pct (±0.001) and ret_12m (±0.001–0.017) differ,
+  because the rolling 1y window starts one bar later than the original
+  batch-2 fetch. EMA20/50, RSI, MACD, ret_6m, high_52w and every last close
+  match exactly. These are seed/window-start effects on the slowest
+  indicator, reported as-is, never adjusted to match — and they never
+  change a banded technical subscore.
+
