@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getTicker, money, pct } from '@/lib/data'
+import { getTicker, money } from '@/lib/data'
 import { PICKS, PICKS_ENTRY_DATE } from '@/lib/site'
-import { Card, VerdictBadge, scoreSpan } from '@/components/ui'
+import { Card, VerdictBadge, scoreSpan, signedPctSpan } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: 'Top Picks',
@@ -51,7 +51,7 @@ export default function PicksPage() {
                   <td className="num">{scoreSpan(t.overall_score)}</td>
                   <td className="num">{money(entryPrice)}</td>
                   <td className="num">{money(t.triangulated_fv)}</td>
-                  <td className="num">{pct(upside)}</td>
+                  <td className="num">{signedPctSpan(upside)}</td>
                 </tr>
               )
             })}

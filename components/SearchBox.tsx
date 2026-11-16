@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { RESULTS, TICKER_SYMBOLS, money } from '@/lib/data'
+import { scoreSpan } from '@/components/ui'
 
 /**
  * Ticker search. Only the thirteen scored tickers resolve to a card.
@@ -52,7 +53,7 @@ export default function SearchBox() {
                     <strong>{s}</strong> — {t.name}
                   </span>
                   <span>
-                    {t.verdict} · {t.overall_score.toFixed(1)} · {money(t.triangulated_fv)}
+                    {t.verdict} · {scoreSpan(t.overall_score)} · {money(t.triangulated_fv)}
                   </span>
                 </Link>
               </li>

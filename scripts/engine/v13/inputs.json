@@ -2,10 +2,9 @@
   "as_of": "2026-11-16",
   "price_date": "2026-11-13",
   "sources": {
-    "price_technicals_financials": "Yahoo Finance via yfinance 1.8.0, fetched 2026-11-15; price/EMA/RSI/MACD cross-checked against Stock Verdicts card values (exact match, see METHOD.md)",
+    "price_technicals_financials": "Yahoo Finance via yfinance 1.8.0, fetched 2026-11-15",
     "fcf_ttm": "Yahoo quarterly cashflow, Free Cash Flow row summed over last 4 quarters; cross-checked: NVDA $127.01B, AAPL $136.06B, MSFT $59.96B, GOOGL $19.75B match independent search results",
     "story_financials": "Story-Tracker scored.json, run 2026-11-08 (latest); GOOGL proxied by GOOG",
-    "stock_verdicts": "research report 2026-11-15, stockverdicts.com live pages",
     "googl_gain": "Alphabet Q2 2026 10-Q via web search: $99.0B unrealised gain on equity securities, $278M realised",
     "nvo_div_yield": "FinanceCharts 2026-11-09",
     "sector_multiples": "FactSet Earnings Insight, 13 Nov 2026, S&P 500 Sector-Level Forward 12-Month P/E Ratios (p.34); saved as ../recalibration/data/sector_multiples_factset_2026-11-13.csv; cross-checked vs Yardeni 14 Nov 2026, Oppenheimer/FactSet 30 Oct 2026, FactSet 5 Nov 2026",
@@ -147,27 +146,8 @@
         },
         "proxy_note": null
       },
-      "stock_verdicts": {
-        "verdict": "Growth",
-        "signal": "Strong Buy \u00b7 weak trend",
-        "price": 162.85,
-        "ladder": [
-          185.52,
-          247.36,
-          309.19,
-          371.03
-        ],
-        "scores": [
-          69,
-          100,
-          100,
-          18
-        ],
-        "trust": 94,
-        "ocf_pct_ni": 70
-      },
       "flags": [
-        "Insider 90d: 5 sales, 4,297,200 shares, $960M \u2014 matches Stock Verdicts' 25 sales / 4,332,118 shares in 3 months within 0.8% (window difference)."
+        "Insider 90d: 5 sales, 4,297,200 shares, $960M (Yahoo feed)."
       ],
       "gics_sector": "Information Technology",
       "sector_multiple": 18.0,
@@ -271,25 +251,6 @@
           "acc": 66.0
         },
         "proxy_note": null
-      },
-      "stock_verdicts": {
-        "verdict": "Avoid",
-        "signal": "Overvalued (\u2265 exit)",
-        "price": 356.27,
-        "ladder": [
-          161.95,
-          196.66,
-          231.36,
-          254.5
-        ],
-        "scores": [
-          32,
-          63,
-          88,
-          100
-        ],
-        "trust": 100,
-        "ocf_pct_ni": 110
       },
       "flags": [],
       "gics_sector": "Information Technology",
@@ -395,25 +356,6 @@
         },
         "proxy_note": null
       },
-      "stock_verdicts": {
-        "verdict": "Growth",
-        "signal": "Buy \u00b7 trend up",
-        "price": 523.88,
-        "ladder": [
-          522.43,
-          696.57,
-          870.71,
-          1044.85
-        ],
-        "scores": [
-          47,
-          52,
-          87,
-          67
-        ],
-        "trust": 100,
-        "ocf_pct_ni": 137
-      },
       "flags": [],
       "gics_sector": "Information Technology",
       "sector_multiple": 18.0,
@@ -517,25 +459,6 @@
           "acc": 38.7
         },
         "proxy_note": "GOOG used as proxy for GOOGL (same company, class C vs A); price leadership may differ slightly."
-      },
-      "stock_verdicts": {
-        "verdict": "Growth",
-        "signal": "Watch (wait for dip) \u00b7 weak trend",
-        "price": 295.77,
-        "ladder": [
-          209.2,
-          278.94,
-          348.67,
-          418.4
-        ],
-        "scores": [
-          60,
-          51,
-          80,
-          27
-        ],
-        "trust": 100,
-        "ocf_pct_ni": 76
       },
       "flags": [
         "TTM net income $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$36.9B pre-tax (+$28.7B after tax), Q2 +$99.0B pre-tax (+$77.1B after tax, $278M realised), Q3 -$8.7B pre-tax (-$6.7B after tax). Net after-tax one-off +$99.1B removed (ONEOFF-v1). Adjusted NI $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 used for Quality/PEGT. Note: v1.1 removed only the Q2 pre-tax gain and got $136.663B \u2014 the two errors almost exactly cancel; see RECALIBRATION.md \u00a72.2."
@@ -662,25 +585,6 @@
           "acc": 83.5
         },
         "proxy_note": null
-      },
-      "stock_verdicts": {
-        "verdict": "Growth",
-        "signal": "Strong Buy \u00b7 trend up",
-        "price": 41.63,
-        "ladder": [
-          62.45,
-          83.26,
-          104.08,
-          124.89
-        ],
-        "scores": [
-          68,
-          36,
-          88,
-          70
-        ],
-        "trust": 83,
-        "ocf_pct_ni": 116
       },
       "flags": [
         "ADR, financials reported in DKK; per-share USD FCF not computed. Yahoo dividend yield 28.78% discarded; 4.34% used (range 3.08-4.40%). Yahoo insider feed empty for this ADR \u2014 insider sub-score is neutral/missing, not 'no selling'.",

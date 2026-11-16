@@ -1,11 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { signedSpan } from '@/components/ui'
 
 /**
  * Sector Rotation calculator — live computation of the published formulas.
  *
- * Formulas (published by stockverdicts.com, reproduced exactly):
+ * Formulas (port of colicoid's TradingView Pine Script):
  *   RS = sector 21-day return − SPY 21-day return
  *   Momentum = weighted average (1W×3, 1M×2, 2M×1, 3M×0.5) ÷ 6.5
  *   Acceleration = recent average (1W×2, 1M) − older average (3M, 6M),
@@ -29,10 +30,10 @@ type Inputs = {
 }
 
 /**
- * Worked example: Health Care (XLV), published 15 Nov 2026.
- * The published example states the RS gap (+8.8 pts) but not the two
+ * Worked example: Health Care (XLV), 15 Nov 2026.
+ * The worked example states the RS gap (+8.8 pts) but not the two
  * 21-day returns separately, so those fields are pre-filled as +8.8 vs
- * 0.0 to reproduce the published gap only — type real 21-day returns
+ * 0.0 to reproduce the gap only — type real 21-day returns
  * to recompute RS.
  */
 const EXAMPLE: Inputs = {
@@ -180,19 +181,21 @@ export default function SectorCalculator() {
       </p>
       <div className="kv">
         <span className="k">Relative strength (RS)</span>
-        <span className="v">{fmt(rs)} pts</span>
+        <span className="v">{rs === null ? '—' : signedSpan(rs, `${fmt(rs)} pts`)}</span>
       </div>
       <div className="kv">
         <span className="k">Momentum</span>
-        <span className="v">{fmt(momentum)}</span>
+        <span className="v">{momentum === null ? '—' : signedSpan(momentum, fmt(momentum))}</span>
       </div>
       <div className="kv">
         <span className="k">Acceleration</span>
-        <span className="v">{fmt(acceleration)}</span>
+        <span className="v">
+          {acceleration === null ? '—' : signedSpan(acceleration, fmt(acceleration))}
+        </span>
       </div>
       <div className="kv">
         <span className="k">&Delta;1M (vs prior month&rsquo;s 1M%)</span>
-        <span className="v">{fmt(delta1m)} pts</span>
+        <span className="v">{delta1m === null ? '—' : signedSpan(delta1m, `${fmt(delta1m)} pts`)}</span>
       </div>
       <div className="kv">
         <span className="k">Flow</span>

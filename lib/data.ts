@@ -98,20 +98,6 @@ export interface TickerData {
   ladder: { heavy: number; buy: number; fair: number; exit: number }
   pros: string[]
   cons: string[]
-  stock_verdicts: {
-    verdict: string
-    signal: string
-    price: number
-    ladder: number[]
-    scores: number[]
-    trust: number
-    ocf_pct_ni: number
-  }
-  vs_stock_verdicts: {
-    verdict_agree: boolean
-    our_fv_vs_their_fair: number
-    ladder_diff: { heavy: number; buy: number; fair: number; exit: number }
-  }
   flags: string[]
   analysts: Analysts
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { money, round2, type TickerData } from '@/lib/data'
+import { money, pct, round2, type TickerData } from '@/lib/data'
 
 /** Score colour class: green >= 70, amber 40–69, red < 40. */
 export function scoreClass(n: number): 'good' | 'mid' | 'bad' {
@@ -11,6 +11,28 @@ export function scoreClass(n: number): 'good' | 'mid' | 'bad' {
 
 export function scoreSpan(n: number): ReactNode {
   return <span className={`score-${scoreClass(n)}`}>{n.toFixed(1)}</span>
+}
+
+/**
+ * Signed-number colour class: positive green, negative red, near-zero
+ * (|n| <= zeroBand) muted. zeroBand is in the units of the value passed
+ * (e.g. 0.001 for a fraction like an upside, 0.05 for a points figure).
+ */
+export function signedClass(n: number, zeroBand = 0.05): 'pos' | 'neg' | 'zero' {
+  if (n > zeroBand) return 'pos'
+  if (n < -zeroBand) return 'neg'
+  return 'zero'
+}
+
+/** Signed number span, coloured by sign with the shared green/red logic. */
+export function signedSpan(n: number, text?: string, zeroBand?: number): ReactNode {
+  const display = text ?? `${n > 0 ? '+' : ''}${n.toFixed(1)}`
+  return <span className={`num-${signedClass(n, zeroBand)}`}>{display}</span>
+}
+
+/** Signed percentage span: n is a fraction (0.05 = +5.0%). */
+export function signedPctSpan(n: number, digits = 1, zeroBand = 0.001): ReactNode {
+  return signedSpan(n, pct(n, digits), zeroBand)
 }
 
 export function VerdictBadge({ verdict }: { verdict: TickerData['verdict'] }) {
@@ -44,8 +66,33 @@ export function PillarBar({ label, score, weight }: { label: string; score: numb
       <span className="track">
         <span className={`fill ${scoreClass(score)}`} style={{ width: `${Math.max(0, Math.min(100, score))}%` }} />
       </span>
-      <span className="value">{score.toFixed(1)}</span>
+      <span className={`value score-${scoreClass(score)}`}>{score.toFixed(1)}</span>
     </div>
+  )
+}
+
+/**
+ * Collapsible plain-language explainer for one metric on a stock card.
+ * Native <details>/<summary> — no JS needed, works in the static
+ * export. `what` says what the metric is; `how` says how it is
+ * computed. Both must stay generic and true for every ticker (no
+ * per-ticker numbers); ticker-specific notes live in the page's own
+ * callouts, never in here. Every explainer links to /methodology.
+ */
+export function MetricNote({ what, how }: { what: ReactNode; how: ReactNode }) {
+  return (
+    <details className="metric-note">
+      <summary>What is this?</summary>
+      <p>
+        <strong>What this is.</strong> {what}
+      </p>
+      <p>
+        <strong>How it&apos;s computed.</strong> {how}
+      </p>
+      <p className="footnote">
+        Full detail: <Link href="/methodology">Methodology</Link>.
+      </p>
+    </details>
   )
 }
 
@@ -84,6 +131,8 @@ export function LadderTable({ fv, price }: { fv: number; price: number }) {
 
 /** Compact stock row used on Home / Picks / Trending / Performance. */
 export function StockRow({ t }: { t: TickerData & { symbol: string } }) {
+  const upside =
+    t.triangulated_fv > 0 && t.price > 0 ? (t.triangulated_fv - t.price) / t.price : null
   return (
     <tr>
       <td>
@@ -99,11 +148,7 @@ export function StockRow({ t }: { t: TickerData & { symbol: string } }) {
       <td className="num">{scoreSpan(t.overall_score)}</td>
       <td className="num">{money(t.price)}</td>
       <td className="num">{money(t.triangulated_fv)}</td>
-      <td className="num">
-        {t.triangulated_fv > 0 && t.price > 0
-          ? `${(((t.triangulated_fv - t.price) / t.price) * 100).toFixed(1)}%`
-          : '—'}
-      </td>
+      <td className="num">{upside === null ? '—' : signedPctSpan(upside)}</td>
     </tr>
   )
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Scoring engine v1.3-batch2 — better Stock Verdicts platform.
+"""Scoring engine v1.3-batch2 — The Stock Check.
 BATCH-2 ADAPTATIONS (v1.3 logic unchanged; see METHOD-batch2.md):
   (a) TICKERS = the 8 batch-2 names; TRUST COMPLETENESS generalised from
       the v1.3 hardcoded {NVDA/AAPL/MSFT: 100, GOOGL: 80, NVO: 65} by the
@@ -21,7 +21,7 @@ BATCH-2 ADAPTATIONS (v1.3 logic unchanged; see METHOD-batch2.md):
   weights, gates, ladder ratios, PEGY/DCF/Forward-sector legs, ONEOFF-v1,
   CAPM cross-check and sensitivity grid (display only).
 
-Scoring engine v1.3 — better Stock Verdicts platform.
+Scoring engine v1.3 — The Stock Check.
 SPEC v1.1 FINAL (2026-11-16). Deterministic: reads inputs.json only
 (verified snapshot as of 2026-11-16, prices at 2026-11-13 close).
 No live calls, no invented numbers. Writes results.json.
@@ -111,8 +111,7 @@ PILLAR 2 — VALUATION (30%): triangulated fair value from three legs; the
         discounted 10% for 1 year. The old Forward-22 value (x 22x) is
         still computed and shown in the method note for traceability.
     Ladder from OUR triangulated FV: Heavy 0.60x / Buy 0.80x / Fair 1.00x /
-        Exit 1.20x (explicit; SV used 0.60/0.80/1.20 for most names but
-        0.70/0.85/1.10 for AAPL — flagged where it differs).
+        Exit 1.20x (explicit; fixed for all names).
     Valuation score from upside (FV/price - 1), piecewise-linear:
         -40%->10, -25%->25, -10%->40, 0%->55, +10%->70, +25%->85, +50%->100.
         Uncertainty cap: if (max leg - min leg)/median FV > 0.75, cap at 65;
@@ -515,20 +514,12 @@ for t in TICKERS:
     overall = round(sum(OVERALL_WEIGHTS[k] * pillars[k]["score"] for k in OVERALL_WEIGHTS), 1)
     vdt, v_reason = verdict(t, d, overall, pillars)
     pros, cons = pros_cons(t, d, pillars, overall, vdt)
-    sv = d["stock_verdicts"]
-    sv_ladder = sv["ladder"]
     our_ladder = val_d["ladder"]
     results["tickers"][t] = {
         "name": d["name"], "sector": d["sector"], "price": d["price"],
         "pillars": pillars, "overall_score": overall, "verdict": vdt, "verdict_reason": v_reason,
         "triangulated_fv": val_d["triangulated_fv"], "ladder": our_ladder,
         "pros": pros, "cons": cons,
-        "stock_verdicts": sv,
-        "vs_stock_verdicts": {
-            "verdict_agree": (vdt == sv["verdict"]),  # strict: Watch is NOT agreement with Growth (fixed 2026-11-15; was True for NVO Watch vs Growth)
-            "our_fv_vs_their_fair": round(val_d["triangulated_fv"] - sv_ladder[2], 2) if val_d["triangulated_fv"] else None,
-            "ladder_diff": {k: round(our_ladder[k] - sv_ladder[i], 2) for i, k in enumerate(["heavy", "buy", "fair", "exit"])} if our_ladder else None,
-        },
         "flags": d.get("flags", []),
     }
     dcf_v = val_d['legs']['dcf']['value']
@@ -540,7 +531,7 @@ for t in TICKERS:
     print(f"{t:6s} price ${d['price']:>7.2f} | Conv {conv:>5.1f} Val {val_s:>5.1f} Qual {qual_s:>5.1f} "
           f"Tech {tech_s:>5.1f} Trust {trust_s:>5.1f} | OVERALL {overall:>5.1f} {vdt:6s} | "
           f"FV ${val_d['triangulated_fv']:>7.2f} (upside {val_d['upside_pct']:+.0%}) | "
-          f"{dcf_s} | {capm_s} | SV: {sv['verdict']} / Fair ${sv_ladder[2]:,.2f}")
+          f"{dcf_s} | {capm_s}")
 
 json.dump(results, open(os.path.join(BASE, "results.json"), "w"), indent=2)
 print("wrote results.json")

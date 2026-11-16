@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import {
   RESULTS,
   getTicker,
@@ -15,9 +16,12 @@ import {
   Card,
   VerdictBadge,
   PillarBar,
+  MetricNote,
   LadderTable,
   scoreSpan,
   scoreClass,
+  signedSpan,
+  signedPctSpan,
 } from '@/components/ui'
 import SensitivityGrid from '@/components/SensitivityGrid'
 
@@ -92,11 +96,44 @@ function SubscoreTable({
   )
 }
 
-function Kv({ k, v }: { k: string; v: string }) {
+function Kv({ k, v }: { k: string; v: ReactNode }) {
   return (
     <div className="kv">
       <span className="k">{k}</span>
       <span className="v">{v}</span>
+    </div>
+  )
+}
+
+/**
+ * One fair-value leg. A skipped (null) leg gets an amber "Skipped" pill
+ * and an amber-tinted block; the leg that sources the triangulated fair
+ * value — the median of three legs, or one of the two legs whose mean it
+ * is — gets a green "Median → fair value" / "Mean of 2 legs → fair
+ * value" badge and a green-tinted block.
+ */
+function LegBlock({
+  title,
+  value,
+  badge,
+  children,
+}: {
+  title: string
+  value: number | null
+  badge: 'median' | 'mean' | null
+  children: ReactNode
+}) {
+  const skipped = value === null
+  return (
+    <div className={`leg${badge ? ' leg-median' : ''}${skipped ? ' leg-skipped' : ''}`}>
+      <h3>{title}</h3>
+      <p className="leg-value">
+        <strong>{skipped ? '—' : money(value)}</strong>
+        {skipped && <span className="pill skipped">Skipped</span>}
+        {badge === 'median' && <span className="pill growth">Median → fair value</span>}
+        {badge === 'mean' && <span className="pill growth">Mean of 2 legs → fair value</span>}
+      </p>
+      {children}
     </div>
   )
 }
@@ -168,6 +205,34 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   const legs = val.legs!
   const capm = val.dcf_capm_crosscheck!
   const grid = val.dcf_sensitivity_grid!
+
+  // Which leg(s) source the triangulated fair value, computed from the
+  // stored leg values — never hardcoded per ticker. With three legs the
+  // fair value is the median leg; with two available legs it is their
+  // mean. A leg is badged only if the computed value matches the stored
+  // fair value (within rounding), so a data change can never badge the
+  // wrong leg.
+  const legEntries = [
+    { key: 'dcf', value: legs.dcf.value },
+    { key: 'pegy', value: legs.pegy.value },
+    { key: 'forward', value: legs.forward_sector.value },
+  ]
+  const availableLegs = legEntries.filter((l) => l.value !== null)
+  let medianLegKey: string | null = null
+  let meanLegKeys: string[] = []
+  if (availableLegs.length === 3) {
+    const sorted = [...availableLegs].sort((a, b) => (a.value as number) - (b.value as number))
+    if (Math.abs((sorted[1].value as number) - t.triangulated_fv) < 0.02) {
+      medianLegKey = sorted[1].key
+    }
+  } else if (availableLegs.length === 2) {
+    const mean = ((availableLegs[0].value as number) + (availableLegs[1].value as number)) / 2
+    if (Math.abs(mean - t.triangulated_fv) < 0.02) {
+      meanLegKeys = availableLegs.map((l) => l.key)
+    }
+  }
+  const legBadge = (key: string): 'median' | 'mean' | null =>
+    medianLegKey === key ? 'median' : meanLegKeys.includes(key) ? 'mean' : null
   const quality = pillars.quality.detail
   const technical = pillars.technical.detail
   const trust = pillars.trust.detail
@@ -222,8 +287,12 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <PillarBar label="Trust" score={pillars.trust.score} weight={15} />
 
         <h3>Conviction</h3>
-        <Kv k="Story" v={score1(pillars.conviction.detail.story ?? 0)} />
-        <Kv k="Financials" v={score1(pillars.conviction.detail.financials ?? 0)} />
+        <Kv k="Story" v={scoreSpan(pillars.conviction.detail.story ?? 0)} />
+        <Kv k="Financials" v={scoreSpan(pillars.conviction.detail.financials ?? 0)} />
+        <MetricNote
+          what="How strong the company's story and financials look — a measure of business momentum, scored by our Story-Tracker across 749 names. It asks whether the business is growing and gaining ground, not whether the stock is cheap."
+          how="The average of two sub-scores: Story (forward revenue growth, price leadership, estimate revisions and theme strength) and Financials (revenue growth, profitability, cash flow and acceleration). It is reused as published by the weekly Story-Tracker run and never recomputed inside the engine."
+        />
 
         <h3>Quality</h3>
         <SubscoreTable subscores={quality.subscores} labels={QUALITY_LABELS} />
@@ -237,6 +306,10 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <Kv k="Debt / equity" v={(quality.inputs.debt_to_equity as number).toFixed(2)} />
           </div>
         )}
+        <MetricNote
+          what="Whether the reported profits are backed by real cash — a check for accounting flattery. It is built from the six sub-checks above, so no single line has to stand for the whole picture."
+          how="Operating cash flow vs net income (25%), accruals (20%), receivables trend (15%), free-cash-flow conversion (20%), return on assets (10%) and leverage, or debt / equity (10%). Where a one-off item was removed from earnings, the cash-flow checks use the adjusted figure."
+        />
 
         <h3>Technical</h3>
         <SubscoreTable subscores={technical.subscores} labels={TECHNICAL_LABELS} />
@@ -250,6 +323,10 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <Kv k="Price vs 200-day" v={pct(technical.inputs.price_vs_200d_pct as number)} />
           </div>
         )}
+        <MetricNote
+          what="Short-term timing — whether the price trend and momentum are with the stock right now. It is a timing read, not a judgement on the business itself."
+          how="Trend from the 20-, 50- and 200-day moving averages (35%), price vs its 200-day average (25%), RSI (20%) and MACD (20%)."
+        />
 
         <h3>Trust</h3>
         <SubscoreTable subscores={trust.subscores} labels={TRUST_LABELS} />
@@ -260,6 +337,10 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <Kv k="Insider activity (90d)" v={String(trust.inputs.insider_note)} />
           </div>
         )}
+        <MetricNote
+          what="How much we can trust the numbers behind the score — whether the data is complete, well covered by analysts, and not built on guesswork."
+          how="Data completeness (30%), analyst coverage (25%), target dispersion — how far apart analysts' price targets are (25%) — and insider activity (20%). Missing data is scored as missing, never as a clean bill of health: with no insider feed, that check scores a neutral 50."
+        />
       </Card>
 
       {/* (3) Valuation */}
@@ -269,39 +350,57 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <Kv k="Price" v={money(t.price)} />
         <Kv k="Upside vs price" v={pct(val.upside_pct)} />
         <Kv k="Leg spread ÷ fair value" v={pct(val.leg_spread_div_fv)} />
-        <h3>DCF leg</h3>
-        <p>
-          <strong>{legs.dcf.value === null ? 'Skipped' : money(legs.dcf.value)}</strong>
-        </p>
-        <p>{legs.dcf.method}</p>
-        {legs.dcf.growth_scenario !== null && (
-          <p className="footnote">Growth scenario: {pct(legs.dcf.growth_scenario)}</p>
-        )}
-        <h3>PEGY leg</h3>
-        <p>
-          <strong>{legs.pegy.value === null ? '—' : money(legs.pegy.value)}</strong>
-        </p>
-        <p>{legs.pegy.method}</p>
-        {legs.pegy.pegy !== null && (
-          <p className="footnote">
-            PEGY {legs.pegy.pegy.toFixed(3)} · growth used{' '}
-            {legs.pegy.growth_used !== null ? pct(legs.pegy.growth_used) : '—'} · P/E used{' '}
-            {legs.pegy.pe_used !== null ? legs.pegy.pe_used.toFixed(2) : '—'}
-          </p>
-        )}
-        <h3>Forward-sector leg</h3>
-        <p>
-          <strong>{legs.forward_sector.value === null ? '—' : money(legs.forward_sector.value)}</strong>
-        </p>
-        <p>{legs.forward_sector.method}</p>
-        {legs.forward_sector.sector_multiple !== null && (
-          <p className="footnote">
-            Sector forward P/E {legs.forward_sector.sector_multiple.toFixed(1)}×
-            {legs.forward_sector.sector_multiple_asof
-              ? ` (FactSet, ${legs.forward_sector.sector_multiple_asof})`
-              : ''}
-          </p>
-        )}
+        <MetricNote
+          what="Our single fair-value estimate for the stock — the middle of the three legs below, so no one method dominates. When one leg is skipped, it is the average of the two that remain."
+          how="Take the DCF, PEGY and Forward-sector legs and pick the median (the middle value). If a leg is skipped, the fair value is the mean of the two available legs. A wide spread between the legs means more uncertainty, and a very wide spread caps the valuation score."
+        />
+        <MetricNote
+          what="How cheap or expensive the stock looks against our triangulated fair value — the bigger the upside to fair value, the higher the score. It carries the most weight of the five pillars (30%)."
+          how="Scored from the upside (fair value ÷ price − 1) on a fixed scale: −40% upside scores 10, 0% scores 55 and +50% scores 100. If the three legs disagree widely, the score is capped — at 65 when the leg spread is over 75% of fair value, and at 55 when it is over 100%."
+        />
+        <LegBlock title="DCF leg" value={legs.dcf.value} badge={legBadge('dcf')}>
+          <p>{legs.dcf.method}</p>
+          {legs.dcf.growth_scenario !== null && (
+            <p className="footnote">Growth scenario: {pct(legs.dcf.growth_scenario)}</p>
+          )}
+          <MetricNote
+            what="What the stock would be worth if you valued it purely on the cash the business is expected to throw off in the future — free cash flow, the cash left after the company pays to run and grow itself."
+            how="Free cash flow per share is projected for 5 years (growth capped at 20% a year), a terminal value is added assuming 2.5% growth forever after, and the whole stream is discounted back to today at 10% a year — 12% for high-beta names (raw beta of 2.0 or more) — anchored on a 5.00% risk-free rate. Where the per-share cash-flow basis can't be verified in dollars, the leg is skipped instead of guessed."
+          />
+        </LegBlock>
+        <LegBlock title="PEGY leg" value={legs.pegy.value} badge={legBadge('pegy')}>
+          <p>{legs.pegy.method}</p>
+          {legs.pegy.pegy !== null && (
+            <p className="footnote">
+              PEGY {legs.pegy.pegy.toFixed(3)} · growth used{' '}
+              {legs.pegy.growth_used !== null ? pct(legs.pegy.growth_used) : '—'} · P/E used{' '}
+              {legs.pegy.pe_used !== null ? legs.pegy.pe_used.toFixed(2) : '—'}
+            </p>
+          )}
+          <MetricNote
+            what="A value based on the stock's earnings multiple and how fast earnings are expected to grow — the classic Peter Lynch idea that a fairly priced stock's P/E should roughly match its growth rate, with the dividend yield added in."
+            how="PEGY is (expected earnings growth + dividend yield) ÷ the trailing P/E, and fair price = current price × PEGY — so a PEGY above 1 means the stock looks cheap on its growth, and below 1 means expensive. Growth is the implied 5-year earnings growth, capped at 30%, and earnings are on a non-GAAP basis, with one-off items removed where the one-off rule applies."
+          />
+        </LegBlock>
+        <LegBlock
+          title="Forward-sector leg"
+          value={legs.forward_sector.value}
+          badge={legBadge('forward')}
+        >
+          <p>{legs.forward_sector.method}</p>
+          {legs.forward_sector.sector_multiple !== null && (
+            <p className="footnote">
+              Sector forward P/E {legs.forward_sector.sector_multiple.toFixed(1)}×
+              {legs.forward_sector.sector_multiple_asof
+                ? ` (FactSet, ${legs.forward_sector.sector_multiple_asof})`
+                : ''}
+            </p>
+          )}
+          <MetricNote
+            what="A value based on what analysts expect the company to earn next year, priced at the multiple the market currently pays for its sector — not at a fixed multiple for every stock."
+            how="Next-year analyst earnings per share × the sector's forward P/E from FactSet (refreshed quarterly, capped at 35× and floored at 10×), then discounted 10% for one year. If the sector figure is missing, the fallback is the S&P 500 forward P/E, and then a legacy 22× as a flagged last resort."
+          />
+        </LegBlock>
         {symbol === 'NVO' && (
           <div className="callout">
             <strong>DCF leg skipped — DKK basis unverified.</strong> The fair value is the
@@ -314,6 +413,10 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       {/* (4) Ladder */}
       <Card title="Valuation ladder">
         <LadderTable fv={t.triangulated_fv} price={t.price} />
+        <MetricNote
+          what="Four price levels derived from our fair value — Heavy at 0.60×, Buy at 0.80×, Fair at 1.00× and Exit at 1.20× — showing where today's price sits against our estimate."
+          how="Each level is a fixed ratio of the triangulated fair value, the same ratios for every ticker. The levels are reference points for judging how far the price is from our estimate; they are not instructions to trade."
+        />
       </Card>
 
       {/* (5) CAPM cross-check */}
@@ -356,12 +459,16 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           decisionGrowth={legs.dcf.growth_scenario}
           note={grid.note}
         />
+        <MetricNote
+          what="The same DCF leg, shown across a range of assumptions instead of a single point — so you can see how much the answer moves if growth or interest rates turn out differently."
+          how="Rows are free-cash-flow growth from 0% to 20% (the cap); columns are the risk-free rate from 4.0% to 6.0%. Each cell's discount is the risk-free rate plus a locked spread (5 points at the 10% discount tier, 7 points at the 12% tier), so the 5.0% column reproduces the decision DCF leg where the growth is a grid row. The grid shows how sensitive the leg is to its assumptions — it is not a second valuation."
+        />
       </Card>
 
       {/* (7) Earnings-quality evidence */}
       <Card title="Earnings-quality evidence">
         <p>
-          Quality score {score1(pillars.quality.score)} — OCF {pct(quality.inputs?.ocf_pct_ni_used as number)}{' '}
+          Quality score {scoreSpan(pillars.quality.score)} — OCF {pct(quality.inputs?.ocf_pct_ni_used as number)}{' '}
           of net income, FCF conversion {pct(quality.inputs?.fcf_conversion_used as number)} of net
           income, accruals (Sloan) {(quality.inputs?.accruals_sloan as number).toFixed(4)},
           receivables change{' '}
@@ -444,8 +551,8 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             </tr>
             <tr>
               <td>Implied upside vs price</td>
-              <td>{pct(ourUpside)}</td>
-              <td>{pct(consensusUpside)}</td>
+              <td>{signedPctSpan(ourUpside)}</td>
+              <td>{signedPctSpan(consensusUpside)}</td>
             </tr>
             <tr>
               <td>Target range (low – high)</td>
@@ -459,17 +566,28 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
               <td>—</td>
               <td>{analysts.n_opinions}</td>
             </tr>
-            <tr>
+            <tr
+              className={
+                gapVsConsensus < 0 ? 'gap-below' : gapVsConsensus > 0 ? 'gap-above' : undefined
+              }
+            >
               <td>Gap, ours − consensus mean</td>
               <td colSpan={2}>
-                {gapVsConsensus < 0 ? '−' : '+'}
-                {money(Math.abs(gapVsConsensus))} ({pct(gapVsConsensusPct)})
+                {signedSpan(
+                  gapVsConsensusPct,
+                  `${gapVsConsensus < 0 ? '−' : '+'}${money(Math.abs(gapVsConsensus))} (${pct(gapVsConsensusPct)})`,
+                  0.001,
+                )}
               </td>
             </tr>
           </tbody>
         </table>
         <h3>Why the gap?</h3>
         <p>{gapLine}</p>
+        <MetricNote
+          what="Our fair value next to Wall Street's — the average (mean) of the price targets published by the analysts who cover the stock, with the range of their targets and how many of them there are."
+          how="The consensus mean, low, high and analyst count come from Yahoo Finance analyst targets, fetched 15–16 Nov 2026 and carried through unchanged; the nightly refresh updates the price only. The gap is our fair value minus the consensus mean. The 'Why the gap?' line checks whether any of our three legs sits within 10% of the consensus mean — if one does, it names it; if none does, it says so plainly instead of inventing a reason."
+        />
         <p className="footnote">
           Analyst consensus: Yahoo Finance analyst targets, fetched 15–16 Nov 2026.
           Targets are carried through unchanged from that frozen fetch; the nightly

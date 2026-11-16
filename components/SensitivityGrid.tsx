@@ -51,7 +51,23 @@ export default function SensitivityGrid({
   const selectedValue =
     sel !== null ? values[sel.growth]?.[sel.rf] : undefined
 
-  // The decision-leg cell: growth row matching the decision growth, rf 5.0%.
+  // Heat shading, scaled to this grid's own min/max: the lowest fifth of
+  // values is red-tinted, the highest fifth green-tinted, the middle fifth
+  // unshaded. The decision-leg cell never takes a heat class — its green
+  // .decision highlight (declared after the heat rules in globals.css)
+  // always wins.
+  const allValues = Object.values(values).flatMap((row) => Object.values(row))
+  const gridMin = Math.min(...allValues)
+  const gridMax = Math.max(...allValues)
+  const heatClass = (v: number): string => {
+    if (gridMax === gridMin) return ''
+    const t = (v - gridMin) / (gridMax - gridMin)
+    if (t < 0.2) return ' heat-l2'
+    if (t < 0.4) return ' heat-l1'
+    if (t < 0.6) return ''
+    if (t < 0.8) return ' heat-h1'
+    return ' heat-h2'
+  }
   const decisionGrowthLabel =
     decisionGrowth !== null ? `${Math.round(decisionGrowth * 100)}%` : null
   const isDecisionCell = (g: string, rf: string) =>
@@ -77,7 +93,7 @@ export default function SensitivityGrid({
               {rfCols.map((rf) => (
                 <td
                   key={rf}
-                  className={`cell num${isDecisionCell(g, rf) ? ' decision' : ''}${sel?.growth === g && sel?.rf === rf ? ' selected' : ''}`}
+                  className={`cell num${isDecisionCell(g, rf) ? ' decision' : heatClass(values[g][rf])}${sel?.growth === g && sel?.rf === rf ? ' selected' : ''}`}
                   onClick={() => setSel({ growth: g, rf })}
                   title={`DCF leg at ${g} growth, ${rf} risk-free rate`}
                 >
@@ -92,7 +108,8 @@ export default function SensitivityGrid({
         {decisionGrowthLabel !== null && growthRows.includes(decisionGrowthLabel)
           ? `Highlighted cell (growth ${decisionGrowthLabel} × rf 5.0%) is the decision DCF leg: ${money(decisionLeg)}. `
           : `The decision DCF leg (${money(decisionLeg)}) sits between two grid rows — its growth is ${decisionGrowth !== null ? `${(decisionGrowth * 100).toFixed(2)}%` : 'n/a'}, between the ${betweenRows} rows at rf 5.0%. `}
-        Click any cell to compare it with the decision leg.
+        Click any cell to compare it with the decision leg. Cells are shaded by value
+        across this grid&apos;s own range — greener is a higher DCF leg, redder is lower.
       </p>
       {sel && selectedValue !== undefined && (
         <p>

@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { Card } from '@/components/ui'
+import { Card, signedSpan } from '@/components/ui'
 import SectorCalculator from '@/components/SectorCalculator'
 import { ROTATION_FORMULAS } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Sector Rotation',
   description:
-    'The sector rotation model: relative strength, momentum, acceleration and flow labels, with a live calculator. Formulas published by stockverdicts.com, reproduced exactly.',
+    'The sector rotation model: relative strength, momentum, acceleration and flow labels, with a live calculator. Formulas ported from colicoid’s TradingView Pine Script.'
 }
 
 export default function SectorsPage() {
@@ -31,7 +31,7 @@ export default function SectorsPage() {
 
       <Card title="The formulas">
         <p>
-          Published by stockverdicts.com, reproduced exactly. Attribution: {f.attribution}
+          Attribution: {f.attribution}
         </p>
         <ul>
           <li>
@@ -77,7 +77,7 @@ export default function SectorsPage() {
           <tbody>
             <tr>
               <td>Momentum</td>
-              <td className="num">+{ex.momentum.toFixed(1)}</td>
+              <td className="num">{signedSpan(ex.momentum, `+${ex.momentum.toFixed(1)}`)}</td>
               <td>
                 (2.2&times;3 + 6.6&times;2 + 13.1&times;1 + 13.5&times;0.5) &divide; 6.5 =
                 39.65 &divide; 6.5 = +6.1
@@ -85,7 +85,7 @@ export default function SectorsPage() {
             </tr>
             <tr>
               <td>Acceleration</td>
-              <td className="num">{ex.acceleration.toFixed(1)}</td>
+              <td className="num">{signedSpan(ex.acceleration, ex.acceleration.toFixed(1))}</td>
               <td>
                 (2.2&times;2 + 6.6) &divide; 3 &minus; (13.5 + 31.2) &divide; 2 = 3.67 &minus;
                 22.35 = &minus;18.7
@@ -93,7 +93,7 @@ export default function SectorsPage() {
             </tr>
             <tr>
               <td>Relative strength (RS)</td>
-              <td className="num">+{ex.rs.toFixed(1)} pts</td>
+              <td className="num">{signedSpan(ex.rs, `+${ex.rs.toFixed(1)} pts`)}</td>
               <td>
                 Sector 21-day return minus SPY 21-day return — the published gap; the two
                 21-day returns were not published separately.
@@ -101,7 +101,9 @@ export default function SectorsPage() {
             </tr>
             <tr>
               <td>Flow</td>
-              <td className="num">No flow signal</td>
+              <td className="num">
+                <span className="pill neutral">No flow signal</span>
+              </td>
               <td>
                 Momentum +6.1 clears the IN momentum bar, but Acceleration &minus;18.7 does
                 not; TURN needs Acceleration &gt; +5; WATCH needs 6M &lt; &minus;10 (it is

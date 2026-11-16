@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Card } from '@/components/ui'
+import { Card, scoreSpan } from '@/components/ui'
 import { RESULTS, money } from '@/lib/data'
 import { CONTACT_EMAIL, PRICE_DATE } from '@/lib/site'
 
@@ -134,7 +134,7 @@ export default function FaqPage() {
                   <span className="footnote">{t.name}</span>
                 </td>
                 <td>{t.verdict}</td>
-                <td className="num">{t.overall_score.toFixed(1)}</td>
+                <td className="num">{scoreSpan(t.overall_score)}</td>
                 <td className="num">{money(t.triangulated_fv)}</td>
               </tr>
             ))}

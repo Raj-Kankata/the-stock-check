@@ -26,8 +26,8 @@ What refreshes nightly (this script):
 
 What NEVER refreshes here (stays exactly as in base_inputs.json):
   fundamentals, Story/Financials scores, sector multiples, Damodaran ERP /
-  CAPM cross-check inputs, ONEOFF adjustments, analyst / insider /
-  stock_verdicts blocks. Those move on their own cadence (see README.md).
+  CAPM cross-check inputs, ONEOFF adjustments, analyst / insider
+  blocks. Those move on their own cadence (see README.md).
 
 Modes:
   python3 scripts/nightly_refresh.py [--as-of YYYY-MM-DD]

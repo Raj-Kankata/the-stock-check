@@ -76,7 +76,7 @@ export const TRIANGULATION_DECISION = {
     'The best variant closes the gap by only 0.9pp against a ~1.7pp standard error — noise, and one of four pre-specified variants. Weighting buys churn, not signal: 47–62% of fair values move >5% and 273–379 buckets migrate. Decision (Raj, 2026-11-15): keep the median-of-three.',
 }
 
-/** Sector Rotation formulas (published by stockverdicts.com, reproduced exactly; teardown §8). */
+/** Sector Rotation formulas (port of colicoid's TradingView Pine Script; teardown §8). */
 export const ROTATION_FORMULAS = {
   rs: 'RS = sector 21-day return − SPY 21-day return',
   momentum: 'Momentum = weighted average (1W×3, 1M×2, 2M×1, 3M×0.5) ÷ 6.5',
@@ -84,8 +84,8 @@ export const ROTATION_FORMULAS = {
     'Acceleration = recent average (1W×2, 1M) − older average (3M, 6M), where each average is weighted by its weights',
   delta1m: 'Δ1M = this month’s 1M% vs the prior month’s 1M%',
   flow: 'Flow: IN (Mom > 5 & Acc > 2) · TURN (Mom > 0 & Acc > 5) · WATCH (6M < −10 & 1M > 0 & Acc > 0) · OUT (Mom < −5 & Acc < −2)',
-  attribution: 'Exact port of the TradingView Pine Script by colicoid, as published on stockverdicts.com/sector-rotation.',
-  /** Worked example from stockverdicts.com, 15 Nov 2026: Health Care XLV. */
+  attribution: 'Exact port of the TradingView Pine Script by colicoid.',
+  /** Worked example (our own), 15 Nov 2026: Health Care XLV. */
   workedExample: {
     sector: 'Health Care (XLV)',
     returns: { w1: 2.2, m1: 6.6, m2: 13.1, m3: 13.5, m6: 31.2 },

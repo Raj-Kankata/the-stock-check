@@ -227,37 +227,8 @@
         "Downtrend: price $162.85 sits below its 20-day EMA ($193.27) and 200-day EMA ($205.56); RSI 24.9 \u2014 timing is poor even if the business is fine.",
         "Insiders are net sellers \u2014 5 sales, 4,297,200 shares, $960M, 0 buys in 90d."
       ],
-      "stock_verdicts": {
-        "verdict": "Growth",
-        "signal": "Strong Buy \u00b7 weak trend",
-        "price": 162.85,
-        "ladder": [
-          185.52,
-          247.36,
-          309.19,
-          371.03
-        ],
-        "scores": [
-          69,
-          100,
-          100,
-          18
-        ],
-        "trust": 94,
-        "ocf_pct_ni": 70
-      },
-      "vs_stock_verdicts": {
-        "verdict_agree": true,
-        "our_fv_vs_their_fair": -70.57,
-        "ladder_diff": {
-          "heavy": -42.35,
-          "buy": -56.46,
-          "fair": -70.57,
-          "exit": -84.69
-        }
-      },
       "flags": [
-        "Insider 90d: 5 sales, 4,297,200 shares, $960M \u2014 matches Stock Verdicts' 25 sales / 4,332,118 shares in 3 months within 0.8% (window difference)."
+        "Insider 90d: 5 sales, 4,297,200 shares, $960M (Yahoo feed)."
       ]
     },
     "AAPL": {
@@ -444,35 +415,6 @@
         "Revenue compounded only 8% a year over the last 3 fiscal years \u2014 growth is no longer the story.",
         "Insiders are net sellers \u2014 16 sales, 287,813 shares, $96M, 0 buys in 90d."
       ],
-      "stock_verdicts": {
-        "verdict": "Avoid",
-        "signal": "Overvalued (\u2265 exit)",
-        "price": 356.27,
-        "ladder": [
-          161.95,
-          196.66,
-          231.36,
-          254.5
-        ],
-        "scores": [
-          32,
-          63,
-          88,
-          100
-        ],
-        "trust": 100,
-        "ocf_pct_ni": 110
-      },
-      "vs_stock_verdicts": {
-        "verdict_agree": true,
-        "our_fv_vs_their_fair": -58.37,
-        "ladder_diff": {
-          "heavy": -58.16,
-          "buy": -58.27,
-          "fair": -58.37,
-          "exit": -46.91
-        }
-      },
       "flags": []
     },
     "MSFT": {
@@ -658,35 +600,6 @@
         "Triangulated fair value $351.62 is -33% below the $523.88 price \u2014 even the most generous leg ($395.93) sits below the price.",
         "Insiders are net sellers \u2014 5 sales, 147,809 shares, $75M, 0 buys in 90d."
       ],
-      "stock_verdicts": {
-        "verdict": "Growth",
-        "signal": "Buy \u00b7 trend up",
-        "price": 523.88,
-        "ladder": [
-          522.43,
-          696.57,
-          870.71,
-          1044.85
-        ],
-        "scores": [
-          47,
-          52,
-          87,
-          67
-        ],
-        "trust": 100,
-        "ocf_pct_ni": 137
-      },
-      "vs_stock_verdicts": {
-        "verdict_agree": false,
-        "our_fv_vs_their_fair": -519.09,
-        "ladder_diff": {
-          "heavy": -311.46,
-          "buy": -415.27,
-          "fair": -519.09,
-          "exit": -622.91
-        }
-      },
       "flags": []
     },
     "GOOGL": {
@@ -872,35 +785,6 @@
         "Downtrend: price $295.77 sits below its 20-day EMA ($302.82) and 200-day EMA ($331.87); RSI 40.6 \u2014 timing is poor even if the business is fine.",
         "Our Story-Tracker rates it 'Out' (Story 56.2, Financials 46.1)."
       ],
-      "stock_verdicts": {
-        "verdict": "Growth",
-        "signal": "Watch (wait for dip) \u00b7 weak trend",
-        "price": 295.77,
-        "ladder": [
-          209.2,
-          278.94,
-          348.67,
-          418.4
-        ],
-        "scores": [
-          60,
-          51,
-          80,
-          27
-        ],
-        "trust": 100,
-        "ocf_pct_ni": 76
-      },
-      "vs_stock_verdicts": {
-        "verdict_agree": false,
-        "our_fv_vs_their_fair": -180.64,
-        "ladder_diff": {
-          "heavy": -108.38,
-          "buy": -144.52,
-          "fair": -180.64,
-          "exit": -216.76
-        }
-      },
       "flags": [
         "TTM net income $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$36.9B pre-tax (+$28.7B after tax), Q2 +$99.0B pre-tax (+$77.1B after tax, $278M realised), Q3 -$8.7B pre-tax (-$6.7B after tax). Net after-tax one-off +$99.1B removed (ONEOFF-v1). Adjusted NI $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 used for Quality/PEGT. Note: v1.1 removed only the Q2 pre-tax gain and got $136.663B \u2014 the two errors almost exactly cancel; see RECALIBRATION.md \u00a72.2."
       ]
@@ -1051,35 +935,6 @@
       "cons": [
         "Our Story-Tracker rates it 'Out' (Story 38.3, Financials 47.9)."
       ],
-      "stock_verdicts": {
-        "verdict": "Growth",
-        "signal": "Strong Buy \u00b7 trend up",
-        "price": 41.63,
-        "ladder": [
-          62.45,
-          83.26,
-          104.08,
-          124.89
-        ],
-        "scores": [
-          68,
-          36,
-          88,
-          70
-        ],
-        "trust": 83,
-        "ocf_pct_ni": 116
-      },
-      "vs_stock_verdicts": {
-        "verdict_agree": false,
-        "our_fv_vs_their_fair": -61.64,
-        "ladder_diff": {
-          "heavy": -36.99,
-          "buy": -49.31,
-          "fair": -61.64,
-          "exit": -73.96
-        }
-      },
       "flags": [
         "ADR, financials reported in DKK; per-share USD FCF not computed. Yahoo dividend yield 28.78% discarded; 4.34% used (range 3.08-4.40%). Yahoo insider feed empty for this ADR \u2014 insider sub-score is neutral/missing, not 'no selling'.",
         "ONEOFF-v1: Q1 2026 net profit DKK 48,557M includes a DKK 26,760M non-cash reversal of a provision for US 340B sales rebates; company-disclosed adjusted net profit DKK 29,479M. Adjusted TTM NI DKK 94,099M, adjusted EPS USD $3.29, adjusted trailing P/E 12.64 used for Quality/PEGT (see RECALIBRATION.md \u00a72.2)."
