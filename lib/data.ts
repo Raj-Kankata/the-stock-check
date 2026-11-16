@@ -72,6 +72,14 @@ export interface PillarDetail {
   }
 }
 
+export interface Analysts {
+  n_opinions: number
+  target_mean: number
+  target_high: number
+  target_low: number
+  target_spread_div_mean: number
+}
+
 export interface TickerData {
   name: string
   sector: string
@@ -105,6 +113,7 @@ export interface TickerData {
     ladder_diff: { heavy: number; buy: number; fair: number; exit: number }
   }
   flags: string[]
+  analysts: Analysts
 }
 
 export interface EngineResults {

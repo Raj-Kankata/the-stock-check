@@ -6,6 +6,9 @@ import {
   money,
   pct,
   score1,
+  type DcfLeg,
+  type ForwardLeg,
+  type PegLeg,
   type TickerData,
 } from '@/lib/data'
 import {
@@ -98,13 +101,69 @@ function Kv({ k, v }: { k: string; v: string }) {
   )
 }
 
+type ClosestLeg = {
+  name: string
+  value: number
+  /** |leg − consensus mean| ÷ consensus mean. */
+  distancePct: number
+  /** What drives this leg, taken only from the stored leg data. */
+  driver: string
+}
+
+/**
+ * Which of our three valuation legs sits closest to the analyst consensus
+ * mean target, and what drives it. Drivers come only from the stored legs:
+ * the DCF base FCF/share is parsed out of the stored DCF method text, the
+ * PEGY trailing P/E and growth used are stored fields, and the
+ * Forward-sector next-year EPS is parsed out of the stored method text
+ * with the sector multiple a stored field. Skipped (null) legs are not
+ * candidates. Returns null only if no leg has a value.
+ */
+function closestLegToTarget(
+  legs: { dcf: DcfLeg; pegy: PegLeg; forward_sector: ForwardLeg },
+  targetMean: number,
+): ClosestLeg | null {
+  const candidates: ClosestLeg[] = []
+  if (legs.dcf.value !== null) {
+    const baseFcf = legs.dcf.method.match(/FCF\/share \$(-?[\d.]+)/)?.[1]
+    candidates.push({
+      name: 'DCF',
+      value: legs.dcf.value,
+      distancePct: Math.abs(legs.dcf.value - targetMean) / targetMean,
+      driver:
+        baseFcf !== undefined
+          ? `base FCF/share $${baseFcf} at ${pct(legs.dcf.growth_scenario)} growth`
+          : `growth scenario ${pct(legs.dcf.growth_scenario)}`,
+    })
+  }
+  if (legs.pegy.value !== null) {
+    candidates.push({
+      name: 'PEGY',
+      value: legs.pegy.value,
+      distancePct: Math.abs(legs.pegy.value - targetMean) / targetMean,
+      driver: `trailing P/E ${legs.pegy.pe_used !== null ? legs.pegy.pe_used.toFixed(2) : '—'} at ${pct(legs.pegy.growth_used)} growth`,
+    })
+  }
+  if (legs.forward_sector.value !== null) {
+    const fwdEps = legs.forward_sector.method.match(/next-year EPS \$([\d.]+)/)?.[1]
+    candidates.push({
+      name: 'Forward-sector',
+      value: legs.forward_sector.value,
+      distancePct: Math.abs(legs.forward_sector.value - targetMean) / targetMean,
+      driver: `next-year EPS $${fwdEps ?? '—'} × sector forward P/E ${legs.forward_sector.sector_multiple !== null ? legs.forward_sector.sector_multiple.toFixed(1) : '—'}×`,
+    })
+  }
+  if (candidates.length === 0) return null
+  return candidates.reduce((best, c) => (c.distancePct < best.distancePct ? c : best))
+}
+
 export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>) {
   const { ticker } = await params
   const symbol = ticker.toUpperCase()
   const t: TickerData | null = getTicker(symbol)
   if (!t) notFound()
 
-  const { pillars, stock_verdicts: sv, vs_stock_verdicts: vs } = t
+  const { pillars } = t
   const val = pillars.valuation.detail
   const legs = val.legs!
   const capm = val.dcf_capm_crosscheck!
@@ -113,7 +172,24 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   const technical = pillars.technical.detail
   const trust = pillars.trust.detail
   const priceDate = RESULTS.price_date
-  const theirFair = sv.ladder[2]
+
+  // (9) Us vs Wall Street — all figures from the stored data only.
+  const analysts = t.analysts
+  const ourUpside = (t.triangulated_fv - t.price) / t.price
+  const consensusUpside = (analysts.target_mean - t.price) / t.price
+  const gapVsConsensus = t.triangulated_fv - analysts.target_mean
+  const gapVsConsensusPct = gapVsConsensus / analysts.target_mean
+  const closest = closestLegToTarget(legs, analysts.target_mean)
+  // Rule: a leg "explains" the gap only if it sits within 10% of the
+  // consensus mean. Otherwise the gap is not explained by the legs — the
+  // line says so and names the two numbers instead of inventing a reason.
+  const gapExplained = closest !== null && closest.distancePct <= 0.1
+  const gapLine =
+    closest === null
+      ? `No valuation leg is available, so the gap between our ${money(t.triangulated_fv)} fair value and the ${money(analysts.target_mean)} consensus mean is not explained by the legs.`
+      : gapExplained
+        ? `Closest leg: ${closest.name} at ${money(closest.value)} (${closest.driver}) — within ${pct(closest.distancePct, 1, false)} of the ${money(analysts.target_mean)} consensus mean. The rest of the gap is triangulation: our fair value is the ${val.fv_method ?? 'triangulation of the legs'}.`
+        : `No leg explains the gap: the closest leg, ${closest.name} at ${money(closest.value)} (${closest.driver}), is still ${pct(closest.distancePct, 1, false)} from the ${money(analysts.target_mean)} consensus mean, while our fair value is ${money(t.triangulated_fv)} — the gap is not explained by the legs.`
 
   return (
     <div>
@@ -350,89 +426,54 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         </Card>
       </div>
 
-      {/* (9) Side-by-side vs Stock Verdicts */}
-      <Card title="Side by side with Stock Verdicts">
+      {/* (9) Us vs Wall Street */}
+      <Card title="Us vs Wall Street">
         <table>
           <thead>
             <tr>
               <th></th>
               <th>The Stock Check (ours)</th>
-              <th>Stock Verdicts (theirs)</th>
+              <th>Wall Street (analyst consensus)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Verdict</td>
-              <td>
-                <VerdictBadge verdict={t.verdict} />
-              </td>
-              <td>{sv.verdict}</td>
-            </tr>
-            <tr>
-              <td>Signal</td>
-              <td>—</td>
-              <td>{sv.signal}</td>
-            </tr>
-            <tr>
-              <td>Fair value</td>
+              <td>Fair value / mean target</td>
               <td>{money(t.triangulated_fv)}</td>
-              <td>{money(theirFair)}</td>
+              <td>{money(analysts.target_mean)}</td>
             </tr>
             <tr>
-              <td>Our FV vs their fair</td>
-              <td colSpan={2}>
-                {money(vs.our_fv_vs_their_fair)} (ours minus theirs)
+              <td>Implied upside vs price</td>
+              <td>{pct(ourUpside)}</td>
+              <td>{pct(consensusUpside)}</td>
+            </tr>
+            <tr>
+              <td>Target range (low – high)</td>
+              <td>—</td>
+              <td>
+                {money(analysts.target_low)} – {money(analysts.target_high)}
               </td>
             </tr>
             <tr>
-              <td>Verdicts agree</td>
-              <td colSpan={2}>{vs.verdict_agree ? 'Yes' : 'No'}</td>
+              <td>Analysts covering</td>
+              <td>—</td>
+              <td>{analysts.n_opinions}</td>
             </tr>
             <tr>
-              <td>Trust</td>
-              <td>{score1(pillars.trust.score)}</td>
-              <td>{sv.trust}</td>
-            </tr>
-            <tr>
-              <td>OCF as % of net income</td>
-              <td>{pct(quality.inputs?.ocf_pct_ni_used as number)}</td>
-              <td>{sv.ocf_pct_ni}%</td>
+              <td>Gap, ours − consensus mean</td>
+              <td colSpan={2}>
+                {gapVsConsensus < 0 ? '−' : '+'}
+                {money(Math.abs(gapVsConsensus))} ({pct(gapVsConsensusPct)})
+              </td>
             </tr>
           </tbody>
         </table>
-        <h3>Their scores (Value / Growth / Quality / Technical)</h3>
-        <Kv k="Value" v={String(sv.scores[0])} />
-        <Kv k="Growth" v={String(sv.scores[1])} />
-        <Kv k="Quality" v={String(sv.scores[2])} />
-        <Kv k="Technical" v={String(sv.scores[3])} />
-        <h3>Their ladder</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Level</th>
-              <th className="num">Theirs</th>
-              <th className="num">Ours</th>
-              <th className="num">Difference</th>
-            </tr>
-          </thead>
-          <tbody>
-            {(['Heavy', 'Buy', 'Fair', 'Exit'] as const).map((name, i) => {
-              const ours = [t.ladder.heavy, t.ladder.buy, t.ladder.fair, t.ladder.exit][i]
-              const diff = [vs.ladder_diff.heavy, vs.ladder_diff.buy, vs.ladder_diff.fair, vs.ladder_diff.exit][i]
-              return (
-                <tr key={name}>
-                  <td>{name}</td>
-                  <td className="num">{money(sv.ladder[i])}</td>
-                  <td className="num">{money(ours)}</td>
-                  <td className="num">{money(diff)}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+        <h3>Why the gap?</h3>
+        <p>{gapLine}</p>
         <p className="footnote">
-          Their ladder levels are shown at the same 0.6× / 0.8× / 1.0× / 1.2× ratios of
-          their fair value; their fair value is the third level ({money(theirFair)}).
+          Analyst consensus: Yahoo Finance analyst targets, fetched 15–16 Nov 2026.
+          Targets are carried through unchanged from that frozen fetch; the nightly
+          refresh updates price only.
         </p>
       </Card>
 
@@ -467,8 +508,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       {/* (12) Honest note */}
       <Card title="What is not here yet">
         <p>
-          Price chart, financials table, analyst consensus and targets, news and
-          dividends are not in this build&apos;s data yet. The {priceDate} close (
+          Price chart, financials table, news and dividends are not in this build&apos;s data yet. The {priceDate} close (
           {money(t.price)}) and the technicals above are the current snapshot; those
           sections arrive with the live-data feed.
         </p>

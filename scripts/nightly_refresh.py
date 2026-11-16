@@ -395,11 +395,19 @@ def gate_engine_outputs(results, stored_results):
 def merge_results(v13_results, batch2_results, as_of, price_date):
     """Merged site results: top-level EXACTLY as v1.3's output (engine
     string, locked_set, capm_crosscheck, weights, ladder_ratios), tickers
-    = v1.3's 5 + batch2's 8. as_of / price_date overridden to the refresh."""
+    = v1.3's 5 + batch2's 8. as_of / price_date overridden to the refresh.
+    The frozen engines do not emit the analyst-consensus block, so it is
+    carried through here from the frozen base inputs (deep copy, appended
+    as the last key of each ticker dict) — the same placement as the
+    one-time backfill of lib/data/results.json. No number, score, FV or
+    verdict is touched."""
     merged = copy.deepcopy(v13_results)
     merged["tickers"] = {**v13_results["tickers"], **batch2_results["tickers"]}
     merged["as_of"] = as_of
     merged["price_date"] = price_date
+    base = load_json(BASE_INPUTS)
+    for t, rec in merged["tickers"].items():
+        rec["analysts"] = copy.deepcopy(base["tickers"][t]["analysts"])
     return merged
 
 

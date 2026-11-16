@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Card } from '@/components/ui'
 import { RESULTS, money } from '@/lib/data'
 import {
@@ -456,6 +457,21 @@ export default function MethodologyPage() {
           this page are frozen under SPEC v1.1. Any change to a weight, threshold, gate, ladder
           ratio or locked parameter needs explicit approval and a new spec version — the engine
           version, the results and this page move together, and no number changes silently.
+        </p>
+      </Card>
+
+      <Card title="(i) How we compare with Stock Verdicts">
+        <p>
+          Stock Verdicts (stockverdicts.com) is the closest comparable site: a free,
+          rules-based engine with the same shape of output — a verdict, four scores and a
+          price ladder per stock. The difference is auditability. Their methodology page states
+          that the formulas, thresholds, sector benchmarks and weightings are proprietary, and
+          the only exact formulas they publish are Sector Rotation&rsquo;s. We publish the full
+          recipe above, and we checked their published numbers against it — including a fair
+          value that implies roughly 36&times; forward EPS against a stated 22&times;
+          multiple (MSFT) and a krone EPS figure used as dollars (NVO). The full comparison,
+          with the 13-ticker side-by-side table, is on the{' '}
+          <Link href="/vs-stock-verdicts">How we compare with Stock Verdicts</Link> page.
         </p>
       </Card>
     </>
