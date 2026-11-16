@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
+import Sidebar from '@/components/Sidebar'
 import { NAV_LINKS, SITE_NAME, SITE_URL, PRICE_DATE, ENGINE_VERSION } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -40,7 +41,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             </nav>
           </div>
         </header>
-        <main>{children}</main>
+        <div className="shell">
+          <Sidebar />
+          <main>{children}</main>
+        </div>
         <footer className="site-footer">
           <div className="wrap">
             <p>

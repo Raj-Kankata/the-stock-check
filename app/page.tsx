@@ -39,7 +39,7 @@ export default function HomePage() {
           </tbody>
         </table>
         <p className="footnote">
-          Five names are scored so far — {TICKER_SYMBOLS.join(', ')}. Prices are the{' '}
+          Thirteen names are scored so far — {TICKER_SYMBOLS.join(', ')}. Prices are the{' '}
           {PRICE_DATE} close. The scored universe expands as more names are run through the
           engine; no score is ever guessed for an unscored ticker.
         </p>

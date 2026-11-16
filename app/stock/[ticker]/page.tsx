@@ -18,7 +18,7 @@ import {
 } from '@/components/ui'
 import SensitivityGrid from '@/components/SensitivityGrid'
 
-const SYMBOLS = ['NVDA', 'AAPL', 'MSFT', 'GOOGL', 'NVO'] as const
+const SYMBOLS = ['NVDA', 'AAPL', 'MSFT', 'GOOGL', 'NVO', 'AMZN', 'META', 'TSLA', 'AVGO', 'BRK-B', 'LLY', 'JPM', 'V'] as const
 
 export function generateStaticParams() {
   return SYMBOLS.map((ticker) => ({ ticker }))
@@ -314,9 +314,22 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             is skipped.
           </div>
         )}
-        {symbol !== 'GOOGL' && symbol !== 'NVO' && (
-          <p>No one-off earnings adjustment was applied to this name.</p>
-        )}
+        {symbol !== 'GOOGL' && symbol !== 'NVO' && (() => {
+          // Generic ONEOFF callout: a flag that records an applied
+          // ONEOFF-v1 adjustment carries "Adjusted TTM NI" (flag-only
+          // near-misses and no-adjustment notes do not). GOOGL/NVO keep
+          // their curated callouts above.
+          const oneoffFlag = t.flags?.find(
+            (f) => f.includes('ONEOFF-v1') && /adjusted TTM NI/i.test(f),
+          )
+          return oneoffFlag ? (
+            <div className="callout">
+              <strong>ONEOFF-v1 adjustment — shown both ways.</strong> {oneoffFlag}
+            </div>
+          ) : (
+            <p>No one-off earnings adjustment was applied to this name.</p>
+          )
+        })()}
       </Card>
 
       {/* (8) Pros and cons */}

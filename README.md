@@ -1,7 +1,8 @@
-# The Stock Check — deploy steps (GO given 2026-11-16 — repo ready, rest pending)
+# The Stock Check — deploy steps (GO given 2026-11-16 — code is on GitHub)
 
-Repo is committed locally (37 files, `main`, commit `7af0be0`) — nothing pushed,
-nothing deployed, domain not registered, no money spent. Remaining steps below.
+Repo is live at https://github.com/Raj-Kankata/the-stock-check — 37 files on
+`main`, verified. Nothing deployed to Vercel yet, domain not registered, no
+money spent. Remaining steps below.
 
 ## Deploy
 
@@ -32,11 +33,21 @@ Output lands in `out/`.
 
 ## Status
 
-- **$0 spent so far. Nothing pushed or deployed. Domain not registered.**
-- Repo committed locally 2026-11-16 (commit `7af0be0`, 37 files, `main` branch;
-  node_modules / .next / out excluded). Commit author is Rajkumar Kankata with a
-  placeholder project email (`raj@thestockcheck.com`) — amend to his GitHub
-  email with `git commit --amend --author="Name <email>"` when GitHub is connected.
+- **$0 spent so far. Site is LIVE at https://the-stock-check-six.vercel.app** (deployed
+  2026-11-16; Vercel assigned `-six` because plain `the-stock-check.vercel.app` was
+  taken). Vercel project `the-stock-check`, Hobby plan ($0, team raj-kankata),
+  GitHub repo https://github.com/Raj-Kankata/the-stock-check, `main`, commit
+  `d94a1214` (37 files, tree verified identical to local). Domain not registered.
+- **Vercel build quirk (learned 2026-11-16):** do NOT set Output Directory to
+  `out` — the first deploy failed with NEXT_NO_ROUTES_MANIFEST; Vercel's
+  Next.js builder wants its default output for a static export. Settings that
+  work: Framework Next.js, Build Command `npm run build`, Output Directory
+  "Next.js default". No environment variables.
+- GitHub login used was OAuth device flow as Raj-Kankata (`gh`, token in
+  ~/.config/gh/hosts.yml) — remove with `gh auth logout` when the deploy is
+  done; Raj can also revoke it under GitHub → Settings → Applications. The
+  earlier fine-grained PAT stored in custom.github was rejected by GitHub
+  (401) and was not used.
 - Domain re-check 2026-11-16 ~07:00 CT was inconclusive (registry RDAP timing
   out from this machine); it was verified available twice on 2026-11-15 — confirm
   in the registrar's own search before paying.

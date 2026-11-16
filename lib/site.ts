@@ -98,8 +98,8 @@ export const ROTATION_FORMULAS = {
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/picks', label: 'Top Picks' },
-  { href: '/performance', label: 'Performance' },
   { href: '/trending', label: 'Trending' },
+  { href: '/performance', label: 'Performance' },
   { href: '/sectors', label: 'Sector Rotation' },
   { href: '/pulse', label: 'Market Pulse' },
   { href: '/methodology', label: 'Methodology' },

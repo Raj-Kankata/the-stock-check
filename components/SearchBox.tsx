@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { RESULTS, TICKER_SYMBOLS, money } from '@/lib/data'
 
 /**
- * Ticker search. Only the five scored tickers resolve to a card.
+ * Ticker search. Only the thirteen scored tickers resolve to a card.
  * Anything else says so plainly — never a guessed score.
  */
 export default function SearchBox() {
@@ -62,7 +62,7 @@ export default function SearchBox() {
       )}
       {showNotCovered && (
         <p className="footnote">
-          “{q.trim()}” is not covered yet. Only NVDA, AAPL, MSFT, GOOGL and NVO are scored so
+          “{q.trim()}” is not covered yet. Only {TICKER_SYMBOLS.join(', ')} are scored so
           far — the universe expands as more names are run through the engine. No score is ever
           guessed for an unscored ticker.
         </p>
