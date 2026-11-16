@@ -94,7 +94,7 @@ export default function MethodologyPage() {
           </tbody>
         </table>
         <p className="footnote">
-          Five tickers are scored so far. The universe expands from here; the recipe does not
+          Thirteen tickers are scored so far. The universe expands from here; the recipe does not
           change when it does.
         </p>
       </Card>

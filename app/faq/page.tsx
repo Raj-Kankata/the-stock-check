@@ -115,7 +115,7 @@ export default function FaqPage() {
       </Card>
 
       <Card title="Which tickers are covered?">
-        <p>Five tickers are scored so far, and the universe expands from here:</p>
+        <p>Thirteen tickers are scored so far, and the universe expands from here:</p>
         <table>
           <thead>
             <tr>

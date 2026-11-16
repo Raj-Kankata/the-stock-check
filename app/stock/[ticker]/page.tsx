@@ -26,7 +26,7 @@ export function generateStaticParams() {
 
 // NOTE: `export const dynamicParams = false` was removed — it is not
 // compatible with Next 16's Cache Components. With `output: 'export'`
-// the static export only generates the five generateStaticParams paths;
+// the static export only generates the thirteen generateStaticParams paths;
 // any other /stock/<ticker> URL 404s, which is the same behaviour.
 
 export async function generateMetadata({

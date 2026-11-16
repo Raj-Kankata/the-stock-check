@@ -7,7 +7,7 @@ import { Card, VerdictBadge, scoreSpan } from '@/components/ui'
 export const metadata: Metadata = {
   title: 'Top Picks',
   description:
-    'The Stock Check Top Picks: the scored names, with entry prices and dates frozen at publication on 13 Nov 2026. The full picks list today — five names, the currently scored universe.',
+    'The Stock Check Top Picks: the scored names, with entry prices and dates frozen at publication on 13 Nov 2026. The full picks list today — five names, published when five names were scored.',
 }
 
 export default function PicksPage() {
@@ -67,9 +67,11 @@ export default function PicksPage() {
       <Card title="What this list is — and what it is not">
         <p>
           The Top 20 is 20 value names and 20 growth names drawn from the S&amp;P 500 and S&amp;P
-          400 universe — and it expands as more names are scored. These five are the currently
-          scored universe, so this is the full picks list today, not a teaser: there are no
-          further picks held back behind a sign-in or a paywall.
+          400 universe — and it expands as more names are scored. These five are the picks as
+          published on 13 Nov 2026. The scored universe has since grown to thirteen names, and
+          this list grows toward the full Top 20 as more names are scored — but this is the full
+          picks list today, not a teaser: there are no further picks held back behind a sign-in
+          or a paywall.
         </p>
         <p>
           As more names are run through the engine, this list grows toward the full Top 20. A name
