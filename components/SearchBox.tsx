@@ -48,7 +48,7 @@ export default function SearchBox() {
             const t = RESULTS.tickers[s]
             return (
               <li key={s}>
-                <Link href={`/stock/${s}`}>
+                <Link href={`/stock/${s}`} onClick={() => setQ('')}>
                   <span>
                     <strong>{s}</strong> — {t.name}
                   </span>
