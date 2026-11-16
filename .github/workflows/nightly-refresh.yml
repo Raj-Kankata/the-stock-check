@@ -1,0 +1,70 @@
+# Nightly refresh — The Stock Check
+#
+# Runs every night ~05:20 UTC (same time as usaeconomynow.com's rebuild):
+# pulls fresh closes + price history from Yahoo Finance (yfinance, no key),
+# recomputes technicals, re-runs the frozen v1.3/batch-2 scoring engines,
+# rebuilds the static site. Vercel auto-deploys on push to main.
+#
+# What refreshes nightly: prices + technicals ONLY. Fundamentals, Story /
+# Financials scores, sector multiples, Damodaran ERP and ONEOFF adjustments
+# stay exactly as frozen in scripts/engine/base_inputs.json (see README.md).
+#
+# Safety: the script fails WITHOUT committing anything if any pull fails, a
+# price is missing, or any ticker moves >25% day-over-day. It commits only
+# when a price / FV / verdict actually changed — no empty commits.
+# No secrets, no API keys: the push uses the built-in GITHUB_TOKEN.
+
+name: Nightly refresh
+
+on:
+  schedule:
+    - cron: '20 5 * * *' # 05:20 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nightly-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install data dependencies
+        run: pip install yfinance==1.8.0 pandas==2.1.4 numpy==1.26.4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install site dependencies
+        run: npm ci
+
+      - name: Refresh prices + technicals and re-run engines
+        run: python3 scripts/nightly_refresh.py
+
+      - name: Commit and push if anything changed
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "the-stock-check-bot"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add lib/data/results.json public/sitemap.xml scripts/engine/
+            PRICE_DATE=$(python3 -c "import json; print(json.load(open('lib/data/results.json'))['price_date'])")
+            git commit -m "Nightly refresh: prices as of ${PRICE_DATE}"
+            git push
+            echo "Pushed nightly refresh for ${PRICE_DATE}."
+          else
+            echo "No changes — nothing to commit."
+          fi
