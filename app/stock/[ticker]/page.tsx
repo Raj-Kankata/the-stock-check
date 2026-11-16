@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import {
@@ -290,6 +291,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <Kv k="Story" v={scoreSpan(pillars.conviction.detail.story ?? 0)} />
         <Kv k="Financials" v={scoreSpan(pillars.conviction.detail.financials ?? 0)} />
         <MetricNote
+          anchor="conviction"
           what="How strong the company's story and financials look — a measure of business momentum, scored by our Story-Tracker across 749 names. It asks whether the business is growing and gaining ground, not whether the stock is cheap."
           how="The average of two sub-scores: Story (forward revenue growth, price leadership, estimate revisions and theme strength) and Financials (revenue growth, profitability, cash flow and acceleration). It is reused as published by the weekly Story-Tracker run and never recomputed inside the engine."
         />
@@ -307,6 +309,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           </div>
         )}
         <MetricNote
+          anchor="quality"
           what="Whether the reported profits are backed by real cash — a check for accounting flattery. It is built from the six sub-checks above, so no single line has to stand for the whole picture."
           how="Operating cash flow vs net income (25%), accruals (20%), receivables trend (15%), free-cash-flow conversion (20%), return on assets (10%) and leverage, or debt / equity (10%). Where a one-off item was removed from earnings, the cash-flow checks use the adjusted figure."
         />
@@ -324,6 +327,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           </div>
         )}
         <MetricNote
+          anchor="technical"
           what="Short-term timing — whether the price trend and momentum are with the stock right now. It is a timing read, not a judgement on the business itself."
           how="Trend from the 20-, 50- and 200-day moving averages (35%), price vs its 200-day average (25%), RSI (20%) and MACD (20%)."
         />
@@ -338,6 +342,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           </div>
         )}
         <MetricNote
+          anchor="trust"
           what="How much we can trust the numbers behind the score — whether the data is complete, well covered by analysts, and not built on guesswork."
           how="Data completeness (30%), analyst coverage (25%), target dispersion — how far apart analysts' price targets are (25%) — and insider activity (20%). Missing data is scored as missing, never as a clean bill of health: with no insider feed, that check scores a neutral 50."
         />
@@ -351,10 +356,12 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <Kv k="Upside vs price" v={pct(val.upside_pct)} />
         <Kv k="Leg spread ÷ fair value" v={pct(val.leg_spread_div_fv)} />
         <MetricNote
+          anchor="triangulated-fv"
           what="Our single fair-value estimate for the stock — the middle of the three legs below, so no one method dominates. When one leg is skipped, it is the average of the two that remain."
           how="Take the DCF, PEGY and Forward-sector legs and pick the median (the middle value). If a leg is skipped, the fair value is the mean of the two available legs. A wide spread between the legs means more uncertainty, and a very wide spread caps the valuation score."
         />
         <MetricNote
+          anchor="valuation"
           what="How cheap or expensive the stock looks against our triangulated fair value — the bigger the upside to fair value, the higher the score. It carries the most weight of the five pillars (30%)."
           how="Scored from the upside (fair value ÷ price − 1) on a fixed scale: −40% upside scores 10, 0% scores 55 and +50% scores 100. If the three legs disagree widely, the score is capped — at 65 when the leg spread is over 75% of fair value, and at 55 when it is over 100%."
         />
@@ -364,6 +371,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <p className="footnote">Growth scenario: {pct(legs.dcf.growth_scenario)}</p>
           )}
           <MetricNote
+          anchor="dcf-leg"
             what="What the stock would be worth if you valued it purely on the cash the business is expected to throw off in the future — free cash flow, the cash left after the company pays to run and grow itself."
             how="Free cash flow per share is projected for 5 years (growth capped at 20% a year), a terminal value is added assuming 2.5% growth forever after, and the whole stream is discounted back to today at 10% a year — 12% for high-beta names (raw beta of 2.0 or more) — anchored on a 5.00% risk-free rate. Where the per-share cash-flow basis can't be verified in dollars, the leg is skipped instead of guessed."
           />
@@ -378,6 +386,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             </p>
           )}
           <MetricNote
+          anchor="pegy-leg"
             what="A value based on the stock's earnings multiple and how fast earnings are expected to grow — the classic Peter Lynch idea that a fairly priced stock's P/E should roughly match its growth rate, with the dividend yield added in."
             how="PEGY is (expected earnings growth + dividend yield) ÷ the trailing P/E, and fair price = current price × PEGY — so a PEGY above 1 means the stock looks cheap on its growth, and below 1 means expensive. Growth is the implied 5-year earnings growth, capped at 30%, and earnings are on a non-GAAP basis, with one-off items removed where the one-off rule applies."
           />
@@ -397,6 +406,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             </p>
           )}
           <MetricNote
+          anchor="forward-sector-leg"
             what="A value based on what analysts expect the company to earn next year, priced at the multiple the market currently pays for its sector — not at a fixed multiple for every stock."
             how="Next-year analyst earnings per share × the sector's forward P/E from FactSet (refreshed quarterly, capped at 35× and floored at 10×), then discounted 10% for one year. If the sector figure is missing, the fallback is the S&P 500 forward P/E, and then a legacy 22× as a flagged last resort."
           />
@@ -414,6 +424,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       <Card title="Valuation ladder">
         <LadderTable fv={t.triangulated_fv} price={t.price} />
         <MetricNote
+          anchor="ladder"
           what="Four price levels derived from our fair value — Heavy at 0.60×, Buy at 0.80×, Fair at 1.00× and Exit at 1.20× — showing where today's price sits against our estimate."
           how="Each level is a fixed ratio of the triangulated fair value, the same ratios for every ticker. The levels are reference points for judging how far the price is from our estimate; they are not instructions to trade."
         />
@@ -449,6 +460,9 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           correlations were about −0.06 vs −0.05 for flat discounts, and the buckets still
           do not separate forward returns — so the leg stays display-only.
         </p>
+        <p className="footnote">
+          Full detail: <Link href="/methodology#capm-cross-check">Methodology</Link>.
+        </p>
       </Card>
 
       {/* (6) DCF sensitivity grid */}
@@ -460,6 +474,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           note={grid.note}
         />
         <MetricNote
+          anchor="sensitivity-grid"
           what="The same DCF leg, shown across a range of assumptions instead of a single point — so you can see how much the answer moves if growth or interest rates turn out differently."
           how="Rows are free-cash-flow growth from 0% to 20% (the cap); columns are the risk-free rate from 4.0% to 6.0%. Each cell's discount is the risk-free rate plus a locked spread (5 points at the 10% discount tier, 7 points at the 12% tier), so the 5.0% column reproduces the decision DCF leg where the growth is a grid row. The grid shows how sensitive the leg is to its assumptions — it is not a second valuation."
         />
@@ -585,6 +600,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <h3>Why the gap?</h3>
         <p>{gapLine}</p>
         <MetricNote
+          anchor="us-vs-wall-street"
           what="Our fair value next to Wall Street's — the average (mean) of the price targets published by the analysts who cover the stock, with the range of their targets and how many of them there are."
           how="The consensus mean, low, high and analyst count come from Yahoo Finance analyst targets, fetched 15–16 Nov 2026 and carried through unchanged; the nightly refresh updates the price only. The gap is our fair value minus the consensus mean. The 'Why the gap?' line checks whether any of our three legs sits within 10% of the consensus mean — if one does, it names it; if none does, it says so plainly instead of inventing a reason."
         />

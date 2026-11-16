@@ -77,9 +77,11 @@ export function PillarBar({ label, score, weight }: { label: string; score: numb
  * export. `what` says what the metric is; `how` says how it is
  * computed. Both must stay generic and true for every ticker (no
  * per-ticker numbers); ticker-specific notes live in the page's own
- * callouts, never in here. Every explainer links to /methodology.
+ * callouts, never in here. Every explainer links to /methodology, or
+ * to /methodology#<anchor> when the optional `anchor` prop names the
+ * reading card for this metric on the Methodology page.
  */
-export function MetricNote({ what, how }: { what: ReactNode; how: ReactNode }) {
+export function MetricNote({ what, how, anchor }: { what: ReactNode; how: ReactNode; anchor?: string }) {
   return (
     <details className="metric-note">
       <summary>What is this?</summary>
@@ -90,7 +92,8 @@ export function MetricNote({ what, how }: { what: ReactNode; how: ReactNode }) {
         <strong>How it&apos;s computed.</strong> {how}
       </p>
       <p className="footnote">
-        Full detail: <Link href="/methodology">Methodology</Link>.
+        Full detail:{' '}
+        <Link href={anchor ? `/methodology#${anchor}` : '/methodology'}>Methodology</Link>.
       </p>
     </details>
   )
