@@ -30,6 +30,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <header className="site-header">
           <div className="wrap">
             <div className="header-top">
+              <Sidebar />
               <div className="brand">
                 <Link href="/">
                   <span className="brand-mark" aria-hidden="true">
@@ -52,7 +53,6 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
           </div>
         </header>
         <div className="shell">
-          <Sidebar />
           <main>{children}</main>
         </div>
         <footer className="site-footer">

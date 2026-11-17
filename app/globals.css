@@ -90,12 +90,16 @@ li {
 }
 
 /* ---- header banner: light, launcher style ----
-   Pinned to the top while scrolling (desktop only — see the mobile
-   override below), like the floating pill rail on the left. Sticky,
-   not fixed, so the layout flow is preserved and no padding
-   compensation is needed. z-index 40 sits below the rail (50) and the
-   mobile menu toggle/drawer (60/65/70), so the rail always paints
-   above the header where the two meet on short viewports. */
+   Pinned to the top while scrolling, like the floating pill rail on
+   the left. Sticky, not fixed, so the layout flow is preserved and no
+   padding compensation is needed. z-index 40 sits below the rail (50)
+   and the mobile drawer/backdrop (65/70), so the rail always paints
+   above the header where the two meet on short viewports.
+   Desktop: the whole header pins, market strip included. Mobile
+   (see the override below): only the slim header-top row — menu
+   button, brand, search — pins; the strip scrolls away, because the
+   full mobile header is ~240px tall and would eat a third of the
+   viewport. */
 .site-header {
   position: sticky;
   top: 0;
@@ -978,13 +982,47 @@ a.rail-brand:hover {
     padding-left: 16px;
     padding-right: 16px;
   }
-  /* The header is NOT pinned on mobile: the Menu toggle already owns
-     the sticky top slot (sticky, top: 0, z-index 60) and would paint
-     over the header's brand row, and at ~390px the header is ~240px
-     tall — pinning it would eat about a third of the viewport. The
-     header scrolls away here and the toggle stays reachable. */
-  .site-header {
-    position: static;
+  /* Mobile slim pinned header: the brand row + search stay pinned
+     at the top while scrolling; the market strip scrolls away. The
+     strip lives inside the sticky header, so it cannot scroll away
+     while the header sticks — instead the header and its wrap become
+     display: contents here, dissolving their boxes: .header-top then
+     sticks against the page itself (its sticky containing block
+     becomes the body, which spans the whole page), and .market-strip
+     becomes a normal-flow sibling that scrolls away. The pinned row
+     carries its own white background, border and shadow, since the
+     header box is gone. The tagline is hidden to keep the pinned row
+     to two lines (menu + brand, then search full-width). */
+  .site-header,
+  .site-header .wrap {
+    display: contents;
+  }
+  .header-top {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 2px 8px rgba(15, 42, 67, 0.08);
+    padding: 10px 16px;
+  }
+  .brand .tagline {
+    display: none;
+  }
+  .brand-name {
+    font-size: 20px;
+  }
+  .header-search {
+    flex: 1 1 100%;
+  }
+  .site-header .search-box {
+    margin: 8px 0 0;
+  }
+  .site-header .search-results {
+    margin-bottom: 0;
+  }
+  .market-strip {
+    padding: 0 16px 14px;
   }
   .site-header .wrap,
   .site-footer .wrap {
@@ -994,23 +1032,25 @@ a.rail-brand:hover {
   .shell {
     display: block;
   }
+  /* The menu toggle renders inside .header-top now (see layout.tsx),
+     so on mobile it is a compact in-row button — no longer a separate
+     sticky full-width bar, which would paint over the pinned header. */
   .sidebar-toggle {
     display: flex;
     align-items: center;
     gap: 8px;
-    position: sticky;
-    top: 0;
-    z-index: 60;
-    width: 100%;
-    padding: 10px 16px;
-    border: none;
-    border-bottom: 1px solid var(--line);
-    background: #fff;
+    position: static;
+    width: auto;
+    flex: 0 0 auto;
+    order: -1;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #f1f5f4;
     color: var(--ink);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: bold;
-    text-align: left;
     cursor: pointer;
   }
   .sidebar {
