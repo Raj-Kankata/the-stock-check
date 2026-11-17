@@ -652,7 +652,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
                         : undefined
                   }
                 >
-                  <td>Gap, ours − consensus mean</td>
+                  <td>Gap vs consensus mean</td>
                   <td colSpan={2}>
                     {signedSpan(
                       vsWallStreet.gapPct,
