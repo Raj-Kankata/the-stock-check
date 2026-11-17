@@ -89,7 +89,9 @@ li {
   padding: 18px 0 0;
 }
 .site-header .wrap {
-  max-width: 1060px;
+  /* Wider than the 1060px page column on purpose: the five market chips
+     need the room to sit on one line with no horizontal scroll. */
+  max-width: 1160px;
   margin: 0 auto;
   padding: 0 16px;
 }
@@ -154,21 +156,21 @@ li {
 }
 .market-strip-chips {
   display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 2px;
-  -webkit-overflow-scrolling: touch;
+  flex-wrap: wrap;
+  gap: 6px;
+  /* No overflow-x, ever: on narrow screens the chips wrap to a second
+     row instead of scrolling sideways. */
 }
 .market-chip {
   flex: 0 0 auto;
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 13px;
   font-variant-numeric: tabular-nums;
   color: #fff;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
-  padding: 4px 10px;
+  padding: 4px 9px;
 }
 .market-chip-label {
   color: #b9c9d8;
@@ -179,6 +181,35 @@ li {
 }
 .market-chip.down .market-chip-change {
   color: #fca5a5;
+}
+/* Live badge on the market-strip date line: green dot + LIVE text.
+   The dot pulses only when the user has not asked for reduced motion. */
+.live-badge {
+  font-weight: bold;
+  color: #86efac;
+  white-space: nowrap;
+}
+.live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  margin-right: 5px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .live-dot {
+    animation: live-pulse 2s ease-in-out infinite;
+  }
+}
+@keyframes live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
 }
 
 /* ---- page shell ---- */
