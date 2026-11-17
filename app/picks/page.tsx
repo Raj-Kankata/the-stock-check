@@ -4,10 +4,13 @@ import { PICKS, PICKS_ENTRY_DATE, PICKS_NEW_ENTRY_DATE } from '@/lib/site'
 import { Card, signedClass } from '@/components/ui'
 import PicksFilter, { type PickRow } from '@/components/PicksFilter'
 
-export const metadata: Metadata = {
-  title: 'Top Picks',
-  description:
-    'The Stock Check Top Picks: thirteen scored names — four launch picks entered 13 Nov 2026 and nine new picks entered 16 Nov 2026 — with entry prices frozen at publication. A fifth pick, NVO, was removed when its card was unpublished.',
+export function generateMetadata(): Metadata {
+  const launch = PICKS.filter((p) => p.cohort === 'launch').length
+  const fresh = PICKS.filter((p) => p.cohort === 'new').length
+  return {
+    title: 'Top Picks',
+    description: `The Stock Check Top Picks: ${PICKS.length} scored names — ${launch} launch picks entered 13 Nov 2026 and ${fresh} new picks entered 16 Nov 2026 — with entry prices frozen at publication. A fifth pick, NVO, was removed when its card was unpublished.`,
+  }
 }
 
 export default function PicksPage() {

@@ -396,6 +396,13 @@ export default function PulsePanels() {
   const universeTotal = universe && isFiniteNumber(universe.total)
     ? universe.total!
     : null
+  // Display forms of the universe size, derived from the baked counts —
+  // never a literal. When the total is not known, the copy falls back to
+  // "the scored names" with no number rather than a stale one.
+  const universeAdj =
+    universeTotal !== null ? `${num(universeTotal)}-name` : 'scored-name'
+  const universeNoun =
+    universeTotal !== null ? `the ${num(universeTotal)}` : 'the scored names'
   const above50Pct =
     above50 !== null && universeTotal ? (above50 / universeTotal) * 100 : null
 
@@ -416,7 +423,7 @@ export default function PulsePanels() {
     isFiniteNumber(universe.decliners)
   ) {
     briefParts.push(
-      `breadth negative among the 227 (${num(universe.advancers!)} advancers vs ${num(universe.decliners!)} decliners at the ${closeLabel} close)`,
+      `breadth negative among ${universeNoun} (${num(universe.advancers!)} advancers vs ${num(universe.decliners!)} decliners at the ${closeLabel} close)`,
     )
   }
   if (vixRegime && vixValue !== null) {
@@ -452,7 +459,7 @@ export default function PulsePanels() {
         : breadthStatus === 'stale'
           ? `Couldn't refresh — showing last update ${breadthUpdatedAt ?? '—'} CT`
           : breadthStatus === 'error'
-            ? 'Market-wide scan could not be reached — showing the 227-name counts below.'
+            ? `Market-wide scan could not be reached — showing the ${universeAdj} counts below.`
             : 'Loading market-wide breadth…'
 
   return (
@@ -538,7 +545,7 @@ export default function PulsePanels() {
                 <strong>Market-wide breadth unavailable.</strong>{' '}
                 {breadthStatus === 'loading'
                   ? 'The scan is still loading.'
-                  : 'The live scan could not be reached, so no market-wide count is shown — the 227-name counts below are the reading instead.'}
+                  : `The live scan could not be reached, so no market-wide count is shown — the ${universeAdj} counts below are the reading instead.`}
               </p>
               {breadthStatus === 'error' ? (
                 <p>
@@ -554,7 +561,7 @@ export default function PulsePanels() {
           isFiniteNumber(universe.decliners) &&
           isFiniteNumber(universe.unchanged) ? (
             <p>
-              Among the 227 scored names at the {closeLabel} close:{' '}
+              Among {universeTotal !== null ? `the ${num(universeTotal)} ` : ''}scored names at the {closeLabel} close:{' '}
               {liveInternals ? (
                 <>
                   {num(liveInternals.adv)} advancers / {num(liveInternals.dec)}{' '}
@@ -573,12 +580,12 @@ export default function PulsePanels() {
           <p className="footnote">
             Rule: A/D above 1 = more advancers than decliners; below 1 =
             more decliners. The market-wide count covers every US-listed
-            stock the scanner returns, including OTC names — it is not
-            our 227. Names with no reported day change are counted in
+            stock the scanner returns, including OTC names — it is not{' '}
+            {universeTotal !== null ? `our ${num(universeTotal)}` : 'ours'}. Names with no reported day change are counted in
             the total but in neither group.
           </p>
           <p className="footnote">
-            Source: TradingView scanner (no key). Baked 227-name counts
+            Source: TradingView scanner (no key). Baked {universeAdj} counts
             from the nightly refresh, as of {formatDate(universe?.as_of) ?? '—'}.
           </p>
         </Card>
@@ -662,7 +669,7 @@ export default function PulsePanels() {
               <p>
                 <strong>
                   {above50Pct !== null ? `${above50Pct.toFixed(0)}%` : '—'} of
-                  the 227 above their 50-day average
+                  the {num(universeTotal)} above their 50-day average
                   ({num(above50)} of {num(universeTotal)}) —{' '}
                   {above50Pct !== null ? internalsGuide(above50Pct) : '—'}.
                 </strong>{' '}
@@ -677,7 +684,7 @@ export default function PulsePanels() {
                 <p>
                   Up volume {num(liveInternals.upVol)} shares vs down
                   volume {num(liveInternals.downVol)} shares, live among
-                  the 227.
+                  the {num(universeTotal)}.
                 </p>
               ) : (
                 <p className="footnote">

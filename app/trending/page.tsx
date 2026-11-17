@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import { RESULTS, TICKER_SYMBOLS } from '@/lib/data'
 import TrendingBoards, { type TrendingStockMeta } from '@/components/TrendingBoards'
 
-export const metadata: Metadata = {
-  title: 'Trending',
-  description:
-    'Trending on The Stock Check: the biggest live day-movers among the 227 scored names — top gainers, top losers and most active — each shown with our verdict and overall score. Quotes delayed ~15 minutes (TradingView).',
+export function generateMetadata(): Metadata {
+  return {
+    title: 'Trending',
+    description: `Trending on The Stock Check: the biggest live day-movers among the ${TICKER_SYMBOLS.length} scored names — top gainers, top losers and most active — each shown with our verdict and overall score. Quotes delayed ~15 minutes (TradingView).`,
+  }
 }
 
 const MONTHS = [

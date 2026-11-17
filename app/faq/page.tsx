@@ -85,7 +85,7 @@ export default function FaqPage() {
           or a bank, whose &ldquo;free cash flow&rdquo; is not meaningful because operating
           cash flow is dominated by deposit and trading flows. When a leg is skipped, the
           fair value is worked out from the two remaining angles, and the skip is
-          stated openly wherever it applies. No name in the current 227-name universe has a
+          stated openly wherever it applies. No name in the current {TICKERS.length}-name universe has a
           skipped leg: every published fair value uses all three angles. Two names the
           site previously published did use the skip path — NVO (Danish-krone reporting) and
           JPM (bank cash flow) — and both are unpublished in the current build.

@@ -193,7 +193,7 @@ export default function TrendingBoards({
       <div className="callout blue">
         <p>
           <strong>How trending is ranked.</strong> Three boards, all drawn
-          from the same 227 stocks we score — no social mentions, no options
+          from the same {stocks.length} stocks we score — no social mentions, no options
           flow, no search volume, nothing off-page:
         </p>
         <ul>
@@ -261,21 +261,21 @@ export default function TrendingBoards({
         <>
           <Card title="Top Gainers" accent="green">
             <p>
-              Biggest live day gain among the 227 scored names, with our
+              Biggest live day gain among the {stocks.length} scored names, with our
               verdict and overall score next to the move.
             </p>
             <BoardTable rows={boards.gainers} meta={meta} showVolume={false} />
           </Card>
           <Card title="Top Losers" accent="red">
             <p>
-              Biggest live day loss among the 227 scored names, with our
+              Biggest live day loss among the {stocks.length} scored names, with our
               verdict and overall score next to the move.
             </p>
             <BoardTable rows={boards.losers} meta={meta} showVolume={false} />
           </Card>
           <Card title="Most Active">
             <p>
-              Highest live share volume among the 227 scored names, with our
+              Highest live share volume among the {stocks.length} scored names, with our
               verdict and overall score next to the move.
             </p>
             <BoardTable rows={boards.active} meta={meta} showVolume />

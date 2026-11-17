@@ -6,10 +6,13 @@ import { Card } from '@/components/ui'
 import PerformanceLive, { type PerformanceRow } from '@/components/PerformanceLive'
 import BenchmarkLive from '@/components/BenchmarkLive'
 
-export const metadata: Metadata = {
-  title: 'Performance',
-  description:
-    'How the Top Picks are tracked: two equal-weight cohorts — four launch picks entered 13 Nov 2026 and nine new picks entered 16 Nov 2026 — at frozen entry prices, no costs, no dividends, against the S&P 500 benchmark. No return is published without its pick list.',
+export function generateMetadata(): Metadata {
+  const launch = PICKS.filter((p) => p.cohort === 'launch').length
+  const fresh = PICKS.filter((p) => p.cohort === 'new').length
+  return {
+    title: 'Performance',
+    description: `How the Top Picks are tracked: two equal-weight cohorts — ${launch} launch picks entered 13 Nov 2026 and ${fresh} new picks entered 16 Nov 2026 — at frozen entry prices, no costs, no dividends, against the S&P 500 benchmark. No return is published without its pick list.`,
+  }
 }
 
 function cohortRows(cohort: 'launch' | 'new'): PerformanceRow[] {

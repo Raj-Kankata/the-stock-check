@@ -181,7 +181,7 @@ export async function fetchAllQuotes(): Promise<Map<string, TvQuote> | null> {
         columns: ['name', 'close', 'change', 'volume'],
         sort: { sortBy: 'change', sortOrder: 'desc' },
         options: { lang: 'en' },
-        range: [0, 227],
+        range: [0, TV_TICKERS.length],
       }),
     })
     if (!res.ok) return null
