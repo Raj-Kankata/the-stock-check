@@ -162,7 +162,7 @@ export default function StockBrowser() {
       if (filters.underfv && !(r.price < r.triangulated_fv)) return false
       if (query) {
         const symbolMatch = r.symbol.toLowerCase().startsWith(query)
-        const nameMatch = r.name.toLowerCase().includes(query)
+        const nameMatch = (r.name ?? '').toLowerCase().includes(query)
         if (!symbolMatch && !nameMatch) return false
       }
       return true
