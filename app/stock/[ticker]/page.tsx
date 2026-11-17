@@ -389,11 +389,13 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <Kv k="Leg spread ÷ fair value" v={pct(val.leg_spread_div_fv)} />
         <MetricNote
           anchor="triangulated-fv"
+          label="What is this? — Fair value"
           what="Our single fair-value estimate for the stock, drawn from the three legs below."
           how="If the price is well below it, the stock looks cheap on our numbers. If it is well above it, the stock looks expensive — and a wide gap between the legs means more uncertainty."
         />
         <MetricNote
           anchor="valuation"
+          label="What is this? — Valuation score"
           what="How cheap or expensive the stock looks against our fair value — the bigger the upside to fair value, the higher the score."
           how="A high score means the price sits well below our fair value. A low score means it sits at or above it."
         />
@@ -479,9 +481,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           what="A second, independent check on the DCF leg, built from market inputs. It never changes the fair value, score or verdict."
           how="If it lands close to the DCF leg, the two views agree. If it lands far away, treat the DCF leg with more caution."
         />
-        <p className="footnote">
-          Full detail: <Link href="/methodology#capm-cross-check">Methodology</Link>.
-        </p>
       </Card>
 
       {/* (6) DCF sensitivity grid */}

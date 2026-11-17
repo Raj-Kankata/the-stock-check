@@ -79,10 +79,10 @@ export function PillarBar({ label, score }: { label: string; score: number }) {
  * /methodology#<anchor> when the optional `anchor` prop names the
  * reading card for this metric on the Methodology page.
  */
-export function MetricNote({ what, how, anchor }: { what: ReactNode; how: ReactNode; anchor?: string }) {
+export function MetricNote({ what, how, anchor, label }: { what: ReactNode; how: ReactNode; anchor?: string; label?: string }) {
   return (
     <details className="metric-note">
-      <summary>What is this?</summary>
+      <summary>{label ?? 'What is this?'}</summary>
       <p>
         <strong>What this is.</strong> {what}
       </p>
