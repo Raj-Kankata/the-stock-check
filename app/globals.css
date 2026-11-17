@@ -805,3 +805,65 @@ tr.gap-above td {
     background: rgba(15, 42, 67, 0.45);
   }
 }
+
+/* ---- /stocks filter UI ---- */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0;
+}
+.filter-pill {
+  display: inline-block;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 999px;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.filter-pill:hover {
+  border-color: var(--navy);
+}
+.filter-pill.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.filter-select,
+.filter-input {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+}
+.filter-input {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+.filter-count {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 4px 0 8px;
+}
+
+/* ---- stat tile as a link (homepage dashboard) ---- */
+.stat-tile-link {
+  display: block;
+  color: inherit;
+}
+a.stat-tile-link:hover {
+  text-decoration: none;
+}
+a.stat-tile-link:hover .stat-tile {
+  border-color: var(--navy);
+}

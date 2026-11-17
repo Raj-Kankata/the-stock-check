@@ -73,7 +73,7 @@ export default function HomePage() {
     }))
     .sort((a, b) => b.count - a.count)
 
-  // Us vs Wall Street: largest absolute gap between our triangulated fair
+  // The Stock Check vs Wall Street: largest absolute gap between our triangulated fair
   // value and the analyst consensus mean target. GUARD: tickers with a
   // non-positive fair value are excluded — e.g. BYND's fair value is
   // negative, so its gap vs consensus (~-693%) is an artefact of dividing
@@ -95,13 +95,43 @@ export default function HomePage() {
     { verdict: 'Avoid', count: verdictCounts.Avoid, cls: 'avoid' },
   ]
 
-  const tiles = [
-    { label: 'Names scored', value: String(total), sub: `Prices as of the ${PRICE_DATE} close` },
-    { label: 'Growth', value: String(verdictCounts.Growth), sub: 'Highest-conviction names' },
-    { label: 'Value', value: String(verdictCounts.Value), sub: 'Priced below fair value on score' },
-    { label: 'Watch', value: String(verdictCounts.Watch), sub: 'Not yet a Growth or Value name' },
-    { label: 'Avoid', value: String(verdictCounts.Avoid), sub: 'Lowest-scoring names' },
-    { label: 'Below fair value', value: String(belowFv), sub: `of ${total} trade under fair value` },
+  const tiles: { label: string; value: string; sub: string; href?: string }[] = [
+    {
+      label: 'Names scored',
+      value: String(total),
+      sub: `Prices as of the ${PRICE_DATE} close`,
+      href: '/stocks',
+    },
+    {
+      label: 'Growth',
+      value: String(verdictCounts.Growth),
+      sub: 'Highest-conviction names',
+      href: '/stocks?verdict=Growth',
+    },
+    {
+      label: 'Value',
+      value: String(verdictCounts.Value),
+      sub: 'Priced below fair value on score',
+      href: '/stocks?verdict=Value',
+    },
+    {
+      label: 'Watch',
+      value: String(verdictCounts.Watch),
+      sub: 'Not yet a Growth or Value name',
+      href: '/stocks?verdict=Watch',
+    },
+    {
+      label: 'Avoid',
+      value: String(verdictCounts.Avoid),
+      sub: 'Lowest-scoring names',
+      href: '/stocks?verdict=Avoid',
+    },
+    {
+      label: 'Below fair value',
+      value: String(belowFv),
+      sub: `of ${total} trade under fair value`,
+      href: '/stocks?underfv=1&sort=upside',
+    },
     {
       label: 'Median upside',
       value: pct(medianUpside, 1),
@@ -134,13 +164,26 @@ export default function HomePage() {
 
       <section aria-label="At a glance">
         <div className="stat-grid">
-          {tiles.map((tile) => (
-            <div key={tile.label} className="stat-tile">
-              <div className="stat-value">{tile.value}</div>
-              <div className="stat-label">{tile.label}</div>
-              <div className="footnote">{tile.sub}</div>
-            </div>
-          ))}
+          {tiles.map((tile) => {
+            const content = (
+              <>
+                <div className="stat-value">{tile.value}</div>
+                <div className="stat-label">{tile.label}</div>
+                <div className="footnote">{tile.sub}</div>
+              </>
+            )
+            return (
+              <div key={tile.label} className="stat-tile">
+                {tile.href ? (
+                  <Link href={tile.href} className="stat-tile-link">
+                    {content}
+                  </Link>
+                ) : (
+                  content
+                )}
+              </div>
+            )
+          })}
         </div>
         <p>
           <Link href="/stocks">Browse all {total} →</Link>
@@ -152,7 +195,7 @@ export default function HomePage() {
           {mix.map((m) => (
             <Link
               key={m.verdict}
-              href="/picks"
+              href={`/stocks?verdict=${m.verdict}`}
               role="listitem"
               className={`mix-seg ${m.cls}`}
               style={{ width: `${(m.count / total) * 100}%` }}
@@ -193,7 +236,7 @@ export default function HomePage() {
             </tbody>
           </table>
           <p>
-            <Link href="/picks">See all picks →</Link>
+            <Link href="/stocks?verdict=Growth&sort=score">See all Growth names →</Link>
           </p>
         </Card>
 
@@ -209,7 +252,7 @@ export default function HomePage() {
             </tbody>
           </table>
           <p>
-            <Link href="/picks">See all picks →</Link>
+            <Link href="/stocks?verdict=Value&sort=score">See all Value names →</Link>
           </p>
         </Card>
       </div>
@@ -231,6 +274,9 @@ export default function HomePage() {
             ))}
           </tbody>
         </table>
+        <p>
+          <Link href="/stocks?sort=upside">See all names by upside →</Link>
+        </p>
         <p className="footnote">
           Upside is (fair value − price) / price, prices as of the {PRICE_DATE} close.
         </p>
@@ -249,7 +295,7 @@ export default function HomePage() {
             {sectors.map((s) => (
               <tr key={s.sector}>
                 <td>
-                  <Link href="/sectors">
+                  <Link href={`/stocks?sector=${encodeURIComponent(s.sector)}`}>
                     <strong>{s.sector}</strong>
                   </Link>
                 </td>
@@ -262,9 +308,12 @@ export default function HomePage() {
         <p className="footnote">
           Median score is the median overall score of the scored names in that sector.
         </p>
+        <p>
+          <Link href="/sectors">Rotation formulas and calculator →</Link>
+        </p>
       </Card>
 
-      <Card title="Us vs Wall Street">
+      <Card title="The Stock Check vs Wall Street">
         <p>
           Our triangulated fair value against the analyst consensus mean target — the names
           where our number and Wall Street&apos;s disagree most.

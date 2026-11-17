@@ -499,7 +499,7 @@ export default function MethodologyPage() {
             <Link href="#sensitivity-grid">DCF sensitivity grid</Link>
           </li>
           <li>
-            <Link href="#us-vs-wall-street">Us vs Wall Street</Link>
+            <Link href="#us-vs-wall-street">The Stock Check vs Wall Street</Link>
           </li>
           <li>
             <Link href="#capm-cross-check">CAPM cross-check</Link>
@@ -1006,7 +1006,7 @@ export default function MethodologyPage() {
       </section>
 
       <section id="us-vs-wall-street" className="card">
-        <h2>Us vs Wall Street</h2>
+        <h2>The Stock Check vs Wall Street</h2>
         <h3>What it is</h3>
         <p>Wall Street analysts publish their own price targets for every stock. This card puts our fair value next to theirs, side by side, so you can see where we agree and where we disagree — and whether any of our three valuation legs can explain the difference.</p>
         <h3>Every term, defined</h3>

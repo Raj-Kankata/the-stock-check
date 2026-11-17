@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { getTicker, money } from '@/lib/data'
+import { getTicker, money, pct } from '@/lib/data'
 import { PICKS, PICKS_ENTRY_DATE } from '@/lib/site'
-import { Card, VerdictBadge, scoreSpan, signedPctSpan } from '@/components/ui'
+import { Card, signedClass } from '@/components/ui'
+import PicksFilter, { type PickRow } from '@/components/PicksFilter'
 
 export const metadata: Metadata = {
   title: 'Top Picks',
@@ -11,6 +11,23 @@ export const metadata: Metadata = {
 }
 
 export default function PicksPage() {
+  const rows: PickRow[] = []
+  for (const { symbol, entryPrice } of PICKS) {
+    const t = getTicker(symbol)
+    if (!t) continue
+    const upside = (t.triangulated_fv - entryPrice) / entryPrice
+    rows.push({
+      symbol,
+      name: t.name,
+      verdict: t.verdict,
+      score: t.overall_score,
+      entryPrice: money(entryPrice),
+      fairValue: money(t.triangulated_fv),
+      upside: pct(upside),
+      upsideClass: signedClass(upside, 0.001),
+    })
+  }
+
   return (
     <>
       <h1>Top Picks</h1>
@@ -20,43 +37,7 @@ export default function PicksPage() {
       </p>
 
       <Card title="Current picks — entry 13 Nov 2026">
-        <table>
-          <thead>
-            <tr>
-              <th>Stock</th>
-              <th>Verdict</th>
-              <th className="num">Score</th>
-              <th className="num">Entry price</th>
-              <th className="num">Fair value</th>
-              <th className="num">Upside vs entry</th>
-            </tr>
-          </thead>
-          <tbody>
-            {PICKS.map(({ symbol, entryPrice }) => {
-              const t = getTicker(symbol)
-              if (!t) return null
-              const upside = (t.triangulated_fv - entryPrice) / entryPrice
-              return (
-                <tr key={symbol}>
-                  <td>
-                    <Link href={`/stock/${symbol}`}>
-                      <strong>{symbol}</strong>
-                    </Link>
-                    <br />
-                    <span className="footnote">{t.name}</span>
-                  </td>
-                  <td>
-                    <VerdictBadge verdict={t.verdict} />
-                  </td>
-                  <td className="num">{scoreSpan(t.overall_score)}</td>
-                  <td className="num">{money(entryPrice)}</td>
-                  <td className="num">{money(t.triangulated_fv)}</td>
-                  <td className="num">{signedPctSpan(upside)}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+        <PicksFilter rows={rows} />
         <p className="footnote">
           Entry prices are the {PICKS_ENTRY_DATE} close — the same prices the scores were computed
           on. Upside vs entry is the fair value against the frozen entry price. Fair values and

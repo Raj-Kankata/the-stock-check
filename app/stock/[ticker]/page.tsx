@@ -240,7 +240,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   const trust = pillars.trust.detail
   const priceDate = RESULTS.price_date
 
-  // (9) Us vs Wall Street — all figures from the stored data only.
+  // (9) The Stock Check vs Wall Street — all figures from the stored data only.
   // The analysts block is optional: a name that carries no consensus
   // target renders the section as "not published" (see below) instead of
   // crashing or showing a guessed target. All 227 names in this build do
@@ -550,8 +550,8 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         </Card>
       </div>
 
-      {/* (9) Us vs Wall Street */}
-      <Card title="Us vs Wall Street">
+      {/* (9) The Stock Check vs Wall Street */}
+      <Card title="The Stock Check vs Wall Street">
         {vsWallStreet === null ? (
           <p>{gapLine}</p>
         ) : (
