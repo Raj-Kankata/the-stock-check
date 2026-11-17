@@ -26,6 +26,10 @@ export default function GridPreview() {
   return (
     <div>
       <p>
+        Tap any cell to see its value under those assumptions — the highlighted cell is
+        this stock&apos;s own decision DCF leg.
+      </p>
+      <p>
         <label htmlFor="grid-ticker">
           <strong>Stock: </strong>
         </label>{' '}
@@ -53,6 +57,7 @@ export default function GridPreview() {
           decisionLeg={legs?.dcf.value ?? null}
           decisionGrowth={legs?.dcf.growth_scenario ?? null}
           note={grid?.note ?? ''}
+          price={t.price}
         />
       </div>
       <p>

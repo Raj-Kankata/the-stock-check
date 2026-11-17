@@ -1,7 +1,14 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
 import { ENGINE_VERSION, PILLAR_WEIGHTS, PRICE_DATE } from '@/lib/site'
-import { Card, StockRow, StockTableHead } from '@/components/ui'
+import {
+  Card,
+  StockRow,
+  StockTableHead,
+  scoreSpan,
+  signedPctSpan,
+} from '@/components/ui'
 import GridPreview from '@/components/GridPreview'
 
 export const metadata: Metadata = {
@@ -10,10 +17,97 @@ export const metadata: Metadata = {
     'A free, deterministic, rules-based stock research tool. Five pillar scores, a triangulated fair value from three legs, and the full methodology published. No sign-in, no tracking.',
 }
 
+type Verdict = 'Growth' | 'Value' | 'Watch' | 'Avoid'
+
+function median(nums: number[]): number {
+  const s = [...nums].sort((a, b) => a - b)
+  const mid = Math.floor(s.length / 2)
+  return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2
+}
+
+function upside(t: { triangulated_fv: number; price: number }): number {
+  return (t.triangulated_fv - t.price) / t.price
+}
+
 export default function HomePage() {
   const nvda = getTicker('NVDA')
   const legs = nvda?.pillars.valuation.detail.legs
   const legSpread = nvda?.pillars.valuation.detail.leg_spread_div_fv
+
+  const entries = TICKER_SYMBOLS.map((symbol) => ({ symbol, t: getTicker(symbol)! })).filter(
+    (e) => e.t,
+  )
+  const total = entries.length
+
+  const verdictCounts: Record<Verdict, number> = { Growth: 0, Value: 0, Watch: 0, Avoid: 0 }
+  for (const { t } of entries) verdictCounts[t.verdict] += 1
+
+  const belowFv = entries.filter(({ t }) => t.triangulated_fv > t.price).length
+  const medianUpside = median(entries.map(({ t }) => upside(t)))
+
+  const topByVerdict = (verdict: Verdict, n = 5) =>
+    entries
+      .filter(({ t }) => t.verdict === verdict)
+      .sort((a, b) => b.t.overall_score - a.t.overall_score)
+      .slice(0, n)
+
+  const furthestBelowFv = [...entries]
+    .sort((a, b) => upside(b.t) - upside(a.t))
+    .slice(0, 5)
+
+  // Spotlight: the single highest overall score across the whole
+  // scored universe, computed live — the featured name.
+  const spotlight = [...entries].sort((a, b) => b.t.overall_score - a.t.overall_score)[0]
+
+  const sectorGroups = new Map<string, number[]>()
+  for (const { t } of entries) {
+    const scores = sectorGroups.get(t.sector) ?? []
+    scores.push(t.overall_score)
+    sectorGroups.set(t.sector, scores)
+  }
+  const sectors = [...sectorGroups.entries()]
+    .map(([sector, scores]) => ({
+      sector,
+      count: scores.length,
+      medianScore: median(scores),
+    }))
+    .sort((a, b) => b.count - a.count)
+
+  // Us vs Wall Street: largest absolute gap between our triangulated fair
+  // value and the analyst consensus mean target. GUARD: tickers with a
+  // non-positive fair value are excluded — e.g. BYND's fair value is
+  // negative, so its gap vs consensus (~-693%) is an artefact of dividing
+  // by a small positive target from a negative fair value, not a signal.
+  const usVsWallStreet = entries
+    .filter(({ t }) => t.triangulated_fv > 0 && t.analysts && t.analysts.target_mean > 0)
+    .map(({ symbol, t }) => ({
+      symbol,
+      t,
+      gap: (t.triangulated_fv - t.analysts!.target_mean) / t.analysts!.target_mean,
+    }))
+    .sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap))
+    .slice(0, 5)
+
+  const mix: { verdict: Verdict; count: number; cls: string }[] = [
+    { verdict: 'Growth', count: verdictCounts.Growth, cls: 'growth' },
+    { verdict: 'Value', count: verdictCounts.Value, cls: 'value' },
+    { verdict: 'Watch', count: verdictCounts.Watch, cls: 'watch' },
+    { verdict: 'Avoid', count: verdictCounts.Avoid, cls: 'avoid' },
+  ]
+
+  const tiles = [
+    { label: 'Names scored', value: String(total), sub: `Prices as of the ${PRICE_DATE} close` },
+    { label: 'Growth', value: String(verdictCounts.Growth), sub: 'Highest-conviction names' },
+    { label: 'Value', value: String(verdictCounts.Value), sub: 'Priced below fair value on score' },
+    { label: 'Watch', value: String(verdictCounts.Watch), sub: 'Not yet a Growth or Value name' },
+    { label: 'Avoid', value: String(verdictCounts.Avoid), sub: 'Lowest-scoring names' },
+    { label: 'Below fair value', value: String(belowFv), sub: `of ${total} trade under fair value` },
+    {
+      label: 'Median upside',
+      value: pct(medianUpside, 1),
+      sub: `Median (fair value − price) / price, ${PRICE_DATE} close`,
+    },
+  ]
 
   return (
     <>
@@ -23,23 +117,55 @@ export default function HomePage() {
         three independent legs — and shows you every number, so you can check the work yourself.
       </p>
 
-      <Card title="All scored tickers">
+      <Card title="Spotlight — highest overall score">
         <table>
           <thead>
             <StockTableHead />
           </thead>
           <tbody>
-            {TICKER_SYMBOLS.map((symbol) => {
-              const t = getTicker(symbol)
-              if (!t) return null
-              return <StockRow key={symbol} t={{ ...t, symbol }} />
-            })}
+            <StockRow t={{ ...spotlight.t, symbol: spotlight.symbol }} />
           </tbody>
         </table>
         <p className="footnote">
-          {TICKER_SYMBOLS.length} names are scored so far — use the search above to find any
-          of them. Prices are the {PRICE_DATE} close. The scored universe expands as more
-          names are run through the engine; no score is ever guessed for an unscored ticker.
+          The highest overall score of the {total} scored names, prices as of the {PRICE_DATE}{' '}
+          close. One name, featured — the full ranked lists are below.
+        </p>
+      </Card>
+
+      <section aria-label="At a glance">
+        <div className="stat-grid">
+          {tiles.map((tile) => (
+            <div key={tile.label} className="stat-tile">
+              <div className="stat-value">{tile.value}</div>
+              <div className="stat-label">{tile.label}</div>
+              <div className="footnote">{tile.sub}</div>
+            </div>
+          ))}
+        </div>
+        <p>
+          <Link href="/stocks">Browse all {total} →</Link>
+        </p>
+      </section>
+
+      <Card title="Verdict mix">
+        <div className="mixbar" role="list">
+          {mix.map((m) => (
+            <Link
+              key={m.verdict}
+              href="/picks"
+              role="listitem"
+              className={`mix-seg ${m.cls}`}
+              style={{ width: `${(m.count / total) * 100}%` }}
+              title={`${m.verdict}: ${m.count} of ${total}`}
+            >
+              {m.verdict} {m.count}
+            </Link>
+          ))}
+        </div>
+        <p className="footnote">
+          {total} names scored so far, prices as of the {PRICE_DATE} close. The scored universe
+          expands as more names are run through the engine; no score is ever guessed for an
+          unscored ticker.
         </p>
       </Card>
 
@@ -47,10 +173,133 @@ export default function HomePage() {
         <p>
           The grid shows what a stock&apos;s DCF fair value would be under different
           assumptions. Each row is a free-cash-flow growth rate, from 0% to 20%; each
-          column is a risk-free rate, from 4.0% to 6.0%. Click any cell to compare it
-          with that stock&apos;s DCF leg.
+          column is a risk-free rate, from 4.0% to 6.0%. Tap any cell to see its value —
+          the headline above the grid follows your pick, and the highlighted cell is
+          that stock&apos;s own decision DCF leg.
         </p>
         <GridPreview />
+      </Card>
+
+      <div className="two-col">
+        <Card title="Top Growth">
+          <table>
+            <thead>
+              <StockTableHead />
+            </thead>
+            <tbody>
+              {topByVerdict('Growth').map(({ symbol, t }) => (
+                <StockRow key={symbol} t={{ ...t, symbol }} />
+              ))}
+            </tbody>
+          </table>
+          <p>
+            <Link href="/picks">See all picks →</Link>
+          </p>
+        </Card>
+
+        <Card title="Top Value">
+          <table>
+            <thead>
+              <StockTableHead />
+            </thead>
+            <tbody>
+              {topByVerdict('Value').map(({ symbol, t }) => (
+                <StockRow key={symbol} t={{ ...t, symbol }} />
+              ))}
+            </tbody>
+          </table>
+          <p>
+            <Link href="/picks">See all picks →</Link>
+          </p>
+        </Card>
+      </div>
+
+      <Card title="Furthest below fair value">
+        <p>
+          The names whose price sits furthest under our fair value. This is valuation context,
+          not a buy signal: backtests on 5 tickers and on the full 749-name universe found the
+          ladder does not separate forward returns (see Methodology). No level on this list is an
+          instruction to buy or sell.
+        </p>
+        <table>
+          <thead>
+            <StockTableHead />
+          </thead>
+          <tbody>
+            {furthestBelowFv.map(({ symbol, t }) => (
+              <StockRow key={symbol} t={{ ...t, symbol }} />
+            ))}
+          </tbody>
+        </table>
+        <p className="footnote">
+          Upside is (fair value − price) / price, prices as of the {PRICE_DATE} close.
+        </p>
+      </Card>
+
+      <Card title="Sectors at a glance">
+        <table>
+          <thead>
+            <tr>
+              <th>Sector</th>
+              <th className="num">Names</th>
+              <th className="num">Median score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sectors.map((s) => (
+              <tr key={s.sector}>
+                <td>
+                  <Link href="/sectors">
+                    <strong>{s.sector}</strong>
+                  </Link>
+                </td>
+                <td className="num">{s.count}</td>
+                <td className="num">{scoreSpan(s.medianScore)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p className="footnote">
+          Median score is the median overall score of the scored names in that sector.
+        </p>
+      </Card>
+
+      <Card title="Us vs Wall Street">
+        <p>
+          Our triangulated fair value against the analyst consensus mean target — the names
+          where our number and Wall Street&apos;s disagree most.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Stock</th>
+              <th className="num">Our fair value</th>
+              <th className="num">Consensus mean</th>
+              <th className="num">Gap</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usVsWallStreet.map(({ symbol, t, gap }) => (
+              <tr key={symbol}>
+                <td>
+                  <Link href={`/stock/${symbol}`}>
+                    <strong>{symbol}</strong>
+                  </Link>
+                  <br />
+                  <span className="footnote">{t.name}</span>
+                </td>
+                <td className="num">{money(t.triangulated_fv)}</td>
+                <td className="num">{money(t.analysts!.target_mean)}</td>
+                <td className="num">{signedPctSpan(gap)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p className="footnote">
+          Gap is (our fair value − consensus mean) / consensus mean. Names with a
+          non-positive fair value are excluded. See each stock&apos;s card for the full
+          comparison.
+        </p>
       </Card>
 
       <Card title="What you get">
@@ -92,9 +341,7 @@ export default function HomePage() {
           returns.
         </p>
         <p>
-          <strong>Full methodology published.</strong> The scoring rules, the locked inputs, the
-          backtests and the open items are all on the Methodology page. No sign-in, no tracking,
-          no analytics, no paywall.
+          <Link href="/methodology">Full methodology →</Link>
         </p>
       </Card>
 

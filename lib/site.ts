@@ -96,6 +96,7 @@ export const ROTATION_FORMULAS = {
 
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/stocks', label: 'All Stocks' },
   { href: '/picks', label: 'Top Picks' },
   { href: '/trending', label: 'Trending' },
   { href: '/performance', label: 'Performance' },

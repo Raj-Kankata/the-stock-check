@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://www.thestockcheck.com</loc><lastmod>2026-11-17T01:17:36Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
 <url><loc>https://www.thestockcheck.com/picks</loc><lastmod>2026-11-17T01:17:36Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stocks</loc><lastmod>2026-11-17T01:17:36Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/performance</loc><lastmod>2026-11-17T01:17:36Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/trending</loc><lastmod>2026-11-17T01:17:36Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/sectors</loc><lastmod>2026-11-17T01:17:36Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
