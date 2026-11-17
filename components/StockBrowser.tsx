@@ -1,8 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { TICKER_SYMBOLS, getTicker, type TickerData } from '@/lib/data'
-import { PRICE_DATE } from '@/lib/site'
+import { RESULTS, TICKER_SYMBOLS, getTicker, type TickerData } from '@/lib/data'
 import { Card, StockRow, StockTableHead } from '@/components/ui'
 
 type Verdict = TickerData['verdict']
@@ -508,7 +507,7 @@ export default function StockBrowser() {
 
       <p className="footnote">
         {ALL_ROWS.length} names are scored so far — use the search above to find any of them.
-        Prices are the {PRICE_DATE} close. The scored universe expands as more names are run
+        Prices are the {RESULTS.price_date} close. The scored universe expands as more names are run
         through the engine; no score is ever guessed for an unscored ticker.
       </p>
     </Card>

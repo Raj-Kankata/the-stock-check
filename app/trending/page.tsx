@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { TICKER_SYMBOLS, getTicker } from '@/lib/data'
-import { PRICE_DATE } from '@/lib/site'
+import { RESULTS, TICKER_SYMBOLS, getTicker } from '@/lib/data'
 import { Card, StockRow, StockTableHead } from '@/components/ui'
 
 export const metadata: Metadata = {
@@ -44,7 +43,7 @@ export default function TrendingPage() {
           </tbody>
         </table>
         <p className="footnote">
-          Prices are the {PRICE_DATE} close. Each row links to the stock&apos;s card, where the
+          Prices are the {RESULTS.price_date} close. Each row links to the stock&apos;s card, where the
           pillar scores, the three fair-value angles and the spread between them are all published.
         </p>
       </Card>

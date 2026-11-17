@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
-import { ENGINE_VERSION, PRICE_DATE } from '@/lib/site'
+import { ENGINE_VERSION } from '@/lib/site'
 import {
   Card,
   StockRow,
@@ -99,7 +99,7 @@ export default function HomePage() {
     {
       label: 'Names scored',
       value: String(total),
-      sub: `Prices as of the ${PRICE_DATE} close`,
+      sub: `Prices as of the ${RESULTS.price_date} close`,
       href: '/stocks',
     },
     {
@@ -135,7 +135,7 @@ export default function HomePage() {
     {
       label: 'Median upside',
       value: pct(medianUpside, 1),
-      sub: `Median (fair value − price) / price, ${PRICE_DATE} close`,
+      sub: `Median (fair value − price) / price, ${RESULTS.price_date} close`,
     },
   ]
 
@@ -157,7 +157,7 @@ export default function HomePage() {
           </tbody>
         </table>
         <p className="footnote">
-          The highest overall score of the {total} scored names, prices as of the {PRICE_DATE}{' '}
+          The highest overall score of the {total} scored names, prices as of the {RESULTS.price_date}{' '}
           close. One name, featured — the full ranked lists are below.
         </p>
       </Card>
@@ -206,7 +206,7 @@ export default function HomePage() {
           ))}
         </div>
         <p className="footnote">
-          {total} names scored so far, prices as of the {PRICE_DATE} close. The scored universe
+          {total} names scored so far, prices as of the {RESULTS.price_date} close. The scored universe
           expands as more names are run through the engine; no score is ever guessed for an
           unscored ticker.
         </p>
@@ -278,7 +278,7 @@ export default function HomePage() {
           <Link href="/stocks?sort=upside">See all names by upside →</Link>
         </p>
         <p className="footnote">
-          Upside is (fair value − price) / price, prices as of the {PRICE_DATE} close.
+          Upside is (fair value − price) / price, prices as of the {RESULTS.price_date} close.
         </p>
       </Card>
 
@@ -417,7 +417,7 @@ export default function HomePage() {
           security.
         </p>
         <p>
-          Prices are as of the {PRICE_DATE} close. Scores and fair values come from {ENGINE_VERSION}.
+          Prices are as of the {RESULTS.price_date} close. Scores and fair values come from {ENGINE_VERSION}.
           Data may be delayed and can contain errors — verify before trading. Past performance does not guarantee future results.
         </p>
       </Card>

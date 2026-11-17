@@ -4,7 +4,8 @@ import './globals.css'
 import Sidebar from '@/components/Sidebar'
 import SearchBox from '@/components/SearchBox'
 import MarketStrip from '@/components/MarketStrip'
-import { SITE_NAME, SITE_URL, PRICE_DATE, ENGINE_VERSION } from '@/lib/site'
+import { SITE_NAME, SITE_URL, ENGINE_VERSION } from '@/lib/site'
+import { RESULTS } from '@/lib/data'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -63,7 +64,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
               <Link href="/performance">Performance</Link>
             </div>
             <p>
-              Prices as of the {PRICE_DATE} close · Engine {ENGINE_VERSION} · No sign-in, no
+              Prices as of the {RESULTS.price_date} close · Engine {ENGINE_VERSION} · No sign-in, no
               tracking, no analytics.
             </p>
           </div>

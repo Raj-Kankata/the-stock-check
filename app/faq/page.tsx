@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Card, scoreSpan } from '@/components/ui'
 import { RESULTS, money } from '@/lib/data'
-import { CONTACT_EMAIL, PRICE_DATE } from '@/lib/site'
+import { CONTACT_EMAIL } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'FAQ',
@@ -112,7 +112,7 @@ export default function FaqPage() {
           <li>Sector multiples — quarterly.</li>
         </ul>
         <p className="footnote">
-          Prices on the site are as of the {PRICE_DATE} close.
+          Prices on the site are as of the {RESULTS.price_date} close.
         </p>
       </Card>
 

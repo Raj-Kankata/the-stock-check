@@ -6,7 +6,6 @@ import {
   BACKTEST_V2,
   BACKTEST_WIDE,
   BACKTEST_V3_CAPM,
-  PRICE_DATE,
 } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -26,7 +25,7 @@ export default function MethodologyPage() {
         estimate of what a share is worth. The score comes from five angles on the business;
         the fair value comes from three independent estimates combined into one number. This
         page explains, in plain language, what each number means and how to read it. Prices
-        as of the {PRICE_DATE} close.
+        as of the {RESULTS.price_date} close.
       </p>
 
       <div className="callout">
