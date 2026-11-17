@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Card, scoreSpan } from '@/components/ui'
-import { RESULTS, money } from '@/lib/data'
+import { Card } from '@/components/ui'
+import { RESULTS } from '@/lib/data'
 import {
   BACKTEST_V2,
   BACKTEST_WIDE,
@@ -13,8 +13,6 @@ export const metadata: Metadata = {
   description:
     'How The Stock Check scores stocks and estimates fair value, in plain language.',
 }
-
-const TICKERS = Object.entries(RESULTS.tickers)
 
 export default function MethodologyPage() {
   return (
@@ -41,35 +39,9 @@ export default function MethodologyPage() {
           Trust. Each stock also gets a verdict — Growth, Value, Watch, or Avoid — based on
           its scores and how its price compares with our fair value.
         </p>
-        <h3>What is scored today</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Stock</th>
-              <th>Verdict</th>
-              <th className="num">Score</th>
-              <th className="num">Price</th>
-              <th className="num">Fair value</th>
-            </tr>
-          </thead>
-          <tbody>
-            {TICKERS.map(([symbol, t]) => (
-              <tr key={symbol}>
-                <td>
-                  <strong>{symbol}</strong>
-                  <br />
-                  <span className="footnote">{t.name}</span>
-                </td>
-                <td>{t.verdict}</td>
-                <td className="num">{scoreSpan(t.overall_score)}</td>
-                <td className="num">{money(t.price)}</td>
-                <td className="num">{money(t.triangulated_fv)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <p className="footnote">
-          {TICKERS.length} tickers are scored so far. The universe expands from here.
+        <p>
+          {Object.keys(RESULTS.tickers).length} stocks scored today — see them all on{' '}
+          <Link href="/stocks">All Stocks</Link>.
         </p>
       </Card>
 
