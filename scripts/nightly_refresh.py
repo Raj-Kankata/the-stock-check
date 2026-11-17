@@ -88,7 +88,7 @@ magnitude gate on VIX (it can legitimately move >25% in a day) or on the
 computed in memory and staged in a temp dir; files are written only after
 all gates pass.
 
-Engines are scoring-engine-v1.4 + v1.4-batch2 (SPEC v1.2 FINAL — growth guardrail + GME T2; frozen since 2026-11-17).
+Engines are scoring-engine-v1.5 + v1.5-batch2 (SPEC v1.3 FINAL — symmetric one-offs + GME negatives; frozen since 2026-11-17).
 This script copies them verbatim into scripts/engine/v13|batch2/engine.py
 and never edits them. They read inputs.json from their own directory and
 hardcode as_of "2026-11-16" / price_date "2026-11-13" in their output;
@@ -1019,12 +1019,26 @@ def cmd_live(as_of_arg):
         # of base_inputs.json. .get(..., None) tolerates stored files
         # that predate the fields. Consequence, by design: a night with
         # no price/FV/verdict change still writes when rel_vol changed.
+        # Same for overall_score, the three leg values and flags: a
+        # curation-only change (e.g. SPEC v1.3 symmetric one-offs — GME's
+        # FV and verdict stay $22.21 / Watch while its PEGY leg, overall
+        # and one-off note all move) changes no price/FV/verdict, so
+        # without these it would silently never publish. Added 2026-11-17.
         n_ch = any(old.get(f) != new.get(f)
                    for f in ("debt_fcf", "market_cap", "rel_vol", "indexes"))
-        changed_tickers |= p_ch or f_ch or v_ch or n_ch
+        o_ch = old["overall_score"] != new["overall_score"]
+        legs_old = old["pillars"]["valuation"]["detail"]["legs"]
+        legs_new = new["pillars"]["valuation"]["detail"]["legs"]
+        l_ch = any(legs_old[k]["value"] != legs_new[k]["value"]
+                   for k in legs_old)
+        fl_ch = old.get("flags") != new.get("flags")
+        changed_tickers |= (p_ch or f_ch or v_ch or n_ch or o_ch or l_ch
+                            or fl_ch)
         if v_ch:
             flips.append(t)
         mark = "  <-- VERDICT FLIP" if v_ch else ""
+        if not v_ch and (o_ch or l_ch or fl_ch):
+            mark = "  <-- SCORE/LEG/FLAG CHANGE"
         print(f"{t:<7} ${old['price']:>8.2f} -> ${new['price']:>8.2f}  "
               f"${old['triangulated_fv']:>8.2f} -> ${new['triangulated_fv']:>8.2f}  "
               f"{old['verdict']:>6} -> {new['verdict']:<6}{mark}")
@@ -1034,11 +1048,17 @@ def cmd_live(as_of_arg):
     stored_macro = (load_json(MACRO_JSON)
                     if os.path.exists(MACRO_JSON) else None)
     changed_macro = stored_macro != macro
-    changed = changed_tickers or changed_market or changed_macro
+    # An engine-version bump (e.g. v1.4 -> v1.5) changes no ticker value
+    # but must still publish: the site footer and results.json both print
+    # the engine string. Added 2026-11-17.
+    changed_engine = merged["engine"] != stored.get("engine")
+    changed = (changed_tickers or changed_market or changed_macro
+               or changed_engine)
     print(f"\nCHANGED={'yes' if changed else 'no'}  "
           f"(tickers={'yes' if changed_tickers else 'no'}, "
           f"market={'yes' if changed_market else 'no'}, "
-          f"macro={'yes' if changed_macro else 'no'}; "
+          f"macro={'yes' if changed_macro else 'no'}, "
+          f"engine={'yes' if changed_engine else 'no'}; "
           f"as_of {stored['as_of']} -> {as_of}, "
           f"price_date {stored['price_date']} -> {price_date})")
     if flips:
@@ -1050,7 +1070,7 @@ def cmd_live(as_of_arg):
 
     # 4. Changed — now write. (Inputs + per-engine results first,
     #    then the site file, then market.json, then the sitemap.)
-    if changed_tickers:
+    if changed_tickers or changed_engine:
         for key in ("v13", "batch2"):
             write_json(os.path.join(ENGINE_DIR, key, "inputs.json"), inputs[key])
             write_json(os.path.join(ENGINE_DIR, key, "results.json"), results[key])

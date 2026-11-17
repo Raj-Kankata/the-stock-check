@@ -9697,8 +9697,8 @@
       "trailing_eps": 1.52,
       "forward_pe": 16.57,
       "trailing_pe": 16.84,
-      "trailing_pe_adjusted": 26.94,
-      "trailing_eps_adjusted": 0.95,
+      "trailing_pe_adjusted": 20.6,
+      "trailing_eps_adjusted": 1.24,
       "peg_ratio_yahoo": 0.31,
       "implied_5y_eps_growth": 0.5433,
       "earnings_growth_yahoo_1y": 0.645,
@@ -9719,14 +9719,14 @@
       "beta_source": "https://finance.yahoo.com/quote/GME",
       "revenue_ttm": 3550800000.0,
       "net_income_ttm": 893300000.0,
-      "net_income_ttm_adjusted": 551300000.0,
+      "net_income_ttm_adjusted": 719600000,
       "ocf_ttm": 704700000.0,
       "fcf_ttm": 688000000.0,
       "fcf_per_share_ttm": 1.19,
       "fcf_per_share_note": "USD per share; shares = NI_TTM/trailing EPS (total shares).",
       "shares_implied_total": 580064935,
       "ocf_pct_net_income_ttm": 0.789,
-      "ocf_pct_net_income_adjusted": 1.278,
+      "ocf_pct_net_income_adjusted": 0.979,
       "accruals_sloan_latest_annual": -0.0189,
       "receivables_to_revenue_latest": 0.012,
       "receivables_ratio_change_pp": -0.35,
@@ -9790,13 +9790,25 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "TTM net income $893.3M includes unrealised mark-to-market gains in both FY27 quarters to date: Q1 FY27 (ended 2026-05-02) +$268.4M unrealised gain on derivative asset, net, +$1.1M gain on digital assets; Q2 FY27 (ended 2026-08-01) +$166.3M gain on derivative asset, net, +$72.1M unrealised gain on equity investment, -$75.0M loss on digital assets (net +$163.4M). Total pre-tax one-off +$432.9M; after-tax at 21% +$342.0M removed (ONEOFF-v1). Adjusted TTM NI $551.3M, adjusted EPS $0.95, adjusted trailing P/E 27.2 used for Quality/PEGT. Note: an earlier audit draft cited the Q1 gain as $285.3M \u2014 that is the derivative asset's balance-sheet carrying value at 2026-05-02, not the quarter's gain; the income-statement gain is $268.4M (cross-proved: six-month derivative gain $434.7M = $268.4M + $166.3M). See refresh/gme_t2_verification.md and SPEC-v1.2.md."
+        "TTM net income $893.3M includes one-offs in all four quarters: Q1 FY27 (ended 2026-05-02) +$268.4M unrealised gain on derivative asset, net, +$1.1M gain on digital assets; Q2 FY27 (ended 2026-08-01) +$166.3M gain on derivative asset, net, +$72.1M unrealised gain on equity investment, -$75.0M loss on digital assets (net +$163.4M); Q3 FY26 (ended 2025-11-01) -$9.2M loss on digital assets, -$10.7M impairments, -$42.2M noncash, nonrecurring warrant interest charge (net -$62.1M); Q4 FY26 (ended 2026-01-31) -$151.0M loss on digital assets. Gains stripped and losses added back (ONEOFF-v1 symmetric rule, SPEC v1.3): pre-tax one-offs net +$219.8M (+$432.9M gains, -$213.1M losses); after-tax at 21% net +$173.7M removed. Adjusted TTM NI $719.6M, adjusted EPS $1.24, adjusted trailing P/E 20.8 used for Quality/PEGT (20.6 at the 16 Nov close of $25.60). Note: the company-disclosed adjusted TTM NI is $51.5M higher \u2014 no additional ~$65M pre-tax negative item was found in the filings, so the item-based $719.6M is used. Sources: Q1/Q2 FY27 10-Qs (acc. 0001326380-26-000025, -000055); Q3 FY26 10-Q (acc. 0001326380-25-000098); FY26 10-K (acc. 0001326380-26-000013). See SPEC-v1.3.md."
       ],
       "debt_fcf": 6.2983,
       "market_cap": 14849662336.0,
       "rel_vol": 0.6838,
       "indexes": [],
       "oneoff_adjustments": [
+        {
+          "quarter": "2025-11-01",
+          "item": "Negative one-offs (Q3 FY26): loss on digital assets and related receivables $9.2M + impairments $10.7M + noncash, nonrecurring interest charge on warrants $42.2M",
+          "amount_after_tax_usd_m": -49.1,
+          "amount_pre_tax_usd_m": -62.1
+        },
+        {
+          "quarter": "2026-01-31",
+          "item": "Loss on digital assets and related receivables $151.0M (Q4 FY26)",
+          "amount_after_tax_usd_m": -119.3,
+          "amount_pre_tax_usd_m": -151.0
+        },
         {
           "quarter": "2026-05-02",
           "item": "Unrealised mark-to-market gains (Q1 FY27): unrealised gain on derivative asset, net $268.4M + gain on digital assets and related receivables $1.1M",

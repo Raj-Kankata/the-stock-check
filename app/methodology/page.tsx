@@ -60,9 +60,11 @@ export default function MethodologyPage() {
           year&rsquo;s expected earnings at its sector&rsquo;s going multiple.
         </p>
         <p>
-          One-off gains and charges that say nothing about the normal business are set aside
-          before earnings are valued, so a single unusual quarter does not distort the
-          picture.
+          One-off gains are taken out and one-off charges are added back before
+          earnings are valued, so a single unusual quarter does not distort the
+          picture — in either direction. A gain that will not repeat makes a
+          business look more profitable than it is; a charge that will not
+          repeat makes it look less profitable than it is.
         </p>
         <p>
           The growth behind the cash-flow and growth-based estimates is also kept honest:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Scoring engine v1.4 — The Stock Check.
-SPEC v1.2 FINAL (2026-11-17) — growth guardrail (§1) + GME T2 application path; everything else frozen v1.3.
+"""Scoring engine v1.5 — The Stock Check.
+SPEC v1.3 FINAL (2026-11-17) — symmetric one-offs (§1–§2): GME negative quarters added back; guardrail unchanged; everything else frozen v1.4. The symmetric change is an INPUTS change (base_inputs.json GME adjusted fields), not a code change — no pillar, leg, guardrail, weight, gate or verdict code differs from v1.4.
 SPEC v1.1 FINAL (2026-11-16). Deterministic: reads inputs.json only
 (verified snapshot as of 2026-11-16, prices at 2026-11-13 close).
 No live calls, no invented numbers. Writes results.json.
@@ -485,7 +485,7 @@ def pros_cons(t, d, pillars, overall, vdt):
 
 # ---------------- Run ----------------
 results = {"as_of": "2026-11-16", "price_date": "2026-11-13",
-           "engine": "scoring-engine-v1.4 (SPEC v1.2 FINAL)",
+           "engine": "scoring-engine-v1.5 (SPEC v1.3 FINAL)",
            "locked_set": {"rf": 0.05, "discount_low_beta": 0.10, "discount_high_beta_nvda": 0.12,
                           "terminal_growth": 0.025, "dcf_growth_cap": 0.20,
                           "nvda_base_fcf_share_normalised": 4.80, "pegy_basis": "non-GAAP consistently",

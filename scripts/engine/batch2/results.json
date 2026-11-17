@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-16",
   "price_date": "2026-11-13",
-  "engine": "scoring-engine-v1.4-batch2 (SPEC v1.2 FINAL)",
+  "engine": "scoring-engine-v1.5-batch2 (SPEC v1.3 FINAL)",
   "locked_set": {
     "rf": 0.05,
     "discount_low_beta": 0.1,
@@ -17298,12 +17298,12 @@
                 "growth_scenario": 0.1
               },
               "pegy": {
-                "value": 9.5,
-                "method": "PEGT = (10.0% growth capped at 30% + 0.00% div) / P/E 26.94 = 0.371; fair = price x PEGY Growth guardrail applied (SPEC v1.2): implied growth is not supported by revenue growth, so the growth used is capped \u2014 see Methodology.",
-                "pegy": 0.371,
+                "value": 12.43,
+                "method": "PEGT = (10.0% growth capped at 30% + 0.00% div) / P/E 20.60 = 0.485; fair = price x PEGY Growth guardrail applied (SPEC v1.2): implied growth is not supported by revenue growth, so the growth used is capped \u2014 see Methodology.",
+                "pegy": 0.485,
                 "growth_used": 0.1,
-                "pe_used": 26.94,
-                "uncapped_pegy": 2.017
+                "pe_used": 20.6,
+                "uncapped_pegy": 2.637
               },
               "forward_sector": {
                 "value": 35.25,
@@ -17316,7 +17316,7 @@
             "triangulated_fv": 22.21,
             "fv_method": "median of 3 legs",
             "upside_pct": -0.132,
-            "leg_spread_div_fv": 1.159,
+            "leg_spread_div_fv": 1.027,
             "ladder": {
               "heavy": 13.33,
               "buy": 17.77,
@@ -17383,10 +17383,10 @@
           }
         },
         "quality": {
-          "score": 89.5,
+          "score": 84.5,
           "detail": {
             "subscores": {
-              "ocf_vs_ni": 100,
+              "ocf_vs_ni": 80,
               "accruals": 100,
               "receivables_trend": 100,
               "fcf_conversion": 100,
@@ -17394,10 +17394,10 @@
               "leverage": 60
             },
             "inputs": {
-              "ocf_pct_ni_used": 1.278,
+              "ocf_pct_ni_used": 0.979,
               "accruals_sloan": -0.0189,
               "receivables_change_pp": -0.35,
-              "fcf_conversion_used": 1.248,
+              "fcf_conversion_used": 0.956,
               "roa": 0.02865,
               "debt_to_equity": 0.70557
             }
@@ -17439,9 +17439,9 @@
           }
         }
       },
-      "overall_score": 63.2,
+      "overall_score": 62.2,
       "verdict": "Watch",
-      "verdict_reason": "overall 63.2 \u2014 no Growth/Value gate met, no Avoid gate tripped",
+      "verdict_reason": "overall 62.2 \u2014 no Growth/Value gate met, no Avoid gate tripped",
       "triangulated_fv": 22.21,
       "ladder": {
         "heavy": 13.33,
@@ -17450,9 +17450,8 @@
         "exit": 26.65
       },
       "pros": [
-        "Operating cash flow is 128% of net income \u2014 profit is backed by more cash than earnings.",
         "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check.",
-        "Free-cash-flow conversion is strong: FCF is 125% of net income.",
+        "Free-cash-flow conversion is strong: FCF is 96% of net income.",
         "Uptrend: price sits above its 20-, 50- and 200-day averages."
       ],
       "cons": [
@@ -17460,7 +17459,7 @@
         "Revenue compounded only -15% a year over the last 3 fiscal years \u2014 growth is no longer the story."
       ],
       "flags": [
-        "TTM net income $893.3M includes unrealised mark-to-market gains in both FY27 quarters to date: Q1 FY27 (ended 2026-05-02) +$268.4M unrealised gain on derivative asset, net, +$1.1M gain on digital assets; Q2 FY27 (ended 2026-08-01) +$166.3M gain on derivative asset, net, +$72.1M unrealised gain on equity investment, -$75.0M loss on digital assets (net +$163.4M). Total pre-tax one-off +$432.9M; after-tax at 21% +$342.0M removed (ONEOFF-v1). Adjusted TTM NI $551.3M, adjusted EPS $0.95, adjusted trailing P/E 27.2 used for Quality/PEGT. Note: an earlier audit draft cited the Q1 gain as $285.3M \u2014 that is the derivative asset's balance-sheet carrying value at 2026-05-02, not the quarter's gain; the income-statement gain is $268.4M (cross-proved: six-month derivative gain $434.7M = $268.4M + $166.3M). See refresh/gme_t2_verification.md and SPEC-v1.2.md."
+        "TTM net income $893.3M includes one-offs in all four quarters: Q1 FY27 (ended 2026-05-02) +$268.4M unrealised gain on derivative asset, net, +$1.1M gain on digital assets; Q2 FY27 (ended 2026-08-01) +$166.3M gain on derivative asset, net, +$72.1M unrealised gain on equity investment, -$75.0M loss on digital assets (net +$163.4M); Q3 FY26 (ended 2025-11-01) -$9.2M loss on digital assets, -$10.7M impairments, -$42.2M noncash, nonrecurring warrant interest charge (net -$62.1M); Q4 FY26 (ended 2026-01-31) -$151.0M loss on digital assets. Gains stripped and losses added back (ONEOFF-v1 symmetric rule, SPEC v1.3): pre-tax one-offs net +$219.8M (+$432.9M gains, -$213.1M losses); after-tax at 21% net +$173.7M removed. Adjusted TTM NI $719.6M, adjusted EPS $1.24, adjusted trailing P/E 20.8 used for Quality/PEGT (20.6 at the 16 Nov close of $25.60). Note: the company-disclosed adjusted TTM NI is $51.5M higher \u2014 no additional ~$65M pre-tax negative item was found in the filings, so the item-based $719.6M is used. Sources: Q1/Q2 FY27 10-Qs (acc. 0001326380-26-000025, -000055); Q3 FY26 10-Q (acc. 0001326380-25-000098); FY26 10-K (acc. 0001326380-26-000013). See SPEC-v1.3.md."
       ],
       "analysts": {
         "n_opinions": 1,
