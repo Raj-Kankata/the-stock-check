@@ -120,7 +120,7 @@ function formatMarketCap(v: number | null): string {
 
 function indexMembership(indexes: string[] | undefined): string {
   const names = (indexes ?? []).map((i) =>
-    i === 'SP500' ? 'S&P 500' : i === 'NASDAQ100' ? 'Nasdaq-100' : i,
+    i === 'SP500' ? 'S&P 500' : i === 'NASDAQ100' ? 'Nasdaq-100' : i === 'DOW30' ? 'Dow Jones' : i,
   )
   return names.length > 0 ? names.join(' + ') : 'None'
 }

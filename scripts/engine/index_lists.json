@@ -13,6 +13,12 @@
       "page_crawled": "2026-10-24",
       "list_as_of": "2026-10-22",
       "note": "Article states 101 securities issued by 100 companies (Alphabet A+C); extracted list has 101 symbols."
+    },
+    "DOW30": {
+      "name": "List of Dow Jones Industrial Average companies",
+      "url": "https://en.wikipedia.org/wiki/List_of_Dow_Jones_Industrial_Average_companies",
+      "page_crawled": "2026-11-17",
+      "note": "Article states 30 components; extracted list has 30 symbols. Includes the 2026-06-29 addition of Alphabet (GOOGL)."
     }
   },
   "ticker_format_note": "Dots normalised to hyphens to match results.json keys (BRK.B -> BRK-B, BF.B -> BF-B).",
@@ -623,5 +629,37 @@
     "WDC",
     "WMT",
     "XEL"
+  ],
+  "dow30": [
+    "MMM",
+    "GOOGL",
+    "AXP",
+    "AMGN",
+    "AMZN",
+    "AAPL",
+    "BA",
+    "CAT",
+    "CVX",
+    "CSCO",
+    "KO",
+    "DIS",
+    "GS",
+    "HD",
+    "HON",
+    "IBM",
+    "JNJ",
+    "JPM",
+    "MCD",
+    "MRK",
+    "MSFT",
+    "NKE",
+    "NVDA",
+    "PG",
+    "CRM",
+    "SHW",
+    "TRV",
+    "UNH",
+    "V",
+    "WMT"
   ]
 }

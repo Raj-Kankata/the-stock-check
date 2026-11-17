@@ -13,14 +13,14 @@ type PeBand = 'All' | 'lt15' | '15-25' | '25-40' | 'gt40'
 type DebtFcfBand = 'All' | 'lt1' | '1-3' | 'gt3'
 type McapBand = 'All' | 'gt100b' | '10-100b' | 'lt10b'
 type RelVolBand = 'All' | 'lt0.8' | '0.8-1.5' | '1.5-2' | 'gt2'
-type IndexFilter = 'All' | 'SP500' | 'NASDAQ100'
+type IndexFilter = 'All' | 'SP500' | 'NASDAQ100' | 'DOW30'
 
 const BETA_BANDS: BetaBand[] = ['lt1', '1-1.5', 'gt1.5']
 const PE_BANDS: PeBand[] = ['lt15', '15-25', '25-40', 'gt40']
 const DEBTFCF_BANDS: DebtFcfBand[] = ['lt1', '1-3', 'gt3']
 const MCAP_BANDS: McapBand[] = ['gt100b', '10-100b', 'lt10b']
 const RELVOL_BANDS: RelVolBand[] = ['lt0.8', '0.8-1.5', '1.5-2', 'gt2']
-const INDEX_VALUES: IndexFilter[] = ['SP500', 'NASDAQ100']
+const INDEX_VALUES: IndexFilter[] = ['SP500', 'NASDAQ100', 'DOW30']
 
 const VERDICTS: Verdict[] = ['Growth', 'Value', 'Watch', 'Avoid']
 const SORTS: SortKey[] = ['score', 'upside', 'price', 'fv', 'ticker']
@@ -143,7 +143,7 @@ const PE_COUNTS: Record<PeBand, number> = { All: ALL_ROWS.length, lt15: 0, '15-2
 const DEBTFCF_COUNTS: Record<DebtFcfBand, number> = { All: ALL_ROWS.length, lt1: 0, '1-3': 0, gt3: 0 }
 const MCAP_COUNTS: Record<McapBand, number> = { All: ALL_ROWS.length, gt100b: 0, '10-100b': 0, lt10b: 0 }
 const RELVOL_COUNTS: Record<RelVolBand, number> = { All: ALL_ROWS.length, 'lt0.8': 0, '0.8-1.5': 0, '1.5-2': 0, gt2: 0 }
-const INDEX_COUNTS: Record<IndexFilter, number> = { All: ALL_ROWS.length, SP500: 0, NASDAQ100: 0 }
+const INDEX_COUNTS: Record<IndexFilter, number> = { All: ALL_ROWS.length, SP500: 0, NASDAQ100: 0, DOW30: 0 }
 for (const r of ALL_ROWS) {
   for (const b of BETA_BANDS) if (matchesBeta(r, b)) BETA_COUNTS[b] += 1
   for (const b of PE_BANDS) if (matchesPe(r, b)) PE_COUNTS[b] += 1
@@ -189,6 +189,7 @@ const INDEX_LABELS: Record<IndexFilter, string> = {
   All: 'All indexes',
   SP500: 'S&P 500',
   NASDAQ100: 'Nasdaq-100',
+  DOW30: 'Dow Jones',
 }
 
 /** Sectors with live counts, most names first. */
@@ -231,7 +232,7 @@ function sortRows(rows: Row[], sort: SortKey): Row[] {
  * Six-filter params: beta ∈ {lt1, 1-1.5, gt1.5}, pe ∈ {lt15, 15-25,
  * 25-40, gt40}, debtfcf ∈ {lt1, 1-3, gt3}, mcap ∈ {gt100b, 10-100b,
  * lt10b}, relvol ∈ {lt0.8, 0.8-1.5, 1.5-2, gt2}, index ∈ {SP500,
- * NASDAQ100}. Anything unknown is ignored.
+ * NASDAQ100, DOW30}. Anything unknown is ignored.
  */
 function parseParams(search: string): Filters {
   const params = new URLSearchParams(search)
@@ -507,8 +508,8 @@ export default function StockBrowser() {
 
       <p className="footnote">
         Beta as of Nov 15–16, 2026 (Yahoo) · Debt/FCF from latest annual filings · Relative
-        volume as of the 2026-11-16 close · Index lists as of 2026-11-16, refreshed
-        quarterly. Names with no debt/FCF figure (24) are excluded when a debt/FCF
+        volume as of the 2026-11-16 close · Index lists (S&P 500, Nasdaq-100,
+        Dow Jones) as of 2026-11-16, refreshed quarterly. Names with no debt/FCF figure (24) are excluded when a debt/FCF
         band is selected.
       </p>
 

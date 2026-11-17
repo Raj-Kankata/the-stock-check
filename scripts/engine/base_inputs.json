@@ -390,7 +390,8 @@
       "rel_vol": 0.9733,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "ABBV": {
@@ -1973,7 +1974,8 @@
       "rel_vol": 0.9566,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "ANF": {
@@ -2759,7 +2761,8 @@
       "market_cap": 135921739156.0,
       "rel_vol": 0.7528,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "BE": {
@@ -3550,7 +3553,8 @@
       "market_cap": 278617174044.2,
       "rel_vol": 0.8673,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "CAVA": {
@@ -4886,7 +4890,8 @@
       "market_cap": 192041065679.12,
       "rel_vol": 0.78,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "CROX": {
@@ -5220,7 +5225,8 @@
       "rel_vol": 1.0035,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "CTSH": {
@@ -5444,7 +5450,8 @@
       "market_cap": 434879225812.9,
       "rel_vol": 0.7412,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "DAKT": {
@@ -6563,7 +6570,8 @@
       "market_cap": 211392975190.88,
       "rel_vol": 1.6389,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "DOCN": {
@@ -9925,7 +9933,8 @@
       "rel_vol": 0.8492,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "GWRE": {
@@ -10145,7 +10154,8 @@
       "market_cap": 347152738416.87,
       "rel_vol": 1.4069,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "HE": {
@@ -11148,7 +11158,8 @@
       "market_cap": 234952274830.52,
       "rel_vol": 1.0601,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "ICE": {
@@ -12372,7 +12383,8 @@
       "market_cap": 698958396594.0,
       "rel_vol": 1.0864,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "KEYS": {
@@ -12926,7 +12938,8 @@
       "market_cap": 427037720605.75,
       "rel_vol": 1.0159,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "KR": {
@@ -15283,7 +15296,8 @@
       "market_cap": 96784166973.9,
       "rel_vol": 1.0498,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "MORN": {
@@ -15728,7 +15742,8 @@
       "rel_vol": 1.1509,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "MU": {
@@ -16288,7 +16303,8 @@
       "market_cap": 56221564584.94,
       "rel_vol": 0.8762,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "NOW": {
@@ -17072,7 +17088,8 @@
       "rel_vol": 1.5869,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "NXPI": {
@@ -18410,7 +18427,8 @@
       "market_cap": 409847078266.2,
       "rel_vol": 1.3968,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "PINS": {
@@ -23656,7 +23674,8 @@
       "market_cap": 368780321338.5,
       "rel_vol": 0.8975,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "UPS": {
@@ -23884,7 +23903,8 @@
       "market_cap": 812261610478.08,
       "rel_vol": 1.0602,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "VECO": {
@@ -24778,7 +24798,8 @@
       "rel_vol": 0.8141,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "WST": {

@@ -637,7 +637,8 @@
       "debt_fcf": 0.5888,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 5192505178135.22,
       "rel_vol": 0.9733
@@ -3451,7 +3452,8 @@
       "debt_fcf": null,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 2808349818150.0,
       "rel_vol": 0.9566
@@ -4847,7 +4849,8 @@
       },
       "debt_fcf": 3028.875,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 130944546608.48,
       "rel_vol": 0.7528
@@ -6253,7 +6256,8 @@
       },
       "debt_fcf": 4.0093,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 264825577508.29,
       "rel_vol": 0.8673
@@ -8654,7 +8658,8 @@
       },
       "debt_fcf": 2.7964,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 189387541956.69,
       "rel_vol": 0.78
@@ -9256,7 +9261,8 @@
       "debt_fcf": 2.3341,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 376575627619.68,
       "rel_vol": 1.0035
@@ -9659,7 +9665,8 @@
       },
       "debt_fcf": 0.9842,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 429440516135.4,
       "rel_vol": 0.7412
@@ -11669,7 +11676,8 @@
       },
       "debt_fcf": 5.5518,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 210913223124.8,
       "rel_vol": 1.6389
@@ -17675,7 +17683,8 @@
       "debt_fcf": 3.0025,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 3491963534245.88,
       "rel_vol": 0.8492
@@ -18074,7 +18083,8 @@
       },
       "debt_fcf": 4.1849,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 345977940655.73,
       "rel_vol": 1.4069
@@ -19875,7 +19885,8 @@
       },
       "debt_fcf": 4.5811,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 230559932704.04,
       "rel_vol": 1.0601
@@ -22077,7 +22088,8 @@
       },
       "debt_fcf": 2.1686,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 691131040971.6,
       "rel_vol": 1.0864
@@ -23076,7 +23088,8 @@
       },
       "debt_fcf": 2.9742,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 428027329429.32,
       "rel_vol": 1.0159
@@ -27283,7 +27296,8 @@
       },
       "debt_fcf": 5.8274,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 95740757137.2,
       "rel_vol": 1.0498
@@ -28082,7 +28096,8 @@
       "debt_fcf": 0.9478,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 3856024618691.19,
       "rel_vol": 1.1509
@@ -29087,7 +29102,8 @@
       },
       "debt_fcf": 5.285,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 56621138747.56,
       "rel_vol": 0.8762
@@ -30492,7 +30508,8 @@
       "debt_fcf": 0.0869,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 3807348553774.66,
       "rel_vol": 1.5869
@@ -32897,7 +32914,8 @@
       },
       "debt_fcf": 2.5375,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 417619207783.38,
       "rel_vol": 1.3968
@@ -42307,7 +42325,8 @@
       },
       "debt_fcf": 3.2564,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 372907446124.5,
       "rel_vol": 0.8975
@@ -42713,7 +42732,8 @@
       },
       "debt_fcf": 1.0006,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ],
       "market_cap": 813597065023.68,
       "rel_vol": 1.0602
@@ -44320,7 +44340,8 @@
       "debt_fcf": 5.5587,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 1027093898597.25,
       "rel_vol": 0.8141
