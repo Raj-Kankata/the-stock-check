@@ -4,20 +4,24 @@
    parameters only. */
 
 :root {
-  --background: #f4f6f8;
+  --background: #f6f7f6;
   --card: #ffffff;
   --ink: #1a2332;
   --muted: #5b6b7d;
-  --line: #d7dce3;
-  --navy: #0f2a43;
-  --navy-2: #163a5c;
+  --line: #dfe3e8;
+  /* Launcher look: deep green is the accent (was dark navy). */
+  --navy: #166534;
+  --navy-2: #14532d;
   --green: #15803d;
+  --green-deep: #166534;
+  --green-soft: #f0fdf4;
   --green-bg: #dcfce7;
   --red: #b91c1c;
   --red-bg: #fee2e2;
   --amber: #a16207;
   --amber-bg: #fef3c7;
   --link: #1d4ed8;
+  --shadow-soft: 0 1px 2px rgba(15, 42, 67, 0.05), 0 4px 16px rgba(15, 42, 67, 0.04);
 }
 
 * {
@@ -82,37 +86,71 @@ li {
   margin-bottom: 4px;
 }
 
-/* ---- header banner ---- */
+/* ---- header banner: light, launcher style ---- */
 .site-header {
-  background: var(--navy);
-  color: #fff;
+  background: #fff;
+  color: var(--ink);
   padding: 18px 0 0;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(15, 42, 67, 0.04);
 }
 .site-header .wrap {
   /* Wider than the 1060px page column on purpose: the five market chips
-     need the room to sit on one line with no horizontal scroll. */
-  max-width: 1160px;
+     need the room to sit on one line with no horizontal scroll.
+     Left padding clears the floating rail (248px); see main/footer. */
+  max-width: 1408px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 24px 0 248px;
 }
 .brand {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 12px;
   flex-wrap: wrap;
 }
 .brand a {
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
   letter-spacing: 0.2px;
 }
 .brand a:hover {
   text-decoration: none;
 }
+/* Green brand tile with a white trend arrow, as in the launcher. */
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green);
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(21, 128, 61, 0.3);
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.brand-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--ink);
+}
+.brand-domain {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--green);
+}
 .brand .tagline {
   font-size: 14px;
-  color: #b9c9d8;
+  color: var(--muted);
 }
 
 /* ---- header search + market strip ---- */
@@ -134,24 +172,24 @@ li {
 }
 .site-header .search-box button {
   flex-shrink: 0;
-  background: #fff;
-  color: var(--navy);
+  background: var(--green);
+  color: #fff;
 }
 .site-header .search-box button:hover {
-  background: #dbe7f2;
+  background: var(--green-deep);
 }
 .site-header .search-results {
   margin-bottom: 12px;
 }
 .site-header .footnote {
-  color: #b9c9d8;
+  color: var(--muted);
 }
 .market-strip {
   padding: 0 0 14px;
 }
 .market-strip-date {
   font-size: 14px;
-  color: #b9c9d8;
+  color: var(--muted);
   margin: 0 0 6px;
 }
 .market-strip-chips {
@@ -166,27 +204,28 @@ li {
   white-space: nowrap;
   font-size: 13px;
   font-variant-numeric: tabular-nums;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
   border-radius: 999px;
   padding: 4px 9px;
+  box-shadow: 0 1px 2px rgba(15, 42, 67, 0.04);
 }
 .market-chip-label {
-  color: #b9c9d8;
+  color: var(--muted);
   margin-right: 6px;
 }
 .market-chip.up .market-chip-change {
-  color: #86efac;
+  color: var(--green);
 }
 .market-chip.down .market-chip-change {
-  color: #fca5a5;
+  color: var(--red);
 }
 /* Live badge on the market-strip date line: green dot + LIVE text.
    The dot pulses only when the user has not asked for reduced motion. */
 .live-badge {
   font-weight: bold;
-  color: #86efac;
+  color: var(--green);
   white-space: nowrap;
 }
 .live-dot {
@@ -212,13 +251,15 @@ li {
   }
 }
 
-/* ---- page shell ---- */
+/* ---- page shell ----
+   The floating rail occupies the left ~232px, so the content column
+   reserves that space with left padding instead of a sidebar column. */
 main {
   flex: 1;
-  max-width: 1060px;
+  max-width: 1292px;
   width: 100%;
   margin: 0 auto;
-  padding: 20px 16px 32px;
+  padding: 20px 24px 32px 248px;
 }
 .page-intro {
   font-size: 16px;
@@ -226,12 +267,13 @@ main {
   margin-bottom: 18px;
 }
 
-/* ---- cards ---- */
+/* ---- cards: soft white cards, generous rounding, soft shadow ---- */
 .card {
   background: var(--card);
   border: 1px solid var(--line);
-  border-left: 4px solid var(--navy);
-  border-radius: 8px;
+  border-left: 4px solid var(--green);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
   padding: 16px 18px;
   margin-bottom: 16px;
 }
@@ -385,7 +427,8 @@ tr:last-child td {
 }
 .ladder .rung {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
   padding: 10px 12px;
   text-align: center;
 }
@@ -414,8 +457,8 @@ tr:last-child td {
   background: var(--green-bg);
 }
 .ladder .rung.fair {
-  border-top: 3px solid var(--navy);
-  background: #eef2f6;
+  border-top: 3px solid var(--green-deep);
+  background: var(--green-soft);
 }
 .ladder .rung.exit {
   border-top: 3px solid var(--red);
@@ -425,7 +468,8 @@ tr:last-child td {
 /* ---- valuation legs (stock card) ---- */
 .leg {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
   padding: 10px 12px;
   margin: 10px 0;
 }
@@ -479,7 +523,8 @@ tr.gap-above td {
   background: #fffbeb;
   border: 1px solid #fcd34d;
   border-left: 4px solid #d97706;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
   padding: 12px 16px;
   margin-bottom: 16px;
   font-size: 15px;
@@ -507,7 +552,8 @@ tr.gap-above td {
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 12px;
+  background: #fff;
 }
 .search-box button,
 .btn {
@@ -516,14 +562,14 @@ tr.gap-above td {
   font-weight: bold;
   padding: 10px 18px;
   border: none;
-  border-radius: 8px;
-  background: var(--navy);
+  border-radius: 12px;
+  background: var(--green);
   color: #fff;
   cursor: pointer;
 }
 .search-box button:hover,
 .btn:hover {
-  background: var(--navy-2);
+  background: var(--green-deep);
 }
 .search-results {
   list-style: none;
@@ -587,8 +633,8 @@ tr.gap-above td {
 }
 .grid-table td.cell:hover,
 .grid-table td.cell.selected {
-  background: #dbeafe;
-  outline: 2px solid #1d4ed8;
+  background: var(--green-bg);
+  outline: 2px solid var(--green);
   outline-offset: -2px;
 }
 .grid-table td.cell.decision {
@@ -598,10 +644,11 @@ tr.gap-above td {
 
 /* ---- homepage dashboard ---- */
 .grid-headline {
-  background: #eff6ff;
-  border: 1px solid #93c5fd;
-  border-left: 4px solid #1d4ed8;
-  border-radius: 8px;
+  background: var(--green-soft);
+  border: 1px solid #86efac;
+  border-left: 4px solid var(--green);
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
   padding: 12px 16px;
   margin: 10px 0;
   font-size: 16px;
@@ -609,7 +656,7 @@ tr.gap-above td {
 .grid-headline .headline-value {
   font-size: 20px;
   font-weight: bold;
-  color: var(--navy);
+  color: var(--green-deep);
 }
 .grid-table td.cell.decision {
   outline: 2px solid var(--green);
@@ -624,15 +671,16 @@ tr.gap-above td {
 .stat-tile {
   background: var(--card);
   border: 1px solid var(--line);
-  border-left: 4px solid var(--navy);
-  border-radius: 8px;
+  border-left: 4px solid var(--green);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
   padding: 12px 14px;
 }
 .stat-value {
   font-size: 24px;
   font-weight: bold;
   font-variant-numeric: tabular-nums;
-  color: var(--navy);
+  color: var(--green-deep);
 }
 .stat-label {
   font-size: 15px;
@@ -641,9 +689,10 @@ tr.gap-above td {
 }
 .mixbar {
   display: flex;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   margin: 10px 0 12px;
+  box-shadow: var(--shadow-soft);
 }
 .mix-seg {
   display: block;
@@ -673,20 +722,21 @@ tr.gap-above td {
   background: var(--red);
 }
 
-/* ---- footer ---- */
+/* ---- footer: light, launcher style ---- */
 .site-footer {
-  background: var(--navy);
-  color: #b9c9d8;
+  background: #fff;
+  color: var(--muted);
   font-size: 14px;
   padding: 20px 0 26px;
+  border-top: 1px solid var(--line);
 }
 .site-footer .wrap {
-  max-width: 1060px;
+  max-width: 1308px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 24px 0 248px;
 }
 .site-footer a {
-  color: #dbe7f2;
+  color: var(--green-deep);
 }
 .site-footer .links {
   display: flex;
@@ -744,53 +794,172 @@ tr.gap-above td {
   color: var(--red);
 }
 
-/* ---- left sidebar navigation ---- */
+/* ---- floating pill rail navigation (launcher style) ----
+   A white rounded pill, vertically centered on the left edge, visible
+   at every scroll position. Brand header on top, small gray BROWSE
+   caption, then icon + label items. Active item is a deep green fill
+   with white text; icons sit in soft gray/green tiles that turn white
+   with a green icon on hover. */
 .shell {
   flex: 1;
-  display: flex;
-  align-items: stretch;
+  display: block;
 }
 .sidebar {
-  width: 232px;
-  flex-shrink: 0;
-  background: var(--card);
-  border-right: 1px solid var(--line);
-  padding: 20px 0;
+  position: fixed;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  width: 216px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow:
+    0 10px 30px rgba(15, 42, 67, 0.1),
+    0 2px 8px rgba(15, 42, 67, 0.06);
+  padding: 16px 12px;
   display: flex;
   flex-direction: column;
 }
 .sidebar a {
-  display: block;
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
   color: var(--ink);
   font-size: 15px;
+  font-weight: 500;
+  border-radius: 12px;
 }
 .sidebar a:hover {
-  background: #f1f5f9;
+  background: var(--green-soft);
   text-decoration: none;
 }
 .sidebar a.active {
-  background: #eef2f6;
-  color: var(--navy);
+  background: var(--green-deep);
+  color: #fff;
   font-weight: bold;
-  box-shadow: inset 3px 0 0 var(--navy);
+}
+.sidebar a.active .nav-icon {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+.nav-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f4;
+  color: #4b5563;
+  border-radius: 10px;
+}
+.nav-icon svg {
+  width: 18px;
+  height: 18px;
+}
+.sidebar a:hover .nav-icon {
+  background: #fff;
+  color: var(--green);
+  box-shadow: 0 0 0 1px var(--green-bg);
+}
+.rail-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 12px;
+}
+a.rail-brand:hover {
+  background: transparent;
+}
+.rail-mark {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(21, 128, 61, 0.3);
+}
+.rail-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  min-width: 0;
+}
+.rail-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.rail-domain {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--green);
+}
+.rail-caption {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-weight: bold;
+  padding: 0 10px 6px;
+  margin: 0;
 }
 .sidebar-toggle,
 .sidebar-backdrop {
   display: none;
 }
 
-@media (min-width: 861px) {
+/* Icon-only rail on narrower screens: labels, brand text and the
+   BROWSE caption hide; the content column's left padding shrinks
+   to match (see the main/header/footer rules below). */
+@media (max-width: 1240px) and (min-width: 861px) {
   .sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    align-self: flex-start;
-    overflow-y: auto;
+    width: 64px;
+    padding: 12px 8px;
+    align-items: center;
+  }
+  .sidebar a {
+    justify-content: center;
+    padding: 8px;
+  }
+  .rail-brand {
+    padding: 0 0 8px;
+    justify-content: center;
+  }
+  .rail-brand-text,
+  .rail-caption,
+  .nav-label {
+    display: none;
+  }
+  main {
+    padding-left: 96px;
+  }
+  .site-header .wrap,
+  .site-footer .wrap {
+    padding-left: 96px;
   }
 }
 
 @media (max-width: 860px) {
+  main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .site-header .wrap,
+  .site-footer .wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   .shell {
     display: block;
   }
@@ -804,8 +973,9 @@ tr.gap-above td {
     width: 100%;
     padding: 10px 16px;
     border: none;
-    background: var(--navy);
-    color: #fff;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: bold;
@@ -820,9 +990,11 @@ tr.gap-above td {
     z-index: 70;
     width: 264px;
     max-width: 82vw;
+    max-height: none;
     transform: translateX(-105%);
     transition: transform 0.2s ease;
     overflow-y: auto;
+    border-radius: 0 20px 20px 0;
     box-shadow: 2px 0 12px rgba(15, 42, 67, 0.25);
   }
   .sidebar.open {

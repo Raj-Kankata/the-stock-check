@@ -31,7 +31,15 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
           <div className="wrap">
             <div className="header-top">
               <div className="brand">
-                <Link href="/">The Stock Check</Link>
+                <Link href="/">
+                  <span className="brand-mark" aria-hidden="true">
+                    ↗
+                  </span>
+                  <span className="brand-text">
+                    <span className="brand-name">The Stock Check</span>
+                    <span className="brand-domain">thestockcheck.com</span>
+                  </span>
+                </Link>
                 <span className="tagline">
                   Check any stock before you buy — every number shown, every source named.
                 </span>
@@ -50,7 +58,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <footer className="site-footer">
           <div className="wrap">
             <p>
-              <strong style={{ color: '#fff' }}>The Stock Check</strong> — free, deterministic,
+              <strong style={{ color: '#1a2332' }}>The Stock Check</strong> — free, deterministic,
               rules-based stock research. For research and education only — not investment advice.
               Data may be delayed and can contain errors; verify before trading. Past performance
               does not guarantee future results.
