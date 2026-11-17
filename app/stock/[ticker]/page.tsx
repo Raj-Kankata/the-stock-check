@@ -612,7 +612,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
               <thead>
                 <tr>
                   <th></th>
-                  <th>The Stock Check (ours)</th>
+                  <th>The Stock Check</th>
                   <th>Wall Street (analyst consensus)</th>
                 </tr>
               </thead>
