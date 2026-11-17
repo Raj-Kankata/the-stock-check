@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-17",
+  "as_of": "2026-11-16",
   "price_date": "2026-11-16",
   "sources": {
     "price_technicals_financials": "Yahoo Finance via yfinance 1.8.0, fetched 2026-11-15",
@@ -166,7 +166,8 @@
       "rel_vol": 1.5869,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "AAPL": {
@@ -277,7 +278,8 @@
       "rel_vol": 0.9733,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "MSFT": {
@@ -388,7 +390,8 @@
       "rel_vol": 1.1509,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "GOOGL": {
@@ -521,7 +524,8 @@
       "rel_vol": 0.8492,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     }
   }

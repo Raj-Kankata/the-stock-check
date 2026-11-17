@@ -64,6 +64,14 @@ export default function MethodologyPage() {
           before earnings are valued, so a single unusual quarter does not distort the
           picture.
         </p>
+        <p>
+          The growth behind the cash-flow and growth-based estimates is also kept honest:
+          when the implied growth rate is far out of line with what the business itself is
+          growing at — or when no analyst publishes a long-term growth estimate for the
+          name at all — the growth used is held to a level the business&rsquo;s own
+          revenue growth can support. The third estimate, based on next year&rsquo;s
+          earnings at the sector&rsquo;s multiple, is unaffected.
+        </p>
 
         <h3>Quality / Forensics</h3>
         <p>

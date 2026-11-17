@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Scoring engine v1.3 — The Stock Check.
+"""Scoring engine v1.4 — The Stock Check.
+SPEC v1.2 FINAL (2026-11-17) — growth guardrail (§1) + GME T2 application path; everything else frozen v1.3.
 SPEC v1.1 FINAL (2026-11-16). Deterministic: reads inputs.json only
 (verified snapshot as of 2026-11-16, prices at 2026-11-13 close).
 No live calls, no invented numbers. Writes results.json.
@@ -137,6 +138,40 @@ TERMINAL_G = 0.025
 PEGS_CAP = 0.30      # PEGY growth cap (30%)
 DCF_GROWTH_CAP = 0.20  # LOCKED v1.1 (was 25%)
 NVDA_BASE_FCF_NORM = 4.80  # LOCKED v1.1: normalised FCF/share, blend of FY26 ~$4.01 and TTM $5.21
+# --- v1.4: growth guardrail (SPEC v1.2 §1) ---
+BLANK_LTG = {"ALGT", "ASYS", "AVGO", "AXTI", "BIP", "BYND", "CDE", "DCTH",
+             "DIOD", "DXC", "EFOR", "ENPH", "ERII", "FEIM", "GEL", "GME",
+             "GWRE", "HE", "HGTY", "ICHR", "IDXX", "INOD", "JACK", "KTOS",
+             "LWAY", "LYTS", "M", "MORN", "MRTN", "NRG", "OLED", "PRIM",
+             "QLYS", "RBBN", "RMBS", "ROG", "SMG", "STX", "TTEK", "VECO",
+             "VYX"}  # curated blank-LTG list (SPEC v1.2 §1b, trigger A):
+# Zacks detailed-estimates "Next 5 Years" = NA, full 227-name census
+# 2026-11-17 (stock-verdicts-better/full-universe-pipeline/refresh/
+# blank_ltg_census_v14.json). Additions are curation updates (SPEC v1.2 §9).
+GUARDRAIL_GAP = 0.50     # trigger B: implied growth exceeds anchor by > 50pp
+GUARDRAIL_SPREAD = 0.10  # g_cap = anchor + 10pp (margin expansion + buybacks)
+GUARDRAIL_FLOOR = 0.10   # g_cap floored at 10%
+GUARDRAIL_CAP = 0.30     # g_cap capped at 30% (mirrors the PEGY cap)
+GUARDRAIL_ENABLED = True  # False = frozen v1.3 control (regression gate only)
+def guardrail(t, d):
+    """SPEC v1.2 §1b. Returns (growth_for_legs, triggered, trigger, g_cap,
+    anchor): growth_for_legs is the implied growth capped at g_cap when
+    triggered, else the implied growth itself. Callers still apply their
+    own leg caps (DCF 20%, PEGY 30%) on top. NVDA's DCF leg does not call
+    this (locked 20% growth); its PEGY leg does."""
+    g = d["implied_5y_eps_growth"]
+    anchor = d["revenue_cagr_3y_annual"]
+    if anchor is None:
+        anchor = d["revenue_growth_yahoo"]
+    if anchor is None or not GUARDRAIL_ENABLED:
+        return g, False, "none", None, anchor
+    g_cap = min(max(anchor + GUARDRAIL_SPREAD, GUARDRAIL_FLOOR), GUARDRAIL_CAP)
+    if t in BLANK_LTG:
+        return min(g, g_cap), True, "A blank-LTG (curated)", g_cap, anchor
+    if (g - anchor) > GUARDRAIL_GAP:
+        return min(g, g_cap), True, "B gap>50pp", g_cap, anchor
+    return g, False, "none", g_cap, anchor
+
 # --- v1.3 additions: CAPM cross-check + sensitivity grid (DISPLAY ONLY) ---
 RF_CAPM = 0.051            # live 10Y Treasury, 5.10% as of 2026-11-12 (FRED DGS10) — cross-check only; locked rf 5.00% still drives the decision leg
 ERP_DAMODARAN = 0.0441     # Damodaran implied ERP, 4.41% as of 2026-11-01 (Trailing 12 month, with adjusted payout)
@@ -186,6 +221,13 @@ def pillar_conviction(d):
 def pillar_valuation(t, d):
     price = d["price"]
     legs = {}
+    # v1.4 growth guardrail (SPEC v1.2 §1): g_guarded is the implied growth
+    # capped at g_cap when triggered, else the implied growth itself. The
+    # leg caps below still apply on top (DCF 20%, PEGY 30%).
+    g_guarded, gr_triggered, gr_trigger, gr_cap, gr_anchor = guardrail(t, d)
+    gr_note = (" Growth guardrail applied (SPEC v1.2): implied growth is "
+               "not supported by revenue growth, so the growth used is "
+               "capped — see Methodology.") if gr_triggered else ""
     # (a) DCF — LOCKED SET v1.1
     if t == "NVDA":
         legs["dcf"] = {"value": round(dcf(NVDA_BASE_FCF_NORM, USER_GRID_BASE_GROWTH, r=DISCOUNT_HIGH), 2),
@@ -196,11 +238,11 @@ def pillar_valuation(t, d):
                                  "partly offset by the higher discount.",
                        "growth_scenario": USER_GRID_BASE_GROWTH}
     elif d["fcf_per_share_ttm"] is not None:
-        g = min(d["implied_5y_eps_growth"], DCF_GROWTH_CAP)
+        g = min(g_guarded, DCF_GROWTH_CAP)
         legs["dcf"] = {"value": round(dcf(d["fcf_per_share_ttm"], g), 2),
                        "method": f"LOCKED v1.1: own 5y DCF on TTM FCF/share ${d['fcf_per_share_ttm']}, "
-                                 f"g={g:.1%} (implied 5y EPS growth, capped 20%), "
-                                 f"discount 10.0% (low-beta tier), terminal g 2.5%",
+                                 f"g={g:.1%} (implied 5y EPS growth {d['implied_5y_eps_growth']:.1%}, capped 20%), "
+                                 f"discount 10.0% (low-beta tier), terminal g 2.5%{gr_note}",
                        "growth_scenario": round(g, 4)}
     else:
         legs["dcf"] = {"value": None,
@@ -216,7 +258,7 @@ def pillar_valuation(t, d):
             dcf_f0, dcf_g, dcf_spread = NVDA_BASE_FCF_NORM, USER_GRID_BASE_GROWTH, DISCOUNT_HIGH - RF
         else:
             dcf_f0 = d["fcf_per_share_ttm"]
-            dcf_g = min(d["implied_5y_eps_growth"], DCF_GROWTH_CAP)
+            dcf_g = min(g_guarded, DCF_GROWTH_CAP)  # v1.4: CAPM/grid use the same capped growth as the decision DCF leg
             dcf_spread = DISCOUNT_LOW - RF
         capm_leg = {"value": round(dcf(dcf_f0, dcf_g, r=r_capm), 2),
                     "discount_capm": round(r_capm, 4),
@@ -245,13 +287,14 @@ def pillar_valuation(t, d):
                     "erp": ERP_DAMODARAN, "erp_asof": "2026-11-01",
                     "method": "SKIPPED — same reason as the decision DCF leg (FCF in DKK, USD per-share basis not verified); CAPM discount still recorded for transparency."}
         grid, grid_note = None, "SKIPPED — same reason as the decision DCF leg."
-    # (b) Lynch PEGY
-    g_cap = min(d["implied_5y_eps_growth"], PEGS_CAP)
+    # (b) Lynch PEGY — v1.4: growth is the guarded growth (SPEC v1.2 §1),
+    # still capped at 30% (Lynch's own caution).
+    g_cap = min(g_guarded, PEGS_CAP)
     pe = d["trailing_pe_adjusted"] if d["trailing_pe_adjusted"] else d["trailing_pe"]
     pegy = ((g_cap * 100) + (d["dividend_yield"] * 100)) / pe
     legs["pegy"] = {"value": round(price * pegy, 2),
                     "method": f"PEGT = ({g_cap:.1%} growth capped at 30% + {d['dividend_yield']:.2%} div) / "
-                              f"P/E {pe:.2f} = {pegy:.3f}; fair = price x PEGY",
+                              f"P/E {pe:.2f} = {pegy:.3f}; fair = price x PEGY{gr_note}",
                     "pegy": round(pegy, 3), "growth_used": round(g_cap, 4),
                     "pe_used": pe,
                     "uncapped_pegy": round(((d["implied_5y_eps_growth"] * 100) + (d["dividend_yield"] * 100)) / pe, 3)}
@@ -442,12 +485,13 @@ def pros_cons(t, d, pillars, overall, vdt):
 
 # ---------------- Run ----------------
 results = {"as_of": "2026-11-16", "price_date": "2026-11-13",
-           "engine": "scoring-engine-v1.3 (SPEC v1.1 FINAL)",
+           "engine": "scoring-engine-v1.4 (SPEC v1.2 FINAL)",
            "locked_set": {"rf": 0.05, "discount_low_beta": 0.10, "discount_high_beta_nvda": 0.12,
                           "terminal_growth": 0.025, "dcf_growth_cap": 0.20,
                           "nvda_base_fcf_share_normalised": 4.80, "pegy_basis": "non-GAAP consistently",
                           "forward_sector": "next-year EPS x GICS sector forward P/E (FactSet, 13 Nov 2026), discounted 10% for 1y; cap 35x / floor 10x",
-                          "oneoff_rule": "One-off check"},
+                          "oneoff_rule": "One-off check",
+                          "growth_guardrail": "SPEC v1.2 §1 — DCF/PEGY growth capped when the implied growth is unsupported (no published long-term growth estimate, or implied growth far above revenue growth); Forward-sector leg untouched; CAPM cross-check and sensitivity grid use the same capped growth"},
            "capm_crosscheck": {"ten_year_treasury_pct": 5.10, "ten_year_treasury_asof": "2026-11-12",
                                "ten_year_treasury_source": "FRED series DGS10",
                                "ten_year_treasury_url": "https://fred.stlouisfed.org/series/dgs10",

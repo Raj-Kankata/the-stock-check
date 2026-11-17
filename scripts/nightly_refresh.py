@@ -88,7 +88,7 @@ magnitude gate on VIX (it can legitimately move >25% in a day) or on the
 computed in memory and staged in a temp dir; files are written only after
 all gates pass.
 
-Engines are FROZEN (scoring-engine-v1.3 + v1.3-batch2, SPEC v1.1 FINAL).
+Engines are scoring-engine-v1.4 + v1.4-batch2 (SPEC v1.2 FINAL — growth guardrail + GME T2; frozen since 2026-11-17).
 This script copies them verbatim into scripts/engine/v13|batch2/engine.py
 and never edits them. They read inputs.json from their own directory and
 hardcode as_of "2026-11-16" / price_date "2026-11-13" in their output;
@@ -96,13 +96,13 @@ the merge step below overrides those two top-level fields in the site's
 results.json with the refresh date / latest close date.
 
 Staging (Phase 2, 227 tickers): the frozen engines hardcode their own
-ticker lists (v1.3: 5 names incl. NVO; batch2: 8 names incl. JPM) and
+ticker lists (v1.4: 5 names incl. NVO; batch2: 8 names incl. JPM) and
 batch2 hardcodes a COMPLETENESS dict for those 8 names only — so a
 verbatim run against the 227-ticker base would KeyError on the removed
 names. run_engines_staged therefore patches the STAGED temp-dir copies
 only (the repo originals are never edited): each staged copy's single
 TICKERS = [...] line is replaced with the tickers that run scores
-(v1.3: its 4 continuing names; batch2: all 227, derived from
+(v1.4: its 4 continuing names; batch2: all 227, derived from
 base_inputs.json), and batch2's COMPLETENESS literal is replaced with
 the rule-derived dict (see completeness_for). Both patches are
 single-substitution and asserted — a staging failure aborts the run
@@ -139,8 +139,8 @@ MARKET_JSON = os.path.join(ROOT, "lib", "data", "market.json")
 MACRO_JSON = os.path.join(ROOT, "lib", "data", "macro.json")
 SITEMAP = os.path.join(ROOT, "public", "sitemap.xml")
 
-# The tickers the v1.3 engine scores in its own subprocess run. These MUST
-# stay exactly the v1.3 engine's own TICKERS list minus removed NVO: the
+# The tickers the v1.4 engine scores in its own subprocess run. These MUST
+# stay exactly the v1.4 engine's own TICKERS list minus removed NVO: the
 # staged copy's TICKERS line is patched to this list (see _stage_engine).
 V13_TICKERS = ["NVDA", "AAPL", "MSFT", "GOOGL"]
 # The batch2 engine scores EVERY live ticker (its discount tier, DCF/PEGY/
@@ -761,7 +761,7 @@ def _stage_engine(key, tickers, inputs, tmpdir):
 def run_engines_staged(inputs_by_engine, all_tickers):
     """Run both frozen engine copies in a temp dir (no repo writes).
     inputs_by_engine: {"v13": {...inputs.json...}, "batch2": {...}}.
-    The v1.3 copy scores its 4 continuing names; the batch2 copy scores
+    The v1.4 copy scores its 4 continuing names; the batch2 copy scores
     all_tickers (all 227 live names). Returns {"v13": results_dict,
     "batch2": results_dict}."""
     out = {}
@@ -778,7 +778,7 @@ def run_engines_staged(inputs_by_engine, all_tickers):
 
 def split_inputs(all_tickers, as_of, price_date):
     """Split the ticker dict into the two per-engine inputs.json dicts.
-    v1.3 gets its 4 continuing names; batch2 gets every ticker in
+    v1.4 gets its 4 continuing names; batch2 gets every ticker in
     all_tickers (all 227 live names). Top-level metadata mirrors the
     frozen source inputs.json files."""
     base = load_json(BASE_INPUTS)
@@ -797,7 +797,7 @@ def split_inputs(all_tickers, as_of, price_date):
 def gate_engine_outputs(results, stored_results, all_tickers):
     """Engine-output gates: every ticker present; triangulated_fv non-null
     wherever the stored result had a non-null FV. The batch2 gate covers
-    all live tickers (all 227); v1.3 covers its 4 continuing names."""
+    all live tickers (all 227); v1.4 covers its 4 continuing names."""
     for key, tickers in (("v13", V13_TICKERS),
                          ("batch2", list(all_tickers))):
         got = results[key].get("tickers", {})
@@ -813,9 +813,9 @@ def gate_engine_outputs(results, stored_results, all_tickers):
 
 def merge_results(v13_results, batch2_results, as_of, price_date,
                   refreshed=None):
-    """Merged site results: top-level EXACTLY as v1.3's output (engine
+    """Merged site results: top-level EXACTLY as v1.4's output (engine
     string, locked_set, capm_crosscheck, weights, ladder_ratios), tickers
-    = batch2's 227, with v1.3's 4 taking precedence over batch2's copies
+    = batch2's 227, with v1.4's 4 taking precedence over batch2's copies
     of the same 4 names (see below). as_of / price_date overridden to
     the refresh. The frozen engines do not emit the analyst-consensus
     block, so it is carried through here from the frozen base inputs
@@ -840,9 +840,9 @@ def merge_results(v13_results, batch2_results, as_of, price_date,
     the new_tickers dict from cmd_live; dry-run path: base["tickers"]).
     Missing keys in older files are tolerated as null, never a crash."""
     merged = copy.deepcopy(v13_results)
-    # batch2 scores all 227, INCLUDING the 4 v1.3 names; v1.3's own output
+    # batch2 scores all 227, INCLUDING the 4 v1.4 names; v1.4's own output
     # takes precedence for those 4, so their published detail text stays
-    # exactly as the v1.3 engine produces it. Values are identical either
+    # exactly as the v1.4 engine produces it. Values are identical either
     # way (Phase 1 regression: driver vs v1.3 value diffs none), but the
     # sensitivity-grid note wording differs between the engines.
     merged["tickers"] = {**batch2_results["tickers"], **v13_results["tickers"]}

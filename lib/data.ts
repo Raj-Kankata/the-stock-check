@@ -1,7 +1,7 @@
 // Data access for The Stock Check.
 //
-// SOURCE OF TRUTH: lib/data/results.json — 227 three-leg tickers (SPEC v1.1
-// FINAL, engine v1.3). Phase 2 merge, 2026-11-16: the 11 continuing names
+// SOURCE OF TRUTH: lib/data/results.json — 227 three-leg tickers (SPEC v1.2
+// FINAL, engine v1.4). Phase 2 merge, 2026-11-16: the 11 continuing names
 // verbatim from the 13-ticker live file, plus 216 names from the
 // full-universe refresh; NVO and JPM (two-leg, DCF skipped) were removed,
 // so every published fair value is now the median of three legs.

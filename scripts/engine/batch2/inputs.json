@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-17",
+  "as_of": "2026-11-16",
   "price_date": "2026-11-16",
   "sources": {
     "price_technicals_financials": "Yahoo Finance via yfinance 1.8.0, fetched 2026-11-15",
@@ -384,7 +384,8 @@
       "rel_vol": 0.9733,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "ABBV": {
@@ -403,7 +404,7 @@
       "implied_5y_eps_growth": 0.8578,
       "earnings_growth_yahoo_1y": 22.821,
       "revenue_growth_yahoo": 0.103,
-      "revenue_cagr_3y_annual": -0.341,
+      "revenue_cagr_3y_annual": 0.0175,
       "dividend_yield": 0.0235,
       "dividend_yield_source": "Yahoo trailingAnnualDividendYield",
       "roe": null,
@@ -1967,7 +1968,8 @@
       "rel_vol": 0.9566,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "ANF": {
@@ -2753,7 +2755,8 @@
       "market_cap": 130944546608.48,
       "rel_vol": 0.7528,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "BE": {
@@ -3544,7 +3547,8 @@
       "market_cap": 264825577508.29,
       "rel_vol": 0.8673,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "CAVA": {
@@ -4880,7 +4884,8 @@
       "market_cap": 189387541956.69,
       "rel_vol": 0.78,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "CROX": {
@@ -5214,7 +5219,8 @@
       "rel_vol": 1.0035,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "CTSH": {
@@ -5438,7 +5444,8 @@
       "market_cap": 429440516135.4,
       "rel_vol": 0.7412,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "DAKT": {
@@ -6557,7 +6564,8 @@
       "market_cap": 210913223124.8,
       "rel_vol": 1.6389,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "DOCN": {
@@ -9689,8 +9697,8 @@
       "trailing_eps": 1.52,
       "forward_pe": 16.57,
       "trailing_pe": 16.84,
-      "trailing_pe_adjusted": null,
-      "trailing_eps_adjusted": null,
+      "trailing_pe_adjusted": 26.94,
+      "trailing_eps_adjusted": 0.95,
       "peg_ratio_yahoo": 0.31,
       "implied_5y_eps_growth": 0.5433,
       "earnings_growth_yahoo_1y": 0.645,
@@ -9711,14 +9719,14 @@
       "beta_source": "https://finance.yahoo.com/quote/GME",
       "revenue_ttm": 3550800000.0,
       "net_income_ttm": 893300000.0,
-      "net_income_ttm_adjusted": null,
+      "net_income_ttm_adjusted": 551300000.0,
       "ocf_ttm": 704700000.0,
       "fcf_ttm": 688000000.0,
       "fcf_per_share_ttm": 1.19,
       "fcf_per_share_note": "USD per share; shares = NI_TTM/trailing EPS (total shares).",
       "shares_implied_total": 580064935,
       "ocf_pct_net_income_ttm": 0.789,
-      "ocf_pct_net_income_adjusted": null,
+      "ocf_pct_net_income_adjusted": 1.278,
       "accruals_sloan_latest_annual": -0.0189,
       "receivables_to_revenue_latest": 0.012,
       "receivables_ratio_change_pp": -0.35,
@@ -9782,12 +9790,26 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
+        "TTM net income $893.3M includes unrealised mark-to-market gains in both FY27 quarters to date: Q1 FY27 (ended 2026-05-02) +$268.4M unrealised gain on derivative asset, net, +$1.1M gain on digital assets; Q2 FY27 (ended 2026-08-01) +$166.3M gain on derivative asset, net, +$72.1M unrealised gain on equity investment, -$75.0M loss on digital assets (net +$163.4M). Total pre-tax one-off +$432.9M; after-tax at 21% +$342.0M removed (ONEOFF-v1). Adjusted TTM NI $551.3M, adjusted EPS $0.95, adjusted trailing P/E 27.2 used for Quality/PEGT. Note: an earlier audit draft cited the Q1 gain as $285.3M \u2014 that is the derivative asset's balance-sheet carrying value at 2026-05-02, not the quarter's gain; the income-statement gain is $268.4M (cross-proved: six-month derivative gain $434.7M = $268.4M + $166.3M). See refresh/gme_t2_verification.md and SPEC-v1.2.md."
       ],
       "debt_fcf": 6.2983,
       "market_cap": 14849662336.0,
       "rel_vol": 0.6838,
-      "indexes": []
+      "indexes": [],
+      "oneoff_adjustments": [
+        {
+          "quarter": "2026-05-02",
+          "item": "Unrealised mark-to-market gains (Q1 FY27): unrealised gain on derivative asset, net $268.4M + gain on digital assets and related receivables $1.1M",
+          "amount_after_tax_usd_m": 212.9,
+          "amount_pre_tax_usd_m": 269.5
+        },
+        {
+          "quarter": "2026-08-01",
+          "item": "Net unrealised mark-to-market gain (Q2 FY27): gain on derivative asset, net $166.3M + unrealised gain on equity investment $72.1M - loss on digital assets and related receivables $75.0M",
+          "amount_after_tax_usd_m": 129.1,
+          "amount_pre_tax_usd_m": 163.4
+        }
+      ]
     },
     "GOOGL": {
       "name": "Alphabet Inc.",
@@ -9919,7 +9941,8 @@
       "rel_vol": 0.8492,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "GWRE": {
@@ -10139,7 +10162,8 @@
       "market_cap": 345977940655.73,
       "rel_vol": 1.4069,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "HE": {
@@ -11142,7 +11166,8 @@
       "market_cap": 230559932704.04,
       "rel_vol": 1.0601,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "ICE": {
@@ -12366,7 +12391,8 @@
       "market_cap": 691131040971.6,
       "rel_vol": 1.0864,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "KEYS": {
@@ -12920,7 +12946,8 @@
       "market_cap": 428027329429.32,
       "rel_vol": 1.0159,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "KR": {
@@ -15277,7 +15304,8 @@
       "market_cap": 95740757137.2,
       "rel_vol": 1.0498,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "MORN": {
@@ -15722,7 +15750,8 @@
       "rel_vol": 1.1509,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "MU": {
@@ -16282,7 +16311,8 @@
       "market_cap": 56621138747.56,
       "rel_vol": 0.8762,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "NOW": {
@@ -17066,7 +17096,8 @@
       "rel_vol": 1.5869,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "NXPI": {
@@ -18404,7 +18435,8 @@
       "market_cap": 417619207783.38,
       "rel_vol": 1.3968,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "PINS": {
@@ -23650,7 +23682,8 @@
       "market_cap": 372907446124.5,
       "rel_vol": 0.8975,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "UPS": {
@@ -23878,7 +23911,8 @@
       "market_cap": 813597065023.68,
       "rel_vol": 1.0602,
       "indexes": [
-        "SP500"
+        "SP500",
+        "DOW30"
       ]
     },
     "VECO": {
@@ -24772,7 +24806,8 @@
       "rel_vol": 0.8141,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ]
     },
     "WST": {

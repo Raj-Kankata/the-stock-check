@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-16",
   "price_date": "2026-11-13",
-  "engine": "scoring-engine-v1.3 (SPEC v1.1 FINAL)",
+  "engine": "scoring-engine-v1.4 (SPEC v1.2 FINAL)",
   "locked_set": {
     "rf": 0.05,
     "discount_low_beta": 0.1,
@@ -11,7 +11,8 @@
     "nvda_base_fcf_share_normalised": 4.8,
     "pegy_basis": "non-GAAP consistently",
     "forward_sector": "next-year EPS x GICS sector forward P/E (FactSet, 13 Nov 2026), discounted 10% for 1y; cap 35x / floor 10x",
-    "oneoff_rule": "One-off check"
+    "oneoff_rule": "One-off check",
+    "growth_guardrail": "SPEC v1.2 \u00a71 \u2014 DCF/PEGY growth capped when the implied growth is unsupported (no published long-term growth estimate, or implied growth far above revenue growth); Forward-sector leg untouched; CAPM cross-check and sensitivity grid use the same capped growth"
   },
   "capm_crosscheck": {
     "ten_year_treasury_pct": 5.1,
@@ -240,7 +241,8 @@
       "debt_fcf": 0.0869,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 3807348553774.66,
       "rel_vol": 1.5869
@@ -263,7 +265,7 @@
             "legs": {
               "dcf": {
                 "value": 200.71,
-                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $9.24, g=13.8% (implied 5y EPS growth, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
+                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $9.24, g=13.8% (implied 5y EPS growth 13.8%, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
                 "growth_scenario": 0.1378
               },
               "pegy": {
@@ -440,7 +442,8 @@
       "debt_fcf": 0.5888,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 5192505178135.22,
       "rel_vol": 0.9733
@@ -463,7 +466,7 @@
             "legs": {
               "dcf": {
                 "value": 203.37,
-                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $8.05, g=17.6% (implied 5y EPS growth, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
+                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $8.05, g=17.6% (implied 5y EPS growth 17.6%, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
                 "growth_scenario": 0.1764
               },
               "pegy": {
@@ -639,7 +642,8 @@
       "debt_fcf": 0.9478,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 3856024618691.19,
       "rel_vol": 1.1509
@@ -662,7 +666,7 @@
             "legs": {
               "dcf": {
                 "value": 36.25,
-                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $1.6, g=14.8% (implied 5y EPS growth, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
+                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $1.6, g=14.8% (implied 5y EPS growth 14.8%, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
                 "growth_scenario": 0.1485
               },
               "pegy": {
@@ -840,7 +844,8 @@
       "debt_fcf": 3.0025,
       "indexes": [
         "SP500",
-        "NASDAQ100"
+        "NASDAQ100",
+        "DOW30"
       ],
       "market_cap": 3491963534245.88,
       "rel_vol": 0.8492
