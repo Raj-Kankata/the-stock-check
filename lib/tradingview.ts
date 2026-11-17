@@ -245,6 +245,76 @@ export async function fetchSymbolQuote(tvSymbol: string): Promise<TvSymbolQuote 
   }
 }
 
+/**
+ * Market-wide advance/decline counts from the same TradingView scanner
+ * — one filtered scan per sign of the day change, plus one unfiltered
+ * scan for the total. Only totalCount is read (range [0,1] keeps each
+ * payload to one row). The filter is on the `change` column (day change
+ * in %), same column the boards rank on.
+ *
+ * VERIFIED 17 Nov 2026 from curl, mid-session on a down day
+ * (S&P 500 -1.9%): advancers 3,493 / decliners 6,924 / unchanged 1,380
+ * / total 11,836. The three sign counts need not sum to the total: a
+ * few dozen names report no day change at all and are counted in the
+ * total but in neither group. The universe is every US-listed stock the
+ * scanner covers, including OTC names — it is NOT our 227.
+ *
+ * Same CORS rule as the other scans: Content-Type: text/plain, never
+ * application/json. Null on any failure — the caller falls back to the
+ * baked 227-name counts in macro.json. After hours the scanner returns
+ * the frozen close values, which the caller labels as of the close,
+ * never as live.
+ */
+export interface MarketBreadth {
+  advancers: number
+  decliners: number
+  unchanged: number
+  total: number
+}
+
+async function scanBreadthCount(
+  filter: { left: string; operation: string; right: number } | null,
+): Promise<number | null> {
+  try {
+    const body: Record<string, unknown> = {
+      symbols: { query: { types: ['stock'] }, ticker: '' },
+      columns: ['name', 'close', 'change'],
+      range: [0, 1],
+    }
+    if (filter) body.filter = [filter]
+    const res = await fetch(SCAN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(body),
+    })
+    if (!res.ok) return null
+    const j = (await res.json()) as unknown
+    if (!j || typeof j !== 'object') return null
+    const totalCount = (j as Record<string, unknown>).totalCount
+    return isFiniteNumber(totalCount) ? totalCount : null
+  } catch {
+    return null
+  }
+}
+
+export async function fetchMarketBreadth(): Promise<MarketBreadth | null> {
+  const [advancers, decliners, unchanged, total] = await Promise.all([
+    scanBreadthCount({ left: 'change', operation: 'greater', right: 0 }),
+    scanBreadthCount({ left: 'change', operation: 'less', right: 0 }),
+    scanBreadthCount({ left: 'change', operation: 'equal', right: 0 }),
+    scanBreadthCount(null),
+  ])
+  if (
+    advancers === null ||
+    decliners === null ||
+    unchanged === null ||
+    total === null
+  ) {
+    return null
+  }
+  return { advancers, decliners, unchanged, total }
+}
+
 // ---------------------------------------------------------------------------
 // Shared live-price store — one fetch per page, one 60s timer per page,
 // every live surface subscribes to the same state.

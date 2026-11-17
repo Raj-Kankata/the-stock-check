@@ -34,6 +34,15 @@ What refreshes nightly (this script):
     10Y's own as_of is recorded in the file and may be one trading day
     behind the indices). Refreshed in the live path only, gated the same
     way as the tickers, written at the same time as results.json.
+  * macro snapshot — lib/data/macro.json: SPY close + 50/200-day EMAs
+    (yfinance, same formulas as compute_technicals), VIX daily close
+    (FRED VIXCLS), HY + IG credit spreads with 1-month-ago values (FRED
+    BAMLH0A0HYM2 / BAMLC0A0CM), and the 4-component macro composite
+    (FRED GDP / INDPRO / UNRATE / RSAFS — each scored favorable when it
+    moved the right way vs its previous release), plus per-ticker 50-day
+    EMA + 52-week high and the 227-name advance/decline counts for the
+    Market Pulse page. Same all-or-nothing gates; written with the
+    market snapshot whenever it changed.
 
 What NEVER refreshes here (stays exactly as in base_inputs.json):
   fundamentals, Story/Financials scores, sector multiples, Damodaran ERP /
@@ -127,6 +136,7 @@ ENGINE_DIR = os.path.join(ROOT, "scripts", "engine")
 BASE_INPUTS = os.path.join(ENGINE_DIR, "base_inputs.json")
 SITE_RESULTS = os.path.join(ROOT, "lib", "data", "results.json")
 MARKET_JSON = os.path.join(ROOT, "lib", "data", "market.json")
+MACRO_JSON = os.path.join(ROOT, "lib", "data", "macro.json")
 SITEMAP = os.path.join(ROOT, "public", "sitemap.xml")
 
 # The tickers the v1.3 engine scores in its own subprocess run. These MUST
@@ -145,7 +155,26 @@ V13_TICKERS = ["NVDA", "AAPL", "MSFT", "GOOGL"]
 MARKET_SYMBOLS = [("^GSPC", "S&P 500"), ("^IXIC", "Nasdaq"),
                   ("^DJI", "Dow"), ("^VIX", "VIX")]
 FRED_DGS10_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10"
+FRED_CSV_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id="
 MARKET_SOURCE = "Yahoo Finance (indices, VIX); FRED DGS10 (10Y Treasury)"
+MACRO_SOURCE = ("FRED (VIXCLS, BAMLH0A0HYM2, BAMLC0A0CM, GDP, INDPRO, "
+                "UNRATE, RSAFS); Yahoo Finance (SPY)")
+# Macro composite components: (FRED series, display label, change unit).
+# Change is QoQ for GDP (quarterly), MoM for INDPRO / UNRATE / RSAFS.
+# Favorable = the component moved the right way vs its previous release:
+# GDP up, industrial production up, unemployment DOWN, retail sales up.
+# There is NO FRED series "MEI" (it returns HTML) — the composite is
+# built from these four real series instead, and the page prints the rule.
+MACRO_COMPONENTS = [
+    ("GDP", "GDP (nominal, $bn, SAAR)", "pct", True),
+    ("INDPRO", "Industrial production (index)", "pct", True),
+    ("UNRATE", "Unemployment rate (%)", "pp", False),
+    ("RSAFS", "Retail sales ($m, SA)", "pct", True),
+]
+CREDIT_SERIES = [
+    ("BAMLH0A0HYM2", "High-yield OAS"),
+    ("BAMLC0A0CM", "Investment-grade OAS"),
+]
 MAX_INDEX_MOVE = 0.25  # |change_pct| above this for ^GSPC/^IXIC/^DJI = bad data, FAIL
 
 MAX_DAY_MOVE = 0.25   # |new/old - 1| above this = bad data, FAIL
@@ -479,6 +508,199 @@ def fetch_market(as_of_arg, end):
     return market, close_date
 
 
+# ---------------------------------------------------------------------- macro
+def fetch_fred_series(series_id):
+    """Full FRED CSV series as sorted [(date, value)] (blank days skipped).
+    Any fetch failure or an empty series is a gate trip — same
+    all-or-nothing rule as the other fetches: fail without writing."""
+    try:
+        with urllib.request.urlopen(FRED_CSV_URL + series_id, timeout=30) as r:
+            text = r.read().decode("utf-8")
+    except (urllib.error.URLError, TimeoutError, OSError) as e:
+        fail(f"FRED {series_id} fetch failed: {e}")
+    rows = []
+    for line in text.splitlines():
+        parts = line.strip().split(",")
+        if len(parts) != 2:
+            continue
+        d, v = parts[0].strip(), parts[1].strip()
+        if not v:  # blank = no observation that day
+            continue
+        try:
+            val = float(v)
+            day = datetime.date.fromisoformat(d)
+        except ValueError:
+            continue
+        rows.append((day, val))
+    if not rows:
+        fail(f"FRED {series_id}: no observations returned")
+    rows.sort()
+    return rows
+
+
+def series_latest(rows, close_d):
+    """Latest observation on/before close_d plus the previous one.
+    Returns (value, date, prev_value, prev_date). Fails if fewer than
+    two observations exist on/before close_d (a change cannot be
+    computed without a previous release)."""
+    upto = [(d, v) for d, v in rows if d <= close_d]
+    if len(upto) < 2:
+        fail(f"FRED series: fewer than 2 observations on/before {close_d}")
+    (pd, pv), (d, v) = upto[-2], upto[-1]
+    return v, d, pv, pd
+
+
+def value_a_month_ago(rows, latest_d):
+    """Latest observation on/before (latest date - 30 days), for the
+    1-month-ago credit-spread comparison. Fails if none exists (the
+    BAML series go back to 2023, so a live run always has one)."""
+    target = latest_d - datetime.timedelta(days=30)
+    upto = [(d, v) for d, v in rows if d <= target]
+    if not upto:
+        fail(f"FRED series: no observation on/before {target} "
+             f"(1 month before {latest_d})")
+    return upto[-1][1], upto[-1][0]
+
+
+def fetch_spy(end):
+    """SPY 1y history (yfinance), intraday-bar-dropped like the tickers,
+    with 50/200-day EMAs from the EXACT compute_technicals formulas.
+    Returns (spy_dict, close_date_str). Gates: empty history, fewer
+    than MIN_BARS bars, or a missing close all fail the run."""
+    try:
+        hist = yf.Ticker("SPY").history(period="1y", auto_adjust=False,
+                                        end=end)
+    except Exception as e:  # noqa: BLE001 — any yfinance failure is a gate trip
+        fail(f"SPY: yfinance fetch failed: {e}")
+    if hist is None or hist.empty or "Close" not in hist:
+        fail("SPY: yfinance returned empty history")
+    hist = drop_intraday_bar(hist)
+    close = hist["Close"]
+    if len(close) < MIN_BARS:
+        fail(f"SPY: only {len(close)} history bars (< {MIN_BARS})")
+    last_close = float(close.iloc[-1])
+    if last_close != last_close:  # NaN
+        fail("SPY: missing close")
+    tech = compute_technicals(close)
+    bar_date = hist.index[-1].date().isoformat()
+    print(f"    SPY: close ${last_close:.2f}, EMA50 ${tech['ema50']:.2f}, "
+          f"EMA200 ${tech['ema200']:.2f}, close date {bar_date}")
+    return ({"close": round(last_close, 2), "as_of": bar_date,
+             "ema50": tech["ema50"], "ema200": tech["ema200"]}, bar_date)
+
+
+def fetch_macro(close_date, end, ticker_recs, prev_prices):
+    """Macro snapshot for the Market Pulse page, all IN MEMORY (no
+    writes). close_date is the tickers' price_date; end follows cmd_live
+    (as_of + 1d when pinned, None for the latest close). ticker_recs maps
+    ticker -> {"price", "technicals": {"ema50", "high_52w"}} (the
+    refreshed records in live mode); prev_prices maps ticker -> the
+    previous close to compare against for the 227-name advance/decline
+    counts. Returns the macro dict. Raises SystemExit on any gate trip:
+    any FRED fetch failure, a missing series value, a SPY fetch failure,
+    or a SPY close date disagreeing with close_date."""
+    close_d = datetime.date.fromisoformat(close_date)
+
+    # SPY trend inputs (gated on the close date agreeing with the tickers).
+    spy, spy_date = fetch_spy(end)
+    if spy_date != close_date:
+        fail(f"SPY close date {spy_date} != ticker price_date {close_date}")
+
+    # VIX daily close (FRED VIXCLS — same value as the yfinance VIX
+    # close in market.json; FRED is the recorded source here).
+    vix_rows = fetch_fred_series("VIXCLS")
+    vix_val, vix_d, _, _ = series_latest(vix_rows, close_d)
+    print(f"    VIX (FRED VIXCLS): {vix_val:.2f} as of {vix_d.isoformat()}")
+
+    # Credit spreads: latest + 1 month ago, HY and IG.
+    credit = {}
+    for series_id, label in CREDIT_SERIES:
+        rows = fetch_fred_series(series_id)
+        val, d, _, _ = series_latest(rows, close_d)
+        val_1m, d_1m = value_a_month_ago(rows, d)
+        key = "hy_spread" if "HYM2" in series_id else "ig_spread"
+        credit[key] = {"value": round(val, 2), "as_of": d.isoformat()}
+        credit[key + "_1m_ago"] = {"value": round(val_1m, 2),
+                                   "as_of": d_1m.isoformat()}
+        credit[key + "_change_bp"] = round((val - val_1m) * 100)
+        print(f"    {label} ({series_id}): {val:.2f}% as of "
+              f"{d.isoformat()}, 1m ago {val_1m:.2f}% as of "
+              f"{d_1m.isoformat()} ({credit[key + '_change_bp']:+d} bp)")
+
+    # Macro composite: one favorable/unfavorable call per component vs
+    # its previous release. GDP is quarterly and the rest monthly, so
+    # the as-of dates lag the close date — each is recorded honestly.
+    components = {}
+    favorable = 0
+    for series_id, label, unit, up_is_good in MACRO_COMPONENTS:
+        rows = fetch_fred_series(series_id)
+        val, d, pv, pd = series_latest(rows, close_d)
+        if unit == "pct":
+            change = round(val / pv - 1, 4)
+            change_txt = f"{change:+.2%}"
+        else:  # pp — percentage points, for the unemployment rate
+            change = round(val - pv, 2)
+            change_txt = f"{change:+.2f} pp"
+        good = (change > 0) if up_is_good else (change < 0)
+        favorable += 1 if good else 0
+        components[series_id.lower()] = {
+            "label": label, "value": round(val, 4),
+            "as_of": d.isoformat(), "prev_value": round(pv, 4),
+            "prev_as_of": pd.isoformat(), "change": change,
+            "change_unit": unit, "favorable": good}
+        print(f"    {label}: {val} as of {d.isoformat()} (prev {pv} as "
+              f"of {pd.isoformat()}, {change_txt}) — "
+              f"{'favorable' if good else 'unfavorable'}")
+    print(f"    macro composite: {favorable}/4 components favorable")
+
+    # Universe internals for the Pulse page, from the refreshed records:
+    # % above the 50-day EMA, new 52-week closing highs (live close at
+    # or above the 52-week high close), and advancers/decliners vs the
+    # previous close. Per-ticker EMA50 + 52w high are stored so the page
+    # can recompute the live readings from live prices.
+    universe_tickers = {}
+    above_50 = new_highs = adv = dec = unch = 0
+    for t, rec in sorted(ticker_recs.items()):
+        tech = rec.get("technicals") or {}
+        ema50 = tech.get("ema50")
+        high_52w = tech.get("high_52w")
+        price = rec.get("price")
+        if ema50 is None or high_52w is None or price is None:
+            fail(f"macro universe: {t} missing price/ema50/high_52w")
+        universe_tickers[t] = {"ema50": ema50, "high_52w": high_52w}
+        if price > ema50:
+            above_50 += 1
+        if price >= high_52w:
+            new_highs += 1
+        prev = prev_prices.get(t)
+        if prev is None:
+            fail(f"macro universe: {t} missing previous close")
+        if price > prev:
+            adv += 1
+        elif price < prev:
+            dec += 1
+        else:
+            unch += 1
+    print(f"    universe (227): above 50-day EMA {above_50}, new 52w "
+          f"highs {new_highs}, advancers {adv} / decliners {dec} / "
+          f"unchanged {unch}")
+
+    return {
+        "as_of": close_date,
+        "source": MACRO_SOURCE,
+        "spy": spy,
+        "vix": {"value": round(vix_val, 2), "as_of": vix_d.isoformat()},
+        "credit": credit,
+        "macro": {"components": components,
+                  "favorable_count": favorable, "total": 4},
+        "universe": {
+            "as_of": close_date, "total": len(ticker_recs),
+            "above_50dma": above_50, "new_52w_highs": new_highs,
+            "advancers": adv, "decliners": dec, "unchanged": unch,
+            "tickers": universe_tickers},
+    }
+
+
 # -------------------------------------------------------------------- engines
 def _stage_engine(key, tickers, inputs, tmpdir):
     """Stage one frozen engine copy in tmpdir for a subprocess run.
@@ -756,6 +978,21 @@ def cmd_live(as_of_arg):
         fail(f"market close date {market_close_date} != ticker "
              f"price_date {price_date}")
 
+    # 1c. Macro snapshot for the Pulse page, also IN MEMORY. The
+    # previous close for the 227-name advance/decline counts is the last
+    # PUBLISHED close (stored results.json) on a normal night; on a
+    # re-run of an already-published close it is the frozen base close
+    # (base_inputs.json price_date 2026-11-13 is the trading day before
+    # the 2026-11-16 close) — comparing a re-run against its own
+    # published close would show every name unchanged.
+    print("\n  fetching macro (FRED + SPY) ...")
+    if price_date == stored["price_date"]:
+        prev_prices = {t: base["tickers"][t]["price"] for t in all_tickers}
+    else:
+        prev_prices = {t: stored["tickers"][t]["price"]
+                       for t in all_tickers}
+    macro = fetch_macro(price_date, end, new_tickers, prev_prices)
+
     # 2. Run both engines staged; gate their outputs.
     inputs = split_inputs(new_tickers, as_of, price_date)
     results = run_engines_staged(inputs, all_tickers)
@@ -794,16 +1031,20 @@ def cmd_live(as_of_arg):
     stored_market = (load_json(MARKET_JSON)
                      if os.path.exists(MARKET_JSON) else None)
     changed_market = stored_market != market
-    changed = changed_tickers or changed_market
+    stored_macro = (load_json(MACRO_JSON)
+                    if os.path.exists(MACRO_JSON) else None)
+    changed_macro = stored_macro != macro
+    changed = changed_tickers or changed_market or changed_macro
     print(f"\nCHANGED={'yes' if changed else 'no'}  "
           f"(tickers={'yes' if changed_tickers else 'no'}, "
-          f"market={'yes' if changed_market else 'no'}; "
+          f"market={'yes' if changed_market else 'no'}, "
+          f"macro={'yes' if changed_macro else 'no'}; "
           f"as_of {stored['as_of']} -> {as_of}, "
           f"price_date {stored['price_date']} -> {price_date})")
     if flips:
         print(f"VERDICT FLIPS: {', '.join(flips)}")
     if not changed:
-        print("no price / FV / verdict / market change — "
+        print("no price / FV / verdict / market / macro change — "
               "writing nothing; site keeps serving the last good build.")
         return 0
 
@@ -819,6 +1060,16 @@ def cmd_live(as_of_arg):
         print(f"  market.json: as_of {market['as_of']}, "
               f"10Y {market['treasury_10y']['value_pct']:.2f}% "
               f"as of {market['treasury_10y']['as_of']}")
+    if changed_macro:
+        write_json(MACRO_JSON, macro)
+        print(f"  macro.json: as_of {macro['as_of']}, "
+              f"SPY ${macro['spy']['close']:.2f} "
+              f"(EMA50 ${macro['spy']['ema50']:.2f}, "
+              f"EMA200 ${macro['spy']['ema200']:.2f}), "
+              f"VIX {macro['vix']['value']:.2f}, "
+              f"HY {macro['credit']['hy_spread']['value']:.2f}%, "
+              f"macro {macro['macro']['favorable_count']}/"
+              f"{macro['macro']['total']} favorable")
     ts = (datetime.datetime.now(datetime.timezone.utc)
           .strftime("%Y-%m-%dT%H:%M:%SZ"))
     sitemap = open(SITEMAP).read()

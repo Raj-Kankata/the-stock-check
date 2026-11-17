@@ -60,7 +60,7 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             git config user.name "the-stock-check-bot"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add lib/data/results.json lib/data/market.json public/sitemap.xml scripts/engine/
+            git add lib/data/results.json lib/data/market.json lib/data/macro.json public/sitemap.xml scripts/engine/
             PRICE_DATE=$(python3 -c "import json; print(json.load(open('lib/data/results.json'))['price_date'])")
             git commit -m "Nightly refresh: prices as of ${PRICE_DATE}"
             git push
