@@ -80,13 +80,17 @@ export default function FaqPage() {
         </p>
       </Card>
 
-      <Card title="Why is NVO's DCF skipped?">
+      <Card title="Why would a DCF leg ever be skipped?">
         <p>
-          NVO reports in Danish krone, and the dollar basis the DCF needs is unverified. Rather
-          than guess at a currency conversion, the DCF leg is skipped for NVO and its fair value
-          is the median of the two remaining legs (PEGY $22.33 and forward-sector $62.54, giving
-          $42.44). Its CAPM cross-check is skipped for the same reason. A skipped leg is stated
-          openly wherever it applies.
+          It would be skipped, not guessed, when the dollar per-share cash-flow basis the
+          DCF needs cannot be verified — for example, a name reporting in another currency,
+          or a bank, whose &ldquo;free cash flow&rdquo; is not meaningful because operating
+          cash flow is dominated by deposit and trading flows. When a leg is skipped, the
+          fair value is the <strong>mean of the two remaining legs</strong>, and the skip is
+          stated openly wherever it applies. No name in the current 227-name universe has a
+          skipped leg: every published fair value is the median of three legs. Two names the
+          site previously published did use the skip path — NVO (Danish-krone reporting) and
+          JPM (bank cash flow) — and both are unpublished in the current build.
         </p>
       </Card>
 
@@ -115,7 +119,7 @@ export default function FaqPage() {
       </Card>
 
       <Card title="Which tickers are covered?">
-        <p>Thirteen tickers are scored so far, and the universe expands from here:</p>
+        <p>{TICKERS.length} tickers are scored so far, and the universe expands from here:</p>
         <table>
           <thead>
             <tr>

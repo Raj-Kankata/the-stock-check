@@ -1,9 +1,10 @@
 // Data access for The Stock Check.
 //
-// SOURCE OF TRUTH: lib/data/results.json — a verbatim copy (md5-verified)
-// of scoring-engine-v1.3/results.json for the original five tickers, plus the
-// eight batch-2 tickers scored with the same v1.3 logic (see
-// scoring-engine-v1.3-batch2/). SPEC v1.1 FINAL, engine v1.3.
+// SOURCE OF TRUTH: lib/data/results.json — 227 three-leg tickers (SPEC v1.1
+// FINAL, engine v1.3). Phase 2 merge, 2026-11-16: the 11 continuing names
+// verbatim from the 13-ticker live file, plus 216 names from the
+// full-universe refresh; NVO and JPM (two-leg, DCF skipped) were removed,
+// so every published fair value is now the median of three legs.
 // NEVER hand-edit a number in results.json. If a number is wrong, the
 // fix goes in the engine and results.json is re-copied.
 
@@ -99,7 +100,9 @@ export interface TickerData {
   pros: string[]
   cons: string[]
   flags: string[]
-  analysts: Analysts
+  /** Analyst consensus targets. Optional: a card must render without it
+      (see app/stock/[ticker]/page.tsx) and never show a guessed target. */
+  analysts?: Analysts
 }
 
 export interface EngineResults {

@@ -43,7 +43,6 @@ export const PICKS = [
   { symbol: 'AAPL', entryPrice: 356.27 },
   { symbol: 'MSFT', entryPrice: 523.88 },
   { symbol: 'GOOGL', entryPrice: 295.77 },
-  { symbol: 'NVO', entryPrice: 41.63 },
 ] as const
 
 /** Backtest evidence for the ladder-as-context framing (SPEC v1.1 §5, Appendices C–D). */

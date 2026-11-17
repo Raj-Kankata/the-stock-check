@@ -40,13 +40,15 @@ Modes:
       still-trading bar: if the last bar is dated today (US/Eastern) and
       the market has not closed yet (before 16:00 ET), it is dropped.
   python3 scripts/nightly_refresh.py --dry-run [--as-of YYYY-MM-DD]
-      Reproduction gate. No fetching. Re-runs both engines on the frozen
-      base inputs and compares triangulated_fv / overall_score / verdict
-      against the site's current lib/data/results.json for all 13 tickers.
-      Exits non-zero on ANY mismatch. Default --as-of 2026-11-13.
+      Reproduction gate. No fetching. Re-runs the frozen engines on the
+      frozen base inputs and compares triangulated_fv / overall_score /
+      verdict against the site's current lib/data/results.json for all
+      227 tickers. Exits non-zero on ANY mismatch. Default --as-of
+      2026-11-13. (The engines' own TICKERS lists are patched in the
+      staged temp-dir copies only — see "Staging" below.)
   python3 scripts/nightly_refresh.py --check-technicals
       Informational. Fetches 1y history ending 2026-11-13 (end=2026-11-14)
-      for all 13 tickers, recomputes technicals, and reports per-ticker /
+      for all 227 tickers, recomputes technicals, and reports per-ticker /
       per-field match vs the stored Nov-13 technicals. The rolling-window
       start can differ slightly from the original fetch, so diffs are
       reported honestly, never fudged. Always exits 0 (unless the fetch
@@ -72,6 +74,27 @@ and never edits them. They read inputs.json from their own directory and
 hardcode as_of "2026-11-16" / price_date "2026-11-13" in their output;
 the merge step below overrides those two top-level fields in the site's
 results.json with the refresh date / latest close date.
+
+Staging (Phase 2, 227 tickers): the frozen engines hardcode their own
+ticker lists (v1.3: 5 names incl. NVO; batch2: 8 names incl. JPM) and
+batch2 hardcodes a COMPLETENESS dict for those 8 names only — so a
+verbatim run against the 227-ticker base would KeyError on the removed
+names. run_engines_staged therefore patches the STAGED temp-dir copies
+only (the repo originals are never edited): each staged copy's single
+TICKERS = [...] line is replaced with the tickers that run scores
+(v1.3: its 4 continuing names; batch2: all 227, derived from
+base_inputs.json), and batch2's COMPLETENESS literal is replaced with
+the rule-derived dict (see completeness_for). Both patches are
+single-substitution and asserted — a staging failure aborts the run
+before anything is written. Values are unaffected: the patched batch2
+run reproduces the frozen 13 exactly (Phase 1 regression PASS) and the
+dry run re-verifies all 227 every time. One known text-only wart: the
+frozen batch2 engine's sensitivity-grid NOTE prints the low-beta 10.0%
+discount for every non-NVDA ticker, even the 21 live names whose raw
+beta >= 2.0 puts them on the 12.0% tier (the grid VALUES use the right
+tier). The staged batch2 copy applies that fix to the grid note only
+(see _stage_engine); the DCF skip-reason change is not applied,
+since no live name has a skipped DCF leg.
 """
 import argparse
 import copy
@@ -95,9 +118,17 @@ SITE_RESULTS = os.path.join(ROOT, "lib", "data", "results.json")
 MARKET_JSON = os.path.join(ROOT, "lib", "data", "market.json")
 SITEMAP = os.path.join(ROOT, "public", "sitemap.xml")
 
-V13_TICKERS = ["NVDA", "AAPL", "MSFT", "GOOGL", "NVO"]
-BATCH2_TICKERS = ["AMZN", "META", "TSLA", "AVGO", "BRK-B", "LLY", "JPM", "V"]
-ALL_TICKERS = V13_TICKERS + BATCH2_TICKERS
+# The tickers the v1.3 engine scores in its own subprocess run. These MUST
+# stay exactly the v1.3 engine's own TICKERS list minus removed NVO: the
+# staged copy's TICKERS line is patched to this list (see _stage_engine).
+V13_TICKERS = ["NVDA", "AAPL", "MSFT", "GOOGL"]
+# The batch2 engine scores EVERY live ticker (its discount tier, DCF/PEGY/
+# Forward legs, quality, technical and verdict code are already generalised;
+# only its TICKERS list and COMPLETENESS dict are per-ticker). Its list is
+# derived from base_inputs.json at run time — see load_all_tickers() — and
+# is never hardcoded here, so it cannot go stale when the base changes.
+# NVO and JPM appear in NO list in this file: both were removed from the
+# live set under Phase 2 Option A (2-leg names, unpublished).
 
 # Market snapshot (lib/data/market.json): (yfinance symbol, display label).
 MARKET_SYMBOLS = [("^GSPC", "S&P 500"), ("^IXIC", "Nasdaq"),
@@ -127,6 +158,47 @@ def write_json(path, data):
     with open(path, "w") as f:
         json.dump(data, f, indent=2)
         f.write("\n")
+
+
+def load_all_tickers():
+    """All live tickers, derived from base_inputs.json (sorted). No
+    hardcoded list: adding or removing a ticker from the base is enough
+    to change the nightly universe — the script never needs a list edit."""
+    return sorted(load_json(BASE_INPUTS)["tickers"])
+
+
+def live_tickers(base, stored):
+    """The live ticker set, with a fail-closed agreement check: the base
+    inputs and the site results must cover exactly the same tickers, or
+    something upstream changed without a matching merge — do not proceed."""
+    all_t = sorted(base["tickers"])
+    if all_t != sorted(stored["tickers"]):
+        fail(f"base_inputs.json ({len(all_t)} tickers) and results.json "
+             f"({len(stored['tickers'])} tickers) disagree on the live set")
+    return all_t
+
+
+def completeness_for(t, frag):
+    """Trust-completeness subscore for one ticker (METHOD-batch2 §1).
+    80 where a ONEOFF-v1 adjustment was applied (net_income_ttm_adjusted
+    set); otherwise 100 less 10 per gap (DCF leg skipped — counted once,
+    whatever the cause; empty insider feed), floored at 65. Reproduces
+    the frozen 13 exactly (GOOGL/AMZN/META/TSLA/AVGO/BRK-B 80;
+    NVDA/AAPL/MSFT/LLY/V 100) and the refresh provenance for all 227
+    live tickers (verified 227/227 before this rule was wired in).
+    Limitation: a dividend-yield override gap is not visible in base
+    fragments, so it is not counted here — no live ticker has one
+    (verified vs refresh provenance, where all 227 have zero gaps)."""
+    if frag.get("net_income_ttm_adjusted"):
+        return 80
+    gaps = 0
+    if (frag.get("fcf_per_share_ttm") is None
+            or frag.get("implied_5y_eps_growth") is None
+            or frag.get("beta") is None):
+        gaps += 1
+    if (frag.get("insider_90d") or {}).get("n_rows", 0) == 0:
+        gaps += 1
+    return {0: 100, 1: 90, 2: 75}.get(gaps, 65)
 
 
 # ---------------------------------------------------------------- technicals
@@ -337,24 +409,73 @@ def fetch_market(as_of_arg, end):
 
 
 # -------------------------------------------------------------------- engines
-def run_engines_staged(inputs_by_engine):
+def _stage_engine(key, tickers, inputs, tmpdir):
+    """Stage one frozen engine copy in tmpdir for a subprocess run.
+    The repo original is NEVER edited; only the staged copy is patched,
+    in exactly the places the frozen code is per-ticker rather than
+    general:
+      * TICKERS = [...] — replaced with the tickers this run scores. The
+        verbatim engines hardcode their 5/8 names (incl. removed NVO/JPM)
+        and would KeyError on a base that no longer contains them.
+      * batch2 only: COMPLETENESS = {...} — replaced with the
+        rule-derived dict for these tickers (see completeness_for); the
+        verbatim dict covers 8 names only.
+    Each patch is a single substitution, asserted. A staging failure
+    aborts the run (fail()) before anything is written. Returns the
+    staged dir."""
+    d = os.path.join(tmpdir, key)
+    os.makedirs(d)
+    src_path = os.path.join(ENGINE_DIR, key, "engine.py")
+    with open(src_path, encoding="utf-8") as f:
+        src = f.read()
+    patched, n = re.subn(r"^TICKERS = \[[^\]]*\]",
+                         lambda m: "TICKERS = " + json.dumps(tickers),
+                         src, count=1, flags=re.M)
+    if n != 1:
+        fail(f"engine {key}: TICKERS line not found exactly once — "
+             f"refusing to stage (frozen engine changed?)")
+    if key == "batch2":
+        comp = {t: completeness_for(t, inputs["tickers"][t]) for t in tickers}
+        patched, n = re.subn(r"(?ms)^COMPLETENESS = \{[^}]*\}",
+                             lambda m: "COMPLETENESS = " + repr(comp),
+                             patched, count=1)
+        if n != 1:
+            fail("engine batch2: COMPLETENESS literal not found exactly "
+                 "once — refusing to stage (frozen engine changed?)")
+        # v1.3.1 textfix (Option E refresh), grid note only: the frozen
+        # batch2 engine prints the low-beta 10.0% discount in the
+        # sensitivity-grid note for every non-NVDA ticker, even the 21
+        # live names whose raw beta >= 2.0 puts them on the 12.0% tier
+        # (the grid VALUES use the right tier; only the note text is
+        # wrong). Rewrite that one note expression to the discount the
+        # grid actually uses (RF + dcf_spread); values are untouched.
+        # The textfix's DCF skip-reason change is NOT applied here: no
+        # live name has a skipped DCF leg, so that text never fires
+        # for the 227. Single substitution, asserted.
+        old_note = ("{DISCOUNT_HIGH if t == 'NVDA' "
+                    "else DISCOUNT_LOW:.1%}")
+        if patched.count(old_note) != 1:
+            fail("engine batch2: grid-note discount expression not "
+                 "found exactly once — refusing to stage (frozen "
+                 "engine changed?)")
+        patched = patched.replace(old_note, "{(RF + dcf_spread):.1%}")
+    with open(os.path.join(d, "engine.py"), "w", encoding="utf-8") as f:
+        f.write(patched)
+    write_json(os.path.join(d, "inputs.json"), inputs)
+    return d
+
+
+def run_engines_staged(inputs_by_engine, all_tickers):
     """Run both frozen engine copies in a temp dir (no repo writes).
     inputs_by_engine: {"v13": {...inputs.json...}, "batch2": {...}}.
-    Returns {"v13": results_dict, "batch2": results_dict}."""
+    The v1.3 copy scores its 4 continuing names; the batch2 copy scores
+    all_tickers (all 227 live names). Returns {"v13": results_dict,
+    "batch2": results_dict}."""
     out = {}
     with tempfile.TemporaryDirectory(prefix="stock-check-refresh-") as tmp:
-        for key, tickers in (("v13", V13_TICKERS), ("batch2", BATCH2_TICKERS)):
-            d = os.path.join(tmp, key)
-            os.makedirs(d)
-            # engine.py is copied verbatim (md5-verified at build time);
-            # stage a copy so the frozen originals are never executed in
-            # place against unvalidated inputs.
-            src = os.path.join(ENGINE_DIR, key, "engine.py")
-            with open(src, "rb") as f:
-                engine_bytes = f.read()
-            with open(os.path.join(d, "engine.py"), "wb") as f:
-                f.write(engine_bytes)
-            write_json(os.path.join(d, "inputs.json"), inputs_by_engine[key])
+        for key, tickers in (("v13", V13_TICKERS),
+                             ("batch2", list(all_tickers))):
+            d = _stage_engine(key, tickers, inputs_by_engine[key], tmp)
             r = subprocess.run([sys.executable, "engine.py"], cwd=d)
             if r.returncode != 0:
                 fail(f"engine {key} exited {r.returncode}")
@@ -363,11 +484,14 @@ def run_engines_staged(inputs_by_engine):
 
 
 def split_inputs(all_tickers, as_of, price_date):
-    """Split the 13-ticker dict into the two per-engine inputs.json dicts.
-    Top-level metadata mirrors the frozen source inputs.json files."""
+    """Split the ticker dict into the two per-engine inputs.json dicts.
+    v1.3 gets its 4 continuing names; batch2 gets every ticker in
+    all_tickers (all 227 live names). Top-level metadata mirrors the
+    frozen source inputs.json files."""
     base = load_json(BASE_INPUTS)
     out = {}
-    for key, tickers in (("v13", V13_TICKERS), ("batch2", BATCH2_TICKERS)):
+    for key, tickers in (("v13", V13_TICKERS),
+                         ("batch2", sorted(all_tickers))):
         d = {"as_of": as_of, "price_date": price_date,
              "sources": base["sources"],
              "discarded_yahoo_fields": base["discarded_yahoo_fields"],
@@ -377,10 +501,12 @@ def split_inputs(all_tickers, as_of, price_date):
     return out
 
 
-def gate_engine_outputs(results, stored_results):
+def gate_engine_outputs(results, stored_results, all_tickers):
     """Engine-output gates: every ticker present; triangulated_fv non-null
-    wherever the stored result had a non-null FV."""
-    for key, tickers in (("v13", V13_TICKERS), ("batch2", BATCH2_TICKERS)):
+    wherever the stored result had a non-null FV. The batch2 gate covers
+    all live tickers (all 227); v1.3 covers its 4 continuing names."""
+    for key, tickers in (("v13", V13_TICKERS),
+                         ("batch2", list(all_tickers))):
         got = results[key].get("tickers", {})
         for t in tickers:
             if t not in got:
@@ -395,14 +521,20 @@ def gate_engine_outputs(results, stored_results):
 def merge_results(v13_results, batch2_results, as_of, price_date):
     """Merged site results: top-level EXACTLY as v1.3's output (engine
     string, locked_set, capm_crosscheck, weights, ladder_ratios), tickers
-    = v1.3's 5 + batch2's 8. as_of / price_date overridden to the refresh.
-    The frozen engines do not emit the analyst-consensus block, so it is
-    carried through here from the frozen base inputs (deep copy, appended
-    as the last key of each ticker dict) — the same placement as the
-    one-time backfill of lib/data/results.json. No number, score, FV or
-    verdict is touched."""
+    = batch2's 227, with v1.3's 4 taking precedence over batch2's copies
+    of the same 4 names (see below). as_of / price_date overridden to
+    the refresh. The frozen engines do not emit the analyst-consensus
+    block, so it is carried through here from the frozen base inputs
+    (deep copy, appended as the last key of each ticker dict) — the same
+    placement as the one-time backfill of lib/data/results.json. No
+    number, score, FV or verdict is touched."""
     merged = copy.deepcopy(v13_results)
-    merged["tickers"] = {**v13_results["tickers"], **batch2_results["tickers"]}
+    # batch2 scores all 227, INCLUDING the 4 v1.3 names; v1.3's own output
+    # takes precedence for those 4, so their published detail text stays
+    # exactly as the v1.3 engine produces it. Values are identical either
+    # way (Phase 1 regression: driver vs v1.3 value diffs none), but the
+    # sensitivity-grid note wording differs between the engines.
+    merged["tickers"] = {**batch2_results["tickers"], **v13_results["tickers"]}
     merged["as_of"] = as_of
     merged["price_date"] = price_date
     base = load_json(BASE_INPUTS)
@@ -415,16 +547,18 @@ def merge_results(v13_results, batch2_results, as_of, price_date):
 def cmd_dry_run(as_of):
     base = load_json(BASE_INPUTS)
     stored = load_json(SITE_RESULTS)
+    all_tickers = live_tickers(base, stored)
     inputs = split_inputs(base["tickers"], base["as_of"], base["price_date"])
     print(f"dry run: re-running both frozen engines on base inputs "
-          f"(as of {base['price_date']} close), no fetching")
-    results = run_engines_staged(inputs)
+          f"(as of {base['price_date']} close), no fetching; "
+          f"{len(all_tickers)} tickers")
+    results = run_engines_staged(inputs, all_tickers)
     merged = merge_results(results["v13"], results["batch2"],
                            stored["as_of"], stored["price_date"])
     print(f"\n{'ticker':<7} {'FV new':>10} {'FV stored':>10} "
           f"{'score new':>10} {'score stored':>12} {'verdict':>8}  result")
     n_pass = 0
-    for t in ALL_TICKERS:
+    for t in all_tickers:
         new = merged["tickers"][t]
         old = stored["tickers"][t]
         ok = (new["triangulated_fv"] == old["triangulated_fv"]
@@ -434,10 +568,11 @@ def cmd_dry_run(as_of):
         print(f"{t:<7} {new['triangulated_fv']:>10.2f} {old['triangulated_fv']:>10.2f} "
               f"{new['overall_score']:>10.1f} {old['overall_score']:>12.1f} "
               f"{new['verdict']:>8}  {'PASS' if ok else 'FAIL'}")
-    print(f"\ndry run: {n_pass}/13 PASS")
-    if n_pass != len(ALL_TICKERS):
+    print(f"\ndry run: {n_pass}/{len(all_tickers)} PASS")
+    if n_pass != len(all_tickers):
         fail("dry run: merged output does NOT reproduce lib/data/results.json")
-    print("dry run: OK — engines reproduce all 13 FVs / scores / verdicts exactly")
+    print(f"dry run: OK — engines reproduce all {len(all_tickers)} FVs / "
+          f"scores / verdicts exactly")
     return 0
 
 
@@ -449,11 +584,12 @@ TECH_FIELDS = ["ema20", "ema50", "ema200", "rsi14", "macd_line",
 
 def cmd_check_technicals():
     base = load_json(BASE_INPUTS)
+    all_tickers = load_all_tickers()
     print("check-technicals: fetching 1y history ending 2026-11-13 "
           "(end=2026-11-14) and recomputing technicals with the exact "
           "fetch_inputs.py formulas; comparing vs stored Nov-13 technicals")
     n_match = n_total = 0
-    for t in ALL_TICKERS:
+    for t in all_tickers:
         hist = fetch_history(t, end="2026-11-14")
         close = hist["Close"]
         first, last = hist.index[0].date(), hist.index[-1].date()
@@ -485,6 +621,7 @@ def cmd_check_technicals():
 def cmd_live(as_of_arg):
     base = load_json(BASE_INPUTS)
     stored = load_json(SITE_RESULTS)
+    all_tickers = live_tickers(base, stored)
     today_utc = datetime.date.today().isoformat()  # UTC date on this machine
     if as_of_arg:
         as_of = as_of_arg
@@ -493,12 +630,13 @@ def cmd_live(as_of_arg):
     else:
         as_of = today_utc
         end = None
-    print(f"live refresh: as_of={as_of} (end={end or 'latest'})")
+    print(f"live refresh: as_of={as_of} (end={end or 'latest'}); "
+          f"{len(all_tickers)} tickers")
 
     # 1. Fetch + recompute everything IN MEMORY (no writes yet).
     new_tickers = {}
     bar_dates = set()
-    for t in ALL_TICKERS:
+    for t in all_tickers:
         print(f"  fetching {t} ...")
         hist = fetch_history(t, end=end)
         hist = drop_intraday_bar(hist)
@@ -523,8 +661,8 @@ def cmd_live(as_of_arg):
 
     # 2. Run both engines staged; gate their outputs.
     inputs = split_inputs(new_tickers, as_of, price_date)
-    results = run_engines_staged(inputs)
-    gate_engine_outputs(results, stored)
+    results = run_engines_staged(inputs, all_tickers)
+    gate_engine_outputs(results, stored, all_tickers)
     merged = merge_results(results["v13"], results["batch2"], as_of, price_date)
 
     # 3. Per-ticker summary + CHANGED flag (computed BEFORE any write, so
@@ -534,7 +672,7 @@ def cmd_live(as_of_arg):
           f"{'verdict old->new':>20}")
     changed_tickers = False
     flips = []
-    for t in ALL_TICKERS:
+    for t in all_tickers:
         old, new = stored["tickers"][t], merged["tickers"][t]
         p_ch = old["price"] != new["price"]
         f_ch = old["triangulated_fv"] != new["triangulated_fv"]

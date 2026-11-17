@@ -497,6 +497,10 @@ tr.gap-above td {
 .search-results {
   list-style: none;
   margin: 0 0 12px;
+  /* Prefix matches can return dozens of rows at 227 names — keep the
+     dropdown to roughly ten rows and scroll the rest. */
+  max-height: 460px;
+  overflow-y: auto;
 }
 .search-results li {
   margin: 0;

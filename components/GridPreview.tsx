@@ -7,11 +7,12 @@ import SensitivityGrid from '@/components/SensitivityGrid'
 
 /**
  * Homepage fair-value grid preview. A native <select> picks one of the
- * thirteen scored tickers (default NVDA) and renders that ticker's DCF
+ * 227 scored tickers (default NVDA) and renders that ticker's DCF
  * sensitivity grid with the same click-to-compare behaviour as the stock
  * page. All grid values come from lib/data (results.json) — nothing is
- * hardcoded here. For NVO and JPM the DCF leg is skipped, so
- * SensitivityGrid renders its own skipped note (values is null).
+ * hardcoded here. Every published name has a computed DCF leg, so the grid
+ * always renders; SensitivityGrid still renders its own skipped note if a
+ * leg were ever skipped.
  */
 export default function GridPreview() {
   const [symbol, setSymbol] = useState('NVDA')

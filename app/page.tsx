@@ -23,7 +23,7 @@ export default function HomePage() {
         three independent legs — and shows you every number, so you can check the work yourself.
       </p>
 
-      <Card title="Popular tickers">
+      <Card title="All scored tickers">
         <table>
           <thead>
             <StockTableHead />
@@ -37,9 +37,9 @@ export default function HomePage() {
           </tbody>
         </table>
         <p className="footnote">
-          Thirteen names are scored so far — {TICKER_SYMBOLS.join(', ')}. Prices are the{' '}
-          {PRICE_DATE} close. The scored universe expands as more names are run through the
-          engine; no score is ever guessed for an unscored ticker.
+          {TICKER_SYMBOLS.length} names are scored so far — use the search above to find any
+          of them. Prices are the {PRICE_DATE} close. The scored universe expands as more
+          names are run through the engine; no score is ever guessed for an unscored ticker.
         </p>
       </Card>
 

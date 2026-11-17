@@ -6,7 +6,7 @@ import { Card, StockRow, StockTableHead } from '@/components/ui'
 export const metadata: Metadata = {
   title: 'Trending',
   description:
-    'Trending on The Stock Check: an interim list of the thirteen currently scored names while the trending formula is still being locked. No hidden ranking inputs.',
+    'Trending on The Stock Check: an interim list of the 227 currently scored names while the trending formula is still being locked. No hidden ranking inputs.',
 }
 
 export default function TrendingPage() {
@@ -24,12 +24,12 @@ export default function TrendingPage() {
         and the criteria it uses — and the full ranking launches when the formula is locked.
       </div>
 
-      <Card title="Interim list — the thirteen currently scored names">
+      <Card title={`Interim list — the ${TICKER_SYMBOLS.length} currently scored names`}>
         <p>
-          Interim criteria, in full: this list is the thirteen names currently scored by engine v1.3,
-          shown with verdict, overall score, price, fair value and upside. There are no hidden
-          ranking inputs — no undisclosed score, no weighting, no ordering beyond the scored
-          universe itself.
+          Interim criteria, in full: this list is the {TICKER_SYMBOLS.length} names currently
+          scored by engine v1.3, shown with verdict, overall score, price, fair value and
+          upside. There are no hidden ranking inputs — no undisclosed score, no weighting, no
+          ordering beyond the scored universe itself.
         </p>
         <table>
           <thead>
@@ -60,7 +60,7 @@ export default function TrendingPage() {
           When the trending formula is locked, this page will print the formula in full, the same
           way the scoring methodology is published — including what counts, how much it counts,
           and what does not count. Until then, this interim list is the whole of the Trending
-          page: thirteen scored names, nothing ranked behind the scenes.
+          page: {TICKER_SYMBOLS.length} scored names, nothing ranked behind the scenes.
         </p>
         <p className="footnote">
           Trending is research, not a recommendation. Nothing on this page is investment advice.

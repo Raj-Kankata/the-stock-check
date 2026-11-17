@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import {
   RESULTS,
+  TICKER_SYMBOLS,
   getTicker,
   money,
   pct,
@@ -26,16 +27,16 @@ import {
 } from '@/components/ui'
 import SensitivityGrid from '@/components/SensitivityGrid'
 
-const SYMBOLS = ['NVDA', 'AAPL', 'MSFT', 'GOOGL', 'NVO', 'AMZN', 'META', 'TSLA', 'AVGO', 'BRK-B', 'LLY', 'JPM', 'V'] as const
-
+// Static export: one page per scored ticker, taken from results.json so
+// the generated set can never drift from the data. With `output: 'export'`
+// only these paths are generated; any other /stock/<ticker> URL 404s,
+// which is the same behaviour as before.
 export function generateStaticParams() {
-  return SYMBOLS.map((ticker) => ({ ticker }))
+  return TICKER_SYMBOLS.map((ticker) => ({ ticker }))
 }
 
 // NOTE: `export const dynamicParams = false` was removed — it is not
-// compatible with Next 16's Cache Components. With `output: 'export'`
-// the static export only generates the thirteen generateStaticParams paths;
-// any other /stock/<ticker> URL 404s, which is the same behaviour.
+// compatible with Next 16's Cache Components.
 
 export async function generateMetadata({
   params,
@@ -240,22 +241,41 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   const priceDate = RESULTS.price_date
 
   // (9) Us vs Wall Street — all figures from the stored data only.
-  const analysts = t.analysts
+  // The analysts block is optional: a name that carries no consensus
+  // target renders the section as "not published" (see below) instead of
+  // crashing or showing a guessed target. All 227 names in this build do
+  // carry a complete block; the guard is for a future refresh that drops
+  // one.
+  const analysts = t.analysts ?? null
   const ourUpside = (t.triangulated_fv - t.price) / t.price
-  const consensusUpside = (analysts.target_mean - t.price) / t.price
-  const gapVsConsensus = t.triangulated_fv - analysts.target_mean
-  const gapVsConsensusPct = gapVsConsensus / analysts.target_mean
-  const closest = closestLegToTarget(legs, analysts.target_mean)
+  const vsWallStreet =
+    analysts === null
+      ? null
+      : {
+          targetMean: analysts.target_mean,
+          targetLow: analysts.target_low,
+          targetHigh: analysts.target_high,
+          nOpinions: analysts.n_opinions,
+          consensusUpside: (analysts.target_mean - t.price) / t.price,
+          gap: t.triangulated_fv - analysts.target_mean,
+          gapPct: (t.triangulated_fv - analysts.target_mean) / analysts.target_mean,
+          closest: closestLegToTarget(legs, analysts.target_mean),
+        }
   // Rule: a leg "explains" the gap only if it sits within 10% of the
   // consensus mean. Otherwise the gap is not explained by the legs — the
   // line says so and names the two numbers instead of inventing a reason.
-  const gapExplained = closest !== null && closest.distancePct <= 0.1
+  const gapExplained =
+    vsWallStreet !== null &&
+    vsWallStreet.closest !== null &&
+    vsWallStreet.closest.distancePct <= 0.1
   const gapLine =
-    closest === null
-      ? `No valuation leg is available, so the gap between our ${money(t.triangulated_fv)} fair value and the ${money(analysts.target_mean)} consensus mean is not explained by the legs.`
-      : gapExplained
-        ? `Closest leg: ${closest.name} at ${money(closest.value)} (${closest.driver}) — within ${pct(closest.distancePct, 1, false)} of the ${money(analysts.target_mean)} consensus mean. The rest of the gap is triangulation: our fair value is the ${val.fv_method ?? 'triangulation of the legs'}.`
-        : `No leg explains the gap: the closest leg, ${closest.name} at ${money(closest.value)} (${closest.driver}), is still ${pct(closest.distancePct, 1, false)} from the ${money(analysts.target_mean)} consensus mean, while our fair value is ${money(t.triangulated_fv)} — the gap is not explained by the legs.`
+    vsWallStreet === null
+      ? `No analyst consensus target is published for this name in this build, so there is no Wall Street figure to compare our ${money(t.triangulated_fv)} fair value against — and none is guessed.`
+      : vsWallStreet.closest === null
+        ? `No valuation leg is available, so the gap between our ${money(t.triangulated_fv)} fair value and the ${money(vsWallStreet.targetMean)} consensus mean is not explained by the legs.`
+        : gapExplained
+          ? `Closest leg: ${vsWallStreet.closest.name} at ${money(vsWallStreet.closest.value)} (${vsWallStreet.closest.driver}) — within ${pct(vsWallStreet.closest.distancePct, 1, false)} of the ${money(vsWallStreet.targetMean)} consensus mean. The rest of the gap is triangulation: our fair value is the ${val.fv_method ?? 'triangulation of the legs'}.`
+          : `No leg explains the gap: the closest leg, ${vsWallStreet.closest.name} at ${money(vsWallStreet.closest.value)} (${vsWallStreet.closest.driver}), is still ${pct(vsWallStreet.closest.distancePct, 1, false)} from the ${money(vsWallStreet.targetMean)} consensus mean, while our fair value is ${money(t.triangulated_fv)} — the gap is not explained by the legs.`
 
   return (
     <div>
@@ -411,13 +431,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             how="Next-year analyst earnings per share × the sector's forward P/E from FactSet (refreshed quarterly, capped at 35× and floored at 10×), then discounted 10% for one year. If the sector figure is missing, the fallback is the S&P 500 forward P/E, and then a legacy 22× as a flagged last resort."
           />
         </LegBlock>
-        {symbol === 'NVO' && (
-          <div className="callout">
-            <strong>DCF leg skipped — DKK basis unverified.</strong> The fair value is the
-            mean of the two available legs (PEGY and Forward-sector), as flagged in the
-            engine data. The valuation rests on fewer legs than the other names here.
-          </div>
-        )}
       </Card>
 
       {/* (4) Ladder */}
@@ -501,22 +514,11 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             figures are the ones used for Quality and the PEGY leg.
           </div>
         )}
-        {symbol === 'NVO' && (
-          <div className="callout">
-            <strong>ONEOFF-v1 adjustment — shown both ways.</strong> Q1 2026 net profit
-            DKK 48,557M includes a DKK 26,760M non-cash reversal of a provision for US
-            340B sales rebates. Adjusted TTM net income DKK 94,099M, adjusted EPS $3.29,
-            adjusted trailing P/E 12.64 — the adjusted figures are the ones used for
-            Quality and the PEGY leg. ADR: financials are reported in DKK and the
-            per-share USD free-cash-flow basis is not verified, which is why the DCF leg
-            is skipped.
-          </div>
-        )}
-        {symbol !== 'GOOGL' && symbol !== 'NVO' && (() => {
+        {symbol !== 'GOOGL' && (() => {
           // Generic ONEOFF callout: a flag that records an applied
           // ONEOFF-v1 adjustment carries "Adjusted TTM NI" (flag-only
-          // near-misses and no-adjustment notes do not). GOOGL/NVO keep
-          // their curated callouts above.
+          // near-misses and no-adjustment notes do not). GOOGL keeps
+          // its curated callout above.
           const oneoffFlag = t.flags?.find(
             (f) => f.includes('ONEOFF-v1') && /adjusted TTM NI/i.test(f),
           )
@@ -550,65 +552,75 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
 
       {/* (9) Us vs Wall Street */}
       <Card title="Us vs Wall Street">
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>The Stock Check (ours)</th>
-              <th>Wall Street (analyst consensus)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Fair value / mean target</td>
-              <td>{money(t.triangulated_fv)}</td>
-              <td>{money(analysts.target_mean)}</td>
-            </tr>
-            <tr>
-              <td>Implied upside vs price</td>
-              <td>{signedPctSpan(ourUpside)}</td>
-              <td>{signedPctSpan(consensusUpside)}</td>
-            </tr>
-            <tr>
-              <td>Target range (low – high)</td>
-              <td>—</td>
-              <td>
-                {money(analysts.target_low)} – {money(analysts.target_high)}
-              </td>
-            </tr>
-            <tr>
-              <td>Analysts covering</td>
-              <td>—</td>
-              <td>{analysts.n_opinions}</td>
-            </tr>
-            <tr
-              className={
-                gapVsConsensus < 0 ? 'gap-below' : gapVsConsensus > 0 ? 'gap-above' : undefined
-              }
-            >
-              <td>Gap, ours − consensus mean</td>
-              <td colSpan={2}>
-                {signedSpan(
-                  gapVsConsensusPct,
-                  `${gapVsConsensus < 0 ? '−' : '+'}${money(Math.abs(gapVsConsensus))} (${pct(gapVsConsensusPct)})`,
-                  0.001,
-                )}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <h3>Why the gap?</h3>
-        <p>{gapLine}</p>
-        <MetricNote
-          anchor="us-vs-wall-street"
-          what="Our fair value next to Wall Street's — the average (mean) of the price targets published by the analysts who cover the stock, with the range of their targets and how many of them there are."
-          how="The consensus mean, low, high and analyst count come from Yahoo Finance analyst targets, fetched 15–16 Nov 2026 and carried through unchanged; the nightly refresh updates the price only. The gap is our fair value minus the consensus mean. The 'Why the gap?' line checks whether any of our three legs sits within 10% of the consensus mean — if one does, it names it; if none does, it says so plainly instead of inventing a reason."
-        />
-        <p className="footnote">
-          Analyst consensus: Yahoo Finance analyst targets, fetched 15–16 Nov 2026.
-          Targets are carried through unchanged from that frozen fetch; the nightly
-          refresh updates price only.
-        </p>
+        {vsWallStreet === null ? (
+          <p>{gapLine}</p>
+        ) : (
+          <>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>The Stock Check (ours)</th>
+                  <th>Wall Street (analyst consensus)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Fair value / mean target</td>
+                  <td>{money(t.triangulated_fv)}</td>
+                  <td>{money(vsWallStreet.targetMean)}</td>
+                </tr>
+                <tr>
+                  <td>Implied upside vs price</td>
+                  <td>{signedPctSpan(ourUpside)}</td>
+                  <td>{signedPctSpan(vsWallStreet.consensusUpside)}</td>
+                </tr>
+                <tr>
+                  <td>Target range (low – high)</td>
+                  <td>—</td>
+                  <td>
+                    {money(vsWallStreet.targetLow)} – {money(vsWallStreet.targetHigh)}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Analysts covering</td>
+                  <td>—</td>
+                  <td>{vsWallStreet.nOpinions}</td>
+                </tr>
+                <tr
+                  className={
+                    vsWallStreet.gap < 0
+                      ? 'gap-below'
+                      : vsWallStreet.gap > 0
+                        ? 'gap-above'
+                        : undefined
+                  }
+                >
+                  <td>Gap, ours − consensus mean</td>
+                  <td colSpan={2}>
+                    {signedSpan(
+                      vsWallStreet.gapPct,
+                      `${vsWallStreet.gap < 0 ? '−' : '+'}${money(Math.abs(vsWallStreet.gap))} (${pct(vsWallStreet.gapPct)})`,
+                      0.001,
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Why the gap?</h3>
+            <p>{gapLine}</p>
+            <MetricNote
+              anchor="us-vs-wall-street"
+              what="Our fair value next to Wall Street's — the average (mean) of the price targets published by the analysts who cover the stock, with the range of their targets and how many of them there are."
+              how="The consensus mean, low, high and analyst count come from Yahoo Finance analyst targets, fetched 15–16 Nov 2026 and carried through unchanged; the nightly refresh updates the price only. The gap is our fair value minus the consensus mean. The 'Why the gap?' line checks whether any of our three legs sits within 10% of the consensus mean — if one does, it names it; if none does, it says so plainly instead of inventing a reason."
+            />
+            <p className="footnote">
+              Analyst consensus: Yahoo Finance analyst targets, fetched 15–16 Nov 2026.
+              Targets are carried through unchanged from that frozen fetch; the nightly
+              refresh updates price only.
+            </p>
+          </>
+        )}
       </Card>
 
       {/* (10) Flags */}

@@ -83,7 +83,8 @@ export default function PerformancePage() {
         <p className="footnote">
           No later close exists in this build&apos;s data, so no return figure is published here.
           The first performance print comes after the next close, measured from these frozen entry
-          prices.
+          prices. NVO was published as a pick on 13 Nov 2026 (entry $41.63) and removed from
+          tracking when its card was unpublished under the three-leg-only policy.
         </p>
       </Card>
 
