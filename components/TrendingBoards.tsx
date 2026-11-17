@@ -28,7 +28,8 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Card, VerdictBadge, scoreSpan, signedSpan } from '@/components/ui'
-import { money, type TickerData } from '@/lib/data'
+import { money } from '@/lib/format'
+import type { Verdict } from '@/lib/public-types'
 import {
   formatCtTime,
   isMarketHours,
@@ -39,7 +40,7 @@ import {
 export interface TrendingStockMeta {
   symbol: string
   name: string
-  verdict: TickerData['verdict']
+  verdict: Verdict
   score: number
 }
 

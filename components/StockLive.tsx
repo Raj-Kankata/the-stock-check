@@ -21,7 +21,7 @@
 'use client'
 
 import { LadderTable, signedPctSpan } from '@/components/ui'
-import { money, pct } from '@/lib/data'
+import { money, pct } from '@/lib/format'
 import { liveCloseFor, useLiveQuotes } from '@/lib/tradingview'
 
 /** Headline price in the page intro. Baked text until the store is live. */

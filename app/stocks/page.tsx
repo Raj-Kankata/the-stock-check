@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import StockBrowser from '@/components/StockBrowser'
+import { RESULTS } from '@/lib/data'
+import { allPublicRows } from '@/lib/public'
 
 export const metadata: Metadata = {
   title: 'All Stocks',
@@ -18,7 +20,7 @@ export default function StocksPage() {
         the header to jump to a single stock&apos;s full card.
       </p>
 
-      <StockBrowser />
+      <StockBrowser rows={allPublicRows()} priceDate={RESULTS.price_date} />
     </>
   )
 }

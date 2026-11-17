@@ -10,7 +10,7 @@
 'use client'
 
 import Link from 'next/link'
-import { money } from '@/lib/data'
+import { money } from '@/lib/format'
 import { Card, signedPctSpan } from '@/components/ui'
 import { hasLiveQuotes, liveCloseFor, useLiveQuotes } from '@/lib/tradingview'
 

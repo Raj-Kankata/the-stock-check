@@ -1,12 +1,11 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { RESULTS, TICKER_SYMBOLS, getTicker, type TickerData } from '@/lib/data'
+import type { PublicRow, Verdict } from '@/lib/public-types'
 import { Card, StockRow, StockTableHead } from '@/components/ui'
 import { LiveStatusLine } from '@/components/LivePrice'
 import { hasLiveQuotes, liveCloseFor, useLiveQuotes } from '@/lib/tradingview'
 
-type Verdict = TickerData['verdict']
 type SortKey = 'score' | 'upside' | 'price' | 'fv' | 'ticker'
 type BetaBand = 'All' | 'lt1' | '1-1.5' | 'gt1.5'
 type PeBand = 'All' | 'lt15' | '15-25' | '25-40' | 'gt40'
@@ -32,10 +31,13 @@ const SORT_LABELS: Record<SortKey, string> = {
   ticker: 'Ticker (A to Z)',
 }
 
-interface Row extends TickerData {
-  symbol: string
-  upside: number
-}
+/**
+ * Rows arrive as props from the /stocks page at build time — display
+ * values only (symbol, name, sector, price, fair value, verdict,
+ * score, beta, P/E, debt/FCF, market cap, rel. vol, index
+ * membership). This component never imports the full results data.
+ */
+type Row = PublicRow & { upside: number }
 
 interface Filters {
   verdict: Verdict | 'All'
@@ -65,49 +67,19 @@ const DEFAULT_FILTERS: Filters = {
   index: 'All',
 }
 
-/**
- * All 227 scored rows, built once from the same data the header search
- * ships to the client — no new bundle concern.
- */
-const ALL_ROWS: Row[] = TICKER_SYMBOLS.map((symbol) => {
-  const t = getTicker(symbol)
-  if (!t) throw new Error(`Missing ticker data for ${symbol}`)
-  return {
-    ...t,
-    symbol,
-    upside: t.price > 0 ? (t.triangulated_fv - t.price) / t.price : 0,
-  }
-})
-
-const VERDICT_COUNTS: Record<Verdict, number> = {
-  Growth: 0,
-  Value: 0,
-  Watch: 0,
-  Avoid: 0,
-}
-for (const r of ALL_ROWS) VERDICT_COUNTS[r.verdict] += 1
-
-const UNDERFV_COUNT = ALL_ROWS.filter((r) => r.price < r.triangulated_fv).length
-
 /** Six-filter band matchers. Every band is null-safe: a null source value
     never matches a band (it is excluded when a band is selected) and is
     shown normally when no band is selected. Band edges are inclusive on
     the upper end, matching the verified counts below. */
-function betaOf(r: Row): number | null {
-  return r.pillars.valuation.detail.dcf_capm_crosscheck?.beta_raw ?? null
-}
-function peOf(r: Row): number | null {
-  return r.pillars.valuation.detail.legs?.pegy?.pe_used ?? null
-}
 function matchesBeta(r: Row, band: BetaBand): boolean {
-  const v = betaOf(r)
+  const v = r.beta
   if (v === null) return false
   if (band === 'lt1') return v < 1
   if (band === '1-1.5') return v >= 1 && v <= 1.5
   return v > 1.5
 }
 function matchesPe(r: Row, band: PeBand): boolean {
-  const v = peOf(r)
+  const v = r.pe
   if (v === null) return false
   if (band === 'lt15') return v < 15
   if (band === '15-25') return v >= 15 && v <= 25
@@ -135,22 +107,6 @@ function matchesRelVol(r: Row, band: RelVolBand): boolean {
   if (band === '0.8-1.5') return v >= 0.8 && v <= 1.5
   if (band === '1.5-2') return v > 1.5 && v <= 2
   return v > 2
-}
-
-/** Live band counts, computed from the same rows the table renders. */
-const BETA_COUNTS: Record<BetaBand, number> = { All: ALL_ROWS.length, lt1: 0, '1-1.5': 0, 'gt1.5': 0 }
-const PE_COUNTS: Record<PeBand, number> = { All: ALL_ROWS.length, lt15: 0, '15-25': 0, '25-40': 0, gt40: 0 }
-const DEBTFCF_COUNTS: Record<DebtFcfBand, number> = { All: ALL_ROWS.length, lt1: 0, '1-3': 0, gt3: 0 }
-const MCAP_COUNTS: Record<McapBand, number> = { All: ALL_ROWS.length, gt100b: 0, '10-100b': 0, lt10b: 0 }
-const RELVOL_COUNTS: Record<RelVolBand, number> = { All: ALL_ROWS.length, 'lt0.8': 0, '0.8-1.5': 0, '1.5-2': 0, gt2: 0 }
-const INDEX_COUNTS: Record<IndexFilter, number> = { All: ALL_ROWS.length, SP500: 0, NASDAQ100: 0, DOW30: 0 }
-for (const r of ALL_ROWS) {
-  for (const b of BETA_BANDS) if (matchesBeta(r, b)) BETA_COUNTS[b] += 1
-  for (const b of PE_BANDS) if (matchesPe(r, b)) PE_COUNTS[b] += 1
-  for (const b of DEBTFCF_BANDS) if (matchesDebtFcf(r, b)) DEBTFCF_COUNTS[b] += 1
-  for (const b of MCAP_BANDS) if (matchesMcap(r, b)) MCAP_COUNTS[b] += 1
-  for (const b of RELVOL_BANDS) if (matchesRelVol(r, b)) RELVOL_COUNTS[b] += 1
-  for (const idx of INDEX_VALUES) if ((r.indexes ?? []).includes(idx)) INDEX_COUNTS[idx] += 1
 }
 
 const BETA_LABELS: Record<BetaBand, string> = {
@@ -192,16 +148,6 @@ const INDEX_LABELS: Record<IndexFilter, string> = {
   DOW30: 'Dow Jones',
 }
 
-/** Sectors with live counts, most names first. */
-const SECTOR_COUNTS: { sector: string; count: number }[] = (() => {
-  const counts = new Map<string, number>()
-  for (const r of ALL_ROWS) counts.set(r.sector, (counts.get(r.sector) ?? 0) + 1)
-  return [...counts.entries()]
-    .map(([sector, count]) => ({ sector, count }))
-    .sort((a, b) => b.count - a.count || a.sector.localeCompare(b.sector))
-})()
-const SECTORS = new Set(SECTOR_COUNTS.map((s) => s.sector))
-
 function sortRows(rows: Row[], sort: SortKey): Row[] {
   const bySymbol = (a: Row, b: Row) => a.symbol.localeCompare(b.symbol)
   const sorted = [...rows]
@@ -216,7 +162,7 @@ function sortRows(rows: Row[], sort: SortKey): Row[] {
       sorted.sort((a, b) => b.price - a.price || bySymbol(a, b))
       break
     case 'fv':
-      sorted.sort((a, b) => b.triangulated_fv - a.triangulated_fv || bySymbol(a, b))
+      sorted.sort((a, b) => b.fv - a.fv || bySymbol(a, b))
       break
     case 'ticker':
       sorted.sort(bySymbol)
@@ -234,13 +180,13 @@ function sortRows(rows: Row[], sort: SortKey): Row[] {
  * lt10b}, relvol ∈ {lt0.8, 0.8-1.5, 1.5-2, gt2}, index ∈ {SP500,
  * NASDAQ100, DOW30}. Anything unknown is ignored.
  */
-function parseParams(search: string): Filters {
+function parseParams(search: string, sectors: Set<string>): Filters {
   const params = new URLSearchParams(search)
   const f: Filters = { ...DEFAULT_FILTERS }
   const verdict = params.get('verdict')
   if (verdict && (VERDICTS as string[]).includes(verdict)) f.verdict = verdict as Verdict
   const sector = params.get('sector')
-  if (sector && SECTORS.has(sector)) f.sector = sector
+  if (sector && sectors.has(sector)) f.sector = sector
   const sort = params.get('sort')
   if (sort && (SORTS as string[]).includes(sort)) f.sort = sort as SortKey
   const q = params.get('q')
@@ -277,9 +223,59 @@ function isDefault(f: Filters): boolean {
   )
 }
 
-export default function StockBrowser() {
+export default function StockBrowser({ rows, priceDate }: { rows: PublicRow[]; priceDate: string }) {
   const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS)
   const [hydrated, setHydrated] = useState(false)
+
+  // All 227 scored rows, with the baked upside attached. Counts and
+  // band tallies are computed from these rows (never from the full
+  // results data — this component never sees it).
+  const allRows: Row[] = useMemo(
+    () =>
+      rows.map((r) => ({
+        ...r,
+        upside: r.price > 0 ? (r.fv - r.price) / r.price : 0,
+      })),
+    [rows],
+  )
+
+  const stats = useMemo(() => {
+    const verdictCounts: Record<Verdict, number> = { Growth: 0, Value: 0, Watch: 0, Avoid: 0 }
+    for (const r of allRows) verdictCounts[r.verdict] += 1
+    const underFvCount = allRows.filter((r) => r.price < r.fv).length
+    const betaCounts: Record<BetaBand, number> = { All: allRows.length, lt1: 0, '1-1.5': 0, 'gt1.5': 0 }
+    const peCounts: Record<PeBand, number> = { All: allRows.length, lt15: 0, '15-25': 0, '25-40': 0, gt40: 0 }
+    const debtFcfCounts: Record<DebtFcfBand, number> = { All: allRows.length, lt1: 0, '1-3': 0, gt3: 0 }
+    const mcapCounts: Record<McapBand, number> = { All: allRows.length, gt100b: 0, '10-100b': 0, lt10b: 0 }
+    const relVolCounts: Record<RelVolBand, number> = { All: allRows.length, 'lt0.8': 0, '0.8-1.5': 0, '1.5-2': 0, gt2: 0 }
+    const indexCounts: Record<IndexFilter, number> = { All: allRows.length, SP500: 0, NASDAQ100: 0, DOW30: 0 }
+    for (const r of allRows) {
+      for (const b of BETA_BANDS) if (matchesBeta(r, b)) betaCounts[b] += 1
+      for (const b of PE_BANDS) if (matchesPe(r, b)) peCounts[b] += 1
+      for (const b of DEBTFCF_BANDS) if (matchesDebtFcf(r, b)) debtFcfCounts[b] += 1
+      for (const b of MCAP_BANDS) if (matchesMcap(r, b)) mcapCounts[b] += 1
+      for (const b of RELVOL_BANDS) if (matchesRelVol(r, b)) relVolCounts[b] += 1
+      for (const idx of INDEX_VALUES) if ((r.indexes ?? []).includes(idx)) indexCounts[idx] += 1
+    }
+    /** Sectors with live counts, most names first. */
+    const sectorMap = new Map<string, number>()
+    for (const r of allRows) sectorMap.set(r.sector, (sectorMap.get(r.sector) ?? 0) + 1)
+    const sectorCounts = [...sectorMap.entries()]
+      .map(([sector, count]) => ({ sector, count }))
+      .sort((a, b) => b.count - a.count || a.sector.localeCompare(b.sector))
+    return {
+      verdictCounts,
+      underFvCount,
+      betaCounts,
+      peCounts,
+      debtFcfCounts,
+      mcapCounts,
+      relVolCounts,
+      indexCounts,
+      sectorCounts,
+      sectors: new Set(sectorCounts.map((s) => s.sector)),
+    }
+  }, [allRows])
 
   // Live prices from the shared store (one scan per poll per page —
   // see lib/tradingview.ts). While live, the Price and Upside cells,
@@ -291,13 +287,12 @@ export default function StockBrowser() {
     liveNow ? liveCloseFor(live, symbol) : null
   const effPrice = (r: Row): number => livePrice(r.symbol) ?? r.price
   const effUpside = (r: Row): number =>
-    effPrice(r) > 0 ? (r.triangulated_fv - effPrice(r)) / effPrice(r) : 0
+    effPrice(r) > 0 ? (r.fv - effPrice(r)) / effPrice(r) : 0
   const underFvCount = useMemo(
     () =>
       liveNow
-        ? ALL_ROWS.filter((r) => (liveCloseFor(live, r.symbol) ?? r.price) < r.triangulated_fv)
-            .length
-        : UNDERFV_COUNT,
+        ? allRows.filter((r) => (liveCloseFor(live, r.symbol) ?? r.price) < r.fv).length
+        : stats.underFvCount,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [liveNow, live.quotes],
   )
@@ -307,8 +302,9 @@ export default function StockBrowser() {
   // HTML must show all 227 rows in default sort order, matching the
   // first-paint state exactly.
   useEffect(() => {
-    setFilters(parseParams(window.location.search))
+    setFilters(parseParams(window.location.search, stats.sectors))
     setHydrated(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Keep the URL shareable: reflect every filter change, without a
@@ -334,10 +330,10 @@ export default function StockBrowser() {
 
   const filtered = useMemo(() => {
     const query = filters.q.trim().toLowerCase()
-    const rows = ALL_ROWS.filter((r) => {
+    const filteredRows = allRows.filter((r) => {
       if (filters.verdict !== 'All' && r.verdict !== filters.verdict) return false
       if (filters.sector !== 'All' && r.sector !== filters.sector) return false
-      if (filters.underfv && !(effPrice(r) < r.triangulated_fv)) return false
+      if (filters.underfv && !(effPrice(r) < r.fv)) return false
       if (filters.beta !== 'All' && !matchesBeta(r, filters.beta)) return false
       if (filters.pe !== 'All' && !matchesPe(r, filters.pe)) return false
       if (filters.debtfcf !== 'All' && !matchesDebtFcf(r, filters.debtfcf)) return false
@@ -353,7 +349,7 @@ export default function StockBrowser() {
     })
     // Sort on the effective (live when live) price and upside, so the
     // upside/price sorts track the live market, not the baked close.
-    const display = rows.map((r) => ({
+    const display = filteredRows.map((r) => ({
       ...r,
       price: effPrice(r),
       upside: effUpside(r),
@@ -375,7 +371,7 @@ export default function StockBrowser() {
             aria-pressed={filters.verdict === v}
             onClick={() => setFilters({ ...filters, verdict: v })}
           >
-            {v === 'All' ? `All (${ALL_ROWS.length})` : `${v} (${VERDICT_COUNTS[v]})`}
+            {v === 'All' ? `All (${allRows.length})` : `${v} (${stats.verdictCounts[v]})`}
           </button>
         ))}
         <button
@@ -395,8 +391,8 @@ export default function StockBrowser() {
           value={filters.sector}
           onChange={(e) => setFilters({ ...filters, sector: e.target.value })}
         >
-          <option value="All">All sectors ({ALL_ROWS.length})</option>
-          {SECTOR_COUNTS.map(({ sector, count }) => (
+          <option value="All">All sectors ({allRows.length})</option>
+          {stats.sectorCounts.map(({ sector, count }) => (
             <option key={sector} value={sector}>
               {sector} ({count})
             </option>
@@ -440,7 +436,7 @@ export default function StockBrowser() {
         >
           {(['All', ...BETA_BANDS] as const).map((b) => (
             <option key={b} value={b}>
-              Beta: {BETA_LABELS[b]} ({BETA_COUNTS[b]})
+              Beta: {BETA_LABELS[b]} ({stats.betaCounts[b]})
             </option>
           ))}
         </select>
@@ -452,7 +448,7 @@ export default function StockBrowser() {
         >
           {(['All', ...PE_BANDS] as const).map((b) => (
             <option key={b} value={b}>
-              P/E: {PE_LABELS[b]} ({PE_COUNTS[b]})
+              P/E: {PE_LABELS[b]} ({stats.peCounts[b]})
             </option>
           ))}
         </select>
@@ -464,7 +460,7 @@ export default function StockBrowser() {
         >
           {(['All', ...DEBTFCF_BANDS] as const).map((b) => (
             <option key={b} value={b}>
-              Debt/FCF: {DEBTFCF_LABELS[b]} ({DEBTFCF_COUNTS[b]})
+              Debt/FCF: {DEBTFCF_LABELS[b]} ({stats.debtFcfCounts[b]})
             </option>
           ))}
         </select>
@@ -476,7 +472,7 @@ export default function StockBrowser() {
         >
           {(['All', ...MCAP_BANDS] as const).map((b) => (
             <option key={b} value={b}>
-              Market cap: {MCAP_LABELS[b]} ({MCAP_COUNTS[b]})
+              Market cap: {MCAP_LABELS[b]} ({stats.mcapCounts[b]})
             </option>
           ))}
         </select>
@@ -488,7 +484,7 @@ export default function StockBrowser() {
         >
           {(['All', ...RELVOL_BANDS] as const).map((b) => (
             <option key={b} value={b}>
-              Rel. volume: {RELVOL_LABELS[b]} ({RELVOL_COUNTS[b]})
+              Rel. volume: {RELVOL_LABELS[b]} ({stats.relVolCounts[b]})
             </option>
           ))}
         </select>
@@ -500,7 +496,7 @@ export default function StockBrowser() {
         >
           {(['All', ...INDEX_VALUES] as const).map((b) => (
             <option key={b} value={b}>
-              Index: {INDEX_LABELS[b]} ({INDEX_COUNTS[b]})
+              Index: {INDEX_LABELS[b]} ({stats.indexCounts[b]})
             </option>
           ))}
         </select>
@@ -509,15 +505,14 @@ export default function StockBrowser() {
       <p className="footnote">
         Beta as of Nov 15–16, 2026 (Yahoo) · Debt/FCF from latest annual filings · Relative
         volume as of the 2026-11-16 close · Index lists (S&P 500, Nasdaq-100,
-        Dow Jones) as of 2026-11-16, refreshed quarterly. Names with no debt/FCF figure (24) are excluded when a debt/FCF
-        band is selected.
+        Dow Jones) as of 2026-11-16, refreshed quarterly. Names with no debt/FCF figure (24) are excluded when a debt/FCF band is selected.
       </p>
 
       <p className="filter-count">
-        Showing {filtered.length} of {ALL_ROWS.length} names
+        Showing {filtered.length} of {allRows.length} names
       </p>
 
-      <LiveStatusLine priceDateLabel={RESULTS.price_date} />
+      <LiveStatusLine priceDateLabel={priceDate} />
 
       {filtered.length === 0 ? (
         <p>
@@ -540,8 +535,8 @@ export default function StockBrowser() {
       )}
 
       <p className="footnote">
-        {ALL_ROWS.length} names are scored so far — use the search above to find any of them.
-        Prices are the {RESULTS.price_date} close unless marked LIVE during market hours
+        {allRows.length} names are scored so far — use the search above to find any of them.
+        Prices are the {priceDate} close unless marked LIVE during market hours
         (quotes delayed ~15 min, TradingView). The scored universe expands as more names are run
         through the engine; no score is ever guessed for an unscored ticker.
       </p>

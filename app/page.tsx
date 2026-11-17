@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
+import { allGrids, toStockRow } from '@/lib/public'
 import { ENGINE_VERSION } from '@/lib/site'
 import {
   Card,
@@ -115,7 +116,7 @@ export default function HomePage() {
             <StockTableHead />
           </thead>
           <tbody>
-            <LiveStockRows rows={[{ ...spotlight.t, symbol: spotlight.symbol }]} />
+            <LiveStockRows rows={[toStockRow(spotlight.symbol, spotlight.t)]} />
           </tbody>
         </table>
         <p className="footnote">
@@ -164,7 +165,7 @@ export default function HomePage() {
           the headline above the grid follows your pick, and the highlighted cell is
           that stock&apos;s own published DCF value.
         </p>
-        <GridPreview />
+        <GridPreview grids={allGrids()} />
       </Card>
 
       <div className="two-col">
@@ -175,7 +176,7 @@ export default function HomePage() {
             </thead>
             <tbody>
               <LiveStockRows
-                rows={topByVerdict('Growth').map(({ symbol, t }) => ({ ...t, symbol }))}
+                rows={topByVerdict('Growth').map(({ symbol, t }) => toStockRow(symbol, t))}
               />
             </tbody>
           </table>
@@ -191,7 +192,7 @@ export default function HomePage() {
             </thead>
             <tbody>
               <LiveStockRows
-                rows={topByVerdict('Value').map(({ symbol, t }) => ({ ...t, symbol }))}
+                rows={topByVerdict('Value').map(({ symbol, t }) => toStockRow(symbol, t))}
               />
             </tbody>
           </table>
@@ -214,7 +215,7 @@ export default function HomePage() {
           </thead>
           <tbody>
             <LiveStockRows
-              rows={furthestBelowFv.map(({ symbol, t }) => ({ ...t, symbol }))}
+              rows={furthestBelowFv.map(({ symbol, t }) => toStockRow(symbol, t))}
             />
           </tbody>
         </table>

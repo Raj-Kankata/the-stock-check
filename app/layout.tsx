@@ -5,6 +5,7 @@ import Sidebar from '@/components/Sidebar'
 import SearchBox from '@/components/SearchBox'
 import MarketStrip from '@/components/MarketStrip'
 import { SITE_NAME, SITE_URL, ENGINE_VERSION } from '@/lib/site'
+import { searchIndex } from '@/lib/public'
 import { RESULTS } from '@/lib/data'
 
 export const metadata: Metadata = {
@@ -46,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
                 </span>
               </div>
               <div className="header-search">
-                <SearchBox />
+                <SearchBox entries={searchIndex()} />
               </div>
             </div>
             <MarketStrip />

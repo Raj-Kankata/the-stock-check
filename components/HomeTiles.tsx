@@ -9,7 +9,7 @@
 'use client'
 
 import Link from 'next/link'
-import { pct } from '@/lib/data'
+import { pct } from '@/lib/format'
 import { hasLiveQuotes, liveCloseFor, useLiveQuotes } from '@/lib/tradingview'
 
 export interface HomeTileFv {

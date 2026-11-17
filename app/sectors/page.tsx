@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Card, scoreSpan, signedSpan } from '@/components/ui'
 import SectorCalculator from '@/components/SectorCalculator'
 import { RESULTS } from '@/lib/data'
-import { ROTATION_FORMULAS } from '@/lib/site'
+import { ROTATION_FORMULAS } from '@/lib/site-server'
 
 export const metadata: Metadata = {
   title: 'Sector Rotation',

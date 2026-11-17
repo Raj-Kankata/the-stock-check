@@ -9,6 +9,9 @@
 // fix goes in the engine and results.json is re-copied.
 
 import resultsJson from './data/results.json'
+import { money, pct, round2, score1 } from './format'
+
+export { money, pct, round2, score1 }
 
 export interface DcfLeg {
   value: number | null
@@ -157,24 +160,4 @@ export function ladderFromFv(fv: number): { heavy: number; buy: number; fair: nu
     fair: round2(fv * r.fair),
     exit: round2(fv * r.exit),
   }
-}
-
-export function round2(n: number): number {
-  return Math.round(n * 100) / 100
-}
-
-export function money(n: number | null | undefined, digits = 2): string {
-  if (n === null || n === undefined) return '—'
-  return `$${n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits })}`
-}
-
-export function pct(n: number | null | undefined, digits = 1, signed = true): string {
-  if (n === null || n === undefined) return '—'
-  const v = n * 100
-  const sign = signed && v > 0 ? '+' : ''
-  return `${sign}${v.toFixed(digits)}%`
-}
-
-export function score1(n: number): string {
-  return n.toFixed(1)
 }

@@ -6,7 +6,7 @@ import {
   BACKTEST_V2,
   BACKTEST_WIDE,
   BACKTEST_V3_CAPM,
-} from '@/lib/site'
+} from '@/lib/site-server'
 
 export const metadata: Metadata = {
   title: 'Methodology',

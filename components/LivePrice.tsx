@@ -13,7 +13,7 @@
 'use client'
 
 import { StockRow } from '@/components/ui'
-import type { TickerData } from '@/lib/data'
+import type { PublicStockRow } from '@/lib/public-types'
 import { hasLiveQuotes, liveCloseFor, useLiveQuotes } from '@/lib/tradingview'
 
 /**
@@ -59,7 +59,7 @@ export function LiveStatusLine({ priceDateLabel }: { priceDateLabel: string }) {
 export function LiveStockRows({
   rows,
 }: {
-  rows: (TickerData & { symbol: string })[]
+  rows: PublicStockRow[]
 }) {
   const live = useLiveQuotes()
   const liveNow = hasLiveQuotes(live)

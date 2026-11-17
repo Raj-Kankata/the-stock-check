@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { money, pct } from '@/lib/data'
+import { money, pct } from '@/lib/format'
 
 /**
  * Interactive DCF sensitivity grid.

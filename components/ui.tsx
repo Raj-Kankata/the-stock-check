@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { money, pct, round2, type TickerData } from '@/lib/data'
+import { money, pct, round2 } from '@/lib/format'
+import type { PublicStockRow, Verdict } from '@/lib/public-types'
 
 /** Score colour class: green >= 70, amber 40–69, red < 40. */
 export function scoreClass(n: number): 'good' | 'mid' | 'bad' {
@@ -35,7 +36,7 @@ export function signedPctSpan(n: number, digits = 1, zeroBand = 0.001): ReactNod
   return signedSpan(n, pct(n, digits), zeroBand)
 }
 
-export function VerdictBadge({ verdict }: { verdict: TickerData['verdict'] }) {
+export function VerdictBadge({ verdict }: { verdict: Verdict }) {
   const cls = verdict === 'Growth' || verdict === 'Value' ? 'growth' : verdict === 'Avoid' ? 'avoid' : 'watch'
   return <span className={`pill ${cls}`}>{verdict}</span>
 }
@@ -98,7 +99,7 @@ export function MetricNote({ what, how, anchor, label }: { what: ReactNode; how:
 }
 
 /**
- * Price ladder. SPEC v1.1 §5: the ladder is VALUATION CONTEXT, not Buy/Exit
+ * Price ladder. The ladder is VALUATION CONTEXT, not Buy/Exit
  * instructions. That framing is printed with the ladder on every page
  * that shows it — never omit the note.
  */
@@ -170,12 +171,12 @@ export function StockRow({
   t,
   livePrice,
 }: {
-  t: TickerData & { symbol: string }
+  t: PublicStockRow
   livePrice?: number | null
 }) {
   const price = livePrice ?? t.price
   const upside =
-    t.triangulated_fv > 0 && price > 0 ? (t.triangulated_fv - price) / price : null
+    t.fv > 0 && price > 0 ? (t.fv - price) / price : null
   return (
     <tr>
       <td>
@@ -190,7 +191,7 @@ export function StockRow({
       </td>
       <td className="num">{scoreSpan(t.overall_score)}</td>
       <td className="num">{money(price)}</td>
-      <td className="num">{money(t.triangulated_fv)}</td>
+      <td className="num">{money(t.fv)}</td>
       <td className="num">{upside === null ? '—' : signedPctSpan(upside)}</td>
     </tr>
   )

@@ -12,7 +12,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { money } from '@/lib/data'
+import { money } from '@/lib/format'
 import { Card, signedPctSpan } from '@/components/ui'
 import { fetchSymbolQuote, formatCtTime, isMarketHours } from '@/lib/tradingview'
 import { BENCHMARK } from '@/lib/site'
