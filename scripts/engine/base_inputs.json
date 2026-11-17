@@ -14,14 +14,14 @@
     "googl_gain": "Alphabet Q2 2026 10-Q via web search: $99.0B unrealised gain on equity securities, $278M realised",
     "nvo_div_yield": "FinanceCharts 2026-11-09",
     "sector_multiples": "FactSet Earnings Insight, 13 Nov 2026, S&P 500 Sector-Level Forward 12-Month P/E Ratios (p.34); saved as ../recalibration/data/sector_multiples_factset_2026-11-13.csv; cross-checked vs Yardeni 14 Nov 2026, Oppenheimer/FactSet 30 Oct 2026, FactSet 5 Nov 2026",
-    "oneoff_rule": "ONEOFF-v1 \u2014 see ../recalibration/RECALIBRATION.md \u00a72 and ../recalibration/data/oneoff_cases.json; GOOGL after-tax amounts from Alphabet Q1/Q2/Q3 2026 earnings releases (SEC EDGAR); NVO adjusted figures are the company's own disclosed non-GAAP figures (Form 6-K, 6 May 2026)",
+    "oneoff_rule": "One-off check \u2014 GOOGL after-tax amounts from Alphabet Q1/Q2/Q3 2026 earnings releases (SEC EDGAR); NVO adjusted figures are the company's own disclosed non-GAAP figures (Form 6-K, 6 May 2026)",
     "capm_crosscheck": "CAPM cross-check inputs (NEW in v1.3, cross-check only \u2014 decision legs unchanged). Raw betas: Yahoo Finance info.beta via yfinance 1.8.0, fetched 2026-11-15, https://finance.yahoo.com/quote/<TICKER> (saved in data/betas_yahoo_2026-11-15.json; identical to the beta values already carried in v1.2 inputs.json). 10Y Treasury 5.10% as of 2026-11-12: FRED series DGS10, https://fred.stlouisfed.org/series/dgs10. Damodaran implied ERP 4.41% as of 2026-11-01 (Trailing 12 month, with adjusted payout): https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm. Both verified 2026-11-15; full record in data/capm_inputs_2026-11-15.json.",
     "batch2_fragments": "Batch-2 fragments gathered 2026-11-16 (yfinance 1.8.0; prices/technicals at the 2026-11-13 close; Yahoo info fields live 2026-11-16). Per-ticker provenance in fragments/<TICKER>_SOURCES.md. Key sets verified identical to the v1.3 MSFT entry (extra oneoff_adjustments key only where GOOGL/NVO carry it).",
     "batch2_capm": "CAPM block copied VERBATIM from v1.3 inputs.json (10Y 5.10% 2026-11-12, Damodaran implied ERP 4.41% 2026-11-01). Raw betas are the batch-2 fragments' own Yahoo info.beta values, fetched 2026-11-16.",
     "jpm_debt_to_equity": "JPM debt_to_equity_ratio 1.3795 computed at batch-2 assembly from the latest annual balance sheet (FY2025, 2025-12-31, Yahoo via yfinance, re-fetched 2026-11-16): Total Debt $499,982M / Stockholders Equity $362,438M. Yahoo info.debtToEquity is null for JPM. See fragments/JPM_SOURCES.md.",
     "jpm_fcf_skip": "JPM fcf_per_share_ttm set to null at batch-2 assembly (gatherer's Yahoo-row value -$30.41 retained in JPM_SOURCES.md for traceability, NOT scored). Bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row for JPM equals operating cash flow, which includes deposit/trading flows; StockAnalysis publishes no FCF for JPM. Engine uses the existing NVO skip path: FV = mean of PEGY + Forward legs.",
     "v_forward_eps_verify": "V forwardEps re-fetched live 2026-11-16 via yfinance = 17.14041, unchanged \u2014 fragment keeps Yahoo $17.14 per the v1.3 method, flagged (S&P Global consensus FY2027 EPS $15.03 differs; see fragments/V_SOURCES.md).",
-    "batch2_near_misses_unadjusted": "AMZN Q1'26, META Q3'26 and JPM Q2'26 ONEOFF-v1 T1 near-misses stay UNADJUSTED per the frozen rule (flagged only). BRK-B keeps the Yahoo-method revenue CAGR (EDGAR operating-revenue alternative 7.14% flagged)."
+    "batch2_near_misses_unadjusted": "AMZN Q1'26, META Q3'26 and JPM Q2'26 one-off near-misses stay UNADJUSTED per the rule (flagged only). BRK-B keeps the Yahoo-method revenue CAGR (EDGAR operating-revenue alternative 7.14% flagged)."
   },
   "discarded_yahoo_fields": {
     "info.freeCashflow": "Stale/wrong (NVDA $41.8B, MSFT $3.0B, GOOGL -$1.2B vs computed TTM $127.0B/$60.0B/$19.7B). Recomputed from quarterly cashflow instead.",
@@ -275,7 +275,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 63.625,
       "market_cap": 2772560986.7,
@@ -497,7 +497,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebtAndCapitalLeaseObligations + LTD current + ShortTermBorrowings @2025-12-31; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.2556,
       "market_cap": 525163555817.69,
@@ -609,7 +609,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.6527,
       "market_cap": 190355417952.56,
@@ -721,7 +721,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.1656,
       "market_cap": 3239839653.26,
@@ -1169,7 +1169,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.305,
       "market_cap": 56240627070.42,
@@ -1282,7 +1282,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.3834,
       "market_cap": 15436435780.95,
@@ -1394,7 +1394,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 1495883298.1,
@@ -1504,7 +1504,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.1617,
       "market_cap": 296495984323.5,
@@ -1617,7 +1617,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.3054,
       "market_cap": 884565900092.88,
@@ -1730,7 +1730,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 9056417249.1,
@@ -1840,7 +1840,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.3696,
       "market_cap": 1501845090.98,
@@ -1938,8 +1938,8 @@
         "proxy_note": null
       },
       "flags": [
-        "ONEOFF-v1: T1 FIRED on Q2 2026 only (NI $62,647M, +244.9% YoY and +176.0% vs prior-4Q mean; both absolute deviations > 10% of TTM NI $13,478M). Adjusted TTM NI $92,581M, adjusted EPS $8.50, adjusted trailing P/E 31.38 used for Quality/PEGT. The gain did not flow through revenue or OCF, so revenue TTM and FCF/share are unchanged.",
-        "ONEOFF-v1 near-miss (NO adjustment, per rule): Q1 2026 NI $30,255M (+76.7% YoY, +55.8% vs prior-4Q mean) includes a company-disclosed $16.8B pre-tax Anthropic gain (Q1 2026 earnings release, 29 Apr 2026), but BOTH absolute deviations ($13,128M YoY; $10,838M vs mean) fall short of the 10%-of-TTM-NI gate ($13,478M), so T1 does not fire and the $16.8B pre-tax gain stays in reported TTM NI. If the engine owner judges this a miss, the further after-tax removal would be ~$13.3B (x0.79) and adjusted NI would be ~$79.3B.",
+        "One-off check: Q2 2026 only (NI $62,647M, +244.9% YoY and +176.0% vs prior-4Q mean; both absolute deviations > 10% of TTM NI $13,478M). Adjusted TTM NI $92,581M, adjusted EPS $8.50, adjusted trailing P/E 31.38 used for Quality/PEGT. The gain did not flow through revenue or OCF, so revenue TTM and FCF/share are unchanged.",
+        "One-off check near-miss (no adjustment): Q1 2026 NI $30,255M (+76.7% YoY, +55.8% vs prior-4Q mean) includes a company-disclosed $16.8B pre-tax Anthropic gain (Q1 2026 earnings release, 29 Apr 2026), but BOTH absolute deviations ($13,128M YoY; $10,838M vs mean) fall short of the 10%-of-TTM-NI threshold ($13,478M), so the check does not trigger and the $16.8B pre-tax gain stays in reported TTM NI. If this is later judged a miss, the further after-tax removal would be ~$13.3B (x0.79) and adjusted NI would be ~$79.3B.",
         "Yahoo quarterly_financials / quarterly_cashflow OMIT the 2026-06-30 column entirely (verified 2026-11-16); Q2 2026 revenue/NI/OCF/FCF filled from stockanalysis.com quarterly statements, whose other 7 quarters match Yahoo to the dollar. TTM is Q4'25-Q3'26 as specified.",
         "FCF TTM -$46.89B is the Yahoo 'Free Cash Flow' row definition (OCF minus capex). Amazon's own reported TTM FCF is -$42.4B (adds back ~$4.5B proceeds from sales of property/equipment); the engine method follows v1.3 (Yahoo row), not Amazon's definition. Story-Tracker narrative quotes Amazon's -$42.4B.",
         "Insider 90d: 10 sales, 71,589 shares, $18.5M (Yahoo feed). Bezos 415,580-share stock gift 2026-08-26 correctly excluded (not a sale).",
@@ -1962,7 +1962,7 @@
           "amount_pre_tax_usd_b": 53.415,
           "amount_after_tax_usd_b": 42.198,
           "estimated": true,
-          "note": "Amazon discloses only the pre-tax figure (Q2 2026 earnings release, 30 Jul 2026). After-tax per ONEOFF-v1: pre-tax x (1 - 21%) = $42.20B, flagged estimated. At the quarter's 22.5% blended effective tax rate it would be ~$41.4B."
+          "note": "Amazon discloses only the pre-tax figure (Q2 2026 earnings release, 30 Jul 2026). After-tax per the one-off check: pre-tax x (1 - 21%) = $42.20B, flagged estimated. At the quarter's 22.5% blended effective tax rate it would be ~$41.4B."
         }
       ],
       "beta_source": "https://finance.yahoo.com/quote/AMZN",
@@ -2187,7 +2187,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 8.8634,
       "market_cap": 72849667191.84,
@@ -2299,7 +2299,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.0477,
       "market_cap": 178814817.05,
@@ -2409,7 +2409,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 39.9689,
       "market_cap": 456015250.0,
@@ -2507,7 +2507,7 @@
         "proxy_note": null
       },
       "flags": [
-        "ONEOFF-v1: T1 fires on Q4 FY25 (+97.0% YoY, +80.0% vs prior-4Q mean), Q2 FY26 (+87.5% YoY) and Q3 FY26 (+216.1% YoY, +78.6% vs mean). T2: Q4 FY25 \u2014 Broadcom's 11 Dec 2025 press release (8-K Ex. 99.1) footnote discloses a 'onetime discrete noncash tax benefit of $2.1 billion from the impact of lapses of statutes of limitations'; removed from TTM NI. Adjusted TTM NI $36,165M, adjusted EPS $7.40, adjusted trailing P/E 46.89. Broadcom's non-GAAP NI ($9,714M in Q4 FY25) NOT used directly \u2014 it adds back recurring SBC and acquisition amortisation. Q2/Q3 FY26 \u2014 no disclosed one-off found: growth is operating (revenue +48%/+86% YoY, operating income +80%/+163% YoY; Q3 reconciliation items are recurring amortisation $2,006M, SBC $2,019M, restructuring $115M); flagged, no adjustment.",
+        "One-off check: Q4 FY25 (+97.0% YoY, +80.0% vs prior-4Q mean), Q2 FY26 (+87.5% YoY) and Q3 FY26 (+216.1% YoY, +78.6% vs mean). Cause: Q4 FY25 \u2014 Broadcom's 11 Dec 2025 press release (8-K Ex. 99.1) footnote discloses a 'onetime discrete noncash tax benefit of $2.1 billion from the impact of lapses of statutes of limitations'; removed from TTM NI. Adjusted TTM NI $36,165M, adjusted EPS $7.40, adjusted trailing P/E 46.89. Broadcom's non-GAAP NI ($9,714M in Q4 FY25) NOT used directly \u2014 it adds back recurring SBC and acquisition amortisation. Q2/Q3 FY26 \u2014 no disclosed one-off found: growth is operating (revenue +48%/+86% YoY, operating income +80%/+163% YoY; Q3 reconciliation items are recurring amortisation $2,006M, SBC $2,019M, restructuring $115M); flagged, no adjustment.",
         "Technicals: EMA200 362.20 (1y-window method, as in v1.3 fetch_inputs.py). Yahoo returnOnEquity 44.2% (TTM) used here per the v1.3 schema.",
         "Insider 90d: 0 open-market sales in the yfinance count; 16 pre-scheduled sells (702,190 shares)."
       ],
@@ -2643,7 +2643,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.1329,
       "market_cap": 3012765265.12,
@@ -2753,7 +2753,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3028.875,
       "market_cap": 135921739156.0,
@@ -2865,7 +2865,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 6.381,
       "market_cap": 61220108758.59,
@@ -2977,7 +2977,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 133050923067.81,
@@ -3087,7 +3087,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 21.0105,
       "market_cap": 6479186854.88,
@@ -3197,7 +3197,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.4265,
       "market_cap": 8385365188.61,
@@ -3295,8 +3295,8 @@
         "proxy_note": "Story-Tracker key BRK.B (same Berkshire Hathaway class-B security; symbol spelling only)."
       },
       "flags": [
-        "ONEOFF-v1: T1 fired ONLY Q2 2026 (YoY +107.5%, abs dev $13,297M > 10%-of-TTM threshold $7,708M). Q1 2026 did NOT fire: YoY +119.5% but abs dev $5,503M < threshold; mean-dev -39.6%, abs dev $6,636M < threshold. Q2 2026 mean-dev +41.7% also failed the absolute leg ($7,549M vs $7,708M threshold, short by $159M). Q3 2026: YoY -28.2%, mean-dev +3.1% \u2014 no fire. Q4 2025: YoY -2.5%, mean-dev +13.8% \u2014 no fire. Adjusted TTM NI $64,400M (reported $77,084M less Q2'26 after-tax investment gains $12,684M, company-disclosed), adjusted EPS $29.85, adjusted trailing P/E 19.86. Adjusted OCF/NI 0.700, adjusted FCF conversion 0.354 (fragment fcf_conversion 0.295 is on unadjusted NI, per v1.3 GOOGL precedent).",
-        "Berkshire's own operating earnings (non-GAAP, excludes ALL investment gains/losses AND impairments) TTM = $47,234M (Q4'25 $10,200M + 9M'26 $37,034M, company releases) \u2014 a fuller clean-up than ONEOFF-v1's flagged-quarter-only adjustment. On that basis EPS would be $21.89 and trailing P/E 27.08. NOT used in the fragment; shown here so the engine owner can choose. TTM after-tax investment gains (all 4 quarters, company-disclosed) = $34,345M; Q4'25 also carried a $4,495M OTTI impairment (Kraft Heinz + Occidental).",
+        "One-off check: Q2 2026 only (YoY +107.5%, abs dev $13,297M > 10%-of-TTM threshold $7,708M). Q1 2026 did not trigger: YoY +119.5% but abs dev $5,503M < threshold; mean-dev -39.6%, abs dev $6,636M < threshold. Q2 2026 mean-dev +41.7% also failed the size test ($7,549M vs $7,708M threshold, short by $159M). Q3 2026: YoY -28.2%, mean-dev +3.1% \u2014 no trigger. Q4 2025: YoY -2.5%, mean-dev +13.8% \u2014 no trigger. Adjusted TTM NI $64,400M (reported $77,084M less Q2'26 after-tax investment gains $12,684M, company-disclosed), adjusted EPS $29.85, adjusted trailing P/E 19.86. Adjusted OCF/NI 0.700, adjusted FCF conversion 0.354 (fragment fcf_conversion 0.295 is on unadjusted NI, per v1.3 GOOGL precedent).",
+        "Berkshire's own operating earnings (non-GAAP, excludes ALL investment gains/losses AND impairments) TTM = $47,234M (Q4'25 $10,200M + 9M'26 $37,034M, company releases) \u2014 a fuller clean-up than the flagged-quarter-only adjustment. On that basis EPS would be $21.89 and trailing P/E 27.08. NOT used in the fragment; shown here for reference. TTM after-tax investment gains (all 4 quarters, company-disclosed) = $34,345M; Q4'25 also carried a $4,495M OTTI impairment (Kraft Heinz + Occidental).",
         "Yahoo 'Total Revenue' for Berkshire = operating revenues + investment gains (losses): FY2025 $410.5B = $371.4B operating revenue (EDGAR 'Revenues') + $39.1B investment gains; FY2022 $234.1B = $302.0B - $67.9B losses. So revenue_cagr_3y_annual 0.2059, revenue_ttm $439.0B, fcf_margin and receivables ratios are all distorted by investment marks. EDGAR operating-revenue CAGR (371.44/302.02)^(1/3)-1 = 0.0714. Fragment keeps the Yahoo-method values for v1.3 consistency; use the EDGAR figure if the engine wants operating revenue.",
         "Insider 90d: Yahoo feed (fetch_patch method) shows 1 sale, 39,700 shares, $19.97M in 90d, 0 buys. Fragment uses the Yahoo-feed figures, per v1.3 method.",
         "Technicals: EMA20 562.04, EMA50 538.73, RSI 80.9; EMA200 510.15 (1y-history ewm per fetch_inputs.py method). MACD above signal.",
@@ -3434,7 +3434,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2025-12-31; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 143920498.36,
@@ -3544,7 +3544,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.0093,
       "market_cap": 278617174044.2,
@@ -3656,7 +3656,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 13.4387,
       "market_cap": 6977032361.37,
@@ -3768,7 +3768,7 @@
       "flags": [
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.6239,
       "market_cap": 39531245462.4,
@@ -3880,7 +3880,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.5873,
       "market_cap": 10197527051.16,
@@ -3990,7 +3990,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.5947,
       "market_cap": 88658795743.38,
@@ -4103,7 +4103,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.5081,
       "market_cap": 11422178381.38,
@@ -4213,7 +4213,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.044,
       "market_cap": 9338975764.4,
@@ -4323,7 +4323,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.0349,
       "market_cap": 40979504856.94,
@@ -4545,7 +4545,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 43509046514.35,
@@ -4768,7 +4768,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 7.1364,
       "market_cap": 14147916960.26,
@@ -4880,7 +4880,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.7964,
       "market_cap": 192041065679.12,
@@ -4992,7 +4992,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.2057,
       "market_cap": 8271445631.72,
@@ -5102,7 +5102,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.5098,
       "market_cap": 203926339000.0,
@@ -5326,7 +5326,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.9022,
       "market_cap": 29530916233.1,
@@ -5438,7 +5438,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.9842,
       "market_cap": 434879225812.9,
@@ -5550,7 +5550,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.3804,
       "market_cap": 940354900.92,
@@ -5662,7 +5662,7 @@
       "flags": [
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 6.5966,
       "market_cap": 56735250000.0,
@@ -5774,7 +5774,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.2256,
       "market_cap": 75026802525.6,
@@ -5887,7 +5887,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.1197,
       "market_cap": 854623125.0,
@@ -5997,7 +5997,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.0658,
       "market_cap": 67017614403.52,
@@ -6111,7 +6111,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.5126,
       "market_cap": 12235882066.2,
@@ -6225,7 +6225,7 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2026-01-30; JPM precedent).",
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.6803,
       "market_cap": 228043184263.03,
@@ -6447,7 +6447,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.8078,
       "market_cap": 4031787600.0,
@@ -6557,7 +6557,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 5.5518,
       "market_cap": 211392975190.88,
@@ -6670,7 +6670,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 8.4051,
       "market_cap": 9857456295.44,
@@ -6888,7 +6888,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.5854,
       "market_cap": 2390956527.93,
@@ -6998,7 +6998,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.2682,
       "market_cap": 32511822808.4,
@@ -7221,7 +7221,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 7.4642,
       "market_cap": 1492222234.95,
@@ -7444,7 +7444,7 @@
         "EDGAR reason code: stale_ocf_ttm",
         "EDGAR flag: stale_ocf: latest TTM quarter 2026-03-31 is 227d before as-of",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-09-30', '2025-12-31', '2026-03-31', '2026-09-30'] vs OCF quarters ['2025-06-30', '2025-09-30', '2025-12-31', '2026-03-31']",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 23262112003.2,
@@ -7556,7 +7556,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.5398,
       "market_cap": 3532018086.3,
@@ -7669,7 +7669,7 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "EDGAR flag: REIT: capex semantics differ from the PPE model (pilot blocker 8) \u2014 FCF/ DCF leg needs review, not auto-skipped",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 104240451562.72,
@@ -7781,7 +7781,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.2624,
       "market_cap": 466643125.0,
@@ -7891,7 +7891,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.7069,
       "market_cap": 9460761689.1,
@@ -8002,7 +8002,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + ShortTermBorrowings @2025-12-31; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 5.0334,
       "market_cap": 10276970531.0,
@@ -8225,7 +8225,7 @@
         "EDGAR reason code: stale_ocf_ttm",
         "EDGAR flag: stale_ocf: latest TTM quarter 2026-05-31 is 166d before as-of",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-11-30', '2026-02-28', '2026-05-31', '2026-09-30'] vs OCF quarters ['2025-08-31', '2025-11-30', '2026-02-28', '2026-05-31']",
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 6.6708,
       "market_cap": 77675136878.34,
@@ -8337,7 +8337,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 683359320.0,
@@ -8558,7 +8558,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2026-09-30; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 5.2308,
       "market_cap": 16556577544.2,
@@ -9008,7 +9008,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 5.977,
       "market_cap": 7890177167.18,
@@ -9230,7 +9230,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 9.0598,
       "market_cap": 4854259257.76,
@@ -9340,7 +9340,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.6009,
       "market_cap": 18516363633.6,
@@ -9452,7 +9452,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.9907,
       "market_cap": 23341685720.21,
@@ -9564,7 +9564,7 @@
       "flags": [
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.7265,
       "market_cap": 99704065059.2,
@@ -9676,7 +9676,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 9.0801,
       "market_cap": 73677056302.0,
@@ -9788,7 +9788,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 6.2983,
       "market_cap": 14994678569.75,
@@ -9886,7 +9886,7 @@
         "proxy_note": "GOOG used as proxy for GOOGL (same company, class C vs A); price leadership may differ slightly."
       },
       "flags": [
-        "TTM net income $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$36.9B pre-tax (+$28.7B after tax), Q2 +$99.0B pre-tax (+$77.1B after tax, $278M realised), Q3 -$8.7B pre-tax (-$6.7B after tax). Net after-tax one-off +$99.1B removed (ONEOFF-v1). Adjusted NI $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 used for Quality/PEGT. Note: v1.1 removed only the Q2 pre-tax gain and got $136.663B \u2014 the two errors almost exactly cancel; see RECALIBRATION.md \u00a72.2."
+        "TTM net income $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$36.9B pre-tax (+$28.7B after tax), Q2 +$99.0B pre-tax (+$77.1B after tax, $278M realised), Q3 -$8.7B pre-tax (-$6.7B after tax). Net after-tax one-off +$99.1B removed. Adjusted NI $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 used for Quality/PEGT. Note: v1.1 removed only the Q2 pre-tax gain and got $136.663B \u2014 the two errors almost exactly cancel."
       ],
       "gics_sector": "Communication Services",
       "sector_multiple": 16.8,
@@ -10031,7 +10031,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.8932,
       "market_cap": 13519850426.46,
@@ -10252,7 +10252,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 1503234252.87,
@@ -10363,7 +10363,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Shares-implied: no EarningsPerShareDiluted concept in EDGAR \u2014 NI_TTM / Yahoo trailing EPS used for this field only (v1.3 method).",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.0292,
       "market_cap": 16203418005.39,
@@ -10583,7 +10583,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.8896,
       "market_cap": 69472881452.26,
@@ -10807,7 +10807,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.5586,
       "market_cap": 157070776989.45,
@@ -10919,7 +10919,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.2609,
       "market_cap": 54436893300.0,
@@ -11032,7 +11032,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'Hexcel Corporation' vs submissions 'HEXCEL CORP /DE/' (metadata quirk; CIK verified)",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.4561,
       "market_cap": 35861552593.94,
@@ -11142,7 +11142,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.5811,
       "market_cap": 234952274830.52,
@@ -11254,7 +11254,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.546,
       "market_cap": 101358611174.97,
@@ -11366,7 +11366,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 2511116000.0,
@@ -11587,7 +11587,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.1883,
       "market_cap": 31888803697.5,
@@ -11808,7 +11808,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_lt4) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.0425,
       "market_cap": 1245519663.48,
@@ -11918,7 +11918,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.9721,
       "market_cap": 94787496966.9,
@@ -12031,7 +12031,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.463,
       "market_cap": 2942162180.06,
@@ -12141,7 +12141,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 7.8528,
       "market_cap": 4952562616.32,
@@ -12255,7 +12255,7 @@
         "EDGAR reason code: stale_ocf_ttm",
         "EDGAR flag: stale_ocf: latest TTM quarter 2025-09-28 is 411d before as-of",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-09-28', '2026-01-18', '2026-04-12', '2026-07-05'] vs OCF quarters ['2025-01-19', '2025-04-13', '2025-07-06', '2025-09-28']",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 22.587,
       "market_cap": 282470878.0,
@@ -12366,7 +12366,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.1686,
       "market_cap": 698958396594.0,
@@ -12478,7 +12478,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.8829,
       "market_cap": 51380383643.2,
@@ -12590,7 +12590,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 15.7667,
       "market_cap": 7307006052.84,
@@ -12700,7 +12700,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 3211390171.4,
@@ -12812,7 +12812,7 @@
       "flags": [
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.4598,
       "market_cap": 10519522384.8,
@@ -13032,7 +13032,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 10.1334,
       "market_cap": 41523243208.8,
@@ -13144,7 +13144,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 6216833322.03,
@@ -13242,7 +13242,7 @@
         "proxy_note": null
       },
       "flags": [
-        "ONEOFF-v1: T1 fired ONLY Q1 2026 (YoY +168.1%, abs dev $4,637M > 10%-of-TTM threshold $2,758M; mean-dev +43.3% failed the absolute leg at $2,236M). Q4 2025 did NOT fire: YoY +50.5% and mean-dev +44.2% both failed the absolute leg ($2,228M / $2,035M vs $2,758M). Q2 2026: YoY +25.3%, mean-dev +12.3% \u2014 no fire. Q3 2026: YoY +15.5%, mean-dev -3.4% \u2014 no fire. NO ADJUSTMENT: the Q1'26 jump is genuine operating growth (revenue +56% YoY to $19.8B, Mounjaro +125% to $8.7B) against a year-ago quarter depressed by a $1.6B acquired IPR&D charge (Scorpion STX-478). Q1'26 itself carried a $584M IPR&D CHARGE (depresses NI) and only a $250M one-time Jardiance benefit (3.4% of NI, below the 10% threshold; same collaboration benefit was $370M in Q1'25). Per ONEOFF-v1 hierarchy item 3 the quarter is flagged, not adjusted \u2014 the classic false-positive pattern (cf. NVDA hyper-growth in RECALIBRATION.md \u00a72.1).",
+        "One-off check: Q1 2026 only (YoY +168.1%, abs dev $4,637M > 10%-of-TTM threshold $2,758M; mean-dev +43.3% failed the size test at $2,236M). Q4 2025 did not trigger: YoY +50.5% and mean-dev +44.2% both failed the size test ($2,228M / $2,035M vs $2,758M). Q2 2026: YoY +25.3%, mean-dev +12.3% \u2014 no trigger. Q3 2026: YoY +15.5%, mean-dev -3.4% \u2014 no trigger. NO ADJUSTMENT: the Q1'26 jump is genuine operating growth (revenue +56% YoY to $19.8B, Mounjaro +125% to $8.7B) against a year-ago quarter depressed by a $1.6B acquired IPR&D charge (Scorpion STX-478). Q1'26 itself carried a $584M IPR&D CHARGE (depresses NI) and only a $250M one-time Jardiance benefit (3.4% of NI, below the 10% threshold; same collaboration benefit was $370M in Q1'25). The quarter is flagged, not adjusted \u2014 the classic false-positive pattern.",
         "For completeness: Q2 2026 carried a $2.8B pre-tax acquired IPR&D charge ($3.03/share, Orna/Ajax deals \u2014 depresses NI); Q3 2026 (not T1-flagged) benefited from ~$900M one-time gains (Jardiance milestones + favourable rebate adjustments) partly offset by a $4.57/share IPR&D charge. Neither quarter is adjusted \u2014 Q2's item depresses NI and Q3 did not fire T1.",
         "Insider 90d: Yahoo feed shows 2 sales, 11,500 shares, $14.65M in 90d (Anat Hakim / Patrik Jonsson, pre-scheduled).",
         "Technicals: EMA20 1360.54, EMA50 1281.46, RSI 69.7; EMA200 1153.74 (1y-history ewm per fetch_inputs.py method). MACD above signal."
@@ -13369,7 +13369,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.4458,
       "market_cap": 137904387814.92,
@@ -13481,7 +13481,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.1075,
       "market_cap": 14938963091.64,
@@ -13591,7 +13591,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.2174,
       "market_cap": 223859283.0,
@@ -13813,7 +13813,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.5714,
       "market_cap": 284500079573.76,
@@ -13926,7 +13926,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.5809,
       "market_cap": 12309718151.45,
@@ -14038,7 +14038,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 23311241387.28,
@@ -14150,7 +14150,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 9.606,
       "market_cap": 7805512586.38,
@@ -14260,7 +14260,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 343990500.0,
@@ -14370,7 +14370,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 5.4654,
       "market_cap": 550719552.12,
@@ -14480,7 +14480,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.599,
       "market_cap": 6776666657.8,
@@ -14701,7 +14701,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebtAndCapitalLeaseObligations + LTD current + no_short_term @2026-03-31; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.74,
       "market_cap": 133587809699.01,
@@ -14813,7 +14813,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.559,
       "market_cap": 89337841500.6,
@@ -14928,7 +14928,7 @@
         "Shares-implied: no EarningsPerShareDiluted concept in EDGAR \u2014 NI_TTM / Yahoo trailing EPS used for this field only (v1.3 method).",
         "EDGAR reason code: ttm_eps_quarters_noncontiguous",
         "EDGAR flag: ttm_quarters_noncontiguous_eps: eps TTM quarters ['2025-04-30', '2025-07-31', '2026-04-30', '2026-07-31'] span 457d (quarters missing in between \u2014 not a true trailing 4 quarters)",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.0835,
       "market_cap": 27338024203.8,
@@ -15138,8 +15138,8 @@
         "proxy_note": null
       },
       "flags": [
-        "ONEOFF-v1: T1 FIRED on Q4 2025 (mean leg only: +55.6% vs prior-4Q mean of $14,632M, absolute deviation $8,136M > $7,525M gate) and Q1 2026 (both legs: +60.9% YoY, +77.1% vs mean). T2: Q4 2025 has no disclosed one-off (no unusual item; the fire is an artefact of the prior-4Q mean being depressed by Q3 2025's $2,709M NI after its $15.93B tax charge) - flag only, no adjustment. Q1 2026 adjusted: $8.03B one-time tax benefit removed; adjusted TTM NI $67,219M, adjusted EPS $26.18, adjusted trailing P/E 24.51 used for Quality/PEGT. The benefit did not flow through revenue or OCF.",
-        "ONEOFF-v1 near-miss (NO adjustment, per rule): Q3 2026 NI $9,860M (+264.0% YoY) contains a disclosed $9,890M pre-tax legal-settlement charge, but the YoY absolute deviation ($7,151M) falls $374M short of the 10%-of-TTM-NI gate ($7,525M) and the mean deviation is only -42.1%, so T1 does not fire and the settlement stays in reported TTM NI. Q2 2026 also contains a $2,400M pre-tax legal settlement (T1 silent). If the engine owner judges Q3 2026 a miss, adding back ~$7.8B after tax (x0.79) would lift adjusted NI to ~$75.0B - nearly offsetting the Q1 tax-benefit removal.",
+        "One-off check: Q4 2025 (mean comparison only: +55.6% vs prior-4Q mean of $14,632M, absolute deviation $8,136M > $7,525M threshold) and Q1 2026 (both comparisons: +60.9% YoY, +77.1% vs mean). Cause: Q4 2025 has no disclosed one-off (no unusual item; the trigger is an artefact of the prior-4Q mean being depressed by Q3 2025's $2,709M NI after its $15.93B tax charge) - flag only, no adjustment. Q1 2026 adjusted: $8.03B one-time tax benefit removed; adjusted TTM NI $67,219M, adjusted EPS $26.18, adjusted trailing P/E 24.51 used for Quality/PEGT. The benefit did not flow through revenue or OCF.",
+        "One-off check near-miss (no adjustment): Q3 2026 NI $9,860M (+264.0% YoY) contains a disclosed $9,890M pre-tax legal-settlement charge, but the YoY absolute deviation ($7,151M) falls $374M short of the 10%-of-TTM-NI threshold ($7,525M) and the mean deviation is only -42.1%, so the check does not trigger and the settlement stays in reported TTM NI. Q2 2026 also contains a $2,400M pre-tax legal settlement (check silent). If Q3 2026 is later judged a miss, adding back ~$7.8B after tax (x0.79) would lift adjusted NI to ~$75.0B - nearly offsetting the Q1 tax-benefit removal.",
         "Insider 90d: 20 sales, 170,187 shares, $114.7M (Yahoo feed).",
         "Technicals: EMA20 642.80, EMA50 654.11, RSI 47.8; MACD above signal. EMA200 635.82 (1y-window method, as in v1.3 fetch_inputs.py; EMA200 over a 2y window gives 641.55).",
         "Yahoo debtToEquity/100 = 0.422 and returnOnEquity 0.323 (TTM); fragment follows the v1.3 schema (Yahoo). Yahoo earningsGrowth 2.648 (+264.8%) reflects the Q3 2025 tax-charge-depressed base; recorded as-is."
@@ -15277,7 +15277,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 5.8274,
       "market_cap": 96784166973.9,
@@ -15500,7 +15500,7 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_no_capex_concept",
         "EDGAR flag: no capex concept \u2014 DCF leg unavailable (bank pattern); DCF-skip candidate",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.0867,
       "market_cap": 635787298.36,
@@ -15610,7 +15610,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.0554,
       "market_cap": 137030041083.48,
@@ -15834,7 +15834,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.0878,
       "market_cap": 889711050575.49,
@@ -15947,7 +15947,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 8042777676.84,
@@ -16170,7 +16170,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'NEWMONT CORPORATION' vs submissions 'NEWMONT Corp /DE/' (metadata quirk; CIK verified)",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.5543,
       "market_cap": 121559720969.7,
@@ -16282,7 +16282,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 5.285,
       "market_cap": 56221564584.94,
@@ -16504,7 +16504,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 33.5704,
       "market_cap": 21243791333.9,
@@ -16620,7 +16620,7 @@
         "EDGAR reason code: ttm_revenue_quarters_noncontiguous",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-10-24', '2026-01-23', '2026-04-24', '2026-07-31'] vs revenue quarters ['2012-10-26', '2013-01-25', '2025-07-25', '2026-07-31']",
         "EDGAR flag: ttm_quarters_noncontiguous_revenue: revenue TTM quarters ['2012-10-26', '2013-01-25', '2025-07-25', '2026-07-31'] span 5026d (quarters missing in between \u2014 not a true trailing 4 quarters)",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.5358,
       "market_cap": 36325234485.82,
@@ -16732,7 +16732,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.8098,
       "market_cap": 17598224016.92,
@@ -16953,7 +16953,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.6685,
       "market_cap": 57694141430.91,
@@ -17178,7 +17178,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.1339,
       "market_cap": 67219993691.06,
@@ -17399,7 +17399,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.0541,
       "market_cap": 32608144576.11,
@@ -17512,7 +17512,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'UNIVERSAL DISPLAY CORPORATION' vs submissions 'UNIVERSAL DISPLAY CORP \\PA\\' (metadata quirk; CIK verified)",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.0924,
       "market_cap": 4168162026.46,
@@ -17622,7 +17622,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.9122,
       "market_cap": 29321823984.86,
@@ -17734,7 +17734,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 371727586159.35,
@@ -17847,7 +17847,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'OCCIDENTAL PETROLEUM CORPORATION' vs submissions 'OCCIDENTAL PETROLEUM CORP /DE/' (metadata quirk; CIK verified)",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.1512,
       "market_cap": 65638477097.5,
@@ -17959,7 +17959,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.7579,
       "market_cap": 37468831666.47,
@@ -18071,7 +18071,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.6241,
       "market_cap": 247319200000.0,
@@ -18184,7 +18184,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.2198,
       "market_cap": 7168077689.34,
@@ -18294,7 +18294,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 5.3799,
       "market_cap": 166488942861.27,
@@ -18516,7 +18516,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.9478,
       "market_cap": 13660001400.0,
@@ -18626,7 +18626,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.0556,
       "market_cap": 431030034179.08,
@@ -18740,7 +18740,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LTD incl current + ShortTermBorrowings @2025-12-31; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.5921,
       "market_cap": 311500385994.0,
@@ -18853,7 +18853,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 33.3979,
       "market_cap": 3770389854.0,
@@ -19075,7 +19075,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2025-12-28; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 34.1162,
       "market_cap": 681368838.96,
@@ -19185,7 +19185,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.8486,
       "market_cap": 185072532259.02,
@@ -19406,7 +19406,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 273243600.0,
@@ -19516,7 +19516,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 15.3444,
       "market_cap": 87085760902.44,
@@ -19628,7 +19628,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.0262,
       "market_cap": 19924994144.55,
@@ -19740,7 +19740,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 16.4012,
       "market_cap": 2567309411.43,
@@ -19958,7 +19958,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.2237,
       "market_cap": 2304064376.03,
@@ -20068,7 +20068,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.1393,
       "market_cap": 45220585499.62,
@@ -20180,7 +20180,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.6985,
       "market_cap": 74582532172.8,
@@ -20404,7 +20404,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2026-09-27; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.9669,
       "market_cap": 121693189095.48,
@@ -20519,7 +20519,7 @@
       "flags": [
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 1488984269.93,
@@ -20630,7 +20630,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 3181699895.38,
@@ -20740,7 +20740,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 5.9981,
       "market_cap": 11796296284.5,
@@ -20960,7 +20960,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 20683524743.19,
@@ -21073,7 +21073,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2026-09-30; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 7.1552,
       "market_cap": 3768736369.44,
@@ -21183,7 +21183,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.5217,
       "market_cap": 5132688900.48,
@@ -21293,7 +21293,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.9458,
       "market_cap": 85823057040.8,
@@ -21518,7 +21518,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.6428,
       "market_cap": 121844849976.36,
@@ -21631,7 +21631,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 11.5621,
       "market_cap": 13577784185.28,
@@ -21746,7 +21746,7 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.035,
       "market_cap": 5718389400.0,
@@ -21860,7 +21860,7 @@
         "EDGAR reason code: stale_ocf_ttm",
         "EDGAR flag: stale_ocf: latest TTM quarter 2025-12-31 is 317d before as-of",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-12-31', '2026-03-31', '2026-06-30', '2026-09-30'] vs OCF quarters ['2025-03-31', '2025-06-30', '2025-09-30', '2025-12-31']",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 9.2898,
       "market_cap": 158333858706.26,
@@ -21972,7 +21972,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.736,
       "market_cap": 39157536373.53,
@@ -22194,7 +22194,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 19.3955,
       "market_cap": 3606588855.54,
@@ -22526,7 +22526,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 6.0713,
       "market_cap": 15736653516.54,
@@ -22624,7 +22624,7 @@
         "proxy_note": null
       },
       "flags": [
-        "ONEOFF-v1: Q4 2025 NI $840M fired T1 (YoY -60.5% vs Q4 2024 $2,128M; absolute deviation $1,288M > 10% of TTM NI $322M). T2: Tesla's own Q4/FY2025 Update reconciliation (8-K Ex. 99.1, 28 Jan 2026) discloses a digital-assets loss, net of tax, of $239M in Q4 2025 (pre-tax $307M) \u2014 a non-operating, non-cash mark, added back. Adjusted TTM NI $3,457M, adjusted EPS $0.98, adjusted trailing P/E 399.17. Tesla's non-GAAP NI ($1,761M) NOT used directly \u2014 it also adds back recurring SBC ($682M net of tax). Q1 2026 near-miss: -49.7% vs prior-4Q mean, just under the 50% screen; no T2, no adjustment.",
+        "One-off check: Q4 2025 NI $840M flagged (YoY -60.5% vs Q4 2024 $2,128M; absolute deviation $1,288M > 10% of TTM NI $322M). Cause: Tesla's own Q4/FY2025 Update reconciliation (8-K Ex. 99.1, 28 Jan 2026) discloses a digital-assets loss, net of tax, of $239M in Q4 2025 (pre-tax $307M) \u2014 a non-operating, non-cash mark, added back. Adjusted TTM NI $3,457M, adjusted EPS $0.98, adjusted trailing P/E 399.17. Tesla's non-GAAP NI ($1,761M) NOT used directly \u2014 it also adds back recurring SBC ($682M net of tax). Q1 2026 near-miss: -49.7% vs prior-4Q mean, just under the 50% screen; no cause found, no adjustment.",
         "Yahoo sharesOutstanding 3,953M disagrees with the Q3 2026 10-Q basic share count (3,240M) and diluted count (3,541M); shares_implied_total uses the frozen NI/trailing-EPS formula (3,536M, consistent with diluted). The 10-Q basic count is up only +0.4% YoY.",
         "Technicals: EMA200 382.97 (1y-window method, as in v1.3 fetch_inputs.py). Yahoo trailing EPS $0.91 used here per frozen method (an NI/sharesOutstanding EPS of ~$0.81 would imply a trailing P/E of ~479.3x).",
         "Insider 90d: 1 sell / 2,605 shares (yfinance count)."
@@ -22760,7 +22760,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.6742,
       "market_cap": 7485291132.48,
@@ -22871,7 +22871,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.1987,
       "market_cap": 10126335562.53,
@@ -22983,7 +22983,7 @@
       "flags": [
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.9516,
       "market_cap": 33726049972.96,
@@ -23095,7 +23095,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.8523,
       "market_cap": 279728860105.2,
@@ -23318,7 +23318,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.702,
       "market_cap": 141213947335.41,
@@ -23430,7 +23430,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 2163000015.45,
@@ -23650,7 +23650,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 3.2564,
       "market_cap": 368780321338.5,
@@ -23762,7 +23762,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 4.8055,
       "market_cap": 95583230726.0,
@@ -23863,7 +23863,7 @@
       },
       "flags": [
         "Forward EPS DISCREPANCY \u2014 VERIFY BEFORE SCORING: Yahoo forwardEps $17.14 vs S&P Global consensus FY2027 EPS $15.03 (34 analysts, stockanalysis.com/stocks/v/forecast/, range $14.67-$15.34). Recomputed forward P/E 24.84 on Yahoo vs 28.32 on consensus; Forward-sector leg $235.16 on Yahoo vs $206.32 on consensus. Yahoo value retained per v1.3 method (Yahoo is the method's source) \u2014 NOT silently substituted. Yahoo's own analysis page could not be fetched from this machine (finance.yahoo.com blocked by policy).",
-        "ONEOFF-v1 T1: NO quarter fires. Largest deviations: Mar 2026 quarter +31.8% YoY (StockAnalysis series; Yahoo feed has only 5 quarters) and Sep 2026 +17.9% YoY / +6.3% vs prior-4Q mean (Yahoo series). All legs below the 50% deviation and 10%-of-TTM-NI ($2.350B) gates. No adjustment.",
+        "One-off check: no quarter triggers. Largest deviations: Mar 2026 quarter +31.8% YoY (StockAnalysis series; Yahoo feed has only 5 quarters) and Sep 2026 +17.9% YoY / +6.3% vs prior-4Q mean (Yahoo series). All comparisons below the 50% deviation and 10%-of-TTM-NI ($2.350B) thresholds. No adjustment.",
         "Insider 90d: Yahoo feed 11 sales / 114,155 shares / $46.8M (net selling).",
         "EMA200 computed 360.47 (v1.3 method = 1y window sliced to 2026-11-13). RSI 62.9, EMA20 414.36, EMA50 396.91.",
         "StockAnalysis TTM net income $23.31B vs Yahoo $23.50B (net income attributable to common vs total net income, ~$50M/quarter of preferred dividends) \u2014 Yahoo quarterly sum used per v1.3 method."
@@ -23990,7 +23990,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.0867,
       "market_cap": 2566437300.0,
@@ -24100,7 +24100,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.0666,
       "market_cap": 79241656133.31,
@@ -24212,7 +24212,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 7.3859,
       "market_cap": 4089304292.04,
@@ -24325,7 +24325,7 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": null,
       "market_cap": 1732111113.44,
@@ -24435,7 +24435,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.3263,
       "market_cap": 49748775225.7,
@@ -24549,7 +24549,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.215,
       "market_cap": 114655907648.7,
@@ -24663,7 +24663,7 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2025-12-27; JPM precedent).",
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 10.4729,
       "market_cap": 4333878564.34,
@@ -24884,7 +24884,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.6923,
       "market_cap": 29859790866.16,
@@ -24998,7 +24998,7 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2025-12-31; JPM precedent).",
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'WYNN RESORTS, LIMITED' vs submissions 'WYNN RESORTS LTD' (metadata quirk; CIK verified)",
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 20.4863,
       "market_cap": 9209512036.44,
@@ -25110,7 +25110,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.7972,
       "market_cap": 711468889064.5,
@@ -25222,7 +25222,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 2.182,
       "market_cap": 52708084323.92,
@@ -25334,7 +25334,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 1.0164,
       "market_cap": 9709318000.0,
@@ -25444,7 +25444,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
       ],
       "debt_fcf": 0.0313,
       "market_cap": 30135109898.2,

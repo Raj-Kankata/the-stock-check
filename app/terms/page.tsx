@@ -41,8 +41,8 @@ export default function TermsPage() {
 
       <Card title="Fair values are model estimates, not predictions">
         <p>
-          Every fair value is a model estimate built from stated assumptions — a discount rate,
-          a growth cap, a sector multiple — not a prediction of where a price will go. The
+          Every fair value is a model estimate built from stated assumptions — not a prediction
+          of where a price will go. The
           assumptions are published in the Methodology; the estimate is only as good as them.
         </p>
       </Card>

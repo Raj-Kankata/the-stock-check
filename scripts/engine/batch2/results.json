@@ -12,7 +12,7 @@
     "nvda_base_fcf_share_normalised": 4.8,
     "pegy_basis": "non-GAAP consistently",
     "forward_sector": "next-year EPS x GICS sector forward P/E (FactSet, 13 Nov 2026), discounted 10% for 1y; cap 35x / floor 10x",
-    "oneoff_rule": "ONEOFF-v1 \u2014 see ../recalibration/RECALIBRATION.md \u00a72"
+    "oneoff_rule": "One-off check"
   },
   "capm_crosscheck": {
     "ten_year_treasury_pct": 5.1,
@@ -223,13 +223,13 @@
         "Uptrend: price sits above its 20-, 50- and 200-day averages."
       ],
       "cons": [
-        "Triangulated fair value $147.69 is -45% below the $266.66 price \u2014 even the most generous leg ($249.31) sits below the price.",
+        "Fair value $147.69 is -45% below the $266.66 price \u2014 even the most generous leg ($249.31) sits below the price.",
         "Free-cash-flow conversion is weak: FCF is only -51% of net income \u2014 capex is eating the cash the business earns.",
         "Insiders are net sellers \u2014 10 sales, 71,589 shares, $19M, 0 buys in 90d."
       ],
       "flags": [
-        "ONEOFF-v1: T1 FIRED on Q2 2026 only (NI $62,647M, +244.9% YoY and +176.0% vs prior-4Q mean; both absolute deviations > 10% of TTM NI $13,478M). Adjusted TTM NI $92,581M, adjusted EPS $8.50, adjusted trailing P/E 31.38 used for Quality/PEGT. The gain did not flow through revenue or OCF, so revenue TTM and FCF/share are unchanged.",
-        "ONEOFF-v1 near-miss (NO adjustment, per rule): Q1 2026 NI $30,255M (+76.7% YoY, +55.8% vs prior-4Q mean) includes a company-disclosed $16.8B pre-tax Anthropic gain (Q1 2026 earnings release, 29 Apr 2026), but BOTH absolute deviations ($13,128M YoY; $10,838M vs mean) fall short of the 10%-of-TTM-NI gate ($13,478M), so T1 does not fire and the $16.8B pre-tax gain stays in reported TTM NI. If the engine owner judges this a miss, the further after-tax removal would be ~$13.3B (x0.79) and adjusted NI would be ~$79.3B.",
+        "One-off check: Q2 2026 only (NI $62,647M, +244.9% YoY and +176.0% vs prior-4Q mean; both absolute deviations > 10% of TTM NI $13,478M). Adjusted TTM NI $92,581M, adjusted EPS $8.50, adjusted trailing P/E 31.38 used for Quality/PEGT. The gain did not flow through revenue or OCF, so revenue TTM and FCF/share are unchanged.",
+        "One-off check near-miss (no adjustment): Q1 2026 NI $30,255M (+76.7% YoY, +55.8% vs prior-4Q mean) includes a company-disclosed $16.8B pre-tax Anthropic gain (Q1 2026 earnings release, 29 Apr 2026), but BOTH absolute deviations ($13,128M YoY; $10,838M vs mean) fall short of the 10%-of-TTM-NI threshold ($13,478M), so the check does not trigger and the $16.8B pre-tax gain stays in reported TTM NI. If this is later judged a miss, the further after-tax removal would be ~$13.3B (x0.79) and adjusted NI would be ~$79.3B.",
         "Yahoo quarterly_financials / quarterly_cashflow OMIT the 2026-06-30 column entirely (verified 2026-11-16); Q2 2026 revenue/NI/OCF/FCF filled from stockanalysis.com quarterly statements, whose other 7 quarters match Yahoo to the dollar. TTM is Q4'25-Q3'26 as specified.",
         "FCF TTM -$46.89B is the Yahoo 'Free Cash Flow' row definition (OCF minus capex). Amazon's own reported TTM FCF is -$42.4B (adds back ~$4.5B proceeds from sales of property/equipment); the engine method follows v1.3 (Yahoo row), not Amazon's definition. Story-Tracker narrative quotes Amazon's -$42.4B.",
         "Insider 90d: 10 sales, 71,589 shares, $18.5M (Yahoo feed). Bezos 415,580-share stock gift 2026-08-26 correctly excluded (not a sale).",
@@ -416,13 +416,13 @@
         "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check."
       ],
       "cons": [
-        "Triangulated fair value $544.86 is -15% below the $641.69 price \u2014 even the most generous leg ($699.29) sits below the price.",
+        "Fair value $544.86 is -15% below the $641.69 price \u2014 even the most generous leg ($699.29) sits below the price.",
         "Insiders are net sellers \u2014 20 sales, 170,187 shares, $115M, 0 buys in 90d.",
         "Our Story-Tracker rates it 'Out' (Story 53.3, Financials 48.1)."
       ],
       "flags": [
-        "ONEOFF-v1: T1 FIRED on Q4 2025 (mean leg only: +55.6% vs prior-4Q mean of $14,632M, absolute deviation $8,136M > $7,525M gate) and Q1 2026 (both legs: +60.9% YoY, +77.1% vs mean). T2: Q4 2025 has no disclosed one-off (no unusual item; the fire is an artefact of the prior-4Q mean being depressed by Q3 2025's $2,709M NI after its $15.93B tax charge) - flag only, no adjustment. Q1 2026 adjusted: $8.03B one-time tax benefit removed; adjusted TTM NI $67,219M, adjusted EPS $26.18, adjusted trailing P/E 24.51 used for Quality/PEGT. The benefit did not flow through revenue or OCF.",
-        "ONEOFF-v1 near-miss (NO adjustment, per rule): Q3 2026 NI $9,860M (+264.0% YoY) contains a disclosed $9,890M pre-tax legal-settlement charge, but the YoY absolute deviation ($7,151M) falls $374M short of the 10%-of-TTM-NI gate ($7,525M) and the mean deviation is only -42.1%, so T1 does not fire and the settlement stays in reported TTM NI. Q2 2026 also contains a $2,400M pre-tax legal settlement (T1 silent). If the engine owner judges Q3 2026 a miss, adding back ~$7.8B after tax (x0.79) would lift adjusted NI to ~$75.0B - nearly offsetting the Q1 tax-benefit removal.",
+        "One-off check: Q4 2025 (mean comparison only: +55.6% vs prior-4Q mean of $14,632M, absolute deviation $8,136M > $7,525M threshold) and Q1 2026 (both comparisons: +60.9% YoY, +77.1% vs mean). Cause: Q4 2025 has no disclosed one-off (no unusual item; the trigger is an artefact of the prior-4Q mean being depressed by Q3 2025's $2,709M NI after its $15.93B tax charge) - flag only, no adjustment. Q1 2026 adjusted: $8.03B one-time tax benefit removed; adjusted TTM NI $67,219M, adjusted EPS $26.18, adjusted trailing P/E 24.51 used for Quality/PEGT. The benefit did not flow through revenue or OCF.",
+        "One-off check near-miss (no adjustment): Q3 2026 NI $9,860M (+264.0% YoY) contains a disclosed $9,890M pre-tax legal-settlement charge, but the YoY absolute deviation ($7,151M) falls $374M short of the 10%-of-TTM-NI threshold ($7,525M) and the mean deviation is only -42.1%, so the check does not trigger and the settlement stays in reported TTM NI. Q2 2026 also contains a $2,400M pre-tax legal settlement (check silent). If Q3 2026 is later judged a miss, adding back ~$7.8B after tax (x0.79) would lift adjusted NI to ~$75.0B - nearly offsetting the Q1 tax-benefit removal.",
         "Insider 90d: 20 sales, 170,187 shares, $114.7M (Yahoo feed).",
         "Technicals: EMA20 642.80, EMA50 654.11, RSI 47.8; MACD above signal. EMA200 635.82 (1y-window method, as in v1.3 fetch_inputs.py; EMA200 over a 2y window gives 641.55).",
         "Yahoo debtToEquity/100 = 0.422 and returnOnEquity 0.323 (TTM); fragment follows the v1.3 schema (Yahoo). Yahoo earningsGrowth 2.648 (+264.8%) reflects the Q3 2025 tax-charge-depressed base; recorded as-is."
@@ -607,12 +607,12 @@
         "Free-cash-flow conversion is strong: FCF is 95% of net income."
       ],
       "cons": [
-        "Triangulated fair value $29.33 is -92% below the $390.22 price \u2014 even the most generous leg ($49.27) sits below the price.",
+        "Fair value $29.33 is -92% below the $390.22 price \u2014 even the most generous leg ($49.27) sits below the price.",
         "Revenue compounded only 5% a year over the last 3 fiscal years \u2014 growth is no longer the story.",
         "Insiders are net sellers \u2014 1 sales, 2,605 shares, $1M, 0 buys in 90d."
       ],
       "flags": [
-        "ONEOFF-v1: Q4 2025 NI $840M fired T1 (YoY -60.5% vs Q4 2024 $2,128M; absolute deviation $1,288M > 10% of TTM NI $322M). T2: Tesla's own Q4/FY2025 Update reconciliation (8-K Ex. 99.1, 28 Jan 2026) discloses a digital-assets loss, net of tax, of $239M in Q4 2025 (pre-tax $307M) \u2014 a non-operating, non-cash mark, added back. Adjusted TTM NI $3,457M, adjusted EPS $0.98, adjusted trailing P/E 399.17. Tesla's non-GAAP NI ($1,761M) NOT used directly \u2014 it also adds back recurring SBC ($682M net of tax). Q1 2026 near-miss: -49.7% vs prior-4Q mean, just under the 50% screen; no T2, no adjustment.",
+        "One-off check: Q4 2025 NI $840M flagged (YoY -60.5% vs Q4 2024 $2,128M; absolute deviation $1,288M > 10% of TTM NI $322M). Cause: Tesla's own Q4/FY2025 Update reconciliation (8-K Ex. 99.1, 28 Jan 2026) discloses a digital-assets loss, net of tax, of $239M in Q4 2025 (pre-tax $307M) \u2014 a non-operating, non-cash mark, added back. Adjusted TTM NI $3,457M, adjusted EPS $0.98, adjusted trailing P/E 399.17. Tesla's non-GAAP NI ($1,761M) NOT used directly \u2014 it also adds back recurring SBC ($682M net of tax). Q1 2026 near-miss: -49.7% vs prior-4Q mean, just under the 50% screen; no cause found, no adjustment.",
         "Yahoo sharesOutstanding 3,953M disagrees with the Q3 2026 10-Q basic share count (3,240M) and diluted count (3,541M); shares_implied_total uses the frozen NI/trailing-EPS formula (3,536M, consistent with diluted). The 10-Q basic count is up only +0.4% YoY.",
         "Technicals: EMA200 382.97 (1y-window method, as in v1.3 fetch_inputs.py). Yahoo trailing EPS $0.91 used here per frozen method (an NI/sharesOutstanding EPS of ~$0.81 would imply a trailing P/E of ~479.3x).",
         "Insider 90d: 1 sell / 2,605 shares (yfinance count)."
@@ -799,10 +799,10 @@
         "Our Story-Tracker rates it 'Hold, don't add' (Story 65.6, Financials 84.0)."
       ],
       "cons": [
-        "Triangulated fair value $227.57 is -34% below the $347.01 price \u2014 even the most generous leg ($317.68) sits below the price."
+        "Fair value $227.57 is -34% below the $347.01 price \u2014 even the most generous leg ($317.68) sits below the price."
       ],
       "flags": [
-        "ONEOFF-v1: T1 fires on Q4 FY25 (+97.0% YoY, +80.0% vs prior-4Q mean), Q2 FY26 (+87.5% YoY) and Q3 FY26 (+216.1% YoY, +78.6% vs mean). T2: Q4 FY25 \u2014 Broadcom's 11 Dec 2025 press release (8-K Ex. 99.1) footnote discloses a 'onetime discrete noncash tax benefit of $2.1 billion from the impact of lapses of statutes of limitations'; removed from TTM NI. Adjusted TTM NI $36,165M, adjusted EPS $7.40, adjusted trailing P/E 46.89. Broadcom's non-GAAP NI ($9,714M in Q4 FY25) NOT used directly \u2014 it adds back recurring SBC and acquisition amortisation. Q2/Q3 FY26 \u2014 no disclosed one-off found: growth is operating (revenue +48%/+86% YoY, operating income +80%/+163% YoY; Q3 reconciliation items are recurring amortisation $2,006M, SBC $2,019M, restructuring $115M); flagged, no adjustment.",
+        "One-off check: Q4 FY25 (+97.0% YoY, +80.0% vs prior-4Q mean), Q2 FY26 (+87.5% YoY) and Q3 FY26 (+216.1% YoY, +78.6% vs mean). Cause: Q4 FY25 \u2014 Broadcom's 11 Dec 2025 press release (8-K Ex. 99.1) footnote discloses a 'onetime discrete noncash tax benefit of $2.1 billion from the impact of lapses of statutes of limitations'; removed from TTM NI. Adjusted TTM NI $36,165M, adjusted EPS $7.40, adjusted trailing P/E 46.89. Broadcom's non-GAAP NI ($9,714M in Q4 FY25) NOT used directly \u2014 it adds back recurring SBC and acquisition amortisation. Q2/Q3 FY26 \u2014 no disclosed one-off found: growth is operating (revenue +48%/+86% YoY, operating income +80%/+163% YoY; Q3 reconciliation items are recurring amortisation $2,006M, SBC $2,019M, restructuring $115M); flagged, no adjustment.",
         "Technicals: EMA200 362.20 (1y-window method, as in v1.3 fetch_inputs.py). Yahoo returnOnEquity 44.2% (TTM) used here per the v1.3 schema.",
         "Insider 90d: 0 open-market sales in the yfinance count; 16 pre-scheduled sells (702,190 shares)."
       ]
@@ -987,14 +987,14 @@
         "Our Story-Tracker rates it 'Hold, don't add' (Story 43.2, Financials 78.4)."
       ],
       "cons": [
-        "Triangulated fair value $139.05 is -76% below the $592.94 price \u2014 even the most generous leg ($313.21) sits below the price.",
+        "Fair value $139.05 is -76% below the $592.94 price \u2014 even the most generous leg ($313.21) sits below the price.",
         "Operating cash flow is only 70% of net income \u2014 a large slice of profit is not cash yet.",
         "Free-cash-flow conversion is weak: FCF is only 35% of net income \u2014 capex is eating the cash the business earns.",
         "Insiders are net sellers \u2014 1 sales, 39,700 shares, $20M, 0 buys in 90d."
       ],
       "flags": [
-        "ONEOFF-v1: T1 fired ONLY Q2 2026 (YoY +107.5%, abs dev $13,297M > 10%-of-TTM threshold $7,708M). Q1 2026 did NOT fire: YoY +119.5% but abs dev $5,503M < threshold; mean-dev -39.6%, abs dev $6,636M < threshold. Q2 2026 mean-dev +41.7% also failed the absolute leg ($7,549M vs $7,708M threshold, short by $159M). Q3 2026: YoY -28.2%, mean-dev +3.1% \u2014 no fire. Q4 2025: YoY -2.5%, mean-dev +13.8% \u2014 no fire. Adjusted TTM NI $64,400M (reported $77,084M less Q2'26 after-tax investment gains $12,684M, company-disclosed), adjusted EPS $29.85, adjusted trailing P/E 19.86. Adjusted OCF/NI 0.700, adjusted FCF conversion 0.354 (fragment fcf_conversion 0.295 is on unadjusted NI, per v1.3 GOOGL precedent).",
-        "Berkshire's own operating earnings (non-GAAP, excludes ALL investment gains/losses AND impairments) TTM = $47,234M (Q4'25 $10,200M + 9M'26 $37,034M, company releases) \u2014 a fuller clean-up than ONEOFF-v1's flagged-quarter-only adjustment. On that basis EPS would be $21.89 and trailing P/E 27.08. NOT used in the fragment; shown here so the engine owner can choose. TTM after-tax investment gains (all 4 quarters, company-disclosed) = $34,345M; Q4'25 also carried a $4,495M OTTI impairment (Kraft Heinz + Occidental).",
+        "One-off check: Q2 2026 only (YoY +107.5%, abs dev $13,297M > 10%-of-TTM threshold $7,708M). Q1 2026 did not trigger: YoY +119.5% but abs dev $5,503M < threshold; mean-dev -39.6%, abs dev $6,636M < threshold. Q2 2026 mean-dev +41.7% also failed the size test ($7,549M vs $7,708M threshold, short by $159M). Q3 2026: YoY -28.2%, mean-dev +3.1% \u2014 no trigger. Q4 2025: YoY -2.5%, mean-dev +13.8% \u2014 no trigger. Adjusted TTM NI $64,400M (reported $77,084M less Q2'26 after-tax investment gains $12,684M, company-disclosed), adjusted EPS $29.85, adjusted trailing P/E 19.86. Adjusted OCF/NI 0.700, adjusted FCF conversion 0.354 (fragment fcf_conversion 0.295 is on unadjusted NI, per v1.3 GOOGL precedent).",
+        "Berkshire's own operating earnings (non-GAAP, excludes ALL investment gains/losses AND impairments) TTM = $47,234M (Q4'25 $10,200M + 9M'26 $37,034M, company releases) \u2014 a fuller clean-up than the flagged-quarter-only adjustment. On that basis EPS would be $21.89 and trailing P/E 27.08. NOT used in the fragment; shown here for reference. TTM after-tax investment gains (all 4 quarters, company-disclosed) = $34,345M; Q4'25 also carried a $4,495M OTTI impairment (Kraft Heinz + Occidental).",
         "Yahoo 'Total Revenue' for Berkshire = operating revenues + investment gains (losses): FY2025 $410.5B = $371.4B operating revenue (EDGAR 'Revenues') + $39.1B investment gains; FY2022 $234.1B = $302.0B - $67.9B losses. So revenue_cagr_3y_annual 0.2059, revenue_ttm $439.0B, fcf_margin and receivables ratios are all distorted by investment marks. EDGAR operating-revenue CAGR (371.44/302.02)^(1/3)-1 = 0.0714. Fragment keeps the Yahoo-method values for v1.3 consistency; use the EDGAR figure if the engine wants operating revenue.",
         "Insider 90d: Yahoo feed (fetch_patch method) shows 1 sale, 39,700 shares, $19.97M in 90d, 0 buys. Fragment uses the Yahoo-feed figures, per v1.3 method.",
         "Technicals: EMA20 562.04, EMA50 538.73, RSI 80.9; EMA200 510.15 (1y-history ewm per fetch_inputs.py method). MACD above signal.",
@@ -1181,11 +1181,11 @@
         "Uptrend: price sits above its 20-, 50- and 200-day averages."
       ],
       "cons": [
-        "Triangulated fair value $923.59 is -36% below the $1,443.50 price \u2014 even the most generous leg ($938.51) sits below the price.",
+        "Fair value $923.59 is -36% below the $1,443.50 price \u2014 even the most generous leg ($938.51) sits below the price.",
         "Insiders are net sellers \u2014 2 sales, 11,500 shares, $15M, 0 buys in 90d."
       ],
       "flags": [
-        "ONEOFF-v1: T1 fired ONLY Q1 2026 (YoY +168.1%, abs dev $4,637M > 10%-of-TTM threshold $2,758M; mean-dev +43.3% failed the absolute leg at $2,236M). Q4 2025 did NOT fire: YoY +50.5% and mean-dev +44.2% both failed the absolute leg ($2,228M / $2,035M vs $2,758M). Q2 2026: YoY +25.3%, mean-dev +12.3% \u2014 no fire. Q3 2026: YoY +15.5%, mean-dev -3.4% \u2014 no fire. NO ADJUSTMENT: the Q1'26 jump is genuine operating growth (revenue +56% YoY to $19.8B, Mounjaro +125% to $8.7B) against a year-ago quarter depressed by a $1.6B acquired IPR&D charge (Scorpion STX-478). Q1'26 itself carried a $584M IPR&D CHARGE (depresses NI) and only a $250M one-time Jardiance benefit (3.4% of NI, below the 10% threshold; same collaboration benefit was $370M in Q1'25). Per ONEOFF-v1 hierarchy item 3 the quarter is flagged, not adjusted \u2014 the classic false-positive pattern (cf. NVDA hyper-growth in RECALIBRATION.md \u00a72.1).",
+        "One-off check: Q1 2026 only (YoY +168.1%, abs dev $4,637M > 10%-of-TTM threshold $2,758M; mean-dev +43.3% failed the size test at $2,236M). Q4 2025 did not trigger: YoY +50.5% and mean-dev +44.2% both failed the size test ($2,228M / $2,035M vs $2,758M). Q2 2026: YoY +25.3%, mean-dev +12.3% \u2014 no trigger. Q3 2026: YoY +15.5%, mean-dev -3.4% \u2014 no trigger. NO ADJUSTMENT: the Q1'26 jump is genuine operating growth (revenue +56% YoY to $19.8B, Mounjaro +125% to $8.7B) against a year-ago quarter depressed by a $1.6B acquired IPR&D charge (Scorpion STX-478). Q1'26 itself carried a $584M IPR&D CHARGE (depresses NI) and only a $250M one-time Jardiance benefit (3.4% of NI, below the 10% threshold; same collaboration benefit was $370M in Q1'25). The quarter is flagged, not adjusted \u2014 the classic false-positive pattern.",
         "For completeness: Q2 2026 carried a $2.8B pre-tax acquired IPR&D charge ($3.03/share, Orna/Ajax deals \u2014 depresses NI); Q3 2026 (not T1-flagged) benefited from ~$900M one-time gains (Jardiance milestones + favourable rebate adjustments) partly offset by a $4.57/share IPR&D charge. Neither quarter is adjusted \u2014 Q2's item depresses NI and Q3 did not fire T1.",
         "Insider 90d: Yahoo feed shows 2 sales, 11,500 shares, $14.65M in 90d (Anat Hakim / Patrik Jonsson, pre-scheduled).",
         "Technicals: EMA20 1360.54, EMA50 1281.46, RSI 69.7; EMA200 1153.74 (1y-history ewm per fetch_inputs.py method). MACD above signal."
@@ -1333,21 +1333,21 @@
         "Uptrend: price sits above its 20-, 50- and 200-day averages."
       ],
       "cons": [
-        "Triangulated fair value $314.52 is -9% below the $346.19 price \u2014 even the most generous leg ($351.05) sits below the price.",
+        "Fair value $314.52 is -9% below the $346.19 price \u2014 even the most generous leg ($351.05) sits below the price.",
         "Operating cash flow is only -128% of net income \u2014 a large slice of profit is not cash yet.",
         "Free-cash-flow conversion is weak: FCF is only -128% of net income \u2014 capex is eating the cash the business earns.",
         "Insiders are net sellers \u2014 1 sales, 2,500 shares, $1M, 0 buys in 90d."
       ],
       "flags": [
-        "ONEOFF-v1 T1: NO quarter fires. Q2 2026 NI $21.155B vs Q2 2025 $14.987B +41.2% YoY and +43.7% vs prior-4Q mean ($14.725B); absolute deviations $6.168B (YoY) / $6.430B (mean) both below 10% of TTM NI ($6.598B). Q3 2026 +6.3% YoY / -5.9% vs mean; Q1 2026 +12.7% YoY / +15.7% vs mean; Q4 2025 -7.0% YoY / -10.2% vs mean. Same conclusion on StockAnalysis net-income-to-common series. NO ADJUSTMENT made.",
-        "Q2 2026 disclosed significant items NOT adjusted (T1 did not fire): company-disclosed $4.6B net gain on Visa shares + $1.0B gains on certain equity investments; after-tax impact $4.2B \u2014 reported NI $21.2B / EPS $7.70 vs ex-items NI $16.9B / EPS $6.14 (JPM Q2 2026 earnings release, 14 Jul 2026, 8-K 0001628280-26-048078). Rule edge case: a disclosed $4.2B one-off sits inside TTM NI/EPS/P/E because T1's 50% / 10%-of-TTM gates were both narrowly missed. Flagged for engine-owner review; no adjustment per ONEOFF-v1 as written.",
+        "One-off check: no quarter triggers. Q2 2026 NI $21.155B vs Q2 2025 $14.987B +41.2% YoY and +43.7% vs prior-4Q mean ($14.725B); absolute deviations $6.168B (YoY) / $6.430B (mean) both below 10% of TTM NI ($6.598B). Q3 2026 +6.3% YoY / -5.9% vs mean; Q1 2026 +12.7% YoY / +15.7% vs mean; Q4 2025 -7.0% YoY / -10.2% vs mean. Same conclusion on StockAnalysis net-income-to-common series. NO ADJUSTMENT made.",
+        "Q2 2026 disclosed significant items NOT adjusted (the check did not trigger): company-disclosed $4.6B net gain on Visa shares + $1.0B gains on certain equity investments; after-tax impact $4.2B \u2014 reported NI $21.2B / EPS $7.70 vs ex-items NI $16.9B / EPS $6.14 (JPM Q2 2026 earnings release, 14 Jul 2026, 8-K 0001628280-26-048078). Rule edge case: a disclosed $4.2B one-off sits inside TTM NI/EPS/P/E because the 50% / 10%-of-TTM thresholds were both narrowly missed. Flagged for review; no adjustment.",
         "FCF TTM -$84.16B is Yahoo's 'Free Cash Flow' quarterly row summed over 4 quarters \u2014 for JPM it equals OCF exactly (no capex line for a bank); bank OCF is dominated by deposit/trading flows (Q1 2026 -$211.8B, Q4 2025 +$119.7B). StockAnalysis publishes NO FCF for JPM (n/a). FCF/share -$30.41 and any DCF leg built on it are not meaningful for a bank; JPM is possibly unscorable on the DCF leg as specified \u2014 engine decision required. OCF -127.6% of NI.",
         "Yahoo info.debtToEquity is null for JPM \u2014 debt_to_equity_ratio left null per formula. Cross-check only: StockAnalysis Debt/Equity 3.59 on its own definition (total debt $1.34T vs Yahoo balance-sheet Total Debt $500.0B \u2014 different debt definitions for a bank; neither substituted).",
         "Yahoo grossMargins is 0.0 for JPM (no COGS line for a bank) \u2014 recorded as reported, not meaningful.",
         "Receivables ratio uses Yahoo 'Net Receivables' ($111.6B) \u2014 for a bank this line is not trade receivables; ratio shown per formula only.",
         "EMA200 computed 330.01 (v1.3 method = 1y window sliced to 2026-11-13). RSI 56.1, EMA20 340.31, EMA50 340.58.",
         "JPM revenue TTM $198.65B (Yahoo quarterly Total Revenue) vs StockAnalysis $190.73B \u2014 vendors define bank revenue differently (Yahoo Q2 2026 $52.85B vs reported revenue $57.3B; the $4.6B Visa gain sits outside Yahoo's revenue line). Yahoo value used per v1.3 method; difference flagged.",
-        "ENGINE DECISION (batch-2 assembly, 2026-11-16): DCF leg SKIPPED \u2014 bank FCF undefined under the v1.3 Yahoo-row definition (Yahoo Free Cash Flow row for JPM equals operating cash flow, which includes deposit/trading flows; StockAnalysis publishes no FCF for JPM). The recorded Yahoo-row FCF/share -$30.41 is NOT used. Triangulated FV is the mean of the PEGY + Forward legs (the engine's existing NVO skip path). Debt/equity computed from the latest annual balance sheet (FY2025): Total Debt $499,982M / Stockholders Equity $362,438M = 1.3795."
+        "ENGINE DECISION (batch-2 assembly, 2026-11-16): DCF leg SKIPPED \u2014 bank FCF undefined under the v1.3 Yahoo-row definition (Yahoo Free Cash Flow row for JPM equals operating cash flow, which includes deposit/trading flows; StockAnalysis publishes no FCF for JPM). The recorded Yahoo-row FCF/share -$30.41 is NOT used. Fair value is the mean of the PEGY + Forward legs (the engine's existing NVO skip path). Debt/equity computed from the latest annual balance sheet (FY2025): Total Debt $499,982M / Stockholders Equity $362,438M = 1.3795."
       ]
     },
     "V": {
@@ -1530,13 +1530,13 @@
         "Uptrend: price sits above its 20-, 50- and 200-day averages."
       ],
       "cons": [
-        "Triangulated fair value $235.29 is -45% below the $425.76 price \u2014 even the most generous leg ($295.10) sits below the price.",
+        "Fair value $235.29 is -45% below the $425.76 price \u2014 even the most generous leg ($295.10) sits below the price.",
         "Insiders are net sellers \u2014 11 sales, 114,155 shares, $47M, 0 buys in 90d.",
         "Our Story-Tracker rates it 'Out' (Story 49.4, Financials 46.6)."
       ],
       "flags": [
         "Forward EPS DISCREPANCY \u2014 VERIFY BEFORE SCORING: Yahoo forwardEps $17.14 vs S&P Global consensus FY2027 EPS $15.03 (34 analysts, stockanalysis.com/stocks/v/forecast/, range $14.67-$15.34). Recomputed forward P/E 24.84 on Yahoo vs 28.32 on consensus; Forward-sector leg $235.16 on Yahoo vs $206.32 on consensus. Yahoo value retained per v1.3 method (Yahoo is the method's source) \u2014 NOT silently substituted. Yahoo's own analysis page could not be fetched from this machine (finance.yahoo.com blocked by policy).",
-        "ONEOFF-v1 T1: NO quarter fires. Largest deviations: Mar 2026 quarter +31.8% YoY (StockAnalysis series; Yahoo feed has only 5 quarters) and Sep 2026 +17.9% YoY / +6.3% vs prior-4Q mean (Yahoo series). All legs below the 50% deviation and 10%-of-TTM-NI ($2.350B) gates. No adjustment.",
+        "One-off check: no quarter triggers. Largest deviations: Mar 2026 quarter +31.8% YoY (StockAnalysis series; Yahoo feed has only 5 quarters) and Sep 2026 +17.9% YoY / +6.3% vs prior-4Q mean (Yahoo series). All comparisons below the 50% deviation and 10%-of-TTM-NI ($2.350B) thresholds. No adjustment.",
         "Insider 90d: Yahoo feed 11 sales / 114,155 shares / $46.8M (net selling).",
         "EMA200 computed 360.47 (v1.3 method = 1y window sliced to 2026-11-13). RSI 62.9, EMA20 414.36, EMA50 396.91.",
         "StockAnalysis TTM net income $23.31B vs Yahoo $23.50B (net income attributable to common vs total net income, ~$50M/quarter of preferred dividends) \u2014 Yahoo quarterly sum used per v1.3 method."

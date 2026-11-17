@@ -11,7 +11,7 @@
     "nvda_base_fcf_share_normalised": 4.8,
     "pegy_basis": "non-GAAP consistently",
     "forward_sector": "next-year EPS x GICS sector forward P/E (FactSet, 13 Nov 2026), discounted 10% for 1y; cap 35x / floor 10x",
-    "oneoff_rule": "ONEOFF-v1 \u2014 see ../recalibration/RECALIBRATION.md \u00a72"
+    "oneoff_rule": "One-off check"
   },
   "capm_crosscheck": {
     "ten_year_treasury_pct": 5.1,
@@ -217,7 +217,7 @@
         "exit": 286.34
       },
       "pros": [
-        "Triangulated fair value $238.62 is +46% above the $162.85 price \u2014 the DCF/PEGY/Forward-sector legs span $102.78\u2013$259.42, so treat the midpoint, not any single leg, as the anchor.",
+        "Fair value $238.62 is +46% above the $162.85 price \u2014 the DCF/PEGY/Forward-sector legs span $102.78\u2013$259.42, so treat the fair value, not any single leg, as the anchor.",
         "Revenue compounded 100% a year over the last 3 fiscal years.",
         "Free-cash-flow conversion is strong: FCF is 66% of net income.",
         "Our Story-Tracker rates it 'Hold, don't add' (Story 65.8, Financials 73.5)."
@@ -411,7 +411,7 @@
         "Uptrend: price sits above its 20-, 50- and 200-day averages."
       ],
       "cons": [
-        "Triangulated fair value $172.99 is -51% below the $356.27 price \u2014 even the most generous leg ($200.71) sits below the price.",
+        "Fair value $172.99 is -51% below the $356.27 price \u2014 even the most generous leg ($200.71) sits below the price.",
         "Revenue compounded only 8% a year over the last 3 fiscal years \u2014 growth is no longer the story.",
         "Insiders are net sellers \u2014 16 sales, 287,813 shares, $96M, 0 buys in 90d."
       ],
@@ -597,7 +597,7 @@
         "Uptrend: price sits above its 20-, 50- and 200-day averages."
       ],
       "cons": [
-        "Triangulated fair value $351.62 is -33% below the $523.88 price \u2014 even the most generous leg ($395.93) sits below the price.",
+        "Fair value $351.62 is -33% below the $523.88 price \u2014 even the most generous leg ($395.93) sits below the price.",
         "Insiders are net sellers \u2014 5 sales, 147,809 shares, $75M, 0 buys in 90d."
       ],
       "flags": []
@@ -780,13 +780,13 @@
         "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check."
       ],
       "cons": [
-        "Triangulated fair value $168.03 is -43% below the $295.77 price \u2014 even the most generous leg ($235.74) sits below the price.",
+        "Fair value $168.03 is -43% below the $295.77 price \u2014 even the most generous leg ($235.74) sits below the price.",
         "Free-cash-flow conversion is weak: FCF is only 14% of net income \u2014 capex is eating the cash the business earns.",
         "Downtrend: price $295.77 sits below its 20-day EMA ($302.82) and 200-day EMA ($331.87); RSI 40.6 \u2014 timing is poor even if the business is fine.",
         "Our Story-Tracker rates it 'Out' (Story 56.2, Financials 46.1)."
       ],
       "flags": [
-        "TTM net income $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$36.9B pre-tax (+$28.7B after tax), Q2 +$99.0B pre-tax (+$77.1B after tax, $278M realised), Q3 -$8.7B pre-tax (-$6.7B after tax). Net after-tax one-off +$99.1B removed (ONEOFF-v1). Adjusted NI $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 used for Quality/PEGT. Note: v1.1 removed only the Q2 pre-tax gain and got $136.663B \u2014 the two errors almost exactly cancel; see RECALIBRATION.md \u00a72.2."
+        "TTM net income $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$36.9B pre-tax (+$28.7B after tax), Q2 +$99.0B pre-tax (+$77.1B after tax, $278M realised), Q3 -$8.7B pre-tax (-$6.7B after tax). Net after-tax one-off +$99.1B removed. Adjusted NI $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 used for Quality/PEGT. Note: v1.1 removed only the Q2 pre-tax gain and got $136.663B \u2014 the two errors almost exactly cancel."
       ]
     },
     "NVO": {
@@ -927,7 +927,7 @@
         "exit": 50.93
       },
       "pros": [
-        "Triangulated fair value $42.44 is +2% above the $41.63 price \u2014 the DCF/PEGY/Forward-sector legs span $22.33\u2013$62.54, so treat the midpoint, not any single leg, as the anchor.",
+        "Fair value $42.44 is +2% above the $41.63 price \u2014 the DCF/PEGY/Forward-sector legs span $22.33\u2013$62.54, so treat the fair value, not any single leg, as the anchor.",
         "Revenue compounded 20% a year over the last 3 fiscal years.",
         "Operating cash flow is 135% of net income \u2014 profit is backed by more cash than earnings.",
         "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check."
@@ -937,7 +937,7 @@
       ],
       "flags": [
         "ADR, financials reported in DKK; per-share USD FCF not computed. Yahoo dividend yield 28.78% discarded; 4.34% used (range 3.08-4.40%). Yahoo insider feed empty for this ADR \u2014 insider sub-score is neutral/missing, not 'no selling'.",
-        "ONEOFF-v1: Q1 2026 net profit DKK 48,557M includes a DKK 26,760M non-cash reversal of a provision for US 340B sales rebates; company-disclosed adjusted net profit DKK 29,479M. Adjusted TTM NI DKK 94,099M, adjusted EPS USD $3.29, adjusted trailing P/E 12.64 used for Quality/PEGT (see RECALIBRATION.md \u00a72.2)."
+        "One-off check: Q1 2026 net profit DKK 48,557M includes a DKK 26,760M non-cash reversal of a provision for US 340B sales rebates; company-disclosed adjusted net profit DKK 29,479M. Adjusted TTM NI DKK 94,099M, adjusted EPS USD $3.29, adjusted trailing P/E 12.64 used for Quality/PEGT."
       ]
     }
   }

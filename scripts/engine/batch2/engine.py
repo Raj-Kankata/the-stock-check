@@ -443,11 +443,11 @@ def pros_cons(t, d, pillars, overall, vdt):
     price = d["price"]; val = pillars["valuation"]["detail"]; q = pillars["quality"]["detail"]; tc = pillars["technical"]["detail"]
     fv = val["triangulated_fv"]
     if val["upside_pct"] is not None and val["upside_pct"] > 0:
-        p.append(f"Triangulated fair value ${fv:,.2f} is {val['upside_pct']:+.0%} above the ${price:,.2f} price — the DCF/PEGY/Forward-sector legs span "
+        p.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:+.0%} above the ${price:,.2f} price — the DCF/PEGY/Forward-sector legs span "
                  f"${min(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}–"
-                 f"${max(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}, so treat the midpoint, not any single leg, as the anchor.")
+                 f"${max(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}, so treat the fair value, not any single leg, as the anchor.")
     if val["upside_pct"] is not None and val["upside_pct"] < 0:
-        c.append(f"Triangulated fair value ${fv:,.2f} is {val['upside_pct']:.0%} below the ${price:,.2f} price — even the most generous leg "
+        c.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:.0%} below the ${price:,.2f} price — even the most generous leg "
                  f"(${max(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}) sits below the price.")
     if d["revenue_cagr_3y_annual"] is not None and d["revenue_cagr_3y_annual"] >= 0.15:
         p.append(f"Revenue compounded {d['revenue_cagr_3y_annual']:.0%} a year over the last 3 fiscal years.")
@@ -484,7 +484,7 @@ results = {"as_of": "2026-11-16", "price_date": "2026-11-13",
                           "terminal_growth": 0.025, "dcf_growth_cap": 0.20,
                           "nvda_base_fcf_share_normalised": 4.80, "pegy_basis": "non-GAAP consistently",
                           "forward_sector": "next-year EPS x GICS sector forward P/E (FactSet, 13 Nov 2026), discounted 10% for 1y; cap 35x / floor 10x",
-                          "oneoff_rule": "ONEOFF-v1 — see ../recalibration/RECALIBRATION.md §2"},
+                          "oneoff_rule": "One-off check"},
            "capm_crosscheck": {"ten_year_treasury_pct": 5.10, "ten_year_treasury_asof": "2026-11-12",
                                "ten_year_treasury_source": "FRED series DGS10",
                                "ten_year_treasury_url": "https://fred.stlouisfed.org/series/dgs10",

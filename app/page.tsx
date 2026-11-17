@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
-import { ENGINE_VERSION, PILLAR_WEIGHTS, PRICE_DATE } from '@/lib/site'
+import { ENGINE_VERSION, PRICE_DATE } from '@/lib/site'
 import {
   Card,
   StockRow,
@@ -14,7 +14,7 @@ import GridPreview from '@/components/GridPreview'
 export const metadata: Metadata = {
   title: 'Check any stock before you buy',
   description:
-    'A free, deterministic, rules-based stock research tool. Five pillar scores, a triangulated fair value from three legs, and the full methodology published. No sign-in, no tracking.',
+    'A free, deterministic, rules-based stock research tool. Five pillar scores, a fair value built from three angles, and the workings shown on every stock card. No sign-in, no tracking.',
 }
 
 type Verdict = 'Growth' | 'Value' | 'Watch' | 'Avoid'
@@ -144,7 +144,7 @@ export default function HomePage() {
       <h1>Check any stock before you buy.</h1>
       <p className="page-intro">
         A free research tool that scores a stock on five pillars and works out a fair value from
-        three independent legs — and shows you every number, so you can check the work yourself.
+        three independent angles — and shows you every number, so you can check the work yourself.
       </p>
 
       <Card title="Spotlight — highest overall score">
@@ -215,10 +215,10 @@ export default function HomePage() {
       <Card title="Try the fair-value grid">
         <p>
           The grid shows what a stock&apos;s DCF fair value would be under different
-          assumptions. Each row is a free-cash-flow growth rate, from 0% to 20%; each
-          column is a risk-free rate, from 4.0% to 6.0%. Tap any cell to see its value —
+          assumptions. Each row is a different growth assumption; each column is a
+          different risk-free rate. Tap any cell to see its value —
           the headline above the grid follows your pick, and the highlighted cell is
-          that stock&apos;s own decision DCF leg.
+          that stock&apos;s own published DCF value.
         </p>
         <GridPreview />
       </Card>
@@ -315,7 +315,7 @@ export default function HomePage() {
 
       <Card title="The Stock Check vs Wall Street">
         <p>
-          Our triangulated fair value against the analyst consensus mean target — the names
+          Our fair value against the analyst consensus mean target — the names
           where our number and Wall Street&apos;s disagree most.
         </p>
         <table>
@@ -354,11 +354,27 @@ export default function HomePage() {
       <Card title="What you get">
         <p>Every scored stock gets the same treatment:</p>
         <ul>
-          {PILLAR_WEIGHTS.map((p) => (
-            <li key={p.key}>
-              <strong>{p.label}</strong> — {p.weight}% of the overall score
-            </li>
-          ))}
+          <li>
+            <strong>Conviction</strong> — whether the business itself is worth following: its
+            story and its financials both getting better.
+          </li>
+          <li>
+            <strong>Valuation</strong> — how the price compares with our fair value: the
+            further the price sits below fair value, the higher the score.
+          </li>
+          <li>
+            <strong>Quality / Forensics</strong> — whether reported profits are real: backed
+            by cash actually coming in, customers paying what they owe, and borrowing kept
+            in check.
+          </li>
+          <li>
+            <strong>Technical / Timing</strong> — whether now looks like a good moment to act,
+            from the price chart alone.
+          </li>
+          <li>
+            <strong>Trust</strong> — how much we can rely on the numbers behind the other
+            pillars: complete data, analysts broadly agreeing, and insiders not all selling.
+          </li>
         </ul>
         <p>
           The five pillar scores combine into one overall score (0–100) and a verdict: Growth,
@@ -366,15 +382,15 @@ export default function HomePage() {
           pillars and the fair value before deciding anything.
         </p>
         <p>
-          <strong>Triangulated fair value.</strong> The fair value is the median of three
-          independent legs — a 5-year DCF, a PEGY leg, and a forward-sector leg — not any single
-          model&apos;s answer. The spread between the highest and lowest leg is published on every
-          stock card, so you can see how much the three legs agree or disagree.
+          <strong>Fair value.</strong> The fair value combines three independent angles — a
+          5-year DCF, a PEGY value, and a forward-sector value — not any single
+          model&apos;s answer. The spread between the highest and lowest is published on every
+          stock card, so you can see how much the three angles agree or disagree.
         </p>
         {legs && nvda && (
           <p>
             Example — NVDA: DCF {money(legs.dcf.value)}, PEGY {money(legs.pegy.value)},
-            forward-sector {money(legs.forward_sector.value)}; median (fair value){' '}
+            forward-sector {money(legs.forward_sector.value)}; fair value{' '}
             {money(nvda.triangulated_fv)}
             {legSpread !== undefined && legSpread !== null
               ? `, leg spread ${pct(legSpread, 1, false)} of fair value`
@@ -383,8 +399,8 @@ export default function HomePage() {
           </p>
         )}
         <p>
-          <strong>Ladder as valuation context.</strong> Each stock card also shows a ladder at
-          0.60×, 0.80×, 1.00× and 1.20× fair value — where the price sits against the fair-value
+          <strong>Ladder as valuation context.</strong> Each stock card also shows a ladder of
+          price levels around the fair value — where the price sits against the fair-value
           estimate. The ladder is valuation context, not a buy or sell signal: backtests on 5
           tickers and on the full 749-name universe found the ladder does not separate forward
           returns.
@@ -407,7 +423,7 @@ export default function HomePage() {
       </Card>
 
       <p className="footnote">
-        Engine: {RESULTS.engine} · Prices as of {RESULTS.price_date} · Scores as of{' '}
+        Engine: {ENGINE_VERSION} · Prices as of {RESULTS.price_date} · Scores as of{' '}
         {RESULTS.as_of}
       </p>
     </>

@@ -476,7 +476,7 @@ export default function StockBrowser() {
       </div>
 
       <p className="footnote">
-        Beta as of 2026-11-15 (Yahoo) · Debt/FCF from latest annual filings · Relative
+        Beta as of Nov 15–16, 2026 (Yahoo) · Debt/FCF from latest annual filings · Relative
         volume as of the 2026-11-16 close · Index lists as of 2026-11-16, refreshed
         quarterly. Names with no debt/FCF figure (24) are excluded when a debt/FCF
         band is selected.

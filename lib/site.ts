@@ -5,7 +5,7 @@
 export const SITE_NAME = 'The Stock Check'
 export const SITE_URL = 'https://www.thestockcheck.com'
 export const PRICE_DATE = '2026-11-13'
-export const ENGINE_VERSION = 'scoring-engine-v1.3 (SPEC v1.1 FINAL)'
+export const ENGINE_VERSION = 'scoring-engine-v1.3'
 export const CONTACT_EMAIL = 'hello@thestockcheck.com'
 
 /** Pillar weights (SPEC v1.1 §3, frozen). */

@@ -41,7 +41,7 @@ export default function PicksPage() {
         <p className="footnote">
           Entry prices are the {PICKS_ENTRY_DATE} close — the same prices the scores were computed
           on. Upside vs entry is the fair value against the frozen entry price. Fair values and
-          verdicts are from engine v1.3 (SPEC v1.1 FINAL).
+          verdicts are from engine v1.3.
         </p>
       </Card>
 

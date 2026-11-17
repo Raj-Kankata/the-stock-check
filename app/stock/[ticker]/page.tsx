@@ -26,6 +26,7 @@ import {
   signedPctSpan,
 } from '@/components/ui'
 import SensitivityGrid from '@/components/SensitivityGrid'
+import { ENGINE_VERSION } from '@/lib/site'
 
 // Static export: one page per scored ticker, taken from results.json so
 // the generated set can never drift from the data. With `output: 'export'`
@@ -129,10 +130,8 @@ function Kv({ k, v }: { k: string; v: ReactNode }) {
 
 /**
  * One fair-value leg. A skipped (null) leg gets an amber "Skipped" pill
- * and an amber-tinted block; the leg that sources the triangulated fair
- * value — the median of three legs, or one of the two legs whose mean it
- * is — gets a green "Median → fair value" / "Mean of 2 legs → fair
- * value" badge and a green-tinted block.
+ * and an amber-tinted block; the leg(s) behind the fair value get a
+ * green "Fair value" badge and a green-tinted block.
  */
 function LegBlock({
   title,
@@ -152,8 +151,8 @@ function LegBlock({
       <p className="leg-value">
         <strong>{skipped ? '—' : money(value)}</strong>
         {skipped && <span className="pill skipped">Skipped</span>}
-        {badge === 'median' && <span className="pill growth">Median → fair value</span>}
-        {badge === 'mean' && <span className="pill growth">Mean of 2 legs → fair value</span>}
+        {badge === 'median' && <span className="pill growth">Fair value</span>}
+        {badge === 'mean' && <span className="pill growth">Fair value</span>}
       </p>
       {children}
     </div>
@@ -165,18 +164,12 @@ type ClosestLeg = {
   value: number
   /** |leg − consensus mean| ÷ consensus mean. */
   distancePct: number
-  /** What drives this leg, taken only from the stored leg data. */
-  driver: string
 }
 
 /**
  * Which of our three valuation legs sits closest to the analyst consensus
- * mean target, and what drives it. Drivers come only from the stored legs:
- * the DCF base FCF/share is parsed out of the stored DCF method text, the
- * PEGY trailing P/E and growth used are stored fields, and the
- * Forward-sector next-year EPS is parsed out of the stored method text
- * with the sector multiple a stored field. Skipped (null) legs are not
- * candidates. Returns null only if no leg has a value.
+ * mean target. Skipped (null) legs are not candidates. Returns null only
+ * if no leg has a value.
  */
 function closestLegToTarget(
   legs: { dcf: DcfLeg; pegy: PegLeg; forward_sector: ForwardLeg },
@@ -184,15 +177,10 @@ function closestLegToTarget(
 ): ClosestLeg | null {
   const candidates: ClosestLeg[] = []
   if (legs.dcf.value !== null) {
-    const baseFcf = legs.dcf.method.match(/FCF\/share \$(-?[\d.]+)/)?.[1]
     candidates.push({
       name: 'DCF',
       value: legs.dcf.value,
       distancePct: Math.abs(legs.dcf.value - targetMean) / targetMean,
-      driver:
-        baseFcf !== undefined
-          ? `base FCF/share $${baseFcf} at ${pct(legs.dcf.growth_scenario)} growth`
-          : `growth scenario ${pct(legs.dcf.growth_scenario)}`,
     })
   }
   if (legs.pegy.value !== null) {
@@ -200,16 +188,13 @@ function closestLegToTarget(
       name: 'PEGY',
       value: legs.pegy.value,
       distancePct: Math.abs(legs.pegy.value - targetMean) / targetMean,
-      driver: `trailing P/E ${legs.pegy.pe_used !== null ? legs.pegy.pe_used.toFixed(2) : '—'} at ${pct(legs.pegy.growth_used)} growth`,
     })
   }
   if (legs.forward_sector.value !== null) {
-    const fwdEps = legs.forward_sector.method.match(/next-year EPS \$([\d.]+)/)?.[1]
     candidates.push({
       name: 'Forward-sector',
       value: legs.forward_sector.value,
       distancePct: Math.abs(legs.forward_sector.value - targetMean) / targetMean,
-      driver: `next-year EPS $${fwdEps ?? '—'} × sector forward P/E ${legs.forward_sector.sector_multiple !== null ? legs.forward_sector.sector_multiple.toFixed(1) : '—'}×`,
     })
   }
   if (candidates.length === 0) return null
@@ -228,12 +213,10 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   const capm = val.dcf_capm_crosscheck!
   const grid = val.dcf_sensitivity_grid!
 
-  // Which leg(s) source the triangulated fair value, computed from the
-  // stored leg values — never hardcoded per ticker. With three legs the
-  // fair value is the median leg; with two available legs it is their
-  // mean. A leg is badged only if the computed value matches the stored
-  // fair value (within rounding), so a data change can never badge the
-  // wrong leg.
+  // Which leg(s) match the stored fair value, computed from the stored
+  // leg values — never hardcoded per ticker. A leg is badged only if the
+  // computed value matches the stored fair value (within rounding), so a
+  // data change can never badge the wrong leg.
   const legEntries = [
     { key: 'dcf', value: legs.dcf.value },
     { key: 'pegy', value: legs.pegy.value },
@@ -294,8 +277,8 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       : vsWallStreet.closest === null
         ? `No valuation leg is available, so the gap between our ${money(t.triangulated_fv)} fair value and the ${money(vsWallStreet.targetMean)} consensus mean is not explained by the legs.`
         : gapExplained
-          ? `Closest leg: ${vsWallStreet.closest.name} at ${money(vsWallStreet.closest.value)} (${vsWallStreet.closest.driver}) — within ${pct(vsWallStreet.closest.distancePct, 1, false)} of the ${money(vsWallStreet.targetMean)} consensus mean. The rest of the gap is triangulation: our fair value is the ${val.fv_method ?? 'triangulation of the legs'}.`
-          : `No leg explains the gap: the closest leg, ${vsWallStreet.closest.name} at ${money(vsWallStreet.closest.value)} (${vsWallStreet.closest.driver}), is still ${pct(vsWallStreet.closest.distancePct, 1, false)} from the ${money(vsWallStreet.targetMean)} consensus mean, while our fair value is ${money(t.triangulated_fv)} — the gap is not explained by the legs.`
+          ? `Closest leg: ${vsWallStreet.closest.name} at ${money(vsWallStreet.closest.value)} — within ${pct(vsWallStreet.closest.distancePct, 1, false)} of the ${money(vsWallStreet.targetMean)} consensus mean.`
+          : `No leg sits close to the consensus mean: the closest leg, ${vsWallStreet.closest.name} at ${money(vsWallStreet.closest.value)}, is still ${pct(vsWallStreet.closest.distancePct, 1, false)} from the ${money(vsWallStreet.targetMean)} consensus mean, while our fair value is ${money(t.triangulated_fv)} — the gap is not explained by the legs.`
 
   return (
     <div>
@@ -305,7 +288,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       </h1>
       <p className="page-intro">
         {t.sector} · Price {money(t.price)} (close, {priceDate}) · Engine{' '}
-        {RESULTS.engine}
+        {ENGINE_VERSION}
       </p>
       {/* Facts strip — one compact line: beta, trailing P/E, market cap,
           debt/FCF, relative volume, index membership. '—' for nulls. */}
@@ -325,25 +308,25 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           </span>
         </div>
         <p style={{ marginTop: 10 }}>{t.verdict_reason}</p>
-        <Kv k="Triangulated fair value" v={money(t.triangulated_fv)} />
+        <Kv k="Fair value" v={money(t.triangulated_fv)} />
         <Kv k="Price vs fair value" v={pct((t.triangulated_fv - t.price) / t.price)} />
       </Card>
 
       {/* (2) Five pillars */}
       <Card title="Score pillars">
-        <PillarBar label="Conviction" score={pillars.conviction.score} weight={25} />
-        <PillarBar label="Valuation" score={pillars.valuation.score} weight={30} />
-        <PillarBar label="Quality" score={pillars.quality.score} weight={20} />
-        <PillarBar label="Technical" score={pillars.technical.score} weight={10} />
-        <PillarBar label="Trust" score={pillars.trust.score} weight={15} />
+        <PillarBar label="Conviction" score={pillars.conviction.score} />
+        <PillarBar label="Valuation" score={pillars.valuation.score} />
+        <PillarBar label="Quality" score={pillars.quality.score} />
+        <PillarBar label="Technical" score={pillars.technical.score} />
+        <PillarBar label="Trust" score={pillars.trust.score} />
 
         <h3>Conviction</h3>
         <Kv k="Story" v={scoreSpan(pillars.conviction.detail.story ?? 0)} />
         <Kv k="Financials" v={scoreSpan(pillars.conviction.detail.financials ?? 0)} />
         <MetricNote
           anchor="conviction"
-          what="How strong the company's story and financials look — a measure of business momentum, scored by our Story-Tracker across 749 names. It asks whether the business is growing and gaining ground, not whether the stock is cheap."
-          how="The average of two sub-scores: Story (forward revenue growth, price leadership, estimate revisions and theme strength) and Financials (revenue growth, profitability, cash flow and acceleration). It is reused as published by the weekly Story-Tracker run and never recomputed inside the engine."
+          what="How strong the company's story and financials look — whether the business is growing and gaining ground."
+          how="A higher score means a stronger business story. It says nothing about whether the stock is cheap."
         />
 
         <h3>Quality</h3>
@@ -360,8 +343,8 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         )}
         <MetricNote
           anchor="quality"
-          what="Whether the reported profits are backed by real cash — a check for accounting flattery. It is built from the six sub-checks above, so no single line has to stand for the whole picture."
-          how="Operating cash flow vs net income (25%), accruals (20%), receivables trend (15%), free-cash-flow conversion (20%), return on assets (10%) and leverage, or debt / equity (10%). Where a one-off item was removed from earnings, the cash-flow checks use the adjusted figure."
+          what="Whether the reported profits are backed by real cash, rather than accounting that flatters the numbers."
+          how="A higher score means the earnings look more solid. A low score means you should trust the profit figures less."
         />
 
         <h3>Technical</h3>
@@ -378,8 +361,8 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         )}
         <MetricNote
           anchor="technical"
-          what="Short-term timing — whether the price trend and momentum are with the stock right now. It is a timing read, not a judgement on the business itself."
-          how="Trend from the 20-, 50- and 200-day moving averages (35%), price vs its 200-day average (25%), RSI (20%) and MACD (20%)."
+          what="Whether the price trend and momentum are with the stock right now."
+          how="A higher score means the short-term trend looks stronger. It says nothing about the business itself."
         />
 
         <h3>Trust</h3>
@@ -393,52 +376,42 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         )}
         <MetricNote
           anchor="trust"
-          what="How much we can trust the numbers behind the score — whether the data is complete, well covered by analysts, and not built on guesswork."
-          how="Data completeness (30%), analyst coverage (25%), target dispersion — how far apart analysts' price targets are (25%) — and insider activity (20%). Missing data is scored as missing, never as a clean bill of health: with no insider feed, that check scores a neutral 50."
+          what="How much we can rely on the numbers behind the score — whether the data is complete and well covered."
+          how="A higher score means the figures rest on firmer ground. A lower score means more of the picture is missing or disputed."
         />
       </Card>
 
       {/* (3) Valuation */}
       <Card title="Valuation">
-        <Kv k="Triangulated fair value" v={money(t.triangulated_fv)} />
-        <Kv k="Method" v={val.fv_method ?? '—'} />
+        <Kv k="Fair value" v={money(t.triangulated_fv)} />
         <Kv k="Price" v={money(t.price)} />
         <Kv k="Upside vs price" v={pct(val.upside_pct)} />
         <Kv k="Leg spread ÷ fair value" v={pct(val.leg_spread_div_fv)} />
         <MetricNote
           anchor="triangulated-fv"
-          what="Our single fair-value estimate for the stock — the middle of the three legs below, so no one method dominates. When one leg is skipped, it is the average of the two that remain."
-          how="Take the DCF, PEGY and Forward-sector legs and pick the median (the middle value). If a leg is skipped, the fair value is the mean of the two available legs. A wide spread between the legs means more uncertainty, and a very wide spread caps the valuation score."
+          what="Our single fair-value estimate for the stock, drawn from the three legs below."
+          how="If the price is well below it, the stock looks cheap on our numbers. If it is well above it, the stock looks expensive — and a wide gap between the legs means more uncertainty."
         />
         <MetricNote
           anchor="valuation"
-          what="How cheap or expensive the stock looks against our triangulated fair value — the bigger the upside to fair value, the higher the score. It carries the most weight of the five pillars (30%)."
-          how="Scored from the upside (fair value ÷ price − 1) on a fixed scale: −40% upside scores 10, 0% scores 55 and +50% scores 100. If the three legs disagree widely, the score is capped — at 65 when the leg spread is over 75% of fair value, and at 55 when it is over 100%."
+          what="How cheap or expensive the stock looks against our fair value — the bigger the upside to fair value, the higher the score."
+          how="A high score means the price sits well below our fair value. A low score means it sits at or above it."
         />
         <LegBlock title="DCF leg" value={legs.dcf.value} badge={legBadge('dcf')}>
-          <p>{legs.dcf.method}</p>
-          {legs.dcf.growth_scenario !== null && (
-            <p className="footnote">Growth scenario: {pct(legs.dcf.growth_scenario)}</p>
-          )}
           <MetricNote
           anchor="dcf-leg"
-            what="What the stock would be worth if you valued it purely on the cash the business is expected to throw off in the future — free cash flow, the cash left after the company pays to run and grow itself."
-            how="Free cash flow per share is projected for 5 years (growth capped at 20% a year), a terminal value is added assuming 2.5% growth forever after, and the whole stream is discounted back to today at 10% a year — 12% for high-beta names (raw beta of 2.0 or more) — anchored on a 5.00% risk-free rate. Where the per-share cash-flow basis can't be verified in dollars, the leg is skipped instead of guessed."
+            what="What the stock could be worth based only on the cash the business is expected to generate in the years ahead."
+            how="A higher number means that future cash looks more valuable. Compare it with the other two legs — if they disagree a lot, treat the fair value with more caution."
           />
         </LegBlock>
         <LegBlock title="PEGY leg" value={legs.pegy.value} badge={legBadge('pegy')}>
-          <p>{legs.pegy.method}</p>
           {legs.pegy.pegy !== null && (
-            <p className="footnote">
-              PEGY {legs.pegy.pegy.toFixed(3)} · growth used{' '}
-              {legs.pegy.growth_used !== null ? pct(legs.pegy.growth_used) : '—'} · P/E used{' '}
-              {legs.pegy.pe_used !== null ? legs.pegy.pe_used.toFixed(2) : '—'}
-            </p>
+            <p className="footnote">PEGY {legs.pegy.pegy.toFixed(3)}</p>
           )}
           <MetricNote
           anchor="pegy-leg"
-            what="A value based on the stock's earnings multiple and how fast earnings are expected to grow — the classic Peter Lynch idea that a fairly priced stock's P/E should roughly match its growth rate, with the dividend yield added in."
-            how="PEGY is (expected earnings growth + dividend yield) ÷ the trailing P/E, and fair price = current price × PEGY — so a PEGY above 1 means the stock looks cheap on its growth, and below 1 means expensive. Growth is the implied 5-year earnings growth, capped at 30%, and earnings are on a non-GAAP basis, with one-off items removed where the one-off rule applies."
+            what="What the stock could be worth based on its earnings, how fast those earnings are expected to grow, and the dividend it pays."
+            how="A higher number means the stock looks cheaper against its growth. Compare it with the other two legs before judging the fair value."
           />
         </LegBlock>
         <LegBlock
@@ -446,19 +419,18 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           value={legs.forward_sector.value}
           badge={legBadge('forward')}
         >
-          <p>{legs.forward_sector.method}</p>
           {legs.forward_sector.sector_multiple !== null && (
             <p className="footnote">
               Sector forward P/E {legs.forward_sector.sector_multiple.toFixed(1)}×
               {legs.forward_sector.sector_multiple_asof
-                ? ` (FactSet, ${legs.forward_sector.sector_multiple_asof})`
+                ? ` (as of ${legs.forward_sector.sector_multiple_asof})`
                 : ''}
             </p>
           )}
           <MetricNote
           anchor="forward-sector-leg"
-            what="A value based on what analysts expect the company to earn next year, priced at the multiple the market currently pays for its sector — not at a fixed multiple for every stock."
-            how="Next-year analyst earnings per share × the sector's forward P/E from FactSet (refreshed quarterly, capped at 35× and floored at 10×), then discounted 10% for one year. If the sector figure is missing, the fallback is the S&P 500 forward P/E, and then a legacy 22× as a flagged last resort."
+            what="What the stock could be worth based on next year's expected earnings, priced the way the market currently prices its sector."
+            how="A higher number means the stock looks cheaper against next year's earnings. Compare it with the other two legs before judging the fair value."
           />
         </LegBlock>
       </Card>
@@ -468,8 +440,8 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <LadderTable fv={t.triangulated_fv} price={t.price} />
         <MetricNote
           anchor="ladder"
-          what="Four price levels derived from our fair value — Heavy at 0.60×, Buy at 0.80×, Fair at 1.00× and Exit at 1.20× — showing where today's price sits against our estimate."
-          how="Each level is a fixed ratio of the triangulated fair value, the same ratios for every ticker. The levels are reference points for judging how far the price is from our estimate; they are not instructions to trade."
+          what="Four price levels around our fair value, showing where today's price sits against our estimate."
+          how="Read them as reference points for judging how far the price is from our estimate. They are not instructions to trade."
         />
       </Card>
 
@@ -480,7 +452,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         </p>
         {capm.value === null ? (
           <p>
-            <strong>Skipped.</strong> {capm.method}
+            <strong>Skipped.</strong> No cross-check value is available for this name.
           </p>
         ) : (
           <p>
@@ -492,17 +464,21 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <Kv k="CAPM discount" v={capm.discount_capm !== null ? pct(capm.discount_capm) : '—'} />
         <Kv k="Raw beta (Yahoo)" v={capm.beta_raw !== null ? capm.beta_raw.toFixed(3) : '—'} />
         <Kv
-          k="Adjusted beta (0.67 × raw + 0.33)"
+          k="Adjusted beta"
           v={capm.beta_adjusted !== null ? capm.beta_adjusted.toFixed(3) : '—'}
         />
         <Kv k="10-year Treasury" v="5.10% as of 2026-11-12 (FRED DGS10)" />
-        <Kv k="Damodaran implied ERP" v="4.41% as of 2026-11-01" />
-        {capm.method && capm.value !== null && <p className="footnote">{capm.method}</p>}
+        <Kv k="Implied ERP" v="4.41% as of 2026-11-01" />
         <p>
           Backtest v3 (full 749-name universe) measured the effect of the CAPM leg: 6-month
           correlations were about −0.06 vs −0.05 for flat discounts, and the buckets still
           do not separate forward returns — so the leg stays display-only.
         </p>
+        <MetricNote
+          anchor="capm-cross-check"
+          what="A second, independent check on the DCF leg, built from market inputs. It never changes the fair value, score or verdict."
+          how="If it lands close to the DCF leg, the two views agree. If it lands far away, treat the DCF leg with more caution."
+        />
         <p className="footnote">
           Full detail: <Link href="/methodology#capm-cross-check">Methodology</Link>.
         </p>
@@ -514,12 +490,11 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           values={grid.values}
           decisionLeg={legs.dcf.value}
           decisionGrowth={legs.dcf.growth_scenario}
-          note={grid.note}
         />
         <MetricNote
           anchor="sensitivity-grid"
-          what="The same DCF leg, shown across a range of assumptions instead of a single point — so you can see how much the answer moves if growth or interest rates turn out differently."
-          how="Rows are free-cash-flow growth from 0% to 20% (the cap); columns are the risk-free rate from 4.0% to 6.0%. Each cell's discount is the risk-free rate plus a locked spread (5 points at the 10% discount tier, 7 points at the 12% tier), so the 5.0% column reproduces the decision DCF leg where the growth is a grid row. The grid shows how sensitive the leg is to its assumptions — it is not a second valuation."
+          what="The same DCF leg, shown under different assumptions instead of a single point — so you can see how much the answer moves if the future turns out differently."
+          how="The highlighted cell is this stock's own estimate. Cells further away show how the value would change if growth or rates came in higher or lower."
         />
       </Card>
 
@@ -537,7 +512,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         </p>
         {symbol === 'GOOGL' && (
           <div className="callout">
-            <strong>ONEOFF-v1 adjustment — shown both ways.</strong> Reported TTM net income
+            <strong>One-off earnings adjustment — shown both ways.</strong> Reported TTM net income
             $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$28.7B,
             Q2 +$77.1B, Q3 −$6.7B after tax (net +$99.1B removed). Adjusted net income
             $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 — the adjusted
@@ -545,16 +520,16 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           </div>
         )}
         {symbol !== 'GOOGL' && (() => {
-          // Generic ONEOFF callout: a flag that records an applied
-          // ONEOFF-v1 adjustment carries "Adjusted TTM NI" (flag-only
+          // Generic one-off callout: a flag that records an applied
+          // one-off adjustment carries "Adjusted TTM NI" (flag-only
           // near-misses and no-adjustment notes do not). GOOGL keeps
           // its curated callout above.
-          const oneoffFlag = t.flags?.find(
-            (f) => f.includes('ONEOFF-v1') && /adjusted TTM NI/i.test(f),
+          const adjustmentFlag = t.flags?.find(
+            (f) => /adjusted TTM NI/i.test(f),
           )
-          return oneoffFlag ? (
+          return adjustmentFlag ? (
             <div className="callout">
-              <strong>ONEOFF-v1 adjustment — shown both ways.</strong> {oneoffFlag}
+              <strong>One-off earnings adjustment — shown both ways.</strong> {adjustmentFlag}
             </div>
           ) : (
             <p>No one-off earnings adjustment was applied to this name.</p>
@@ -641,8 +616,8 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <p>{gapLine}</p>
             <MetricNote
               anchor="us-vs-wall-street"
-              what="Our fair value next to Wall Street's — the average (mean) of the price targets published by the analysts who cover the stock, with the range of their targets and how many of them there are."
-              how="The consensus mean, low, high and analyst count come from Yahoo Finance analyst targets, fetched 15–16 Nov 2026 and carried through unchanged; the nightly refresh updates the price only. The gap is our fair value minus the consensus mean. The 'Why the gap?' line checks whether any of our three legs sits within 10% of the consensus mean — if one does, it names it; if none does, it says so plainly instead of inventing a reason."
+              what="Our fair value next to Wall Street's — the average of the price targets published by the analysts who cover the stock."
+              how="If our number is well above theirs, we are more optimistic than the average analyst. If it is well below, we are more cautious."
             />
             <p className="footnote">
               Analyst consensus: Yahoo Finance analyst targets, fetched 15–16 Nov 2026.
@@ -670,9 +645,8 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           <p>
             Between engine v1.1 and v1.2 the valuation score moved 65.0 → 97.9 and the
             overall score moved 65.6 → 75.5, while the fair value was unchanged at $238.62.
-            The Forward leg fell from $317.07 (22×) to $259.42 (sector 18.0×), narrowing
-            the leg spread from 0.898 to 0.656 and releasing the cap that had bound the
-            valuation score at 65.0.
+            The Forward leg fell from $317.07 to $259.42, narrowing the spread between
+            the legs from 0.898 to 0.656.
           </p>
           <p>
             A score change with no change in fair value must never be presented as if the
@@ -691,7 +665,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       </Card>
 
       <p className="footnote">
-        Data as of {RESULTS.as_of} · {RESULTS.engine} · Prices are the {priceDate} close.
+        Data as of {RESULTS.as_of} · {ENGINE_VERSION} · Prices are the {priceDate} close.
       </p>
     </div>
   )

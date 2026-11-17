@@ -4,7 +4,7 @@ import StockBrowser from '@/components/StockBrowser'
 export const metadata: Metadata = {
   title: 'All Stocks',
   description:
-    'Every stock scored by The Stock Check so far — verdict, overall score, price, triangulated fair value and upside, all computed from the published rules. No sign-in, no tracking.',
+    'Every stock scored by The Stock Check so far — verdict, overall score, price, fair value and upside, all computed from the published rules. No sign-in, no tracking.',
 }
 
 export default function StocksPage() {

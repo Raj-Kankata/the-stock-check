@@ -8,14 +8,14 @@
     "googl_gain": "Alphabet Q2 2026 10-Q via web search: $99.0B unrealised gain on equity securities, $278M realised",
     "nvo_div_yield": "FinanceCharts 2026-11-09",
     "sector_multiples": "FactSet Earnings Insight, 13 Nov 2026, S&P 500 Sector-Level Forward 12-Month P/E Ratios (p.34); saved as ../recalibration/data/sector_multiples_factset_2026-11-13.csv; cross-checked vs Yardeni 14 Nov 2026, Oppenheimer/FactSet 30 Oct 2026, FactSet 5 Nov 2026",
-    "oneoff_rule": "ONEOFF-v1 \u2014 see ../recalibration/RECALIBRATION.md \u00a72 and ../recalibration/data/oneoff_cases.json; GOOGL after-tax amounts from Alphabet Q1/Q2/Q3 2026 earnings releases (SEC EDGAR); NVO adjusted figures are the company's own disclosed non-GAAP figures (Form 6-K, 6 May 2026)",
+    "oneoff_rule": "One-off check \u2014 GOOGL after-tax amounts from Alphabet Q1/Q2/Q3 2026 earnings releases (SEC EDGAR); NVO adjusted figures are the company's own disclosed non-GAAP figures (Form 6-K, 6 May 2026)",
     "capm_crosscheck": "CAPM cross-check inputs (NEW in v1.3, cross-check only \u2014 decision legs unchanged). Raw betas: Yahoo Finance info.beta via yfinance 1.8.0, fetched 2026-11-15, https://finance.yahoo.com/quote/<TICKER> (saved in data/betas_yahoo_2026-11-15.json; identical to the beta values already carried in v1.2 inputs.json). 10Y Treasury 5.10% as of 2026-11-12: FRED series DGS10, https://fred.stlouisfed.org/series/dgs10. Damodaran implied ERP 4.41% as of 2026-11-01 (Trailing 12 month, with adjusted payout): https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm. Both verified 2026-11-15; full record in data/capm_inputs_2026-11-15.json.",
     "batch2_fragments": "Batch-2 fragments gathered 2026-11-16 (yfinance 1.8.0; prices/technicals at the 2026-11-13 close; Yahoo info fields live 2026-11-16). Per-ticker provenance in fragments/<TICKER>_SOURCES.md. Key sets verified identical to the v1.3 MSFT entry (extra oneoff_adjustments key only where GOOGL/NVO carry it).",
     "batch2_capm": "CAPM block copied VERBATIM from v1.3 inputs.json (10Y 5.10% 2026-11-12, Damodaran implied ERP 4.41% 2026-11-01). Raw betas are the batch-2 fragments' own Yahoo info.beta values, fetched 2026-11-16.",
     "jpm_debt_to_equity": "JPM debt_to_equity_ratio 1.3795 computed at batch-2 assembly from the latest annual balance sheet (FY2025, 2025-12-31, Yahoo via yfinance, re-fetched 2026-11-16): Total Debt $499,982M / Stockholders Equity $362,438M. Yahoo info.debtToEquity is null for JPM. See fragments/JPM_SOURCES.md.",
     "jpm_fcf_skip": "JPM fcf_per_share_ttm set to null at batch-2 assembly (gatherer's Yahoo-row value -$30.41 retained in JPM_SOURCES.md for traceability, NOT scored). Bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row for JPM equals operating cash flow, which includes deposit/trading flows; StockAnalysis publishes no FCF for JPM. Engine uses the existing NVO skip path: FV = mean of PEGY + Forward legs.",
     "v_forward_eps_verify": "V forwardEps re-fetched live 2026-11-16 via yfinance = 17.14041, unchanged \u2014 fragment keeps Yahoo $17.14 per the v1.3 method, flagged (S&P Global consensus FY2027 EPS $15.03 differs; see fragments/V_SOURCES.md).",
-    "batch2_near_misses_unadjusted": "AMZN Q1'26, META Q3'26 and JPM Q2'26 ONEOFF-v1 T1 near-misses stay UNADJUSTED per the frozen rule (flagged only). BRK-B keeps the Yahoo-method revenue CAGR (EDGAR operating-revenue alternative 7.14% flagged)."
+    "batch2_near_misses_unadjusted": "AMZN Q1'26, META Q3'26 and JPM Q2'26 one-off near-misses stay UNADJUSTED per the rule (flagged only). BRK-B keeps the Yahoo-method revenue CAGR (EDGAR operating-revenue alternative 7.14% flagged)."
   },
   "discarded_yahoo_fields": {
     "info.freeCashflow": "Stale/wrong (NVDA $41.8B, MSFT $3.0B, GOOGL -$1.2B vs computed TTM $127.0B/$60.0B/$19.7B). Recomputed from quarterly cashflow instead.",
@@ -461,7 +461,7 @@
         "proxy_note": "GOOG used as proxy for GOOGL (same company, class C vs A); price leadership may differ slightly."
       },
       "flags": [
-        "TTM net income $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$36.9B pre-tax (+$28.7B after tax), Q2 +$99.0B pre-tax (+$77.1B after tax, $278M realised), Q3 -$8.7B pre-tax (-$6.7B after tax). Net after-tax one-off +$99.1B removed (ONEOFF-v1). Adjusted NI $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 used for Quality/PEGT. Note: v1.1 removed only the Q2 pre-tax gain and got $136.663B \u2014 the two errors almost exactly cancel; see RECALIBRATION.md \u00a72.2."
+        "TTM net income $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$36.9B pre-tax (+$28.7B after tax), Q2 +$99.0B pre-tax (+$77.1B after tax, $278M realised), Q3 -$8.7B pre-tax (-$6.7B after tax). Net after-tax one-off +$99.1B removed. Adjusted NI $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 used for Quality/PEGT. Note: v1.1 removed only the Q2 pre-tax gain and got $136.663B \u2014 the two errors almost exactly cancel."
       ],
       "gics_sector": "Communication Services",
       "sector_multiple": 16.8,
@@ -588,7 +588,7 @@
       },
       "flags": [
         "ADR, financials reported in DKK; per-share USD FCF not computed. Yahoo dividend yield 28.78% discarded; 4.34% used (range 3.08-4.40%). Yahoo insider feed empty for this ADR \u2014 insider sub-score is neutral/missing, not 'no selling'.",
-        "ONEOFF-v1: Q1 2026 net profit DKK 48,557M includes a DKK 26,760M non-cash reversal of a provision for US 340B sales rebates; company-disclosed adjusted net profit DKK 29,479M. Adjusted TTM NI DKK 94,099M, adjusted EPS USD $3.29, adjusted trailing P/E 12.64 used for Quality/PEGT (see RECALIBRATION.md \u00a72.2)."
+        "One-off check: Q1 2026 net profit DKK 48,557M includes a DKK 26,760M non-cash reversal of a provision for US 340B sales rebates; company-disclosed adjusted net profit DKK 29,479M. Adjusted TTM NI DKK 94,099M, adjusted EPS USD $3.29, adjusted trailing P/E 12.64 used for Quality/PEGT."
       ],
       "gics_sector": "Health Care",
       "sector_multiple": 20.0,

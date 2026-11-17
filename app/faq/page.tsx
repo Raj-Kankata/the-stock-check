@@ -17,7 +17,7 @@ export default function FaqPage() {
     <>
       <h1>Frequently asked questions</h1>
       <p className="page-intro">
-        Plain-English answers. For the full recipe, see <Link href="/methodology">Methodology</Link>.
+        Plain-English answers. For more detail, see <Link href="/methodology">Methodology</Link>.
       </p>
 
       <Card title="Is it free?">
@@ -36,36 +36,34 @@ export default function FaqPage() {
         </p>
       </Card>
 
-      <Card title="What is a fair value — and what does “triangulated” mean?">
+      <Card title="What is a fair value?">
         <p>
           A fair value is our model&rsquo;s estimate of what a stock is worth, built from three
           independent angles: a discounted-cash-flow value, a PEGY value (growth plus dividend
           yield, divided by P/E), and a forward-sector value (next-year EPS times the
-          sector&rsquo;s forward P/E). &ldquo;Triangulated&rdquo; means we take the{' '}
-          <strong>median of the three legs</strong> — the middle value. The median is deliberate:
-          it blunts whichever leg is most wrong on a given name. Each stock page shows all three
-          legs and the spread between them, so you can see how much the three angles disagree.
+          sector&rsquo;s forward P/E). Each stock page shows all three values and the spread
+          between them, so you can see how much the three angles disagree.
         </p>
       </Card>
 
       <Card title="What does the ladder mean?">
         <p>
-          The ladder marks where the price sits against the fair value: Heavy at 0.60&times;,
-          Buy at 0.80&times;, Fair at 1.00&times;, Exit at 1.20&times; fair value. It is
+          The ladder marks where the price sits against the fair value, from well below it to
+          above it. It is
           valuation context — a way to see how far the price is from our estimate — not a buy
           or sell signal. Backtests on 5 tickers and on the full 749-name universe found the
           ladder does not separate forward returns, which is exactly why it is published as
-          context and never as an instruction. See Methodology §(d) for the numbers.
+          context and never as an instruction. See Methodology for the numbers.
         </p>
       </Card>
 
       <Card title="Why did NVDA's score rise while its fair value didn't move?">
         <p>
-          Between engine v1.1 and v1.2 the cap on the valuation-leg spread was released. That
-          changed how the valuation pillar scores a wide spread between the legs — and
-          NVDA&rsquo;s legs are far apart (DCF $102.78, PEGY $238.62, forward-sector $259.42) —
-          so its overall score rose to 75.5. The triangulated fair value is the median of the
-          three legs, and the median leg did not move, so the fair value stayed at $238.62.
+          Between engine v1.1 and v1.2, how the valuation pillar treats a wide spread between
+          the three values changed — and
+          NVDA&rsquo;s values are far apart (DCF $102.78, PEGY $238.62, forward-sector $259.42) —
+          so its overall score rose to 75.5. The fair value did not move, so the fair value
+          stayed at $238.62.
           Score and fair value measure different things, and they can move independently.
         </p>
       </Card>
@@ -73,8 +71,8 @@ export default function FaqPage() {
       <Card title="Why is GOOGL's P/E adjusted?">
         <p>
           GOOGL&rsquo;s reported earnings included $99.1B of equity-security marks — one-off,
-          non-operating gains that say nothing about the underlying business. Under the ONEOFF-v1
-          rule those marks are removed before the P/E is computed, so the P/E reflects operating
+          non-operating gains that say nothing about the underlying business. Those marks are
+          removed before the P/E is computed, so the P/E reflects operating
           earnings. Both variants — adjusted and unadjusted — are shown, so the adjustment is
           checkable rather than taken on trust.
         </p>
@@ -86,21 +84,21 @@ export default function FaqPage() {
           DCF needs cannot be verified — for example, a name reporting in another currency,
           or a bank, whose &ldquo;free cash flow&rdquo; is not meaningful because operating
           cash flow is dominated by deposit and trading flows. When a leg is skipped, the
-          fair value is the <strong>mean of the two remaining legs</strong>, and the skip is
+          fair value is worked out from the two remaining angles, and the skip is
           stated openly wherever it applies. No name in the current 227-name universe has a
-          skipped leg: every published fair value is the median of three legs. Two names the
+          skipped leg: every published fair value uses all three angles. Two names the
           site previously published did use the skip path — NVO (Danish-krone reporting) and
           JPM (bank cash flow) — and both are unpublished in the current build.
         </p>
       </Card>
 
-      <Card title="What is the CAPM number?">
+      <Card title="What is the second DCF number?">
         <p>
-          A display-only cross-check: a second DCF computed with a CAPM discount rate (10-year
-          Treasury plus adjusted beta times the Damodaran implied equity risk premium). It does
-          not change any fair value, score or verdict. Backtest v3 measured the CAPM variant on
+          A display-only cross-check: a second DCF value computed a different way. It does
+          not change any fair value, score or verdict. Backtest v3 measured the cross-check
+          variant on
           the full 749-name universe and found it does not separate returns better, so it stays
-          a cross-check. See Methodology §(e) for the formula and the per-ticker table.
+          a cross-check. See Methodology for more.
         </p>
       </Card>
 

@@ -57,12 +57,10 @@ export function Card({
   )
 }
 
-export function PillarBar({ label, score, weight }: { label: string; score: number; weight: number }) {
+export function PillarBar({ label, score }: { label: string; score: number }) {
   return (
     <div className="scorebar">
-      <span className="label">
-        {label} <span className="footnote">({weight}%)</span>
-      </span>
+      <span className="label">{label}</span>
       <span className="track">
         <span className={`fill ${scoreClass(score)}`} style={{ width: `${Math.max(0, Math.min(100, score))}%` }} />
       </span>
@@ -74,11 +72,11 @@ export function PillarBar({ label, score, weight }: { label: string; score: numb
 /**
  * Collapsible plain-language explainer for one metric on a stock card.
  * Native <details>/<summary> — no JS needed, works in the static
- * export. `what` says what the metric is; `how` says how it is
- * computed. Both must stay generic and true for every ticker (no
- * per-ticker numbers); ticker-specific notes live in the page's own
- * callouts, never in here. Every explainer links to /methodology, or
- * to /methodology#<anchor> when the optional `anchor` prop names the
+ * export. `what` says what the metric is; `how` says how to read it.
+ * Both must stay generic and true for every ticker (no per-ticker
+ * numbers); ticker-specific notes live in the page's own callouts,
+ * never in here. Every explainer links to /methodology, or to
+ * /methodology#<anchor> when the optional `anchor` prop names the
  * reading card for this metric on the Methodology page.
  */
 export function MetricNote({ what, how, anchor }: { what: ReactNode; how: ReactNode; anchor?: string }) {
@@ -89,7 +87,7 @@ export function MetricNote({ what, how, anchor }: { what: ReactNode; how: ReactN
         <strong>What this is.</strong> {what}
       </p>
       <p>
-        <strong>How it&apos;s computed.</strong> {how}
+        <strong>How to read it.</strong> {how}
       </p>
       <p className="footnote">
         Full detail:{' '}
@@ -118,7 +116,6 @@ export function LadderTable({ fv, price }: { fv: number; price: number }) {
           <div key={r.name} className={`rung ${r.cls}`}>
             <div className="name">{r.name}</div>
             <div className="level">{money(r.level)}</div>
-            <div className="ratio">{r.ratio.toFixed(2)}× fair value</div>
           </div>
         ))}
       </div>

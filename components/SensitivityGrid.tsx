@@ -4,26 +4,21 @@ import { useState } from 'react'
 import { money, pct } from '@/lib/data'
 
 /**
- * Interactive DCF sensitivity grid (SPEC v1.1 §3(a3)).
- * Rows: FCF growth 0–20% (the 20% cap). Columns: risk-free rate 4.0–6.0%.
- * Discount = rf + locked spread, so the rf 5.0% column reproduces the
- * decision DCF leg exactly where the base growth is a grid row (NVDA,
- * 20%); for other names the decision leg sits between two grid rows.
- * Click a cell to compare it with the decision DCF leg. The grid is a
- * display of the decision leg's assumption-dependence, not a second
- * valuation. Growth is capped at 20% — no 40% rows.
+ * Interactive DCF sensitivity grid.
+ * Rows: FCF growth assumptions. Columns: risk-free rate assumptions.
+ * Click a cell to compare it with this stock's published DCF value.
+ * The grid shows how the value moves under different assumptions —
+ * it is not a second valuation.
  */
 export default function SensitivityGrid({
   values,
   decisionLeg,
   decisionGrowth,
-  note,
   price,
 }: {
   values: Record<string, Record<string, number>> | null
   decisionLeg: number | null
   decisionGrowth: number | null
-  note: string
   /** Current price, so the headline can show the cell value vs price.
       Optional: the stock page renders this grid without it and the
       headline then shows the leg value alone. */
@@ -46,7 +41,7 @@ export default function SensitivityGrid({
     return (
       <div>
         <p>
-          <strong>DCF sensitivity grid: skipped.</strong> {note}
+          <strong>DCF sensitivity grid: skipped.</strong>
         </p>
       </div>
     )
@@ -151,8 +146,8 @@ export default function SensitivityGrid({
       </table>
       <p className="footnote">
         {decisionGrowthLabel !== null && growthRows.includes(decisionGrowthLabel)
-          ? `Highlighted cell (growth ${decisionGrowthLabel} × rf 5.0%) is the decision DCF leg: ${money(decisionLeg)}. `
-          : `The decision DCF leg (${money(decisionLeg)}) sits between two grid rows — its growth is ${decisionGrowth !== null ? `${(decisionGrowth * 100).toFixed(2)}%` : 'n/a'}, between the ${betweenRows} rows at rf 5.0%. `}
+          ? `The highlighted cell is this stock's published DCF value: ${money(decisionLeg)}. `
+          : `The published DCF value (${money(decisionLeg)}) sits between two grid rows — its growth is ${decisionGrowth !== null ? `${(decisionGrowth * 100).toFixed(2)}%` : 'n/a'}, between the ${betweenRows} rows. `}
         Click any cell to compare it with the decision leg. Cells are shaded by value
         across this grid&apos;s own range — greener is a higher DCF leg, redder is lower.
       </p>
@@ -168,7 +163,10 @@ export default function SensitivityGrid({
           the decision DCF leg ({money(decisionLeg)}).
         </p>
       )}
-      <p className="footnote">{note}</p>
+      <p className="footnote">
+        Each row is a different growth assumption; each column is a different risk-free rate. The
+        highlighted cell is this stock&apos;s published DCF value.
+      </p>
     </div>
   )
 }
