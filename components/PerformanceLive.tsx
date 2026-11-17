@@ -4,7 +4,8 @@
 // live-price store in lib/tradingview.ts. After hours, or if the scan
 // fails, the baked close from this build's data is shown with its
 // as-of label and no LIVE badge. The equal-weight portfolio return is
-// the mean of the four live returns while live.
+// the mean of that cohort's live returns while live. One instance of
+// this component renders one cohort — cohorts are never blended.
 
 'use client'
 
@@ -24,10 +25,16 @@ export default function PerformanceLive({
   rows,
   entryDate,
   latestCloseDate,
+  title,
+  nvoNote,
 }: {
   rows: PerformanceRow[]
   entryDate: string
   latestCloseDate: string
+  /** Card title — one cohort per instance, e.g. 'Launch picks (entered 13 Nov 2026)'. */
+  title: string
+  /** Only the launch cohort carries the NVO audit note. */
+  nvoNote?: boolean
 }) {
   const live = useLiveQuotes()
   const liveNow = hasLiveQuotes(live)
@@ -42,7 +49,7 @@ export default function PerformanceLive({
       : null
 
   return (
-    <Card title="Picks under tracking">
+    <Card title={title}>
       {live.status === 'live' ? (
         <p>
           <span className="live-badge">
@@ -94,9 +101,7 @@ export default function PerformanceLive({
             Return = (live price − entry price) ÷ entry price, measured from the {entryDate}{' '}
             close to the live price (Updated {live.updatedAt} CT; quotes delayed ~15 min).
             After hours the return is entry → {latestCloseDate} close. The print lengthens
-            with every nightly refresh; it is a return since entry, not a track record. NVO
-            was published as a pick on 13 Nov 2026 (entry $41.63) and removed from tracking
-            when its card was unpublished under the three-leg-only policy.
+            with every nightly refresh; it is a return since entry, not a track record.
           </>
         ) : (
           <>
@@ -104,11 +109,16 @@ export default function PerformanceLive({
             close to the {latestCloseDate} close — the closes since entry. During market
             hours this table shows live prices instead, and the return is then entry → live
             price. The print lengthens with every nightly refresh; it is a return since
-            entry, not a track record. NVO was published as a pick on 13 Nov 2026 (entry
-            $41.63) and removed from tracking when its card was unpublished under the
-            three-leg-only policy.
+            entry, not a track record.
           </>
         )}
+        {nvoNote ? (
+          <>
+            {' '}
+            NVO was published as a pick on 13 Nov 2026 (entry $41.63) and removed from
+            tracking when its card was unpublished under the three-leg-only policy.
+          </>
+        ) : null}
       </p>
       {portfolioReturn !== null ? (
         <p>

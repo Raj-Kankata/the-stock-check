@@ -211,6 +211,40 @@ export async function fetchAllQuotes(): Promise<Map<string, TvQuote> | null> {
   }
 }
 
+/**
+ * One quote for a single TradingView symbol (e.g. 'SP:SPX') via the
+ * /symbol endpoint — the same no-key pattern as the header strip in
+ * components/MarketStrip.tsx. Plain GET, no custom headers, so the
+ * browser sends a simple request (no preflight). `change` is already
+ * a percent, `change_abs` is points. Null on any failure — the
+ * caller falls back to the baked close.
+ */
+export interface TvSymbolQuote {
+  close: number
+  changePct: number
+  changeAbs: number
+}
+
+export async function fetchSymbolQuote(tvSymbol: string): Promise<TvSymbolQuote | null> {
+  try {
+    const res = await fetch(
+      `https://scanner.tradingview.com/symbol?symbol=${encodeURIComponent(
+        tvSymbol,
+      )}&fields=close,change,change_abs`,
+    )
+    if (!res.ok) return null
+    const j = (await res.json()) as unknown
+    if (!j || typeof j !== 'object') return null
+    const { close, change, change_abs } = j as Record<string, unknown>
+    if (!isFiniteNumber(close) || !isFiniteNumber(change) || !isFiniteNumber(change_abs)) {
+      return null
+    }
+    return { close, changePct: change, changeAbs: change_abs }
+  } catch {
+    return null
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Shared live-price store — one fetch per page, one 60s timer per page,
 // every live surface subscribes to the same state.

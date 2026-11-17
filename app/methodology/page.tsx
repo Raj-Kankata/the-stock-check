@@ -183,13 +183,32 @@ export default function MethodologyPage() {
             <tr>
               <td>Top Picks</td>
               <td>Engine output</td>
-              <td>Monthly, 1st of the month</td>
+              <td>Frozen at publication; changes only by decision</td>
             </tr>
           </tbody>
         </table>
         <p className="footnote">
           One field is deliberately discarded: Yahoo&rsquo;s freeCashflow field was found wrong,
           so free cash flow is taken from the quarterly cash-flow statement instead.
+        </p>
+      </Card>
+
+      <Card title="(f) How Top Picks performance is tracked">
+        <p>
+          Top Picks are the four launch names plus the top five Growth and top five Value names
+          as of the 16 Nov 2026 close.
+        </p>
+        <p>
+          The list is frozen at publication. It changes only when a new decision is made — names
+          are never rotated in automatically.
+        </p>
+        <p>
+          Performance is tracked in two groups, one for each entry date, and each group is
+          measured on its own — the two groups are never blended into one return.
+        </p>
+        <p>
+          The S&amp;P 500 is the benchmark, shown with returns since each entry date. It carries
+          no costs or dividends either, same as the picks.
         </p>
       </Card>
 

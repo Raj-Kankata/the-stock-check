@@ -35,14 +35,45 @@ export const SECTOR_TABLE_SOURCE = 'FactSet Earnings Insight, 13 Nov 2026'
 export const SECTOR_TABLE_NOTE =
   'Cap 35×, floor 10× (neither binds at any date Dec 2023 – Nov 2026). Fallback chain: sector multiple → S&P 500 forward P/E → legacy 22× (flagged last resort). Refreshed quarterly, first Friday after quarter-end.'
 
-/** Top Picks entry prices — frozen at the 13 Nov 2026 close (SPEC v1.1 §7). */
+/** Top Picks — frozen entry prices, two cohorts.
+ * Launch cohort entered at the 13 Nov 2026 close (SPEC v1.1 §7).
+ * New cohort entered at the 16 Nov 2026 close: the top 5 Growth and
+ * top 5 Value names as of that close. NVDA is a launch pick only —
+ * it appears once, in the launch cohort. The list is frozen at
+ * publication and changes only when Raj decides — no automatic
+ * rotation. */
 export const PICKS_ENTRY_DATE = '2026-11-13'
+export const PICKS_NEW_ENTRY_DATE = '2026-11-16'
 export const PICKS = [
-  { symbol: 'NVDA', entryPrice: 162.85 },
-  { symbol: 'AAPL', entryPrice: 356.27 },
-  { symbol: 'MSFT', entryPrice: 523.88 },
-  { symbol: 'GOOGL', entryPrice: 295.77 },
+  { symbol: 'NVDA', entryPrice: 162.85, cohort: 'launch' as const, entryDate: PICKS_ENTRY_DATE },
+  { symbol: 'AAPL', entryPrice: 356.27, cohort: 'launch' as const, entryDate: PICKS_ENTRY_DATE },
+  { symbol: 'MSFT', entryPrice: 523.88, cohort: 'launch' as const, entryDate: PICKS_ENTRY_DATE },
+  { symbol: 'GOOGL', entryPrice: 295.77, cohort: 'launch' as const, entryDate: PICKS_ENTRY_DATE },
+  { symbol: 'GEN', entryPrice: 30.4, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'PATH', entryPrice: 13.14, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'LYTS', entryPrice: 15.36, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'RDDT', entryPrice: 92.87, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'HPE', entryPrice: 46.57, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'NXPI', entryPrice: 254.19, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'DECK', entryPrice: 83.46, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'LOVE', entryPrice: 14.94, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'DELL', entryPrice: 320.55, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
 ] as const
+
+/** S&P 500 benchmark — frozen closes from Yahoo Finance (yfinance
+ * ^GSPC history, cross-checked against market.json to the cent).
+ * 13 Nov 2026 close 7561.67 matches the launch cohort's entry date;
+ * 16 Nov 2026 close 7416.59 matches the new cohort's entry date.
+ * Hand-check at the 16 Nov close: −1.92% since 13 Nov, 0.00% since
+ * 16 Nov by construction. */
+export const BENCHMARK = {
+  label: 'S&P 500',
+  source: 'Yahoo Finance',
+  launchEntryDate: PICKS_ENTRY_DATE,
+  launchEntryClose: 7561.67,
+  newEntryDate: PICKS_NEW_ENTRY_DATE,
+  newEntryClose: 7416.59,
+} as const
 
 /** Backtest evidence for the ladder-as-context framing (SPEC v1.1 §5, Appendices C–D). */
 export const BACKTEST_V2 = {

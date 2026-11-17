@@ -9,6 +9,8 @@ export type PickRow = {
   verdict: 'Growth' | 'Value' | 'Avoid' | 'Watch'
   score: number
   entryPrice: string
+  cohort: 'launch' | 'new'
+  entryDate: string
   fairValue: string
   upside: string
   upsideClass: 'pos' | 'neg' | 'zero'
@@ -22,6 +24,32 @@ function scoreClass(n: number): 'good' | 'mid' | 'bad' {
 
 function verdictClass(v: PickRow['verdict']): string {
   return v === 'Growth' || v === 'Value' ? 'growth' : v === 'Avoid' ? 'avoid' : 'watch'
+}
+
+const MONTHS = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]
+
+/** '2026-11-13' → '13 Nov 2026'. */
+function formatDay(iso: string): string {
+  const [y, m, d] = iso.split('-').map(Number)
+  if (!y || !m || !d || m < 1 || m > 12) return iso
+  return `${d} ${MONTHS[m - 1]} ${y}`
+}
+
+function cohortLabel(r: PickRow): string {
+  return `${r.cohort === 'launch' ? 'Launch' : 'New'} · ${formatDay(r.entryDate)}`
 }
 
 /**
@@ -62,6 +90,7 @@ export default function PicksFilter({ rows }: { rows: PickRow[] }) {
             <th>Verdict</th>
             <th className="num">Score</th>
             <th className="num">Entry price</th>
+            <th>Cohort</th>
             <th className="num">Fair value</th>
             <th className="num">Upside vs entry</th>
           </tr>
@@ -83,6 +112,7 @@ export default function PicksFilter({ rows }: { rows: PickRow[] }) {
                 <span className={`score-${scoreClass(r.score)}`}>{r.score.toFixed(1)}</span>
               </td>
               <td className="num">{r.entryPrice}</td>
+              <td>{cohortLabel(r)}</td>
               <td className="num">{r.fairValue}</td>
               <td className="num">
                 <span className={`num-${r.upsideClass}`}>{r.upside}</span>
