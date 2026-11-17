@@ -164,7 +164,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 3.2739,
+      "market_cap": 49311496075.32,
+      "rel_vol": 0.895,
+      "indexes": [
+        "SP500"
+      ]
     },
     "AAP": {
       "name": "Advance Auto Parts, Inc.",
@@ -270,7 +276,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 63.625,
+      "market_cap": 2772560986.7,
+      "rel_vol": 0.5912,
+      "indexes": []
     },
     "AAPL": {
       "name": "Apple Inc.",
@@ -374,7 +384,14 @@
       "sector_multiple_cap_floor_binds": false,
       "beta_source": "https://finance.yahoo.com/quote/AAPL",
       "beta_asof": "2026-11-15",
-      "beta_adjusted": 1.05963
+      "beta_adjusted": 1.05963,
+      "debt_fcf": 0.5888,
+      "market_cap": 5243873858535.73,
+      "rel_vol": 0.9733,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ABBV": {
       "name": "AbbVie Inc.",
@@ -481,6 +498,12 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebtAndCapitalLeaseObligations + LTD current + ShortTermBorrowings @2025-12-31; JPM precedent).",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3.2556,
+      "market_cap": 525163555817.69,
+      "rel_vol": 0.9231,
+      "indexes": [
+        "SP500"
       ]
     },
     "ABT": {
@@ -587,6 +610,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 4.6527,
+      "market_cap": 190355417952.56,
+      "rel_vol": 0.9267,
+      "indexes": [
+        "SP500"
       ]
     },
     "ACLS": {
@@ -693,7 +722,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 1.1656,
+      "market_cap": 3239839653.26,
+      "rel_vol": 0.5655,
+      "indexes": []
     },
     "ACN": {
       "name": "Accenture plc",
@@ -799,6 +832,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine."
+      ],
+      "debt_fcf": 1.1529,
+      "market_cap": 154562231368.72,
+      "rel_vol": 0.6125,
+      "indexes": [
+        "SP500"
       ]
     },
     "ADBE": {
@@ -903,7 +942,14 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 0.6408,
+      "market_cap": 98860676837.44,
+      "rel_vol": 0.9765,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ADP": {
       "name": "Automatic Data Processing, Inc.",
@@ -1011,6 +1057,13 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_no_capex_concept",
         "EDGAR flag: no capex concept \u2014 DCF leg unavailable (bank pattern); DCF-skip candidate"
+      ],
+      "debt_fcf": 1.1753,
+      "market_cap": 124348422072.27,
+      "rel_vol": 1.0766,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "ADSK": {
@@ -1117,6 +1170,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.305,
+      "market_cap": 56240627070.42,
+      "rel_vol": 0.9773,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "ALB": {
@@ -1223,6 +1283,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.3834,
+      "market_cap": 15436435780.95,
+      "rel_vol": 0.8358,
+      "indexes": [
+        "SP500"
       ]
     },
     "ALGT": {
@@ -1329,7 +1395,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 1495883298.1,
+      "rel_vol": 0.6377,
+      "indexes": []
     },
     "AMAT": {
       "name": "Applied Materials, Inc.",
@@ -1435,6 +1505,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.1617,
+      "market_cap": 296495984323.5,
+      "rel_vol": 0.8349,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "AMD": {
@@ -1541,6 +1618,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.3054,
+      "market_cap": 884565900092.88,
+      "rel_vol": 1.0345,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "AMKR": {
@@ -1647,7 +1731,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 9056417249.1,
+      "rel_vol": 0.4122,
+      "indexes": []
     },
     "AMN": {
       "name": "AMN Healthcare Services, Inc.",
@@ -1753,7 +1841,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 2.3696,
+      "market_cap": 1501845090.98,
+      "rel_vol": 0.6712,
+      "indexes": []
     },
     "AMZN": {
       "name": "Amazon.com, Inc.",
@@ -1875,7 +1967,14 @@
       ],
       "beta_source": "https://finance.yahoo.com/quote/AMZN",
       "beta_asof": "2026-11-16",
-      "beta_adjusted": 1.33701
+      "beta_adjusted": 1.33701,
+      "debt_fcf": null,
+      "market_cap": 2905429922436.0,
+      "rel_vol": 0.9566,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ANF": {
       "name": "Abercrombie & Fitch Co.",
@@ -1979,7 +2078,11 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 2.2728,
+      "market_cap": 6879013203.68,
+      "rel_vol": 1.0845,
+      "indexes": []
     },
     "AON": {
       "name": "Aon plc",
@@ -2085,6 +2188,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 8.8634,
+      "market_cap": 72849667191.84,
+      "rel_vol": 0.7229,
+      "indexes": [
+        "SP500"
       ]
     },
     "ASYS": {
@@ -2191,7 +2300,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 2.0477,
+      "market_cap": 178814817.05,
+      "rel_vol": 0.6946,
+      "indexes": []
     },
     "ATNI": {
       "name": "ATN International, Inc.",
@@ -2297,7 +2410,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 39.9689,
+      "market_cap": 456015250.0,
+      "rel_vol": 0.9214,
+      "indexes": []
     },
     "AVGO": {
       "name": "Broadcom Inc.",
@@ -2414,6 +2531,13 @@
           "amount_pre_tax_usd_b": null,
           "note": "Tax benefit \u2014 already after-tax; no pre-tax equivalent."
         }
+      ],
+      "debt_fcf": 1.6531,
+      "market_cap": 1695828563191.8,
+      "rel_vol": 0.9704,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "AXTI": {
@@ -2520,7 +2644,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 1.1329,
+      "market_cap": 3012765265.12,
+      "rel_vol": 1.1352,
+      "indexes": []
     },
     "BA": {
       "name": "The Boeing Company",
@@ -2626,6 +2754,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3028.875,
+      "market_cap": 135921739156.0,
+      "rel_vol": 0.7528,
+      "indexes": [
+        "SP500"
       ]
     },
     "BE": {
@@ -2732,6 +2866,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 6.381,
+      "market_cap": 61220108758.59,
+      "rel_vol": 0.7007,
+      "indexes": [
+        "SP500"
       ]
     },
     "BIP": {
@@ -2838,7 +2978,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 133050923067.81,
+      "rel_vol": 1.2123,
+      "indexes": []
     },
     "BLDR": {
       "name": "Builders FirstSource, Inc.",
@@ -2944,7 +3088,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 21.0105,
+      "market_cap": 6479186854.88,
+      "rel_vol": 0.6091,
+      "indexes": []
     },
     "BOX": {
       "name": "Box, Inc.",
@@ -3050,7 +3198,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 1.4265,
+      "market_cap": 8385365188.61,
+      "rel_vol": 0.601,
+      "indexes": []
     },
     "BRK-B": {
       "name": "Berkshire Hathaway Inc.",
@@ -3170,6 +3322,12 @@
           "amount_pre_tax_usd_b": 16.077,
           "source": "Berkshire Q2 2026 earnings release 8 Aug 2026 (8-K Ex 99.1, company-disclosed after-tax investment gains $12,684M); pre-tax $16,077M from Q2 2026 10-Q income-statement line via SEC EDGAR companyfacts (GainLossOnInvestments, CIK 1067983). Cross-check: pre-tax x 0.79 = $12,701M, within 0.1% of disclosed."
         }
+      ],
+      "debt_fcf": 5.6697,
+      "market_cap": 1279210382434.42,
+      "rel_vol": 0.7155,
+      "indexes": [
+        "SP500"
       ]
     },
     "BYND": {
@@ -3277,7 +3435,11 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2025-12-31; JPM precedent).",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 143920498.36,
+      "rel_vol": 1.5357,
+      "indexes": []
     },
     "CAT": {
       "name": "Caterpillar Inc.",
@@ -3383,6 +3545,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 4.0093,
+      "market_cap": 278617174044.2,
+      "rel_vol": 0.8673,
+      "indexes": [
+        "SP500"
       ]
     },
     "CAVA": {
@@ -3489,7 +3657,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 13.4387,
+      "market_cap": 6977032361.37,
+      "rel_vol": 0.8882,
+      "indexes": []
     },
     "CBOE": {
       "name": "Cboe Global Markets, Inc.",
@@ -3597,6 +3769,12 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.6239,
+      "market_cap": 39531245462.4,
+      "rel_vol": 0.8875,
+      "indexes": [
+        "SP500"
       ]
     },
     "CDE": {
@@ -3703,7 +3881,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.5873,
+      "market_cap": 10197527051.16,
+      "rel_vol": 1.155,
+      "indexes": []
     },
     "CDNS": {
       "name": "Cadence Design Systems, Inc.",
@@ -3809,6 +3991,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.5947,
+      "market_cap": 88658795743.38,
+      "rel_vol": 0.8179,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "CELH": {
@@ -3915,7 +4104,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 2.5081,
+      "market_cap": 11422178381.38,
+      "rel_vol": 0.9701,
+      "indexes": []
     },
     "CHWY": {
       "name": "Chewy, Inc.",
@@ -4021,7 +4214,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 2.044,
+      "market_cap": 9338975764.4,
+      "rel_vol": 0.9121,
+      "indexes": []
     },
     "CIEN": {
       "name": "Ciena Corporation",
@@ -4127,6 +4324,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 4.0349,
+      "market_cap": 40979504856.94,
+      "rel_vol": 1.0636,
+      "indexes": [
+        "SP500"
       ]
     },
     "CMG": {
@@ -4231,7 +4434,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 3.7081,
+      "market_cap": 45408228546.24,
+      "rel_vol": 0.6157,
+      "indexes": [
+        "SP500"
+      ]
     },
     "COHR": {
       "name": "Coherent Corp.",
@@ -4337,6 +4546,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": null,
+      "market_cap": 43509046514.35,
+      "rel_vol": 0.7561,
+      "indexes": [
+        "SP500"
       ]
     },
     "COST": {
@@ -4441,7 +4656,14 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 1.0852,
+      "market_cap": 491613364675.51,
+      "rel_vol": 1.2953,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "CRL": {
       "name": "Charles River Laboratories International, Inc.",
@@ -4547,6 +4769,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 7.1364,
+      "market_cap": 14147916960.26,
+      "rel_vol": 0.5326,
+      "indexes": [
+        "SP500"
       ]
     },
     "CRM": {
@@ -4653,6 +4881,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.7964,
+      "market_cap": 192041065679.12,
+      "rel_vol": 0.78,
+      "indexes": [
+        "SP500"
       ]
     },
     "CROX": {
@@ -4759,7 +4993,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 2.2057,
+      "market_cap": 8271445631.72,
+      "rel_vol": 1.0366,
+      "indexes": []
     },
     "CRWD": {
       "name": "CrowdStrike Holdings, Inc.",
@@ -4865,6 +5103,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.5098,
+      "market_cap": 203926339000.0,
+      "rel_vol": 0.6875,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "CSCO": {
@@ -4969,7 +5214,14 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 2.3341,
+      "market_cap": 381037801793.76,
+      "rel_vol": 1.0035,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "CTSH": {
       "name": "Cognizant Technology Solutions Corporation",
@@ -5075,6 +5327,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.9022,
+      "market_cap": 29530916233.1,
+      "rel_vol": 0.6879,
+      "indexes": [
+        "SP500"
       ]
     },
     "CVX": {
@@ -5181,6 +5439,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.9842,
+      "market_cap": 434879225812.9,
+      "rel_vol": 0.7412,
+      "indexes": [
+        "SP500"
       ]
     },
     "DAKT": {
@@ -5287,7 +5551,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.3804,
+      "market_cap": 940354900.92,
+      "rel_vol": 0.8652,
+      "indexes": []
     },
     "DAL": {
       "name": "Delta Air Lines, Inc.",
@@ -5395,6 +5663,12 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 6.5966,
+      "market_cap": 56735250000.0,
+      "rel_vol": 0.673,
+      "indexes": [
+        "SP500"
       ]
     },
     "DASH": {
@@ -5501,6 +5775,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.2256,
+      "market_cap": 75026802525.6,
+      "rel_vol": 0.894,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "DCTH": {
@@ -5607,7 +5888,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.1197,
+      "market_cap": 854623125.0,
+      "rel_vol": 1.2859,
+      "indexes": []
     },
     "DDOG": {
       "name": "Datadog, Inc.",
@@ -5713,6 +5998,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.0658,
+      "market_cap": 67017614403.52,
+      "rel_vol": 0.7427,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "DECK": {
@@ -5820,6 +6112,12 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.5126,
+      "market_cap": 12235882066.2,
+      "rel_vol": 1.06,
+      "indexes": [
+        "SP500"
       ]
     },
     "DELL": {
@@ -5928,6 +6226,12 @@
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2026-01-30; JPM precedent).",
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3.6803,
+      "market_cap": 228043184263.03,
+      "rel_vol": 1.1522,
+      "indexes": [
+        "SP500"
       ]
     },
     "DGX": {
@@ -6032,7 +6336,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 4.6524,
+      "market_cap": 29192071660.4,
+      "rel_vol": 0.7591,
+      "indexes": [
+        "SP500"
+      ]
     },
     "DIOD": {
       "name": "Diodes Incorporated",
@@ -6138,7 +6448,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 3.8078,
+      "market_cap": 4031787600.0,
+      "rel_vol": 0.658,
+      "indexes": []
     },
     "DIS": {
       "name": "The Walt Disney Company",
@@ -6244,6 +6558,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 5.5518,
+      "market_cap": 211392975190.88,
+      "rel_vol": 1.6389,
+      "indexes": [
+        "SP500"
       ]
     },
     "DOCN": {
@@ -6351,7 +6671,11 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 8.4051,
+      "market_cap": 9857456295.44,
+      "rel_vol": 0.7469,
+      "indexes": []
     },
     "DOCU": {
       "name": "DocuSign, Inc.",
@@ -6455,7 +6779,11 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 0.1528,
+      "market_cap": 16247533184.52,
+      "rel_vol": 0.6865,
+      "indexes": []
     },
     "DXC": {
       "name": "DXC Technology Company",
@@ -6561,7 +6889,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 3.5854,
+      "market_cap": 2390956527.93,
+      "rel_vol": 0.5169,
+      "indexes": []
     },
     "DXCM": {
       "name": "DexCom, Inc.",
@@ -6667,6 +6999,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.2682,
+      "market_cap": 32511822808.4,
+      "rel_vol": 0.8755,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "EBAY": {
@@ -6771,10 +7110,16 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 2.9888,
+      "market_cap": 55176321760.16,
+      "rel_vol": 0.9831,
+      "indexes": [
+        "SP500"
+      ]
     },
     "EFOR": {
-      "name": null,
+      "name": "Everforth, Inc.",
       "sector": "Technology",
       "currency_financials": "USD",
       "price": 35.55,
@@ -6877,7 +7222,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 7.4642,
+      "market_cap": 1492222234.95,
+      "rel_vol": 0.5702,
+      "indexes": []
     },
     "EFX": {
       "name": "Equifax Inc.",
@@ -6981,7 +7330,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 4.7162,
+      "market_cap": 22574400000.0,
+      "rel_vol": 0.5977,
+      "indexes": [
+        "SP500"
+      ]
     },
     "EIX": {
       "name": "Edison International",
@@ -7090,6 +7445,12 @@
         "EDGAR flag: stale_ocf: latest TTM quarter 2026-03-31 is 227d before as-of",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-09-30', '2025-12-31', '2026-03-31', '2026-09-30'] vs OCF quarters ['2025-06-30', '2025-09-30', '2025-12-31', '2026-03-31']",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": null,
+      "market_cap": 23262112003.2,
+      "rel_vol": 1.3065,
+      "indexes": [
+        "SP500"
       ]
     },
     "ENPH": {
@@ -7196,7 +7557,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 4.5398,
+      "market_cap": 3532018086.3,
+      "rel_vol": 0.4472,
+      "indexes": []
     },
     "EQIX": {
       "name": "Equinix, Inc.",
@@ -7305,6 +7670,12 @@
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "EDGAR flag: REIT: capex semantics differ from the PPE model (pilot blocker 8) \u2014 FCF/ DCF leg needs review, not auto-skipped",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": null,
+      "market_cap": 104240451562.72,
+      "rel_vol": 0.6653,
+      "indexes": [
+        "SP500"
       ]
     },
     "ERII": {
@@ -7411,7 +7782,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.2624,
+      "market_cap": 466643125.0,
+      "rel_vol": 0.9648,
+      "indexes": []
     },
     "ESTC": {
       "name": "Elastic N.V.",
@@ -7517,7 +7892,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 1.7069,
+      "market_cap": 9460761689.1,
+      "rel_vol": 1.0218,
+      "indexes": []
     },
     "ETSY": {
       "name": "Etsy, Inc.",
@@ -7624,7 +8003,11 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + ShortTermBorrowings @2025-12-31; JPM precedent).",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 5.0334,
+      "market_cap": 10276970531.0,
+      "rel_vol": 0.6292,
+      "indexes": []
     },
     "FDS": {
       "name": "FactSet Research Systems Inc.",
@@ -7728,7 +8111,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 2.1802,
+      "market_cap": 12181454663.39,
+      "rel_vol": 0.5609,
+      "indexes": [
+        "SP500"
+      ]
     },
     "FDX": {
       "name": "FedEx Corporation",
@@ -7837,6 +8226,12 @@
         "EDGAR flag: stale_ocf: latest TTM quarter 2026-05-31 is 166d before as-of",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-11-30', '2026-02-28', '2026-05-31', '2026-09-30'] vs OCF quarters ['2025-08-31', '2025-11-30', '2026-02-28', '2026-05-31']",
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 6.6708,
+      "market_cap": 77675136878.34,
+      "rel_vol": 0.8586,
+      "indexes": [
+        "SP500"
       ]
     },
     "FEIM": {
@@ -7943,7 +8338,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 683359320.0,
+      "rel_vol": 0.6341,
+      "indexes": []
     },
     "FFIV": {
       "name": "F5, Inc.",
@@ -8047,7 +8446,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 0.2445,
+      "market_cap": 17831106167.68,
+      "rel_vol": 0.553,
+      "indexes": [
+        "SP500"
+      ]
     },
     "FICO": {
       "name": "Fair Isaac Corporation",
@@ -8154,6 +8559,12 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2026-09-30; JPM precedent).",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 5.2308,
+      "market_cap": 16556577544.2,
+      "rel_vol": 0.5406,
+      "indexes": [
+        "SP500"
       ]
     },
     "FLEX": {
@@ -8262,6 +8673,12 @@
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-09-26', '2026-03-31', '2026-06-26', '2026-09-25'] vs OCF quarters ['2025-12-31', '2026-03-31', '2026-06-26', '2026-09-25']",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-09-26', '2026-03-31', '2026-06-26', '2026-09-25'] vs revenue quarters ['2025-12-31', '2026-03-31', '2026-06-26', '2026-09-25']"
+      ],
+      "debt_fcf": 7.6411,
+      "market_cap": 27447552350.36,
+      "rel_vol": 1.3432,
+      "indexes": [
+        "SP500"
       ]
     },
     "FSLR": {
@@ -8366,7 +8783,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 1.396,
+      "market_cap": 18459476654.46,
+      "rel_vol": 0.9007,
+      "indexes": [
+        "SP500"
+      ]
     },
     "FTNT": {
       "name": "Fortinet, Inc.",
@@ -8473,6 +8896,13 @@
       "flags": [
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned"
+      ],
+      "debt_fcf": 0.1633,
+      "market_cap": 94577917207.9,
+      "rel_vol": 0.6979,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "GAP": {
@@ -8579,7 +9009,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 5.977,
+      "market_cap": 7890177167.18,
+      "rel_vol": 1.8165,
+      "indexes": []
     },
     "GE": {
       "name": "GE Aerospace",
@@ -8685,6 +9119,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine."
+      ],
+      "debt_fcf": 2.5677,
+      "market_cap": 348381364517.3,
+      "rel_vol": 0.6338,
+      "indexes": [
+        "SP500"
       ]
     },
     "GEL": {
@@ -8791,7 +9231,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 9.0598,
+      "market_cap": 4854259257.76,
+      "rel_vol": 1.0056,
+      "indexes": []
     },
     "GEN": {
       "name": "Gen Digital Inc.",
@@ -8897,6 +9341,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 4.6009,
+      "market_cap": 18516363633.6,
+      "rel_vol": 0.8466,
+      "indexes": [
+        "SP500"
       ]
     },
     "GFS": {
@@ -9003,7 +9453,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 3.9907,
+      "market_cap": 23341685720.21,
+      "rel_vol": 0.6358,
+      "indexes": []
     },
     "GLW": {
       "name": "Corning Incorporated",
@@ -9111,6 +9565,12 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3.7265,
+      "market_cap": 99704065059.2,
+      "rel_vol": 0.7724,
+      "indexes": [
+        "SP500"
       ]
     },
     "GM": {
@@ -9217,6 +9677,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 9.0801,
+      "market_cap": 73677056302.0,
+      "rel_vol": 0.6181,
+      "indexes": [
+        "SP500"
       ]
     },
     "GME": {
@@ -9323,7 +9789,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 6.2983,
+      "market_cap": 14994678569.75,
+      "rel_vol": 0.6838,
+      "indexes": []
     },
     "GOOGL": {
       "name": "Alphabet Inc.",
@@ -9449,7 +9919,14 @@
       ],
       "beta_source": "https://finance.yahoo.com/quote/GOOGL",
       "beta_asof": "2026-11-15",
-      "beta_adjusted": 1.15142
+      "beta_adjusted": 1.15142,
+      "debt_fcf": 3.0025,
+      "market_cap": 3640272291427.83,
+      "rel_vol": 0.8492,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "GWRE": {
       "name": "Guidewire Software, Inc.",
@@ -9555,7 +10032,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 1.8932,
+      "market_cap": 13519850426.46,
+      "rel_vol": 0.794,
+      "indexes": []
     },
     "HD": {
       "name": "The Home Depot, Inc.",
@@ -9659,7 +10140,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 4.1849,
+      "market_cap": 347152738416.87,
+      "rel_vol": 1.4069,
+      "indexes": [
+        "SP500"
+      ]
     },
     "HE": {
       "name": "Hawaiian Electric Industries, Inc.",
@@ -9766,7 +10253,11 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 1503234252.87,
+      "rel_vol": 0.6308,
+      "indexes": []
     },
     "HGTY": {
       "name": "Hagerty, Inc.",
@@ -9873,7 +10364,11 @@
       "flags": [
         "Shares-implied: no EarningsPerShareDiluted concept in EDGAR \u2014 NI_TTM / Yahoo trailing EPS used for this field only (v1.3 method).",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 1.0292,
+      "market_cap": 16203418005.39,
+      "rel_vol": 1.4561,
+      "indexes": []
     },
     "HII": {
       "name": "Huntington Ingalls Industries, Inc.",
@@ -9977,7 +10472,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 8.9572,
+      "market_cap": 12068490276.48,
+      "rel_vol": 0.578,
+      "indexes": [
+        "SP500"
+      ]
     },
     "HPE": {
       "name": "Hewlett Packard Enterprise Company",
@@ -10083,6 +10584,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 4.8896,
+      "market_cap": 69472881452.26,
+      "rel_vol": 0.967,
+      "indexes": [
+        "SP500"
       ]
     },
     "HPQ": {
@@ -10189,6 +10696,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2025-10-31; JPM precedent)."
+      ],
+      "debt_fcf": 2.7083,
+      "market_cap": 27466167932.88,
+      "rel_vol": 0.9325,
+      "indexes": [
+        "SP500"
       ]
     },
     "HSY": {
@@ -10295,6 +10808,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.5586,
+      "market_cap": 157070776989.45,
+      "rel_vol": 1.1859,
+      "indexes": [
+        "SP500"
       ]
     },
     "HUM": {
@@ -10401,6 +10920,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 4.2609,
+      "market_cap": 54436893300.0,
+      "rel_vol": 0.8303,
+      "indexes": [
+        "SP500"
       ]
     },
     "HXL": {
@@ -10508,7 +11033,11 @@
       "flags": [
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'Hexcel Corporation' vs submissions 'HEXCEL CORP /DE/' (metadata quirk; CIK verified)",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 4.4561,
+      "market_cap": 35861552593.94,
+      "rel_vol": 0.6399,
+      "indexes": []
     },
     "IBM": {
       "name": "International Business Machines Corporation",
@@ -10614,6 +11143,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 4.5811,
+      "market_cap": 234952274830.52,
+      "rel_vol": 1.0601,
+      "indexes": [
+        "SP500"
       ]
     },
     "ICE": {
@@ -10720,6 +11255,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 4.546,
+      "market_cap": 101358611174.97,
+      "rel_vol": 0.8097,
+      "indexes": [
+        "SP500"
       ]
     },
     "ICHR": {
@@ -10826,7 +11367,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 2511116000.0,
+      "rel_vol": 0.8403,
+      "indexes": []
     },
     "IDXX": {
       "name": "IDEXX Laboratories, Inc.",
@@ -10930,7 +11475,14 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 0.7462,
+      "market_cap": 56100698431.18,
+      "rel_vol": 0.7174,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ILMN": {
       "name": "Illumina, Inc.",
@@ -11036,6 +11588,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.1883,
+      "market_cap": 31888803697.5,
+      "rel_vol": 0.6818,
+      "indexes": [
+        "SP500"
       ]
     },
     "INFY": {
@@ -11140,7 +11698,11 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 0.2451,
+      "market_cap": 50100716050.9,
+      "rel_vol": 0.5948,
+      "indexes": []
     },
     "INOD": {
       "name": "Innodata Inc.",
@@ -11247,7 +11809,11 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_lt4) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.0425,
+      "market_cap": 1245519663.48,
+      "rel_vol": 0.6771,
+      "indexes": []
     },
     "INTU": {
       "name": "Intuit Inc.",
@@ -11353,6 +11919,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.9721,
+      "market_cap": 94787496966.9,
+      "rel_vol": 0.8081,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "IPGP": {
@@ -11459,7 +12032,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.463,
+      "market_cap": 2942162180.06,
+      "rel_vol": 1.0047,
+      "indexes": []
     },
     "IRDM": {
       "name": "Iridium Communications Inc.",
@@ -11565,7 +12142,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 7.8528,
+      "market_cap": 4952562616.32,
+      "rel_vol": 0.6641,
+      "indexes": []
     },
     "JACK": {
       "name": "Jack in the Box Inc.",
@@ -11675,7 +12256,11 @@
         "EDGAR flag: stale_ocf: latest TTM quarter 2025-09-28 is 411d before as-of",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-09-28', '2026-01-18', '2026-04-12', '2026-07-05'] vs OCF quarters ['2025-01-19', '2025-04-13', '2025-07-06', '2025-09-28']",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 22.587,
+      "market_cap": 282470878.0,
+      "rel_vol": 0.7642,
+      "indexes": []
     },
     "JNJ": {
       "name": "Johnson & Johnson",
@@ -11782,6 +12367,12 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.1686,
+      "market_cap": 698958396594.0,
+      "rel_vol": 1.0864,
+      "indexes": [
+        "SP500"
       ]
     },
     "KEYS": {
@@ -11888,6 +12479,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.8829,
+      "market_cap": 51380383643.2,
+      "rel_vol": 1.5194,
+      "indexes": [
+        "SP500"
       ]
     },
     "KMX": {
@@ -11994,7 +12591,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 15.7667,
+      "market_cap": 7307006052.84,
+      "rel_vol": 0.8895,
+      "indexes": []
     },
     "KNF": {
       "name": "Knife River Corporation",
@@ -12100,7 +12701,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 3211390171.4,
+      "rel_vol": 0.5175,
+      "indexes": []
     },
     "KNX": {
       "name": "Knight-Swift Transportation Holdings Inc.",
@@ -12208,7 +12813,11 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 3.4598,
+      "market_cap": 10519522384.8,
+      "rel_vol": 0.6891,
+      "indexes": []
     },
     "KO": {
       "name": "The Coca-Cola Company",
@@ -12312,7 +12921,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 2.9742,
+      "market_cap": 427037720605.75,
+      "rel_vol": 1.0159,
+      "indexes": [
+        "SP500"
+      ]
     },
     "KR": {
       "name": "The Kroger Co.",
@@ -12418,6 +13033,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 10.1334,
+      "market_cap": 41523243208.8,
+      "rel_vol": 0.8371,
+      "indexes": [
+        "SP500"
       ]
     },
     "KTOS": {
@@ -12524,7 +13145,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 6216833322.03,
+      "rel_vol": 0.8414,
+      "indexes": []
     },
     "LLY": {
       "name": "Eli Lilly and Company",
@@ -12633,7 +13258,13 @@
       "sector_multiple_cap_floor_binds": false,
       "beta_source": "https://finance.yahoo.com/quote/LLY",
       "beta_asof": "2026-11-16",
-      "beta_adjusted": 0.59063
+      "beta_adjusted": 0.59063,
+      "debt_fcf": 3.6361,
+      "market_cap": 1292155045838.5,
+      "rel_vol": 1.0752,
+      "indexes": [
+        "SP500"
+      ]
     },
     "LMT": {
       "name": "Lockheed Martin Corporation",
@@ -12739,6 +13370,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.4458,
+      "market_cap": 137904387814.92,
+      "rel_vol": 0.691,
+      "indexes": [
+        "SP500"
       ]
     },
     "LOGI": {
@@ -12845,7 +13482,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.1075,
+      "market_cap": 14938963091.64,
+      "rel_vol": 0.5913,
+      "indexes": []
     },
     "LOVE": {
       "name": "The Lovesac Company",
@@ -12951,7 +13592,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 4.2174,
+      "market_cap": 223859283.0,
+      "rel_vol": 0.5741,
+      "indexes": []
     },
     "LOW": {
       "name": "Lowe's Companies, Inc.",
@@ -13057,6 +13702,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LTD incl current + no_short_term @2026-01-30; JPM precedent)."
+      ],
+      "debt_fcf": 5.703,
+      "market_cap": 127859903706.63,
+      "rel_vol": 1.1552,
+      "indexes": [
+        "SP500"
       ]
     },
     "LRCX": {
@@ -13163,6 +13814,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.5714,
+      "market_cap": 284500079573.76,
+      "rel_vol": 0.8908,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "LULU": {
@@ -13269,6 +13927,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.5809,
+      "market_cap": 12309718151.45,
+      "rel_vol": 0.7887,
+      "indexes": [
+        "SP500"
       ]
     },
     "LUV": {
@@ -13375,6 +14039,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": null,
+      "market_cap": 23311241387.28,
+      "rel_vol": 0.8935,
+      "indexes": [
+        "SP500"
       ]
     },
     "LW": {
@@ -13481,7 +14151,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 9.606,
+      "market_cap": 7805512586.38,
+      "rel_vol": 1.1492,
+      "indexes": []
     },
     "LWAY": {
       "name": "Lifeway Foods, Inc.",
@@ -13587,7 +14261,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 343990500.0,
+      "rel_vol": 2.6703,
+      "indexes": []
     },
     "LYTS": {
       "name": "LSI Industries Inc.",
@@ -13693,7 +14371,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 5.4654,
+      "market_cap": 550719552.12,
+      "rel_vol": 1.37,
+      "indexes": []
     },
     "M": {
       "name": "Macy's, Inc.",
@@ -13799,7 +14481,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 3.599,
+      "market_cap": 6776666657.8,
+      "rel_vol": 1.0139,
+      "indexes": []
     },
     "MA": {
       "name": "Mastercard Incorporated",
@@ -13903,7 +14589,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 1.4885,
+      "market_cap": 586425733136.34,
+      "rel_vol": 0.7324,
+      "indexes": [
+        "SP500"
+      ]
     },
     "MCK": {
       "name": "McKesson Corporation",
@@ -14010,6 +14702,12 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebtAndCapitalLeaseObligations + LTD current + no_short_term @2026-03-31; JPM precedent).",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.74,
+      "market_cap": 133587809699.01,
+      "rel_vol": 1.0305,
+      "indexes": [
+        "SP500"
       ]
     },
     "MCO": {
@@ -14116,6 +14814,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.559,
+      "market_cap": 89337841500.6,
+      "rel_vol": 0.6996,
+      "indexes": [
+        "SP500"
       ]
     },
     "MDB": {
@@ -14225,7 +14929,11 @@
         "EDGAR reason code: ttm_eps_quarters_noncontiguous",
         "EDGAR flag: ttm_quarters_noncontiguous_eps: eps TTM quarters ['2025-04-30', '2025-07-31', '2026-04-30', '2026-07-31'] span 457d (quarters missing in between \u2014 not a true trailing 4 quarters)",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.0835,
+      "market_cap": 27338024203.8,
+      "rel_vol": 0.8243,
+      "indexes": []
     },
     "MELI": {
       "name": "MercadoLibre, Inc.",
@@ -14331,6 +15039,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine."
+      ],
+      "debt_fcf": 1.3207,
+      "market_cap": 75614702413.25,
+      "rel_vol": 0.7205,
+      "indexes": [
+        "NASDAQ100"
       ]
     },
     "META": {
@@ -14450,7 +15164,14 @@
       ],
       "beta_source": "https://finance.yahoo.com/quote/META",
       "beta_asof": "2026-11-16",
-      "beta_adjusted": 1.18693
+      "beta_adjusted": 1.18693,
+      "debt_fcf": 2.9284,
+      "market_cap": 1647442197777.32,
+      "rel_vol": 0.4857,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "MMM": {
       "name": "3M Company",
@@ -14557,6 +15278,12 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 5.8274,
+      "market_cap": 96784166973.9,
+      "rel_vol": 1.0498,
+      "indexes": [
+        "SP500"
       ]
     },
     "MORN": {
@@ -14661,7 +15388,11 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 3.7731,
+      "market_cap": 9615147329.48,
+      "rel_vol": 0.8383,
+      "indexes": []
     },
     "MRTN": {
       "name": "Marten Transport, Ltd.",
@@ -14770,7 +15501,11 @@
         "EDGAR reason code: fcf_no_capex_concept",
         "EDGAR flag: no capex concept \u2014 DCF leg unavailable (bank pattern); DCF-skip candidate",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.0867,
+      "market_cap": 635787298.36,
+      "rel_vol": 0.6555,
+      "indexes": []
     },
     "MRVL": {
       "name": "Marvell Technology, Inc.",
@@ -14876,6 +15611,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3.0554,
+      "market_cap": 137030041083.48,
+      "rel_vol": 0.7072,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "MSFT": {
@@ -14980,7 +15722,14 @@
       "sector_multiple_cap_floor_binds": false,
       "beta_source": "https://finance.yahoo.com/quote/MSFT",
       "beta_asof": "2026-11-15",
-      "beta_adjusted": 1.03015
+      "beta_adjusted": 1.03015,
+      "debt_fcf": 0.9478,
+      "market_cap": 3899870996042.28,
+      "rel_vol": 1.1509,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "MU": {
       "name": "Micron Technology, Inc.",
@@ -15086,6 +15835,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.0878,
+      "market_cap": 889711050575.49,
+      "rel_vol": 0.8712,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "NCLH": {
@@ -15192,6 +15948,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": null,
+      "market_cap": 8042777676.84,
+      "rel_vol": 0.756,
+      "indexes": [
+        "SP500"
       ]
     },
     "NDAQ": {
@@ -15296,7 +16058,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 4.1165,
+      "market_cap": 61762699442.29,
+      "rel_vol": 0.9523,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NEM": {
       "name": "Newmont Corporation",
@@ -15403,6 +16171,12 @@
       "flags": [
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'NEWMONT CORPORATION' vs submissions 'NEWMONT Corp /DE/' (metadata quirk; CIK verified)",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.5543,
+      "market_cap": 121559720969.7,
+      "rel_vol": 0.8321,
+      "indexes": [
+        "SP500"
       ]
     },
     "NKE": {
@@ -15509,6 +16283,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 5.285,
+      "market_cap": 56221564584.94,
+      "rel_vol": 0.8762,
+      "indexes": [
+        "SP500"
       ]
     },
     "NOW": {
@@ -15613,7 +16393,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 1.7716,
+      "market_cap": 106295863276.25,
+      "rel_vol": 0.6306,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NRG": {
       "name": "NRG Energy, Inc.",
@@ -15719,6 +16505,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 33.5704,
+      "market_cap": 21243791333.9,
+      "rel_vol": 0.5813,
+      "indexes": [
+        "SP500"
       ]
     },
     "NTAP": {
@@ -15829,6 +16621,12 @@
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-10-24', '2026-01-23', '2026-04-24', '2026-07-31'] vs revenue quarters ['2012-10-26', '2013-01-25', '2025-07-25', '2026-07-31']",
         "EDGAR flag: ttm_quarters_noncontiguous_revenue: revenue TTM quarters ['2012-10-26', '2013-01-25', '2025-07-25', '2026-07-31'] span 5026d (quarters missing in between \u2014 not a true trailing 4 quarters)",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.5358,
+      "market_cap": 36325234485.82,
+      "rel_vol": 1.2995,
+      "indexes": [
+        "SP500"
       ]
     },
     "NTNX": {
@@ -15935,7 +16733,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 1.8098,
+      "market_cap": 17598224016.92,
+      "rel_vol": 0.6292,
+      "indexes": []
     },
     "NU": {
       "name": "Nu Holdings Ltd.",
@@ -16041,7 +16843,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (yahoo_annual_bs_ifrs total_debt/equity@2025-12-31; annual stockholders_equity @2025-12-31; JPM precedent)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 66635556358.62,
+      "rel_vol": 0.9923,
+      "indexes": []
     },
     "NUE": {
       "name": "Nucor Corporation",
@@ -16148,6 +16954,12 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.6685,
+      "market_cap": 57694141430.91,
+      "rel_vol": 0.7246,
+      "indexes": [
+        "SP500"
       ]
     },
     "NVDA": {
@@ -16254,7 +17066,14 @@
       "sector_multiple_cap_floor_binds": false,
       "beta_source": "https://finance.yahoo.com/quote/NVDA",
       "beta_asof": "2026-11-15",
-      "beta_adjusted": 1.83549
+      "beta_adjusted": 1.83549,
+      "debt_fcf": 0.0869,
+      "market_cap": 3970966517114.15,
+      "rel_vol": 1.5869,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "NXPI": {
       "name": "NXP Semiconductors N.V.",
@@ -16360,6 +17179,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3.1339,
+      "market_cap": 67219993691.06,
+      "rel_vol": 0.841,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "NXT": {
@@ -16464,7 +17290,11 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 0.0869,
+      "market_cap": 14628101607.21,
+      "rel_vol": 0.6057,
+      "indexes": []
     },
     "OKTA": {
       "name": "Okta, Inc.",
@@ -16570,10 +17400,16 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.0541,
+      "market_cap": 32608144576.11,
+      "rel_vol": 0.3677,
+      "indexes": [
+        "SP500"
       ]
     },
     "OLED": {
-      "name": null,
+      "name": "Universal Display Corporation",
       "sector": "Technology",
       "currency_financials": "USD",
       "price": 89.29,
@@ -16677,7 +17513,11 @@
       "flags": [
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'UNIVERSAL DISPLAY CORPORATION' vs submissions 'UNIVERSAL DISPLAY CORP \\PA\\' (metadata quirk; CIK verified)",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.0924,
+      "market_cap": 4168162026.46,
+      "rel_vol": 0.5802,
+      "indexes": []
     },
     "ON": {
       "name": "ON Semiconductor Corporation",
@@ -16783,6 +17623,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.9122,
+      "market_cap": 29321823984.86,
+      "rel_vol": 0.7222,
+      "indexes": [
+        "SP500"
       ]
     },
     "ORCL": {
@@ -16889,6 +17735,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": null,
+      "market_cap": 371727586159.35,
+      "rel_vol": 0.4787,
+      "indexes": [
+        "SP500"
       ]
     },
     "OXY": {
@@ -16996,6 +17848,12 @@
       "flags": [
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'OCCIDENTAL PETROLEUM CORPORATION' vs submissions 'OCCIDENTAL PETROLEUM CORP /DE/' (metadata quirk; CIK verified)",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.1512,
+      "market_cap": 65638477097.5,
+      "rel_vol": 0.8106,
+      "indexes": [
+        "SP500"
       ]
     },
     "P": {
@@ -17102,6 +17960,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.7579,
+      "market_cap": 37468831666.47,
+      "rel_vol": 0.941,
+      "indexes": [
+        "SP500"
       ]
     },
     "PANW": {
@@ -17208,6 +18072,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.6241,
+      "market_cap": 247319200000.0,
+      "rel_vol": 0.8527,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "PATH": {
@@ -17314,7 +18185,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.2198,
+      "market_cap": 7168077689.34,
+      "rel_vol": 1.4092,
+      "indexes": []
     },
     "PFE": {
       "name": "Pfizer Inc.",
@@ -17420,6 +18295,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 5.3799,
+      "market_cap": 166488942861.27,
+      "rel_vol": 0.8775,
+      "indexes": [
+        "SP500"
       ]
     },
     "PG": {
@@ -17524,7 +18405,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 2.5375,
+      "market_cap": 409847078266.2,
+      "rel_vol": 1.3968,
+      "indexes": [
+        "SP500"
+      ]
     },
     "PINS": {
       "name": "Pinterest, Inc.",
@@ -17630,7 +18517,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.9478,
+      "market_cap": 13660001400.0,
+      "rel_vol": 0.666,
+      "indexes": []
     },
     "PLTR": {
       "name": "Palantir Technologies Inc.",
@@ -17736,6 +18627,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.0556,
+      "market_cap": 431030034179.08,
+      "rel_vol": 0.7158,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "PM": {
@@ -17843,6 +18741,12 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LTD incl current + ShortTermBorrowings @2025-12-31; JPM precedent).",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3.5921,
+      "market_cap": 311500385994.0,
+      "rel_vol": 1.1606,
+      "indexes": [
+        "SP500"
       ]
     },
     "PRIM": {
@@ -17950,7 +18854,11 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 33.3979,
+      "market_cap": 3770389854.0,
+      "rel_vol": 0.5995,
+      "indexes": []
     },
     "PYPL": {
       "name": "PayPal Holdings, Inc.",
@@ -18054,7 +18962,14 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 2.2624,
+      "market_cap": 53476442769.36,
+      "rel_vol": 0.8255,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "PZZA": {
       "name": "Papa John's International, Inc.",
@@ -18161,7 +19076,11 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2025-12-28; JPM precedent).",
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 34.1162,
+      "market_cap": 681368838.96,
+      "rel_vol": 0.6979,
+      "indexes": []
     },
     "QCOM": {
       "name": "QUALCOMM Incorporated",
@@ -18267,6 +19186,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.8486,
+      "market_cap": 185072532259.02,
+      "rel_vol": 0.8603,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "QLYS": {
@@ -18371,7 +19297,11 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 0.1579,
+      "market_cap": 6139859247.26,
+      "rel_vol": 1.0519,
+      "indexes": []
     },
     "RBBN": {
       "name": "Ribbon Communications Inc.",
@@ -18477,7 +19407,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 273243600.0,
+      "rel_vol": 0.5523,
+      "indexes": []
     },
     "RCL": {
       "name": "Royal Caribbean Cruises Ltd.",
@@ -18583,6 +19517,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 15.3444,
+      "market_cap": 87085760902.44,
+      "rel_vol": 0.5907,
+      "indexes": [
+        "SP500"
       ]
     },
     "RDDT": {
@@ -18689,6 +19629,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.0262,
+      "market_cap": 19924994144.55,
+      "rel_vol": 0.6318,
+      "indexes": [
+        "SP500"
       ]
     },
     "RH": {
@@ -18795,7 +19741,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 16.4012,
+      "market_cap": 2567309411.43,
+      "rel_vol": 0.8698,
+      "indexes": []
     },
     "RMBS": {
       "name": "Rambus Inc.",
@@ -18899,7 +19849,11 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 0.0646,
+      "market_cap": 8996841861.0,
+      "rel_vol": 0.5761,
+      "indexes": []
     },
     "ROG": {
       "name": "Rogers Corporation",
@@ -19005,7 +19959,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.2237,
+      "market_cap": 2304064376.03,
+      "rel_vol": 1.3205,
+      "indexes": []
     },
     "ROK": {
       "name": "Rockwell Automation, Inc.",
@@ -19111,6 +20069,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.1393,
+      "market_cap": 45220585499.62,
+      "rel_vol": 1.0225,
+      "indexes": [
+        "SP500"
       ]
     },
     "ROST": {
@@ -19217,6 +20181,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.6985,
+      "market_cap": 74582532172.8,
+      "rel_vol": 1.0195,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "RTX": {
@@ -19321,7 +20292,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 4.0916,
+      "market_cap": 270887620204.66,
+      "rel_vol": 0.6178,
+      "indexes": [
+        "SP500"
+      ]
     },
     "SBUX": {
       "name": "Starbucks Corporation",
@@ -19428,6 +20405,13 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2026-09-27; JPM precedent).",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3.9669,
+      "market_cap": 121693189095.48,
+      "rel_vol": 0.9964,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "SCHL": {
@@ -19536,7 +20520,11 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 1488984269.93,
+      "rel_vol": 0.7065,
+      "indexes": []
     },
     "SHAK": {
       "name": "Shake Shack Inc.",
@@ -19643,7 +20631,11 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 3181699895.38,
+      "rel_vol": 0.7651,
+      "indexes": []
     },
     "SIRI": {
       "name": "Sirius XM Holdings Inc.",
@@ -19749,7 +20741,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 5.9981,
+      "market_cap": 11796296284.5,
+      "rel_vol": 0.5824,
+      "indexes": []
     },
     "SLB": {
       "name": "SLB N.V.",
@@ -19853,7 +20849,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 2.8109,
+      "market_cap": 78442151965.85,
+      "rel_vol": 0.8484,
+      "indexes": [
+        "SP500"
+      ]
     },
     "SMCI": {
       "name": "Super Micro Computer, Inc.",
@@ -19959,6 +20961,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": null,
+      "market_cap": 20683524743.19,
+      "rel_vol": 0.7085,
+      "indexes": [
+        "SP500"
       ]
     },
     "SMG": {
@@ -20066,7 +21074,11 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2026-09-30; JPM precedent).",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 7.1552,
+      "market_cap": 3768736369.44,
+      "rel_vol": 0.7689,
+      "indexes": []
     },
     "SNDR": {
       "name": "Schneider National, Inc.",
@@ -20172,7 +21184,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 1.5217,
+      "market_cap": 5132688900.48,
+      "rel_vol": 0.6235,
+      "indexes": []
     },
     "SNPS": {
       "name": "Synopsys, Inc.",
@@ -20278,6 +21294,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3.9458,
+      "market_cap": 85823057040.8,
+      "rel_vol": 0.7471,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "SPGI": {
@@ -20384,6 +21407,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-12-31', '2026-03-31', '2026-06-30', '2026-09-30'] vs OCF quarters ['2025-09-30', '2025-12-31', '2026-03-31', '2026-06-30']"
+      ],
+      "debt_fcf": 2.4373,
+      "market_cap": 140359461930.35,
+      "rel_vol": 0.5661,
+      "indexes": [
+        "SP500"
       ]
     },
     "STX": {
@@ -20490,6 +21519,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.6428,
+      "market_cap": 121844849976.36,
+      "rel_vol": 0.7389,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "SWKS": {
@@ -20596,6 +21632,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 11.5621,
+      "market_cap": 13577784185.28,
+      "rel_vol": 0.686,
+      "indexes": [
+        "SP500"
       ]
     },
     "SYM": {
@@ -20705,7 +21747,11 @@
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.035,
+      "market_cap": 5718389400.0,
+      "rel_vol": 1.0386,
+      "indexes": []
     },
     "T": {
       "name": "AT&T Inc.",
@@ -20815,6 +21861,12 @@
         "EDGAR flag: stale_ocf: latest TTM quarter 2025-12-31 is 317d before as-of",
         "EDGAR flag: ttm_window_mismatch: NI quarters ['2025-12-31', '2026-03-31', '2026-06-30', '2026-09-30'] vs OCF quarters ['2025-03-31', '2025-06-30', '2025-09-30', '2025-12-31']",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 9.2898,
+      "market_cap": 158333858706.26,
+      "rel_vol": 0.853,
+      "indexes": [
+        "SP500"
       ]
     },
     "TEAM": {
@@ -20921,7 +21973,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.736,
+      "market_cap": 39157536373.53,
+      "rel_vol": 1.2645,
+      "indexes": []
     },
     "TJX": {
       "name": "The TJX Companies, Inc.",
@@ -21027,6 +22083,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'The TJX Companies, Inc.' vs submissions 'TJX COMPANIES INC /DE/' (metadata quirk; CIK verified)"
+      ],
+      "debt_fcf": 2.4365,
+      "market_cap": 150967183398.03,
+      "rel_vol": 1.9743,
+      "indexes": [
+        "SP500"
       ]
     },
     "TMDX": {
@@ -21133,7 +22195,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 19.3955,
+      "market_cap": 3606588855.54,
+      "rel_vol": 0.4571,
+      "indexes": []
     },
     "TMO": {
       "name": "Thermo Fisher Scientific Inc.",
@@ -21237,7 +22303,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 5.4463,
+      "market_cap": 261179105771.82,
+      "rel_vol": 0.7091,
+      "indexes": [
+        "SP500"
+      ]
     },
     "TMUS": {
       "name": "T-Mobile US, Inc.",
@@ -21341,7 +22413,14 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 6.3794,
+      "market_cap": 185207806109.7,
+      "rel_vol": 0.6462,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "TRU": {
       "name": "TransUnion",
@@ -21448,7 +22527,11 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 6.0713,
+      "market_cap": 15736653516.54,
+      "rel_vol": 0.5939,
+      "indexes": []
     },
     "TSLA": {
       "name": "Tesla, Inc.",
@@ -21565,6 +22648,13 @@
           "amount_after_tax_usd_b": 0.239,
           "amount_pre_tax_usd_b": 0.307
         }
+      ],
+      "debt_fcf": 4.4657,
+      "market_cap": 1379920835061.92,
+      "rel_vol": 0.7648,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "TTD": {
@@ -21671,7 +22761,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.6742,
+      "market_cap": 7485291132.48,
+      "rel_vol": 0.8658,
+      "indexes": []
     },
     "TTEK": {
       "name": "Tetra Tech, Inc.",
@@ -21778,7 +22872,11 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 2.1987,
+      "market_cap": 10126335562.53,
+      "rel_vol": 0.6694,
+      "indexes": []
     },
     "TWLO": {
       "name": "Twilio Inc.",
@@ -21886,6 +22984,12 @@
         "FCF: EDGAR has no usable capex concept \u2014 Yahoo quarterly 'Free Cash Flow' direct row used for this field only (v1.3 method).",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.9516,
+      "market_cap": 33726049972.96,
+      "rel_vol": 1.019,
+      "indexes": [
+        "SP500"
       ]
     },
     "TXN": {
@@ -21992,6 +23096,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.8523,
+      "market_cap": 279728860105.2,
+      "rel_vol": 0.7215,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "UAL": {
@@ -22096,7 +23207,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 30.7294,
+      "market_cap": 35838851551.95,
+      "rel_vol": 1.0256,
+      "indexes": [
+        "SP500"
+      ]
     },
     "UBER": {
       "name": "Uber Technologies, Inc.",
@@ -22202,6 +23319,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.702,
+      "market_cap": 141213947335.41,
+      "rel_vol": 0.7612,
+      "indexes": [
+        "SP500"
       ]
     },
     "UCTT": {
@@ -22308,7 +23431,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 2163000015.45,
+      "rel_vol": 0.5108,
+      "indexes": []
     },
     "ULTA": {
       "name": "Ulta Beauty, Inc.",
@@ -22412,7 +23539,13 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 2.1959,
+      "market_cap": 29122638685.14,
+      "rel_vol": 0.8651,
+      "indexes": [
+        "SP500"
+      ]
     },
     "UNH": {
       "name": "UnitedHealth Group Incorporated",
@@ -22518,6 +23651,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 3.2564,
+      "market_cap": 368780321338.5,
+      "rel_vol": 0.8975,
+      "indexes": [
+        "SP500"
       ]
     },
     "UPS": {
@@ -22624,6 +23763,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 4.8055,
+      "market_cap": 95583230726.0,
+      "rel_vol": 1.0469,
+      "indexes": [
+        "SP500"
       ]
     },
     "V": {
@@ -22734,7 +23879,13 @@
       "sector_multiple_cap_floor_binds": false,
       "beta_source": "https://finance.yahoo.com/quote/V",
       "beta_asof": "2026-11-16",
-      "beta_adjusted": 0.85662
+      "beta_adjusted": 0.85662,
+      "debt_fcf": 1.0006,
+      "market_cap": 812261610478.08,
+      "rel_vol": 1.0602,
+      "indexes": [
+        "SP500"
+      ]
     },
     "VECO": {
       "name": "Veeco Instruments Inc.",
@@ -22840,7 +23991,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 2.0867,
+      "market_cap": 2566437300.0,
+      "rel_vol": 0.767,
+      "indexes": []
     },
     "VRT": {
       "name": "Vertiv Holdings Co",
@@ -22946,6 +24101,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.0666,
+      "market_cap": 79241656133.31,
+      "rel_vol": 0.8466,
+      "indexes": [
+        "SP500"
       ]
     },
     "VSH": {
@@ -23052,7 +24213,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 7.3859,
+      "market_cap": 4089304292.04,
+      "rel_vol": 0.4513,
+      "indexes": []
     },
     "VYX": {
       "name": "NCR Voyix Corporation",
@@ -23161,7 +24326,11 @@
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "EDGAR reason code: fcf_capex_quarters_misaligned",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": null,
+      "market_cap": 1732111113.44,
+      "rel_vol": 0.7957,
+      "indexes": []
     },
     "WDAY": {
       "name": "Workday, Inc.",
@@ -23267,6 +24436,13 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 1.3263,
+      "market_cap": 49748775225.7,
+      "rel_vol": 1.0706,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "WDC": {
@@ -23374,6 +24550,13 @@
       "flags": [
         "Revenue CAGR 3y uncomputable (edgar_fy_revenue_nonconsecutive) \u2014 Growth verdict gate cannot pass; Value gate treats null as pass per engine.",
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.215,
+      "market_cap": 114655907648.7,
+      "rel_vol": 0.7511,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
       ]
     },
     "WING": {
@@ -23481,7 +24664,11 @@
       "flags": [
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2025-12-27; JPM precedent).",
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 10.4729,
+      "market_cap": 4333878564.34,
+      "rel_vol": 0.5262,
+      "indexes": []
     },
     "WMT": {
       "name": "Walmart Inc.",
@@ -23585,7 +24772,14 @@
       ],
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": []
+      "flags": [],
+      "debt_fcf": 5.5587,
+      "market_cap": 1024534362365.25,
+      "rel_vol": 0.8141,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "WST": {
       "name": "West Pharmaceutical Services, Inc.",
@@ -23691,6 +24885,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 1 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.6923,
+      "market_cap": 29859790866.16,
+      "rel_vol": 0.6883,
+      "indexes": [
+        "SP500"
       ]
     },
     "WYNN": {
@@ -23799,6 +24999,12 @@
         "Debt/equity: Yahoo info.debtToEquity null \u2014 computed from the latest annual balance sheet (edgar_bs LongTermDebt + LTD current + no_short_term @2025-12-31; JPM precedent).",
         "EDGAR flag: entity_name_differs_from_submissions: companyfacts 'WYNN RESORTS, LIMITED' vs submissions 'WYNN RESORTS LTD' (metadata quirk; CIK verified)",
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 20.4863,
+      "market_cap": 9209512036.44,
+      "rel_vol": 0.5604,
+      "indexes": [
+        "SP500"
       ]
     },
     "XOM": {
@@ -23905,6 +25111,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 2 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 0.7972,
+      "market_cap": 711468889064.5,
+      "rel_vol": 1.0074,
+      "indexes": [
+        "SP500"
       ]
     },
     "XYZ": {
@@ -24011,6 +25223,12 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
+      ],
+      "debt_fcf": 2.182,
+      "market_cap": 52708084323.92,
+      "rel_vol": 0.7328,
+      "indexes": [
+        "SP500"
       ]
     },
     "ZETA": {
@@ -24117,7 +25335,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 4 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 1.0164,
+      "market_cap": 9709318000.0,
+      "rel_vol": 0.978,
+      "indexes": []
     },
     "ZM": {
       "name": "Zoom Communications, Inc.",
@@ -24223,7 +25445,11 @@
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
         "ONEOFF-v1: T1 fired on 3 of 4 TTM quarters (flag-only; no curated T2 attribution exists for this ticker \u2014 no adjustment applied)."
-      ]
+      ],
+      "debt_fcf": 0.0313,
+      "market_cap": 30135109898.2,
+      "rel_vol": 1.026,
+      "indexes": []
     }
   }
 }

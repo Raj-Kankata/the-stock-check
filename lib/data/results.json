@@ -235,7 +235,13 @@
         "target_high": 200.0,
         "target_low": 155.0,
         "target_spread_div_mean": 0.247
-      }
+      },
+      "debt_fcf": 3.2739,
+      "market_cap": 49311496075.32,
+      "rel_vol": 0.895,
+      "indexes": [
+        "SP500"
+      ]
     },
     "AAP": {
       "name": "Advance Auto Parts, Inc.",
@@ -430,7 +436,11 @@
         "target_high": 70.0,
         "target_low": 32.0,
         "target_spread_div_mean": 0.783
-      }
+      },
+      "debt_fcf": 63.625,
+      "market_cap": 2772560986.7,
+      "rel_vol": 0.5912,
+      "indexes": []
     },
     "AAPL": {
       "name": "Apple Inc.",
@@ -623,7 +633,14 @@
         "target_high": 425.0,
         "target_low": 250.0,
         "target_spread_div_mean": 0.506
-      }
+      },
+      "debt_fcf": 0.5888,
+      "market_cap": 5243873858535.73,
+      "rel_vol": 0.9733,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ABBV": {
       "name": "AbbVie Inc.",
@@ -819,7 +836,13 @@
         "target_high": 350.0,
         "target_low": 237.0,
         "target_spread_div_mean": 0.362
-      }
+      },
+      "debt_fcf": 3.2556,
+      "market_cap": 525163555817.69,
+      "rel_vol": 0.9231,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ABT": {
       "name": "Abbott Laboratories",
@@ -1014,7 +1037,13 @@
         "target_high": 130.0,
         "target_low": 100.0,
         "target_spread_div_mean": 0.252
-      }
+      },
+      "debt_fcf": 4.6527,
+      "market_cap": 190355417952.56,
+      "rel_vol": 0.9267,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ACLS": {
       "name": "Axcelis Technologies, Inc.",
@@ -1208,7 +1237,11 @@
         "target_high": 140.0,
         "target_low": 116.0,
         "target_spread_div_mean": 0.182
-      }
+      },
+      "debt_fcf": 1.1656,
+      "market_cap": 3239839653.26,
+      "rel_vol": 0.5655,
+      "indexes": []
     },
     "ACN": {
       "name": "Accenture plc",
@@ -1402,7 +1435,13 @@
         "target_high": 300.0,
         "target_low": 163.0,
         "target_spread_div_mean": 0.586
-      }
+      },
+      "debt_fcf": 1.1529,
+      "market_cap": 154562231368.72,
+      "rel_vol": 0.6125,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ADBE": {
       "name": "Adobe Inc.",
@@ -1594,7 +1633,14 @@
         "target_high": 373.0,
         "target_low": 140.0,
         "target_spread_div_mean": 0.873
-      }
+      },
+      "debt_fcf": 0.6408,
+      "market_cap": 98860676837.44,
+      "rel_vol": 0.9765,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ADP": {
       "name": "Automatic Data Processing, Inc.",
@@ -1791,7 +1837,14 @@
         "target_high": 340.0,
         "target_low": 250.0,
         "target_spread_div_mean": 0.302
-      }
+      },
+      "debt_fcf": 1.1753,
+      "market_cap": 124348422072.27,
+      "rel_vol": 1.0766,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ADSK": {
       "name": "Autodesk, Inc.",
@@ -1985,7 +2038,14 @@
         "target_high": 375.0,
         "target_low": 215.0,
         "target_spread_div_mean": 0.519
-      }
+      },
+      "debt_fcf": 1.305,
+      "market_cap": 56240627070.42,
+      "rel_vol": 0.9773,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ALB": {
       "name": "Albemarle Corporation",
@@ -2180,7 +2240,13 @@
         "target_high": 211.0,
         "target_low": 86.0,
         "target_spread_div_mean": 0.889
-      }
+      },
+      "debt_fcf": 1.3834,
+      "market_cap": 15436435780.95,
+      "rel_vol": 0.8358,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ALGT": {
       "name": "Allegiant Travel Company",
@@ -2375,7 +2441,11 @@
         "target_high": 163.0,
         "target_low": 85.0,
         "target_spread_div_mean": 0.65
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 1495883298.1,
+      "rel_vol": 0.6377,
+      "indexes": []
     },
     "AMAT": {
       "name": "Applied Materials, Inc.",
@@ -2570,7 +2640,14 @@
         "target_high": 900.0,
         "target_low": 358.0,
         "target_spread_div_mean": 0.957
-      }
+      },
+      "debt_fcf": 1.1617,
+      "market_cap": 296495984323.5,
+      "rel_vol": 0.8349,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "AMD": {
       "name": "Advanced Micro Devices, Inc.",
@@ -2764,7 +2841,14 @@
         "target_high": 1250.0,
         "target_low": 525.0,
         "target_spread_div_mean": 1.102
-      }
+      },
+      "debt_fcf": 1.3054,
+      "market_cap": 884565900092.88,
+      "rel_vol": 1.0345,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "AMKR": {
       "name": "Amkor Technology, Inc.",
@@ -2960,7 +3044,11 @@
         "target_high": 92.0,
         "target_low": 38.0,
         "target_spread_div_mean": 0.822
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 9056417249.1,
+      "rel_vol": 0.4122,
+      "indexes": []
     },
     "AMN": {
       "name": "AMN Healthcare Services, Inc.",
@@ -3154,7 +3242,11 @@
         "target_high": 52.0,
         "target_low": 34.0,
         "target_spread_div_mean": 0.402
-      }
+      },
+      "debt_fcf": 2.3696,
+      "market_cap": 1501845090.98,
+      "rel_vol": 0.6712,
+      "indexes": []
     },
     "AMZN": {
       "name": "Amazon.com, Inc.",
@@ -3354,7 +3446,14 @@
         "target_high": 405.0,
         "target_low": 230.0,
         "target_spread_div_mean": 0.536
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 2905429922436.0,
+      "rel_vol": 0.9566,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ANF": {
       "name": "Abercrombie & Fitch Co.",
@@ -3547,7 +3646,11 @@
         "target_high": 200.0,
         "target_low": 150.0,
         "target_spread_div_mean": 0.293
-      }
+      },
+      "debt_fcf": 2.2728,
+      "market_cap": 6879013203.68,
+      "rel_vol": 1.0845,
+      "indexes": []
     },
     "AON": {
       "name": "Aon plc",
@@ -3738,7 +3841,13 @@
         "target_high": 435.0,
         "target_low": 259.0,
         "target_spread_div_mean": 0.479
-      }
+      },
+      "debt_fcf": 8.8634,
+      "market_cap": 72849667191.84,
+      "rel_vol": 0.7229,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ASYS": {
       "name": "Amtech Systems, Inc.",
@@ -3933,7 +4042,11 @@
         "target_high": 22.0,
         "target_low": 22.0,
         "target_spread_div_mean": 0.0
-      }
+      },
+      "debt_fcf": 2.0477,
+      "market_cap": 178814817.05,
+      "rel_vol": 0.6946,
+      "indexes": []
     },
     "ATNI": {
       "name": "ATN International, Inc.",
@@ -4129,7 +4242,11 @@
         "target_high": 69.0,
         "target_low": 69.0,
         "target_spread_div_mean": 0.0
-      }
+      },
+      "debt_fcf": 39.9689,
+      "market_cap": 456015250.0,
+      "rel_vol": 0.9214,
+      "indexes": []
     },
     "AVGO": {
       "name": "Broadcom Inc.",
@@ -4325,7 +4442,14 @@
         "target_high": 660.0,
         "target_low": 398.4699,
         "target_spread_div_mean": 0.495
-      }
+      },
+      "debt_fcf": 1.6531,
+      "market_cap": 1695828563191.8,
+      "rel_vol": 0.9704,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "AXTI": {
       "name": "AXT, Inc.",
@@ -4521,7 +4645,11 @@
         "target_high": 125.0,
         "target_low": 56.0,
         "target_spread_div_mean": 0.754
-      }
+      },
+      "debt_fcf": 1.1329,
+      "market_cap": 3012765265.12,
+      "rel_vol": 1.1352,
+      "indexes": []
     },
     "BA": {
       "name": "The Boeing Company",
@@ -4715,7 +4843,13 @@
         "target_high": 305.0,
         "target_low": 157.0,
         "target_spread_div_mean": 0.634
-      }
+      },
+      "debt_fcf": 3028.875,
+      "market_cap": 135921739156.0,
+      "rel_vol": 0.7528,
+      "indexes": [
+        "SP500"
+      ]
     },
     "BE": {
       "name": "Bloom Energy Corporation",
@@ -4911,7 +5045,13 @@
         "target_high": 380.0,
         "target_low": 102.0,
         "target_spread_div_mean": 0.979
-      }
+      },
+      "debt_fcf": 6.381,
+      "market_cap": 61220108758.59,
+      "rel_vol": 0.7007,
+      "indexes": [
+        "SP500"
+      ]
     },
     "BIP": {
       "name": "Brookfield Infrastructure Partners L.P.",
@@ -5106,7 +5246,11 @@
         "target_high": 57.0,
         "target_low": 40.0,
         "target_spread_div_mean": 0.366
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 133050923067.81,
+      "rel_vol": 1.2123,
+      "indexes": []
     },
     "BLDR": {
       "name": "Builders FirstSource, Inc.",
@@ -5301,7 +5445,11 @@
         "target_high": 83.0,
         "target_low": 50.0,
         "target_spread_div_mean": 0.489
-      }
+      },
+      "debt_fcf": 21.0105,
+      "market_cap": 6479186854.88,
+      "rel_vol": 0.6091,
+      "indexes": []
     },
     "BOX": {
       "name": "Box, Inc.",
@@ -5497,7 +5645,11 @@
         "target_high": 60.0,
         "target_low": 35.0,
         "target_spread_div_mean": 0.587
-      }
+      },
+      "debt_fcf": 1.4265,
+      "market_cap": 8385365188.61,
+      "rel_vol": 0.601,
+      "indexes": []
     },
     "BRK-B": {
       "name": "Berkshire Hathaway Inc.",
@@ -5698,7 +5850,13 @@
         "target_high": 628.0,
         "target_low": 510.0,
         "target_spread_div_mean": 0.209
-      }
+      },
+      "debt_fcf": 5.6697,
+      "market_cap": 1279210382434.42,
+      "rel_vol": 0.7155,
+      "indexes": [
+        "SP500"
+      ]
     },
     "BYND": {
       "name": "Beyond Meat, Inc.",
@@ -5892,7 +6050,11 @@
         "target_high": 6.0,
         "target_low": 5.0,
         "target_spread_div_mean": 0.182
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 143920498.36,
+      "rel_vol": 1.5357,
+      "indexes": []
     },
     "CAT": {
       "name": "Caterpillar Inc.",
@@ -6087,7 +6249,13 @@
         "target_high": 1027.0,
         "target_low": 575.0,
         "target_spread_div_mean": 0.56
-      }
+      },
+      "debt_fcf": 4.0093,
+      "market_cap": 278617174044.2,
+      "rel_vol": 0.8673,
+      "indexes": [
+        "SP500"
+      ]
     },
     "CAVA": {
       "name": "CAVA Group, Inc.",
@@ -6282,7 +6450,11 @@
         "target_high": 110.0,
         "target_low": 18.0,
         "target_spread_div_mean": 1.22
-      }
+      },
+      "debt_fcf": 13.4387,
+      "market_cap": 6977032361.37,
+      "rel_vol": 0.8882,
+      "indexes": []
     },
     "CBOE": {
       "name": "Cboe Global Markets, Inc.",
@@ -6478,7 +6650,13 @@
         "target_high": 461.0,
         "target_low": 299.0,
         "target_spread_div_mean": 0.456
-      }
+      },
+      "debt_fcf": 0.6239,
+      "market_cap": 39531245462.4,
+      "rel_vol": 0.8875,
+      "indexes": [
+        "SP500"
+      ]
     },
     "CDE": {
       "name": "Coeur Mining, Inc.",
@@ -6674,7 +6852,11 @@
         "target_high": 27.0,
         "target_low": 16.0,
         "target_spread_div_mean": 0.516
-      }
+      },
+      "debt_fcf": 0.5873,
+      "market_cap": 10197527051.16,
+      "rel_vol": 1.155,
+      "indexes": []
     },
     "CDNS": {
       "name": "Cadence Design Systems, Inc.",
@@ -6868,7 +7050,14 @@
         "target_high": 470.0,
         "target_low": 300.0,
         "target_spread_div_mean": 0.413
-      }
+      },
+      "debt_fcf": 1.5947,
+      "market_cap": 88658795743.38,
+      "rel_vol": 0.8179,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "CELH": {
       "name": "Celsius Holdings, Inc.",
@@ -7062,7 +7251,11 @@
         "target_high": 64.0,
         "target_low": 29.0,
         "target_spread_div_mean": 0.839
-      }
+      },
+      "debt_fcf": 2.5081,
+      "market_cap": 11422178381.38,
+      "rel_vol": 0.9701,
+      "indexes": []
     },
     "CHWY": {
       "name": "Chewy, Inc.",
@@ -7257,7 +7450,11 @@
         "target_high": 36.0,
         "target_low": 21.0,
         "target_spread_div_mean": 0.524
-      }
+      },
+      "debt_fcf": 2.044,
+      "market_cap": 9338975764.4,
+      "rel_vol": 0.9121,
+      "indexes": []
     },
     "CIEN": {
       "name": "Ciena Corporation",
@@ -7453,7 +7650,13 @@
         "target_high": 660.0,
         "target_low": 347.0,
         "target_spread_div_mean": 0.612
-      }
+      },
+      "debt_fcf": 4.0349,
+      "market_cap": 40979504856.94,
+      "rel_vol": 1.0636,
+      "indexes": [
+        "SP500"
+      ]
     },
     "CMG": {
       "name": "Chipotle Mexican Grill, Inc.",
@@ -7645,7 +7848,13 @@
         "target_high": 53.0,
         "target_low": 32.0,
         "target_spread_div_mean": 0.518
-      }
+      },
+      "debt_fcf": 3.7081,
+      "market_cap": 45408228546.24,
+      "rel_vol": 0.6157,
+      "indexes": [
+        "SP500"
+      ]
     },
     "COHR": {
       "name": "Coherent Corp.",
@@ -7839,7 +8048,13 @@
         "target_high": 524.96234,
         "target_low": 228.0,
         "target_spread_div_mean": 0.798
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 43509046514.35,
+      "rel_vol": 0.7561,
+      "indexes": [
+        "SP500"
+      ]
     },
     "COST": {
       "name": "Costco Wholesale Corporation",
@@ -8033,7 +8248,14 @@
         "target_high": 1315.0,
         "target_low": 770.0,
         "target_spread_div_mean": 0.504
-      }
+      },
+      "debt_fcf": 1.0852,
+      "market_cap": 491613364675.51,
+      "rel_vol": 1.2953,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "CRL": {
       "name": "Charles River Laboratories International, Inc.",
@@ -8229,7 +8451,13 @@
         "target_high": 400.0,
         "target_low": 145.0,
         "target_spread_div_mean": 0.727
-      }
+      },
+      "debt_fcf": 7.1364,
+      "market_cap": 14147916960.26,
+      "rel_vol": 0.5326,
+      "indexes": [
+        "SP500"
+      ]
     },
     "CRM": {
       "name": "Salesforce, Inc.",
@@ -8422,7 +8650,13 @@
         "target_high": 475.0,
         "target_low": 165.0,
         "target_spread_div_mean": 1.08
-      }
+      },
+      "debt_fcf": 2.7964,
+      "market_cap": 192041065679.12,
+      "rel_vol": 0.78,
+      "indexes": [
+        "SP500"
+      ]
     },
     "CROX": {
       "name": "Crocs, Inc.",
@@ -8617,7 +8851,11 @@
         "target_high": 190.0,
         "target_low": 128.0,
         "target_spread_div_mean": 0.377
-      }
+      },
+      "debt_fcf": 2.2057,
+      "market_cap": 8271445631.72,
+      "rel_vol": 1.0366,
+      "indexes": []
     },
     "CRWD": {
       "name": "CrowdStrike Holdings, Inc.",
@@ -8812,7 +9050,14 @@
         "target_high": 325.0,
         "target_low": 132.0,
         "target_spread_div_mean": 0.771
-      }
+      },
+      "debt_fcf": 0.5098,
+      "market_cap": 203926339000.0,
+      "rel_vol": 0.6875,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "CSCO": {
       "name": "Cisco Systems, Inc.",
@@ -9006,7 +9251,14 @@
         "target_high": 160.0,
         "target_low": 109.0,
         "target_spread_div_mean": 0.392
-      }
+      },
+      "debt_fcf": 2.3341,
+      "market_cap": 381037801793.76,
+      "rel_vol": 1.0035,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "CTSH": {
       "name": "Cognizant Technology Solutions Corporation",
@@ -9202,7 +9454,13 @@
         "target_high": 84.0,
         "target_low": 47.0,
         "target_spread_div_mean": 0.533
-      }
+      },
+      "debt_fcf": 0.9022,
+      "market_cap": 29530916233.1,
+      "rel_vol": 0.6879,
+      "indexes": [
+        "SP500"
+      ]
     },
     "CVX": {
       "name": "Chevron Corporation",
@@ -9398,7 +9656,13 @@
         "target_high": 272.0,
         "target_low": 202.0,
         "target_spread_div_mean": 0.289
-      }
+      },
+      "debt_fcf": 0.9842,
+      "market_cap": 434879225812.9,
+      "rel_vol": 0.7412,
+      "indexes": [
+        "SP500"
+      ]
     },
     "DAKT": {
       "name": "Daktronics, Inc.",
@@ -9592,7 +9856,11 @@
         "target_high": 39.0,
         "target_low": 29.0,
         "target_spread_div_mean": 0.297
-      }
+      },
+      "debt_fcf": 0.3804,
+      "market_cap": 940354900.92,
+      "rel_vol": 0.8652,
+      "indexes": []
     },
     "DAL": {
       "name": "Delta Air Lines, Inc.",
@@ -9789,7 +10057,13 @@
         "target_high": 125.0,
         "target_low": 53.0,
         "target_spread_div_mean": 0.713
-      }
+      },
+      "debt_fcf": 6.5966,
+      "market_cap": 56735250000.0,
+      "rel_vol": 0.673,
+      "indexes": [
+        "SP500"
+      ]
     },
     "DASH": {
       "name": "DoorDash, Inc.",
@@ -9985,7 +10259,14 @@
         "target_high": 340.0,
         "target_low": 200.0,
         "target_spread_div_mean": 0.559
-      }
+      },
+      "debt_fcf": 1.2256,
+      "market_cap": 75026802525.6,
+      "rel_vol": 0.894,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "DCTH": {
       "name": "Delcath Systems, Inc.",
@@ -10180,7 +10461,11 @@
         "target_high": 36.0,
         "target_low": 25.0,
         "target_spread_div_mean": 0.385
-      }
+      },
+      "debt_fcf": 0.1197,
+      "market_cap": 854623125.0,
+      "rel_vol": 1.2859,
+      "indexes": []
     },
     "DDOG": {
       "name": "Datadog, Inc.",
@@ -10376,7 +10661,14 @@
         "target_high": 330.0,
         "target_low": 171.0,
         "target_spread_div_mean": 0.59
-      }
+      },
+      "debt_fcf": 1.0658,
+      "market_cap": 67017614403.52,
+      "rel_vol": 0.7427,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "DECK": {
       "name": "Deckers Outdoor Corporation",
@@ -10569,7 +10861,13 @@
         "target_high": 137.0,
         "target_low": 70.0,
         "target_spread_div_mean": 0.691
-      }
+      },
+      "debt_fcf": 0.5126,
+      "market_cap": 12235882066.2,
+      "rel_vol": 1.06,
+      "indexes": [
+        "SP500"
+      ]
     },
     "DELL": {
       "name": "Dell Technologies Inc.",
@@ -10766,7 +11064,13 @@
         "target_high": 700.0,
         "target_low": 403.0,
         "target_spread_div_mean": 0.507
-      }
+      },
+      "debt_fcf": 3.6803,
+      "market_cap": 228043184263.03,
+      "rel_vol": 1.1522,
+      "indexes": [
+        "SP500"
+      ]
     },
     "DGX": {
       "name": "Quest Diagnostics Incorporated",
@@ -10959,7 +11263,13 @@
         "target_high": 279.0,
         "target_low": 235.0,
         "target_spread_div_mean": 0.171
-      }
+      },
+      "debt_fcf": 4.6524,
+      "market_cap": 29192071660.4,
+      "rel_vol": 0.7591,
+      "indexes": [
+        "SP500"
+      ]
     },
     "DIOD": {
       "name": "Diodes Incorporated",
@@ -11153,7 +11463,11 @@
         "target_high": 192.0,
         "target_low": 100.0,
         "target_spread_div_mean": 0.726
-      }
+      },
+      "debt_fcf": 3.8078,
+      "market_cap": 4031787600.0,
+      "rel_vol": 0.658,
+      "indexes": []
     },
     "DIS": {
       "name": "The Walt Disney Company",
@@ -11349,7 +11663,13 @@
         "target_high": 144.0,
         "target_low": 86.0,
         "target_spread_div_mean": 0.457
-      }
+      },
+      "debt_fcf": 5.5518,
+      "market_cap": 211392975190.88,
+      "rel_vol": 1.6389,
+      "indexes": [
+        "SP500"
+      ]
     },
     "DOCN": {
       "name": "DigitalOcean Holdings, Inc.",
@@ -11545,7 +11865,11 @@
         "target_high": 220.0,
         "target_low": 100.0,
         "target_spread_div_mean": 0.75
-      }
+      },
+      "debt_fcf": 8.4051,
+      "market_cap": 9857456295.44,
+      "rel_vol": 0.7469,
+      "indexes": []
     },
     "DOCU": {
       "name": "DocuSign, Inc.",
@@ -11739,7 +12063,11 @@
         "target_high": 86.0,
         "target_low": 60.0,
         "target_spread_div_mean": 0.361
-      }
+      },
+      "debt_fcf": 0.1528,
+      "market_cap": 16247533184.52,
+      "rel_vol": 0.6865,
+      "indexes": []
     },
     "DXC": {
       "name": "DXC Technology Company",
@@ -11934,7 +12262,11 @@
         "target_high": 14.0,
         "target_low": 10.5,
         "target_spread_div_mean": 0.28
-      }
+      },
+      "debt_fcf": 3.5854,
+      "market_cap": 2390956527.93,
+      "rel_vol": 0.5169,
+      "indexes": []
     },
     "DXCM": {
       "name": "DexCom, Inc.",
@@ -12129,7 +12461,14 @@
         "target_high": 120.0,
         "target_low": 79.0,
         "target_spread_div_mean": 0.416
-      }
+      },
+      "debt_fcf": 1.2682,
+      "market_cap": 32511822808.4,
+      "rel_vol": 0.8755,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "EBAY": {
       "name": "eBay Inc.",
@@ -12322,10 +12661,16 @@
         "target_high": 153.0,
         "target_low": 71.0,
         "target_spread_div_mean": 0.645
-      }
+      },
+      "debt_fcf": 2.9888,
+      "market_cap": 55176321760.16,
+      "rel_vol": 0.9831,
+      "indexes": [
+        "SP500"
+      ]
     },
     "EFOR": {
-      "name": null,
+      "name": "Everforth, Inc.",
       "sector": "Technology",
       "price": 35.55,
       "pillars": {
@@ -12517,7 +12862,11 @@
         "target_high": 47.0,
         "target_low": 19.0,
         "target_spread_div_mean": 0.727
-      }
+      },
+      "debt_fcf": 7.4642,
+      "market_cap": 1492222234.95,
+      "rel_vol": 0.5702,
+      "indexes": []
     },
     "EFX": {
       "name": "Equifax Inc.",
@@ -12710,7 +13059,13 @@
         "target_high": 245.0,
         "target_low": 155.0,
         "target_spread_div_mean": 0.445
-      }
+      },
+      "debt_fcf": 4.7162,
+      "market_cap": 22574400000.0,
+      "rel_vol": 0.5977,
+      "indexes": [
+        "SP500"
+      ]
     },
     "EIX": {
       "name": "Edison International",
@@ -12908,7 +13263,13 @@
         "target_high": 86.0,
         "target_low": 42.0,
         "target_spread_div_mean": 0.697
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 23262112003.2,
+      "rel_vol": 1.3065,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ENPH": {
       "name": "Enphase Energy, Inc.",
@@ -13103,7 +13464,11 @@
         "target_high": 212.0,
         "target_low": 16.0,
         "target_spread_div_mean": 4.918
-      }
+      },
+      "debt_fcf": 4.5398,
+      "market_cap": 3532018086.3,
+      "rel_vol": 0.4472,
+      "indexes": []
     },
     "EQIX": {
       "name": "Equinix, Inc.",
@@ -13301,7 +13666,13 @@
         "target_high": 1380.0,
         "target_low": 1100.0,
         "target_spread_div_mean": 0.227
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 104240451562.72,
+      "rel_vol": 0.6653,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ERII": {
       "name": "Energy Recovery, Inc.",
@@ -13495,7 +13866,11 @@
         "target_high": 8.0,
         "target_low": 7.0,
         "target_spread_div_mean": 0.133
-      }
+      },
+      "debt_fcf": 0.2624,
+      "market_cap": 466643125.0,
+      "rel_vol": 0.9648,
+      "indexes": []
     },
     "ESTC": {
       "name": "Elastic N.V.",
@@ -13688,7 +14063,11 @@
         "target_high": 132.0,
         "target_low": 75.0,
         "target_spread_div_mean": 0.51
-      }
+      },
+      "debt_fcf": 1.7069,
+      "market_cap": 9460761689.1,
+      "rel_vol": 1.0218,
+      "indexes": []
     },
     "ETSY": {
       "name": "Etsy, Inc.",
@@ -13884,7 +14263,11 @@
         "target_high": 115.0,
         "target_low": 78.0,
         "target_spread_div_mean": 0.376
-      }
+      },
+      "debt_fcf": 5.0334,
+      "market_cap": 10276970531.0,
+      "rel_vol": 0.6292,
+      "indexes": []
     },
     "FDS": {
       "name": "FactSet Research Systems Inc.",
@@ -14076,7 +14459,13 @@
         "target_high": 382.0,
         "target_low": 212.0,
         "target_spread_div_mean": 0.555
-      }
+      },
+      "debt_fcf": 2.1802,
+      "market_cap": 12181454663.39,
+      "rel_vol": 0.5609,
+      "indexes": [
+        "SP500"
+      ]
     },
     "FDX": {
       "name": "FedEx Corporation",
@@ -14275,7 +14664,13 @@
         "target_high": 479.0,
         "target_low": 160.0,
         "target_spread_div_mean": 0.895
-      }
+      },
+      "debt_fcf": 6.6708,
+      "market_cap": 77675136878.34,
+      "rel_vol": 0.8586,
+      "indexes": [
+        "SP500"
+      ]
     },
     "FEIM": {
       "name": "Frequency Electronics, Inc.",
@@ -14469,7 +14864,11 @@
         "target_high": 100.0,
         "target_low": 91.0,
         "target_spread_div_mean": 0.094
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 683359320.0,
+      "rel_vol": 0.6341,
+      "indexes": []
     },
     "FFIV": {
       "name": "F5, Inc.",
@@ -14663,7 +15062,13 @@
         "target_high": 540.0,
         "target_low": 300.0,
         "target_spread_div_mean": 0.54
-      }
+      },
+      "debt_fcf": 0.2445,
+      "market_cap": 17831106167.68,
+      "rel_vol": 0.553,
+      "indexes": [
+        "SP500"
+      ]
     },
     "FICO": {
       "name": "Fair Isaac Corporation",
@@ -14859,7 +15264,13 @@
         "target_high": 1230.97,
         "target_low": 481.0,
         "target_spread_div_mean": 0.913
-      }
+      },
+      "debt_fcf": 5.2308,
+      "market_cap": 16556577544.2,
+      "rel_vol": 0.5406,
+      "indexes": [
+        "SP500"
+      ]
     },
     "FLEX": {
       "name": "Flex Ltd.",
@@ -15056,7 +15467,13 @@
         "target_high": 180.0,
         "target_low": 128.0,
         "target_spread_div_mean": 0.332
-      }
+      },
+      "debt_fcf": 7.6411,
+      "market_cap": 27447552350.36,
+      "rel_vol": 1.3432,
+      "indexes": [
+        "SP500"
+      ]
     },
     "FSLR": {
       "name": "First Solar, Inc.",
@@ -15250,7 +15667,13 @@
         "target_high": 328.0,
         "target_low": 169.0,
         "target_spread_div_mean": 0.634
-      }
+      },
+      "debt_fcf": 1.396,
+      "market_cap": 18459476654.46,
+      "rel_vol": 0.9007,
+      "indexes": [
+        "SP500"
+      ]
     },
     "FTNT": {
       "name": "Fortinet, Inc.",
@@ -15446,7 +15869,14 @@
         "target_high": 190.0,
         "target_low": 110.0,
         "target_spread_div_mean": 0.552
-      }
+      },
+      "debt_fcf": 0.1633,
+      "market_cap": 94577917207.9,
+      "rel_vol": 0.6979,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "GAP": {
       "name": "The Gap, Inc.",
@@ -15642,7 +16072,11 @@
         "target_high": 42.0,
         "target_low": 21.0,
         "target_spread_div_mean": 0.8
-      }
+      },
+      "debt_fcf": 5.977,
+      "market_cap": 7890177167.18,
+      "rel_vol": 1.8165,
+      "indexes": []
     },
     "GE": {
       "name": "GE Aerospace",
@@ -15835,7 +16269,13 @@
         "target_high": 431.0,
         "target_low": 280.0,
         "target_spread_div_mean": 0.399
-      }
+      },
+      "debt_fcf": 2.5677,
+      "market_cap": 348381364517.3,
+      "rel_vol": 0.6338,
+      "indexes": [
+        "SP500"
+      ]
     },
     "GEL": {
       "name": "Genesis Energy, L.P.",
@@ -16030,7 +16470,11 @@
         "target_high": 18.0,
         "target_low": 17.0,
         "target_spread_div_mean": 0.057
-      }
+      },
+      "debt_fcf": 9.0598,
+      "market_cap": 4854259257.76,
+      "rel_vol": 1.0056,
+      "indexes": []
     },
     "GEN": {
       "name": "Gen Digital Inc.",
@@ -16224,7 +16668,13 @@
         "target_high": 46.0,
         "target_low": 25.0,
         "target_spread_div_mean": 0.651
-      }
+      },
+      "debt_fcf": 4.6009,
+      "market_cap": 18516363633.6,
+      "rel_vol": 0.8466,
+      "indexes": [
+        "SP500"
+      ]
     },
     "GFS": {
       "name": "GLOBALFOUNDRIES Inc.",
@@ -16419,7 +16869,11 @@
         "target_high": 140.0,
         "target_low": 43.0,
         "target_spread_div_mean": 1.498
-      }
+      },
+      "debt_fcf": 3.9907,
+      "market_cap": 23341685720.21,
+      "rel_vol": 0.6358,
+      "indexes": []
     },
     "GLW": {
       "name": "Corning Incorporated",
@@ -16617,7 +17071,13 @@
         "target_high": 220.0,
         "target_low": 120.0,
         "target_spread_div_mean": 0.572
-      }
+      },
+      "debt_fcf": 3.7265,
+      "market_cap": 99704065059.2,
+      "rel_vol": 0.7724,
+      "indexes": [
+        "SP500"
+      ]
     },
     "GM": {
       "name": "General Motors Company",
@@ -16812,7 +17272,13 @@
         "target_high": 132.0,
         "target_low": 75.0,
         "target_spread_div_mean": 0.563
-      }
+      },
+      "debt_fcf": 9.0801,
+      "market_cap": 73677056302.0,
+      "rel_vol": 0.6181,
+      "indexes": [
+        "SP500"
+      ]
     },
     "GME": {
       "name": "GameStop Corp.",
@@ -17006,7 +17472,11 @@
         "target_high": 33.0,
         "target_low": 33.0,
         "target_spread_div_mean": 0.0
-      }
+      },
+      "debt_fcf": 6.2983,
+      "market_cap": 14994678569.75,
+      "rel_vol": 0.6838,
+      "indexes": []
     },
     "GOOGL": {
       "name": "Alphabet Inc.",
@@ -17200,7 +17670,14 @@
         "target_high": 500.0,
         "target_low": 300.0,
         "target_spread_div_mean": 0.5
-      }
+      },
+      "debt_fcf": 3.0025,
+      "market_cap": 3640272291427.83,
+      "rel_vol": 0.8492,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "GWRE": {
       "name": "Guidewire Software, Inc.",
@@ -17396,7 +17873,11 @@
         "target_high": 258.0,
         "target_low": 170.0,
         "target_spread_div_mean": 0.417
-      }
+      },
+      "debt_fcf": 1.8932,
+      "market_cap": 13519850426.46,
+      "rel_vol": 0.794,
+      "indexes": []
     },
     "HD": {
       "name": "The Home Depot, Inc.",
@@ -17589,7 +18070,13 @@
         "target_high": 425.0,
         "target_low": 310.0,
         "target_spread_div_mean": 0.305
-      }
+      },
+      "debt_fcf": 4.1849,
+      "market_cap": 347152738416.87,
+      "rel_vol": 1.4069,
+      "indexes": [
+        "SP500"
+      ]
     },
     "HE": {
       "name": "Hawaiian Electric Industries, Inc.",
@@ -17784,7 +18271,11 @@
         "target_high": 12.0,
         "target_low": 6.5,
         "target_spread_div_mean": 0.638
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 1503234252.87,
+      "rel_vol": 0.6308,
+      "indexes": []
     },
     "HGTY": {
       "name": "Hagerty, Inc.",
@@ -17981,7 +18472,11 @@
         "target_high": 20.0,
         "target_low": 14.0,
         "target_spread_div_mean": 0.35
-      }
+      },
+      "debt_fcf": 1.0292,
+      "market_cap": 16203418005.39,
+      "rel_vol": 1.4561,
+      "indexes": []
     },
     "HII": {
       "name": "Huntington Ingalls Industries, Inc.",
@@ -18172,7 +18667,13 @@
         "target_high": 407.0,
         "target_low": 281.0,
         "target_spread_div_mean": 0.354
-      }
+      },
+      "debt_fcf": 8.9572,
+      "market_cap": 12068490276.48,
+      "rel_vol": 0.578,
+      "indexes": [
+        "SP500"
+      ]
     },
     "HPE": {
       "name": "Hewlett Packard Enterprise Company",
@@ -18367,7 +18868,13 @@
         "target_high": 92.0,
         "target_low": 62.0,
         "target_spread_div_mean": 0.418
-      }
+      },
+      "debt_fcf": 4.8896,
+      "market_cap": 69472881452.26,
+      "rel_vol": 0.967,
+      "indexes": [
+        "SP500"
+      ]
     },
     "HPQ": {
       "name": "HP Inc.",
@@ -18562,7 +19069,13 @@
         "target_high": 33.4,
         "target_low": 20.0,
         "target_spread_div_mean": 0.486
-      }
+      },
+      "debt_fcf": 2.7083,
+      "market_cap": 27466167932.88,
+      "rel_vol": 0.9325,
+      "indexes": [
+        "SP500"
+      ]
     },
     "HSY": {
       "name": "The Hershey Company",
@@ -18757,7 +19270,13 @@
         "target_high": 230.0,
         "target_low": 154.0,
         "target_spread_div_mean": 0.42
-      }
+      },
+      "debt_fcf": 2.5586,
+      "market_cap": 157070776989.45,
+      "rel_vol": 1.1859,
+      "indexes": [
+        "SP500"
+      ]
     },
     "HUM": {
       "name": "Humana Inc.",
@@ -18951,7 +19470,13 @@
         "target_high": 602.0,
         "target_low": 280.0,
         "target_spread_div_mean": 0.651
-      }
+      },
+      "debt_fcf": 4.2609,
+      "market_cap": 54436893300.0,
+      "rel_vol": 0.8303,
+      "indexes": [
+        "SP500"
+      ]
     },
     "HXL": {
       "name": "Hexcel Corporation",
@@ -19147,7 +19672,11 @@
         "target_high": 120.0,
         "target_low": 82.0,
         "target_spread_div_mean": 0.384
-      }
+      },
+      "debt_fcf": 4.4561,
+      "market_cap": 35861552593.94,
+      "rel_vol": 0.6399,
+      "indexes": []
     },
     "IBM": {
       "name": "International Business Machines Corporation",
@@ -19342,7 +19871,13 @@
         "target_high": 300.0,
         "target_low": 174.0,
         "target_spread_div_mean": 0.485
-      }
+      },
+      "debt_fcf": 4.5811,
+      "market_cap": 234952274830.52,
+      "rel_vol": 1.0601,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ICE": {
       "name": "Intercontinental Exchange, Inc.",
@@ -19538,7 +20073,13 @@
         "target_high": 245.0,
         "target_low": 167.0,
         "target_spread_div_mean": 0.403
-      }
+      },
+      "debt_fcf": 4.546,
+      "market_cap": 101358611174.97,
+      "rel_vol": 0.8097,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ICHR": {
       "name": "Ichor Holdings, Ltd.",
@@ -19734,7 +20275,11 @@
         "target_high": 98.0,
         "target_low": 37.0,
         "target_spread_div_mean": 0.899
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 2511116000.0,
+      "rel_vol": 0.8403,
+      "indexes": []
     },
     "IDXX": {
       "name": "IDEXX Laboratories, Inc.",
@@ -19927,7 +20472,14 @@
         "target_high": 810.0,
         "target_low": 470.0,
         "target_spread_div_mean": 0.474
-      }
+      },
+      "debt_fcf": 0.7462,
+      "market_cap": 56100698431.18,
+      "rel_vol": 0.7174,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "ILMN": {
       "name": "Illumina, Inc.",
@@ -20122,7 +20674,13 @@
         "target_high": 365.0,
         "target_low": 165.0,
         "target_spread_div_mean": 0.765
-      }
+      },
+      "debt_fcf": 2.1883,
+      "market_cap": 31888803697.5,
+      "rel_vol": 0.6818,
+      "indexes": [
+        "SP500"
+      ]
     },
     "INFY": {
       "name": "Infosys Limited",
@@ -20314,7 +20872,11 @@
         "target_high": 14.3,
         "target_low": 10.4,
         "target_spread_div_mean": 0.323
-      }
+      },
+      "debt_fcf": 0.2451,
+      "market_cap": 50100716050.9,
+      "rel_vol": 0.5948,
+      "indexes": []
     },
     "INOD": {
       "name": "Innodata Inc.",
@@ -20510,7 +21072,11 @@
         "target_high": 140.0,
         "target_low": 75.0,
         "target_spread_div_mean": 0.583
-      }
+      },
+      "debt_fcf": 0.0425,
+      "market_cap": 1245519663.48,
+      "rel_vol": 0.6771,
+      "indexes": []
     },
     "INTU": {
       "name": "Intuit Inc.",
@@ -20704,7 +21270,14 @@
         "target_high": 732.0,
         "target_low": 290.0,
         "target_spread_div_mean": 1.084
-      }
+      },
+      "debt_fcf": 0.9721,
+      "market_cap": 94787496966.9,
+      "rel_vol": 0.8081,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "IPGP": {
       "name": "IPG Photonics Corporation",
@@ -20899,7 +21472,11 @@
         "target_high": 135.0,
         "target_low": 78.0,
         "target_spread_div_mean": 0.536
-      }
+      },
+      "debt_fcf": 0.463,
+      "market_cap": 2942162180.06,
+      "rel_vol": 1.0047,
+      "indexes": []
     },
     "IRDM": {
       "name": "Iridium Communications Inc.",
@@ -21094,7 +21671,11 @@
         "target_high": 54.0,
         "target_low": 36.0,
         "target_spread_div_mean": 0.375
-      }
+      },
+      "debt_fcf": 7.8528,
+      "market_cap": 4952562616.32,
+      "rel_vol": 0.6641,
+      "indexes": []
     },
     "JACK": {
       "name": "Jack in the Box Inc.",
@@ -21293,7 +21874,11 @@
         "target_high": 36.0,
         "target_low": 12.0,
         "target_spread_div_mean": 1.215
-      }
+      },
+      "debt_fcf": 22.587,
+      "market_cap": 282470878.0,
+      "rel_vol": 0.7642,
+      "indexes": []
     },
     "JNJ": {
       "name": "Johnson & Johnson",
@@ -21488,7 +22073,13 @@
         "target_high": 320.0,
         "target_low": 190.0,
         "target_spread_div_mean": 0.465
-      }
+      },
+      "debt_fcf": 2.1686,
+      "market_cap": 698958396594.0,
+      "rel_vol": 1.0864,
+      "indexes": [
+        "SP500"
+      ]
     },
     "KEYS": {
       "name": "Keysight Technologies, Inc.",
@@ -21684,7 +22275,13 @@
         "target_high": 487.0,
         "target_low": 350.0,
         "target_spread_div_mean": 0.326
-      }
+      },
+      "debt_fcf": 1.8829,
+      "market_cap": 51380383643.2,
+      "rel_vol": 1.5194,
+      "indexes": [
+        "SP500"
+      ]
     },
     "KMX": {
       "name": "CarMax, Inc.",
@@ -21878,7 +22475,11 @@
         "target_high": 79.0,
         "target_low": 47.0,
         "target_spread_div_mean": 0.523
-      }
+      },
+      "debt_fcf": 15.7667,
+      "market_cap": 7307006052.84,
+      "rel_vol": 0.8895,
+      "indexes": []
     },
     "KNF": {
       "name": "Knife River Corporation",
@@ -22073,7 +22674,11 @@
         "target_high": 89.0,
         "target_low": 54.0,
         "target_spread_div_mean": 0.501
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 3211390171.4,
+      "rel_vol": 0.5175,
+      "indexes": []
     },
     "KNX": {
       "name": "Knight-Swift Transportation Holdings Inc.",
@@ -22270,7 +22875,11 @@
         "target_high": 100.0,
         "target_low": 59.0,
         "target_spread_div_mean": 0.479
-      }
+      },
+      "debt_fcf": 3.4598,
+      "market_cap": 10519522384.8,
+      "rel_vol": 0.6891,
+      "indexes": []
     },
     "KO": {
       "name": "The Coca-Cola Company",
@@ -22463,7 +23072,13 @@
         "target_high": 106.0,
         "target_low": 80.0,
         "target_spread_div_mean": 0.264
-      }
+      },
+      "debt_fcf": 2.9742,
+      "market_cap": 427037720605.75,
+      "rel_vol": 1.0159,
+      "indexes": [
+        "SP500"
+      ]
     },
     "KR": {
       "name": "The Kroger Co.",
@@ -22659,7 +23274,13 @@
         "target_high": 85.0,
         "target_low": 57.0,
         "target_spread_div_mean": 0.403
-      }
+      },
+      "debt_fcf": 10.1334,
+      "market_cap": 41523243208.8,
+      "rel_vol": 0.8371,
+      "indexes": [
+        "SP500"
+      ]
     },
     "KTOS": {
       "name": "Kratos Defense & Security Solutions, Inc.",
@@ -22854,7 +23475,11 @@
         "target_high": 120.0,
         "target_low": 46.0,
         "target_spread_div_mean": 0.991
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 6216833322.03,
+      "rel_vol": 0.8414,
+      "indexes": []
     },
     "LLY": {
       "name": "Eli Lilly and Company",
@@ -23051,7 +23676,13 @@
         "target_high": 1700.0,
         "target_low": 940.0,
         "target_spread_div_mean": 0.519
-      }
+      },
+      "debt_fcf": 3.6361,
+      "market_cap": 1292155045838.5,
+      "rel_vol": 1.0752,
+      "indexes": [
+        "SP500"
+      ]
     },
     "LMT": {
       "name": "Lockheed Martin Corporation",
@@ -23246,7 +23877,13 @@
         "target_high": 835.0,
         "target_low": 498.0,
         "target_spread_div_mean": 0.51
-      }
+      },
+      "debt_fcf": 2.4458,
+      "market_cap": 137904387814.92,
+      "rel_vol": 0.691,
+      "indexes": [
+        "SP500"
+      ]
     },
     "LOGI": {
       "name": "Logitech International S.A.",
@@ -23441,7 +24078,11 @@
         "target_high": 141.0,
         "target_low": 84.0,
         "target_spread_div_mean": 0.529
-      }
+      },
+      "debt_fcf": 0.1075,
+      "market_cap": 14938963091.64,
+      "rel_vol": 0.5913,
+      "indexes": []
     },
     "LOVE": {
       "name": "The Lovesac Company",
@@ -23636,7 +24277,11 @@
         "target_high": 35.0,
         "target_low": 18.0,
         "target_spread_div_mean": 0.734
-      }
+      },
+      "debt_fcf": 4.2174,
+      "market_cap": 223859283.0,
+      "rel_vol": 0.5741,
+      "indexes": []
     },
     "LOW": {
       "name": "Lowe's Companies, Inc.",
@@ -23829,7 +24474,13 @@
         "target_high": 290.0,
         "target_low": 190.0,
         "target_spread_div_mean": 0.399
-      }
+      },
+      "debt_fcf": 5.703,
+      "market_cap": 127859903706.63,
+      "rel_vol": 1.1552,
+      "indexes": [
+        "SP500"
+      ]
     },
     "LRCX": {
       "name": "Lam Research Corporation",
@@ -24022,7 +24673,14 @@
         "target_high": 500.0,
         "target_low": 255.0,
         "target_spread_div_mean": 0.677
-      }
+      },
+      "debt_fcf": 0.5714,
+      "market_cap": 284500079573.76,
+      "rel_vol": 0.8908,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "LULU": {
       "name": "lululemon athletica inc.",
@@ -24215,7 +24873,13 @@
         "target_high": 255.0,
         "target_low": 44.0,
         "target_spread_div_mean": 2.021
-      }
+      },
+      "debt_fcf": 1.5809,
+      "market_cap": 12309718151.45,
+      "rel_vol": 0.7887,
+      "indexes": [
+        "SP500"
+      ]
     },
     "LUV": {
       "name": "Southwest Airlines Co.",
@@ -24409,7 +25073,13 @@
         "target_high": 65.0,
         "target_low": 34.0,
         "target_spread_div_mean": 0.62
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 23311241387.28,
+      "rel_vol": 0.8935,
+      "indexes": [
+        "SP500"
+      ]
     },
     "LW": {
       "name": "Lamb Weston Holdings, Inc.",
@@ -24604,7 +25274,11 @@
         "target_high": 65.0,
         "target_low": 52.0,
         "target_spread_div_mean": 0.233
-      }
+      },
+      "debt_fcf": 9.606,
+      "market_cap": 7805512586.38,
+      "rel_vol": 1.1492,
+      "indexes": []
     },
     "LWAY": {
       "name": "Lifeway Foods, Inc.",
@@ -24798,7 +25472,11 @@
         "target_high": 35.0,
         "target_low": 30.0,
         "target_spread_div_mean": 0.158
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 343990500.0,
+      "rel_vol": 2.6703,
+      "indexes": []
     },
     "LYTS": {
       "name": "LSI Industries Inc.",
@@ -24992,7 +25670,11 @@
         "target_high": 30.0,
         "target_low": 27.0,
         "target_spread_div_mean": 0.107
-      }
+      },
+      "debt_fcf": 5.4654,
+      "market_cap": 550719552.12,
+      "rel_vol": 1.37,
+      "indexes": []
     },
     "M": {
       "name": "Macy's, Inc.",
@@ -25187,7 +25869,11 @@
         "target_high": 31.0,
         "target_low": 10.0,
         "target_spread_div_mean": 0.886
-      }
+      },
+      "debt_fcf": 3.599,
+      "market_cap": 6776666657.8,
+      "rel_vol": 1.0139,
+      "indexes": []
     },
     "MA": {
       "name": "Mastercard Incorporated",
@@ -25379,7 +26065,13 @@
         "target_high": 800.0,
         "target_low": 550.0,
         "target_spread_div_mean": 0.347
-      }
+      },
+      "debt_fcf": 1.4885,
+      "market_cap": 586425733136.34,
+      "rel_vol": 0.7324,
+      "indexes": [
+        "SP500"
+      ]
     },
     "MCK": {
       "name": "McKesson Corporation",
@@ -25574,7 +26266,13 @@
         "target_high": 1260.0,
         "target_low": 965.0,
         "target_spread_div_mean": 0.258
-      }
+      },
+      "debt_fcf": 0.74,
+      "market_cap": 133587809699.01,
+      "rel_vol": 1.0305,
+      "indexes": [
+        "SP500"
+      ]
     },
     "MCO": {
       "name": "Moody's Corporation",
@@ -25769,7 +26467,13 @@
         "target_high": 600.0,
         "target_low": 480.0,
         "target_spread_div_mean": 0.217
-      }
+      },
+      "debt_fcf": 2.559,
+      "market_cap": 89337841500.6,
+      "rel_vol": 0.6996,
+      "indexes": [
+        "SP500"
+      ]
     },
     "MDB": {
       "name": "MongoDB, Inc.",
@@ -25968,7 +26672,11 @@
         "target_high": 565.0,
         "target_low": 335.0,
         "target_spread_div_mean": 0.509
-      }
+      },
+      "debt_fcf": 0.0835,
+      "market_cap": 27338024203.8,
+      "rel_vol": 0.8243,
+      "indexes": []
     },
     "MELI": {
       "name": "MercadoLibre, Inc.",
@@ -26162,7 +26870,13 @@
         "target_high": 2800.0,
         "target_low": 1600.0,
         "target_spread_div_mean": 0.544
-      }
+      },
+      "debt_fcf": 1.3207,
+      "market_cap": 75614702413.25,
+      "rel_vol": 0.7205,
+      "indexes": [
+        "NASDAQ100"
+      ]
     },
     "META": {
       "name": "Meta Platforms, Inc.",
@@ -26360,7 +27074,14 @@
         "target_high": 1050.0,
         "target_low": 650.0,
         "target_spread_div_mean": 0.47
-      }
+      },
+      "debt_fcf": 2.9284,
+      "market_cap": 1647442197777.32,
+      "rel_vol": 0.4857,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "MMM": {
       "name": "3M Company",
@@ -26555,7 +27276,13 @@
         "target_high": 230.0,
         "target_low": 125.0,
         "target_spread_div_mean": 0.543
-      }
+      },
+      "debt_fcf": 5.8274,
+      "market_cap": 96784166973.9,
+      "rel_vol": 1.0498,
+      "indexes": [
+        "SP500"
+      ]
     },
     "MORN": {
       "name": "Morningstar, Inc.",
@@ -26748,7 +27475,11 @@
         "target_high": 260.0,
         "target_low": 245.0,
         "target_spread_div_mean": 0.059
-      }
+      },
+      "debt_fcf": 3.7731,
+      "market_cap": 9615147329.48,
+      "rel_vol": 0.8383,
+      "indexes": []
     },
     "MRTN": {
       "name": "Marten Transport, Ltd.",
@@ -26946,7 +27677,11 @@
         "target_high": 19.0,
         "target_low": 12.5,
         "target_spread_div_mean": 0.413
-      }
+      },
+      "debt_fcf": 0.0867,
+      "market_cap": 635787298.36,
+      "rel_vol": 0.6555,
+      "indexes": []
     },
     "MRVL": {
       "name": "Marvell Technology, Inc.",
@@ -27140,7 +27875,14 @@
         "target_high": 450.0,
         "target_low": 175.0,
         "target_spread_div_mean": 0.886
-      }
+      },
+      "debt_fcf": 3.0554,
+      "market_cap": 137030041083.48,
+      "rel_vol": 0.7072,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "MSFT": {
       "name": "Microsoft Corporation",
@@ -27332,7 +28074,14 @@
         "target_high": 870.0,
         "target_low": 440.0,
         "target_spread_div_mean": 0.676
-      }
+      },
+      "debt_fcf": 0.9478,
+      "market_cap": 3899870996042.28,
+      "rel_vol": 1.1509,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "MU": {
       "name": "Micron Technology, Inc.",
@@ -27527,7 +28276,14 @@
         "target_high": 3000.0,
         "target_low": 361.0,
         "target_spread_div_mean": 1.69
-      }
+      },
+      "debt_fcf": 0.0878,
+      "market_cap": 889711050575.49,
+      "rel_vol": 0.8712,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "NCLH": {
       "name": "Norwegian Cruise Line Holdings Ltd.",
@@ -27721,7 +28477,13 @@
         "target_high": 26.0,
         "target_low": 13.0,
         "target_spread_div_mean": 0.661
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 8042777676.84,
+      "rel_vol": 0.756,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NDAQ": {
       "name": "Nasdaq, Inc.",
@@ -27914,7 +28676,13 @@
         "target_high": 135.0,
         "target_low": 87.0,
         "target_spread_div_mean": 0.416
-      }
+      },
+      "debt_fcf": 4.1165,
+      "market_cap": 61762699442.29,
+      "rel_vol": 0.9523,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NEM": {
       "name": "Newmont Corporation",
@@ -28110,7 +28878,13 @@
         "target_high": 165.0,
         "target_low": 70.0,
         "target_spread_div_mean": 0.702
-      }
+      },
+      "debt_fcf": 0.5543,
+      "market_cap": 121559720969.7,
+      "rel_vol": 0.8321,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NKE": {
       "name": "NIKE, Inc.",
@@ -28304,7 +29078,13 @@
         "target_high": 60.0,
         "target_low": 19.0,
         "target_spread_div_mean": 1.125
-      }
+      },
+      "debt_fcf": 5.285,
+      "market_cap": 56221564584.94,
+      "rel_vol": 0.8762,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NOW": {
       "name": "ServiceNow, Inc.",
@@ -28498,7 +29278,13 @@
         "target_high": 266.0,
         "target_low": 72.0,
         "target_spread_div_mean": 1.245
-      }
+      },
+      "debt_fcf": 1.7716,
+      "market_cap": 106295863276.25,
+      "rel_vol": 0.6306,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NRG": {
       "name": "NRG Energy, Inc.",
@@ -28693,7 +29479,13 @@
         "target_high": 221.0,
         "target_low": 104.0,
         "target_spread_div_mean": 0.723
-      }
+      },
+      "debt_fcf": 33.5704,
+      "market_cap": 21243791333.9,
+      "rel_vol": 0.5813,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NTAP": {
       "name": "NetApp, Inc.",
@@ -28890,7 +29682,13 @@
         "target_high": 300.0,
         "target_low": 170.0,
         "target_spread_div_mean": 0.614
-      }
+      },
+      "debt_fcf": 1.5358,
+      "market_cap": 36325234485.82,
+      "rel_vol": 1.2995,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NTNX": {
       "name": "Nutanix, Inc.",
@@ -29083,7 +29881,11 @@
         "target_high": 100.0,
         "target_low": 63.0,
         "target_spread_div_mean": 0.467
-      }
+      },
+      "debt_fcf": 1.8098,
+      "market_cap": 17598224016.92,
+      "rel_vol": 0.6292,
+      "indexes": []
     },
     "NU": {
       "name": "Nu Holdings Ltd.",
@@ -29279,7 +30081,11 @@
         "target_high": 23.0,
         "target_low": 12.0,
         "target_spread_div_mean": 0.617
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 66635556358.62,
+      "rel_vol": 0.9923,
+      "indexes": []
     },
     "NUE": {
       "name": "Nucor Corporation",
@@ -29474,7 +30280,13 @@
         "target_high": 345.0,
         "target_low": 226.0,
         "target_spread_div_mean": 0.399
-      }
+      },
+      "debt_fcf": 2.6685,
+      "market_cap": 57694141430.91,
+      "rel_vol": 0.7246,
+      "indexes": [
+        "SP500"
+      ]
     },
     "NVDA": {
       "name": "NVIDIA Corporation",
@@ -29669,7 +30481,14 @@
         "target_high": 515.0,
         "target_low": 170.0,
         "target_spread_div_mean": 1.247
-      }
+      },
+      "debt_fcf": 0.0869,
+      "market_cap": 3970966517114.15,
+      "rel_vol": 1.5869,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "NXPI": {
       "name": "NXP Semiconductors N.V.",
@@ -29865,7 +30684,14 @@
         "target_high": 400.0,
         "target_low": 175.0,
         "target_spread_div_mean": 0.749
-      }
+      },
+      "debt_fcf": 3.1339,
+      "market_cap": 67219993691.06,
+      "rel_vol": 0.841,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "NXT": {
       "name": "Nextpower Inc.",
@@ -30057,7 +30883,11 @@
         "target_high": 170.0,
         "target_low": 70.0,
         "target_spread_div_mean": 0.782
-      }
+      },
+      "debt_fcf": 0.0869,
+      "market_cap": 14628101607.21,
+      "rel_vol": 0.6057,
+      "indexes": []
     },
     "OKTA": {
       "name": "Okta, Inc.",
@@ -30252,10 +31082,16 @@
         "target_high": 250.0,
         "target_low": 127.0,
         "target_spread_div_mean": 0.573
-      }
+      },
+      "debt_fcf": 0.0541,
+      "market_cap": 32608144576.11,
+      "rel_vol": 0.3677,
+      "indexes": [
+        "SP500"
+      ]
     },
     "OLED": {
-      "name": null,
+      "name": "Universal Display Corporation",
       "sector": "Technology",
       "price": 89.29,
       "pillars": {
@@ -30448,7 +31284,11 @@
         "target_high": 158.0,
         "target_low": 71.0,
         "target_spread_div_mean": 0.787
-      }
+      },
+      "debt_fcf": 0.0924,
+      "market_cap": 4168162026.46,
+      "rel_vol": 0.5802,
+      "indexes": []
     },
     "ON": {
       "name": "ON Semiconductor Corporation",
@@ -30643,7 +31483,13 @@
         "target_high": 125.0,
         "target_low": 75.0,
         "target_spread_div_mean": 0.52
-      }
+      },
+      "debt_fcf": 2.9122,
+      "market_cap": 29321823984.86,
+      "rel_vol": 0.7222,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ORCL": {
       "name": "Oracle Corporation",
@@ -30837,7 +31683,13 @@
         "target_high": 400.0,
         "target_low": 110.0,
         "target_spread_div_mean": 1.228
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 371727586159.35,
+      "rel_vol": 0.4787,
+      "indexes": [
+        "SP500"
+      ]
     },
     "OXY": {
       "name": "Occidental Petroleum Corporation",
@@ -31032,7 +31884,13 @@
         "target_high": 83.0,
         "target_low": 60.0,
         "target_spread_div_mean": 0.324
-      }
+      },
+      "debt_fcf": 2.1512,
+      "market_cap": 65638477097.5,
+      "rel_vol": 0.8106,
+      "indexes": [
+        "SP500"
+      ]
     },
     "P": {
       "name": "Everpure, Inc.",
@@ -31226,7 +32084,13 @@
         "target_high": 215.0,
         "target_low": 88.0,
         "target_spread_div_mean": 0.836
-      }
+      },
+      "debt_fcf": 1.7579,
+      "market_cap": 37468831666.47,
+      "rel_vol": 0.941,
+      "indexes": [
+        "SP500"
+      ]
     },
     "PANW": {
       "name": "Palo Alto Networks, Inc.",
@@ -31420,7 +32284,14 @@
         "target_high": 525.0,
         "target_low": 190.0,
         "target_spread_div_mean": 0.84
-      }
+      },
+      "debt_fcf": 0.6241,
+      "market_cap": 247319200000.0,
+      "rel_vol": 0.8527,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "PATH": {
       "name": "UiPath, Inc.",
@@ -31615,7 +32486,11 @@
         "target_high": 23.0,
         "target_low": 10.0,
         "target_spread_div_mean": 0.844
-      }
+      },
+      "debt_fcf": 0.2198,
+      "market_cap": 7168077689.34,
+      "rel_vol": 1.4092,
+      "indexes": []
     },
     "PFE": {
       "name": "Pfizer Inc.",
@@ -31810,7 +32685,13 @@
         "target_high": 37.0,
         "target_low": 25.0,
         "target_spread_div_mean": 0.397
-      }
+      },
+      "debt_fcf": 5.3799,
+      "market_cap": 166488942861.27,
+      "rel_vol": 0.8775,
+      "indexes": [
+        "SP500"
+      ]
     },
     "PG": {
       "name": "The Procter & Gamble Company",
@@ -32004,7 +32885,13 @@
         "target_high": 190.0,
         "target_low": 151.0,
         "target_spread_div_mean": 0.224
-      }
+      },
+      "debt_fcf": 2.5375,
+      "market_cap": 409847078266.2,
+      "rel_vol": 1.3968,
+      "indexes": [
+        "SP500"
+      ]
     },
     "PINS": {
       "name": "Pinterest, Inc.",
@@ -32199,7 +33086,11 @@
         "target_high": 41.0,
         "target_low": 20.0,
         "target_spread_div_mean": 0.839
-      }
+      },
+      "debt_fcf": 0.9478,
+      "market_cap": 13660001400.0,
+      "rel_vol": 0.666,
+      "indexes": []
     },
     "PLTR": {
       "name": "Palantir Technologies Inc.",
@@ -32394,7 +33285,14 @@
         "target_high": 273.0,
         "target_low": 80.0,
         "target_spread_div_mean": 0.864
-      }
+      },
+      "debt_fcf": 0.0556,
+      "market_cap": 431030034179.08,
+      "rel_vol": 0.7158,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "PM": {
       "name": "Philip Morris International Inc.",
@@ -32590,7 +33488,13 @@
         "target_high": 240.0,
         "target_low": 175.0,
         "target_spread_div_mean": 0.306
-      }
+      },
+      "debt_fcf": 3.5921,
+      "market_cap": 311500385994.0,
+      "rel_vol": 1.1606,
+      "indexes": [
+        "SP500"
+      ]
     },
     "PRIM": {
       "name": "Primoris Services Corporation",
@@ -32785,7 +33689,11 @@
         "target_high": 127.0,
         "target_low": 64.0,
         "target_spread_div_mean": 0.631
-      }
+      },
+      "debt_fcf": 33.3979,
+      "market_cap": 3770389854.0,
+      "rel_vol": 0.5995,
+      "indexes": []
     },
     "PYPL": {
       "name": "PayPal Holdings, Inc.",
@@ -32979,7 +33887,14 @@
         "target_high": 80.0,
         "target_low": 36.0,
         "target_spread_div_mean": 0.768
-      }
+      },
+      "debt_fcf": 2.2624,
+      "market_cap": 53476442769.36,
+      "rel_vol": 0.8255,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "PZZA": {
       "name": "Papa John's International, Inc.",
@@ -33175,7 +34090,11 @@
         "target_high": 39.0,
         "target_low": 19.0,
         "target_spread_div_mean": 0.851
-      }
+      },
+      "debt_fcf": 34.1162,
+      "market_cap": 681368838.96,
+      "rel_vol": 0.6979,
+      "indexes": []
     },
     "QCOM": {
       "name": "QUALCOMM Incorporated",
@@ -33370,7 +34289,14 @@
         "target_high": 320.0,
         "target_low": 100.0,
         "target_spread_div_mean": 1.183
-      }
+      },
+      "debt_fcf": 1.8486,
+      "market_cap": 185072532259.02,
+      "rel_vol": 0.8603,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "QLYS": {
       "name": "Qualys, Inc.",
@@ -33562,7 +34488,11 @@
         "target_high": 220.0,
         "target_low": 140.0,
         "target_spread_div_mean": 0.406
-      }
+      },
+      "debt_fcf": 0.1579,
+      "market_cap": 6139859247.26,
+      "rel_vol": 1.0519,
+      "indexes": []
     },
     "RBBN": {
       "name": "Ribbon Communications Inc.",
@@ -33757,7 +34687,11 @@
         "target_high": 4.0,
         "target_low": 1.8,
         "target_spread_div_mean": 0.714
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 273243600.0,
+      "rel_vol": 0.5523,
+      "indexes": []
     },
     "RCL": {
       "name": "Royal Caribbean Cruises Ltd.",
@@ -33953,7 +34887,13 @@
         "target_high": 425.0,
         "target_low": 270.0,
         "target_spread_div_mean": 0.433
-      }
+      },
+      "debt_fcf": 15.3444,
+      "market_cap": 87085760902.44,
+      "rel_vol": 0.5907,
+      "indexes": [
+        "SP500"
+      ]
     },
     "RDDT": {
       "name": "Reddit, Inc.",
@@ -34149,7 +35089,13 @@
         "target_high": 272.0,
         "target_low": 85.0,
         "target_spread_div_mean": 1.26
-      }
+      },
+      "debt_fcf": 0.0262,
+      "market_cap": 19924994144.55,
+      "rel_vol": 0.6318,
+      "indexes": [
+        "SP500"
+      ]
     },
     "RH": {
       "name": "RH",
@@ -34344,7 +35290,11 @@
         "target_high": 258.0,
         "target_low": 81.0,
         "target_spread_div_mean": 1.081
-      }
+      },
+      "debt_fcf": 16.4012,
+      "market_cap": 2567309411.43,
+      "rel_vol": 0.8698,
+      "indexes": []
     },
     "RMBS": {
       "name": "Rambus Inc.",
@@ -34538,7 +35488,11 @@
         "target_high": 165.0,
         "target_low": 103.0,
         "target_spread_div_mean": 0.441
-      }
+      },
+      "debt_fcf": 0.0646,
+      "market_cap": 8996841861.0,
+      "rel_vol": 0.5761,
+      "indexes": []
     },
     "ROG": {
       "name": "Rogers Corporation",
@@ -34733,7 +35687,11 @@
         "target_high": 210.0,
         "target_low": 180.0,
         "target_spread_div_mean": 0.155
-      }
+      },
+      "debt_fcf": 0.2237,
+      "market_cap": 2304064376.03,
+      "rel_vol": 1.3205,
+      "indexes": []
     },
     "ROK": {
       "name": "Rockwell Automation, Inc.",
@@ -34928,7 +35886,13 @@
         "target_high": 520.0,
         "target_low": 295.0,
         "target_spread_div_mean": 0.505
-      }
+      },
+      "debt_fcf": 2.1393,
+      "market_cap": 45220585499.62,
+      "rel_vol": 1.0225,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ROST": {
       "name": "Ross Stores, Inc.",
@@ -35123,7 +36087,14 @@
         "target_high": 315.0,
         "target_low": 187.0,
         "target_spread_div_mean": 0.468
-      }
+      },
+      "debt_fcf": 1.6985,
+      "market_cap": 74582532172.8,
+      "rel_vol": 1.0195,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "RTX": {
       "name": "RTX Corporation",
@@ -35317,7 +36288,13 @@
         "target_high": 250.0,
         "target_low": 200.0,
         "target_spread_div_mean": 0.219
-      }
+      },
+      "debt_fcf": 4.0916,
+      "market_cap": 270887620204.66,
+      "rel_vol": 0.6178,
+      "indexes": [
+        "SP500"
+      ]
     },
     "SBUX": {
       "name": "Starbucks Corporation",
@@ -35514,7 +36491,14 @@
         "target_high": 141.0,
         "target_low": 82.0,
         "target_spread_div_mean": 0.531
-      }
+      },
+      "debt_fcf": 3.9669,
+      "market_cap": 121693189095.48,
+      "rel_vol": 0.9964,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "SCHL": {
       "name": "Scholastic Corporation",
@@ -35712,7 +36696,11 @@
         "target_high": 42.0,
         "target_low": 35.0,
         "target_spread_div_mean": 0.182
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 1488984269.93,
+      "rel_vol": 0.7065,
+      "indexes": []
     },
     "SHAK": {
       "name": "Shake Shack Inc.",
@@ -35905,7 +36893,11 @@
         "target_high": 126.0,
         "target_low": 34.0,
         "target_spread_div_mean": 1.129
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 3181699895.38,
+      "rel_vol": 0.7651,
+      "indexes": []
     },
     "SIRI": {
       "name": "Sirius XM Holdings Inc.",
@@ -36099,7 +37091,11 @@
         "target_high": 47.0,
         "target_low": 25.0,
         "target_spread_div_mean": 0.641
-      }
+      },
+      "debt_fcf": 5.9981,
+      "market_cap": 11796296284.5,
+      "rel_vol": 0.5824,
+      "indexes": []
     },
     "SLB": {
       "name": "SLB N.V.",
@@ -36293,7 +37289,13 @@
         "target_high": 71.0,
         "target_low": 44.0,
         "target_spread_div_mean": 0.434
-      }
+      },
+      "debt_fcf": 2.8109,
+      "market_cap": 78442151965.85,
+      "rel_vol": 0.8484,
+      "indexes": [
+        "SP500"
+      ]
     },
     "SMCI": {
       "name": "Super Micro Computer, Inc.",
@@ -36487,7 +37489,13 @@
         "target_high": 65.0,
         "target_low": 18.0,
         "target_spread_div_mean": 1.078
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 20683524743.19,
+      "rel_vol": 0.7085,
+      "indexes": [
+        "SP500"
+      ]
     },
     "SMG": {
       "name": "The Scotts Miracle-Gro Company",
@@ -36683,7 +37691,11 @@
         "target_high": 83.0,
         "target_low": 67.0,
         "target_spread_div_mean": 0.21
-      }
+      },
+      "debt_fcf": 7.1552,
+      "market_cap": 3768736369.44,
+      "rel_vol": 0.7689,
+      "indexes": []
     },
     "SNDR": {
       "name": "Schneider National, Inc.",
@@ -36878,7 +37890,11 @@
         "target_high": 45.0,
         "target_low": 30.0,
         "target_spread_div_mean": 0.429
-      }
+      },
+      "debt_fcf": 1.5217,
+      "market_cap": 5132688900.48,
+      "rel_vol": 0.6235,
+      "indexes": []
     },
     "SNPS": {
       "name": "Synopsys, Inc.",
@@ -37074,7 +38090,14 @@
         "target_high": 700.0,
         "target_low": 475.0,
         "target_spread_div_mean": 0.382
-      }
+      },
+      "debt_fcf": 3.9458,
+      "market_cap": 85823057040.8,
+      "rel_vol": 0.7471,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "SPGI": {
       "name": "S&P Global Inc.",
@@ -37268,7 +38291,13 @@
         "target_high": 572.0,
         "target_low": 485.0,
         "target_spread_div_mean": 0.165
-      }
+      },
+      "debt_fcf": 2.4373,
+      "market_cap": 140359461930.35,
+      "rel_vol": 0.5661,
+      "indexes": [
+        "SP500"
+      ]
     },
     "STX": {
       "name": "Seagate Technology Holdings plc",
@@ -37464,7 +38493,14 @@
         "target_high": 1588.0,
         "target_low": 700.0,
         "target_spread_div_mean": 0.85
-      }
+      },
+      "debt_fcf": 0.6428,
+      "market_cap": 121844849976.36,
+      "rel_vol": 0.7389,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "SWKS": {
       "name": "Skyworks Solutions, Inc.",
@@ -37658,7 +38694,13 @@
         "target_high": 107.0,
         "target_low": 58.0,
         "target_spread_div_mean": 0.619
-      }
+      },
+      "debt_fcf": 11.5621,
+      "market_cap": 13577784185.28,
+      "rel_vol": 0.686,
+      "indexes": [
+        "SP500"
+      ]
     },
     "SYM": {
       "name": "Symbotic Inc.",
@@ -37856,7 +38898,11 @@
         "target_high": 85.0,
         "target_low": 35.0,
         "target_spread_div_mean": 0.836
-      }
+      },
+      "debt_fcf": 0.035,
+      "market_cap": 5718389400.0,
+      "rel_vol": 1.0386,
+      "indexes": []
     },
     "T": {
       "name": "AT&T Inc.",
@@ -38054,7 +39100,13 @@
         "target_high": 34.0,
         "target_low": 20.0,
         "target_spread_div_mean": 0.507
-      }
+      },
+      "debt_fcf": 9.2898,
+      "market_cap": 158333858706.26,
+      "rel_vol": 0.853,
+      "indexes": [
+        "SP500"
+      ]
     },
     "TEAM": {
       "name": "Atlassian Corporation",
@@ -38247,7 +39299,11 @@
         "target_high": 480.0,
         "target_low": 150.0,
         "target_spread_div_mean": 1.521
-      }
+      },
+      "debt_fcf": 0.736,
+      "market_cap": 39157536373.53,
+      "rel_vol": 1.2645,
+      "indexes": []
     },
     "TJX": {
       "name": "The TJX Companies, Inc.",
@@ -38442,7 +39498,13 @@
         "target_high": 190.0,
         "target_low": 130.0,
         "target_spread_div_mean": 0.363
-      }
+      },
+      "debt_fcf": 2.4365,
+      "market_cap": 150967183398.03,
+      "rel_vol": 1.9743,
+      "indexes": [
+        "SP500"
+      ]
     },
     "TMDX": {
       "name": "TransMedics Group, Inc.",
@@ -38635,7 +39697,11 @@
         "target_high": 125.0,
         "target_low": 70.0,
         "target_spread_div_mean": 0.526
-      }
+      },
+      "debt_fcf": 19.3955,
+      "market_cap": 3606588855.54,
+      "rel_vol": 0.4571,
+      "indexes": []
     },
     "TMO": {
       "name": "Thermo Fisher Scientific Inc.",
@@ -38828,7 +39894,13 @@
         "target_high": 830.0,
         "target_low": 590.0,
         "target_spread_div_mean": 0.317
-      }
+      },
+      "debt_fcf": 5.4463,
+      "market_cap": 261179105771.82,
+      "rel_vol": 0.7091,
+      "indexes": [
+        "SP500"
+      ]
     },
     "TMUS": {
       "name": "T-Mobile US, Inc.",
@@ -39021,7 +40093,14 @@
         "target_high": 296.0,
         "target_low": 165.0,
         "target_spread_div_mean": 0.581
-      }
+      },
+      "debt_fcf": 6.3794,
+      "market_cap": 185207806109.7,
+      "rel_vol": 0.6462,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "TRU": {
       "name": "TransUnion",
@@ -39217,7 +40296,11 @@
         "target_high": 103.0,
         "target_low": 70.0,
         "target_spread_div_mean": 0.365
-      }
+      },
+      "debt_fcf": 6.0713,
+      "market_cap": 15736653516.54,
+      "rel_vol": 0.5939,
+      "indexes": []
     },
     "TSLA": {
       "name": "Tesla, Inc.",
@@ -39414,7 +40497,14 @@
         "target_high": 600.0,
         "target_low": 128.11,
         "target_spread_div_mean": 1.144
-      }
+      },
+      "debt_fcf": 4.4657,
+      "market_cap": 1379920835061.92,
+      "rel_vol": 0.7648,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "TTD": {
       "name": "The Trade Desk, Inc.",
@@ -39608,7 +40698,11 @@
         "target_high": 20.0,
         "target_low": 9.0,
         "target_spread_div_mean": 0.736
-      }
+      },
+      "debt_fcf": 0.6742,
+      "market_cap": 7485291132.48,
+      "rel_vol": 0.8658,
+      "indexes": []
     },
     "TTEK": {
       "name": "Tetra Tech, Inc.",
@@ -39803,7 +40897,11 @@
         "target_high": 47.0,
         "target_low": 39.0,
         "target_spread_div_mean": 0.188
-      }
+      },
+      "debt_fcf": 2.1987,
+      "market_cap": 10126335562.53,
+      "rel_vol": 0.6694,
+      "indexes": []
     },
     "TWLO": {
       "name": "Twilio Inc.",
@@ -39999,7 +41097,13 @@
         "target_high": 325.0,
         "target_low": 165.0,
         "target_spread_div_mean": 0.596
-      }
+      },
+      "debt_fcf": 0.9516,
+      "market_cap": 33726049972.96,
+      "rel_vol": 1.019,
+      "indexes": [
+        "SP500"
+      ]
     },
     "TXN": {
       "name": "Texas Instruments Incorporated",
@@ -40195,7 +41299,14 @@
         "target_high": 422.0,
         "target_low": 250.0,
         "target_spread_div_mean": 0.508
-      }
+      },
+      "debt_fcf": 1.8523,
+      "market_cap": 279728860105.2,
+      "rel_vol": 0.7215,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "UAL": {
       "name": "United Airlines Holdings, Inc.",
@@ -40387,7 +41498,13 @@
         "target_high": 203.0,
         "target_low": 98.0,
         "target_spread_div_mean": 0.697
-      }
+      },
+      "debt_fcf": 30.7294,
+      "market_cap": 35838851551.95,
+      "rel_vol": 1.0256,
+      "indexes": [
+        "SP500"
+      ]
     },
     "UBER": {
       "name": "Uber Technologies, Inc.",
@@ -40581,7 +41698,13 @@
         "target_high": 150.0,
         "target_low": 70.0,
         "target_spread_div_mean": 0.814
-      }
+      },
+      "debt_fcf": 1.702,
+      "market_cap": 141213947335.41,
+      "rel_vol": 0.7612,
+      "indexes": [
+        "SP500"
+      ]
     },
     "UCTT": {
       "name": "Ultra Clean Holdings, Inc.",
@@ -40776,7 +41899,11 @@
         "target_high": 150.0,
         "target_low": 65.0,
         "target_spread_div_mean": 0.802
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 2163000015.45,
+      "rel_vol": 0.5108,
+      "indexes": []
     },
     "ULTA": {
       "name": "Ulta Beauty, Inc.",
@@ -40970,7 +42097,13 @@
         "target_high": 731.0,
         "target_low": 500.0,
         "target_spread_div_mean": 0.36
-      }
+      },
+      "debt_fcf": 2.1959,
+      "market_cap": 29122638685.14,
+      "rel_vol": 0.8651,
+      "indexes": [
+        "SP500"
+      ]
     },
     "UNH": {
       "name": "UnitedHealth Group Incorporated",
@@ -41165,7 +42298,13 @@
         "target_high": 531.0,
         "target_low": 380.0,
         "target_spread_div_mean": 0.317
-      }
+      },
+      "debt_fcf": 3.2564,
+      "market_cap": 368780321338.5,
+      "rel_vol": 0.8975,
+      "indexes": [
+        "SP500"
+      ]
     },
     "UPS": {
       "name": "United Parcel Service, Inc.",
@@ -41360,7 +42499,13 @@
         "target_high": 135.0,
         "target_low": 76.0,
         "target_spread_div_mean": 0.511
-      }
+      },
+      "debt_fcf": 4.8055,
+      "market_cap": 95583230726.0,
+      "rel_vol": 1.0469,
+      "indexes": [
+        "SP500"
+      ]
     },
     "V": {
       "name": "Visa Inc.",
@@ -41559,7 +42704,13 @@
         "target_high": 500.0,
         "target_low": 330.0,
         "target_spread_div_mean": 0.379
-      }
+      },
+      "debt_fcf": 1.0006,
+      "market_cap": 812261610478.08,
+      "rel_vol": 1.0602,
+      "indexes": [
+        "SP500"
+      ]
     },
     "VECO": {
       "name": "Veeco Instruments Inc.",
@@ -41755,7 +42906,11 @@
         "target_high": 66.0,
         "target_low": 55.0,
         "target_spread_div_mean": 0.187
-      }
+      },
+      "debt_fcf": 2.0867,
+      "market_cap": 2566437300.0,
+      "rel_vol": 0.767,
+      "indexes": []
     },
     "VRT": {
       "name": "Vertiv Holdings Co",
@@ -41951,7 +43106,13 @@
         "target_high": 427.0,
         "target_low": 240.0,
         "target_spread_div_mean": 0.559
-      }
+      },
+      "debt_fcf": 1.0666,
+      "market_cap": 79241656133.31,
+      "rel_vol": 0.8466,
+      "indexes": [
+        "SP500"
+      ]
     },
     "VSH": {
       "name": "Vishay Intertechnology, Inc.",
@@ -42147,7 +43308,11 @@
         "target_high": 45.0,
         "target_low": 27.0,
         "target_spread_div_mean": 0.466
-      }
+      },
+      "debt_fcf": 7.3859,
+      "market_cap": 4089304292.04,
+      "rel_vol": 0.4513,
+      "indexes": []
     },
     "VYX": {
       "name": "NCR Voyix Corporation",
@@ -42343,7 +43508,11 @@
         "target_high": 15.0,
         "target_low": 11.0,
         "target_spread_div_mean": 0.301
-      }
+      },
+      "debt_fcf": null,
+      "market_cap": 1732111113.44,
+      "rel_vol": 0.7957,
+      "indexes": []
     },
     "WDAY": {
       "name": "Workday, Inc.",
@@ -42539,7 +43708,14 @@
         "target_high": 275.0,
         "target_low": 92.0,
         "target_spread_div_mean": 0.875
-      }
+      },
+      "debt_fcf": 1.3263,
+      "market_cap": 49748775225.7,
+      "rel_vol": 1.0706,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "WDC": {
       "name": "Western Digital Corporation",
@@ -42733,7 +43909,14 @@
         "target_high": 900.0,
         "target_low": 405.0,
         "target_spread_div_mean": 0.807
-      }
+      },
+      "debt_fcf": 0.215,
+      "market_cap": 114655907648.7,
+      "rel_vol": 0.7511,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "WING": {
       "name": "Wingstop Inc.",
@@ -42929,7 +44112,11 @@
         "target_high": 265.0,
         "target_low": 120.0,
         "target_spread_div_mean": 0.784
-      }
+      },
+      "debt_fcf": 10.4729,
+      "market_cap": 4333878564.34,
+      "rel_vol": 0.5262,
+      "indexes": []
     },
     "WMT": {
       "name": "Walmart Inc.",
@@ -43123,7 +44310,14 @@
         "target_high": 155.0,
         "target_low": 81.0,
         "target_spread_div_mean": 0.563
-      }
+      },
+      "debt_fcf": 5.5587,
+      "market_cap": 1024534362365.25,
+      "rel_vol": 0.8141,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ]
     },
     "WST": {
       "name": "West Pharmaceutical Services, Inc.",
@@ -43318,7 +44512,13 @@
         "target_high": 500.0,
         "target_low": 340.0,
         "target_spread_div_mean": 0.34
-      }
+      },
+      "debt_fcf": 0.6923,
+      "market_cap": 29859790866.16,
+      "rel_vol": 0.6883,
+      "indexes": [
+        "SP500"
+      ]
     },
     "WYNN": {
       "name": "Wynn Resorts, Limited",
@@ -43514,7 +44714,13 @@
         "target_high": 132.0,
         "target_low": 92.0,
         "target_spread_div_mean": 0.344
-      }
+      },
+      "debt_fcf": 20.4863,
+      "market_cap": 9209512036.44,
+      "rel_vol": 0.5604,
+      "indexes": [
+        "SP500"
+      ]
     },
     "XOM": {
       "name": "ExxonMobil Holdings Corporation",
@@ -43708,7 +44914,13 @@
         "target_high": 213.0,
         "target_low": 160.0,
         "target_spread_div_mean": 0.288
-      }
+      },
+      "debt_fcf": 0.7972,
+      "market_cap": 711468889064.5,
+      "rel_vol": 1.0074,
+      "indexes": [
+        "SP500"
+      ]
     },
     "XYZ": {
       "name": "Block, Inc.",
@@ -43902,7 +45114,13 @@
         "target_high": 125.0,
         "target_low": 80.0,
         "target_spread_div_mean": 0.444
-      }
+      },
+      "debt_fcf": 2.182,
+      "market_cap": 52708084323.92,
+      "rel_vol": 0.7328,
+      "indexes": [
+        "SP500"
+      ]
     },
     "ZETA": {
       "name": "Zeta Global Holdings Corp.",
@@ -44097,7 +45315,11 @@
         "target_high": 55.0,
         "target_low": 33.0,
         "target_spread_div_mean": 0.548
-      }
+      },
+      "debt_fcf": 1.0164,
+      "market_cap": 9709318000.0,
+      "rel_vol": 0.978,
+      "indexes": []
     },
     "ZM": {
       "name": "Zoom Communications, Inc.",
@@ -44292,7 +45514,11 @@
         "target_high": 135.0,
         "target_low": 79.0,
         "target_spread_div_mean": 0.472
-      }
+      },
+      "debt_fcf": 0.0313,
+      "market_cap": 30135109898.2,
+      "rel_vol": 1.026,
+      "indexes": []
     }
   }
 }

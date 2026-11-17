@@ -103,6 +103,15 @@ export interface TickerData {
   /** Analyst consensus targets. Optional: a card must render without it
       (see app/stock/[ticker]/page.tsx) and never show a guessed target. */
   analysts?: Analysts
+  /** Six-filter fields (data pass 2026-11-16). debt_fcf = total debt /
+      TTM FCF (null if FCF <= 0 or either input missing); market_cap =
+      2026-11-13 close x implied shares; rel_vol = 2026-11-16 volume /
+      mean of prior 20 trading days' volumes; indexes from Wikipedia
+      constituent lists as of 2026-11-16 (see scripts/engine/index_lists.json). */
+  debt_fcf: number | null
+  market_cap: number | null
+  rel_vol: number | null
+  indexes: string[]
 }
 
 export interface EngineResults {

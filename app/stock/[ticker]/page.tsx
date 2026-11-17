@@ -98,6 +98,26 @@ function SubscoreTable({
   )
 }
 
+/** Compact market cap: $3.97T / $1.2B style. Null → '—'. */
+function formatMarketCap(v: number | null): string {
+  if (v === null) return '—'
+  const trim = (n: number, digits: number) => {
+    const s = n.toFixed(digits)
+    return s.includes('.') ? s.replace(/\.?0+$/, '') : s
+  }
+  if (v >= 1_000_000_000_000) return `$${trim(v / 1_000_000_000_000, 2)}T`
+  if (v >= 1_000_000_000) return `$${trim(v / 1_000_000_000, 1)}B`
+  if (v >= 1_000_000) return `$${trim(v / 1_000_000, 0)}M`
+  return `$${trim(v / 1_000, 0)}K`
+}
+
+function indexMembership(indexes: string[] | undefined): string {
+  const names = (indexes ?? []).map((i) =>
+    i === 'SP500' ? 'S&P 500' : i === 'NASDAQ100' ? 'Nasdaq-100' : i,
+  )
+  return names.length > 0 ? names.join(' + ') : 'None'
+}
+
 function Kv({ k, v }: { k: string; v: ReactNode }) {
   return (
     <div className="kv">
@@ -286,6 +306,16 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       <p className="page-intro">
         {t.sector} · Price {money(t.price)} (close, {priceDate}) · Engine{' '}
         {RESULTS.engine}
+      </p>
+      {/* Facts strip — one compact line: beta, trailing P/E, market cap,
+          debt/FCF, relative volume, index membership. '—' for nulls. */}
+      <p className="footnote">
+        Beta {capm.beta_raw !== null ? capm.beta_raw.toFixed(2) : '—'} · P/E (trailing){' '}
+        {legs.pegy.pe_used !== null ? legs.pegy.pe_used.toFixed(2) : '—'} · Market cap{' '}
+        {formatMarketCap(t.market_cap)} · Debt/FCF{' '}
+        {t.debt_fcf !== null ? `${t.debt_fcf.toFixed(2)}×` : '—'} · Rel. vol{' '}
+        {t.rel_vol !== null ? `${t.rel_vol.toFixed(2)}×` : '—'} · Index{' '}
+        {indexMembership(t.indexes)}
       </p>
       <Card>
         <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>

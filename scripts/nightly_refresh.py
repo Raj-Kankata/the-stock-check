@@ -16,6 +16,17 @@ What refreshes nightly (this script):
     is scaled by the price ratio (see _update_price_fields — the stored
     trailing_eps_adjusted is rounded to 2dp, so price/eps would be wrong;
     TSLA proves it: 390.22/0.98 = 398.18 != stored 399.17)
+  * market_cap — RECOMPUTED every refresh as fresh price x
+    shares_implied_total (from base_inputs.json); never frozen. Null if
+    shares are missing for a ticker.
+  * rel_vol — COMPUTED every refresh from the same final yfinance daily
+    bars the refresh publishes (after the intraday-bar drop): latest-day
+    volume / mean volume of the 20 trading days PRECEDING the latest bar
+    (excluding the latest day), rounded to 4dp. Null if fewer than 20
+    prior bars. As-of = price date.
+  * debt_fcf, indexes — FROZEN passthrough, copied from base_inputs.json
+    into results.json on every refresh (quarterly cadence, NOT nightly);
+    never recomputed from prices. Missing in older files -> null.
   * market snapshot — lib/data/market.json: S&P 500 / Nasdaq / Dow / VIX
     closes with prev close, point change and % change (yfinance), plus the
     10Y Treasury yield from the FRED DGS10 CSV (urllib, no key; latest
@@ -247,6 +258,53 @@ def compute_technicals(close):
     }
 
 
+# ------------------------------------------------------- rel_vol / market cap
+# rel_vol definition (EXACT — the data worker's one-off values must match
+# this): rel_vol = round(latest-day Volume / mean(Volume of the 20 trading
+# days PRECEDING the latest bar, excluding the latest day), 4). Computed
+# from the SAME final bar set the refresh publishes — i.e. the history
+# AFTER drop_intraday_bar has removed a still-trading partial bar, so the
+# "latest bar" is always a completed close and as-of = price_date. Null
+# if fewer than 20 prior bars, if the Volume column is absent, or if any
+# volume involved is missing / the 20-day mean is 0. A null rel_vol is
+# NOT a gate trip (live runs always have >= 200 bars, so >= 199 priors).
+# Rounding is 4dp: verified 2026-11-16 against the data worker's stored
+# values — latest/mean(prior 20) at 4dp reproduces NVDA 1.5869, AAPL
+# 0.9733, MSFT 1.1509, TSLA 0.7648, XOM 1.0074 exactly on the Nov-16
+# bars (their one-off values are as of the Nov-16 close, not Nov-13).
+def compute_rel_vol(hist):
+    """hist: yfinance daily history (already intraday-bar-dropped)."""
+    try:
+        vol = hist["Volume"]
+    except (KeyError, TypeError):
+        return None
+    if len(vol) < 21:
+        return None
+    latest = vol.iloc[-1]
+    prior = vol.iloc[-21:-1]
+    if latest is None or latest != latest:  # NaN check
+        return None
+    prior = prior.dropna()
+    if len(prior) < 20:
+        return None
+    mean_prior = float(prior.mean())
+    if not mean_prior:
+        return None
+    return round(float(latest) / mean_prior, 4)
+
+
+def compute_market_cap(price, shares):
+    """Market cap in USD: fresh price x shares_implied_total, rounded to
+    2dp (price is already 2dp and shares are ints, so this is exact).
+    Null if shares are missing / non-numeric — never a gate trip."""
+    if shares is None:
+        return None
+    try:
+        return round(float(price) * float(shares), 2)
+    except (TypeError, ValueError):
+        return None
+
+
 # ------------------------------------------------------------------- fetching
 def fetch_history(ticker, end=None):
     """1y daily history, auto_adjust=False. end (YYYY-MM-DD) is exclusive,
@@ -318,6 +376,19 @@ def refresh_ticker(base_rec, hist):
     _update_price_fields(rec, new_price)
     bar_date = hist.index[-1].date().isoformat()
     rec["price_date"] = bar_date
+    # New fields (see module docstring). rec is a deepcopy of base_rec, so
+    # frozen fields already present in the base survive automatically; the
+    # explicit .get(..., None) assignments below guarantee the keys exist
+    # (as null) even in older base files that predate the fields, and
+    # deepcopy the values so later mutation cannot alias the base.
+    # market_cap uses the ROUNDED fresh price in rec["price"] (set by
+    # _update_price_fields above), so it matches the published price
+    # exactly. rel_vol is computed from this same final (post-drop) hist.
+    rec["debt_fcf"] = copy.deepcopy(base_rec.get("debt_fcf"))
+    rec["indexes"] = copy.deepcopy(base_rec.get("indexes"))
+    rec["market_cap"] = compute_market_cap(
+        rec["price"], base_rec.get("shares_implied_total"))
+    rec["rel_vol"] = compute_rel_vol(hist)
     return rec, bar_date
 
 
@@ -518,7 +589,8 @@ def gate_engine_outputs(results, stored_results, all_tickers):
                      f"(stored ${stored_fv:.2f})")
 
 
-def merge_results(v13_results, batch2_results, as_of, price_date):
+def merge_results(v13_results, batch2_results, as_of, price_date,
+                  refreshed=None):
     """Merged site results: top-level EXACTLY as v1.3's output (engine
     string, locked_set, capm_crosscheck, weights, ladder_ratios), tickers
     = batch2's 227, with v1.3's 4 taking precedence over batch2's copies
@@ -527,7 +599,24 @@ def merge_results(v13_results, batch2_results, as_of, price_date):
     block, so it is carried through here from the frozen base inputs
     (deep copy, appended as the last key of each ticker dict) — the same
     placement as the one-time backfill of lib/data/results.json. No
-    number, score, FV or verdict is touched."""
+    number, score, FV or verdict is touched.
+
+    The four new fields are carried through here too (same append-after-
+    analysts placement), because the engines never emit them and this
+    merge is the ONLY path by which a ticker record reaches results.json:
+      * debt_fcf, indexes - frozen passthrough from base_inputs.json
+        (via `refreshed` when the caller has it, else the base).
+      * market_cap - recomputed here from the MERGED (published) price
+        x shares_implied_total from base_inputs.json, so it always
+        matches the published price exactly. Null if shares missing.
+      * rel_vol - taken from `refreshed` (live path: computed in
+        refresh_ticker from the final bar set). Dry-run callers pass the
+        base records, which carry no rel_vol, so dry-run output has
+        rel_vol null - the dry run fetches nothing, so it cannot compute
+        one; that is expected, not a failure.
+    `refreshed`: per-ticker records carrying the new fields (live path:
+    the new_tickers dict from cmd_live; dry-run path: base["tickers"]).
+    Missing keys in older files are tolerated as null, never a crash."""
     merged = copy.deepcopy(v13_results)
     # batch2 scores all 227, INCLUDING the 4 v1.3 names; v1.3's own output
     # takes precedence for those 4, so their published detail text stays
@@ -538,8 +627,15 @@ def merge_results(v13_results, batch2_results, as_of, price_date):
     merged["as_of"] = as_of
     merged["price_date"] = price_date
     base = load_json(BASE_INPUTS)
+    refreshed = refreshed or {}
     for t, rec in merged["tickers"].items():
         rec["analysts"] = copy.deepcopy(base["tickers"][t]["analysts"])
+        src = refreshed.get(t) or base["tickers"][t]
+        rec["debt_fcf"] = copy.deepcopy(src.get("debt_fcf"))
+        rec["indexes"] = copy.deepcopy(src.get("indexes"))
+        rec["market_cap"] = compute_market_cap(
+            rec["price"], base["tickers"][t].get("shares_implied_total"))
+        rec["rel_vol"] = copy.deepcopy(src.get("rel_vol"))
     return merged
 
 
@@ -554,7 +650,8 @@ def cmd_dry_run(as_of):
           f"{len(all_tickers)} tickers")
     results = run_engines_staged(inputs, all_tickers)
     merged = merge_results(results["v13"], results["batch2"],
-                           stored["as_of"], stored["price_date"])
+                           stored["as_of"], stored["price_date"],
+                           refreshed=base["tickers"])
     print(f"\n{'ticker':<7} {'FV new':>10} {'FV stored':>10} "
           f"{'score new':>10} {'score stored':>12} {'verdict':>8}  result")
     n_pass = 0
@@ -663,7 +760,8 @@ def cmd_live(as_of_arg):
     inputs = split_inputs(new_tickers, as_of, price_date)
     results = run_engines_staged(inputs, all_tickers)
     gate_engine_outputs(results, stored, all_tickers)
-    merged = merge_results(results["v13"], results["batch2"], as_of, price_date)
+    merged = merge_results(results["v13"], results["batch2"], as_of, price_date,
+                           refreshed=new_tickers)
 
     # 3. Per-ticker summary + CHANGED flag (computed BEFORE any write, so
     #    a no-change night writes nothing at all: no as_of/lastmod bumps,
@@ -677,7 +775,16 @@ def cmd_live(as_of_arg):
         p_ch = old["price"] != new["price"]
         f_ch = old["triangulated_fv"] != new["triangulated_fv"]
         v_ch = old["verdict"] != new["verdict"]
-        changed_tickers |= p_ch or f_ch or v_ch
+        # New fields must count too, or they would never be written on a
+        # night when price/FV/verdict are unchanged: rel_vol moves almost
+        # every night by construction (daily volume), market_cap moves
+        # with price, and debt_fcf/indexes move on the quarterly refresh
+        # of base_inputs.json. .get(..., None) tolerates stored files
+        # that predate the fields. Consequence, by design: a night with
+        # no price/FV/verdict change still writes when rel_vol changed.
+        n_ch = any(old.get(f) != new.get(f)
+                   for f in ("debt_fcf", "market_cap", "rel_vol", "indexes"))
+        changed_tickers |= p_ch or f_ch or v_ch or n_ch
         if v_ch:
             flips.append(t)
         mark = "  <-- VERDICT FLIP" if v_ch else ""
