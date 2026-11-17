@@ -1,69 +1,63 @@
 import type { Metadata } from 'next'
-import { RESULTS, TICKER_SYMBOLS, getTicker } from '@/lib/data'
-import { Card, StockRow, StockTableHead } from '@/components/ui'
+import { RESULTS, TICKER_SYMBOLS } from '@/lib/data'
+import TrendingBoards, { type TrendingStockMeta } from '@/components/TrendingBoards'
 
 export const metadata: Metadata = {
   title: 'Trending',
   description:
-    'Trending on The Stock Check: an interim list of the 227 currently scored names while the ranking is still being decided. No hidden ranking inputs.',
+    'Trending on The Stock Check: the biggest live day-movers among the 227 scored names — top gainers, top losers and most active — each shown with our verdict and overall score. Quotes delayed ~15 minutes (TradingView).',
+}
+
+const MONTHS = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]
+
+function formatDate(iso: string | undefined): string {
+  if (!iso) return ''
+  const [y, m, d] = iso.split('-').map(Number)
+  if (!y || !m || !d || m < 1 || m > 12) return iso
+  return `${MONTHS[m - 1]} ${d}, ${y}`
 }
 
 export default function TrendingPage() {
+  // Only the light per-ticker facts the boards need cross the
+  // server/client boundary — never the whole results.json.
+  const stocks: TrendingStockMeta[] = TICKER_SYMBOLS.map((symbol) => {
+    const t = RESULTS.tickers[symbol]
+    return {
+      symbol,
+      name: t.name,
+      verdict: t.verdict,
+      score: t.overall_score,
+    }
+  })
+
   return (
     <>
       <h1>Trending</h1>
       <p className="page-intro">
-        What is getting attention on The Stock Check right now — with the ranking shown, not
-        hidden.
+        What is moving most on The Stock Check right now — the biggest live
+        day-movers among the {TICKER_SYMBOLS.length} stocks we score, each
+        shown with our verdict and overall score next to the move.
       </p>
 
-      <div className="callout amber">
-        <strong>How trending is ranked is not decided yet.</strong> Until it is decided, this
-        page shows an interim list
-        and the criteria it uses — and the full ranking launches when the ranking is decided.
-      </div>
+      <TrendingBoards priceDateLabel={formatDate(RESULTS.price_date)} stocks={stocks} />
 
-      <Card title={`Interim list — the ${TICKER_SYMBOLS.length} currently scored names`}>
-        <p>
-          Interim criteria, in full: this list is the {TICKER_SYMBOLS.length} names currently
-          scored by engine v1.3, shown with verdict, overall score, price, fair value and
-          upside. There are no hidden ranking inputs — no undisclosed score, no hidden
-          ordering beyond the scored universe itself.
-        </p>
-        <table>
-          <thead>
-            <StockTableHead />
-          </thead>
-          <tbody>
-            {TICKER_SYMBOLS.map((symbol) => {
-              const t = getTicker(symbol)
-              if (!t) return null
-              return <StockRow key={symbol} t={{ ...t, symbol }} />
-            })}
-          </tbody>
-        </table>
-        <p className="footnote">
-          Prices are the {RESULTS.price_date} close. Each row links to the stock&apos;s card, where the
-          pillar scores, the three fair-value angles and the spread between them are all published.
-        </p>
-      </Card>
-
-      <Card title="Why a name appears here">
-        <p>
-          A name appears on this page because it is in the scored universe — because it has been
-          run through the engine and has a published verdict, score and fair value. It does not
-          appear because of undisclosed social or flow data: no social-media mentions, no options
-          flow, no search volume and no other off-page signal feeds this list.
-        </p>
-        <p>
-          When the ranking is decided, this page will say plainly what counts
-          and what does not count. Until then, this interim list is the whole of the Trending
-          page: {TICKER_SYMBOLS.length} scored names, nothing ranked behind the scenes.
-        </p>
-        <p className="footnote">
-          Trending is research, not a recommendation. Nothing on this page is investment advice.
-        </p>
-      </Card>
+      <p className="footnote">
+        Trending is research, not a recommendation. Nothing on this page is
+        investment advice.
+      </p>
     </>
   )
 }
