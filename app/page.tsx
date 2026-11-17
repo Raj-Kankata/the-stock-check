@@ -105,8 +105,10 @@ export default function HomePage() {
     <>
       <h1>Check any stock before you buy.</h1>
       <p className="page-intro">
-        A free research tool that scores a stock on five pillars and works out a fair value from
-        three independent angles — and shows you every number, so you can check the work yourself.
+        A free research tool that scores 227 stocks on five pillars and works out a fair value
+        for each. Every card shows the score, the verdict, the fair value against today&apos;s
+        price, and how it compares with Wall Street&apos;s targets — with live prices during
+        market hours, plus trending movers, sector rotation, and a market pulse.
       </p>
 
       <Card title="Spotlight — highest overall score">
