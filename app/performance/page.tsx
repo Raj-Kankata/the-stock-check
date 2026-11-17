@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getTicker, money } from '@/lib/data'
+import { RESULTS, getTicker, money } from '@/lib/data'
 import { PICKS, PICKS_ENTRY_DATE } from '@/lib/site'
-import { Card } from '@/components/ui'
+import { Card, signedPctSpan } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: 'Performance',
@@ -10,9 +10,19 @@ export const metadata: Metadata = {
     'How the Top Picks are tracked: an equal-weight portfolio at the frozen 13 Nov 2026 entry prices, no costs, no dividends. No return is published without its pick list.',
 }
 
-const NOT_YET_MEASURED = 'Not yet measured — first performance print comes after the next close'
-
 export default function PerformancePage() {
+  const latestCloseDate = RESULTS.price_date
+  const measured = PICKS.map(({ symbol, entryPrice }) => {
+    const t = getTicker(symbol)
+    if (!t) return null
+    const ret = (t.price - entryPrice) / entryPrice
+    return { symbol, name: t.name, entryPrice, latest: t.price, ret }
+  }).filter((r): r is NonNullable<typeof r> => r !== null)
+  const portfolioReturn =
+    measured.length > 0
+      ? measured.reduce((sum, r) => sum + r.ret, 0) / measured.length
+      : null
+
   return (
     <>
       <h1>Performance</h1>
@@ -34,6 +44,10 @@ export default function PerformancePage() {
             restated.
           </li>
           <li>
+            <strong>Latest close:</strong> the close in this build&apos;s data (
+            {latestCloseDate}); the return is recomputed from it on every nightly refresh.
+          </li>
+          <li>
             <strong>Weighting:</strong> equal weight across the picks.
           </li>
           <li>
@@ -43,8 +57,8 @@ export default function PerformancePage() {
             <strong>Dividends:</strong> not included.
           </li>
           <li>
-            <strong>Benchmark:</strong> none yet — a benchmark comparison will be shown with the
-            first performance print, once there is a measured return to compare.
+            <strong>Benchmark:</strong> none yet — no benchmark is tracked against these picks at
+            present.
           </li>
         </ul>
       </Card>
@@ -56,49 +70,57 @@ export default function PerformancePage() {
               <th>Stock</th>
               <th>Entry date</th>
               <th className="num">Entry price</th>
-              <th className="num">Return</th>
+              <th className="num">Latest close</th>
+              <th className="num">Return since entry</th>
             </tr>
           </thead>
           <tbody>
-            {PICKS.map(({ symbol, entryPrice }) => {
-              const t = getTicker(symbol)
-              if (!t) return null
-              return (
-                <tr key={symbol}>
-                  <td>
-                    <Link href={`/stock/${symbol}`}>
-                      <strong>{symbol}</strong>
-                    </Link>
-                    <br />
-                    <span className="footnote">{t.name}</span>
-                  </td>
-                  <td>{PICKS_ENTRY_DATE}</td>
-                  <td className="num">{money(entryPrice)}</td>
-                  <td className="num">{NOT_YET_MEASURED}</td>
-                </tr>
-              )
-            })}
+            {measured.map(({ symbol, name, entryPrice, latest, ret }) => (
+              <tr key={symbol}>
+                <td>
+                  <Link href={`/stock/${symbol}`}>
+                    <strong>{symbol}</strong>
+                  </Link>
+                  <br />
+                  <span className="footnote">{name}</span>
+                </td>
+                <td>{PICKS_ENTRY_DATE}</td>
+                <td className="num">{money(entryPrice)}</td>
+                <td className="num">{money(latest)}</td>
+                <td className="num">{signedPctSpan(ret)}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
         <p className="footnote">
-          No later close exists in this build&apos;s data, so no return figure is published here.
-          The first performance print comes after the next close, measured from these frozen entry
-          prices. NVO was published as a pick on 13 Nov 2026 (entry $41.63) and removed from
+          Return = (latest close − entry price) ÷ entry price, measured from the{' '}
+          {PICKS_ENTRY_DATE} close to the {latestCloseDate} close — the closes since entry. The
+          print lengthens with every nightly refresh; it is a return since entry, not a track
+          record. NVO was published as a pick on 13 Nov 2026 (entry $41.63) and removed from
           tracking when its card was unpublished under the three-leg-only policy.
         </p>
+        {portfolioReturn !== null ? (
+          <p>
+            <strong>Equal-weight portfolio return since entry: {signedPctSpan(portfolioReturn)}</strong>{' '}
+            <span className="footnote">
+              (mean of the {measured.length} picks above, {PICKS_ENTRY_DATE} entry to{' '}
+              {latestCloseDate} close)
+            </span>
+          </p>
+        ) : null}
       </Card>
 
-      <Card title="Why nothing is published yet">
+      <Card title="Why the record is still short">
         <p>
           A return without a frozen entry price is not auditable — it can always be restated after
           the fact. So we publish the entries first, freeze them, and only then measure. The
-          entries above are the audit trail: when the first return appears, anyone can recompute
-          it from the entry prices, the next close, and the equal-weight, no-cost, no-dividend
-          method stated above.
+          entries above are the audit trail: every return on this page can be recomputed from the
+          entry prices, the latest close, and the equal-weight, no-cost, no-dividend method stated
+          above. The record starts with the closes since entry and grows by one close each night.
         </p>
         <p className="footnote">
-          Performance is research, not a promise. Past performance — including any future print on
-          this page — does not guarantee future results. Nothing here is investment advice.
+          Performance is research, not a promise. Past performance — including any print on this
+          page — does not guarantee future results. Nothing here is investment advice.
         </p>
       </Card>
     </>
