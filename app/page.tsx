@@ -150,9 +150,9 @@ export default function HomePage() {
           ))}
         </div>
         <p className="footnote">
-          {total} names scored so far, prices as of the {RESULTS.price_date} close. The scored universe
-          expands as more names are run through the engine; no score is ever guessed for an
-          unscored ticker.
+          {total} names scored so far; prices are the {RESULTS.price_date} close unless marked
+          LIVE during market hours. The scored universe expands as more names are run through the
+          engine; no score is ever guessed for an unscored ticker.
         </p>
       </Card>
 

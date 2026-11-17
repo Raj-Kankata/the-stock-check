@@ -72,7 +72,8 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
               <Link href="/performance">Performance</Link>
             </div>
             <p>
-              Prices as of the {RESULTS.price_date} close · Engine {ENGINE_VERSION} · No sign-in, no
+              Prices are the {RESULTS.price_date} close unless marked LIVE during market hours
+              (quotes delayed ~15 min, TradingView) · Engine {ENGINE_VERSION} · No sign-in, no
               tracking, no analytics.
             </p>
           </div>

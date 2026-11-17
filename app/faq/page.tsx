@@ -112,7 +112,8 @@ export default function FaqPage() {
           <li>Sector multiples — quarterly.</li>
         </ul>
         <p className="footnote">
-          Prices on the site are as of the {RESULTS.price_date} close.
+          Prices on the site are the {RESULTS.price_date} close unless marked LIVE during market
+          hours.
         </p>
       </Card>
 

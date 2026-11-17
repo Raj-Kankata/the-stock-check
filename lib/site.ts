@@ -41,7 +41,9 @@ export const SECTOR_TABLE_NOTE =
  * top 5 Value names as of that close. NVDA is a launch pick only —
  * it appears once, in the launch cohort. The list is frozen at
  * publication and changes only when Raj decides — no automatic
- * rotation. */
+ * rotation. DECK was replaced by GME on 17 Nov 2026 (Raj's decision):
+ * GME overall 78.3 ranks above DECK 78.0 in Value as of the 16 Nov
+ * close, so the top-5-Value rule now holds exactly. */
 export const PICKS_ENTRY_DATE = '2026-11-13'
 export const PICKS_NEW_ENTRY_DATE = '2026-11-16'
 export const PICKS = [
@@ -55,7 +57,7 @@ export const PICKS = [
   { symbol: 'RDDT', entryPrice: 92.87, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
   { symbol: 'HPE', entryPrice: 46.57, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
   { symbol: 'NXPI', entryPrice: 254.19, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-  { symbol: 'DECK', entryPrice: 83.46, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'GME', entryPrice: 25.6, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
   { symbol: 'LOVE', entryPrice: 14.94, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
   { symbol: 'DELL', entryPrice: 320.55, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
 ] as const

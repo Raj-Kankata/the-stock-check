@@ -88,6 +88,60 @@ export function StockLiveUpside({
   return <>{pct(upside)}</>
 }
 
+/**
+ * A pros/cons line, recomputed live. The fair-value line is baked text
+ * in results.json ("Fair value $X is +N% above the $Y price — ..."),
+ * so while the headline price is live it would otherwise quote
+ * yesterday's close. When the store holds a live price, the percentage
+ * and the price are recomputed from the live price and the baked fair
+ * value; every other line passes through untouched, and after hours
+ * the baked line is shown verbatim. results.json is never edited.
+ *
+ * The line is always the first item of Pros (price below fair value)
+ * or of Cons (price above it). Its tail is kept verbatim except for
+ * one case: the Cons tail claims the most generous leg sits below the
+ * price. If the live price has fallen to or below that leg — including
+ * a flip to below fair value — that claim is no longer true, so the
+ * tail falls back to the neutral legs-span wording.
+ */
+const FV_LINE_RE =
+  /^Fair value \$([\d,]+\.\d{2}) is ([+-]\d+)% (above|below) the \$([\d,]+\.\d{2}) price( — .*)?$/
+
+export function StockLiveProConLine({
+  line,
+  symbol,
+  fairValue,
+  legMin,
+  legMax,
+}: {
+  line: string
+  symbol: string
+  fairValue: number
+  legMin: number | null
+  legMax: number | null
+}) {
+  const live = useLiveQuotes()
+  const price = liveCloseFor(live, symbol)
+  if (price === null || fairValue <= 0) return <>{line}</>
+  const m = FV_LINE_RE.exec(line)
+  if (!m) return <>{line}</>
+  const pctWhole = Math.round(((fairValue - price) / price) * 100)
+  const direction = pctWhole >= 0 ? 'above' : 'below'
+  const signed = pctWhole >= 0 ? `+${pctWhole}` : `${pctWhole}`
+  let tail = m[5] ?? ''
+  if (/even the most generous leg/.test(tail) && legMax !== null && price <= legMax) {
+    tail =
+      legMin !== null
+        ? ` — the DCF/PEGY/Forward-sector legs span ${money(legMin)}–${money(legMax)}, so treat the fair value, not any single leg, as the anchor.`
+        : ''
+  }
+  return (
+    <>
+      Fair value {money(fairValue)} is {signed}% {direction} the {money(price)} price{tail}
+    </>
+  )
+}
+
 /** Valuation ladder with the live price driving the marker and band. */
 export function StockLiveLadder({
   symbol,

@@ -45,18 +45,24 @@ export default function HomeTiles({
   // value contributes (fair value − live price) / live price. If the
   // live map is missing a name (it never is — the scan is all-or-none),
   // that name keeps its baked close rather than dropping out.
+  // BYND carries a non-positive fair value, so it never contributes —
+  // the completeness check is against the scorable names only. (The
+  // old check compared against all 227 fvs, so it never passed and
+  // both tiles stayed on the baked close even while live — the tile
+  // said 90 while the /stocks pill said the live 92.)
+  const scorableFvs = fvs.filter(({ fv }) => fv > 0)
   let liveBelowFv = belowFv
   let liveMedianUpside = medianUpside
   if (liveNow) {
     const upsides: number[] = []
     let below = 0
-    for (const { symbol, fv } of fvs) {
+    for (const { symbol, fv } of scorableFvs) {
       const price = liveCloseFor(live, symbol)
       if (price === null || price <= 0 || fv <= 0) continue
       upsides.push((fv - price) / price)
       if (fv > price) below += 1
     }
-    if (upsides.length === fvs.length) {
+    if (upsides.length === scorableFvs.length) {
       liveBelowFv = below
       liveMedianUpside = median(upsides)
     }
@@ -66,7 +72,9 @@ export default function HomeTiles({
     {
       label: 'Names scored',
       value: String(total),
-      sub: `Prices as of the ${priceDate} close`,
+      sub: liveNow
+        ? 'Prices live during market hours'
+        : `Prices as of the ${priceDate} close`,
       href: '/stocks',
     },
     {

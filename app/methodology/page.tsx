@@ -23,7 +23,7 @@ export default function MethodologyPage() {
         estimate of what a share is worth. The score comes from five angles on the business;
         the fair value comes from three independent estimates combined into one number. This
         page explains, in plain language, what each number means and how to read it. Prices
-        as of the {RESULTS.price_date} close.
+        are the {RESULTS.price_date} close unless marked LIVE during market hours.
       </p>
 
       <div className="callout">

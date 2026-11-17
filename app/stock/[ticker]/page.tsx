@@ -28,6 +28,7 @@ import {
   StockLiveIntro,
   StockLiveLadder,
   StockLivePrice,
+  StockLiveProConLine,
   StockLiveUpside,
   StockLiveWallStreetUpsides,
 } from '@/components/StockLive'
@@ -243,6 +244,14 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   }
   const legBadge = (key: string): 'median' | 'mean' | null =>
     medianLegKey === key ? 'median' : meanLegKeys.includes(key) ? 'mean' : null
+  // Leg range for the live pros/cons line (StockLiveProConLine): the
+  // Cons tail claims the most generous leg sits below the price, so
+  // the live rewrite needs the min/max of the available legs.
+  const legValues = [legs.dcf.value, legs.pegy.value, legs.forward_sector.value].filter(
+    (v): v is number => v !== null,
+  )
+  const legMin = legValues.length > 0 ? Math.min(...legValues) : null
+  const legMax = legValues.length > 0 ? Math.max(...legValues) : null
   const quality = pillars.quality.detail
   const technical = pillars.technical.detail
   const trust = pillars.trust.detail
@@ -557,19 +566,37 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         })()}
       </Card>
 
-      {/* (8) Pros and cons */}
+      {/* (8) Pros and cons — the fair-value first line is baked text
+          in results.json; StockLiveProConLine recomputes its % and
+          price from the live price during market hours. */}
       <div className="two-col">
         <Card title="Pros" accent="green">
           <ul className="pros">
             {t.pros.map((p) => (
-              <li key={p}>{p}</li>
+              <li key={p}>
+                <StockLiveProConLine
+                  line={p}
+                  symbol={symbol}
+                  fairValue={t.triangulated_fv}
+                  legMin={legMin}
+                  legMax={legMax}
+                />
+              </li>
             ))}
           </ul>
         </Card>
         <Card title="Cons" accent="red">
           <ul className="cons">
             {t.cons.map((c) => (
-              <li key={c}>{c}</li>
+              <li key={c}>
+                <StockLiveProConLine
+                  line={c}
+                  symbol={symbol}
+                  fairValue={t.triangulated_fv}
+                  legMin={legMin}
+                  legMax={legMax}
+                />
+              </li>
             ))}
           </ul>
         </Card>
@@ -682,8 +709,9 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       {/* (12) Honest note */}
       <Card title="What is not here yet">
         <p>
-          Price chart, financials table, news and dividends are not in this build&apos;s data yet. The {priceDate} close (
-          {money(t.price)}) and the technicals above are the current snapshot; those
+          Price chart, financials table, news and dividends are not in this build&apos;s data yet. The price (
+          <StockLivePrice symbol={symbol} bakedPrice={t.price} />) and the technicals above are the
+          current snapshot — the {priceDate} close after hours, live during market hours; those
           sections arrive with the live-data feed.
         </p>
       </Card>
