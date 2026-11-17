@@ -44,7 +44,7 @@ export default function PicksPage() {
           Entry prices are the close on each pick&apos;s entry date — {PICKS_ENTRY_DATE} for the
           launch cohort, {PICKS_NEW_ENTRY_DATE} for the new cohort — the same prices the scores
           were computed on. Upside vs entry is the fair value against the frozen entry price.
-          Fair values and verdicts are from engine v1.4.
+          Fair values and verdicts are from engine v1.5.
         </p>
       </Card>
 

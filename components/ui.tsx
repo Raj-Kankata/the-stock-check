@@ -44,14 +44,16 @@ export function VerdictBadge({ verdict }: { verdict: Verdict }) {
 export function Card({
   title,
   accent,
+  id,
   children,
 }: {
   title?: string
   accent?: 'green' | 'red' | 'amber'
+  id?: string
   children: ReactNode
 }) {
   return (
-    <section className={`card${accent ? ` ${accent}` : ''}`}>
+    <section id={id} className={`card${accent ? ` ${accent}` : ''}`}>
       {title ? <h2>{title}</h2> : null}
       {children}
     </section>
@@ -70,33 +72,6 @@ export function PillarBar({ label, score }: { label: string; score: number }) {
   )
 }
 
-/**
- * Collapsible plain-language explainer for one metric on a stock card.
- * Native <details>/<summary> — no JS needed, works in the static
- * export. `what` says what the metric is; `how` says how to read it.
- * Both must stay generic and true for every ticker (no per-ticker
- * numbers); ticker-specific notes live in the page's own callouts,
- * never in here. Every explainer links to /methodology, or to
- * /methodology#<anchor> when the optional `anchor` prop names the
- * reading card for this metric on the Methodology page.
- */
-export function MetricNote({ what, how, anchor, label }: { what: ReactNode; how: ReactNode; anchor?: string; label?: string }) {
-  return (
-    <details className="metric-note">
-      <summary>{label ?? 'What is this?'}</summary>
-      <p>
-        <strong>What this is.</strong> {what}
-      </p>
-      <p>
-        <strong>How to read it.</strong> {how}
-      </p>
-      <p className="footnote">
-        Full detail:{' '}
-        <Link href={anchor ? `/methodology#${anchor}` : '/methodology'}>Methodology</Link>.
-      </p>
-    </details>
-  )
-}
 
 /**
  * Price ladder. The ladder is VALUATION CONTEXT, not Buy/Exit

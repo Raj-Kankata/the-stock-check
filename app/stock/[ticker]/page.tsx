@@ -18,7 +18,6 @@ import {
   Card,
   VerdictBadge,
   PillarBar,
-  MetricNote,
   scoreSpan,
   scoreClass,
   signedSpan,
@@ -148,7 +147,7 @@ function LegBlock({
   title: string
   value: number | null
   badge: 'median' | 'mean' | null
-  children: ReactNode
+  children?: ReactNode
 }) {
   const skipped = value === null
   return (
@@ -312,6 +311,9 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         {t.rel_vol !== null ? `${t.rel_vol.toFixed(2)}×` : '—'} · Index{' '}
         {indexMembership(t.indexes)}
       </p>
+      <p className="footnote">
+        <a href="#how-to-read">How to read this card ↓</a>
+      </p>
       <Card>
         <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
           <VerdictBadge verdict={t.verdict} />
@@ -344,11 +346,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <h3>Conviction</h3>
         <Kv k="Story" v={scoreSpan(pillars.conviction.detail.story ?? 0)} />
         <Kv k="Financials" v={scoreSpan(pillars.conviction.detail.financials ?? 0)} />
-        <MetricNote
-          anchor="conviction"
-          what="How strong the company's story and financials look — whether the business is growing and gaining ground."
-          how="A higher score means a stronger business story. It says nothing about whether the stock is cheap."
-        />
 
         <h3>Quality</h3>
         <SubscoreTable subscores={quality.subscores} labels={QUALITY_LABELS} />
@@ -362,11 +359,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <Kv k="Debt / equity" v={(quality.inputs.debt_to_equity as number).toFixed(2)} />
           </div>
         )}
-        <MetricNote
-          anchor="quality"
-          what="Whether the reported profits are backed by real cash, rather than accounting that flatters the numbers."
-          how="A higher score means the earnings look more solid. A low score means you should trust the profit figures less."
-        />
 
         <h3>Technical</h3>
         <SubscoreTable subscores={technical.subscores} labels={TECHNICAL_LABELS} />
@@ -380,11 +372,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <Kv k="Price vs 200-day" v={pct(technical.inputs.price_vs_200d_pct as number)} />
           </div>
         )}
-        <MetricNote
-          anchor="technical"
-          what="Whether the price trend and momentum are with the stock right now."
-          how="A higher score means the short-term trend looks stronger. It says nothing about the business itself."
-        />
 
         <h3>Trust</h3>
         <SubscoreTable subscores={trust.subscores} labels={TRUST_LABELS} />
@@ -395,11 +382,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <Kv k="Insider activity (90d)" v={String(trust.inputs.insider_note)} />
           </div>
         )}
-        <MetricNote
-          anchor="trust"
-          what="How much we can rely on the numbers behind the score — whether the data is complete and well covered."
-          how="A higher score means the figures rest on firmer ground. A lower score means more of the picture is missing or disputed."
-        />
       </Card>
 
       {/* (3) Valuation */}
@@ -417,34 +399,12 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           }
         />
         <Kv k="Leg spread ÷ fair value" v={pct(val.leg_spread_div_fv)} />
-        <MetricNote
-          anchor="triangulated-fv"
-          label="What is this? — Fair value"
-          what="Our single fair-value estimate for the stock, drawn from the three legs below."
-          how="If the price is well below it, the stock looks cheap on our numbers. If it is well above it, the stock looks expensive — and a wide gap between the legs means more uncertainty."
-        />
-        <MetricNote
-          anchor="valuation"
-          label="What is this? — Valuation score"
-          what="How cheap or expensive the stock looks against our fair value — the bigger the upside to fair value, the higher the score."
-          how="A high score means the price sits well below our fair value. A low score means it sits at or above it."
-        />
         <LegBlock title="DCF leg" value={legs.dcf.value} badge={legBadge('dcf')}>
-          <MetricNote
-          anchor="dcf-leg"
-            what="What the stock could be worth based only on the cash the business is expected to generate in the years ahead."
-            how="A higher number means that future cash looks more valuable. Compare it with the other two legs — if they disagree a lot, treat the fair value with more caution."
-          />
         </LegBlock>
         <LegBlock title="PEGY leg" value={legs.pegy.value} badge={legBadge('pegy')}>
           {legs.pegy.pegy !== null && (
             <p className="footnote">PEGY {legs.pegy.pegy.toFixed(3)}</p>
           )}
-          <MetricNote
-          anchor="pegy-leg"
-            what="What the stock could be worth based on its earnings, how fast those earnings are expected to grow, and the dividend it pays."
-            how="A higher number means the stock looks cheaper against its growth. Compare it with the other two legs before judging the fair value."
-          />
         </LegBlock>
         <LegBlock
           title="Forward-sector leg"
@@ -459,22 +419,12 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
                 : ''}
             </p>
           )}
-          <MetricNote
-          anchor="forward-sector-leg"
-            what="What the stock could be worth based on next year's expected earnings, priced the way the market currently prices its sector."
-            how="A higher number means the stock looks cheaper against next year's earnings. Compare it with the other two legs before judging the fair value."
-          />
         </LegBlock>
       </Card>
 
       {/* (4) Ladder */}
       <Card title="Valuation ladder">
         <StockLiveLadder symbol={symbol} fairValue={t.triangulated_fv} bakedPrice={t.price} />
-        <MetricNote
-          anchor="ladder"
-          what="Four price levels around our fair value, showing where today's price sits against our estimate."
-          how="Read them as reference points for judging how far the price is from our estimate. They are not instructions to trade."
-        />
       </Card>
 
       {/* (5) CAPM cross-check */}
@@ -506,11 +456,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           correlations were about −0.06 vs −0.05 for flat discounts, and the buckets still
           do not separate forward returns — so the leg stays display-only.
         </p>
-        <MetricNote
-          anchor="capm-cross-check"
-          what="A second, independent check on the DCF leg, built from market inputs. It never changes the fair value, score or verdict."
-          how="If it lands close to the DCF leg, the two views agree. If it lands far away, treat the DCF leg with more caution."
-        />
       </Card>
 
       {/* (6) DCF sensitivity grid */}
@@ -519,11 +464,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           values={grid.values}
           decisionLeg={legs.dcf.value}
           decisionGrowth={legs.dcf.growth_scenario}
-        />
-        <MetricNote
-          anchor="sensitivity-grid"
-          what="The same DCF leg, shown under different assumptions instead of a single point — so you can see how much the answer moves if the future turns out differently."
-          how="The highlighted cell is this stock's own estimate. Cells further away show how the value would change if growth or rates came in higher or lower."
         />
       </Card>
 
@@ -665,11 +605,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             </table>
             <h3>Why the gap?</h3>
             <p>{gapLine}</p>
-            <MetricNote
-              anchor="us-vs-wall-street"
-              what="Our fair value next to Wall Street's — the average of the price targets published by the analysts who cover the stock."
-              how="If our number is well above theirs, we are more optimistic than the average analyst. If it is well below, we are more cautious."
-            />
             <p className="footnote">
               Analyst consensus: Yahoo Finance analyst targets, fetched 15–16 Nov 2026.
               Targets are carried through unchanged from that frozen fetch; the nightly
@@ -713,6 +648,93 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           <StockLivePrice symbol={symbol} bakedPrice={t.price} />) and the technicals above are the
           current snapshot — the {priceDate} close after hours, live during market hours; those
           sections arrive with the live-data feed.
+        </p>
+      </Card>
+
+      {/* (13) How to read this card - all the metric explainers in one
+          place at the end of the card, instead of scattered through it. */}
+      <Card title="How to read this card" id="how-to-read">
+        <h3>Fair value and the three legs</h3>
+        <p>
+          <strong>Fair value.</strong> Our single fair-value estimate for the stock, drawn from
+          the three legs below. If the price is well below it, the stock looks cheap on our
+          numbers. If it is well above it, the stock looks expensive — and a wide gap between
+          the legs means more uncertainty.
+        </p>
+        <p>
+          <strong>DCF leg.</strong> What the stock could be worth based only on the cash the
+          business is expected to generate in the years ahead. A higher number means that
+          future cash looks more valuable. Compare it with the other two legs — if they
+          disagree a lot, treat the fair value with more caution.
+        </p>
+        <p>
+          <strong>PEGY leg.</strong> What the stock could be worth based on its earnings, how
+          fast those earnings are expected to grow, and the dividend it pays. A higher number
+          means the stock looks cheaper against its growth. Compare it with the other two legs
+          before judging the fair value.
+        </p>
+        <p>
+          <strong>Forward-sector leg.</strong> What the stock could be worth based on next
+          year&apos;s expected earnings, priced the way the market currently prices its sector.
+          A higher number means the stock looks cheaper against next year&apos;s earnings.
+          Compare it with the other two legs before judging the fair value.
+        </p>
+        <h3>The five scores</h3>
+        <p>
+          <strong>Conviction.</strong> How strong the company&apos;s story and financials
+          look — whether the business is growing and gaining ground. A higher score means a
+          stronger business story. It says nothing about whether the stock is cheap.
+        </p>
+        <p>
+          <strong>Quality.</strong> Whether the reported profits are backed by real cash,
+          rather than accounting that flatters the numbers. A higher score means the earnings
+          look more solid. A low score means you should trust the profit figures less.
+        </p>
+        <p>
+          <strong>Technical.</strong> Whether the price trend and momentum are with the stock
+          right now. A higher score means the short-term trend looks stronger. It says
+          nothing about the business itself.
+        </p>
+        <p>
+          <strong>Trust.</strong> How much we can rely on the numbers behind the score —
+          whether the data is complete and well covered. A higher score means the figures rest
+          on firmer ground. A lower score means more of the picture is missing or disputed.
+        </p>
+        <p>
+          <strong>Valuation score.</strong> How cheap or expensive the stock looks against
+          our fair value — the bigger the upside to fair value, the higher the score. A high
+          score means the price sits well below our fair value. A low score means it sits at
+          or above it.
+        </p>
+        <h3>The ladder and the grid</h3>
+        <p>
+          <strong>Valuation ladder.</strong> Four price levels around our fair value, showing
+          where today&apos;s price sits against our estimate. Read them as reference points
+          for judging how far the price is from our estimate. They are not instructions to
+          trade.
+        </p>
+        <p>
+          <strong>DCF sensitivity grid.</strong> The same DCF leg, shown under different
+          assumptions instead of a single point — so you can see how much the answer moves if
+          the future turns out differently. The highlighted cell is this stock&apos;s own
+          estimate. Cells further away show how the value would change if growth or rates came
+          in higher or lower.
+        </p>
+        <h3>The comparison and CAPM</h3>
+        <p>
+          <strong>The Stock Check vs Wall Street.</strong> Our fair value next to Wall
+          Street&apos;s — the average of the price targets published by the analysts who
+          cover the stock. If our number is well above theirs, we are more optimistic than
+          the average analyst. If it is well below, we are more cautious.
+        </p>
+        <p>
+          <strong>CAPM cross-check.</strong> A second, independent check on the DCF leg,
+          built from market inputs. It never changes the fair value, score or verdict. If it
+          lands close to the DCF leg, the two views agree. If it lands far away, treat the
+          DCF leg with more caution.
+        </p>
+        <p className="footnote">
+          Full detail: <Link href="/methodology">Methodology</Link>.
         </p>
       </Card>
 
