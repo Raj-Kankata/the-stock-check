@@ -19,13 +19,18 @@ import {
   VerdictBadge,
   PillarBar,
   MetricNote,
-  LadderTable,
   scoreSpan,
   scoreClass,
   signedSpan,
-  signedPctSpan,
 } from '@/components/ui'
 import SensitivityGrid from '@/components/SensitivityGrid'
+import {
+  StockLiveIntro,
+  StockLiveLadder,
+  StockLivePrice,
+  StockLiveUpside,
+  StockLiveWallStreetUpsides,
+} from '@/components/StockLive'
 import { ENGINE_VERSION } from '@/lib/site'
 
 // Static export: one page per scored ticker, taken from results.json so
@@ -250,7 +255,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   // carry a complete block; the guard is for a future refresh that drops
   // one.
   const analysts = t.analysts ?? null
-  const ourUpside = (t.triangulated_fv - t.price) / t.price
   const vsWallStreet =
     analysts === null
       ? null
@@ -259,7 +263,6 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           targetLow: analysts.target_low,
           targetHigh: analysts.target_high,
           nOpinions: analysts.n_opinions,
-          consensusUpside: (analysts.target_mean - t.price) / t.price,
           gap: t.triangulated_fv - analysts.target_mean,
           gapPct: (t.triangulated_fv - analysts.target_mean) / analysts.target_mean,
           closest: closestLegToTarget(legs, analysts.target_mean),
@@ -287,7 +290,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         {t.name} ({symbol})
       </h1>
       <p className="page-intro">
-        {t.sector} · Price {money(t.price)} (close, {priceDate}) · Engine{' '}
+        {t.sector} · <StockLiveIntro symbol={symbol} bakedPrice={t.price} priceDate={priceDate} /> · Engine{' '}
         {ENGINE_VERSION}
       </p>
       {/* Facts strip — one compact line: beta, trailing P/E, market cap,
@@ -309,7 +312,16 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         </div>
         <p style={{ marginTop: 10 }}>{t.verdict_reason}</p>
         <Kv k="Fair value" v={money(t.triangulated_fv)} />
-        <Kv k="Price vs fair value" v={pct((t.triangulated_fv - t.price) / t.price)} />
+        <Kv
+          k="Price vs fair value"
+          v={
+            <StockLiveUpside
+              symbol={symbol}
+              fairValue={t.triangulated_fv}
+              bakedPrice={t.price}
+            />
+          }
+        />
       </Card>
 
       {/* (2) Five pillars */}
@@ -384,8 +396,17 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       {/* (3) Valuation */}
       <Card title="Valuation">
         <Kv k="Fair value" v={money(t.triangulated_fv)} />
-        <Kv k="Price" v={money(t.price)} />
-        <Kv k="Upside vs price" v={pct(val.upside_pct)} />
+        <Kv k="Price" v={<StockLivePrice symbol={symbol} bakedPrice={t.price} />} />
+        <Kv
+          k="Upside vs price"
+          v={
+            <StockLiveUpside
+              symbol={symbol}
+              fairValue={t.triangulated_fv}
+              bakedPrice={t.price}
+            />
+          }
+        />
         <Kv k="Leg spread ÷ fair value" v={pct(val.leg_spread_div_fv)} />
         <MetricNote
           anchor="triangulated-fv"
@@ -439,7 +460,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
 
       {/* (4) Ladder */}
       <Card title="Valuation ladder">
-        <LadderTable fv={t.triangulated_fv} price={t.price} />
+        <StockLiveLadder symbol={symbol} fairValue={t.triangulated_fv} bakedPrice={t.price} />
         <MetricNote
           anchor="ladder"
           what="Four price levels around our fair value, showing where today's price sits against our estimate."
@@ -576,8 +597,12 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
                 </tr>
                 <tr>
                   <td>Implied upside vs price</td>
-                  <td>{signedPctSpan(ourUpside)}</td>
-                  <td>{signedPctSpan(vsWallStreet.consensusUpside)}</td>
+                  <StockLiveWallStreetUpsides
+                    symbol={symbol}
+                    fairValue={t.triangulated_fv}
+                    targetMean={vsWallStreet.targetMean}
+                    bakedPrice={t.price}
+                  />
                 </tr>
                 <tr>
                   <td>Target range (low – high)</td>
@@ -664,7 +689,8 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       </Card>
 
       <p className="footnote">
-        Data as of {RESULTS.as_of} · {ENGINE_VERSION} · Prices are the {priceDate} close.
+        Data as of {RESULTS.as_of} · {ENGINE_VERSION} · Prices are the {priceDate} close unless
+        marked LIVE during market hours (quotes delayed ~15 min, TradingView).
       </p>
     </div>
   )

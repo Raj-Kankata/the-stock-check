@@ -464,6 +464,17 @@ tr:last-child td {
   border-top: 3px solid var(--red);
   background: var(--red-bg);
 }
+/* Position marker: the rung nearest the shown (live or baked) price. */
+.ladder .rung.here {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+.ladder .rung .here-label {
+  font-size: 12px;
+  color: var(--green);
+  font-weight: bold;
+  margin-top: 2px;
+}
 
 /* ---- valuation legs (stock card) ---- */
 .leg {

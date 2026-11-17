@@ -47,6 +47,7 @@
 // If a ticker ever goes missing from both symdir files, STOP and report
 // it — never guess an exchange, never silently drop a name.
 
+import { useEffect, useState } from 'react'
 import exchangesJson from './data/exchanges.json'
 
 export const TV_TICKERS: string[] = Object.values(
@@ -156,4 +157,171 @@ export async function scanTradingView(
   } catch {
     return null
   }
+}
+
+/**
+ * One scan for ALL 227 quotes — the single live-price fetch every live
+ * surface on a page shares. Same endpoint, same Content-Type: text/plain
+ * rule, same row-matching (d[0], never the `s` prefix) as scanTradingView
+ * above. Verified 17 Nov 2026 from curl: range [0,227] returns
+ * totalCount 227 and all 227 distinct symbols in one response.
+ *
+ * All-or-none: returns null unless every one of the 227 tickers came
+ * back with a finite close. A partial map would leave some rows live
+ * and others baked under one timestamp, so a short map is a failure
+ * and the caller falls back to baked closes.
+ */
+export async function fetchAllQuotes(): Promise<Map<string, TvQuote> | null> {
+  try {
+    const res = await fetch(SCAN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        symbols: { tickers: TV_TICKERS },
+        columns: ['name', 'close', 'change', 'volume'],
+        sort: { sortBy: 'change', sortOrder: 'desc' },
+        options: { lang: 'en' },
+        range: [0, 227],
+      }),
+    })
+    if (!res.ok) return null
+    const j = (await res.json()) as unknown
+    if (!j || typeof j !== 'object') return null
+    const data = (j as Record<string, unknown>).data
+    if (!Array.isArray(data)) return null
+    const quotes = new Map<string, TvQuote>()
+    for (const row of data) {
+      if (!row || typeof row !== 'object') continue
+      const d = (row as Record<string, unknown>).d
+      if (!Array.isArray(d) || d.length < 4) continue
+      const [name, close, change, volume] = d
+      if (typeof name !== 'string' || !isFiniteNumber(close)) continue
+      const symbol = name === 'BRK.B' ? 'BRK-B' : name
+      quotes.set(symbol, {
+        symbol,
+        close,
+        changePct: isFiniteNumber(change) ? change : null,
+        volume: isFiniteNumber(volume) ? volume : null,
+      })
+    }
+    if (quotes.size !== TV_TICKERS.length) return null
+    return quotes
+  } catch {
+    return null
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Shared live-price store — one fetch per page, one 60s timer per page,
+// every live surface subscribes to the same state.
+//
+// Any number of components on a page may call useLiveQuotes(); the fetch
+// and the poll timer exist exactly once per page (module state), so the
+// stock card's five live spots, the homepage's tables and tiles, and the
+// 227-row /stocks table all share one scan per poll. The header strip
+// and the Trending boards keep their own existing fetches (different
+// symbols / different sorts) and are untouched by this store.
+//
+// States, honestly labelled — a stale or missing number is never shown
+// as live:
+//   loading — first fetch still in flight; callers show baked closes.
+//   live    — market hours and the last fetch succeeded; LIVE badge +
+//             "Updated HH:MM:SS CT" + the ~15-min delay note.
+//   closed  — outside market hours; no fetch, no polling, baked closes
+//             with their as-of label. A page left open past the close
+//             flips live -> closed and drops back to baked closes.
+//   stale   — a poll failed but a full good map is already on screen;
+//             the last-good live values stay up (all rows from the same
+//             timestamp — never a half-live page) with a "Couldn't
+//             refresh" notice. The next successful poll clears it.
+//   error   — market hours, nothing ever loaded; baked closes with an
+//             honest "could not be loaded" notice.
+// Polling is every 60s and only while the market is open; a tick outside
+// market hours only flips the label and does not fetch. Paused while
+// the tab is hidden (document.hidden), like the strip and the boards.
+// ---------------------------------------------------------------------------
+
+export type LiveStatus = 'loading' | 'live' | 'closed' | 'stale' | 'error'
+
+export interface LiveQuotesState {
+  quotes: Map<string, TvQuote> | null
+  status: LiveStatus
+  updatedAt: string | null
+}
+
+const LIVE_POLL_MS = 60_000
+
+let liveState: LiveQuotesState = { quotes: null, status: 'loading', updatedAt: null }
+const liveListeners = new Set<() => void>()
+let liveTimer: ReturnType<typeof setInterval> | null = null
+let liveInflight: Promise<Map<string, TvQuote> | null> | null = null
+
+function emitLive() {
+  for (const l of liveListeners) l()
+}
+
+async function refreshLive() {
+  if (typeof document !== 'undefined' && document.hidden) return
+  const now = new Date()
+  if (!isMarketHours(now)) {
+    if (liveState.status !== 'closed') {
+      liveState = { quotes: null, status: 'closed', updatedAt: liveState.updatedAt }
+      emitLive()
+    }
+    return
+  }
+  if (!liveInflight) {
+    liveInflight = fetchAllQuotes()
+    void liveInflight.then(() => {
+      liveInflight = null
+    })
+  }
+  const quotes = await liveInflight
+  if (quotes) {
+    liveState = { quotes, status: 'live', updatedAt: formatCtTime(new Date()) }
+  } else if (liveState.quotes) {
+    liveState = { ...liveState, status: 'stale' }
+  } else {
+    liveState = { quotes: null, status: 'error', updatedAt: null }
+  }
+  emitLive()
+}
+
+function ensureLivePolling() {
+  if (liveTimer !== null) return
+  void refreshLive()
+  liveTimer = setInterval(() => {
+    void refreshLive()
+  }, LIVE_POLL_MS)
+}
+
+/**
+ * Subscribe to the shared live-price store. The first client render
+ * returns the initial state (no quotes, status 'loading') — identical
+ * to the prerendered HTML's baked closes — so there is no hydration
+ * mismatch; the fetch runs only in the effect, after mount.
+ */
+export function useLiveQuotes(): LiveQuotesState {
+  const [, setTick] = useState(0)
+  useEffect(() => {
+    const listener = () => setTick((t) => t + 1)
+    liveListeners.add(listener)
+    ensureLivePolling()
+    return () => {
+      liveListeners.delete(listener)
+    }
+  }, [])
+  return liveState
+}
+
+/** True when the store holds live values (fresh or last-good stale). */
+export function hasLiveQuotes(state: LiveQuotesState): boolean {
+  return (state.status === 'live' || state.status === 'stale') && state.quotes !== null
+}
+
+/** Live close for one ticker, or null when the store holds no live map. */
+export function liveCloseFor(state: LiveQuotesState, symbol: string): number | null {
+  if (!hasLiveQuotes(state)) return null
+  const q = state.quotes!.get(symbol)
+  return q ? q.close : null
 }

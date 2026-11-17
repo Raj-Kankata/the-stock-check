@@ -102,25 +102,58 @@ export function MetricNote({ what, how, anchor, label }: { what: ReactNode; how:
  * instructions. That framing is printed with the ladder on every page
  * that shows it — never omit the note.
  */
-export function LadderTable({ fv, price }: { fv: number; price: number }) {
+export function LadderTable({
+  fv,
+  price,
+  livePrice,
+}: {
+  fv: number
+  price: number
+  /**
+   * Live close when the caller has one (market hours, scan succeeded).
+   * The footnote price and the position marker follow it; null/undefined
+   * keeps the baked close. The ladder levels themselves are baked —
+   * they come from the fair value, which is a nightly model output.
+   */
+  livePrice?: number | null
+}) {
+  const shownPrice = livePrice ?? price
   const rungs = [
     { name: 'Heavy', ratio: 0.6, level: round2(fv * 0.6), cls: 'heavy' },
     { name: 'Buy', ratio: 0.8, level: round2(fv * 0.8), cls: 'buy' },
     { name: 'Fair', ratio: 1.0, level: round2(fv * 1.0), cls: 'fair' },
     { name: 'Exit', ratio: 1.2, level: round2(fv * 1.2), cls: 'exit' },
   ]
+  // Position marker: the rung nearest the shown price, plus the band the
+  // price sits in. Both follow the live price when one is passed.
+  const nearest = rungs.reduce((best, r) =>
+    Math.abs(r.level - shownPrice) < Math.abs(best.level - shownPrice) ? r : best,
+  )
+  const band =
+    shownPrice < rungs[0].level
+      ? 'below the Heavy rung'
+      : shownPrice < rungs[1].level
+        ? 'between the Heavy and Buy rungs'
+        : shownPrice < rungs[2].level
+          ? 'between the Buy and Fair rungs'
+          : shownPrice < rungs[3].level
+            ? 'between the Fair and Exit rungs'
+            : 'above the Exit rung'
   return (
     <div>
       <div className="ladder">
         {rungs.map((r) => (
-          <div key={r.name} className={`rung ${r.cls}`}>
+          <div key={r.name} className={`rung ${r.cls}${r === nearest ? ' here' : ''}`}>
             <div className="name">{r.name}</div>
             <div className="level">{money(r.level)}</div>
+            {r === nearest && <div className="here-label">← price here</div>}
           </div>
         ))}
       </div>
       <p className="footnote">
-        Price {money(price)} vs fair value {money(fv)}. The ladder is valuation context — where the
+        Price {money(shownPrice)}
+        {livePrice !== null && livePrice !== undefined ? ' (live)' : ''} vs fair value{' '}
+        {money(fv)} — the price sits {band}. The ladder is valuation context — where the
         price sits against our fair-value estimate — not a buy or sell signal. Backtests on 5
         tickers and on the full 749-name universe found the ladder does not separate forward
         returns (see Methodology). No level on this ladder is an instruction to buy or sell.
@@ -129,10 +162,20 @@ export function LadderTable({ fv, price }: { fv: number; price: number }) {
   )
 }
 
-/** Compact stock row used on Home / Picks / Trending / Performance. */
-export function StockRow({ t }: { t: TickerData & { symbol: string } }) {
+/** Compact stock row used on Home / Picks / Trending / Performance.
+    `livePrice` (when non-null) replaces the baked close in the Price
+    cell and the upside is recomputed from it; the fair value, score and
+    verdict stay baked — they are nightly model outputs. */
+export function StockRow({
+  t,
+  livePrice,
+}: {
+  t: TickerData & { symbol: string }
+  livePrice?: number | null
+}) {
+  const price = livePrice ?? t.price
   const upside =
-    t.triangulated_fv > 0 && t.price > 0 ? (t.triangulated_fv - t.price) / t.price : null
+    t.triangulated_fv > 0 && price > 0 ? (t.triangulated_fv - price) / price : null
   return (
     <tr>
       <td>
@@ -146,7 +189,7 @@ export function StockRow({ t }: { t: TickerData & { symbol: string } }) {
         <VerdictBadge verdict={t.verdict} />
       </td>
       <td className="num">{scoreSpan(t.overall_score)}</td>
-      <td className="num">{money(t.price)}</td>
+      <td className="num">{money(price)}</td>
       <td className="num">{money(t.triangulated_fv)}</td>
       <td className="num">{upside === null ? '—' : signedPctSpan(upside)}</td>
     </tr>

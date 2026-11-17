@@ -1,0 +1,126 @@
+// Performance page — live "Latest close" column. Entry prices stay
+// frozen (they are the audit trail); the latest price and the return
+// recompute from the live close during market hours, via the shared
+// live-price store in lib/tradingview.ts. After hours, or if the scan
+// fails, the baked close from this build's data is shown with its
+// as-of label and no LIVE badge. The equal-weight portfolio return is
+// the mean of the four live returns while live.
+
+'use client'
+
+import Link from 'next/link'
+import { money } from '@/lib/data'
+import { Card, signedPctSpan } from '@/components/ui'
+import { hasLiveQuotes, liveCloseFor, useLiveQuotes } from '@/lib/tradingview'
+
+export interface PerformanceRow {
+  symbol: string
+  name: string
+  entryPrice: number
+  bakedLatest: number
+}
+
+export default function PerformanceLive({
+  rows,
+  entryDate,
+  latestCloseDate,
+}: {
+  rows: PerformanceRow[]
+  entryDate: string
+  latestCloseDate: string
+}) {
+  const live = useLiveQuotes()
+  const liveNow = hasLiveQuotes(live)
+
+  const measured = rows.map((r) => {
+    const latest = liveNow ? (liveCloseFor(live, r.symbol) ?? r.bakedLatest) : r.bakedLatest
+    return { ...r, latest, ret: (latest - r.entryPrice) / r.entryPrice }
+  })
+  const portfolioReturn =
+    measured.length > 0
+      ? measured.reduce((sum, r) => sum + r.ret, 0) / measured.length
+      : null
+
+  return (
+    <Card title="Picks under tracking">
+      {live.status === 'live' ? (
+        <p>
+          <span className="live-badge">
+            <span className="live-dot" aria-hidden="true" />
+            LIVE
+          </span>{' '}
+          · Updated {live.updatedAt} CT · Quotes delayed ~15 min (TradingView) · Prev. close{' '}
+          {latestCloseDate}
+        </p>
+      ) : live.status === 'stale' ? (
+        <p>
+          Couldn&apos;t refresh — showing last live update {live.updatedAt ?? '—'} CT · Quotes
+          delayed ~15 min (TradingView)
+        </p>
+      ) : live.status === 'error' ? (
+        <p>Live prices could not be loaded — showing the {latestCloseDate} close.</p>
+      ) : null}
+      <table>
+        <thead>
+          <tr>
+            <th>Stock</th>
+            <th>Entry date</th>
+            <th className="num">Entry price</th>
+            <th className="num">{liveNow ? 'Latest (live)' : 'Latest close'}</th>
+            <th className="num">Return since entry</th>
+          </tr>
+        </thead>
+        <tbody>
+          {measured.map(({ symbol, name, entryPrice, latest, ret }) => (
+            <tr key={symbol}>
+              <td>
+                <Link href={`/stock/${symbol}`}>
+                  <strong>{symbol}</strong>
+                </Link>
+                <br />
+                <span className="footnote">{name}</span>
+              </td>
+              <td>{entryDate}</td>
+              <td className="num">{money(entryPrice)}</td>
+              <td className="num">{money(latest)}</td>
+              <td className="num">{signedPctSpan(ret)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="footnote">
+        {liveNow ? (
+          <>
+            Return = (live price − entry price) ÷ entry price, measured from the {entryDate}{' '}
+            close to the live price (Updated {live.updatedAt} CT; quotes delayed ~15 min).
+            After hours the return is entry → {latestCloseDate} close. The print lengthens
+            with every nightly refresh; it is a return since entry, not a track record. NVO
+            was published as a pick on 13 Nov 2026 (entry $41.63) and removed from tracking
+            when its card was unpublished under the three-leg-only policy.
+          </>
+        ) : (
+          <>
+            Return = (latest close − entry price) ÷ entry price, measured from the {entryDate}{' '}
+            close to the {latestCloseDate} close — the closes since entry. During market
+            hours this table shows live prices instead, and the return is then entry → live
+            price. The print lengthens with every nightly refresh; it is a return since
+            entry, not a track record. NVO was published as a pick on 13 Nov 2026 (entry
+            $41.63) and removed from tracking when its card was unpublished under the
+            three-leg-only policy.
+          </>
+        )}
+      </p>
+      {portfolioReturn !== null ? (
+        <p>
+          <strong>
+            Equal-weight portfolio return since entry: {signedPctSpan(portfolioReturn)}
+          </strong>{' '}
+          <span className="footnote">
+            (mean of the {measured.length} picks above, {entryDate} entry to{' '}
+            {liveNow ? 'live price' : `${latestCloseDate} close`})
+          </span>
+        </p>
+      ) : null}
+    </Card>
+  )
+}

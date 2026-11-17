@@ -4,12 +4,13 @@ import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
 import { ENGINE_VERSION } from '@/lib/site'
 import {
   Card,
-  StockRow,
   StockTableHead,
   scoreSpan,
   signedPctSpan,
 } from '@/components/ui'
 import GridPreview from '@/components/GridPreview'
+import HomeTiles from '@/components/HomeTiles'
+import { LiveStatusLine, LiveStockRows } from '@/components/LivePrice'
 
 export const metadata: Metadata = {
   title: 'Check any stock before you buy',
@@ -95,49 +96,9 @@ export default function HomePage() {
     { verdict: 'Avoid', count: verdictCounts.Avoid, cls: 'avoid' },
   ]
 
-  const tiles: { label: string; value: string; sub: string; href?: string }[] = [
-    {
-      label: 'Names scored',
-      value: String(total),
-      sub: `Prices as of the ${RESULTS.price_date} close`,
-      href: '/stocks',
-    },
-    {
-      label: 'Growth',
-      value: String(verdictCounts.Growth),
-      sub: 'Highest-conviction names',
-      href: '/stocks?verdict=Growth',
-    },
-    {
-      label: 'Value',
-      value: String(verdictCounts.Value),
-      sub: 'Priced below fair value on score',
-      href: '/stocks?verdict=Value',
-    },
-    {
-      label: 'Watch',
-      value: String(verdictCounts.Watch),
-      sub: 'Not yet a Growth or Value name',
-      href: '/stocks?verdict=Watch',
-    },
-    {
-      label: 'Avoid',
-      value: String(verdictCounts.Avoid),
-      sub: 'Lowest-scoring names',
-      href: '/stocks?verdict=Avoid',
-    },
-    {
-      label: 'Below fair value',
-      value: String(belowFv),
-      sub: `of ${total} trade under fair value`,
-      href: '/stocks?underfv=1&sort=upside',
-    },
-    {
-      label: 'Median upside',
-      value: pct(medianUpside, 1),
-      sub: `Median (fair value − price) / price, ${RESULTS.price_date} close`,
-    },
-  ]
+  // Compact per-ticker fair values for the live tile recompute (the
+  // Below-fair-value and Median-upside tiles follow the live price).
+  const tileFvs = entries.map(({ symbol, t }) => ({ symbol, fv: t.triangulated_fv }))
 
   return (
     <>
@@ -148,47 +109,30 @@ export default function HomePage() {
       </p>
 
       <Card title="Spotlight — highest overall score">
+        <LiveStatusLine priceDateLabel={RESULTS.price_date} />
         <table>
           <thead>
             <StockTableHead />
           </thead>
           <tbody>
-            <StockRow t={{ ...spotlight.t, symbol: spotlight.symbol }} />
+            <LiveStockRows rows={[{ ...spotlight.t, symbol: spotlight.symbol }]} />
           </tbody>
         </table>
         <p className="footnote">
-          The highest overall score of the {total} scored names, prices as of the {RESULTS.price_date}{' '}
-          close. One name, featured — the full ranked lists are below.
+          The highest overall score of the {total} scored names. The price is live during
+          market hours and the {RESULTS.price_date} close after hours. One name, featured — the
+          full ranked lists are below.
         </p>
       </Card>
 
-      <section aria-label="At a glance">
-        <div className="stat-grid">
-          {tiles.map((tile) => {
-            const content = (
-              <>
-                <div className="stat-value">{tile.value}</div>
-                <div className="stat-label">{tile.label}</div>
-                <div className="footnote">{tile.sub}</div>
-              </>
-            )
-            return (
-              <div key={tile.label} className="stat-tile">
-                {tile.href ? (
-                  <Link href={tile.href} className="stat-tile-link">
-                    {content}
-                  </Link>
-                ) : (
-                  content
-                )}
-              </div>
-            )
-          })}
-        </div>
-        <p>
-          <Link href="/stocks">Browse all {total} →</Link>
-        </p>
-      </section>
+      <HomeTiles
+        total={total}
+        verdictCounts={verdictCounts}
+        belowFv={belowFv}
+        medianUpside={medianUpside}
+        priceDate={RESULTS.price_date}
+        fvs={tileFvs}
+      />
 
       <Card title="Verdict mix">
         <div className="mixbar" role="list">
@@ -230,9 +174,9 @@ export default function HomePage() {
               <StockTableHead />
             </thead>
             <tbody>
-              {topByVerdict('Growth').map(({ symbol, t }) => (
-                <StockRow key={symbol} t={{ ...t, symbol }} />
-              ))}
+              <LiveStockRows
+                rows={topByVerdict('Growth').map(({ symbol, t }) => ({ ...t, symbol }))}
+              />
             </tbody>
           </table>
           <p>
@@ -246,9 +190,9 @@ export default function HomePage() {
               <StockTableHead />
             </thead>
             <tbody>
-              {topByVerdict('Value').map(({ symbol, t }) => (
-                <StockRow key={symbol} t={{ ...t, symbol }} />
-              ))}
+              <LiveStockRows
+                rows={topByVerdict('Value').map(({ symbol, t }) => ({ ...t, symbol }))}
+              />
             </tbody>
           </table>
           <p>
@@ -269,16 +213,17 @@ export default function HomePage() {
             <StockTableHead />
           </thead>
           <tbody>
-            {furthestBelowFv.map(({ symbol, t }) => (
-              <StockRow key={symbol} t={{ ...t, symbol }} />
-            ))}
+            <LiveStockRows
+              rows={furthestBelowFv.map(({ symbol, t }) => ({ ...t, symbol }))}
+            />
           </tbody>
         </table>
         <p>
           <Link href="/stocks?sort=upside">See all names by upside →</Link>
         </p>
         <p className="footnote">
-          Upside is (fair value − price) / price, prices as of the {RESULTS.price_date} close.
+          Upside is (fair value − price) / price. The list is ranked on the {RESULTS.price_date}{' '}
+          close; the prices shown are live during market hours.
         </p>
       </Card>
 
@@ -417,13 +362,14 @@ export default function HomePage() {
           security.
         </p>
         <p>
-          Prices are as of the {RESULTS.price_date} close. Scores and fair values come from {ENGINE_VERSION}.
+          Prices are as of the {RESULTS.price_date} close unless marked LIVE during market hours
+          (quotes delayed ~15 min, TradingView). Scores and fair values come from {ENGINE_VERSION}.
           Data may be delayed and can contain errors — verify before trading. Past performance does not guarantee future results.
         </p>
       </Card>
 
       <p className="footnote">
-        Engine: {ENGINE_VERSION} · Prices as of {RESULTS.price_date} · Scores as of{' '}
+        Engine: {ENGINE_VERSION} · Prices as of {RESULTS.price_date} unless marked LIVE · Scores as of{' '}
         {RESULTS.as_of}
       </p>
     </>

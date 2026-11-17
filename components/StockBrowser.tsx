@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { RESULTS, TICKER_SYMBOLS, getTicker, type TickerData } from '@/lib/data'
 import { Card, StockRow, StockTableHead } from '@/components/ui'
+import { LiveStatusLine } from '@/components/LivePrice'
+import { hasLiveQuotes, liveCloseFor, useLiveQuotes } from '@/lib/tradingview'
 
 type Verdict = TickerData['verdict']
 type SortKey = 'score' | 'upside' | 'price' | 'fv' | 'ticker'
@@ -278,6 +280,27 @@ export default function StockBrowser() {
   const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS)
   const [hydrated, setHydrated] = useState(false)
 
+  // Live prices from the shared store (one scan per poll per page —
+  // see lib/tradingview.ts). While live, the Price and Upside cells,
+  // the upside/price sorts and the under-fair-value filter all run on
+  // the live price; scores, fair values and verdicts stay baked.
+  const live = useLiveQuotes()
+  const liveNow = hasLiveQuotes(live)
+  const livePrice = (symbol: string): number | null =>
+    liveNow ? liveCloseFor(live, symbol) : null
+  const effPrice = (r: Row): number => livePrice(r.symbol) ?? r.price
+  const effUpside = (r: Row): number =>
+    effPrice(r) > 0 ? (r.triangulated_fv - effPrice(r)) / effPrice(r) : 0
+  const underFvCount = useMemo(
+    () =>
+      liveNow
+        ? ALL_ROWS.filter((r) => (liveCloseFor(live, r.symbol) ?? r.price) < r.triangulated_fv)
+            .length
+        : UNDERFV_COUNT,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [liveNow, live.quotes],
+  )
+
   // On mount only: read the query string and apply it as initial state.
   // The search-params hook is deliberately not used — the prerendered
   // HTML must show all 227 rows in default sort order, matching the
@@ -313,7 +336,7 @@ export default function StockBrowser() {
     const rows = ALL_ROWS.filter((r) => {
       if (filters.verdict !== 'All' && r.verdict !== filters.verdict) return false
       if (filters.sector !== 'All' && r.sector !== filters.sector) return false
-      if (filters.underfv && !(r.price < r.triangulated_fv)) return false
+      if (filters.underfv && !(effPrice(r) < r.triangulated_fv)) return false
       if (filters.beta !== 'All' && !matchesBeta(r, filters.beta)) return false
       if (filters.pe !== 'All' && !matchesPe(r, filters.pe)) return false
       if (filters.debtfcf !== 'All' && !matchesDebtFcf(r, filters.debtfcf)) return false
@@ -327,8 +350,16 @@ export default function StockBrowser() {
       }
       return true
     })
-    return sortRows(rows, filters.sort)
-  }, [filters])
+    // Sort on the effective (live when live) price and upside, so the
+    // upside/price sorts track the live market, not the baked close.
+    const display = rows.map((r) => ({
+      ...r,
+      price: effPrice(r),
+      upside: effUpside(r),
+    }))
+    return sortRows(display, filters.sort)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, liveNow, live.quotes])
 
   const clearFilters = () => setFilters(DEFAULT_FILTERS)
 
@@ -352,7 +383,7 @@ export default function StockBrowser() {
           aria-pressed={filters.underfv}
           onClick={() => setFilters({ ...filters, underfv: !filters.underfv })}
         >
-          Under fair value only ({UNDERFV_COUNT})
+          Under fair value only ({underFvCount})
         </button>
       </div>
 
@@ -485,6 +516,8 @@ export default function StockBrowser() {
         Showing {filtered.length} of {ALL_ROWS.length} names
       </p>
 
+      <LiveStatusLine priceDateLabel={RESULTS.price_date} />
+
       {filtered.length === 0 ? (
         <p>
           No names match —{' '}
@@ -499,7 +532,7 @@ export default function StockBrowser() {
           </thead>
           <tbody>
             {filtered.map((t) => (
-              <StockRow key={t.symbol} t={t} />
+              <StockRow key={t.symbol} t={t} livePrice={livePrice(t.symbol)} />
             ))}
           </tbody>
         </table>
@@ -507,7 +540,8 @@ export default function StockBrowser() {
 
       <p className="footnote">
         {ALL_ROWS.length} names are scored so far — use the search above to find any of them.
-        Prices are the {RESULTS.price_date} close. The scored universe expands as more names are run
+        Prices are the {RESULTS.price_date} close unless marked LIVE during market hours
+        (quotes delayed ~15 min, TradingView). The scored universe expands as more names are run
         through the engine; no score is ever guessed for an unscored ticker.
       </p>
     </Card>
