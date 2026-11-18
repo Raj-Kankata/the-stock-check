@@ -204,6 +204,9 @@ li {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  /* Never shrink: the logo/tagline stay intact and the search takes
+     the squeeze instead, so the toggle can never be pushed down. */
+  flex: 0 0 auto;
 }
 .brand a {
   display: flex;
@@ -249,11 +252,25 @@ li {
   font-size: 14px;
   color: var(--muted);
 }
+/* Narrow desktop: the tagline is what crowds the row (it is ~490px
+   wide). Hiding it below 1120px keeps logo + search + Check + toggle
+   on one row with a usable search box; the tagline is already hidden
+   on mobile, so this only affects small laptop/tablet widths. */
+@media (max-width: 1120px) {
+  .brand .tagline {
+    display: none;
+  }
+}
 
 /* ---- header search + market strip ---- */
+/* The header-top row never wraps on desktop: the theme toggle used to
+   drop to a second row under the logo when the row ran out of room.
+   The search absorbs the squeeze instead (flex 1 1 320px, min-width 0)
+   and the brand never shrinks, so logo + tagline + search + Check +
+   toggle stay on one row. Mobile re-enables wrapping below. */
 .header-top {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 2px 16px;
 }
@@ -1107,9 +1124,18 @@ a.rail-brand:hover {
     border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow-header);
     padding: 10px 16px;
+    /* Mobile re-enables wrapping (the desktop rule above is nowrap):
+       search goes to its own second row, toggle stays on the first. */
+    flex-wrap: wrap;
   }
   .brand .tagline {
     display: none;
+  }
+  .brand {
+    /* Mobile keeps the old behaviour: the brand may shrink so the
+       menu + brand + toggle still fit on the pinned first row. */
+    flex: 0 1 auto;
+    min-width: 0;
   }
   .brand-name {
     font-size: 20px;
