@@ -16,9 +16,9 @@
  * no beacon. Nothing is ever sent to a half-configured endpoint.
  */
 
-export const SEARCH_LOG_URL = ''
+export const SEARCH_LOG_URL: string = ''
 
-export const CF_BEACON_TOKEN = ''
+export const CF_BEACON_TOKEN: string = '25d44bebf2da4239ae5699937581f2d4'
 
 /** True once either stats half has been configured. Drives the footer line. */
 export const ANALYTICS_ENABLED = SEARCH_LOG_URL !== '' || CF_BEACON_TOKEN !== ''
