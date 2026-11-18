@@ -43,6 +43,15 @@ What refreshes nightly (this script):
     EMA + 52-week high and the 227-name advance/decline counts for the
     Market Pulse page. Same all-or-nothing gates; written with the
     market snapshot whenever it changed.
+  * av_earnings_coverage — NOT computed here: carried from
+    lib/data/av_coverage.json (committed by the AV pull cron's snapshot
+    step after each daily pull) into results.json as a top-level field,
+    so the homepage tile shows the pull count. Missing snapshot ->
+    carry forward the stored value; a coverage-only change still
+    writes results.json (see the changed_coverage flag in cmd_live).
+    The pull runs 08:14 CT, after the nightly refresh, so each
+    morning's site count is as of the previous day's pull — the
+    snapshot's as_of date is displayed with the count.
 
 What NEVER refreshes here (stays exactly as in base_inputs.json):
   fundamentals, Story/Financials scores, sector multiples, Damodaran ERP /
@@ -137,6 +146,16 @@ BASE_INPUTS = os.path.join(ENGINE_DIR, "base_inputs.json")
 SITE_RESULTS = os.path.join(ROOT, "lib", "data", "results.json")
 MARKET_JSON = os.path.join(ROOT, "lib", "data", "market.json")
 MACRO_JSON = os.path.join(ROOT, "lib", "data", "macro.json")
+AV_COVERAGE_JSON = os.path.join(ROOT, "lib", "data", "av_coverage.json")
+# Alpha Vantage trailing-earnings pull coverage (display only): the small
+# counts snapshot committed by the daily AV pull cron's snapshot step
+# (scripts/av_coverage_snapshot.py). The refresh NEVER computes these
+# numbers — it only carries the snapshot into results.json, so the
+# homepage tile updates with the nightly refresh. Missing/invalid
+# snapshot -> carry forward the stored value, never wipe the display.
+AV_COVERAGE_FIELDS = ("pulled", "universe", "remaining", "skipped_no_data",
+                      "total_quarterly_rows",
+                      "tickers_covering_all_12_quarters", "as_of")
 SITEMAP = os.path.join(ROOT, "public", "sitemap.xml")
 
 # The tickers the v1.4 engine scores in its own subprocess run. These MUST
@@ -198,6 +217,41 @@ def write_json(path, data):
     with open(path, "w") as f:
         json.dump(data, f, indent=2)
         f.write("\n")
+
+
+def load_av_coverage(stored):
+    """Trailing-earnings pull coverage for the homepage tile.
+
+    Reads lib/data/av_coverage.json (committed by the AV pull cron's
+    snapshot step after each daily pull). Validates the shape; on a
+    missing or invalid snapshot, carries forward the stored value from
+    the last good refresh (or None if there never was one) — a missing
+    snapshot must never wipe the display or fail the refresh.
+    """
+    prev = (stored or {}).get("av_earnings_coverage")
+    if not os.path.exists(AV_COVERAGE_JSON):
+        return prev
+    try:
+        snap = load_json(AV_COVERAGE_JSON)
+        if not isinstance(snap, dict):
+            raise ValueError("snapshot is not an object")
+        for f in AV_COVERAGE_FIELDS:
+            if f not in snap:
+                raise ValueError(f"snapshot missing field {f}")
+        for f in AV_COVERAGE_FIELDS[:-1]:
+            if not isinstance(snap[f], int):
+                raise ValueError(f"snapshot field {f} is not an int")
+        datetime.date.fromisoformat(snap["as_of"])
+        if (snap["pulled"] + snap["remaining"] + snap["skipped_no_data"]
+                != snap["universe"]):
+            raise ValueError("pulled + remaining + skipped != universe")
+        if not 0 <= snap["pulled"] <= snap["universe"]:
+            raise ValueError("pulled out of range")
+        return {f: snap[f] for f in AV_COVERAGE_FIELDS}
+    except Exception as exc:  # noqa: BLE001 - a bad snapshot must not fail the refresh
+        print(f"av coverage: snapshot unusable ({exc}); "
+              f"carrying forward stored value")
+        return prev
 
 
 def load_all_tickers():
@@ -1127,6 +1181,9 @@ def cmd_live(as_of_arg):
     gate_engine_outputs(results, stored, all_tickers)
     merged = merge_results(results["v13"], results["batch2"], as_of, price_date,
                            refreshed=new_tickers)
+    # Homepage tile: trailing-earnings pull coverage, carried from the
+    # snapshot the AV pull cron commits (never computed here).
+    merged["av_earnings_coverage"] = load_av_coverage(stored)
 
     # 3. Per-ticker summary + CHANGED flag (computed BEFORE any write, so
     #    a no-change night writes nothing at all: no as_of/lastmod bumps,
@@ -1191,13 +1248,18 @@ def cmd_live(as_of_arg):
     # but must still publish: the site footer and results.json both print
     # the engine string. Added 2026-11-17.
     changed_engine = merged["engine"] != stored.get("engine")
+    # A coverage-only change (new pull count, no price/FV/verdict move)
+    # must still publish the new tile count. Added 2026-11-18.
+    changed_coverage = (merged.get("av_earnings_coverage")
+                        != stored.get("av_earnings_coverage"))
     changed = (changed_tickers or changed_market or changed_macro
-               or changed_engine)
+               or changed_engine or changed_coverage)
     print(f"\nCHANGED={'yes' if changed else 'no'}  "
           f"(tickers={'yes' if changed_tickers else 'no'}, "
           f"market={'yes' if changed_market else 'no'}, "
           f"macro={'yes' if changed_macro else 'no'}, "
-          f"engine={'yes' if changed_engine else 'no'}; "
+          f"engine={'yes' if changed_engine else 'no'}, "
+          f"coverage={'yes' if changed_coverage else 'no'}; "
           f"as_of {stored['as_of']} -> {as_of}, "
           f"price_date {stored['price_date']} -> {price_date})")
     if flips:
@@ -1213,6 +1275,10 @@ def cmd_live(as_of_arg):
         for key in ("v13", "batch2"):
             write_json(os.path.join(ENGINE_DIR, key, "inputs.json"), inputs[key])
             write_json(os.path.join(ENGINE_DIR, key, "results.json"), results[key])
+    # SITE_RESULTS is written whenever its content moves, including a
+    # coverage-only night (a coverage change alone must still publish
+    # the new tile count; the engine files above are untouched then).
+    if changed_tickers or changed_engine or changed_coverage:
         write_json(SITE_RESULTS, merged)
     if changed_market:
         write_json(MARKET_JSON, market)

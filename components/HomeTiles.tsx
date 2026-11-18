@@ -30,6 +30,7 @@ export default function HomeTiles({
   medianUpside,
   priceDate,
   fvs,
+  avCoverage,
 }: {
   total: number
   verdictCounts: { Growth: number; Value: number; Watch: number; Avoid: number }
@@ -37,6 +38,9 @@ export default function HomeTiles({
   medianUpside: number
   priceDate: string
   fvs: HomeTileFv[]
+  /** Alpha Vantage trailing-earnings pull coverage (backtest data, not
+      card coverage). Optional: the tile hides when the field is absent. */
+  avCoverage?: { pulled: number; universe: number; as_of: string }
 }) {
   const live = useLiveQuotes()
   const liveNow = hasLiveQuotes(live)
@@ -117,6 +121,20 @@ export default function HomeTiles({
         : `Median (fair value − price) / price, ${priceDate} close`,
     },
   ]
+
+  // Trailing-earnings pull coverage (backtest calibration data, NOT card
+  // coverage): an extra tile only when the field is present in the baked
+  // data. The count updates with the nightly refresh and lags the pull
+  // by a day — the as-of date says which pull it is.
+  if (avCoverage) {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const [, mm, dd] = avCoverage.as_of.split('-').map(Number)
+    tiles.push({
+      label: 'Trailing earnings pulled',
+      value: `${avCoverage.pulled} of ${avCoverage.universe}`,
+      sub: `As of ${months[mm - 1]} ${dd} · backtest data only`,
+    })
+  }
 
   return (
     <section aria-label="At a glance">

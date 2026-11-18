@@ -150,6 +150,20 @@ export interface EngineResults {
   as_of: string
   price_date: string
   engine: string
+  /** Alpha Vantage trailing-earnings pull coverage (display only, homepage
+      tile). Written by nightly_refresh.py from lib/data/av_coverage.json
+      (committed by the daily AV pull cron's snapshot step); the refresh
+      never computes it, only carries it. Optional: the tile hides when
+      the field is absent. as_of is the pull date (coverage.json mtime). */
+  av_earnings_coverage?: {
+    pulled: number
+    universe: number
+    remaining: number
+    skipped_no_data: number
+    total_quarterly_rows: number
+    tickers_covering_all_12_quarters: number
+    as_of: string
+  }
   locked_set: Record<string, string | number>
   capm_crosscheck: {
     ten_year_treasury_pct: number

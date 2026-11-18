@@ -140,6 +140,7 @@ export default function HomePage() {
         medianUpside={medianUpside}
         priceDate={RESULTS.price_date}
         fvs={tileFvs}
+        avCoverage={RESULTS.av_earnings_coverage}
       />
 
       <Card title="Verdict mix">
