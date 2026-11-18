@@ -253,6 +253,20 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         : forwardLegKey === key
           ? 'forward'
           : null
+  // Grid NOTE (RULEBOOK.md §13): the sensitivity grid shows DCF-leg
+  // values only. When the card's fair value does not come from the DCF
+  // leg, say so plainly under the grid and name the leg it does come
+  // from — Forward for BA-shape names, the median leg otherwise.
+  // Determined from the stored leg values, never hardcoded; when no
+  // single decision leg can be determined, the line is omitted.
+  const gridFvLegLabel: string | null =
+    forwardLegKey !== null
+      ? 'Forward'
+      : medianLegKey === 'pegy'
+        ? 'PEGY'
+        : medianLegKey === 'forward'
+          ? 'Forward'
+          : null
   // Flags shown in §10: an applied one-off adjustment is already shown in
   // full in the §7 earnings-quality callout, so it is not repeated here.
   // GOOGL keeps its flag — its §7 callout is a curated summary, not the flag.
@@ -491,6 +505,11 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           values={grid.values}
           decisionLeg={legs.dcf.value}
           decisionGrowth={legs.dcf.growth_scenario}
+          fvSource={
+            gridFvLegLabel !== null
+              ? { fairValue: t.triangulated_fv, legLabel: gridFvLegLabel }
+              : null
+          }
         />
       </Card>
 

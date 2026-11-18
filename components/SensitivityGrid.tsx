@@ -15,6 +15,7 @@ export default function SensitivityGrid({
   decisionLeg,
   decisionGrowth,
   price,
+  fvSource,
 }: {
   values: Record<string, Record<string, number>> | null
   decisionLeg: number | null
@@ -23,6 +24,11 @@ export default function SensitivityGrid({
       Optional: the stock page renders this grid without it and the
       headline then shows the leg value alone. */
   price?: number
+  /** When the card's fair value does not come from the DCF leg, the
+      page passes the leg it does come from (with the fair value) so
+      the grid can say so plainly. Null = the DCF leg is the fair
+      value, so no note is shown. */
+  fvSource?: { fairValue: number; legLabel: string } | null
 }) {
   // Default selection is the decision cell (this stock's own DCF leg
   // inputs: its growth × rf 5.0%), when that cell exists on the grid —
@@ -151,6 +157,12 @@ export default function SensitivityGrid({
         Click any cell to compare it with the decision leg. Cells are shaded by value
         across this grid&apos;s own range — greener is a higher DCF leg, redder is lower.
       </p>
+      {fvSource !== undefined && fvSource !== null && (
+        <p className="footnote">
+          <strong>NOTE:</strong> These are DCF-leg values only. This card&apos;s fair value (
+          {money(fvSource.fairValue)}) comes from the {fvSource.legLabel} leg, not this grid.
+        </p>
+      )}
       {sel && selectedValue !== undefined && !selIsDecision && (
         <p>
           At <strong>{sel.growth} growth</strong> and a <strong>{sel.rf}</strong> risk-free rate,
