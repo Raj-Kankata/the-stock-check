@@ -32,27 +32,25 @@ Cloudflare's API token permissions reference):
   Analytics traffic numbers via the GraphQL Analytics API (there is no
   separate "Web Analytics" token permission)
 
-Authenticate once: `npx wrangler login` (browser) or export
-`CLOUDFLARE_API_TOKEN` for the token above. All commands below are free
-tier (Workers 100k req/day, D1 free tier) — nothing here costs anything.
+Deploy with the connector helper, not wrangler. It uses the stored API
+token, creates or reuses the D1 database, applies the migration, uploads
+the Worker, enables its workers.dev route and verifies the live endpoints:
 
 ```sh
-cd workers/search-log
-
-# 1. Create the database; copy the database_id it prints into wrangler.toml
-npx wrangler d1 create stockcheck-search-log
-
-# 2. Apply the schema to the remote database
-npx wrangler d1 migrations apply stockcheck-search-log --remote
-
-# 3. Set the stats bearer token (generate one first: openssl rand -hex 32).
-#    The value is NOT stored anywhere in the repo.
-npx wrangler secret put STATS_TOKEN
-
-# 4. Deploy. Note the workers.dev URL it prints, e.g.
-#    https://stockcheck-search-log.<subdomain>.workers.dev
-npx wrangler deploy
+python3 ~/workspace/custom-connectors/custom.cloudflare/bin/deploy_search_log.py
 ```
+
+Do not use `npx wrangler login` (the Cloudflare dashboard sign-in is
+blocked from this VM's browser) and never export the raw API token. All
+commands are free tier (Workers 100k req/day, D1 free tier) — nothing here
+costs anything.
+
+Live deployment (2026-11-18): Worker
+`https://stockcheck-search-log.thestockcheck.workers.dev`, D1 database
+`stockcheck-search-log` (`cc5e7126-b731-49c4-9ef8-8c43d2defd2c`), account
+subdomain `thestockcheck`. The STATS_TOKEN bearer value lives only in
+`~/workspace/custom-connectors/custom.cloudflare/STATS_TOKEN` (mode 600),
+never in this repo.
 
 ## Wire the site to the Worker (after deploy)
 
