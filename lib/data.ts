@@ -72,6 +72,10 @@ export interface PillarDetail {
     dcf_capm_crosscheck?: CapmCrosscheck
     dcf_sensitivity_grid?: SensitivityGrid
     subscores?: Record<string, number>
+    /** v1.6 degenerate flag (SPEC v1.4 §13): true when |NI used| is < 1%
+        of TTM revenue — the OCF/NI and FCF-conversion ratios are
+        meaningless and the card shows "not meaningful" instead. */
+    degenerate_ni?: boolean
     inputs?: Record<string, number | string>
   }
 }

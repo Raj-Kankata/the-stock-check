@@ -271,6 +271,18 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   const trust = pillars.trust.detail
   const priceDate = RESULTS.price_date
 
+  // Degenerate display rule (RULEBOOK.md §13): when adjusted net income
+  // is near zero (|NI| < 1% of TTM revenue), the OCF/NI and FCF-conversion
+  // ratios are meaningless — the engine already scores those subscores
+  // neutral-50, and the card shows "not meaningful" instead of numbers.
+  const degenerateNi = quality.degenerate_ni === true
+  const ocfVsNiText = degenerateNi
+    ? 'not meaningful — adjusted earnings are near zero'
+    : pct(quality.inputs?.ocf_pct_ni_used as number)
+  const fcfConversionText = degenerateNi
+    ? 'not meaningful — adjusted earnings are near zero'
+    : pct(quality.inputs?.fcf_conversion_used as number)
+
   // (9) The Stock Check vs Wall Street — all figures from the stored data only.
   // The analysts block is optional: a name that carries no consensus
   // target renders the section as "not published" (see below) instead of
@@ -366,10 +378,10 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <SubscoreTable subscores={quality.subscores} labels={QUALITY_LABELS} />
         {quality.inputs && (
           <div>
-            <Kv k="OCF as % of net income" v={pct(quality.inputs.ocf_pct_ni_used as number)} />
+            <Kv k="OCF as % of net income" v={ocfVsNiText} />
             <Kv k="Accruals (Sloan)" v={(quality.inputs.accruals_sloan as number).toFixed(4)} />
             <Kv k="Receivables change" v={`${(quality.inputs.receivables_change_pp as number) > 0 ? '+' : ''}${(quality.inputs.receivables_change_pp as number).toFixed(2)} pp`} />
-            <Kv k="FCF conversion" v={pct(quality.inputs.fcf_conversion_used as number)} />
+            <Kv k="FCF conversion" v={fcfConversionText} />
             <Kv k="Return on assets" v={pct(quality.inputs.roa as number)} />
             <Kv k="Debt / equity" v={(quality.inputs.debt_to_equity as number).toFixed(2)} />
           </div>
@@ -482,18 +494,10 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         />
       </Card>
 
-      {/* (7) Earnings-quality evidence */}
+      {/* (7) Earnings-quality evidence — the one-off callout comes
+          first, so a reader opening this section sees it without
+          scrolling past the Quality line. */}
       <Card title="Earnings-quality evidence">
-        <p>
-          Quality score {scoreSpan(pillars.quality.score)} — OCF {pct(quality.inputs?.ocf_pct_ni_used as number)}{' '}
-          of net income, FCF conversion {pct(quality.inputs?.fcf_conversion_used as number)} of net
-          income, accruals (Sloan) {(quality.inputs?.accruals_sloan as number).toFixed(4)},
-          receivables change{' '}
-          {(quality.inputs?.receivables_change_pp as number) > 0 ? '+' : ''}
-          {(quality.inputs?.receivables_change_pp as number).toFixed(2)} pp, return on assets{' '}
-          {pct(quality.inputs?.roa as number)}, debt / equity{' '}
-          {(quality.inputs?.debt_to_equity as number).toFixed(2)}.
-        </p>
         {symbol === 'GOOGL' && (
           <div className="callout">
             <strong>One-off earnings adjustment — shown both ways.</strong> Reported TTM net income
@@ -519,6 +523,30 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <p>No one-off earnings adjustment was applied to this name.</p>
           )
         })()}
+        <p>
+          Quality score {scoreSpan(pillars.quality.score)} —{' '}
+          {degenerateNi ? (
+            <>
+              OCF vs net income and FCF conversion: not meaningful — adjusted earnings are
+              near zero; accruals (Sloan){' '}
+              {(quality.inputs?.accruals_sloan as number).toFixed(4)}, receivables change{' '}
+              {(quality.inputs?.receivables_change_pp as number) > 0 ? '+' : ''}
+              {(quality.inputs?.receivables_change_pp as number).toFixed(2)} pp, return on
+              assets {pct(quality.inputs?.roa as number)}, debt / equity{' '}
+              {(quality.inputs?.debt_to_equity as number).toFixed(2)}.
+            </>
+          ) : (
+            <>
+              OCF {ocfVsNiText} of net income, FCF conversion {fcfConversionText} of net
+              income, accruals (Sloan) {(quality.inputs?.accruals_sloan as number).toFixed(4)},
+              receivables change{' '}
+              {(quality.inputs?.receivables_change_pp as number) > 0 ? '+' : ''}
+              {(quality.inputs?.receivables_change_pp as number).toFixed(2)} pp, return on
+              assets {pct(quality.inputs?.roa as number)}, debt / equity{' '}
+              {(quality.inputs?.debt_to_equity as number).toFixed(2)}.
+            </>
+          )}
+        </p>
       </Card>
 
       {/* (8) Pros and cons — the fair-value first line is baked text
