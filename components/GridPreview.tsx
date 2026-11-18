@@ -34,7 +34,7 @@ export default function GridPreview({ grids }: { grids: PublicGrid[] }) {
           id="grid-ticker"
           value={symbol}
           onChange={(e) => setSymbol(e.target.value)}
-          style={{ fontSize: 16, fontFamily: 'Arial, Helvetica, sans-serif', padding: '8px 10px', border: '1px solid #d7dce3', borderRadius: 8, maxWidth: '100%' }}
+          style={{ fontSize: 16, fontFamily: 'Arial, Helvetica, sans-serif', padding: '8px 10px', border: '1px solid var(--line)', borderRadius: 8, maxWidth: '100%', background: 'var(--input-bg)', color: 'var(--ink)' }}
         >
           {grids.map((g) => (
             <option key={g.symbol} value={g.symbol}>

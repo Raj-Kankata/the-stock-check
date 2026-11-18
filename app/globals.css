@@ -4,6 +4,7 @@
    parameters only. */
 
 :root {
+  color-scheme: light;
   --background: #f6f7f6;
   --card: #ffffff;
   --ink: #1a2332;
@@ -22,6 +23,86 @@
   --amber-bg: #fef3c7;
   --link: #1d4ed8;
   --shadow-soft: 0 1px 2px rgba(15, 42, 67, 0.05), 0 4px 16px rgba(15, 42, 67, 0.04);
+  /* Theme surfaces: every value below keeps the current light look.
+     Dark overrides live in [data-theme="dark"] further down. */
+  --header-bg: #fff;
+  --input-bg: #fff;
+  --hover-bg: #f1f5f9;
+  --th-bg: #f8fafc;
+  --track-bg: #e5e7eb;
+  --neutral-fg: #374151;
+  --icon-tile-bg: #f1f5f4;
+  --icon-tile-fg: #4b5563;
+  --green-btn: #15803d;
+  --green-btn-hover: #166534;
+  --nav-active-bg: #166534;
+  --red-btn: #b91c1c;
+  --callout-amber-bg: #fffbeb;
+  --callout-amber-border: #fcd34d;
+  --callout-blue-bg: #eff6ff;
+  --callout-blue-border: #93c5fd;
+  --callout-red-border: #fca5a5;
+  --ladder-heavy-bg: #bbf7d0;
+  --heat-l2: #fecaca;
+  --headline-border: #86efac;
+  --nav-hover-tile: #fff;
+  --shadow-header: 0 2px 8px rgba(15, 42, 67, 0.08);
+  --shadow-rail:
+    0 10px 30px rgba(15, 42, 67, 0.1),
+    0 2px 8px rgba(15, 42, 67, 0.06);
+  --shadow-drawer: 2px 0 12px rgba(15, 42, 67, 0.25);
+  --backdrop-bg: rgba(15, 42, 67, 0.45);
+}
+
+/* Dark theme: applied when <html data-theme="dark">. Set before first
+   paint by a tiny inline script in the layout (reads localStorage);
+   the header toggle flips the attribute and persists the choice.
+   Green stays the accent; text greens/reds/ambers go brighter so
+   they stay readable on dark surfaces. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #10161a;
+  --card: #1a2227;
+  --ink: #e8edf0;
+  --muted: #9aa8b1;
+  --line: #2c383f;
+  --green: #4ade80;
+  --green-deep: #86efac;
+  --green-soft: #12291a;
+  --green-bg: #173324;
+  --red: #f87171;
+  --red-bg: #3a1d1d;
+  --amber: #fbbf24;
+  --amber-bg: #33270f;
+  --link: #93c5fd;
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.35), 0 4px 16px rgba(0, 0, 0, 0.3);
+  --header-bg: #161e23;
+  --input-bg: #232d33;
+  --hover-bg: #26313a;
+  --th-bg: #202a31;
+  --track-bg: #2c383f;
+  --neutral-fg: #d4dde3;
+  --icon-tile-bg: #26313a;
+  --icon-tile-fg: #c3ced6;
+  --green-btn: #15803d;
+  --green-btn-hover: #1d7a3d;
+  --nav-active-bg: #15803d;
+  --red-btn: #b91c1c;
+  --callout-amber-bg: #2a220f;
+  --callout-amber-border: #6b5518;
+  --callout-blue-bg: #16283d;
+  --callout-blue-border: #2b4a6b;
+  --callout-red-border: #6e2b2b;
+  --ladder-heavy-bg: #1d4a2c;
+  --heat-l2: #4a2424;
+  --headline-border: #2f6b46;
+  --nav-hover-tile: #2c383f;
+  --shadow-header: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-rail:
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-drawer: 2px 0 12px rgba(0, 0, 0, 0.5);
+  --backdrop-bg: rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -104,11 +185,11 @@ li {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: #fff;
+  background: var(--header-bg);
   color: var(--ink);
   padding: 18px 0 0;
   border-bottom: 1px solid var(--line);
-  box-shadow: 0 2px 8px rgba(15, 42, 67, 0.08);
+  box-shadow: var(--shadow-header);
 }
 .site-header .wrap {
   /* Wider than the 1060px page column on purpose: the five market chips
@@ -142,7 +223,7 @@ li {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--green);
+  background: var(--green-btn);
   color: #fff;
   font-size: 22px;
   font-weight: bold;
@@ -180,6 +261,28 @@ li {
   flex: 1 1 320px;
   min-width: 0;
 }
+/* ---- theme toggle (header, every page) ----
+   Sun/moon button at the right end of the header row. Flips
+   <html data-theme> and persists the choice in localStorage; the
+   pre-paint script in the layout applies it before first paint. */
+.theme-toggle {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  background: var(--hover-bg);
+}
 .site-header .search-box {
   margin: 10px 0 12px;
 }
@@ -188,11 +291,11 @@ li {
 }
 .site-header .search-box button {
   flex-shrink: 0;
-  background: var(--green);
+  background: var(--green-btn);
   color: #fff;
 }
 .site-header .search-box button:hover {
-  background: var(--green-deep);
+  background: var(--green-btn-hover);
 }
 .site-header .search-results {
   margin-bottom: 12px;
@@ -221,7 +324,7 @@ li {
   font-size: 13px;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 4px 9px;
@@ -337,8 +440,8 @@ main {
   color: var(--amber);
 }
 .pill.neutral {
-  background: #e5e7eb;
-  color: #374151;
+  background: var(--track-bg);
+  color: var(--neutral-fg);
 }
 
 /* ---- tables ---- */
@@ -359,7 +462,7 @@ th {
   font-size: 14px;
   color: var(--muted);
   font-weight: bold;
-  background: #f8fafc;
+  background: var(--th-bg);
 }
 td.num,
 th.num {
@@ -410,7 +513,7 @@ tr:last-child td {
 .scorebar .track {
   flex: 1;
   height: 12px;
-  background: #e5e7eb;
+  background: var(--track-bg);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -466,7 +569,7 @@ tr:last-child td {
 }
 .ladder .rung.heavy {
   border-top: 3px solid var(--green);
-  background: #bbf7d0;
+  background: var(--ladder-heavy-bg);
 }
 .ladder .rung.buy {
   border-top: 3px solid #65a30d;
@@ -504,13 +607,13 @@ tr:last-child td {
   margin-bottom: 4px;
 }
 .leg-median {
-  background: #f0fdf4;
+  background: var(--green-soft);
   border-color: var(--green);
   border-left: 4px solid var(--green);
 }
 .leg-skipped {
-  background: #fffbeb;
-  border-color: #fcd34d;
+  background: var(--callout-amber-bg);
+  border-color: var(--callout-amber-border);
   border-left: 4px solid #d97706;
 }
 .leg .leg-value {
@@ -541,14 +644,14 @@ tr:last-child td {
 
 /* ---- Us vs Wall Street gap row ---- */
 tr.gap-below td {
-  background: #fef2f2;
+  background: var(--red-bg);
 }
 tr.gap-above td {
-  background: #f0fdf4;
+  background: var(--green-soft);
 }
 .callout {
-  background: #fffbeb;
-  border: 1px solid #fcd34d;
+  background: var(--callout-amber-bg);
+  border: 1px solid var(--callout-amber-border);
   border-left: 4px solid #d97706;
   border-radius: 12px;
   box-shadow: var(--shadow-soft);
@@ -557,13 +660,13 @@ tr.gap-above td {
   font-size: 15px;
 }
 .callout.blue {
-  background: #eff6ff;
-  border-color: #93c5fd;
-  border-left-color: #1d4ed8;
+  background: var(--callout-blue-bg);
+  border-color: var(--callout-blue-border);
+  border-left-color: var(--link);
 }
 .callout.red {
-  background: #fef2f2;
-  border-color: #fca5a5;
+  background: var(--red-bg);
+  border-color: var(--callout-red-border);
   border-left-color: var(--red);
 }
 
@@ -580,7 +683,8 @@ tr.gap-above td {
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: #fff;
+  background: var(--input-bg);
+  color: var(--ink);
 }
 .search-box button,
 .btn {
@@ -590,13 +694,13 @@ tr.gap-above td {
   padding: 10px 18px;
   border: none;
   border-radius: 12px;
-  background: var(--green);
+  background: var(--green-btn);
   color: #fff;
   cursor: pointer;
 }
 .search-box button:hover,
 .btn:hover {
-  background: var(--green-deep);
+  background: var(--green-btn-hover);
 }
 .search-results {
   list-style: none;
@@ -616,7 +720,7 @@ tr.gap-above td {
   padding: 9px 12px;
   border: 1px solid var(--line);
   border-top: none;
-  background: #fff;
+  background: var(--card);
   color: var(--ink);
 }
 .search-results li:first-child a {
@@ -630,7 +734,7 @@ tr.gap-above td {
   border-radius: 8px;
 }
 .search-results a:hover {
-  background: #f1f5f9;
+  background: var(--hover-bg);
   text-decoration: none;
 }
 
@@ -647,7 +751,7 @@ tr.gap-above td {
    high values green-tinted. Declared before the hover/selected/decision
    rules so those still win. */
 .grid-table td.cell.heat-l2 {
-  background: #fecaca;
+  background: var(--heat-l2);
 }
 .grid-table td.cell.heat-l1 {
   background: var(--red-bg);
@@ -656,7 +760,7 @@ tr.gap-above td {
   background: var(--green-bg);
 }
 .grid-table td.cell.heat-h2 {
-  background: #bbf7d0;
+  background: var(--ladder-heavy-bg);
 }
 .grid-table td.cell:hover,
 .grid-table td.cell.selected {
@@ -672,7 +776,7 @@ tr.gap-above td {
 /* ---- homepage dashboard ---- */
 .grid-headline {
   background: var(--green-soft);
-  border: 1px solid #86efac;
+  border: 1px solid var(--headline-border);
   border-left: 4px solid var(--green);
   border-radius: 12px;
   box-shadow: var(--shadow-soft);
@@ -737,7 +841,7 @@ tr.gap-above td {
   filter: brightness(1.1);
 }
 .mix-seg.growth {
-  background: var(--green);
+  background: var(--green-btn);
 }
 .mix-seg.value {
   background: #65a30d;
@@ -746,12 +850,12 @@ tr.gap-above td {
   background: #d97706;
 }
 .mix-seg.avoid {
-  background: var(--red);
+  background: var(--red-btn);
 }
 
 /* ---- footer: light, launcher style ---- */
 .site-footer {
-  background: #fff;
+  background: var(--header-bg);
   color: var(--muted);
   font-size: 14px;
   padding: 20px 0 26px;
@@ -781,7 +885,7 @@ tr.gap-above td {
   justify-content: space-between;
   gap: 12px;
   padding: 5px 0;
-  border-bottom: 1px solid #eef2f6;
+  border-bottom: 1px solid var(--line);
   font-size: 15px;
 }
 .kv:last-child {
@@ -840,12 +944,10 @@ tr.gap-above td {
   width: 216px;
   max-height: calc(100vh - 32px);
   overflow-y: auto;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: 20px;
-  box-shadow:
-    0 10px 30px rgba(15, 42, 67, 0.1),
-    0 2px 8px rgba(15, 42, 67, 0.06);
+  box-shadow: var(--shadow-rail);
   padding: 16px 12px;
   display: flex;
   flex-direction: column;
@@ -865,7 +967,7 @@ tr.gap-above td {
   text-decoration: none;
 }
 .sidebar a.active {
-  background: var(--green-deep);
+  background: var(--nav-active-bg);
   color: #fff;
   font-weight: bold;
 }
@@ -880,8 +982,8 @@ tr.gap-above td {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #f1f5f4;
-  color: #4b5563;
+  background: var(--icon-tile-bg);
+  color: var(--icon-tile-fg);
   border-radius: 10px;
 }
 .nav-icon svg {
@@ -889,7 +991,7 @@ tr.gap-above td {
   height: 18px;
 }
 .sidebar a:hover .nav-icon {
-  background: #fff;
+  background: var(--nav-hover-tile);
   color: var(--green);
   box-shadow: 0 0 0 1px var(--green-bg);
 }
@@ -909,7 +1011,7 @@ a.rail-brand:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--green);
+  background: var(--green-btn);
   color: #fff;
   font-size: 20px;
   font-weight: bold;
@@ -1001,9 +1103,9 @@ a.rail-brand:hover {
     position: sticky;
     top: 0;
     z-index: 40;
-    background: #fff;
+    background: var(--header-bg);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 2px 8px rgba(15, 42, 67, 0.08);
+    box-shadow: var(--shadow-header);
     padding: 10px 16px;
   }
   .brand .tagline {
@@ -1014,6 +1116,11 @@ a.rail-brand:hover {
   }
   .header-search {
     flex: 1 1 100%;
+    order: 2;
+  }
+  .theme-toggle {
+    order: 1;
+    margin-left: auto;
   }
   .site-header .search-box {
     margin: 8px 0 0;
@@ -1046,7 +1153,7 @@ a.rail-brand:hover {
     padding: 8px 12px;
     border: 1px solid var(--line);
     border-radius: 10px;
-    background: #f1f5f4;
+    background: var(--icon-tile-bg);
     color: var(--ink);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -1066,7 +1173,7 @@ a.rail-brand:hover {
     transition: transform 0.2s ease;
     overflow-y: auto;
     border-radius: 0 20px 20px 0;
-    box-shadow: 2px 0 12px rgba(15, 42, 67, 0.25);
+    box-shadow: var(--shadow-drawer);
   }
   .sidebar.open {
     transform: translateX(0);
@@ -1076,7 +1183,7 @@ a.rail-brand:hover {
     position: fixed;
     inset: 0;
     z-index: 65;
-    background: rgba(15, 42, 67, 0.45);
+    background: var(--backdrop-bg);
   }
 }
 
@@ -1117,7 +1224,7 @@ a.rail-brand:hover {
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fff;
+  background: var(--input-bg);
   color: var(--ink);
 }
 .filter-input {

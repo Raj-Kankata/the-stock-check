@@ -4,6 +4,7 @@ import './globals.css'
 import Sidebar from '@/components/Sidebar'
 import SearchBox from '@/components/SearchBox'
 import MarketStrip from '@/components/MarketStrip'
+import ThemeToggle from '@/components/ThemeToggle'
 import { SITE_NAME, SITE_URL, ENGINE_VERSION } from '@/lib/site'
 import { searchIndex } from '@/lib/public'
 import { RESULTS } from '@/lib/data'
@@ -28,6 +29,13 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en">
       <body>
+        {/* No-flash theme script: runs before first paint, applies the
+            stored choice (light unless the user picked dark). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('tsc-theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();`,
+          }}
+        />
         <header className="site-header">
           <div className="wrap">
             <div className="header-top">
@@ -49,6 +57,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
               <div className="header-search">
                 <SearchBox entries={searchIndex()} />
               </div>
+              <ThemeToggle />
             </div>
             <MarketStrip />
           </div>
@@ -59,7 +68,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <footer className="site-footer">
           <div className="wrap">
             <p>
-              <strong style={{ color: '#1a2332' }}>The Stock Check</strong> — free, deterministic,
+              <strong style={{ color: 'var(--ink)' }}>The Stock Check</strong> — free, deterministic,
               rules-based stock research. For research and education only — not investment advice.
               Data may be delayed and can contain errors; verify before trading. Past performance
               does not guarantee future results.

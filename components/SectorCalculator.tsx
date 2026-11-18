@@ -167,8 +167,10 @@ export default function SectorCalculator() {
                 fontSize: 16,
                 fontFamily: 'Arial, Helvetica, sans-serif',
                 padding: '10px 12px',
-                border: '1px solid #d7dce3',
+                border: '1px solid var(--line)',
                 borderRadius: 8,
+                background: 'var(--input-bg)',
+                color: 'var(--ink)',
               }}
             />
           </label>
