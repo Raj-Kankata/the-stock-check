@@ -16,7 +16,7 @@
  * no beacon. Nothing is ever sent to a half-configured endpoint.
  */
 
-export const SEARCH_LOG_URL: string = ''
+export const SEARCH_LOG_URL: string = 'https://stockcheck-search-log.thestockcheck.workers.dev/log'
 
 export const CF_BEACON_TOKEN: string = '25d44bebf2da4239ae5699937581f2d4'
 

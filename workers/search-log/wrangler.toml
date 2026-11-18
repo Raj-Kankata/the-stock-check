@@ -5,7 +5,7 @@ compatibility_date = "2026-11-18"
 [[d1_databases]]
 binding = "DB"
 database_name = "stockcheck-search-log"
-# Placeholder — replaced with the real id from `wrangler d1 create`
-# (see README.md). Keep the format: a UUID string.
-database_id = "11111111-2222-3333-4444-555555555555"
+# Database created 2026-11-18 via the Cloudflare API (see
+# ~/workspace/custom-connectors/custom.cloudflare/); id from `d1 create`.
+database_id = "cc5e7126-b731-49c4-9ef8-8c43d2defd2c"
 migrations_dir = "migrations"
