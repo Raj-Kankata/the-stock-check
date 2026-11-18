@@ -60,7 +60,10 @@ export async function generateMetadata({
 interface JoinedRow {
   label: string
   evidence: ReactNode
-  score: number
+  /** Null when the check contributes no score of its own — the Valuation
+      leg-spread row, when no cap applies: the spread only ever caps the
+      score, it never adds one. Renders as '—'. */
+  score: number | null
 }
 
 function JoinedSubscoreTable({ rows }: { rows: JoinedRow[] | null }) {
@@ -79,7 +82,7 @@ function JoinedSubscoreTable({ rows }: { rows: JoinedRow[] | null }) {
           <tr key={r.label}>
             <td>{r.label}</td>
             <td>{r.evidence}</td>
-            <td className="num">{scoreSpan(r.score)}</td>
+            <td className="num">{r.score === null ? '—' : scoreSpan(r.score)}</td>
           </tr>
         ))}
       </tbody>
@@ -102,6 +105,44 @@ function emaTrendText(price: number, ema20: number, ema50: number, ema200: numbe
   if (price > ema50 || price > ema200) return 'Price above EMA 50 or 200'
   if (price < ema20 && ema20 < ema50 && price < ema200) return 'Price below EMA 20, 50 and 200'
   return 'Mixed — price between the averages'
+}
+
+/** Valuation upside → uncapped score: the engine's piecewise-linear
+    scale (pillar_valuation), clamped at the ends. Only the display
+    value is derived here; the final row always shows the stored pillar
+    score, never a recompute. */
+const VALUATION_SCALE: [number, number][] = [
+  [-0.4, 10],
+  [-0.25, 25],
+  [-0.1, 40],
+  [0, 55],
+  [0.1, 70],
+  [0.25, 85],
+  [0.5, 100],
+]
+
+function valuationUncapped(upside: number): number {
+  const pts = VALUATION_SCALE
+  if (upside <= pts[0][0]) return pts[0][1]
+  if (upside >= pts[pts.length - 1][0]) return pts[pts.length - 1][1]
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [x0, y0] = pts[i]
+    const [x1, y1] = pts[i + 1]
+    if (x0 <= upside && upside <= x1) return y0 + ((y1 - y0) * (upside - x0)) / (x1 - x0)
+  }
+  return pts[pts.length - 1][1]
+}
+
+/** Valuation disagreement cap (pillar_valuation): the spread is
+    (highest leg − lowest leg) ÷ fair value. Above the fair value itself
+    the score caps at 55; above 75% of it, at 65. The 55 branch is
+    checked first, so when both hold — a spread over the fair value is
+    necessarily over 75% of it — 55 applies. Otherwise no cap. */
+function valuationCap(spread: number | null): number | null {
+  if (spread === null) return null
+  if (spread > 1.0) return 55
+  if (spread > 0.75) return 65
+  return null
 }
 
 /** Story / Financials reading: both are 0–100 percentile ranks across
@@ -371,6 +412,58 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
     { label: 'Story (50%)', evidence: medianWord(storyScore), score: storyScore },
     { label: 'Financials (50%)', evidence: medianWord(financialsScore), score: financialsScore },
   ]
+  // Valuation joined rows: the upside and the score it maps to, the leg
+  // spread and the cap it triggers, and the final score after the cap.
+  // The uncapped score and the cap are derived from the stored upside
+  // and spread with the engine's exact formulas (pillar_valuation); the
+  // final row always shows the stored pillar score, never a recompute.
+  // The upside is recomputed as FV ÷ price − 1, not read from the stored
+  // upside_pct: FV and price are stored to 2dp, so that ratio is exactly
+  // the upside the engine scored on, while upside_pct is rounded to 3dp
+  // in results.json and would shift the interpolated score by 0.1 on
+  // 9 of the 227 names. The spread row has no score of its own when no
+  // cap applies — the spread only ever caps, it never adds. When the
+  // fair value is the Forward-sector leg explicitly (BA-shape, SPEC
+  // v1.4 §1), the upside row says so; the full explanation stays in the
+  // Valuation card below.
+  const upsidePct =
+    t.triangulated_fv != null && t.price > 0
+      ? t.triangulated_fv / t.price - 1
+      : storedNum(val.upside_pct)
+  const legSpread = storedNum(val.leg_spread_div_fv)
+  const uncappedVal = upsidePct === null ? null : valuationUncapped(upsidePct)
+  const valCap = valuationCap(legSpread)
+  const valuationRows: JoinedRow[] | null =
+    upsidePct === null || uncappedVal === null
+      ? null
+      : [
+          {
+            label: 'Upside vs fair value',
+            evidence:
+              `Fair value ${money(t.triangulated_fv)}${forwardLegKey !== null ? ' (Forward-sector leg, explicit)' : ''} is ` +
+              `${pct(Math.abs(upsidePct), 1, false)} ${upsidePct >= 0 ? 'above' : 'below'} the ${money(t.price)} price`,
+            score: Math.round(uncappedVal * 10) / 10,
+          },
+          {
+            label: 'Leg spread',
+            evidence:
+              legMin === null || legMax === null || legSpread === null
+                ? '—'
+                : `Legs span ${money(legMin)} to ${money(legMax)} — spread ${pct(legSpread)} of fair value, ` +
+                  (valCap === null ? 'no cap' : `capped at ${valCap}`),
+            score: valCap,
+          },
+          {
+            label: 'Valuation score',
+            evidence:
+              valCap === null
+                ? `No cap — upside score ${score1(uncappedVal)} stands`
+                : uncappedVal <= valCap
+                  ? `Upside score ${score1(uncappedVal)} — cap ${valCap} does not bind`
+                  : `Upside score ${score1(uncappedVal)}, capped at ${valCap}`,
+            score: pillars.valuation.score,
+          },
+        ]
   const qi = quality.inputs ?? {}
   const qs = quality.subscores
   const ocfInput = storedNum(qi.ocf_pct_ni_used)
@@ -546,6 +639,9 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
 
         <h3>Conviction</h3>
         <JoinedSubscoreTable rows={convictionRows} />
+
+        <h3>Valuation</h3>
+        <JoinedSubscoreTable rows={valuationRows} />
 
         <h3>Quality</h3>
         <JoinedSubscoreTable rows={qualityRows} />

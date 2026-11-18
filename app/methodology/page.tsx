@@ -257,6 +257,12 @@ export default function MethodologyPage() {
           they span more than the fair value itself, the score is capped at 55; if they span
           more than 75% of it, capped at 65.
         </p>
+        <p>
+          On each stock card the Valuation table shows the same three steps: the upside and
+          the score it maps to, the leg spread and the cap it triggers, and the final score
+          after the cap. When the spread is more than the fair value, both cap conditions
+          hold and the 55 applies — the stricter cap always wins.
+        </p>
         <h3>Conviction — Story and Financials, averaged</h3>
         <p>
           Conviction is the average of two 0–100 scores from our weekly Story-Tracker. Story
