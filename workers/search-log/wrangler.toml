@@ -1,0 +1,11 @@
+name = "stockcheck-search-log"
+main = "src/index.ts"
+compatibility_date = "2026-11-18"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "stockcheck-search-log"
+# Placeholder — replaced with the real id from `wrangler d1 create`
+# (see README.md). Keep the format: a UUID string.
+database_id = "11111111-2222-3333-4444-555555555555"
+migrations_dir = "migrations"

@@ -7,6 +7,7 @@ import MarketStrip from '@/components/MarketStrip'
 import ThemeToggle from '@/components/ThemeToggle'
 import BrandMark from '@/components/BrandMark'
 import { SITE_NAME, SITE_URL, ENGINE_VERSION } from '@/lib/site'
+import { ANALYTICS_ENABLED, CF_BEACON_TOKEN } from '@/lib/analytics'
 import { searchIndex } from '@/lib/public'
 import { RESULTS } from '@/lib/data'
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     template: '%s | The Stock Check',
   },
   description:
-    'A free, deterministic, rules-based stock research platform. Every verdict shows its numbers, its sources and its limits. No sign-in, no tracking, no black box.',
+    'A free, deterministic, rules-based stock research platform. Every verdict shows its numbers, its sources and its limits. No sign-in, no black box. Anonymous page and search stats only — see the Privacy Policy.',
   icons: {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
   },
@@ -85,11 +86,23 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             </div>
             <p>
               Prices are the {RESULTS.price_date} close unless marked LIVE during market hours
-              (quotes delayed ~15 min, TradingView) · Engine {ENGINE_VERSION} · No sign-in, no
-              tracking, no analytics.
+              (quotes delayed ~15 min, TradingView) · Engine {ENGINE_VERSION} ·{' '}
+              {ANALYTICS_ENABLED
+                ? 'No sign-in. Anonymous page and search stats only — see Privacy.'
+                : 'No sign-in, no tracking, no analytics.'}
             </p>
           </div>
         </footer>
+        {/* Cloudflare Web Analytics beacon (cookieless page views). Rendered
+            ONLY once CF_BEACON_TOKEN is set in lib/analytics.ts — while it is
+            empty, no beacon ships and no page-view stats are collected. */}
+        {CF_BEACON_TOKEN !== '' && (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: CF_BEACON_TOKEN })}
+          />
+        )}
       </body>
     </html>
   )

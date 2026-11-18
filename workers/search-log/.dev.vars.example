@@ -1,0 +1,3 @@
+# Local-only test secret for `wrangler dev --local`. Never commit a real value.
+# Copy to .dev.vars (gitignored) before running wrangler dev.
+STATS_TOKEN=test-token-local-only

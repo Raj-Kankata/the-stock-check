@@ -16,7 +16,7 @@ import { LiveStatusLine, LiveStockRows } from '@/components/LivePrice'
 export const metadata: Metadata = {
   title: 'Check any stock before you buy',
   description:
-    'A free, deterministic, rules-based stock research tool. Five pillar scores, a fair value built from three angles, and the workings shown on every stock card. No sign-in, no tracking.',
+    'A free, deterministic, rules-based stock research tool. Five pillar scores, a fair value built from three angles, and the workings shown on every stock card. No sign-in. Anonymous usage stats only.',
 }
 
 type Verdict = 'Growth' | 'Value' | 'Watch' | 'Avoid'

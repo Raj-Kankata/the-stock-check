@@ -22,8 +22,8 @@ export default function FaqPage() {
 
       <Card title="Is it free?">
         <p>
-          Yes. No sign-in, no account, no paywall, no tracking and no analytics. The whole site
-          is free to read.
+          Yes. No sign-in, no account, no paywall. Anonymous page and search stats only —
+          see <Link href="/privacy">Privacy</Link>. The whole site is free to read.
         </p>
       </Card>
 

@@ -1,10 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { money } from '@/lib/format'
 import type { PublicSearchEntry } from '@/lib/public-types'
 import { scoreSpan } from '@/components/ui'
+import { logSearch } from '@/lib/analytics'
 
 /**
  * Ticker search. Only the 227 scored tickers resolve to a card.
@@ -22,6 +23,16 @@ export default function SearchBox({ entries }: { entries: PublicSearchEntry[] })
       : entries.filter((e) => e.symbol.startsWith(query)).sort((a, b) => a.symbol.localeCompare(b.symbol))
   const showNotCovered = query.length > 0 && matches.length === 0
 
+  // Anonymous search count (see lib/analytics.ts): one log per distinct
+  // no-result query — never per keystroke, never with personal data.
+  const loggedNoResult = useRef<Set<string>>(new Set())
+  useEffect(() => {
+    if (showNotCovered && !loggedNoResult.current.has(query)) {
+      loggedNoResult.current.add(query)
+      logSearch({ query, ticker: null })
+    }
+  }, [showNotCovered, query])
+
   return (
     <div>
       <div className="search-box">
@@ -36,7 +47,10 @@ export default function SearchBox({ entries }: { entries: PublicSearchEntry[] })
         <button
           type="button"
           onClick={() => {
-            if (matches.length > 0) window.location.href = `/stock/${matches[0].symbol}`
+            if (matches.length > 0) {
+              logSearch({ query, ticker: matches[0].symbol })
+              window.location.href = `/stock/${matches[0].symbol}`
+            }
           }}
         >
           Check
@@ -46,7 +60,13 @@ export default function SearchBox({ entries }: { entries: PublicSearchEntry[] })
         <ul className="search-results">
           {matches.map((t) => (
             <li key={t.symbol}>
-              <Link href={`/stock/${t.symbol}`} onClick={() => setQ('')}>
+              <Link
+                href={`/stock/${t.symbol}`}
+                onClick={() => {
+                  setQ('')
+                  logSearch({ query, ticker: t.symbol })
+                }}
+              >
                 <span>
                   <strong>{t.symbol}</strong> — {t.name}
                 </span>

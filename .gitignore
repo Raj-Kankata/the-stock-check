@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# search-log worker (local-only state, never committed)
+/workers/search-log/.dev.vars
+/workers/search-log/.wrangler/
+
 # vercel
 .vercel
 

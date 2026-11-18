@@ -6,7 +6,7 @@ import { allPublicRows } from '@/lib/public'
 export const metadata: Metadata = {
   title: 'All Stocks',
   description:
-    'Every stock scored by The Stock Check so far — verdict, overall score, price, fair value and upside, all computed from the published rules. No sign-in, no tracking.',
+    'Every stock scored by The Stock Check so far — verdict, overall score, price, fair value and upside, all computed from the published rules. No sign-in. Anonymous usage stats only.',
 }
 
 export default function StocksPage() {
