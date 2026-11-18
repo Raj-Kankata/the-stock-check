@@ -103,13 +103,18 @@ export default function HomePage() {
 
   return (
     <>
-      <h1>Check any stock before you buy.</h1>
-      <p className="page-intro">
-        A free research tool that scores {total} stocks on five pillars and works out a fair value
-        for each. Every card shows the score, the verdict, the fair value against today&apos;s
-        price, and how it compares with Wall Street&apos;s targets — with live prices during
-        market hours, plus trending movers, sector rotation, and a market pulse.
-      </p>
+      <section className="hero-band">
+        <p className="hero-eyebrow">Five pillars · Fair value</p>
+        <h1>Check any stock before you buy.</h1>
+        <p className="hero-tagline">Five pillars. One honest check.</p>
+        <p className="hero-intro">
+          A free research tool that scores {total} stocks on five pillars and works out a fair
+          value for each. Every card shows the score, the verdict, the fair value against
+          today&apos;s price, and how it compares with Wall Street&apos;s targets — with live
+          prices during market hours, plus trending movers, sector rotation, and a market
+          pulse.
+        </p>
+      </section>
 
       <Card title="Spotlight — highest overall score">
         <LiveStatusLine priceDateLabel={RESULTS.price_date} />

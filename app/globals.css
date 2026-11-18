@@ -39,6 +39,14 @@
      the verdict bar bright green. Dark overrides below. */
   --mark-bar: #166534;
   --mark-verdict: #16a34a;
+  /* Hero band (homepage only): dark navy in light mode; a touch
+     lighter than the page in dark mode so it still reads as a band. */
+  --hero-bg: #10161a;
+  --hero-border: #10161a;
+  --hero-ink: #ffffff;
+  --hero-muted: #cbd5e1;
+  --hero-eyebrow-bg: #14532d;
+  --hero-eyebrow-fg: #86efac;
   --nav-active-bg: #166534;
   --red-btn: #b91c1c;
   --callout-amber-bg: #fffbeb;
@@ -92,6 +100,14 @@
   --green-btn-hover: #1d7a3d;
   --mark-bar: #4ade80;
   --mark-verdict: #86efac;
+  /* Hero band in dark mode: a touch lighter than the page (#10161a) so
+     the band still reads as a band. */
+  --hero-bg: #1a2227;
+  --hero-border: #2c383f;
+  --hero-ink: #f8fafc;
+  --hero-muted: #b6c2cb;
+  --hero-eyebrow-bg: #173324;
+  --hero-eyebrow-fg: #4ade80;
   --nav-active-bg: #15803d;
   --red-btn: #b91c1c;
   --callout-amber-bg: #2a220f;
@@ -408,6 +424,58 @@ main {
   font-size: 16px;
   color: var(--muted);
   margin-bottom: 18px;
+}
+
+/* ---- homepage hero band: slim dark band (nikkytrades pattern, our own
+   copy) — eyebrow pill, serif headline, tagline, intro. Homepage only;
+   serif is used nowhere else on the site. */
+.hero-band {
+  background: var(--hero-bg);
+  border: 1px solid var(--hero-border);
+  border-radius: 16px;
+  padding: 20px 22px 18px;
+  margin-bottom: 18px;
+}
+.hero-band h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 30px;
+  line-height: 1.2;
+  color: var(--hero-ink);
+  margin: 10px 0 4px;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hero-eyebrow-fg);
+  background: var(--hero-eyebrow-bg);
+  border-radius: 999px;
+  padding: 4px 10px;
+  margin: 0 0 2px;
+}
+.hero-tagline {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--hero-muted);
+  margin: 0 0 10px;
+}
+.hero-intro {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--hero-muted);
+  margin: 0;
+  max-width: 72ch;
+}
+@media (max-width: 720px) {
+  .hero-band {
+    padding: 16px 16px 14px;
+  }
+  .hero-band h1 {
+    font-size: 24px;
+  }
 }
 
 /* ---- cards: soft white cards, generous rounding, soft shadow ---- */
