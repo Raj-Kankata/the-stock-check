@@ -33,11 +33,10 @@ Output lands in `out/`.
 
 ## Status
 
-- **$0 spent so far. Site is LIVE at https://the-stock-check-six.vercel.app** (deployed
-  2026-11-16; Vercel assigned `-six` because plain `the-stock-check.vercel.app` was
-  taken). Vercel project `the-stock-check`, Hobby plan ($0, team raj-kankata),
-  GitHub repo https://github.com/Raj-Kankata/the-stock-check, `main`, commit
-  `d94a1214` (37 files, tree verified identical to local). Domain not registered.
+- **$0 spent so far. Site is LIVE at https://www.thestockcheck.com** (deployed
+  2026-11-16; custom domain thestockcheck.com registered 2026-11-17 and wired
+  to the site). Vercel project `the-stock-check`, Hobby plan ($0, team raj-kankata),
+  GitHub repo https://github.com/Raj-Kankata/the-stock-check, `main`.
 - **Vercel build quirk (learned 2026-11-16):** do NOT set Output Directory to
   `out` — the first deploy failed with NEXT_NO_ROUTES_MANIFEST; Vercel's
   Next.js builder wants its default output for a static export. Settings that
