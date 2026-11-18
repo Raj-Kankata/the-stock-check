@@ -249,7 +249,19 @@
         "DOW30"
       ],
       "market_cap": 3807348553774.66,
-      "rel_vol": 1.5984
+      "rel_vol": 1.5984,
+      "lynch": {
+        "value": 238.72,
+        "pegy": 1.529,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0018,
+        "pe_used": 19.74,
+        "eps": 7.9098,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AAPL": {
       "name": "Apple Inc.",
@@ -338,6 +350,13 @@
                   "5.0%": 172.48,
                   "5.5%": 161.31,
                   "6.0%": 151.46
+                },
+                "13.78%": {
+                  "4.0%": 233.23,
+                  "4.5%": 215.8,
+                  "5.0%": 200.71,
+                  "5.5%": 187.51,
+                  "6.0%": 175.88
                 },
                 "15%": {
                   "4.0%": 244.89,
@@ -454,7 +473,19 @@
         "DOW30"
       ],
       "market_cap": 5192505178135.22,
-      "rel_vol": 1.0653
+      "rel_vol": 1.0653,
+      "lynch": {
+        "value": 126.42,
+        "pegy": 0.358,
+        "growth_used": 0.1378,
+        "growth_cap": null,
+        "dividend_yield": 0.003,
+        "pe_used": 39.29,
+        "eps": 8.9789,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MSFT": {
       "name": "Microsoft Corporation",
@@ -550,6 +581,13 @@
                   "5.0%": 183.48,
                   "5.5%": 171.37,
                   "6.0%": 160.69
+                },
+                "17.64%": {
+                  "4.0%": 236.78,
+                  "4.5%": 218.87,
+                  "5.0%": 203.37,
+                  "5.5%": 189.81,
+                  "6.0%": 177.87
                 },
                 "20%": {
                   "4.0%": 259.5,
@@ -658,7 +696,19 @@
         "DOW30"
       ],
       "market_cap": 3856024618691.19,
-      "rel_vol": 1.1516
+      "rel_vol": 1.1516,
+      "lynch": {
+        "value": 351.84,
+        "pegy": 0.679,
+        "growth_used": 0.1764,
+        "growth_cap": null,
+        "dividend_yield": 0.0072,
+        "pe_used": 27.03,
+        "eps": 19.1635,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "GOOGL": {
       "name": "Alphabet Inc.",
@@ -864,7 +914,19 @@
         "DOW30"
       ],
       "market_cap": 3491963534245.88,
-      "rel_vol": 0.8517
+      "rel_vol": 0.8517,
+      "lynch": {
+        "value": 168.17,
+        "pegy": 0.593,
+        "growth_used": 0.1485,
+        "growth_cap": null,
+        "dividend_yield": 0.003,
+        "pe_used": 25.56,
+        "eps": 11.1002,
+        "eps_adjusted": true,
+        "available": true,
+        "reason": null
+      }
     }
   }
 }

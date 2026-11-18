@@ -30,17 +30,27 @@ export default function SensitivityGrid({
       value, so no note is shown. */
   fvSource?: { fairValue: number; legLabel: string } | null
 }) {
-  // Default selection is the decision cell (this stock's own DCF leg
-  // inputs: its growth × rf 5.0%), when that cell exists on the grid —
-  // so the page loads with a headline value, not an empty prompt.
-  // Otherwise nothing is pre-selected and the headline shows the
-  // decision leg itself.
-  const decisionGrowthLabel0 =
-    decisionGrowth !== null ? `${Math.round(decisionGrowth * 100)}%` : null
-  const decisionCell0 =
-    decisionGrowthLabel0 !== null && values && Object.keys(values).includes(decisionGrowthLabel0)
-      ? { growth: decisionGrowthLabel0, rf: '5.0%' }
+  // The decision row is the grid row whose growth matches this stock's
+  // own DCF growth (its growth_scenario) — the stored grid now carries
+  // that growth as its own row when it is not already a fixed row
+  // (RULEBOOK §13), so the published value always sits ON a row.
+  // Matched numerically (closest row), never by rounding the label:
+  // BA's 4.62% reads on the 5% row, ABBV's 11.75% on its own row.
+  // The page loads with that cell selected, so the headline shows the
+  // decision leg; otherwise nothing is pre-selected and the headline
+  // shows the decision leg itself.
+  const decisionGrowthPct = decisionGrowth !== null ? decisionGrowth * 100 : null
+  const gridRowLabels = values ? Object.keys(values) : []
+  const decisionRowLabel =
+    decisionGrowthPct !== null && gridRowLabels.length > 0
+      ? gridRowLabels.reduce((best, g) =>
+          Math.abs(parseFloat(g) - decisionGrowthPct) <
+          Math.abs(parseFloat(best) - decisionGrowthPct)
+            ? g
+            : best)
       : null
+  const decisionCell0 =
+    decisionRowLabel !== null ? { growth: decisionRowLabel, rf: '5.0%' } : null
   const [sel, setSel] = useState<{ growth: string; rf: string } | null>(decisionCell0)
 
   if (!values || decisionLeg === null) {
@@ -55,16 +65,6 @@ export default function SensitivityGrid({
 
   const growthRows = Object.keys(values)
   const rfCols = Object.keys(values[growthRows[0]])
-  // The two grid rows the decision growth sits between (else-branch only;
-  // an exact row match is handled by the highlighted-cell branch below).
-  const decisionGrowthPct = decisionGrowth !== null ? decisionGrowth * 100 : null
-  const growthNums = growthRows.map((g) => parseFloat(g)).filter((n) => Number.isFinite(n))
-  const belowRows = decisionGrowthPct !== null ? growthNums.filter((n) => n <= decisionGrowthPct) : []
-  const aboveRows = decisionGrowthPct !== null ? growthNums.filter((n) => n > decisionGrowthPct) : []
-  const betweenRows =
-    belowRows.length > 0 && aboveRows.length > 0
-      ? `${Math.max(...belowRows)}% and ${Math.min(...aboveRows)}%`
-      : growthRows.join(' and ')
   const selectedValue =
     sel !== null ? values[sel.growth]?.[sel.rf] : undefined
 
@@ -85,10 +85,8 @@ export default function SensitivityGrid({
     if (t < 0.8) return ' heat-h1'
     return ' heat-h2'
   }
-  const decisionGrowthLabel =
-    decisionGrowth !== null ? `${Math.round(decisionGrowth * 100)}%` : null
   const isDecisionCell = (g: string, rf: string) =>
-    decisionGrowthLabel !== null && g === decisionGrowthLabel && rf === '5.0%'
+    decisionRowLabel !== null && g === decisionRowLabel && rf === '5.0%'
 
   // Headline value, USA Economy Now style: the selected cell's DCF leg
   // against today's price. Defaults to the decision leg (the highlighted
@@ -151,9 +149,9 @@ export default function SensitivityGrid({
         </tbody>
       </table>
       <p className="footnote">
-        {decisionGrowthLabel !== null && growthRows.includes(decisionGrowthLabel)
+        {decisionRowLabel !== null
           ? `The highlighted cell is this stock's published DCF value: ${money(decisionLeg)}. `
-          : `The published DCF value (${money(decisionLeg)}) sits between two grid rows — its growth is ${decisionGrowth !== null ? `${(decisionGrowth * 100).toFixed(2)}%` : 'n/a'}, between the ${betweenRows} rows. `}
+          : `The published DCF value is ${money(decisionLeg)}. `}
         Click any cell to compare it with the decision leg. Cells are shaded by value
         across this grid&apos;s own range — greener is a higher DCF leg, redder is lower.
       </p>

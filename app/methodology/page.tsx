@@ -305,6 +305,18 @@ export default function MethodologyPage() {
           price-to-earnings ratio, the stock looks cheap on this view; if it is low, it looks
           expensive.
         </p>
+        <p>
+          On each stock card, the Lynch value panel beside the DCF grid shows this same
+          estimate the way Peter Lynch framed it: a stock is fairly priced when its P/E
+          equals its growth rate, so the fair price is EPS &times; (growth + dividend
+          yield). It uses the same growth (capped at 30%, or by the guardrail where the
+          growth is not supported by revenue growth), the same dividend yield, and the same
+          P/E as the PEGY leg — the EPS is the one behind that P/E, adjusted where a
+          one-off adjustment applies. The Lynch value is the PEGY leg, shown with its
+          inputs; it is a comparison only and never changes the fair value, score or
+          verdict. Where earnings are negative or no growth estimate exists, the panel
+          says so instead of showing a number.
+        </p>
       </section>
 
       <section id="forward-sector-leg" className="card">
@@ -390,7 +402,9 @@ export default function MethodologyPage() {
           This grid shows the cash-flow estimate not as one number but as a table, so you can
           see how much it moves when growth or interest-rate assumptions change. If the whole
           grid sits below the share price, the cash-flow view cannot support the price on any
-          plausible assumption.
+          plausible assumption. The grid also carries the stock&rsquo;s own growth rate as
+          its own row, highlighted at the 5.0% risk-free rate, so the published value always
+          sits on the grid itself.
         </p>
       </section>
 

@@ -117,6 +117,14 @@ function formatMarketCap(v: number | null): string {
   return `$${trim(v / 1_000, 0)}K`
 }
 
+/** EPS for the Lynch panel: up to 3 decimals, trailing zeros trimmed,
+    so EPS x fair P/E reproduces the Lynch value exactly ($1.243 x 10.00
+    = $12.43; 2dp would read $1.24 x 10.00 = $12.40). */
+function formatEps(v: number): string {
+  const s = v.toFixed(3)
+  return `$${s.includes('.') ? s.replace(/0+$/, '').replace(/\.$/, '') : s}`
+}
+
 function indexMembership(indexes: string[] | undefined): string {
   const names = (indexes ?? []).map((i) =>
     i === 'SP500' ? 'S&P 500' : i === 'NASDAQ100' ? 'Nasdaq-100' : i === 'DOW30' ? 'Dow Jones' : i,
@@ -499,19 +507,95 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         </p>
       </Card>
 
-      {/* (6) DCF sensitivity grid */}
-      <Card title="DCF sensitivity grid">
-        <SensitivityGrid
-          values={grid.values}
-          decisionLeg={legs.dcf.value}
-          decisionGrowth={legs.dcf.growth_scenario}
-          fvSource={
-            gridFvLegLabel !== null
-              ? { fairValue: t.triangulated_fv, legLabel: gridFvLegLabel }
-              : null
-          }
-        />
-      </Card>
+      {/* (6) DCF sensitivity grid + (6b) Lynch value — side by side
+          on desktop (two-col stacks on mobile). The Lynch fair price
+          IS the PEGY leg (price x PEGY); the panel shows it with its
+          inputs, so the two lenses sit together. Display only — it
+          never changes the fair value, score or verdict. */}
+      <div className="two-col">
+        <Card title="DCF sensitivity grid">
+          <SensitivityGrid
+            values={grid.values}
+            decisionLeg={legs.dcf.value}
+            decisionGrowth={legs.dcf.growth_scenario}
+            fvSource={
+              gridFvLegLabel !== null
+                ? { fairValue: t.triangulated_fv, legLabel: gridFvLegLabel }
+                : null
+            }
+          />
+        </Card>
+
+        <Card title="Lynch value — comparison">
+          {t.lynch !== undefined && t.lynch.available && t.lynch.value !== null ? (
+            <>
+              <Kv k="Lynch fair price" v={money(t.lynch.value)} />
+              <Kv
+                k="EPS"
+                v={
+                  t.lynch.eps !== null
+                    ? `${formatEps(t.lynch.eps)}${t.lynch.eps_adjusted ? ' (adjusted)' : ''}`
+                    : '—'
+                }
+              />
+              <Kv
+                k="Growth used"
+                v={t.lynch.growth_used !== null ? pct(t.lynch.growth_used, 1, false) : '—'}
+              />
+              <Kv
+                k="Dividend yield"
+                v={
+                  t.lynch.dividend_yield !== null
+                    ? pct(t.lynch.dividend_yield, 2, false)
+                    : '—'
+                }
+              />
+              <Kv
+                k="P/E used"
+                v={
+                  t.lynch.pe_used !== null
+                    ? t.lynch.pe_used.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })
+                    : '—'
+                }
+              />
+              <Kv
+                k="Fair P/E (growth + yield)"
+                v={
+                  t.lynch.growth_used !== null && t.lynch.dividend_yield !== null
+                    ? (t.lynch.growth_used * 100 + t.lynch.dividend_yield * 100).toFixed(2)
+                    : '—'
+                }
+              />
+              <Kv k="PEGY" v={t.lynch.pegy !== null ? t.lynch.pegy.toFixed(3) : '—'} />
+              <Kv
+                k="Lynch value vs price"
+                v={pct((t.lynch.value - t.price) / t.price)}
+              />
+              <p>
+                Peter Lynch&rsquo;s rule: a stock is fairly priced when its P/E equals its
+                growth rate. Fair price = EPS &times; (growth + dividend yield).
+                {t.lynch.growth_cap === '30%'
+                  ? ' (Growth capped at 30%, same as the PEGY leg.)'
+                  : t.lynch.growth_cap === 'guardrail'
+                    ? ' (Growth capped by the guardrail — see Methodology.)'
+                    : ''}
+              </p>
+              <p className="footnote">
+                Comparison only — it does not change this card&rsquo;s fair value, score or
+                verdict.
+              </p>
+            </>
+          ) : (
+            <p>
+              <strong>Lynch value not available for this name.</strong>{' '}
+              {t.lynch?.reason ?? 'The inputs needed to compute it are missing.'}
+            </p>
+          )}
+        </Card>
+      </div>
 
       {/* (7) Earnings-quality evidence — the one-off callout comes
           first, so a reader opening this section sees it without
@@ -781,6 +865,13 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           the future turns out differently. The highlighted cell is this stock&apos;s own
           estimate. Cells further away show how the value would change if growth or rates came
           in higher or lower.
+        </p>
+        <p>
+          <strong>Lynch value.</strong> The PEGY leg shown the way Peter Lynch framed it —
+          a fair price from earnings, growth and dividend, beside the DCF grid so the two
+          views sit together. It is a comparison only and never changes the fair value.
+          When the two disagree a lot, the cash-flow view and the earnings view are telling
+          different stories, and the fair value deserves more caution.
         </p>
         <h3>The comparison and CAPM</h3>
         <p>

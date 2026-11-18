@@ -811,6 +811,128 @@ def gate_engine_outputs(results, stored_results, all_tickers):
                      f"(stored ${stored_fv:.2f})")
 
 
+def lynch_block(rec, src):
+    """Lynch value (display only) for one merged ticker record, built from
+    the stored PEGY leg — the Lynch fair price IS the PEGY leg
+    (price x PEGY, where PEGY = (growth + dividend yield) / P/E), so the
+    panel can never disagree with the leg. Nothing is recomputed from
+    raw inputs. EPS = live price / P/E used (the EPS behind that P/E);
+    adjusted where the P/E used is the adjusted P/E. Growth-cap kind:
+    "30%" when the 30% cap binds, "guardrail" when the SPEC v1.2
+    guardrail capped the growth, else None. available is False (with a
+    reason) when the PEGY leg has no value or no usable P/E — no live
+    name triggers that today; the panel then says so instead of a
+    number."""
+    legs = (rec.get("pillars", {}).get("valuation", {})
+            .get("detail", {}).get("legs", {}) or {})
+    pegy_leg = legs.get("pegy") or {}
+    value = pegy_leg.get("value")
+    pe_used = pegy_leg.get("pe_used")
+    growth_used = pegy_leg.get("growth_used")
+    pegy_ratio = pegy_leg.get("pegy")
+    div_yield = src.get("dividend_yield")
+    implied = src.get("implied_5y_eps_growth")
+    adjusted = bool(src.get("trailing_pe_adjusted"))
+    available = (value is not None and pe_used is not None and pe_used > 0
+                 and growth_used is not None)
+    if not available:
+        if value is None:
+            reason = "the PEGY leg has no value for this name."
+        elif pe_used is None or pe_used <= 0:
+            reason = "earnings are negative, so there is no usable P/E."
+        else:
+            reason = "no growth estimate is available for this name."
+        return {"value": None, "pegy": None, "growth_used": None,
+                "growth_cap": None, "dividend_yield": None,
+                "pe_used": None, "eps": None, "eps_adjusted": False,
+                "available": False, "reason": reason}
+    if implied is None:
+        cap_kind = "guardrail"
+    elif growth_used < implied - 1e-9:
+        cap_kind = "30%" if abs(growth_used - 0.30) < 1e-9 else "guardrail"
+    else:
+        cap_kind = None
+    return {"value": value, "pegy": pegy_ratio, "growth_used": growth_used,
+            "growth_cap": cap_kind, "dividend_yield": div_yield,
+            "pe_used": pe_used,
+            "eps": round(rec["price"] / pe_used, 4),
+            "eps_adjusted": adjusted, "available": True, "reason": None}
+
+
+# --- DCF sensitivity grid: actual-growth row (RULEBOOK §13 display rule) ---
+GRID_GROWTHS_FIXED = (0.0, 0.05, 0.10, 0.15, 0.20)
+GRID_RFS = (0.04, 0.045, 0.05, 0.055, 0.06)
+NVDA_BASE_FCF_NORM = 4.80  # same LOCKED v1.1 constant as the engines
+
+
+def _dcf_value(f0, g, r, tg=0.025, n=5):
+    """Verbatim copy of the frozen engines' DCF (SPEC v1.1 §3): five years
+    of growing FCF discounted at r, plus a Gordon terminal value at tg.
+    Used ONLY to fill the actual-growth row of the sensitivity grid; the
+    decision DCF leg itself is never recomputed here."""
+    pv = sum(f0 * (1 + g) ** t / (1 + r) ** t for t in range(1, n + 1))
+    term = f0 * (1 + g) ** n * (1 + tg) / (r - tg)
+    return pv + term / (1 + r) ** n
+
+
+def _growth_label(g):
+    """Grid row label for a growth rate: percent, up to 2 decimals,
+    trailing zeros trimmed ("11.75%", "13.78%", "5%"). The stock page
+    matches rows numerically, so the label only has to parse back to
+    the same number."""
+    return f"{g * 100:.2f}".rstrip("0").rstrip(".") + "%"
+
+
+def add_actual_growth_row(ticker, rec, src):
+    """Insert the stock's actual DCF growth rate as its own row in the
+    stored sensitivity grid, in order among the fixed 0/5/10/15/20%
+    rows. The row's cells use the same DCF function as the fixed rows;
+    the 5.0% cell must equal the published DCF leg exactly, else the
+    row is skipped with a warning. No row is added when the growth is
+    already (within 0.5pp) a fixed row — BA 4.62% reads on the 5% row,
+    NVDA 20% on the 20% row — or when the DCF leg is skipped."""
+    try:
+        detail = rec["pillars"]["valuation"]["detail"]
+        legs = detail["legs"]
+        grid = detail.get("dcf_sensitivity_grid") or {}
+        values = grid.get("values")
+        dcf_leg = legs.get("dcf") or {}
+        g = dcf_leg.get("growth_scenario")
+        dcf_value = dcf_leg.get("value")
+        if values is None or g is None or dcf_value is None:
+            return
+        if min(abs(g - f) for f in GRID_GROWTHS_FIXED) <= 0.005:
+            return
+        if ticker == "NVDA":
+            f0 = NVDA_BASE_FCF_NORM
+        else:
+            f0 = src.get("fcf_per_share_ttm")
+        if f0 is None:
+            return
+        beta = src.get("beta")
+        spread = 0.07 if (beta or 0) >= 2.0 else 0.05
+        row = {f"{rf:.1%}": round(_dcf_value(f0, g, rf + spread), 2)
+               for rf in GRID_RFS}
+        if abs(row["5.0%"] - dcf_value) > 0.005:
+            print(f"  WARNING {ticker}: actual-growth row 5.0% cell "
+                  f"${row['5.0%']:.2f} != DCF leg ${dcf_value:.2f} — "
+                  f"row skipped")
+            return
+        label = _growth_label(g)
+        ordered = {}
+        inserted = False
+        for k, v in values.items():
+            if not inserted and float(k.rstrip("%")) > g * 100:
+                ordered[label] = row
+                inserted = True
+            ordered[k] = v
+        if not inserted:
+            ordered[label] = row
+        detail["dcf_sensitivity_grid"]["values"] = ordered
+    except (KeyError, TypeError, ValueError) as e:
+        print(f"  WARNING {ticker}: actual-growth row skipped ({e})")
+
+
 def merge_results(v13_results, batch2_results, as_of, price_date,
                   refreshed=None):
     """Merged site results: top-level EXACTLY as v1.4's output (engine
@@ -836,6 +958,10 @@ def merge_results(v13_results, batch2_results, as_of, price_date,
         base records, which carry no rel_vol, so dry-run output has
         rel_vol null - the dry run fetches nothing, so it cannot compute
         one; that is expected, not a failure.
+      * lynch - computed here by lynch_block() from the merged record's
+        own PEGY leg plus the dividend yield from `refreshed` (live path:
+        rescaled by refresh_ticker; dry-run path: base yield). Display
+        only; no score, FV, leg or verdict is touched.
     `refreshed`: per-ticker records carrying the new fields (live path:
     the new_tickers dict from cmd_live; dry-run path: base["tickers"]).
     Missing keys in older files are tolerated as null, never a crash."""
@@ -858,6 +984,8 @@ def merge_results(v13_results, batch2_results, as_of, price_date,
         rec["market_cap"] = compute_market_cap(
             rec["price"], base["tickers"][t].get("shares_implied_total"))
         rec["rel_vol"] = copy.deepcopy(src.get("rel_vol"))
+        rec["lynch"] = lynch_block(rec, src)
+        add_actual_growth_row(t, rec, src)
     return merged
 
 
@@ -1016,7 +1144,8 @@ def cmd_live(as_of_arg):
         # night when price/FV/verdict are unchanged: rel_vol moves almost
         # every night by construction (daily volume), market_cap moves
         # with price, and debt_fcf/indexes move on the quarterly refresh
-        # of base_inputs.json. .get(..., None) tolerates stored files
+        # of base_inputs.json. lynch moves whenever its inputs move
+        # (price, growth, yield). .get(..., None) tolerates stored files
         # that predate the fields. Consequence, by design: a night with
         # no price/FV/verdict change still writes when rel_vol changed.
         # Same for overall_score, the three leg values and flags: a
@@ -1025,15 +1154,25 @@ def cmd_live(as_of_arg):
         # and one-off note all move) changes no price/FV/verdict, so
         # without these it would silently never publish. Added 2026-11-17.
         n_ch = any(old.get(f) != new.get(f)
-                   for f in ("debt_fcf", "market_cap", "rel_vol", "indexes"))
+                   for f in ("debt_fcf", "market_cap", "rel_vol", "indexes",
+                             "lynch"))
         o_ch = old["overall_score"] != new["overall_score"]
         legs_old = old["pillars"]["valuation"]["detail"]["legs"]
         legs_new = new["pillars"]["valuation"]["detail"]["legs"]
         l_ch = any(legs_old[k]["value"] != legs_new[k]["value"]
                    for k in legs_old)
         fl_ch = old.get("flags") != new.get("flags")
+        # The grid gains its actual-growth row in the merge (display
+        # only, RULEBOOK §13). It must count like the other new fields,
+        # or a re-run of an already-published close would never write
+        # the row. Added 2026-11-17.
+        grid_old = (old["pillars"]["valuation"]["detail"]
+                    .get("dcf_sensitivity_grid") or {}).get("values")
+        grid_new = (new["pillars"]["valuation"]["detail"]
+                    .get("dcf_sensitivity_grid") or {}).get("values")
+        g_ch = grid_old != grid_new
         changed_tickers |= (p_ch or f_ch or v_ch or n_ch or o_ch or l_ch
-                            or fl_ch)
+                            or fl_ch or g_ch)
         if v_ch:
             flips.append(t)
         mark = "  <-- VERDICT FLIP" if v_ch else ""

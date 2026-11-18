@@ -246,7 +246,19 @@
         "SP500"
       ],
       "market_cap": 49016692925.64,
-      "rel_vol": 0.895
+      "rel_vol": 0.895,
+      "lynch": {
+        "value": 120.55,
+        "pegy": 0.697,
+        "growth_used": 0.232,
+        "growth_cap": null,
+        "dividend_yield": 0.0058,
+        "pe_used": 34.11,
+        "eps": 5.0695,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AAP": {
       "name": "Advance Auto Parts, Inc.",
@@ -449,7 +461,19 @@
       "debt_fcf": 63.625,
       "indexes": [],
       "market_cap": 2726829279.2,
-      "rel_vol": 0.5912
+      "rel_vol": 0.5912,
+      "lynch": {
+        "value": 65.45,
+        "pegy": 1.463,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0224,
+        "pe_used": 22.03,
+        "eps": 2.03,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AAPL": {
       "name": "Apple Inc.",
@@ -538,6 +562,13 @@
                   "5.0%": 172.48,
                   "5.5%": 161.31,
                   "6.0%": 151.46
+                },
+                "13.78%": {
+                  "4.0%": 233.23,
+                  "4.5%": 215.8,
+                  "5.0%": 200.71,
+                  "5.5%": 187.51,
+                  "6.0%": 175.88
                 },
                 "15%": {
                   "4.0%": 244.89,
@@ -654,7 +685,19 @@
         "DOW30"
       ],
       "market_cap": 5192505178135.22,
-      "rel_vol": 1.0653
+      "rel_vol": 1.0653,
+      "lynch": {
+        "value": 126.42,
+        "pegy": 0.358,
+        "growth_used": 0.1378,
+        "growth_cap": null,
+        "dividend_yield": 0.003,
+        "pe_used": 39.29,
+        "eps": 8.9789,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ABBV": {
       "name": "AbbVie Inc.",
@@ -743,6 +786,13 @@
                   "5.0%": 197.87,
                   "5.5%": 185.05,
                   "6.0%": 173.75
+                },
+                "11.75%": {
+                  "4.0%": 246.48,
+                  "4.5%": 228.19,
+                  "5.0%": 212.35,
+                  "5.5%": 198.5,
+                  "6.0%": 186.28
                 },
                 "15%": {
                   "4.0%": 280.93,
@@ -860,7 +910,19 @@
         "SP500"
       ],
       "market_cap": 524309139294.65,
-      "rel_vol": 1.0663
+      "rel_vol": 1.0663,
+      "lynch": {
+        "value": 82.06,
+        "pegy": 0.279,
+        "growth_used": 0.1175,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0235,
+        "pe_used": 50.61,
+        "eps": 5.82,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ABT": {
       "name": "Abbott Laboratories",
@@ -1065,7 +1127,19 @@
         "SP500"
       ],
       "market_cap": 188478526161.1,
-      "rel_vol": 0.9316
+      "rel_vol": 0.9316,
+      "lynch": {
+        "value": 75.61,
+        "pegy": 0.704,
+        "growth_used": 0.2587,
+        "growth_cap": null,
+        "dividend_yield": 0.0234,
+        "pe_used": 40.09,
+        "eps": 2.6802,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ACLS": {
       "name": "Axcelis Technologies, Inc.",
@@ -1267,7 +1341,19 @@
       "debt_fcf": 1.1656,
       "indexes": [],
       "market_cap": 3078499237.66,
-      "rel_vol": 0.5655
+      "rel_vol": 0.5655,
+      "lynch": {
+        "value": 68.44,
+        "pegy": 0.69,
+        "growth_used": 0.2037,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 29.53,
+        "eps": 3.36,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ACN": {
       "name": "Accenture plc",
@@ -1349,6 +1435,13 @@
                   "5.0%": 286.0,
                   "5.5%": 267.89,
                   "6.0%": 251.92
+                },
+                "7.68%": {
+                  "4.0%": 370.17,
+                  "4.5%": 343.12,
+                  "5.0%": 319.68,
+                  "5.5%": 299.19,
+                  "6.0%": 281.11
                 },
                 "10%": {
                   "4.0%": 407.58,
@@ -1471,7 +1564,19 @@
         "SP500"
       ],
       "market_cap": 152840691085.6,
-      "rel_vol": 0.6125
+      "rel_vol": 0.6125,
+      "lynch": {
+        "value": 140.19,
+        "pegy": 0.566,
+        "growth_used": 0.0768,
+        "growth_cap": null,
+        "dividend_yield": 0.0266,
+        "pe_used": 18.27,
+        "eps": 13.5577,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ADBE": {
       "name": "Adobe Inc.",
@@ -1674,7 +1779,19 @@
         "NASDAQ100"
       ],
       "market_cap": 100048241328.0,
-      "rel_vol": 0.9765
+      "rel_vol": 0.9765,
+      "lynch": {
+        "value": 416.8,
+        "pegy": 1.694,
+        "growth_used": 0.2328,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 13.74,
+        "eps": 17.9039,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ADP": {
       "name": "Automatic Data Processing, Inc.",
@@ -1882,7 +1999,19 @@
         "NASDAQ100"
       ],
       "market_cap": 125752672958.77,
-      "rel_vol": 1.0766
+      "rel_vol": 1.0766,
+      "lynch": {
+        "value": 134.44,
+        "pegy": 0.429,
+        "growth_used": 0.0975,
+        "growth_cap": null,
+        "dividend_yield": 0.0217,
+        "pe_used": 27.79,
+        "eps": 11.2785,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ADSK": {
       "name": "Autodesk, Inc.",
@@ -2087,7 +2216,19 @@
         "NASDAQ100"
       ],
       "market_cap": 56476717744.53,
-      "rel_vol": 0.9773
+      "rel_vol": 0.9773,
+      "lynch": {
+        "value": 231.3,
+        "pegy": 0.871,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 34.44,
+        "eps": 7.7099,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ALB": {
       "name": "Albemarle Corporation",
@@ -2292,7 +2433,19 @@
         "SP500"
       ],
       "market_cap": 14550156938.4,
-      "rel_vol": 0.8358
+      "rel_vol": 0.8358,
+      "lynch": {
+        "value": 119.29,
+        "pegy": 1.353,
+        "growth_used": 0.2689,
+        "growth_cap": null,
+        "dividend_yield": 0.0185,
+        "pe_used": 21.24,
+        "eps": 4.1507,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ALGT": {
       "name": "Allegiant Travel Company",
@@ -2381,6 +2534,13 @@
                   "5.0%": -29.49,
                   "5.5%": -27.58,
                   "6.0%": -25.9
+                },
+                "14.23%": {
+                  "4.0%": -40.61,
+                  "4.5%": -37.57,
+                  "5.0%": -34.94,
+                  "5.5%": -32.64,
+                  "6.0%": -30.61
                 },
                 "15%": {
                   "4.0%": -41.87,
@@ -2495,7 +2655,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 1532570180.94,
-      "rel_vol": 0.6377
+      "rel_vol": 0.6377,
+      "lynch": {
+        "value": 39.13,
+        "pegy": 0.415,
+        "growth_used": 0.1423,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 34.33,
+        "eps": 2.7501,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AMAT": {
       "name": "Applied Materials, Inc.",
@@ -2701,7 +2873,19 @@
         "NASDAQ100"
       ],
       "market_cap": 280290738216.75,
-      "rel_vol": 0.8349
+      "rel_vol": 0.8349,
+      "lynch": {
+        "value": 378.65,
+        "pegy": 1.081,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 27.75,
+        "eps": 12.6216,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AMD": {
       "name": "Advanced Micro Devices, Inc.",
@@ -2906,7 +3090,19 @@
         "NASDAQ100"
       ],
       "market_cap": 835241156609.44,
-      "rel_vol": 1.0698
+      "rel_vol": 1.0698,
+      "lynch": {
+        "value": 110.64,
+        "pegy": 0.219,
+        "growth_used": 0.2364,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 107.75,
+        "eps": 4.6801,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AMKR": {
       "name": "Amkor Technology, Inc.",
@@ -3002,6 +3198,13 @@
                   "5.0%": -10.99,
                   "5.5%": -10.41,
                   "6.0%": -9.88
+                },
+                "18.07%": {
+                  "4.0%": -13.93,
+                  "4.5%": -13.09,
+                  "5.0%": -12.35,
+                  "5.5%": -11.68,
+                  "6.0%": -11.08
                 },
                 "20%": {
                   "4.0%": -14.98,
@@ -3110,7 +3313,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 8539767580.5,
-      "rel_vol": 0.4122
+      "rel_vol": 0.4122,
+      "lynch": {
+        "value": 47.24,
+        "pegy": 1.387,
+        "growth_used": 0.1807,
+        "growth_cap": null,
+        "dividend_yield": 0.0098,
+        "pe_used": 13.73,
+        "eps": 2.48,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AMN": {
       "name": "AMN Healthcare Services, Inc.",
@@ -3199,6 +3414,13 @@
                   "5.0%": 154.56,
                   "5.5%": 144.55,
                   "6.0%": 135.72
+                },
+                "11.86%": {
+                  "4.0%": 193.4,
+                  "4.5%": 179.04,
+                  "5.0%": 166.6,
+                  "5.5%": 155.73,
+                  "6.0%": 146.15
                 },
                 "15%": {
                   "4.0%": 219.45,
@@ -3313,7 +3535,19 @@
       "debt_fcf": 2.3696,
       "indexes": [],
       "market_cap": 1565837438.36,
-      "rel_vol": 0.9551
+      "rel_vol": 0.9551,
+      "lynch": {
+        "value": 32.49,
+        "pegy": 0.82,
+        "growth_used": 0.1186,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 14.47,
+        "eps": 2.7395,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AMZN": {
       "name": "Amazon.com, Inc.",
@@ -3409,6 +3643,13 @@
                   "5.0%": -98.01,
                   "5.5%": -91.54,
                   "6.0%": -85.83
+                },
+                "17.38%": {
+                  "4.0%": -125.2,
+                  "4.5%": -115.74,
+                  "5.0%": -107.54,
+                  "5.5%": -100.38,
+                  "6.0%": -94.07
                 },
                 "20%": {
                   "4.0%": -138.62,
@@ -3525,7 +3766,19 @@
         "DOW30"
       ],
       "market_cap": 2808349818150.0,
-      "rel_vol": 0.9604
+      "rel_vol": 0.9604,
+      "lynch": {
+        "value": 147.7,
+        "pegy": 0.573,
+        "growth_used": 0.1738,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 30.33,
+        "eps": 8.4982,
+        "eps_adjusted": true,
+        "available": true,
+        "reason": null
+      }
     },
     "ANF": {
       "name": "Abercrombie & Fitch Co.",
@@ -3600,6 +3853,13 @@
                   "5.0%": 150.51,
                   "5.5%": 141.24,
                   "6.0%": 133.05
+                },
+                "3.48%": {
+                  "4.0%": 201.68,
+                  "4.5%": 187.21,
+                  "5.0%": 174.67,
+                  "5.5%": 163.7,
+                  "6.0%": 154.01
                 },
                 "5%": {
                   "4.0%": 215.24,
@@ -3725,7 +3985,19 @@
       "debt_fcf": 2.2728,
       "indexes": [],
       "market_cap": 6735315386.22,
-      "rel_vol": 1.0845
+      "rel_vol": 1.0845,
+      "lynch": {
+        "value": 40.29,
+        "pegy": 0.276,
+        "growth_used": 0.0348,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 12.59,
+        "eps": 11.5782,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AON": {
       "name": "Aon plc",
@@ -3807,6 +4079,13 @@
                   "5.0%": 230.41,
                   "5.5%": 215.82,
                   "6.0%": 202.96
+                },
+                "6.76%": {
+                  "4.0%": 286.93,
+                  "4.5%": 266.04,
+                  "5.0%": 247.94,
+                  "5.5%": 232.11,
+                  "6.0%": 218.15
                 },
                 "10%": {
                   "4.0%": 328.36,
@@ -3926,7 +4205,19 @@
         "SP500"
       ],
       "market_cap": 73885424039.68,
-      "rel_vol": 0.7229
+      "rel_vol": 0.7229,
+      "lynch": {
+        "value": 140.32,
+        "pegy": 0.409,
+        "growth_used": 0.0676,
+        "growth_cap": null,
+        "dividend_yield": 0.0092,
+        "pe_used": 18.78,
+        "eps": 18.2705,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ASYS": {
       "name": "Amtech Systems, Inc.",
@@ -4129,7 +4420,19 @@
       "debt_fcf": 2.0477,
       "indexes": [],
       "market_cap": 172740742.9,
-      "rel_vol": 0.6946
+      "rel_vol": 0.6946,
+      "lynch": {
+        "value": 2.7,
+        "pegy": 0.232,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 43.19,
+        "eps": 0.27,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ATNI": {
       "name": "ATN International, Inc.",
@@ -4204,6 +4507,13 @@
                   "5.0%": 13.38,
                   "5.5%": 12.56,
                   "6.0%": 11.83
+                },
+                "0.96%": {
+                  "4.0%": 16.07,
+                  "4.5%": 14.93,
+                  "5.0%": 13.95,
+                  "5.5%": 13.08,
+                  "6.0%": 12.32
                 },
                 "5%": {
                   "4.0%": 19.14,
@@ -4333,7 +4643,19 @@
       "debt_fcf": 39.9689,
       "indexes": [],
       "market_cap": 456336387.5,
-      "rel_vol": 0.9214
+      "rel_vol": 0.9214,
+      "lynch": {
+        "value": 55.27,
+        "pegy": 1.945,
+        "growth_used": 0.0096,
+        "growth_cap": null,
+        "dividend_yield": 0.0398,
+        "pe_used": 2.54,
+        "eps": 11.189,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "AVGO": {
       "name": "Broadcom Inc.",
@@ -4541,7 +4863,19 @@
         "NASDAQ100"
       ],
       "market_cap": 1629316858212.0,
-      "rel_vol": 1.0064
+      "rel_vol": 1.0064,
+      "lynch": {
+        "value": 227.79,
+        "pegy": 0.683,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0078,
+        "pe_used": 45.05,
+        "eps": 7.4007,
+        "eps_adjusted": true,
+        "available": true,
+        "reason": null
+      }
     },
     "AXTI": {
       "name": "AXT, Inc.",
@@ -4623,6 +4957,13 @@
                   "5.0%": 13.15,
                   "5.5%": 12.48,
                   "6.0%": 11.87
+                },
+                "6.49%": {
+                  "4.0%": 15.65,
+                  "4.5%": 14.76,
+                  "5.0%": 13.96,
+                  "5.5%": 13.25,
+                  "6.0%": 12.6
                 },
                 "10%": {
                   "4.0%": 18.03,
@@ -4745,7 +5086,19 @@
       "debt_fcf": 1.1329,
       "indexes": [],
       "market_cap": 2769382220.28,
-      "rel_vol": 1.1424
+      "rel_vol": 1.1424,
+      "lynch": {
+        "value": 3.18,
+        "pegy": 0.083,
+        "growth_used": 0.0649,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 78.49,
+        "eps": 0.49,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "BA": {
       "name": "The Boeing Company",
@@ -4948,7 +5301,19 @@
         "DOW30"
       ],
       "market_cap": 130944546608.48,
-      "rel_vol": 0.7545
+      "rel_vol": 0.7545,
+      "lynch": {
+        "value": 0.09,
+        "pegy": 0.001,
+        "growth_used": 0.0462,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 8261.0,
+        "eps": 0.02,
+        "eps_adjusted": true,
+        "available": true,
+        "reason": null
+      }
     },
     "BE": {
       "name": "Bloom Energy Corporation",
@@ -5154,7 +5519,19 @@
         "SP500"
       ],
       "market_cap": 56529511332.48,
-      "rel_vol": 0.7057
+      "rel_vol": 0.7057,
+      "lynch": {
+        "value": 47.95,
+        "pegy": 0.27,
+        "growth_used": 0.2906,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 107.44,
+        "eps": 1.65,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "BIP": {
       "name": "Brookfield Infrastructure Partners L.P.",
@@ -5357,7 +5734,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 133286769221.64,
-      "rel_vol": 1.2123
+      "rel_vol": 1.2123,
+      "lynch": {
+        "value": 4.41,
+        "pegy": 0.112,
+        "growth_used": 0.2699,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0454,
+        "pe_used": 282.57,
+        "eps": 0.14,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "BLDR": {
       "name": "Builders FirstSource, Inc.",
@@ -5558,7 +5947,19 @@
       "debt_fcf": 21.0105,
       "indexes": [],
       "market_cap": 6422595407.4,
-      "rel_vol": 0.6091
+      "rel_vol": 0.6091,
+      "lynch": {
+        "value": 3.7,
+        "pegy": 0.062,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 162.57,
+        "eps": 0.37,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "BOX": {
       "name": "Box, Inc.",
@@ -5654,6 +6055,13 @@
                   "5.0%": 46.04,
                   "5.5%": 43.0,
                   "6.0%": 40.32
+                },
+                "15.91%": {
+                  "4.0%": 55.51,
+                  "4.5%": 51.33,
+                  "5.0%": 47.71,
+                  "5.5%": 44.55,
+                  "6.0%": 41.77
                 },
                 "20%": {
                   "4.0%": 65.12,
@@ -5762,7 +6170,19 @@
       "debt_fcf": 1.4265,
       "indexes": [],
       "market_cap": 8421881791.54,
-      "rel_vol": 0.601
+      "rel_vol": 0.601,
+      "lynch": {
+        "value": 10.98,
+        "pegy": 0.251,
+        "growth_used": 0.1591,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 63.51,
+        "eps": 0.69,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "BRK-B": {
       "name": "Berkshire Hathaway Inc.",
@@ -5837,6 +6257,13 @@
                   "5.0%": 129.52,
                   "5.5%": 121.54,
                   "6.0%": 114.49
+                },
+                "1.65%": {
+                  "4.0%": 160.34,
+                  "4.5%": 148.93,
+                  "5.0%": 139.05,
+                  "5.5%": 130.4,
+                  "6.0%": 122.76
                 },
                 "5%": {
                   "4.0%": 185.22,
@@ -5973,7 +6400,19 @@
         "SP500"
       ],
       "market_cap": 1279016216187.55,
-      "rel_vol": 0.7411
+      "rel_vol": 0.7411,
+      "lynch": {
+        "value": 49.25,
+        "pegy": 0.083,
+        "growth_used": 0.0165,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 19.86,
+        "eps": 29.8515,
+        "eps_adjusted": true,
+        "available": true,
+        "reason": null
+      }
     },
     "BYND": {
       "name": "Beyond Meat, Inc.",
@@ -6175,7 +6614,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 132417558.9,
-      "rel_vol": 1.5357
+      "rel_vol": 1.5357,
+      "lynch": {
+        "value": 0.15,
+        "pegy": 0.029,
+        "growth_used": 0.0001,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 0.34,
+        "eps": 14.5588,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CAT": {
       "name": "Caterpillar Inc.",
@@ -6381,7 +6832,19 @@
         "DOW30"
       ],
       "market_cap": 264825577508.29,
-      "rel_vol": 0.8673
+      "rel_vol": 0.8673,
+      "lynch": {
+        "value": 571.25,
+        "pegy": 1.001,
+        "growth_used": 0.2132,
+        "growth_cap": null,
+        "dividend_yield": 0.011,
+        "pe_used": 22.39,
+        "eps": 25.4797,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CAVA": {
       "name": "CAVA Group, Inc.",
@@ -6584,7 +7047,19 @@
       "debt_fcf": 13.4387,
       "indexes": [],
       "market_cap": 6607991322.85,
-      "rel_vol": 0.8882
+      "rel_vol": 0.8882,
+      "lynch": {
+        "value": 10.96,
+        "pegy": 0.199,
+        "growth_used": 0.1993,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 100.27,
+        "eps": 0.55,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CBOE": {
       "name": "Cboe Global Markets, Inc.",
@@ -6666,6 +7141,13 @@
                   "5.0%": 364.83,
                   "5.5%": 341.73,
                   "6.0%": 321.36
+                },
+                "8.09%": {
+                  "4.0%": 480.35,
+                  "4.5%": 445.19,
+                  "5.0%": 414.73,
+                  "5.5%": 388.09,
+                  "6.0%": 364.6
                 },
                 "10%": {
                   "4.0%": 519.92,
@@ -6790,7 +7272,19 @@
         "SP500"
       ],
       "market_cap": 39750266800.0,
-      "rel_vol": 0.8875
+      "rel_vol": 0.8875,
+      "lynch": {
+        "value": 124.9,
+        "pegy": 0.331,
+        "growth_used": 0.0809,
+        "growth_cap": null,
+        "dividend_yield": 0.008,
+        "pe_used": 26.87,
+        "eps": 14.0491,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CDE": {
       "name": "Coeur Mining, Inc.",
@@ -6865,6 +7359,13 @@
                   "5.0%": 20.38,
                   "5.5%": 19.12,
                   "6.0%": 18.01
+                },
+                "4.07%": {
+                  "4.0%": 28.01,
+                  "4.5%": 25.99,
+                  "5.0%": 24.25,
+                  "5.5%": 22.72,
+                  "6.0%": 21.37
                 },
                 "5%": {
                   "4.0%": 29.14,
@@ -6994,7 +7495,19 @@
       "debt_fcf": 0.5873,
       "indexes": [],
       "market_cap": 9570211367.04,
-      "rel_vol": 1.1556
+      "rel_vol": 1.1556,
+      "lynch": {
+        "value": 3.63,
+        "pegy": 0.277,
+        "growth_used": 0.0407,
+        "growth_cap": null,
+        "dividend_yield": 0.0015,
+        "pe_used": 15.26,
+        "eps": 0.8598,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CDNS": {
       "name": "Cadence Design Systems, Inc.",
@@ -7199,7 +7712,19 @@
         "NASDAQ100"
       ],
       "market_cap": 84931398925.34,
-      "rel_vol": 0.8179
+      "rel_vol": 0.8179,
+      "lynch": {
+        "value": 131.68,
+        "pegy": 0.426,
+        "growth_used": 0.2618,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 61.52,
+        "eps": 5.0297,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CELH": {
       "name": "Celsius Holdings, Inc.",
@@ -7401,7 +7926,19 @@
       "debt_fcf": 2.5081,
       "indexes": [],
       "market_cap": 11122707325.73,
-      "rel_vol": 0.9701
+      "rel_vol": 0.9701,
+      "lynch": {
+        "value": 26.7,
+        "pegy": 0.846,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 35.47,
+        "eps": 0.89,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CHWY": {
       "name": "Chewy, Inc.",
@@ -7497,6 +8034,13 @@
                   "5.0%": 31.23,
                   "5.5%": 29.16,
                   "6.0%": 27.35
+                },
+                "17.59%": {
+                  "4.0%": 40.22,
+                  "4.5%": 37.18,
+                  "5.0%": 34.54,
+                  "5.5%": 32.24,
+                  "6.0%": 30.21
                 },
                 "20%": {
                   "4.0%": 44.16,
@@ -7604,7 +8148,19 @@
       "debt_fcf": 2.044,
       "indexes": [],
       "market_cap": 8965748491.4,
-      "rel_vol": 0.9121
+      "rel_vol": 0.9121,
+      "lynch": {
+        "value": 11.43,
+        "pegy": 0.529,
+        "growth_used": 0.1759,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 33.26,
+        "eps": 0.65,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CIEN": {
       "name": "Ciena Corporation",
@@ -7700,6 +8256,13 @@
                   "5.0%": 127.18,
                   "5.5%": 118.79,
                   "6.0%": 111.38
+                },
+                "19.5%": {
+                  "4.0%": 176.44,
+                  "4.5%": 163.02,
+                  "5.0%": 151.41,
+                  "5.5%": 141.26,
+                  "6.0%": 132.31
                 },
                 "20%": {
                   "4.0%": 179.88,
@@ -7810,7 +8373,19 @@
         "SP500"
       ],
       "market_cap": 37622732127.16,
-      "rel_vol": 1.0636
+      "rel_vol": 1.0636,
+      "lynch": {
+        "value": 87.16,
+        "pegy": 0.338,
+        "growth_used": 0.195,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 57.62,
+        "eps": 4.47,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CMG": {
       "name": "Chipotle Mexican Grill, Inc.",
@@ -7906,6 +8481,13 @@
                   "5.0%": 26.67,
                   "5.5%": 24.91,
                   "6.0%": 23.35
+                },
+                "18.56%": {
+                  "4.0%": 35.67,
+                  "4.5%": 32.97,
+                  "5.0%": 30.62,
+                  "5.5%": 28.58,
+                  "6.0%": 26.77
                 },
                 "20%": {
                   "4.0%": 37.72,
@@ -8012,7 +8594,19 @@
         "SP500"
       ],
       "market_cap": 46257702209.52,
-      "rel_vol": 0.628
+      "rel_vol": 0.628,
+      "lynch": {
+        "value": 19.86,
+        "pegy": 0.553,
+        "growth_used": 0.1856,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 33.59,
+        "eps": 1.07,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "COHR": {
       "name": "Coherent Corp.",
@@ -8216,7 +8810,19 @@
         "SP500"
       ],
       "market_cap": 40573208033.07,
-      "rel_vol": 0.7646
+      "rel_vol": 0.7646,
+      "lynch": {
+        "value": 102.97,
+        "pegy": 0.506,
+        "growth_used": 0.2132,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 42.12,
+        "eps": 4.8298,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "COST": {
       "name": "Costco Wholesale Corporation",
@@ -8421,7 +9027,19 @@
         "NASDAQ100"
       ],
       "market_cap": 494959789527.94,
-      "rel_vol": 1.302
+      "rel_vol": 1.302,
+      "lynch": {
+        "value": 211.33,
+        "pegy": 0.19,
+        "growth_used": 0.0968,
+        "growth_cap": null,
+        "dividend_yield": 0.005,
+        "pe_used": 53.65,
+        "eps": 20.7594,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CRL": {
       "name": "Charles River Laboratories International, Inc.",
@@ -8627,7 +9245,19 @@
         "SP500"
       ],
       "market_cap": 14045356388.16,
-      "rel_vol": 0.5326
+      "rel_vol": 0.5326,
+      "lynch": {
+        "value": 9.5,
+        "pegy": 0.028,
+        "growth_used": 0.1033,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 364.7,
+        "eps": 0.92,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CRM": {
       "name": "Salesforce, Inc.",
@@ -8831,7 +9461,19 @@
         "DOW30"
       ],
       "market_cap": 189387541956.69,
-      "rel_vol": 0.8672
+      "rel_vol": 0.8672,
+      "lynch": {
+        "value": 284.11,
+        "pegy": 1.322,
+        "growth_used": 0.252,
+        "growth_cap": null,
+        "dividend_yield": 0.008,
+        "pe_used": 19.66,
+        "eps": 10.9273,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CROX": {
       "name": "Crocs, Inc.",
@@ -8913,6 +9555,13 @@
                   "5.0%": 226.61,
                   "5.5%": 212.27,
                   "6.0%": 199.61
+                },
+                "8.72%": {
+                  "4.0%": 306.3,
+                  "4.5%": 283.82,
+                  "5.0%": 264.35,
+                  "5.5%": 247.33,
+                  "6.0%": 232.31
                 },
                 "10%": {
                   "4.0%": 322.95,
@@ -9034,7 +9683,19 @@
       "debt_fcf": 2.2057,
       "indexes": [],
       "market_cap": 8084009379.01,
-      "rel_vol": 1.0366
+      "rel_vol": 1.0366,
+      "lynch": {
+        "value": 115.12,
+        "pegy": 0.719,
+        "growth_used": 0.0872,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 12.12,
+        "eps": 13.2021,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CRWD": {
       "name": "CrowdStrike Holdings, Inc.",
@@ -9238,7 +9899,19 @@
         "NASDAQ100"
       ],
       "market_cap": 200866679000.0,
-      "rel_vol": 0.6953
+      "rel_vol": 0.6953,
+      "lynch": {
+        "value": 1.8,
+        "pegy": 0.008,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 3720.17,
+        "eps": 0.06,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CSCO": {
       "name": "Cisco Systems, Inc.",
@@ -9444,7 +10117,19 @@
         "DOW30"
       ],
       "market_cap": 376575627619.68,
-      "rel_vol": 1.0067
+      "rel_vol": 1.0067,
+      "lynch": {
+        "value": 114.07,
+        "pegy": 1.207,
+        "growth_used": 0.2857,
+        "growth_cap": null,
+        "dividend_yield": 0.0177,
+        "pe_used": 25.14,
+        "eps": 3.7597,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CTSH": {
       "name": "Cognizant Technology Solutions Corporation",
@@ -9533,6 +10218,13 @@
                   "5.0%": 94.08,
                   "5.5%": 87.99,
                   "6.0%": 82.61
+                },
+                "14.03%": {
+                  "4.0%": 128.5,
+                  "4.5%": 118.89,
+                  "5.0%": 110.57,
+                  "5.5%": 103.29,
+                  "6.0%": 96.88
                 },
                 "15%": {
                   "4.0%": 133.58,
@@ -9649,7 +10341,19 @@
         "SP500"
       ],
       "market_cap": 29193473609.9,
-      "rel_vol": 0.6879
+      "rel_vol": 0.6879,
+      "lynch": {
+        "value": 88.42,
+        "pegy": 1.42,
+        "growth_used": 0.1403,
+        "growth_cap": null,
+        "dividend_yield": 0.0211,
+        "pe_used": 11.37,
+        "eps": 5.4785,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "CVX": {
       "name": "Chevron Corporation",
@@ -9745,6 +10449,13 @@
                   "5.0%": 392.72,
                   "5.5%": 366.79,
                   "6.0%": 343.93
+                },
+                "19.21%": {
+                  "4.0%": 538.74,
+                  "4.5%": 497.8,
+                  "5.0%": 462.37,
+                  "5.5%": 431.4,
+                  "6.0%": 404.11
                 },
                 "20%": {
                   "4.0%": 555.43,
@@ -9856,7 +10567,19 @@
         "DOW30"
       ],
       "market_cap": 429440516135.4,
-      "rel_vol": 0.7412
+      "rel_vol": 0.7412,
+      "lynch": {
+        "value": 305.96,
+        "pegy": 1.409,
+        "growth_used": 0.1921,
+        "growth_cap": null,
+        "dividend_yield": 0.0325,
+        "pe_used": 15.94,
+        "eps": 13.6223,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DAKT": {
       "name": "Daktronics, Inc.",
@@ -10058,7 +10781,19 @@
       "debt_fcf": 0.3804,
       "indexes": [],
       "market_cap": 935472476.72,
-      "rel_vol": 0.8652
+      "rel_vol": 0.8652,
+      "lynch": {
+        "value": 29.4,
+        "pegy": 1.535,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 19.55,
+        "eps": 0.9801,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DAL": {
       "name": "Delta Air Lines, Inc.",
@@ -10154,6 +10889,13 @@
                   "5.0%": 104.62,
                   "5.5%": 97.71,
                   "6.0%": 91.62
+                },
+                "17.8%": {
+                  "4.0%": 135.86,
+                  "4.5%": 125.58,
+                  "5.0%": 116.68,
+                  "5.5%": 108.9,
+                  "6.0%": 102.04
                 },
                 "20%": {
                   "4.0%": 147.96,
@@ -10265,7 +11007,19 @@
         "SP500"
       ],
       "market_cap": 56965480000.0,
-      "rel_vol": 0.673
+      "rel_vol": 0.673,
+      "lynch": {
+        "value": 93.81,
+        "pegy": 1.083,
+        "growth_used": 0.178,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0093,
+        "pe_used": 17.29,
+        "eps": 5.0087,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DASH": {
       "name": "DoorDash, Inc.",
@@ -10472,7 +11226,19 @@
         "NASDAQ100"
       ],
       "market_cap": 74270016516.8,
-      "rel_vol": 0.894
+      "rel_vol": 0.894,
+      "lynch": {
+        "value": 72.3,
+        "pegy": 0.426,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 70.45,
+        "eps": 2.4099,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DCTH": {
       "name": "Delcath Systems, Inc.",
@@ -10675,7 +11441,19 @@
       "debt_fcf": 0.1197,
       "indexes": [],
       "market_cap": 826343625.0,
-      "rel_vol": 1.2859
+      "rel_vol": 1.2859,
+      "lynch": {
+        "value": 4.8,
+        "pegy": 0.242,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 124.19,
+        "eps": 0.16,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DDOG": {
       "name": "Datadog, Inc.",
@@ -10882,7 +11660,19 @@
         "NASDAQ100"
       ],
       "market_cap": 62905434544.92,
-      "rel_vol": 0.7427
+      "rel_vol": 0.7427,
+      "lynch": {
+        "value": 21.6,
+        "pegy": 0.125,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 240.08,
+        "eps": 0.72,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DECK": {
       "name": "Deckers Outdoor Corporation",
@@ -10971,6 +11761,13 @@
                   "5.0%": 139.44,
                   "5.5%": 130.41,
                   "6.0%": 122.45
+                },
+                "10.73%": {
+                  "4.0%": 166.61,
+                  "4.5%": 154.29,
+                  "5.0%": 143.62,
+                  "5.5%": 134.29,
+                  "6.0%": 126.07
                 },
                 "15%": {
                   "4.0%": 197.98,
@@ -11087,7 +11884,19 @@
         "SP500"
       ],
       "market_cap": 11762344128.6,
-      "rel_vol": 1.06
+      "rel_vol": 1.06,
+      "lynch": {
+        "value": 81.04,
+        "pegy": 0.971,
+        "growth_used": 0.1073,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 11.05,
+        "eps": 7.5529,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DELL": {
       "name": "Dell Technologies Inc.",
@@ -11294,7 +12103,19 @@
         "SP500"
       ],
       "market_cap": 212170907368.05,
-      "rel_vol": 1.165
+      "rel_vol": 1.165,
+      "lynch": {
+        "value": 528.29,
+        "pegy": 1.648,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0072,
+        "pe_used": 18.64,
+        "eps": 17.1969,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DGX": {
       "name": "Quest Diagnostics Incorporated",
@@ -11390,6 +12211,13 @@
                   "5.0%": 278.76,
                   "5.5%": 260.35,
                   "6.0%": 244.12
+                },
+                "15.55%": {
+                  "4.0%": 331.3,
+                  "4.5%": 306.4,
+                  "5.0%": 284.84,
+                  "5.5%": 265.99,
+                  "6.0%": 249.38
                 },
                 "20%": {
                   "4.0%": 394.25,
@@ -11497,7 +12325,19 @@
         "SP500"
       ],
       "market_cap": 29485566679.79,
-      "rel_vol": 0.7591
+      "rel_vol": 0.7591,
+      "lynch": {
+        "value": 169.05,
+        "pegy": 0.645,
+        "growth_used": 0.1555,
+        "growth_cap": null,
+        "dividend_yield": 0.0129,
+        "pe_used": 26.12,
+        "eps": 10.0387,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DIOD": {
       "name": "Diodes Incorporated",
@@ -11700,7 +12540,19 @@
       "debt_fcf": 3.8078,
       "indexes": [],
       "market_cap": 3851570160.0,
-      "rel_vol": 0.7984
+      "rel_vol": 0.7984,
+      "lynch": {
+        "value": 25.0,
+        "pegy": 0.3,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 33.34,
+        "eps": 2.5,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DIS": {
       "name": "The Walt Disney Company",
@@ -11782,6 +12634,13 @@
                   "5.0%": 70.93,
                   "5.5%": 66.44,
                   "6.0%": 62.48
+                },
+                "6.32%": {
+                  "4.0%": 86.71,
+                  "4.5%": 80.41,
+                  "5.0%": 74.95,
+                  "5.5%": 70.17,
+                  "6.0%": 65.96
                 },
                 "10%": {
                   "4.0%": 101.08,
@@ -11907,7 +12766,19 @@
         "DOW30"
       ],
       "market_cap": 210913223124.8,
-      "rel_vol": 1.6418
+      "rel_vol": 1.6418,
+      "lynch": {
+        "value": 36.77,
+        "pegy": 0.31,
+        "growth_used": 0.0632,
+        "growth_cap": null,
+        "dividend_yield": 0.0126,
+        "pe_used": 24.47,
+        "eps": 4.8508,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DOCN": {
       "name": "DigitalOcean Holdings, Inc.",
@@ -12111,7 +12982,19 @@
       "debt_fcf": 8.4051,
       "indexes": [],
       "market_cap": 9007833092.96,
-      "rel_vol": 0.7469
+      "rel_vol": 0.7469,
+      "lynch": {
+        "value": 8.7,
+        "pegy": 0.11,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 272.0,
+        "eps": 0.29,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DOCU": {
       "name": "DocuSign, Inc.",
@@ -12207,6 +13090,13 @@
                   "5.0%": 135.85,
                   "5.5%": 126.88,
                   "6.0%": 118.97
+                },
+                "18.57%": {
+                  "4.0%": 181.78,
+                  "4.5%": 168.0,
+                  "5.0%": 156.06,
+                  "5.5%": 145.63,
+                  "6.0%": 136.44
                 },
                 "20%": {
                   "4.0%": 192.13,
@@ -12313,7 +13203,19 @@
       "debt_fcf": 0.1528,
       "indexes": [],
       "market_cap": 16058421233.14,
-      "rel_vol": 0.6865
+      "rel_vol": 0.6865,
+      "lynch": {
+        "value": 30.46,
+        "pegy": 0.382,
+        "growth_used": 0.1857,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 48.67,
+        "eps": 1.64,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DXC": {
       "name": "DXC Technology Company",
@@ -12514,7 +13416,19 @@
       "debt_fcf": 3.5854,
       "indexes": [],
       "market_cap": 2377971020.65,
-      "rel_vol": 0.5169
+      "rel_vol": 0.5169,
+      "lynch": {
+        "value": 7.2,
+        "pegy": 0.491,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 20.35,
+        "eps": 0.7199,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "DXCM": {
       "name": "DexCom, Inc.",
@@ -12719,7 +13633,19 @@
         "NASDAQ100"
       ],
       "market_cap": 31840751942.8,
-      "rel_vol": 0.8755
+      "rel_vol": 0.8755,
+      "lynch": {
+        "value": 62.31,
+        "pegy": 0.763,
+        "growth_used": 0.2453,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 32.13,
+        "eps": 2.54,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "EBAY": {
       "name": "eBay Inc.",
@@ -12815,6 +13741,13 @@
                   "5.0%": 120.57,
                   "5.5%": 112.61,
                   "6.0%": 105.59
+                },
+                "15.9%": {
+                  "4.0%": 145.3,
+                  "4.5%": 134.37,
+                  "5.0%": 124.9,
+                  "5.5%": 116.63,
+                  "6.0%": 109.34
                 },
                 "20%": {
                   "4.0%": 170.53,
@@ -12922,7 +13855,19 @@
         "SP500"
       ],
       "market_cap": 55162632629.72,
-      "rel_vol": 0.9831
+      "rel_vol": 0.9831,
+      "lynch": {
+        "value": 77.43,
+        "pegy": 0.641,
+        "growth_used": 0.159,
+        "growth_cap": null,
+        "dividend_yield": 0.0101,
+        "pe_used": 26.4,
+        "eps": 4.5792,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "EFOR": {
       "name": "Everforth, Inc.",
@@ -13124,7 +14069,19 @@
       "debt_fcf": 7.4642,
       "indexes": [],
       "market_cap": 1459901247.02,
-      "rel_vol": 0.5702
+      "rel_vol": 0.5702,
+      "lynch": {
+        "value": 16.3,
+        "pegy": 0.469,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 21.34,
+        "eps": 1.6298,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "EFX": {
       "name": "Equifax Inc.",
@@ -13220,6 +14177,13 @@
                   "5.0%": 209.69,
                   "5.5%": 195.85,
                   "6.0%": 183.64
+                },
+                "19.29%": {
+                  "4.0%": 288.55,
+                  "4.5%": 266.62,
+                  "5.0%": 247.64,
+                  "5.5%": 231.05,
+                  "6.0%": 216.43
                 },
                 "20%": {
                   "4.0%": 296.57,
@@ -13327,7 +14291,19 @@
         "SP500"
       ],
       "market_cap": 22740000000.0,
-      "rel_vol": 0.5977
+      "rel_vol": 0.5977,
+      "lynch": {
+        "value": 126.33,
+        "pegy": 0.667,
+        "growth_used": 0.1929,
+        "growth_cap": null,
+        "dividend_yield": 0.0115,
+        "pe_used": 30.66,
+        "eps": 6.1807,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "EIX": {
       "name": "Edison International",
@@ -13402,6 +14378,13 @@
                   "5.0%": -20.38,
                   "5.5%": -19.12,
                   "6.0%": -18.01
+                },
+                "2.47%": {
+                  "4.0%": -26.14,
+                  "4.5%": -24.28,
+                  "5.0%": -22.66,
+                  "5.5%": -21.24,
+                  "6.0%": -19.99
                 },
                 "5%": {
                   "4.0%": -29.14,
@@ -13535,7 +14518,19 @@
         "SP500"
       ],
       "market_cap": 23954022612.8,
-      "rel_vol": 1.342
+      "rel_vol": 1.342,
+      "lynch": {
+        "value": 76.45,
+        "pegy": 1.234,
+        "growth_used": 0.0247,
+        "growth_cap": null,
+        "dividend_yield": 0.0566,
+        "pe_used": 6.59,
+        "eps": 9.4036,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ENPH": {
       "name": "Enphase Energy, Inc.",
@@ -13738,7 +14733,19 @@
       "debt_fcf": 4.5398,
       "indexes": [],
       "market_cap": 3380278145.5,
-      "rel_vol": 0.4472
+      "rel_vol": 0.4472,
+      "lynch": {
+        "value": 6.7,
+        "pegy": 0.269,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 37.24,
+        "eps": 0.67,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "EQIX": {
       "name": "Equinix, Inc.",
@@ -13946,7 +14953,19 @@
         "SP500"
       ],
       "market_cap": 103179044598.08,
-      "rel_vol": 0.6653
+      "rel_vol": 0.6653,
+      "lynch": {
+        "value": 365.28,
+        "pegy": 0.35,
+        "growth_used": 0.2001,
+        "growth_cap": null,
+        "dividend_yield": 0.0193,
+        "pe_used": 62.65,
+        "eps": 16.649,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ERII": {
       "name": "Energy Recovery, Inc.",
@@ -14035,6 +15054,13 @@
                   "5.0%": 9.33,
                   "5.5%": 8.73,
                   "6.0%": 8.2
+                },
+                "12.43%": {
+                  "4.0%": 11.95,
+                  "4.5%": 11.06,
+                  "5.0%": 10.29,
+                  "5.5%": 9.62,
+                  "6.0%": 9.03
                 },
                 "15%": {
                   "4.0%": 13.25,
@@ -14148,7 +15174,19 @@
       "debt_fcf": 0.2624,
       "indexes": [],
       "market_cap": 461508125.0,
-      "rel_vol": 0.9648
+      "rel_vol": 0.9648,
+      "lynch": {
+        "value": 0.87,
+        "pegy": 0.121,
+        "growth_used": 0.1243,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 102.71,
+        "eps": 0.07,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ESTC": {
       "name": "Elastic N.V.",
@@ -14244,6 +15282,13 @@
                   "5.0%": 74.08,
                   "5.5%": 69.19,
                   "6.0%": 64.87
+                },
+                "17.89%": {
+                  "4.0%": 96.53,
+                  "4.5%": 89.23,
+                  "5.0%": 82.9,
+                  "5.5%": 77.37,
+                  "6.0%": 72.5
                 },
                 "20%": {
                   "4.0%": 104.77,
@@ -14349,7 +15394,19 @@
       "debt_fcf": 1.7069,
       "indexes": [],
       "market_cap": 9207473004.06,
-      "rel_vol": 1.0218
+      "rel_vol": 1.0218,
+      "lynch": {
+        "value": 62.62,
+        "pegy": 0.73,
+        "growth_used": 0.1789,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 24.51,
+        "eps": 3.5002,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ETSY": {
       "name": "Etsy, Inc.",
@@ -14553,7 +15610,19 @@
       "debt_fcf": 5.0334,
       "indexes": [],
       "market_cap": 9815084215.0,
-      "rel_vol": 0.6292
+      "rel_vol": 0.6292,
+      "lynch": {
+        "value": 89.47,
+        "pegy": 1.053,
+        "growth_used": 0.238,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 22.61,
+        "eps": 3.7594,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "FDS": {
       "name": "FactSet Research Systems Inc.",
@@ -14755,7 +15824,19 @@
         "SP500"
       ],
       "market_cap": 12162414847.27,
-      "rel_vol": 0.5609
+      "rel_vol": 0.5609,
+      "lynch": {
+        "value": 313.81,
+        "pegy": 0.945,
+        "growth_used": 0.2018,
+        "growth_cap": null,
+        "dividend_yield": 0.0136,
+        "pe_used": 22.8,
+        "eps": 14.5689,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "FDX": {
       "name": "FedEx Corporation",
@@ -14837,6 +15918,13 @@
                   "5.0%": 324.28,
                   "5.5%": 303.75,
                   "6.0%": 285.64
+                },
+                "8.88%": {
+                  "4.0%": 441.22,
+                  "4.5%": 408.82,
+                  "5.0%": 380.76,
+                  "5.5%": 356.22,
+                  "6.0%": 334.58
                 },
                 "10%": {
                   "4.0%": 462.13,
@@ -14964,7 +16052,19 @@
         "SP500"
       ],
       "market_cap": 78516254082.15,
-      "rel_vol": 0.8586
+      "rel_vol": 0.8586,
+      "lynch": {
+        "value": 196.29,
+        "pegy": 0.599,
+        "growth_used": 0.0888,
+        "growth_cap": null,
+        "dividend_yield": 0.017,
+        "pe_used": 17.66,
+        "eps": 18.5532,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "FEIM": {
       "name": "Frequency Electronics, Inc.",
@@ -15167,7 +16267,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 648853800.0,
-      "rel_vol": 0.6341
+      "rel_vol": 0.6341,
+      "lynch": {
+        "value": 6.44,
+        "pegy": 0.106,
+        "growth_used": 0.2574,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 242.2,
+        "eps": 0.25,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "FFIV": {
       "name": "F5, Inc.",
@@ -15371,7 +16483,19 @@
         "SP500"
       ],
       "market_cap": 17573854652.16,
-      "rel_vol": 0.553
+      "rel_vol": 0.553,
+      "lynch": {
+        "value": 245.72,
+        "pegy": 0.806,
+        "growth_used": 0.1963,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 24.34,
+        "eps": 12.5177,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "FICO": {
       "name": "Fair Isaac Corporation",
@@ -15577,7 +16701,19 @@
         "SP500"
       ],
       "market_cap": 16489679030.4,
-      "rel_vol": 0.5406
+      "rel_vol": 0.5406,
+      "lynch": {
+        "value": 919.57,
+        "pegy": 1.282,
+        "growth_used": 0.2532,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 19.75,
+        "eps": 36.318,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "FLEX": {
       "name": "Flex Ltd.",
@@ -15784,7 +16920,19 @@
         "SP500"
       ],
       "market_cap": 27381660653.6,
-      "rel_vol": 1.3432
+      "rel_vol": 1.3432,
+      "lynch": {
+        "value": 79.55,
+        "pegy": 1.064,
+        "growth_used": 0.2862,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 26.91,
+        "eps": 2.7796,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "FSLR": {
       "name": "First Solar, Inc.",
@@ -15988,7 +17136,19 @@
         "SP500"
       ],
       "market_cap": 17496598299.3,
-      "rel_vol": 0.9007
+      "rel_vol": 0.9007,
+      "lynch": {
+        "value": 518.46,
+        "pegy": 3.191,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 9.4,
+        "eps": 17.2819,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "FTNT": {
       "name": "Fortinet, Inc.",
@@ -16195,7 +17355,19 @@
         "NASDAQ100"
       ],
       "market_cap": 91641407437.65,
-      "rel_vol": 0.7069
+      "rel_vol": 0.7069,
+      "lynch": {
+        "value": 82.75,
+        "pegy": 0.671,
+        "growth_used": 0.2704,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 40.28,
+        "eps": 3.0603,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "GAP": {
       "name": "The Gap, Inc.",
@@ -16277,6 +17449,13 @@
                   "5.0%": 30.59,
                   "5.5%": 29.04,
                   "6.0%": 27.64
+                },
+                "5.61%": {
+                  "4.0%": 35.12,
+                  "4.5%": 33.14,
+                  "5.0%": 31.36,
+                  "5.5%": 29.76,
+                  "6.0%": 28.32
                 },
                 "10%": {
                   "4.0%": 41.96,
@@ -16399,7 +17578,19 @@
       "debt_fcf": 5.977,
       "indexes": [],
       "market_cap": 7399615606.24,
-      "rel_vol": 1.8165
+      "rel_vol": 1.8165,
+      "lynch": {
+        "value": 30.06,
+        "pegy": 1.521,
+        "growth_used": 0.0561,
+        "growth_cap": null,
+        "dividend_yield": 0.0344,
+        "pe_used": 5.95,
+        "eps": 3.321,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "GE": {
       "name": "GE Aerospace",
@@ -16602,7 +17793,19 @@
         "SP500"
       ],
       "market_cap": 341420246869.4,
-      "rel_vol": 0.6338
+      "rel_vol": 0.6338,
+      "lynch": {
+        "value": 88.3,
+        "pegy": 0.272,
+        "growth_used": 0.0955,
+        "growth_cap": null,
+        "dividend_yield": 0.0054,
+        "pe_used": 37.16,
+        "eps": 8.7508,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "GEL": {
       "name": "Genesis Energy, L.P.",
@@ -16805,7 +18008,19 @@
       "debt_fcf": 9.0598,
       "indexes": [],
       "market_cap": 4717946205.28,
-      "rel_vol": 1.0056
+      "rel_vol": 1.0056,
+      "lynch": {
+        "value": 3.06,
+        "pegy": 0.246,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.061,
+        "pe_used": 65.58,
+        "eps": 0.19,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "GEN": {
       "name": "Gen Digital Inc.",
@@ -16887,6 +18102,13 @@
                   "5.0%": 44.05,
                   "5.5%": 41.26,
                   "6.0%": 38.8
+                },
+                "8.53%": {
+                  "4.0%": 59.07,
+                  "4.5%": 54.74,
+                  "5.0%": 50.98,
+                  "5.5%": 47.7,
+                  "6.0%": 44.81
                 },
                 "10%": {
                   "4.0%": 62.77,
@@ -17009,7 +18231,19 @@
         "SP500"
       ],
       "market_cap": 18516363633.6,
-      "rel_vol": 0.8466
+      "rel_vol": 0.8466,
+      "lynch": {
+        "value": 20.06,
+        "pegy": 0.66,
+        "growth_used": 0.0853,
+        "growth_cap": null,
+        "dividend_yield": 0.0165,
+        "pe_used": 15.43,
+        "eps": 1.9702,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "GFS": {
       "name": "GLOBALFOUNDRIES Inc.",
@@ -17212,7 +18446,19 @@
       "debt_fcf": 3.9907,
       "indexes": [],
       "market_cap": 22187828577.06,
-      "rel_vol": 0.6358
+      "rel_vol": 0.6358,
+      "lynch": {
+        "value": 3.71,
+        "pegy": 0.094,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0061,
+        "pe_used": 112.63,
+        "eps": 0.35,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "GLW": {
       "name": "Corning Incorporated",
@@ -17301,6 +18547,13 @@
                   "5.0%": 52.64,
                   "5.5%": 49.23,
                   "6.0%": 46.22
+                },
+                "13.27%": {
+                  "4.0%": 69.74,
+                  "4.5%": 64.53,
+                  "5.0%": 60.03,
+                  "5.5%": 56.09,
+                  "6.0%": 52.62
                 },
                 "15%": {
                   "4.0%": 74.74,
@@ -17420,7 +18673,19 @@
         "SP500"
       ],
       "market_cap": 92790853675.8,
-      "rel_vol": 0.7744
+      "rel_vol": 0.7744,
+      "lynch": {
+        "value": 35.37,
+        "pegy": 0.333,
+        "growth_used": 0.1327,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0105,
+        "pe_used": 42.98,
+        "eps": 2.4702,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "GM": {
       "name": "General Motors Company",
@@ -17516,6 +18781,13 @@
                   "5.0%": 382.92,
                   "5.5%": 357.63,
                   "6.0%": 335.35
+                },
+                "15.69%": {
+                  "4.0%": 457.63,
+                  "4.5%": 423.22,
+                  "5.0%": 393.42,
+                  "5.5%": 367.38,
+                  "6.0%": 344.43
                 },
                 "20%": {
                   "4.0%": 541.57,
@@ -17624,7 +18896,19 @@
         "SP500"
       ],
       "market_cap": 71680922102.19,
-      "rel_vol": 0.6181
+      "rel_vol": 0.6181,
+      "lynch": {
+        "value": 75.44,
+        "pegy": 0.902,
+        "growth_used": 0.1569,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0082,
+        "pe_used": 18.31,
+        "eps": 4.5696,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "GME": {
       "name": "GameStop Corp.",
@@ -17825,7 +19109,19 @@
       "debt_fcf": 6.2983,
       "indexes": [],
       "market_cap": 14849662336.0,
-      "rel_vol": 0.6876
+      "rel_vol": 0.6876,
+      "lynch": {
+        "value": 12.43,
+        "pegy": 0.485,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 20.6,
+        "eps": 1.2427,
+        "eps_adjusted": true,
+        "available": true,
+        "reason": null
+      }
     },
     "GOOGL": {
       "name": "Alphabet Inc.",
@@ -18031,7 +19327,19 @@
         "DOW30"
       ],
       "market_cap": 3491963534245.88,
-      "rel_vol": 0.8517
+      "rel_vol": 0.8517,
+      "lynch": {
+        "value": 168.17,
+        "pegy": 0.593,
+        "growth_used": 0.1485,
+        "growth_cap": null,
+        "dividend_yield": 0.003,
+        "pe_used": 25.56,
+        "eps": 11.1002,
+        "eps_adjusted": true,
+        "available": true,
+        "reason": null
+      }
     },
     "GWRE": {
       "name": "Guidewire Software, Inc.",
@@ -18235,7 +19543,19 @@
       "debt_fcf": 1.8932,
       "indexes": [],
       "market_cap": 13243847918.07,
-      "rel_vol": 0.794
+      "rel_vol": 0.794,
+      "lynch": {
+        "value": 45.12,
+        "pegy": 0.291,
+        "growth_used": 0.2768,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 95.09,
+        "eps": 1.6299,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "HD": {
       "name": "The Home Depot, Inc.",
@@ -18324,6 +19644,13 @@
                   "5.0%": 283.17,
                   "5.5%": 264.83,
                   "6.0%": 248.66
+                },
+                "13.22%": {
+                  "4.0%": 374.38,
+                  "4.5%": 346.46,
+                  "5.0%": 322.27,
+                  "5.5%": 301.13,
+                  "6.0%": 282.5
                 },
                 "15%": {
                   "4.0%": 402.05,
@@ -18439,7 +19766,19 @@
         "DOW30"
       ],
       "market_cap": 345977940655.73,
-      "rel_vol": 1.4069
+      "rel_vol": 1.4069,
+      "lynch": {
+        "value": 207.91,
+        "pegy": 0.598,
+        "growth_used": 0.1322,
+        "growth_cap": null,
+        "dividend_yield": 0.0133,
+        "pe_used": 24.32,
+        "eps": 14.2891,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "HE": {
       "name": "Hawaiian Electric Industries, Inc.",
@@ -18514,6 +19853,13 @@
                   "5.0%": -42.85,
                   "5.5%": -40.2,
                   "6.0%": -37.87
+                },
+                "1.25%": {
+                  "4.0%": -52.12,
+                  "4.5%": -48.42,
+                  "5.0%": -45.22,
+                  "5.5%": -42.41,
+                  "6.0%": -39.93
                 },
                 "5%": {
                   "4.0%": -61.27,
@@ -18642,7 +19988,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 1492758752.85,
-      "rel_vol": 0.6308
+      "rel_vol": 0.6308,
+      "lynch": {
+        "value": 1.65,
+        "pegy": 0.193,
+        "growth_used": 0.0125,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 6.48,
+        "eps": 1.3194,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "HGTY": {
       "name": "Hagerty, Inc.",
@@ -18847,7 +20205,19 @@
       "debt_fcf": 1.0292,
       "indexes": [],
       "market_cap": 16273562672.08,
-      "rel_vol": 1.4561
+      "rel_vol": 1.4561,
+      "lynch": {
+        "value": 1.8,
+        "pegy": 0.111,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 270.67,
+        "eps": 0.06,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "HII": {
       "name": "Huntington Ingalls Industries, Inc.",
@@ -18943,6 +20313,13 @@
                   "5.0%": 189.18,
                   "5.5%": 176.69,
                   "6.0%": 165.68
+                },
+                "17.88%": {
+                  "4.0%": 246.44,
+                  "4.5%": 227.78,
+                  "5.0%": 211.63,
+                  "5.5%": 197.52,
+                  "6.0%": 185.08
                 },
                 "20%": {
                   "4.0%": 267.56,
@@ -19048,7 +20425,19 @@
         "SP500"
       ],
       "market_cap": 11904944578.18,
-      "rel_vol": 0.578
+      "rel_vol": 0.578,
+      "lynch": {
+        "value": 365.78,
+        "pegy": 1.211,
+        "growth_used": 0.1788,
+        "growth_cap": null,
+        "dividend_yield": 0.0182,
+        "pe_used": 16.27,
+        "eps": 18.5673,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "HPE": {
       "name": "Hewlett Packard Enterprise Company",
@@ -19144,6 +20533,13 @@
                   "5.0%": 65.87,
                   "5.5%": 61.52,
                   "6.0%": 57.69
+                },
+                "16.37%": {
+                  "4.0%": 80.87,
+                  "4.5%": 74.77,
+                  "5.0%": 69.5,
+                  "5.5%": 64.89,
+                  "6.0%": 60.82
                 },
                 "20%": {
                   "4.0%": 93.16,
@@ -19253,7 +20649,19 @@
         "SP500"
       ],
       "market_cap": 66998386606.58,
-      "rel_vol": 0.967
+      "rel_vol": 0.967,
+      "lynch": {
+        "value": 34.08,
+        "pegy": 0.732,
+        "growth_used": 0.1637,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.012,
+        "pe_used": 24.01,
+        "eps": 1.9396,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "HPQ": {
       "name": "HP Inc.",
@@ -19328,6 +20736,13 @@
                   "5.0%": 50.95,
                   "5.5%": 47.81,
                   "6.0%": 45.04
+                },
+                "3.48%": {
+                  "4.0%": 68.27,
+                  "4.5%": 63.37,
+                  "5.0%": 59.13,
+                  "5.5%": 55.41,
+                  "6.0%": 52.13
                 },
                 "5%": {
                   "4.0%": 72.86,
@@ -19458,7 +20873,19 @@
         "SP500"
       ],
       "market_cap": 26680351139.16,
-      "rel_vol": 0.9325
+      "rel_vol": 0.9325,
+      "lynch": {
+        "value": 20.03,
+        "pegy": 0.702,
+        "growth_used": 0.0348,
+        "growth_cap": null,
+        "dividend_yield": 0.0417,
+        "pe_used": 10.89,
+        "eps": 2.6189,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "HSY": {
       "name": "The Hershey Company",
@@ -19663,7 +21090,19 @@
         "SP500"
       ],
       "market_cap": 157611561210.45,
-      "rel_vol": 1.1859
+      "rel_vol": 1.1859,
+      "lynch": {
+        "value": 230.21,
+        "pegy": 1.316,
+        "growth_used": 0.2274,
+        "growth_cap": null,
+        "dividend_yield": 0.033,
+        "pe_used": 19.78,
+        "eps": 8.8407,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "HUM": {
       "name": "Humana Inc.",
@@ -19865,7 +21304,19 @@
         "SP500"
       ],
       "market_cap": 55797815632.5,
-      "rel_vol": 0.8303
+      "rel_vol": 0.8303,
+      "lynch": {
+        "value": 315.39,
+        "pegy": 0.684,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0077,
+        "pe_used": 45.0,
+        "eps": 10.25,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "HXL": {
       "name": "Hexcel Corporation",
@@ -20069,7 +21520,19 @@
       "debt_fcf": 4.4561,
       "indexes": [],
       "market_cap": 34629460489.97,
-      "rel_vol": 0.6399
+      "rel_vol": 0.6399,
+      "lynch": {
+        "value": 68.65,
+        "pegy": 0.895,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0092,
+        "pe_used": 34.56,
+        "eps": 2.2202,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "IBM": {
       "name": "International Business Machines Corporation",
@@ -20151,6 +21614,13 @@
                   "5.0%": 234.21,
                   "5.5%": 219.38,
                   "6.0%": 206.3
+                },
+                "8.88%": {
+                  "4.0%": 318.67,
+                  "4.5%": 295.27,
+                  "5.0%": 275.0,
+                  "5.5%": 257.28,
+                  "6.0%": 241.65
                 },
                 "10%": {
                   "4.0%": 333.77,
@@ -20275,7 +21745,19 @@
         "DOW30"
       ],
       "market_cap": 230559932704.04,
-      "rel_vol": 1.0601
+      "rel_vol": 1.0601,
+      "lynch": {
+        "value": 136.67,
+        "pegy": 0.564,
+        "growth_used": 0.0888,
+        "growth_cap": null,
+        "dividend_yield": 0.0278,
+        "pe_used": 20.69,
+        "eps": 11.7211,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ICE": {
       "name": "Intercontinental Exchange, Inc.",
@@ -20364,6 +21846,13 @@
                   "5.0%": 173.41,
                   "5.5%": 162.18,
                   "6.0%": 152.28
+                },
+                "12.15%": {
+                  "4.0%": 219.56,
+                  "4.5%": 203.24,
+                  "5.0%": 189.11,
+                  "5.5%": 176.76,
+                  "6.0%": 165.86
                 },
                 "15%": {
                   "4.0%": 246.21,
@@ -20481,7 +21970,19 @@
         "SP500"
       ],
       "market_cap": 101233694394.63,
-      "rel_vol": 0.8097
+      "rel_vol": 0.8097,
+      "lynch": {
+        "value": 97.55,
+        "pegy": 0.547,
+        "growth_used": 0.1215,
+        "growth_cap": null,
+        "dividend_yield": 0.0114,
+        "pe_used": 24.29,
+        "eps": 7.3401,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ICHR": {
       "name": "Ichor Holdings, Ltd.",
@@ -20683,7 +22184,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 2365595000.0,
-      "rel_vol": 0.8403
+      "rel_vol": 0.8403,
+      "lynch": {
+        "value": 0.7,
+        "pegy": 0.021,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 480.71,
+        "eps": 0.07,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "IDXX": {
       "name": "IDEXX Laboratories, Inc.",
@@ -20772,6 +22285,13 @@
                   "5.0%": 305.57,
                   "5.5%": 285.78,
                   "6.0%": 268.33
+                },
+                "14.44%": {
+                  "4.0%": 424.27,
+                  "4.5%": 392.49,
+                  "5.0%": 364.98,
+                  "5.5%": 340.93,
+                  "6.0%": 319.73
                 },
                 "15%": {
                   "4.0%": 433.86,
@@ -20887,7 +22407,19 @@
         "NASDAQ100"
       ],
       "market_cap": 55815506802.9,
-      "rel_vol": 0.7174
+      "rel_vol": 0.7174,
+      "lynch": {
+        "value": 214.31,
+        "pegy": 0.306,
+        "growth_used": 0.1444,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 47.21,
+        "eps": 14.8411,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ILMN": {
       "name": "Illumina, Inc.",
@@ -20976,6 +22508,13 @@
                   "5.0%": 128.05,
                   "5.5%": 119.76,
                   "6.0%": 112.45
+                },
+                "13.36%": {
+                  "4.0%": 170.26,
+                  "4.5%": 157.55,
+                  "5.0%": 146.55,
+                  "5.5%": 136.93,
+                  "6.0%": 128.45
                 },
                 "15%": {
                   "4.0%": 181.81,
@@ -21092,7 +22631,19 @@
         "SP500"
       ],
       "market_cap": 30500860500.0,
-      "rel_vol": 0.6818
+      "rel_vol": 0.6818,
+      "lynch": {
+        "value": 77.62,
+        "pegy": 0.392,
+        "growth_used": 0.1336,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 34.08,
+        "eps": 5.8099,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "INFY": {
       "name": "Infosys Limited",
@@ -21174,6 +22725,13 @@
                   "5.0%": 13.52,
                   "5.5%": 12.66,
                   "6.0%": 11.91
+                },
+                "7.24%": {
+                  "4.0%": 17.18,
+                  "4.5%": 15.92,
+                  "5.0%": 14.84,
+                  "5.5%": 13.89,
+                  "6.0%": 13.05
                 },
                 "10%": {
                   "4.0%": 19.26,
@@ -21292,7 +22850,19 @@
       "debt_fcf": 0.2451,
       "indexes": [],
       "market_cap": 50182246915.1,
-      "rel_vol": 0.5948
+      "rel_vol": 0.5948,
+      "lynch": {
+        "value": 9.35,
+        "pegy": 0.759,
+        "growth_used": 0.0724,
+        "growth_cap": null,
+        "dividend_yield": 0.043,
+        "pe_used": 15.2,
+        "eps": 0.8099,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "INOD": {
       "name": "Innodata Inc.",
@@ -21496,7 +23066,19 @@
       "debt_fcf": 0.0425,
       "indexes": [],
       "market_cap": 1144711952.42,
-      "rel_vol": 0.6771
+      "rel_vol": 0.6771,
+      "lynch": {
+        "value": 37.45,
+        "pegy": 1.149,
+        "growth_used": 0.2714,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 23.62,
+        "eps": 1.3798,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "INTU": {
       "name": "Intuit Inc.",
@@ -21592,6 +23174,13 @@
                   "5.0%": 711.82,
                   "5.5%": 664.82,
                   "6.0%": 623.39
+                },
+                "19.44%": {
+                  "4.0%": 985.21,
+                  "4.5%": 910.3,
+                  "5.0%": 845.46,
+                  "5.5%": 788.79,
+                  "6.0%": 738.86
                 },
                 "20%": {
                   "4.0%": 1006.73,
@@ -21701,7 +23290,19 @@
         "NASDAQ100"
       ],
       "market_cap": 95858260028.92,
-      "rel_vol": 0.8081
+      "rel_vol": 0.8081,
+      "lynch": {
+        "value": 342.76,
+        "pegy": 0.992,
+        "growth_used": 0.1944,
+        "growth_cap": null,
+        "dividend_yield": 0.0138,
+        "pe_used": 20.99,
+        "eps": 16.4631,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "IPGP": {
       "name": "IPG Photonics Corporation",
@@ -21904,7 +23505,19 @@
       "debt_fcf": 0.463,
       "indexes": [],
       "market_cap": 2726426770.87,
-      "rel_vol": 1.0047
+      "rel_vol": 1.0047,
+      "lynch": {
+        "value": 28.2,
+        "pegy": 0.449,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 66.82,
+        "eps": 0.94,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "IRDM": {
       "name": "Iridium Communications Inc.",
@@ -22000,6 +23613,13 @@
                   "5.0%": 58.58,
                   "5.5%": 54.71,
                   "6.0%": 51.3
+                },
+                "16.34%": {
+                  "4.0%": 71.83,
+                  "4.5%": 66.42,
+                  "5.0%": 61.73,
+                  "5.5%": 57.64,
+                  "6.0%": 54.03
                 },
                 "20%": {
                   "4.0%": 82.85,
@@ -22107,7 +23727,19 @@
       "debt_fcf": 7.8528,
       "indexes": [],
       "market_cap": 4861868206.08,
-      "rel_vol": 0.6641
+      "rel_vol": 0.6641,
+      "lynch": {
+        "value": 27.21,
+        "pegy": 0.604,
+        "growth_used": 0.1634,
+        "growth_cap": null,
+        "dividend_yield": 0.0133,
+        "pe_used": 29.24,
+        "eps": 1.54,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "JACK": {
       "name": "Jack in the Box Inc.",
@@ -22189,6 +23821,13 @@
                   "5.0%": 58.78,
                   "5.5%": 55.06,
                   "6.0%": 51.78
+                },
+                "5.74%": {
+                  "4.0%": 70.11,
+                  "4.5%": 65.03,
+                  "5.0%": 60.63,
+                  "5.5%": 56.77,
+                  "6.0%": 53.38
                 },
                 "10%": {
                   "4.0%": 83.77,
@@ -22314,7 +23953,19 @@
       "debt_fcf": 22.587,
       "indexes": [],
       "market_cap": 272129571.28,
-      "rel_vol": 0.7642
+      "rel_vol": 0.7642,
+      "lynch": {
+        "value": 15.96,
+        "pegy": 1.123,
+        "growth_used": 0.0574,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 5.11,
+        "eps": 2.7808,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "JNJ": {
       "name": "Johnson & Johnson",
@@ -22403,6 +24054,13 @@
                   "5.0%": 157.17,
                   "5.5%": 146.99,
                   "6.0%": 138.02
+                },
+                "13.32%": {
+                  "4.0%": 208.64,
+                  "4.5%": 193.07,
+                  "5.0%": 179.59,
+                  "5.5%": 167.8,
+                  "6.0%": 157.41
                 },
                 "15%": {
                   "4.0%": 223.16,
@@ -22520,7 +24178,19 @@
         "DOW30"
       ],
       "market_cap": 691131040971.6,
-      "rel_vol": 1.0864
+      "rel_vol": 1.0864,
+      "lynch": {
+        "value": 100.09,
+        "pegy": 0.354,
+        "growth_used": 0.1332,
+        "growth_cap": null,
+        "dividend_yield": 0.0187,
+        "pe_used": 42.88,
+        "eps": 6.5893,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "KEYS": {
       "name": "Keysight Technologies, Inc.",
@@ -22726,7 +24396,19 @@
         "SP500"
       ],
       "market_cap": 49300520626.2,
-      "rel_vol": 1.5194
+      "rel_vol": 1.5194,
+      "lynch": {
+        "value": 73.9,
+        "pegy": 0.259,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 38.65,
+        "eps": 7.3902,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "KMX": {
       "name": "CarMax, Inc.",
@@ -22928,7 +24610,19 @@
       "debt_fcf": 15.7667,
       "indexes": [],
       "market_cap": 7091448001.3,
-      "rel_vol": 0.8895
+      "rel_vol": 0.8895,
+      "lynch": {
+        "value": 63.3,
+        "pegy": 1.225,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 24.48,
+        "eps": 2.1099,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "KNF": {
       "name": "Knife River Corporation",
@@ -23017,6 +24711,13 @@
                   "5.0%": -3.17,
                   "5.5%": -2.97,
                   "6.0%": -2.79
+                },
+                "14.17%": {
+                  "4.0%": -4.36,
+                  "4.5%": -4.03,
+                  "5.0%": -3.75,
+                  "5.5%": -3.5,
+                  "6.0%": -3.29
                 },
                 "15%": {
                   "4.0%": -4.51,
@@ -23131,7 +24832,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 3103012883.2,
-      "rel_vol": 0.5175
+      "rel_vol": 0.5175,
+      "lynch": {
+        "value": 33.59,
+        "pegy": 0.617,
+        "growth_used": 0.1417,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 22.95,
+        "eps": 2.3704,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "KNX": {
       "name": "Knight-Swift Transportation Holdings Inc.",
@@ -23336,7 +25049,19 @@
       "debt_fcf": 3.4598,
       "indexes": [],
       "market_cap": 10521171212.76,
-      "rel_vol": 0.6891
+      "rel_vol": 0.6891,
+      "lynch": {
+        "value": 10.72,
+        "pegy": 0.168,
+        "growth_used": 0.1018,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0122,
+        "pe_used": 67.88,
+        "eps": 0.94,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "KO": {
       "name": "The Coca-Cola Company",
@@ -23418,6 +25143,13 @@
                   "5.0%": 50.43,
                   "5.5%": 47.23,
                   "6.0%": 44.42
+                },
+                "7.02%": {
+                  "4.0%": 63.49,
+                  "4.5%": 58.86,
+                  "5.0%": 54.85,
+                  "5.5%": 51.34,
+                  "6.0%": 48.25
                 },
                 "10%": {
                   "4.0%": 71.86,
@@ -23540,7 +25272,19 @@
         "DOW30"
       ],
       "market_cap": 428027329429.32,
-      "rel_vol": 1.0475
+      "rel_vol": 1.0475,
+      "lynch": {
+        "value": 30.98,
+        "pegy": 0.311,
+        "growth_used": 0.0702,
+        "growth_cap": null,
+        "dividend_yield": 0.0212,
+        "pe_used": 29.35,
+        "eps": 3.3894,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "KR": {
       "name": "The Kroger Co.",
@@ -23744,7 +25488,19 @@
         "SP500"
       ],
       "market_cap": 41446999965.62,
-      "rel_vol": 0.8371
+      "rel_vol": 0.8371,
+      "lynch": {
+        "value": 21.69,
+        "pegy": 0.307,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0205,
+        "pe_used": 39.26,
+        "eps": 1.8001,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "KTOS": {
       "name": "Kratos Defense & Security Solutions, Inc.",
@@ -23826,6 +25582,13 @@
                   "5.0%": -10.18,
                   "5.5%": -9.53,
                   "6.0%": -8.96
+                },
+                "7.25%": {
+                  "4.0%": -12.94,
+                  "4.5%": -11.99,
+                  "5.0%": -11.17,
+                  "5.5%": -10.46,
+                  "6.0%": -9.83
                 },
                 "10%": {
                   "4.0%": -14.5,
@@ -23947,7 +25710,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 5804333322.78,
-      "rel_vol": 0.8414
+      "rel_vol": 0.8414,
+      "lynch": {
+        "value": 0.87,
+        "pegy": 0.027,
+        "growth_used": 0.0725,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 263.83,
+        "eps": 0.12,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LLY": {
       "name": "Eli Lilly and Company",
@@ -24154,7 +25929,19 @@
         "SP500"
       ],
       "market_cap": 1281565371995.57,
-      "rel_vol": 1.0752
+      "rel_vol": 1.0752,
+      "lynch": {
+        "value": 938.43,
+        "pegy": 0.655,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0046,
+        "pe_used": 46.47,
+        "eps": 30.8085,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LMT": {
       "name": "Lockheed Martin Corporation",
@@ -24250,6 +26037,13 @@
                   "5.0%": 825.56,
                   "5.5%": 771.04,
                   "6.0%": 722.99
+                },
+                "19.07%": {
+                  "4.0%": 1126.38,
+                  "4.5%": 1040.83,
+                  "5.0%": 966.77,
+                  "5.5%": 902.05,
+                  "6.0%": 845.01
                 },
                 "20%": {
                   "4.0%": 1167.59,
@@ -24359,7 +26153,19 @@
         "SP500"
       ],
       "market_cap": 135398675916.33,
-      "rel_vol": 0.691
+      "rel_vol": 0.691,
+      "lynch": {
+        "value": 603.52,
+        "pegy": 1.031,
+        "growth_used": 0.1907,
+        "growth_cap": null,
+        "dividend_yield": 0.0236,
+        "pe_used": 20.78,
+        "eps": 28.1622,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LOGI": {
       "name": "Logitech International S.A.",
@@ -24563,7 +26369,19 @@
       "debt_fcf": 0.1075,
       "indexes": [],
       "market_cap": 14457202335.24,
-      "rel_vol": 0.5913
+      "rel_vol": 0.5913,
+      "lynch": {
+        "value": 66.78,
+        "pegy": 0.674,
+        "growth_used": 0.1031,
+        "growth_cap": null,
+        "dividend_yield": 0.0172,
+        "pe_used": 17.84,
+        "eps": 5.551,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LOVE": {
       "name": "The Lovesac Company",
@@ -24766,7 +26584,19 @@
       "debt_fcf": 4.2174,
       "indexes": [],
       "market_cap": 220902093.0,
-      "rel_vol": 0.5741
+      "rel_vol": 0.5741,
+      "lynch": {
+        "value": 36.59,
+        "pegy": 2.449,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 12.25,
+        "eps": 1.2196,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LOW": {
       "name": "Lowe's Companies, Inc.",
@@ -24855,6 +26685,13 @@
                   "5.0%": 232.77,
                   "5.5%": 217.7,
                   "6.0%": 204.41
+                },
+                "13.11%": {
+                  "4.0%": 306.39,
+                  "4.5%": 283.54,
+                  "5.0%": 263.76,
+                  "5.5%": 246.46,
+                  "6.0%": 231.22
                 },
                 "15%": {
                   "4.0%": 330.49,
@@ -24969,7 +26806,19 @@
         "SP500"
       ],
       "market_cap": 126287832699.83,
-      "rel_vol": 1.1552
+      "rel_vol": 1.1552,
+      "lynch": {
+        "value": 180.68,
+        "pegy": 0.803,
+        "growth_used": 0.1311,
+        "growth_cap": null,
+        "dividend_yield": 0.0216,
+        "pe_used": 19.01,
+        "eps": 11.8322,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LRCX": {
       "name": "Lam Research Corporation",
@@ -25173,7 +27022,19 @@
         "NASDAQ100"
       ],
       "market_cap": 265497307792.74,
-      "rel_vol": 0.8923
+      "rel_vol": 0.8923,
+      "lynch": {
+        "value": 204.86,
+        "pegy": 0.972,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0053,
+        "pe_used": 31.42,
+        "eps": 6.7101,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LULU": {
       "name": "lululemon athletica inc.",
@@ -25255,6 +27116,13 @@
                   "5.0%": 176.49,
                   "5.5%": 165.32,
                   "6.0%": 155.46
+                },
+                "8.11%": {
+                  "4.0%": 232.57,
+                  "4.5%": 215.55,
+                  "5.0%": 200.8,
+                  "5.5%": 187.9,
+                  "6.0%": 176.52
                 },
                 "10%": {
                   "4.0%": 251.52,
@@ -25377,7 +27245,19 @@
         "SP500"
       ],
       "market_cap": 12287580466.18,
-      "rel_vol": 0.7887
+      "rel_vol": 0.7887,
+      "lynch": {
+        "value": 98.53,
+        "pegy": 0.934,
+        "growth_used": 0.0811,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 8.68,
+        "eps": 12.1498,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LUV": {
       "name": "Southwest Airlines Co.",
@@ -25473,6 +27353,13 @@
                   "5.0%": -19.83,
                   "5.5%": -18.52,
                   "6.0%": -17.37
+                },
+                "15.63%": {
+                  "4.0%": -23.64,
+                  "4.5%": -21.86,
+                  "5.0%": -20.33,
+                  "5.5%": -18.98,
+                  "6.0%": -17.8
                 },
                 "20%": {
                   "4.0%": -28.05,
@@ -25581,7 +27468,19 @@
         "SP500"
       ],
       "market_cap": 24089320205.28,
-      "rel_vol": 0.9435
+      "rel_vol": 0.9435,
+      "lynch": {
+        "value": 35.22,
+        "pegy": 0.758,
+        "growth_used": 0.1563,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0155,
+        "pe_used": 22.65,
+        "eps": 2.0503,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LW": {
       "name": "Lamb Weston Holdings, Inc.",
@@ -25784,7 +27683,19 @@
       "debt_fcf": 9.606,
       "indexes": [],
       "market_cap": 7699694006.9,
-      "rel_vol": 1.1492
+      "rel_vol": 1.1492,
+      "lynch": {
+        "value": 59.89,
+        "pegy": 1.083,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0273,
+        "pe_used": 30.22,
+        "eps": 1.8299,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LWAY": {
       "name": "Lifeway Foods, Inc.",
@@ -25873,6 +27784,13 @@
                   "5.0%": -41.63,
                   "5.5%": -38.93,
                   "6.0%": -36.55
+                },
+                "10.75%": {
+                  "4.0%": -49.78,
+                  "4.5%": -46.1,
+                  "5.0%": -42.91,
+                  "5.5%": -40.12,
+                  "6.0%": -37.66
                 },
                 "15%": {
                   "4.0%": -59.1,
@@ -25986,7 +27904,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 286025250.0,
-      "rel_vol": 2.6703
+      "rel_vol": 2.6703,
+      "lynch": {
+        "value": 5.16,
+        "pegy": 0.286,
+        "growth_used": 0.1075,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 37.62,
+        "eps": 0.4801,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "LYTS": {
       "name": "LSI Industries Inc.",
@@ -26188,7 +28118,19 @@
       "debt_fcf": 5.4654,
       "indexes": [],
       "market_cap": 547157329.92,
-      "rel_vol": 1.37
+      "rel_vol": 1.37,
+      "lynch": {
+        "value": 14.62,
+        "pegy": 0.952,
+        "growth_used": 0.2153,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0131,
+        "pe_used": 24.0,
+        "eps": 0.64,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "M": {
       "name": "Macy's, Inc.",
@@ -26263,6 +28205,13 @@
                   "5.0%": 63.23,
                   "5.5%": 59.33,
                   "6.0%": 55.89
+                },
+                "3.04%": {
+                  "4.0%": 83.13,
+                  "4.5%": 77.18,
+                  "5.0%": 72.02,
+                  "5.5%": 67.5,
+                  "6.0%": 63.52
                 },
                 "5%": {
                   "4.0%": 90.41,
@@ -26391,7 +28340,19 @@
       "debt_fcf": 3.599,
       "indexes": [],
       "market_cap": 6554435888.86,
-      "rel_vol": 1.0139
+      "rel_vol": 1.0139,
+      "lynch": {
+        "value": 16.85,
+        "pegy": 0.705,
+        "growth_used": 0.0304,
+        "growth_cap": null,
+        "dividend_yield": 0.0313,
+        "pe_used": 8.75,
+        "eps": 2.7303,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MA": {
       "name": "Mastercard Incorporated",
@@ -26593,7 +28554,19 @@
         "SP500"
       ],
       "market_cap": 586886933973.06,
-      "rel_vol": 0.7324
+      "rel_vol": 0.7324,
+      "lynch": {
+        "value": 394.77,
+        "pegy": 0.597,
+        "growth_used": 0.2013,
+        "growth_cap": null,
+        "dividend_yield": 0.0053,
+        "pe_used": 34.63,
+        "eps": 19.108,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MCK": {
       "name": "McKesson Corporation",
@@ -26798,7 +28771,19 @@
         "SP500"
       ],
       "market_cap": 133857938565.84,
-      "rel_vol": 1.2645
+      "rel_vol": 1.2645,
+      "lynch": {
+        "value": 593.62,
+        "pegy": 0.537,
+        "growth_used": 0.15,
+        "growth_cap": null,
+        "dividend_yield": 0.0031,
+        "pe_used": 28.5,
+        "eps": 38.7733,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MCO": {
       "name": "Moody's Corporation",
@@ -26894,6 +28879,13 @@
                   "5.0%": 385.88,
                   "5.5%": 360.4,
                   "6.0%": 337.94
+                },
+                "16.79%": {
+                  "4.0%": 481.64,
+                  "4.5%": 445.3,
+                  "5.0%": 413.84,
+                  "5.5%": 386.34,
+                  "6.0%": 362.11
                 },
                 "20%": {
                   "4.0%": 545.76,
@@ -27003,7 +28995,19 @@
         "SP500"
       ],
       "market_cap": 89000319549.24,
-      "rel_vol": 0.6996
+      "rel_vol": 0.6996,
+      "lynch": {
+        "value": 288.13,
+        "pegy": 0.569,
+        "growth_used": 0.1679,
+        "growth_cap": null,
+        "dividend_yield": 0.0079,
+        "pe_used": 30.89,
+        "eps": 16.3898,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MDB": {
       "name": "MongoDB, Inc.",
@@ -27210,7 +29214,19 @@
       "debt_fcf": 0.0835,
       "indexes": [],
       "market_cap": 25924496201.88,
-      "rel_vol": 0.8243
+      "rel_vol": 0.8243,
+      "lynch": {
+        "value": 21.6,
+        "pegy": 0.068,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 440.17,
+        "eps": 0.72,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MELI": {
       "name": "MercadoLibre, Inc.",
@@ -27414,7 +29430,19 @@
         "NASDAQ100"
       ],
       "market_cap": 74125719041.0,
-      "rel_vol": 0.7205
+      "rel_vol": 0.7205,
+      "lynch": {
+        "value": 1118.4,
+        "pegy": 0.765,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 39.22,
+        "eps": 37.28,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "META": {
       "name": "Meta Platforms, Inc.",
@@ -27624,7 +29652,19 @@
         "NASDAQ100"
       ],
       "market_cap": 1608213104629.48,
-      "rel_vol": 0.4873
+      "rel_vol": 0.4873,
+      "lynch": {
+        "value": 699.44,
+        "pegy": 1.117,
+        "growth_used": 0.2638,
+        "growth_cap": null,
+        "dividend_yield": 0.0034,
+        "pe_used": 23.93,
+        "eps": 26.1768,
+        "eps_adjusted": true,
+        "available": true,
+        "reason": null
+      }
     },
     "MMM": {
       "name": "3M Company",
@@ -27720,6 +29760,13 @@
                   "5.0%": 115.79,
                   "5.5%": 108.14,
                   "6.0%": 101.4
+                },
+                "17.05%": {
+                  "4.0%": 146.01,
+                  "4.5%": 134.98,
+                  "5.0%": 125.44,
+                  "5.5%": 117.09,
+                  "6.0%": 109.74
                 },
                 "20%": {
                   "4.0%": 163.76,
@@ -27830,7 +29877,19 @@
         "DOW30"
       ],
       "market_cap": 95740757137.2,
-      "rel_vol": 1.0498
+      "rel_vol": 1.0498,
+      "lynch": {
+        "value": 125.54,
+        "pegy": 0.691,
+        "growth_used": 0.1705,
+        "growth_cap": null,
+        "dividend_yield": 0.0169,
+        "pe_used": 27.12,
+        "eps": 6.6991,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MORN": {
       "name": "Morningstar, Inc.",
@@ -27912,6 +29971,13 @@
                   "5.0%": 191.68,
                   "5.5%": 179.54,
                   "6.0%": 168.84
+                },
+                "9.41%": {
+                  "4.0%": 266.59,
+                  "4.5%": 246.98,
+                  "5.0%": 229.99,
+                  "5.5%": 215.13,
+                  "6.0%": 202.03
                 },
                 "10%": {
                   "4.0%": 273.16,
@@ -28031,7 +30097,19 @@
       "debt_fcf": 3.7731,
       "indexes": [],
       "market_cap": 9676837952.32,
-      "rel_vol": 0.8383
+      "rel_vol": 0.8383,
+      "lynch": {
+        "value": 116.4,
+        "pegy": 0.47,
+        "growth_used": 0.0941,
+        "growth_cap": null,
+        "dividend_yield": 0.008,
+        "pe_used": 21.74,
+        "eps": 11.4002,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MRTN": {
       "name": "Marten Transport, Ltd.",
@@ -28237,7 +30315,19 @@
       "debt_fcf": 0.0867,
       "indexes": [],
       "market_cap": 637903063.08,
-      "rel_vol": 0.6555
+      "rel_vol": 0.6555,
+      "lynch": {
+        "value": 1.92,
+        "pegy": 0.159,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0199,
+        "pe_used": 75.38,
+        "eps": 0.16,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MRVL": {
       "name": "Marvell Technology, Inc.",
@@ -28442,7 +30532,19 @@
         "NASDAQ100"
       ],
       "market_cap": 127064855651.28,
-      "rel_vol": 0.769
+      "rel_vol": 0.769,
+      "lynch": {
+        "value": 65.69,
+        "pegy": 0.452,
+        "growth_used": 0.2145,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0016,
+        "pe_used": 47.82,
+        "eps": 3.0397,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MSFT": {
       "name": "Microsoft Corporation",
@@ -28538,6 +30640,13 @@
                   "5.0%": 183.48,
                   "5.5%": 171.37,
                   "6.0%": 160.69
+                },
+                "17.64%": {
+                  "4.0%": 236.78,
+                  "4.5%": 218.87,
+                  "5.0%": 203.37,
+                  "5.5%": 189.81,
+                  "6.0%": 177.87
                 },
                 "20%": {
                   "4.0%": 259.5,
@@ -28646,7 +30755,19 @@
         "DOW30"
       ],
       "market_cap": 3856024618691.19,
-      "rel_vol": 1.1516
+      "rel_vol": 1.1516,
+      "lynch": {
+        "value": 351.84,
+        "pegy": 0.679,
+        "growth_used": 0.1764,
+        "growth_cap": null,
+        "dividend_yield": 0.0072,
+        "pe_used": 27.03,
+        "eps": 19.1635,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "MU": {
       "name": "Micron Technology, Inc.",
@@ -28853,7 +30974,19 @@
         "NASDAQ100"
       ],
       "market_cap": 821934755540.58,
-      "rel_vol": 0.8847
+      "rel_vol": 0.8847,
+      "lynch": {
+        "value": 2236.62,
+        "pegy": 3.111,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0008,
+        "pe_used": 9.67,
+        "eps": 74.3557,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NCLH": {
       "name": "Norwegian Cruise Line Holdings Ltd.",
@@ -28935,6 +31068,13 @@
                   "5.0%": -19.14,
                   "5.5%": -17.93,
                   "6.0%": -16.86
+                },
+                "6.64%": {
+                  "4.0%": -23.71,
+                  "4.5%": -21.99,
+                  "5.0%": -20.49,
+                  "5.5%": -19.18,
+                  "6.0%": -18.03
                 },
                 "10%": {
                   "4.0%": -27.27,
@@ -29057,7 +31197,19 @@
         "SP500"
       ],
       "market_cap": 8015908709.1,
-      "rel_vol": 0.756
+      "rel_vol": 0.756,
+      "lynch": {
+        "value": 12.02,
+        "pegy": 0.671,
+        "growth_used": 0.0664,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 9.89,
+        "eps": 1.8099,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NDAQ": {
       "name": "Nasdaq, Inc.",
@@ -29153,6 +31305,13 @@
                   "5.0%": 90.49,
                   "5.5%": 84.51,
                   "6.0%": 79.25
+                },
+                "17.65%": {
+                  "4.0%": 116.82,
+                  "4.5%": 107.98,
+                  "5.0%": 100.33,
+                  "5.5%": 93.65,
+                  "6.0%": 87.75
                 },
                 "20%": {
                   "4.0%": 127.98,
@@ -29260,7 +31419,19 @@
         "SP500"
       ],
       "market_cap": 61791169387.64,
-      "rel_vol": 0.9523
+      "rel_vol": 0.9523,
+      "lynch": {
+        "value": 68.52,
+        "pegy": 0.631,
+        "growth_used": 0.1765,
+        "growth_cap": null,
+        "dividend_yield": 0.0107,
+        "pe_used": 29.65,
+        "eps": 3.66,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NEM": {
       "name": "Newmont Corporation",
@@ -29467,7 +31638,19 @@
         "SP500"
       ],
       "market_cap": 118519116317.55,
-      "rel_vol": 0.8348
+      "rel_vol": 0.8348,
+      "lynch": {
+        "value": 47.74,
+        "pegy": 0.433,
+        "growth_used": 0.046,
+        "growth_cap": null,
+        "dividend_yield": 0.0094,
+        "pe_used": 12.8,
+        "eps": 8.618,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NKE": {
       "name": "NIKE, Inc.",
@@ -29549,6 +31732,13 @@
                   "5.0%": 21.57,
                   "5.5%": 20.2,
                   "6.0%": 19.0
+                },
+                "5.59%": {
+                  "4.0%": 25.56,
+                  "4.5%": 23.71,
+                  "5.0%": 22.11,
+                  "5.5%": 20.7,
+                  "6.0%": 19.46
                 },
                 "10%": {
                   "4.0%": 30.74,
@@ -29672,7 +31862,19 @@
         "DOW30"
       ],
       "market_cap": 56621138747.56,
-      "rel_vol": 0.8772
+      "rel_vol": 0.8772,
+      "lynch": {
+        "value": 20.56,
+        "pegy": 0.537,
+        "growth_used": 0.0559,
+        "growth_cap": null,
+        "dividend_yield": 0.0429,
+        "pe_used": 18.39,
+        "eps": 2.0805,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NOW": {
       "name": "ServiceNow, Inc.",
@@ -29876,7 +32078,19 @@
         "SP500"
       ],
       "market_cap": 103301906442.65,
-      "rel_vol": 0.6413
+      "rel_vol": 0.6413,
+      "lynch": {
+        "value": 41.7,
+        "pegy": 0.42,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 71.49,
+        "eps": 1.39,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NRG": {
       "name": "NRG Energy, Inc.",
@@ -30081,7 +32295,19 @@
         "SP500"
       ],
       "market_cap": 20563377419.91,
-      "rel_vol": 0.6072
+      "rel_vol": 0.6072,
+      "lynch": {
+        "value": 68.76,
+        "pegy": 0.732,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0202,
+        "pe_used": 16.43,
+        "eps": 5.7206,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NTAP": {
       "name": "NetApp, Inc.",
@@ -30170,6 +32396,13 @@
                   "5.0%": 153.81,
                   "5.5%": 143.85,
                   "6.0%": 135.07
+                },
+                "12.48%": {
+                  "4.0%": 197.37,
+                  "4.5%": 182.68,
+                  "5.0%": 169.97,
+                  "5.5%": 158.85,
+                  "6.0%": 149.05
                 },
                 "15%": {
                   "4.0%": 218.39,
@@ -30288,7 +32521,19 @@
         "SP500"
       ],
       "market_cap": 35620240135.1,
-      "rel_vol": 1.2995
+      "rel_vol": 1.2995,
+      "lynch": {
+        "value": 96.8,
+        "pegy": 0.544,
+        "growth_used": 0.1248,
+        "growth_cap": null,
+        "dividend_yield": 0.0117,
+        "pe_used": 25.08,
+        "eps": 7.0913,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NTNX": {
       "name": "Nutanix, Inc.",
@@ -30370,6 +32615,13 @@
                   "5.0%": 43.74,
                   "5.5%": 40.97,
                   "6.0%": 38.53
+                },
+                "9.19%": {
+                  "4.0%": 60.29,
+                  "4.5%": 55.86,
+                  "5.0%": 52.02,
+                  "5.5%": 48.66,
+                  "6.0%": 45.7
                 },
                 "10%": {
                   "4.0%": 62.34,
@@ -30490,7 +32742,19 @@
       "debt_fcf": 1.8098,
       "indexes": [],
       "market_cap": 17178524735.96,
-      "rel_vol": 0.6292
+      "rel_vol": 0.6292,
+      "lynch": {
+        "value": 47.51,
+        "pegy": 0.806,
+        "growth_used": 0.0919,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 11.4,
+        "eps": 5.1702,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NU": {
       "name": "Nu Holdings Ltd.",
@@ -30694,7 +32958,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 63913680380.28,
-      "rel_vol": 0.9944
+      "rel_vol": 0.9944,
+      "lynch": {
+        "value": 24.0,
+        "pegy": 1.893,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 15.85,
+        "eps": 0.8,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NUE": {
       "name": "Nucor Corporation",
@@ -30769,6 +33045,13 @@
                   "5.0%": 142.41,
                   "5.5%": 133.63,
                   "6.0%": 125.89
+                },
+                "3.09%": {
+                  "4.0%": 187.65,
+                  "4.5%": 174.21,
+                  "5.0%": 162.56,
+                  "5.5%": 152.37,
+                  "6.0%": 143.37
                 },
                 "5%": {
                   "4.0%": 203.65,
@@ -30899,7 +33182,19 @@
         "SP500"
       ],
       "market_cap": 57909580563.89,
-      "rel_vol": 0.7246
+      "rel_vol": 0.7246,
+      "lynch": {
+        "value": 62.5,
+        "pegy": 0.247,
+        "growth_used": 0.0309,
+        "growth_cap": null,
+        "dividend_yield": 0.0089,
+        "pe_used": 16.09,
+        "eps": 15.7035,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NVDA": {
       "name": "NVIDIA Corporation",
@@ -31106,7 +33401,19 @@
         "DOW30"
       ],
       "market_cap": 3807348553774.66,
-      "rel_vol": 1.5984
+      "rel_vol": 1.5984,
+      "lynch": {
+        "value": 238.72,
+        "pegy": 1.529,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0018,
+        "pe_used": 19.74,
+        "eps": 7.9098,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NXPI": {
       "name": "NXP Semiconductors N.V.",
@@ -31313,7 +33620,19 @@
         "NASDAQ100"
       ],
       "market_cap": 64456034540.46,
-      "rel_vol": 0.841
+      "rel_vol": 0.841,
+      "lynch": {
+        "value": 401.62,
+        "pegy": 1.58,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.016,
+        "pe_used": 20.0,
+        "eps": 12.7095,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "NXT": {
       "name": "Nextpower Inc.",
@@ -31395,6 +33714,13 @@
                   "5.0%": 50.58,
                   "5.5%": 47.38,
                   "6.0%": 44.55
+                },
+                "7.14%": {
+                  "4.0%": 64.0,
+                  "4.5%": 59.33,
+                  "5.0%": 55.29,
+                  "5.5%": 51.75,
+                  "6.0%": 48.63
                 },
                 "10%": {
                   "4.0%": 72.08,
@@ -31514,7 +33840,19 @@
       "debt_fcf": 0.0869,
       "indexes": [],
       "market_cap": 13747613959.17,
-      "rel_vol": 0.6057
+      "rel_vol": 0.6057,
+      "lynch": {
+        "value": 28.34,
+        "pegy": 0.317,
+        "growth_used": 0.0714,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 22.5,
+        "eps": 3.9693,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "OKTA": {
       "name": "Okta, Inc.",
@@ -31719,7 +34057,19 @@
         "SP500"
       ],
       "market_cap": 31778987949.66,
-      "rel_vol": 0.3677
+      "rel_vol": 0.3677,
+      "lynch": {
+        "value": 43.58,
+        "pegy": 0.245,
+        "growth_used": 0.2625,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 107.36,
+        "eps": 1.66,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "OLED": {
       "name": "Universal Display Corporation",
@@ -31808,6 +34158,13 @@
                   "5.0%": 92.59,
                   "5.5%": 86.59,
                   "6.0%": 81.3
+                },
+                "11.8%": {
+                  "4.0%": 115.57,
+                  "4.5%": 106.99,
+                  "5.0%": 99.56,
+                  "5.5%": 93.07,
+                  "6.0%": 87.34
                 },
                 "15%": {
                   "4.0%": 131.46,
@@ -31923,7 +34280,19 @@
       "debt_fcf": 0.0924,
       "indexes": [],
       "market_cap": 4107476500.26,
-      "rel_vol": 0.5802
+      "rel_vol": 0.5802,
+      "lynch": {
+        "value": 68.95,
+        "pegy": 0.784,
+        "growth_used": 0.118,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0221,
+        "pe_used": 17.88,
+        "eps": 4.9211,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ON": {
       "name": "ON Semiconductor Corporation",
@@ -32128,7 +34497,19 @@
         "SP500"
       ],
       "market_cap": 27931244941.39,
-      "rel_vol": 0.7233
+      "rel_vol": 0.7233,
+      "lynch": {
+        "value": 17.1,
+        "pegy": 0.253,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 39.58,
+        "eps": 1.7102,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ORCL": {
       "name": "Oracle Corporation",
@@ -32332,7 +34713,19 @@
         "SP500"
       ],
       "market_cap": 353163448230.69,
-      "rel_vol": 0.4805
+      "rel_vol": 0.4805,
+      "lynch": {
+        "value": 185.81,
+        "pegy": 1.56,
+        "growth_used": 0.2745,
+        "growth_cap": null,
+        "dividend_yield": 0.0168,
+        "pe_used": 18.67,
+        "eps": 6.3787,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "OXY": {
       "name": "Occidental Petroleum Corporation",
@@ -32537,7 +34930,19 @@
         "SP500"
       ],
       "market_cap": 64085498660.64,
-      "rel_vol": 0.8106
+      "rel_vol": 0.8106,
+      "lynch": {
+        "value": 73.29,
+        "pegy": 1.278,
+        "growth_used": 0.1452,
+        "growth_cap": null,
+        "dividend_yield": 0.0181,
+        "pe_used": 12.78,
+        "eps": 4.4883,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "P": {
       "name": "Everpure, Inc.",
@@ -32741,7 +35146,19 @@
         "SP500"
       ],
       "market_cap": 35973409271.04,
-      "rel_vol": 0.9564
+      "rel_vol": 0.9564,
+      "lynch": {
+        "value": 14.59,
+        "pegy": 0.141,
+        "growth_used": 0.1998,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 142.03,
+        "eps": 0.73,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PANW": {
       "name": "Palo Alto Networks, Inc.",
@@ -32946,7 +35363,19 @@
         "NASDAQ100"
       ],
       "market_cap": 242599075000.0,
-      "rel_vol": 0.8547
+      "rel_vol": 0.8547,
+      "lynch": {
+        "value": 11.42,
+        "pegy": 0.036,
+        "growth_used": 0.2854,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 790.22,
+        "eps": 0.4,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PATH": {
       "name": "UiPath, Inc.",
@@ -33150,7 +35579,19 @@
       "debt_fcf": 0.2198,
       "indexes": [],
       "market_cap": 7097855375.88,
-      "rel_vol": 1.4092
+      "rel_vol": 1.4092,
+      "lynch": {
+        "value": 20.1,
+        "pegy": 1.53,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 19.61,
+        "eps": 0.6701,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PFE": {
       "name": "Pfizer Inc.",
@@ -33355,7 +35796,19 @@
         "SP500"
       ],
       "market_cap": 166316057146.98,
-      "rel_vol": 1.1401
+      "rel_vol": 1.1401,
+      "lynch": {
+        "value": 8.48,
+        "pegy": 0.294,
+        "growth_used": 0.0467,
+        "growth_cap": null,
+        "dividend_yield": 0.0745,
+        "pe_used": 41.23,
+        "eps": 0.7,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PG": {
       "name": "The Procter & Gamble Company",
@@ -33437,6 +35890,13 @@
                   "5.0%": 96.6,
                   "5.5%": 90.48,
                   "6.0%": 85.09
+                },
+                "5.98%": {
+                  "4.0%": 116.4,
+                  "4.5%": 107.95,
+                  "5.0%": 100.64,
+                  "5.5%": 94.23,
+                  "6.0%": 88.59
                 },
                 "10%": {
                   "4.0%": 137.66,
@@ -33560,7 +36020,19 @@
         "DOW30"
       ],
       "market_cap": 417619207783.38,
-      "rel_vol": 1.4862
+      "rel_vol": 1.4862,
+      "lynch": {
+        "value": 56.17,
+        "pegy": 0.325,
+        "growth_used": 0.0598,
+        "growth_cap": null,
+        "dividend_yield": 0.0248,
+        "pe_used": 26.06,
+        "eps": 6.6393,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PINS": {
       "name": "Pinterest, Inc.",
@@ -33763,7 +36235,19 @@
       "debt_fcf": 0.9478,
       "indexes": [],
       "market_cap": 13139280720.0,
-      "rel_vol": 0.7846
+      "rel_vol": 0.7846,
+      "lynch": {
+        "value": 5.91,
+        "pegy": 0.321,
+        "growth_used": 0.2463,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 76.75,
+        "eps": 0.24,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PLTR": {
       "name": "Palantir Technologies Inc.",
@@ -33970,7 +36454,19 @@
         "NASDAQ100"
       ],
       "market_cap": 411529895719.88,
-      "rel_vol": 0.7219
+      "rel_vol": 0.7219,
+      "lynch": {
+        "value": 42.6,
+        "pegy": 0.266,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 112.95,
+        "eps": 1.42,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PM": {
       "name": "Philip Morris International Inc.",
@@ -34059,6 +36555,13 @@
                   "5.0%": 162.03,
                   "5.5%": 151.53,
                   "6.0%": 142.28
+                },
+                "10.92%": {
+                  "4.0%": 195.11,
+                  "4.5%": 180.68,
+                  "5.0%": 168.17,
+                  "5.5%": 157.24,
+                  "6.0%": 147.6
                 },
                 "15%": {
                   "4.0%": 230.05,
@@ -34175,7 +36678,19 @@
         "SP500"
       ],
       "market_cap": 306928707631.0,
-      "rel_vol": 1.1606
+      "rel_vol": 1.1606,
+      "lynch": {
+        "value": 95.76,
+        "pegy": 0.488,
+        "growth_used": 0.1092,
+        "growth_cap": null,
+        "dividend_yield": 0.0306,
+        "pe_used": 28.62,
+        "eps": 6.8498,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PRIM": {
       "name": "Primoris Services Corporation",
@@ -34378,7 +36893,19 @@
       "debt_fcf": 33.3979,
       "indexes": [],
       "market_cap": 3652871209.2,
-      "rel_vol": 0.5995
+      "rel_vol": 0.5995,
+      "lynch": {
+        "value": 18.53,
+        "pegy": 0.276,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0047,
+        "pe_used": 37.93,
+        "eps": 1.7701,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PYPL": {
       "name": "PayPal Holdings, Inc.",
@@ -34467,6 +36994,13 @@
                   "5.0%": 130.29,
                   "5.5%": 121.86,
                   "6.0%": 114.41
+                },
+                "11.82%": {
+                  "4.0%": 162.77,
+                  "4.5%": 150.69,
+                  "5.0%": 140.22,
+                  "5.5%": 131.07,
+                  "6.0%": 123.01
                 },
                 "15%": {
                   "4.0%": 184.99,
@@ -34583,7 +37117,19 @@
         "NASDAQ100"
       ],
       "market_cap": 53070498112.71,
-      "rel_vol": 0.8255
+      "rel_vol": 0.8255,
+      "lynch": {
+        "value": 66.9,
+        "pegy": 1.137,
+        "growth_used": 0.1182,
+        "growth_cap": null,
+        "dividend_yield": 0.0095,
+        "pe_used": 11.23,
+        "eps": 5.2386,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "PZZA": {
       "name": "Papa John's International, Inc.",
@@ -34672,6 +37218,13 @@
                   "5.0%": 11.57,
                   "5.5%": 10.82,
                   "6.0%": 10.16
+                },
+                "10.95%": {
+                  "4.0%": 13.95,
+                  "4.5%": 12.92,
+                  "5.0%": 12.03,
+                  "5.5%": 11.24,
+                  "6.0%": 10.56
                 },
                 "15%": {
                   "4.0%": 16.43,
@@ -34787,7 +37340,19 @@
       "debt_fcf": 34.1162,
       "indexes": [],
       "market_cap": 680342681.07,
-      "rel_vol": 0.6979
+      "rel_vol": 0.6979,
+      "lynch": {
+        "value": 13.6,
+        "pegy": 0.684,
+        "growth_used": 0.1095,
+        "growth_cap": null,
+        "dividend_yield": 0.0694,
+        "pe_used": 26.17,
+        "eps": 0.76,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "QCOM": {
       "name": "QUALCOMM Incorporated",
@@ -34876,6 +37441,13 @@
                   "5.0%": 150.45,
                   "5.5%": 140.71,
                   "6.0%": 132.12
+                },
+                "13.01%": {
+                  "4.0%": 197.24,
+                  "4.5%": 182.53,
+                  "5.0%": 169.8,
+                  "5.5%": 158.67,
+                  "6.0%": 148.86
                 },
                 "15%": {
                   "4.0%": 213.61,
@@ -34993,7 +37565,19 @@
         "NASDAQ100"
       ],
       "market_cap": 180833902338.32,
-      "rel_vol": 0.8628
+      "rel_vol": 0.8628,
+      "lynch": {
+        "value": 192.52,
+        "pegy": 1.142,
+        "growth_used": 0.1301,
+        "growth_cap": null,
+        "dividend_yield": 0.0215,
+        "pe_used": 13.27,
+        "eps": 12.6993,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "QLYS": {
       "name": "Qualys, Inc.",
@@ -35193,7 +37777,19 @@
       "debt_fcf": 0.1579,
       "indexes": [],
       "market_cap": 6461869906.29,
-      "rel_vol": 1.0519
+      "rel_vol": 1.0519,
+      "lynch": {
+        "value": 61.27,
+        "pegy": 0.337,
+        "growth_used": 0.1021,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 30.33,
+        "eps": 6.001,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "RBBN": {
       "name": "Ribbon Communications Inc.",
@@ -35282,6 +37878,13 @@
                   "5.0%": -2.99,
                   "5.5%": -2.79,
                   "6.0%": -2.62
+                },
+                "11%": {
+                  "4.0%": -3.61,
+                  "4.5%": -3.34,
+                  "5.0%": -3.11,
+                  "5.5%": -2.91,
+                  "6.0%": -2.73
                 },
                 "15%": {
                   "4.0%": -4.24,
@@ -35396,7 +37999,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 271384800.0,
-      "rel_vol": 0.6806
+      "rel_vol": 0.6806,
+      "lynch": {
+        "value": 1.1,
+        "pegy": 0.753,
+        "growth_used": 0.11,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 14.6,
+        "eps": 0.1,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "RCL": {
       "name": "Royal Caribbean Cruises Ltd.",
@@ -35492,6 +38107,13 @@
                   "5.0%": 127.87,
                   "5.5%": 119.42,
                   "6.0%": 111.98
+                },
+                "16.07%": {
+                  "4.0%": 155.13,
+                  "4.5%": 143.45,
+                  "5.0%": 133.34,
+                  "5.5%": 124.5,
+                  "6.0%": 116.71
                 },
                 "20%": {
                   "4.0%": 180.84,
@@ -35602,7 +38224,19 @@
         "SP500"
       ],
       "market_cap": 85617584465.04,
-      "rel_vol": 0.5907
+      "rel_vol": 0.5907,
+      "lynch": {
+        "value": 300.75,
+        "pegy": 0.946,
+        "growth_used": 0.1607,
+        "growth_cap": null,
+        "dividend_yield": 0.0173,
+        "pe_used": 18.81,
+        "eps": 16.8963,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "RDDT": {
       "name": "Reddit, Inc.",
@@ -35808,7 +38442,19 @@
         "SP500"
       ],
       "market_cap": 18795675024.93,
-      "rel_vol": 0.6334
+      "rel_vol": 0.6334,
+      "lynch": {
+        "value": 147.02,
+        "pegy": 1.583,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 18.95,
+        "eps": 4.9008,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "RH": {
       "name": "RH",
@@ -36011,7 +38657,19 @@
       "debt_fcf": 16.4012,
       "indexes": [],
       "market_cap": 2503220923.92,
-      "rel_vol": 0.8698
+      "rel_vol": 0.8698,
+      "lynch": {
+        "value": 169.8,
+        "pegy": 1.346,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 22.29,
+        "eps": 5.6599,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "RMBS": {
       "name": "Rambus Inc.",
@@ -36093,6 +38751,13 @@
                   "5.0%": 43.44,
                   "5.5%": 40.69,
                   "6.0%": 38.26
+                },
+                "8.48%": {
+                  "4.0%": 58.13,
+                  "4.5%": 53.87,
+                  "5.0%": 50.18,
+                  "5.5%": 46.95,
+                  "6.0%": 44.1
                 },
                 "10%": {
                   "4.0%": 61.91,
@@ -36213,7 +38878,19 @@
       "debt_fcf": 0.0646,
       "indexes": [],
       "market_cap": 8527469958.0,
-      "rel_vol": 0.5761
+      "rel_vol": 0.5761,
+      "lynch": {
+        "value": 20.52,
+        "pegy": 0.263,
+        "growth_used": 0.0848,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 32.21,
+        "eps": 2.4197,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ROG": {
       "name": "Rogers Corporation",
@@ -36416,7 +39093,19 @@
       "debt_fcf": 0.2237,
       "indexes": [],
       "market_cap": 2264266400.26,
-      "rel_vol": 1.3205
+      "rel_vol": 1.3205,
+      "lynch": {
+        "value": 25.0,
+        "pegy": 0.203,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 49.38,
+        "eps": 2.5002,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ROK": {
       "name": "Rockwell Automation, Inc.",
@@ -36505,6 +39194,13 @@
                   "5.0%": 282.61,
                   "5.5%": 264.31,
                   "6.0%": 248.17
+                },
+                "13.01%": {
+                  "4.0%": 370.49,
+                  "4.5%": 342.87,
+                  "5.0%": 318.96,
+                  "5.5%": 298.05,
+                  "6.0%": 279.62
                 },
                 "15%": {
                   "4.0%": 401.26,
@@ -36621,7 +39317,19 @@
         "SP500"
       ],
       "market_cap": 43247536050.3,
-      "rel_vol": 1.0225
+      "rel_vol": 1.0225,
+      "lynch": {
+        "value": 181.23,
+        "pegy": 0.471,
+        "growth_used": 0.1301,
+        "growth_cap": null,
+        "dividend_yield": 0.0144,
+        "pe_used": 30.69,
+        "eps": 12.5415,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ROST": {
       "name": "Ross Stores, Inc.",
@@ -36710,6 +39418,13 @@
                   "5.0%": 161.84,
                   "5.5%": 151.36,
                   "6.0%": 142.12
+                },
+                "12.66%": {
+                  "4.0%": 209.18,
+                  "4.5%": 193.61,
+                  "5.0%": 180.12,
+                  "5.5%": 168.33,
+                  "6.0%": 157.94
                 },
                 "15%": {
                   "4.0%": 229.78,
@@ -36827,7 +39542,19 @@
         "NASDAQ100"
       ],
       "market_cap": 71785043375.4,
-      "rel_vol": 1.0195
+      "rel_vol": 1.0195,
+      "lynch": {
+        "value": 111.0,
+        "pegy": 0.498,
+        "growth_used": 0.1266,
+        "growth_cap": null,
+        "dividend_yield": 0.0076,
+        "pe_used": 26.96,
+        "eps": 8.2711,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "RTX": {
       "name": "RTX Corporation",
@@ -37030,7 +39757,19 @@
         "SP500"
       ],
       "market_cap": 265854004943.53,
-      "rel_vol": 0.6178
+      "rel_vol": 0.6178,
+      "lynch": {
+        "value": 100.86,
+        "pegy": 0.518,
+        "growth_used": 0.1495,
+        "growth_cap": null,
+        "dividend_yield": 0.0145,
+        "pe_used": 31.69,
+        "eps": 6.1499,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SBUX": {
       "name": "Starbucks Corporation",
@@ -37238,7 +39977,19 @@
         "NASDAQ100"
       ],
       "market_cap": 124299920316.24,
-      "rel_vol": 0.9964
+      "rel_vol": 0.9964,
+      "lynch": {
+        "value": 71.37,
+        "pegy": 0.656,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0229,
+        "pe_used": 49.19,
+        "eps": 2.2102,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SCHL": {
       "name": "Scholastic Corporation",
@@ -37327,6 +40078,13 @@
                   "5.0%": -6.72,
                   "5.5%": -6.28,
                   "6.0%": -5.9
+                },
+                "13.11%": {
+                  "4.0%": -8.85,
+                  "4.5%": -8.19,
+                  "5.0%": -7.61,
+                  "5.5%": -7.12,
+                  "6.0%": -6.68
                 },
                 "15%": {
                   "4.0%": -9.54,
@@ -37444,7 +40202,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 1504751412.62,
-      "rel_vol": 0.7065
+      "rel_vol": 0.7065,
+      "lynch": {
+        "value": 21.87,
+        "pegy": 0.588,
+        "growth_used": 0.1311,
+        "growth_cap": null,
+        "dividend_yield": 0.0229,
+        "pe_used": 26.21,
+        "eps": 1.4201,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SHAK": {
       "name": "Shake Shack Inc.",
@@ -37540,6 +40310,13 @@
                   "5.0%": -12.08,
                   "5.5%": -11.28,
                   "6.0%": -10.58
+                },
+                "18.17%": {
+                  "4.0%": -15.92,
+                  "4.5%": -14.71,
+                  "5.0%": -13.67,
+                  "5.5%": -12.75,
+                  "6.0%": -11.95
                 },
                 "20%": {
                   "4.0%": -17.09,
@@ -37645,7 +40422,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 3104045710.15,
-      "rel_vol": 0.7651
+      "rel_vol": 0.7651,
+      "lynch": {
+        "value": 18.9,
+        "pegy": 0.258,
+        "growth_used": 0.1817,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 70.34,
+        "eps": 1.0399,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SIRI": {
       "name": "Sirius XM Holdings Inc.",
@@ -37847,7 +40636,19 @@
       "debt_fcf": 5.9981,
       "indexes": [],
       "market_cap": 11844444432.6,
-      "rel_vol": 0.5824
+      "rel_vol": 0.5824,
+      "lynch": {
+        "value": 33.44,
+        "pegy": 1.046,
+        "growth_used": 0.0968,
+        "growth_cap": null,
+        "dividend_yield": 0.0338,
+        "pe_used": 12.49,
+        "eps": 2.5604,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SLB": {
       "name": "SLB N.V.",
@@ -37943,6 +40744,13 @@
                   "5.0%": 68.38,
                   "5.5%": 63.86,
                   "6.0%": 59.88
+                },
+                "16.88%": {
+                  "4.0%": 85.65,
+                  "4.5%": 79.19,
+                  "5.0%": 73.59,
+                  "5.5%": 68.7,
+                  "6.0%": 64.39
                 },
                 "20%": {
                   "4.0%": 96.71,
@@ -38050,7 +40858,19 @@
         "SP500"
       ],
       "market_cap": 76028313730.4,
-      "rel_vol": 0.8484
+      "rel_vol": 0.8484,
+      "lynch": {
+        "value": 39.57,
+        "pegy": 0.79,
+        "growth_used": 0.1688,
+        "growth_cap": null,
+        "dividend_yield": 0.0233,
+        "pe_used": 24.31,
+        "eps": 2.0601,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SMCI": {
       "name": "Super Micro Computer, Inc.",
@@ -38132,6 +40952,13 @@
                   "5.0%": -100.86,
                   "5.5%": -95.74,
                   "6.0%": -91.11
+                },
+                "5.8%": {
+                  "4.0%": -116.7,
+                  "4.5%": -110.09,
+                  "5.0%": -104.19,
+                  "5.5%": -98.87,
+                  "6.0%": -94.07
                 },
                 "10%": {
                   "4.0%": -138.35,
@@ -38254,7 +41081,19 @@
         "SP500"
       ],
       "market_cap": 19267161307.11,
-      "rel_vol": 0.7131
+      "rel_vol": 0.7131,
+      "lynch": {
+        "value": 27.5,
+        "pegy": 1.098,
+        "growth_used": 0.058,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 5.28,
+        "eps": 4.7405,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SMG": {
       "name": "The Scotts Miracle-Gro Company",
@@ -38458,7 +41297,19 @@
       "debt_fcf": 7.1552,
       "indexes": [],
       "market_cap": 3764013642.16,
-      "rel_vol": 0.7689
+      "rel_vol": 0.7689,
+      "lynch": {
+        "value": 17.62,
+        "pegy": 0.276,
+        "growth_used": 0.0534,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 19.32,
+        "eps": 3.3002,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SNDR": {
       "name": "Schneider National, Inc.",
@@ -38540,6 +41391,13 @@
                   "5.0%": 22.48,
                   "5.5%": 21.06,
                   "6.0%": 19.8
+                },
+                "8.12%": {
+                  "4.0%": 29.63,
+                  "4.5%": 27.46,
+                  "5.0%": 25.59,
+                  "5.5%": 23.94,
+                  "6.0%": 22.49
                 },
                 "10%": {
                   "4.0%": 32.04,
@@ -38661,7 +41519,19 @@
       "debt_fcf": 1.5217,
       "indexes": [],
       "market_cap": 5127440752.32,
-      "rel_vol": 0.6235
+      "rel_vol": 0.6235,
+      "lynch": {
+        "value": 7.58,
+        "pegy": 0.258,
+        "growth_used": 0.0812,
+        "growth_cap": null,
+        "dividend_yield": 0.0135,
+        "pe_used": 36.64,
+        "eps": 0.7999,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SNPS": {
       "name": "Synopsys, Inc.",
@@ -38867,7 +41737,19 @@
         "NASDAQ100"
       ],
       "market_cap": 83208017934.57,
-      "rel_vol": 0.7606
+      "rel_vol": 0.7606,
+      "lynch": {
+        "value": 169.81,
+        "pegy": 0.385,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 77.97,
+        "eps": 5.6603,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SPGI": {
       "name": "S&P Global Inc.",
@@ -39071,7 +41953,19 @@
         "SP500"
       ],
       "market_cap": 139766715200.35,
-      "rel_vol": 0.6089
+      "rel_vol": 0.6089,
+      "lynch": {
+        "value": 261.99,
+        "pegy": 0.556,
+        "growth_used": 0.1483,
+        "growth_cap": null,
+        "dividend_yield": 0.0082,
+        "pe_used": 28.17,
+        "eps": 16.7409,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "STX": {
       "name": "Seagate Technology Holdings plc",
@@ -39278,7 +42172,19 @@
         "NASDAQ100"
       ],
       "market_cap": 115089401916.0,
-      "rel_vol": 0.7389
+      "rel_vol": 0.7389,
+      "lynch": {
+        "value": 548.96,
+        "pegy": 1.1,
+        "growth_used": 0.282,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0059,
+        "pe_used": 26.17,
+        "eps": 19.0676,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SWKS": {
       "name": "Skyworks Solutions, Inc.",
@@ -39482,7 +42388,19 @@
         "SP500"
       ],
       "market_cap": 13058464888.0,
-      "rel_vol": 0.686
+      "rel_vol": 0.686,
+      "lynch": {
+        "value": 14.2,
+        "pegy": 0.164,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0246,
+        "pe_used": 75.88,
+        "eps": 1.14,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "SYM": {
       "name": "Symbotic Inc.",
@@ -39686,7 +42604,19 @@
       "debt_fcf": 0.035,
       "indexes": [],
       "market_cap": 5628090400.0,
-      "rel_vol": 1.0386
+      "rel_vol": 1.0386,
+      "lynch": {
+        "value": 2.4,
+        "pegy": 0.07,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 428.5,
+        "eps": 0.08,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "T": {
       "name": "AT&T Inc.",
@@ -39768,6 +42698,13 @@
                   "5.0%": 41.31,
                   "5.5%": 38.7,
                   "6.0%": 36.39
+                },
+                "9.2%": {
+                  "4.0%": 56.96,
+                  "4.5%": 52.77,
+                  "5.0%": 49.15,
+                  "5.5%": 45.98,
+                  "6.0%": 43.18
                 },
                 "10%": {
                   "4.0%": 58.88,
@@ -39894,7 +42831,19 @@
         "SP500"
       ],
       "market_cap": 159618804358.52,
-      "rel_vol": 0.8539
+      "rel_vol": 0.8539,
+      "lynch": {
+        "value": 26.47,
+        "pegy": 1.184,
+        "growth_used": 0.092,
+        "growth_cap": null,
+        "dividend_yield": 0.0496,
+        "pe_used": 11.96,
+        "eps": 1.8696,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TEAM": {
       "name": "Atlassian Corporation",
@@ -40095,7 +43044,19 @@
       "debt_fcf": 0.736,
       "indexes": [],
       "market_cap": 39144482991.18,
-      "rel_vol": 1.2848
+      "rel_vol": 1.2848,
+      "lynch": {
+        "value": 9.9,
+        "pegy": 0.066,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 454.36,
+        "eps": 0.33,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TJX": {
       "name": "The TJX Companies, Inc.",
@@ -40300,7 +43261,19 @@
         "SP500"
       ],
       "market_cap": 147282042655.71,
-      "rel_vol": 1.9743
+      "rel_vol": 1.9743,
+      "lynch": {
+        "value": 62.52,
+        "pegy": 0.477,
+        "growth_used": 0.102,
+        "growth_cap": null,
+        "dividend_yield": 0.0138,
+        "pe_used": 24.28,
+        "eps": 5.3991,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TMDX": {
       "name": "TransMedics Group, Inc.",
@@ -40501,7 +43474,19 @@
       "debt_fcf": 19.3955,
       "indexes": [],
       "market_cap": 3639347322.93,
-      "rel_vol": 0.4571
+      "rel_vol": 0.4571,
+      "lynch": {
+        "value": 101.31,
+        "pegy": 1.099,
+        "growth_used": 0.2761,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 25.13,
+        "eps": 3.6693,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TMO": {
       "name": "Thermo Fisher Scientific Inc.",
@@ -40597,6 +43582,13 @@
                   "5.0%": 464.06,
                   "5.5%": 433.42,
                   "6.0%": 406.41
+                },
+                "17.96%": {
+                  "4.0%": 606.4,
+                  "4.5%": 560.49,
+                  "5.0%": 520.75,
+                  "5.5%": 486.01,
+                  "6.0%": 455.4
                 },
                 "20%": {
                   "4.0%": 656.33,
@@ -40704,7 +43696,19 @@
         "SP500"
       ],
       "market_cap": 257863173278.73,
-      "rel_vol": 0.7154
+      "rel_vol": 0.7154,
+      "lynch": {
+        "value": 345.48,
+        "pegy": 0.5,
+        "growth_used": 0.1796,
+        "growth_cap": null,
+        "dividend_yield": 0.0026,
+        "pe_used": 36.46,
+        "eps": 18.9613,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TMUS": {
       "name": "T-Mobile US, Inc.",
@@ -40908,7 +43912,19 @@
         "NASDAQ100"
       ],
       "market_cap": 185273192802.06,
-      "rel_vol": 0.6462
+      "rel_vol": 0.6462,
+      "lynch": {
+        "value": 337.01,
+        "pegy": 1.982,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0249,
+        "pe_used": 16.39,
+        "eps": 10.3728,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TRU": {
       "name": "TransUnion",
@@ -41004,6 +44020,13 @@
                   "5.0%": 106.9,
                   "5.5%": 99.84,
                   "6.0%": 93.62
+                },
+                "17.09%": {
+                  "4.0%": 135.01,
+                  "4.5%": 124.81,
+                  "5.0%": 115.99,
+                  "5.5%": 108.27,
+                  "6.0%": 101.47
                 },
                 "20%": {
                   "4.0%": 151.19,
@@ -41112,7 +44135,19 @@
       "debt_fcf": 6.0713,
       "indexes": [],
       "market_cap": 15818180523.78,
-      "rel_vol": 0.5939
+      "rel_vol": 0.5939,
+      "lynch": {
+        "value": 72.82,
+        "pegy": 0.894,
+        "growth_used": 0.1709,
+        "growth_cap": null,
+        "dividend_yield": 0.0063,
+        "pe_used": 19.83,
+        "eps": 4.1094,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TSLA": {
       "name": "Tesla, Inc.",
@@ -41320,7 +44355,19 @@
         "NASDAQ100"
       ],
       "market_cap": 1342860791108.64,
-      "rel_vol": 0.767
+      "rel_vol": 0.767,
+      "lynch": {
+        "value": 14.85,
+        "pegy": 0.039,
+        "growth_used": 0.1519,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 388.45,
+        "eps": 0.9776,
+        "eps_adjusted": true,
+        "available": true,
+        "reason": null
+      }
     },
     "TTD": {
       "name": "The Trade Desk, Inc.",
@@ -41416,6 +44463,13 @@
                   "5.0%": 41.25,
                   "5.5%": 38.53,
                   "6.0%": 36.13
+                },
+                "19.3%": {
+                  "4.0%": 56.79,
+                  "4.5%": 52.48,
+                  "5.0%": 48.74,
+                  "5.5%": 45.47,
+                  "6.0%": 42.6
                 },
                 "20%": {
                   "4.0%": 58.35,
@@ -41522,7 +44576,19 @@
       "debt_fcf": 0.6742,
       "indexes": [],
       "market_cap": 7079519610.63,
-      "rel_vol": 0.8666
+      "rel_vol": 0.8666,
+      "lynch": {
+        "value": 13.12,
+        "pegy": 0.885,
+        "growth_used": 0.193,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 21.81,
+        "eps": 0.68,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TTEK": {
       "name": "Tetra Tech, Inc.",
@@ -41725,7 +44791,19 @@
       "debt_fcf": 2.1987,
       "indexes": [],
       "market_cap": 10188924296.37,
-      "rel_vol": 0.6694
+      "rel_vol": 0.6694,
+      "lynch": {
+        "value": 18.1,
+        "pegy": 0.463,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0071,
+        "pe_used": 23.12,
+        "eps": 1.6899,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TWLO": {
       "name": "Twilio Inc.",
@@ -41932,7 +45010,19 @@
         "SP500"
       ],
       "market_cap": 31843420697.92,
-      "rel_vol": 1.019
+      "rel_vol": 1.019,
+      "lynch": {
+        "value": 157.78,
+        "pegy": 0.791,
+        "growth_used": 0.1982,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 25.05,
+        "eps": 7.9609,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "TXN": {
       "name": "Texas Instruments Incorporated",
@@ -42139,7 +45229,19 @@
         "NASDAQ100"
       ],
       "market_cap": 271077167099.97,
-      "rel_vol": 0.7235
+      "rel_vol": 0.7235,
+      "lynch": {
+        "value": 246.18,
+        "pegy": 0.837,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0193,
+        "pe_used": 38.16,
+        "eps": 7.7099,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "UAL": {
       "name": "United Airlines Holdings, Inc.",
@@ -42214,6 +45316,13 @@
                   "5.0%": 41.74,
                   "5.5%": 39.17,
                   "6.0%": 36.9
+                },
+                "1.56%": {
+                  "4.0%": 51.47,
+                  "4.5%": 47.81,
+                  "5.0%": 44.64,
+                  "5.5%": 41.86,
+                  "6.0%": 39.41
                 },
                 "5%": {
                   "4.0%": 59.69,
@@ -42342,7 +45451,19 @@
         "SP500"
       ],
       "market_cap": 36314254852.2,
-      "rel_vol": 1.03
+      "rel_vol": 1.03,
+      "lynch": {
+        "value": 17.04,
+        "pegy": 0.154,
+        "growth_used": 0.0156,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 10.14,
+        "eps": 10.9231,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "UBER": {
       "name": "Uber Technologies, Inc.",
@@ -42424,6 +45545,13 @@
                   "5.0%": 78.07,
                   "5.5%": 73.13,
                   "6.0%": 68.77
+                },
+                "7.81%": {
+                  "4.0%": 101.6,
+                  "4.5%": 94.17,
+                  "5.0%": 87.73,
+                  "5.5%": 82.1,
+                  "6.0%": 77.14
                 },
                 "10%": {
                   "4.0%": 111.26,
@@ -42544,7 +45672,19 @@
         "SP500"
       ],
       "market_cap": 141821842072.11,
-      "rel_vol": 0.7729
+      "rel_vol": 0.7729,
+      "lynch": {
+        "value": 13.28,
+        "pegy": 0.19,
+        "growth_used": 0.0781,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 41.17,
+        "eps": 1.7,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "UCTT": {
       "name": "Ultra Clean Holdings, Inc.",
@@ -42747,7 +45887,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 2000600014.29,
-      "rel_vol": 0.5108
+      "rel_vol": 0.5108,
+      "lynch": {
+        "value": 5.8,
+        "pegy": 0.135,
+        "growth_used": 0.1,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 73.91,
+        "eps": 0.58,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ULTA": {
       "name": "Ulta Beauty, Inc.",
@@ -42836,6 +45988,13 @@
                   "5.0%": 486.83,
                   "5.5%": 455.3,
                   "6.0%": 427.5
+                },
+                "11.43%": {
+                  "4.0%": 598.58,
+                  "4.5%": 554.21,
+                  "5.0%": 515.78,
+                  "5.5%": 482.18,
+                  "6.0%": 452.56
                 },
                 "15%": {
                   "4.0%": 691.2,
@@ -42951,7 +46110,19 @@
         "SP500"
       ],
       "market_cap": 28752357201.54,
-      "rel_vol": 0.8651
+      "rel_vol": 0.8651,
+      "lynch": {
+        "value": 313.64,
+        "pegy": 0.481,
+        "growth_used": 0.1143,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 23.77,
+        "eps": 27.4405,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "UNH": {
       "name": "UnitedHealth Group Incorporated",
@@ -43157,7 +46328,19 @@
         "DOW30"
       ],
       "market_cap": 372907446124.5,
-      "rel_vol": 0.8975
+      "rel_vol": 0.8975,
+      "lynch": {
+        "value": 434.62,
+        "pegy": 1.055,
+        "growth_used": 0.2261,
+        "growth_cap": null,
+        "dividend_yield": 0.022,
+        "pe_used": 23.52,
+        "eps": 17.5179,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "UPS": {
       "name": "United Parcel Service, Inc.",
@@ -43246,6 +46429,13 @@
                   "5.0%": 139.44,
                   "5.5%": 130.41,
                   "6.0%": 122.45
+                },
+                "13.22%": {
+                  "4.0%": 184.35,
+                  "4.5%": 170.6,
+                  "5.0%": 158.69,
+                  "5.5%": 148.28,
+                  "6.0%": 139.11
                 },
                 "15%": {
                   "4.0%": 197.98,
@@ -43362,7 +46552,19 @@
         "SP500"
       ],
       "market_cap": 95090007649.3,
-      "rel_vol": 1.0469
+      "rel_vol": 1.0469,
+      "lynch": {
+        "value": 99.47,
+        "pegy": 0.89,
+        "growth_used": 0.1322,
+        "growth_cap": null,
+        "dividend_yield": 0.0595,
+        "pe_used": 21.55,
+        "eps": 5.1889,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "V": {
       "name": "Visa Inc.",
@@ -43458,6 +46660,13 @@
                   "5.0%": 263.48,
                   "5.5%": 246.09,
                   "6.0%": 230.75
+                },
+                "17.91%": {
+                  "4.0%": 343.63,
+                  "4.5%": 317.62,
+                  "5.0%": 295.1,
+                  "5.5%": 275.42,
+                  "6.0%": 258.07
                 },
                 "20%": {
                   "4.0%": 372.65,
@@ -43572,7 +46781,19 @@
         "DOW30"
       ],
       "market_cap": 813597065023.68,
-      "rel_vol": 1.0602
+      "rel_vol": 1.0602,
+      "lynch": {
+        "value": 228.75,
+        "pegy": 0.536,
+        "growth_used": 0.1791,
+        "growth_cap": null,
+        "dividend_yield": 0.0066,
+        "pe_used": 34.62,
+        "eps": 12.3183,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "VECO": {
       "name": "Veeco Instruments Inc.",
@@ -43661,6 +46882,13 @@
                   "5.0%": 35.65,
                   "5.5%": 33.34,
                   "6.0%": 31.31
+                },
+                "10.93%": {
+                  "4.0%": 42.95,
+                  "4.5%": 39.77,
+                  "5.0%": 37.02,
+                  "5.5%": 34.61,
+                  "6.0%": 32.49
                 },
                 "15%": {
                   "4.0%": 50.62,
@@ -43776,7 +47004,19 @@
       "debt_fcf": 2.0867,
       "indexes": [],
       "market_cap": 2444226000.0,
-      "rel_vol": 0.767
+      "rel_vol": 0.767,
+      "lynch": {
+        "value": 4.48,
+        "pegy": 0.12,
+        "growth_used": 0.1093,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 90.73,
+        "eps": 0.41,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "VRT": {
       "name": "Vertiv Holdings Co",
@@ -43982,7 +47222,19 @@
         "SP500"
       ],
       "market_cap": 73986852391.11,
-      "rel_vol": 0.8484
+      "rel_vol": 0.8484,
+      "lynch": {
+        "value": 161.07,
+        "pegy": 0.854,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0011,
+        "pe_used": 35.27,
+        "eps": 5.3493,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "VSH": {
       "name": "Vishay Intertechnology, Inc.",
@@ -44186,7 +47438,19 @@
       "debt_fcf": 7.3859,
       "indexes": [],
       "market_cap": 3897282114.54,
-      "rel_vol": 0.4513
+      "rel_vol": 0.4513,
+      "lynch": {
+        "value": 17.68,
+        "pegy": 0.697,
+        "growth_used": 0.2649,
+        "growth_cap": null,
+        "dividend_yield": 0.0157,
+        "pe_used": 40.27,
+        "eps": 0.63,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "VYX": {
       "name": "NCR Voyix Corporation",
@@ -44268,6 +47532,13 @@
                   "5.0%": -1.97,
                   "5.5%": -1.85,
                   "6.0%": -1.74
+                },
+                "7.76%": {
+                  "4.0%": -2.56,
+                  "4.5%": -2.38,
+                  "5.0%": -2.21,
+                  "5.5%": -2.07,
+                  "6.0%": -1.95
                 },
                 "10%": {
                   "4.0%": -2.81,
@@ -44390,7 +47661,19 @@
       "debt_fcf": null,
       "indexes": [],
       "market_cap": 1718888891.2,
-      "rel_vol": 0.7957
+      "rel_vol": 0.7957,
+      "lynch": {
+        "value": 3.88,
+        "pegy": 0.373,
+        "growth_used": 0.0776,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 20.8,
+        "eps": 0.5,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "WDAY": {
       "name": "Workday, Inc.",
@@ -44597,7 +47880,19 @@
         "NASDAQ100"
       ],
       "market_cap": 49143534335.96,
-      "rel_vol": 1.0706
+      "rel_vol": 1.0706,
+      "lynch": {
+        "value": 124.72,
+        "pegy": 0.643,
+        "growth_used": 0.254,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 39.52,
+        "eps": 4.9104,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "WDC": {
       "name": "Western Digital Corporation",
@@ -44802,7 +48097,19 @@
         "NASDAQ100"
       ],
       "market_cap": 108947350366.14,
-      "rel_vol": 0.754
+      "rel_vol": 0.754,
+      "lynch": {
+        "value": 674.74,
+        "pegy": 2.402,
+        "growth_used": 0.2353,
+        "growth_cap": null,
+        "dividend_yield": 0.002,
+        "pe_used": 9.88,
+        "eps": 28.4342,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "WING": {
       "name": "Wingstop Inc.",
@@ -44898,6 +48205,13 @@
                   "5.0%": 97.33,
                   "5.5%": 90.9,
                   "6.0%": 85.23
+                },
+                "16.53%": {
+                  "4.0%": 120.24,
+                  "4.5%": 111.18,
+                  "5.0%": 103.33,
+                  "5.5%": 96.47,
+                  "6.0%": 90.42
                 },
                 "20%": {
                   "4.0%": 137.65,
@@ -45006,7 +48320,19 @@
       "debt_fcf": 10.4729,
       "indexes": [],
       "market_cap": 4139364185.87,
-      "rel_vol": 0.5262
+      "rel_vol": 0.5262,
+      "lynch": {
+        "value": 74.05,
+        "pegy": 0.488,
+        "growth_used": 0.1653,
+        "growth_cap": null,
+        "dividend_yield": 0.0081,
+        "pe_used": 35.53,
+        "eps": 4.2705,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "WMT": {
       "name": "Walmart Inc.",
@@ -45095,6 +48421,13 @@
                   "5.0%": 31.55,
                   "5.5%": 29.5,
                   "6.0%": 27.7
+                },
+                "10.7%": {
+                  "4.0%": 37.65,
+                  "4.5%": 34.86,
+                  "5.0%": 32.45,
+                  "5.5%": 30.35,
+                  "6.0%": 28.49
                 },
                 "15%": {
                   "4.0%": 44.79,
@@ -45212,7 +48545,19 @@
         "DOW30"
       ],
       "market_cap": 1027093898597.25,
-      "rel_vol": 0.815
+      "rel_vol": 0.815,
+      "lynch": {
+        "value": 31.6,
+        "pegy": 0.246,
+        "growth_used": 0.107,
+        "growth_cap": null,
+        "dividend_yield": 0.0075,
+        "pe_used": 46.53,
+        "eps": 2.7597,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "WST": {
       "name": "West Pharmaceutical Services, Inc.",
@@ -45417,7 +48762,19 @@
         "SP500"
       ],
       "market_cap": 29958745074.4,
-      "rel_vol": 0.6883
+      "rel_vol": 0.6883,
+      "lynch": {
+        "value": 139.8,
+        "pegy": 0.335,
+        "growth_used": 0.1548,
+        "growth_cap": null,
+        "dividend_yield": 0.0021,
+        "pe_used": 46.89,
+        "eps": 8.9102,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "WYNN": {
       "name": "Wynn Resorts, Limited",
@@ -45623,7 +48980,19 @@
         "SP500"
       ],
       "market_cap": 8902023038.28,
-      "rel_vol": 0.5604
+      "rel_vol": 0.5604,
+      "lynch": {
+        "value": 110.5,
+        "pegy": 1.344,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0122,
+        "pe_used": 23.23,
+        "eps": 3.5394,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "XOM": {
       "name": "ExxonMobil Holdings Corporation",
@@ -45712,6 +49081,13 @@
                   "5.0%": 192.27,
                   "5.5%": 179.82,
                   "6.0%": 168.84
+                },
+                "12.81%": {
+                  "4.0%": 250.02,
+                  "4.5%": 231.4,
+                  "5.0%": 215.27,
+                  "5.5%": 201.17,
+                  "6.0%": 188.74
                 },
                 "15%": {
                   "4.0%": 272.98,
@@ -45826,7 +49202,19 @@
         "SP500"
       ],
       "market_cap": 695954121098.5,
-      "rel_vol": 1.0074
+      "rel_vol": 1.0074,
+      "lynch": {
+        "value": 148.6,
+        "pegy": 0.891,
+        "growth_used": 0.1281,
+        "growth_cap": null,
+        "dividend_yield": 0.0248,
+        "pe_used": 17.17,
+        "eps": 9.7187,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "XYZ": {
       "name": "Block, Inc.",
@@ -46030,7 +49418,19 @@
         "SP500"
       ],
       "market_cap": 51698541919.04,
-      "rel_vol": 0.7328
+      "rel_vol": 0.7328,
+      "lynch": {
+        "value": 16.21,
+        "pegy": 0.195,
+        "growth_used": 0.2133,
+        "growth_cap": "guardrail",
+        "dividend_yield": 0.0,
+        "pe_used": 109.16,
+        "eps": 0.76,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ZETA": {
       "name": "Zeta Global Holdings Corp.",
@@ -46233,7 +49633,19 @@
       "debt_fcf": 1.0164,
       "indexes": [],
       "market_cap": 9497382000.0,
-      "rel_vol": 0.9801
+      "rel_vol": 0.9801,
+      "lynch": {
+        "value": 4.8,
+        "pegy": 0.134,
+        "growth_used": 0.3,
+        "growth_cap": "30%",
+        "dividend_yield": 0.0,
+        "pe_used": 224.06,
+        "eps": 0.16,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     },
     "ZM": {
       "name": "Zoom Communications, Inc.",
@@ -46308,6 +49720,13 @@
                   "5.0%": 78.33,
                   "5.5%": 73.5,
                   "6.0%": 69.24
+                },
+                "3.38%": {
+                  "4.0%": 104.5,
+                  "4.5%": 97.01,
+                  "5.0%": 90.51,
+                  "5.5%": 84.83,
+                  "6.0%": 79.81
                 },
                 "5%": {
                   "4.0%": 112.01,
@@ -46436,7 +49855,19 @@
       "debt_fcf": 0.0313,
       "indexes": [],
       "market_cap": 29042032765.62,
-      "rel_vol": 1.026
+      "rel_vol": 1.026,
+      "lynch": {
+        "value": 36.44,
+        "pegy": 0.379,
+        "growth_used": 0.0338,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 8.92,
+        "eps": 10.7825,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
     }
   }
 }

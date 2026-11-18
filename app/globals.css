@@ -213,6 +213,25 @@ li {
   border-bottom: 1px solid var(--line);
   box-shadow: var(--shadow-header);
 }
+
+/* ---- anchor targets: clear the sticky header ----
+   In-page anchor jumps (the 13 metric links on /methodology, the
+   "How to read this card" link on stock cards) scroll the target
+   section's top to the viewport top — directly under the sticky
+   header, so the clicked section's heading was hidden and the page
+   appeared to land one item below the clicked link. scroll-margin-top
+   on every section with an id keeps the target fully visible below
+   the header. Desktop header is ~145px tall (up to ~176px when the
+   market-strip chips wrap to two rows), so 180px; the mobile pinned
+   header-top row is ~109px, so 130px. */
+section[id] {
+  scroll-margin-top: 180px;
+}
+@media (max-width: 860px) {
+  section[id] {
+    scroll-margin-top: 130px;
+  }
+}
 .site-header .wrap {
   /* Wider than the 1060px page column on purpose: the five market chips
      need the room to sit on one line with no horizontal scroll.

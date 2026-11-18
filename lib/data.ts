@@ -36,6 +36,28 @@ export interface ForwardLeg {
   forward22_value: number | null
 }
 
+/** Lynch value (display only), written by nightly_refresh.py's merge
+    step from the stored PEGY leg — the Lynch fair price IS the PEGY leg
+    (price x PEGY). value/pegy/growth_used/pe_used are the leg's own
+    numbers; eps = live price / P/E used (the EPS behind that P/E),
+    eps_adjusted where the P/E used is the adjusted P/E; growth_cap is
+    "30%" when the 30% cap binds, "guardrail" when the SPEC v1.2
+    guardrail capped the growth, else null. available is False (with a
+    reason) when the value cannot be computed — no live name triggers
+    that today. */
+export interface LynchValue {
+  value: number | null
+  pegy: number | null
+  growth_used: number | null
+  growth_cap: '30%' | 'guardrail' | null
+  dividend_yield: number | null
+  pe_used: number | null
+  eps: number | null
+  eps_adjusted: boolean
+  available: boolean
+  reason: string | null
+}
+
 export interface CapmCrosscheck {
   value: number | null
   discount_capm: number | null
@@ -119,6 +141,9 @@ export interface TickerData {
   market_cap: number | null
   rel_vol: number | null
   indexes: string[]
+  /** Lynch value panel (display only, see LynchValue). Optional: a card
+      must render without it (see app/stock/[ticker]/page.tsx). */
+  lynch?: LynchValue
 }
 
 export interface EngineResults {
