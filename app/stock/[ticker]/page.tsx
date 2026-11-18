@@ -500,7 +500,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       <Card title="Earnings-quality evidence">
         {symbol === 'GOOGL' && (
           <div className="callout">
-            <strong>One-off earnings adjustment — shown both ways.</strong> Reported TTM net income
+            <strong>NOTE: One-off earnings adjustment — shown both ways.</strong> Reported TTM net income
             $235.7B includes equity-security marks in all three 2026 quarters: Q1 +$28.7B,
             Q2 +$77.1B, Q3 −$6.7B after tax (net +$99.1B removed). Adjusted net income
             $136.6B, adjusted EPS $11.10, adjusted trailing P/E 26.65 — the adjusted
@@ -517,7 +517,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           )
           return adjustmentFlag ? (
             <div className="callout">
-              <strong>One-off earnings adjustment — shown both ways.</strong> {adjustmentFlag}
+              <strong>NOTE: One-off earnings adjustment — shown both ways.</strong> {adjustmentFlag}
             </div>
           ) : (
             <p>No one-off earnings adjustment was applied to this name.</p>
