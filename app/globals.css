@@ -35,6 +35,10 @@
   --icon-tile-fg: #4b5563;
   --green-btn: #15803d;
   --green-btn-hover: #166534;
+  /* Brand mark (Concept A, "Five Bars, One Check"): bars 1-4 deep green,
+     the verdict bar bright green. Dark overrides below. */
+  --mark-bar: #166534;
+  --mark-verdict: #16a34a;
   --nav-active-bg: #166534;
   --red-btn: #b91c1c;
   --callout-amber-bg: #fffbeb;
@@ -86,6 +90,8 @@
   --icon-tile-fg: #c3ced6;
   --green-btn: #15803d;
   --green-btn-hover: #1d7a3d;
+  --mark-bar: #4ade80;
+  --mark-verdict: #86efac;
   --nav-active-bg: #15803d;
   --red-btn: #b91c1c;
   --callout-amber-bg: #2a220f;
@@ -218,20 +224,21 @@ li {
 .brand a:hover {
   text-decoration: none;
 }
-/* Green brand tile with a white trend arrow, as in the launcher. */
+/* Five-bars brand mark (Concept A, "Five Bars, One Check"): the bare mark,
+   no tile — the bars carry the brand greens themselves and swap with the
+   theme via --mark-bar / --mark-verdict. The svg keeps its 120:84 aspect
+   (40px wide = 28px tall). */
 .brand-mark {
   width: 40px;
-  height: 40px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--green-btn);
-  color: #fff;
-  font-size: 22px;
-  font-weight: bold;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(21, 128, 61, 0.3);
+}
+.brand-mark svg {
+  display: block;
+  width: 40px;
+  height: auto;
 }
 .brand-text {
   display: flex;
@@ -1023,17 +1030,15 @@ a.rail-brand:hover {
 }
 .rail-mark {
   width: 36px;
-  height: 36px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--green-btn);
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(21, 128, 61, 0.3);
+}
+.rail-mark svg {
+  display: block;
+  width: 36px;
+  height: auto;
 }
 .rail-brand-text {
   display: flex;

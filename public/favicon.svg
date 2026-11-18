@@ -1,0 +1,15 @@
+<!-- The Stock Check favicon — Concept A, "Five Bars, One Check".
+     The five-bars mark on a white rounded-square tile, so it reads in
+     any browser chrome (light or dark tab bar). Fixed light greens:
+     a favicon has no theme context. The mark is the same geometry as
+     components/BrandMark.tsx, scaled 0.4x with 8px padding. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="#ffffff"/>
+  <g transform="translate(8,15.2) scale(0.4)">
+    <rect x="4" y="46" width="16" height="30" rx="3" fill="#166534"/>
+    <rect x="28" y="58" width="16" height="18" rx="3" fill="#166534"/>
+    <rect x="52" y="46" width="16" height="30" rx="3" fill="#166534"/>
+    <rect x="76" y="28" width="16" height="48" rx="3" fill="#166534"/>
+    <rect x="100" y="12" width="16" height="64" rx="3" fill="#16A34A"/>
+  </g>
+</svg>

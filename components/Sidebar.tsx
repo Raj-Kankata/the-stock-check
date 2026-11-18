@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { NAV_LINKS } from '@/lib/site'
+import BrandMark from '@/components/BrandMark'
 
 /**
  * Floating pill rail navigation (launcher style). Rendered on every
@@ -123,7 +124,7 @@ export default function Sidebar() {
       >
         <Link href="/" className="rail-brand" onClick={() => setOpen(false)}>
           <span className="rail-mark" aria-hidden="true">
-            ↗
+            <BrandMark />
           </span>
           <span className="rail-brand-text">
             <span className="rail-name">The Stock Check</span>

@@ -5,6 +5,7 @@ import Sidebar from '@/components/Sidebar'
 import SearchBox from '@/components/SearchBox'
 import MarketStrip from '@/components/MarketStrip'
 import ThemeToggle from '@/components/ThemeToggle'
+import BrandMark from '@/components/BrandMark'
 import { SITE_NAME, SITE_URL, ENGINE_VERSION } from '@/lib/site'
 import { searchIndex } from '@/lib/public'
 import { RESULTS } from '@/lib/data'
@@ -17,6 +18,9 @@ export const metadata: Metadata = {
   },
   description:
     'A free, deterministic, rules-based stock research platform. Every verdict shows its numbers, its sources and its limits. No sign-in, no tracking, no black box.',
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+  },
   openGraph: {
     siteName: SITE_NAME,
     type: 'website',
@@ -43,16 +47,14 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
               <div className="brand">
                 <Link href="/">
                   <span className="brand-mark" aria-hidden="true">
-                    ↗
+                    <BrandMark />
                   </span>
                   <span className="brand-text">
                     <span className="brand-name">The Stock Check</span>
                     <span className="brand-domain">thestockcheck.com</span>
                   </span>
                 </Link>
-                <span className="tagline">
-                  Check any stock before you buy — every number shown, every source named.
-                </span>
+                <span className="tagline">Five pillars. One honest check.</span>
               </div>
               <div className="header-search">
                 <SearchBox entries={searchIndex()} />
