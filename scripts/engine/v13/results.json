@@ -47,7 +47,7 @@
     "NVDA": {
       "name": "NVIDIA Corporation",
       "sector": "Technology",
-      "price": 156.14,
+      "price": 155.46,
       "pillars": {
         "conviction": {
           "score": 69.7,
@@ -66,12 +66,12 @@
                 "growth_scenario": 0.2
               },
               "pegy": {
-                "value": 238.72,
-                "method": "PEGT = (30.0% growth capped at 30% + 0.18% div) / P/E 19.74 = 1.529; fair = price x PEGY",
-                "pegy": 1.529,
+                "value": 238.77,
+                "method": "PEGT = (30.0% growth capped at 30% + 0.18% div) / P/E 19.65 = 1.536; fair = price x PEGY",
+                "pegy": 1.536,
                 "growth_used": 0.3,
-                "pe_used": 19.74,
-                "uncapped_pegy": 5.224
+                "pe_used": 19.65,
+                "uncapped_pegy": 5.248
               },
               "forward_sector": {
                 "value": 259.42,
@@ -81,16 +81,16 @@
                 "forward22_value": 317.07
               }
             },
-            "triangulated_fv": 238.72,
+            "triangulated_fv": 238.77,
             "fv_method": "median of 3 legs",
             "fv_override_applied": false,
-            "upside_pct": 0.529,
+            "upside_pct": 0.536,
             "leg_spread_div_fv": 0.656,
             "ladder": {
-              "heavy": 143.23,
-              "buy": 190.98,
-              "fair": 238.72,
-              "exit": 286.46
+              "heavy": 143.26,
+              "buy": 191.02,
+              "fair": 238.77,
+              "exit": 286.52
             },
             "ladder_ratios": {
               "heavy": 0.6,
@@ -185,12 +185,12 @@
               "macd": 40
             },
             "inputs": {
-              "ema20": 189.73,
-              "ema50": 204.87,
-              "ema200": 205.07,
-              "rsi14": 22.7,
-              "macd_hist": -4.22,
-              "price_vs_200d_pct": -0.239
+              "ema20": 186.47,
+              "ema50": 202.93,
+              "ema200": 204.15,
+              "rsi14": 22.5,
+              "macd_hist": -4.0,
+              "price_vs_200d_pct": -0.238
             }
           }
         },
@@ -213,23 +213,23 @@
       },
       "overall_score": 76.1,
       "verdict": "Growth",
-      "verdict_reason": "overall 76.1 \u2265 60, upside +53%, quality 77.0 \u2265 55, conviction 69.7 \u2265 50, 3y rev CAGR 100% \u2265 10%",
-      "triangulated_fv": 238.72,
+      "verdict_reason": "overall 76.1 \u2265 60, upside +54%, quality 77.0 \u2265 55, conviction 69.7 \u2265 50, 3y rev CAGR 100% \u2265 10%",
+      "triangulated_fv": 238.77,
       "ladder": {
-        "heavy": 143.23,
-        "buy": 190.98,
-        "fair": 238.72,
-        "exit": 286.46
+        "heavy": 143.26,
+        "buy": 191.02,
+        "fair": 238.77,
+        "exit": 286.52
       },
       "pros": [
-        "Fair value $238.72 is +53% above the $156.14 price \u2014 the DCF/PEGY/Forward-sector legs span $102.78\u2013$259.42, so treat the fair value, not any single leg, as the anchor.",
+        "Fair value $238.77 is +54% above the $155.46 price \u2014 the DCF/PEGY/Forward-sector legs span $102.78\u2013$259.42, so treat the fair value, not any single leg, as the anchor.",
         "Revenue compounded 100% a year over the last 3 fiscal years.",
         "Free-cash-flow conversion is strong: FCF is 66% of net income.",
         "Our Story-Tracker rates it 'Hold, don't add' (Story 65.8, Financials 73.5)."
       ],
       "cons": [
         "Operating cash flow is only 70% of net income \u2014 a large slice of profit is not cash yet.",
-        "Downtrend: price $156.14 sits below its 20-day EMA ($189.73) and 200-day EMA ($205.07); RSI 22.7 \u2014 timing is poor even if the business is fine.",
+        "Downtrend: price $155.46 sits below its 20-day EMA ($186.47) and 200-day EMA ($204.15); RSI 22.5 \u2014 timing is poor even if the business is fine.",
         "Insiders are net sellers \u2014 5 sales, 4,297,200 shares, $960M, 0 buys in 90d."
       ],
       "flags": [
@@ -248,16 +248,16 @@
         "NASDAQ100",
         "DOW30"
       ],
-      "market_cap": 3807348553774.66,
-      "rel_vol": 1.5984,
+      "market_cap": 3790767299665.74,
+      "rel_vol": 1.807,
       "lynch": {
-        "value": 238.72,
-        "pegy": 1.529,
+        "value": 238.77,
+        "pegy": 1.536,
         "growth_used": 0.3,
         "growth_cap": "30%",
         "dividend_yield": 0.0018,
-        "pe_used": 19.74,
-        "eps": 7.9098,
+        "pe_used": 19.65,
+        "eps": 7.9115,
         "eps_adjusted": false,
         "available": true,
         "reason": null
@@ -266,7 +266,7 @@
     "AAPL": {
       "name": "Apple Inc.",
       "sector": "Technology",
-      "price": 352.78,
+      "price": 351.91,
       "pillars": {
         "conviction": {
           "score": 58.0,
@@ -285,12 +285,12 @@
                 "growth_scenario": 0.1378
               },
               "pegy": {
-                "value": 126.42,
-                "method": "PEGT = (13.8% growth capped at 30% + 0.30% div) / P/E 39.29 = 0.358; fair = price x PEGY",
-                "pegy": 0.358,
+                "value": 126.43,
+                "method": "PEGT = (13.8% growth capped at 30% + 0.30% div) / P/E 39.19 = 0.359; fair = price x PEGY",
+                "pegy": 0.359,
                 "growth_used": 0.1378,
-                "pe_used": 39.29,
-                "uncapped_pegy": 0.358
+                "pe_used": 39.19,
+                "uncapped_pegy": 0.359
               },
               "forward_sector": {
                 "value": 172.99,
@@ -303,7 +303,7 @@
             "triangulated_fv": 172.99,
             "fv_method": "median of 3 legs",
             "fv_override_applied": false,
-            "upside_pct": -0.51,
+            "upside_pct": -0.508,
             "leg_spread_div_fv": 0.429,
             "ladder": {
               "heavy": 103.79,
@@ -411,12 +411,12 @@
               "macd": 75
             },
             "inputs": {
-              "ema20": 347.14,
-              "ema50": 339.3,
-              "ema200": 310.68,
-              "rsi14": 57.0,
-              "macd_hist": 0.7,
-              "price_vs_200d_pct": 0.136
+              "ema20": 347.6,
+              "ema50": 339.79,
+              "ema200": 311.09,
+              "rsi14": 56.1,
+              "macd_hist": 0.46,
+              "price_vs_200d_pct": 0.131
             }
           }
         },
@@ -439,7 +439,7 @@
       },
       "overall_score": 58.1,
       "verdict": "Avoid",
-      "verdict_reason": "Avoid gate: valuation score 10 < 30; price $352.78 at/above our Exit $207.59",
+      "verdict_reason": "Avoid gate: valuation score 10 < 30; price $351.91 at/above our Exit $207.59",
       "triangulated_fv": 172.99,
       "ladder": {
         "heavy": 103.79,
@@ -454,7 +454,7 @@
         "Uptrend: price sits above its 20-, 50- and 200-day averages."
       ],
       "cons": [
-        "Fair value $172.99 is -51% below the $352.78 price \u2014 even the most generous leg ($200.71) sits below the price.",
+        "Fair value $172.99 is -51% below the $351.91 price \u2014 even the most generous leg ($200.71) sits below the price.",
         "Revenue compounded only 8% a year over the last 3 fiscal years \u2014 growth is no longer the story.",
         "Insiders are net sellers \u2014 16 sales, 287,813 shares, $96M, 0 buys in 90d."
       ],
@@ -472,16 +472,16 @@
         "NASDAQ100",
         "DOW30"
       ],
-      "market_cap": 5192505178135.22,
-      "rel_vol": 1.0653,
+      "market_cap": 5179699805084.09,
+      "rel_vol": 0.7781,
       "lynch": {
-        "value": 126.42,
-        "pegy": 0.358,
+        "value": 126.43,
+        "pegy": 0.359,
         "growth_used": 0.1378,
         "growth_cap": null,
         "dividend_yield": 0.003,
-        "pe_used": 39.29,
-        "eps": 8.9789,
+        "pe_used": 39.19,
+        "eps": 8.9796,
         "eps_adjusted": false,
         "available": true,
         "reason": null
@@ -490,7 +490,7 @@
     "MSFT": {
       "name": "Microsoft Corporation",
       "sector": "Technology",
-      "price": 517.99,
+      "price": 506.24,
       "pillars": {
         "conviction": {
           "score": 63.9,
@@ -500,7 +500,7 @@
           }
         },
         "valuation": {
-          "score": 17.9,
+          "score": 19.5,
           "detail": {
             "legs": {
               "dcf": {
@@ -509,12 +509,12 @@
                 "growth_scenario": 0.1764
               },
               "pegy": {
-                "value": 351.84,
-                "method": "PEGT = (17.6% growth capped at 30% + 0.72% div) / P/E 27.03 = 0.679; fair = price x PEGY",
-                "pegy": 0.679,
+                "value": 351.99,
+                "method": "PEGT = (17.6% growth capped at 30% + 0.73% div) / P/E 26.42 = 0.695; fair = price x PEGY",
+                "pegy": 0.695,
                 "growth_used": 0.1764,
-                "pe_used": 27.03,
-                "uncapped_pegy": 0.679
+                "pe_used": 26.42,
+                "uncapped_pegy": 0.695
               },
               "forward_sector": {
                 "value": 395.93,
@@ -524,16 +524,16 @@
                 "forward22_value": 483.91
               }
             },
-            "triangulated_fv": 351.84,
+            "triangulated_fv": 351.99,
             "fv_method": "median of 3 legs",
             "fv_override_applied": false,
-            "upside_pct": -0.321,
+            "upside_pct": -0.305,
             "leg_spread_div_fv": 0.547,
             "ladder": {
-              "heavy": 211.1,
-              "buy": 281.47,
-              "fair": 351.84,
-              "exit": 422.21
+              "heavy": 211.19,
+              "buy": 281.59,
+              "fair": 351.99,
+              "exit": 422.39
             },
             "ladder_ratios": {
               "heavy": 0.6,
@@ -626,21 +626,21 @@
           }
         },
         "technical": {
-          "score": 69.0,
+          "score": 58.8,
           "detail": {
             "subscores": {
-              "trend_ema": 75,
+              "trend_ema": 60,
               "price_vs_200d": 75,
-              "rsi": 80,
+              "rsi": 55,
               "macd": 40
             },
             "inputs": {
-              "ema20": 527.31,
-              "ema50": 516.14,
-              "ema200": 473.22,
-              "rsi14": 46.4,
-              "macd_hist": -2.27,
-              "price_vs_200d_pct": 0.095
+              "ema20": 525.3,
+              "ema50": 515.75,
+              "ema200": 472.43,
+              "rsi14": 41.9,
+              "macd_hist": -3.21,
+              "price_vs_200d_pct": 0.072
             }
           }
         },
@@ -661,24 +661,23 @@
           }
         }
       },
-      "overall_score": 57.8,
+      "overall_score": 57.3,
       "verdict": "Avoid",
-      "verdict_reason": "Avoid gate: valuation score 17.9 < 30; price $517.99 at/above our Exit $422.21",
-      "triangulated_fv": 351.84,
+      "verdict_reason": "Avoid gate: valuation score 19.5 < 30; price $506.24 at/above our Exit $422.39",
+      "triangulated_fv": 351.99,
       "ladder": {
-        "heavy": 211.1,
-        "buy": 281.47,
-        "fair": 351.84,
-        "exit": 422.21
+        "heavy": 211.19,
+        "buy": 281.59,
+        "fair": 351.99,
+        "exit": 422.39
       },
       "pros": [
         "Revenue compounded 16% a year over the last 3 fiscal years.",
         "Operating cash flow is 137% of net income \u2014 profit is backed by more cash than earnings.",
-        "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check.",
-        "Uptrend: price sits above its 20-, 50- and 200-day averages."
+        "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check."
       ],
       "cons": [
-        "Fair value $351.84 is -32% below the $517.99 price \u2014 even the most generous leg ($395.93) sits below the price.",
+        "Fair value $351.99 is -30% below the $506.24 price \u2014 even the most generous leg ($395.93) sits below the price.",
         "Insiders are net sellers \u2014 5 sales, 147,809 shares, $75M, 0 buys in 90d."
       ],
       "flags": [],
@@ -695,16 +694,16 @@
         "NASDAQ100",
         "DOW30"
       ],
-      "market_cap": 3856024618691.19,
-      "rel_vol": 1.1516,
+      "market_cap": 3768555190189.44,
+      "rel_vol": 1.0396,
       "lynch": {
-        "value": 351.84,
-        "pegy": 0.679,
+        "value": 351.99,
+        "pegy": 0.695,
         "growth_used": 0.1764,
         "growth_cap": null,
-        "dividend_yield": 0.0072,
-        "pe_used": 27.03,
-        "eps": 19.1635,
+        "dividend_yield": 0.0073,
+        "pe_used": 26.42,
+        "eps": 19.1612,
         "eps_adjusted": false,
         "available": true,
         "reason": null
@@ -713,7 +712,7 @@
     "GOOGL": {
       "name": "Alphabet Inc.",
       "sector": "Communication Services",
-      "price": 283.72,
+      "price": 280.2,
       "pillars": {
         "conviction": {
           "score": 51.2,
@@ -723,7 +722,7 @@
           }
         },
         "valuation": {
-          "score": 10,
+          "score": 10.0,
           "detail": {
             "legs": {
               "dcf": {
@@ -732,12 +731,12 @@
                 "growth_scenario": 0.1485
               },
               "pegy": {
-                "value": 168.17,
-                "method": "PEGT = (14.8% growth capped at 30% + 0.30% div) / P/E 25.56 = 0.593; fair = price x PEGY",
-                "pegy": 0.593,
+                "value": 168.23,
+                "method": "PEGT = (14.8% growth capped at 30% + 0.31% div) / P/E 25.25 = 0.600; fair = price x PEGY",
+                "pegy": 0.6,
                 "growth_used": 0.1485,
-                "pe_used": 25.56,
-                "uncapped_pegy": 0.593
+                "pe_used": 25.25,
+                "uncapped_pegy": 0.6
               },
               "forward_sector": {
                 "value": 235.74,
@@ -747,16 +746,16 @@
                 "forward22_value": 308.7
               }
             },
-            "triangulated_fv": 168.17,
+            "triangulated_fv": 168.23,
             "fv_method": "median of 3 legs",
             "fv_override_applied": false,
-            "upside_pct": -0.407,
+            "upside_pct": -0.4,
             "leg_spread_div_fv": 1.186,
             "ladder": {
-              "heavy": 100.9,
-              "buy": 134.54,
-              "fair": 168.17,
-              "exit": 201.8
+              "heavy": 100.94,
+              "buy": 134.58,
+              "fair": 168.23,
+              "exit": 201.88
             },
             "ladder_ratios": {
               "heavy": 0.6,
@@ -851,12 +850,12 @@
               "macd": 75
             },
             "inputs": {
-              "ema20": 301.0,
-              "ema50": 319.36,
-              "ema200": 331.39,
-              "rsi14": 34.5,
-              "macd_hist": 1.02,
-              "price_vs_200d_pct": -0.144
+              "ema20": 299.02,
+              "ema50": 317.82,
+              "ema200": 330.82,
+              "rsi14": 32.9,
+              "macd_hist": 0.68,
+              "price_vs_200d_pct": -0.153
             }
           }
         },
@@ -879,22 +878,22 @@
       },
       "overall_score": 47.5,
       "verdict": "Avoid",
-      "verdict_reason": "Avoid gate: valuation score 10 < 30; price $283.72 at/above our Exit $201.8",
-      "triangulated_fv": 168.17,
+      "verdict_reason": "Avoid gate: valuation score 10.0 < 30; price $280.2 at/above our Exit $201.88",
+      "triangulated_fv": 168.23,
       "ladder": {
-        "heavy": 100.9,
-        "buy": 134.54,
-        "fair": 168.17,
-        "exit": 201.8
+        "heavy": 100.94,
+        "buy": 134.58,
+        "fair": 168.23,
+        "exit": 201.88
       },
       "pros": [
         "Operating cash flow is 131% of net income \u2014 profit is backed by more cash than earnings.",
         "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check."
       ],
       "cons": [
-        "Fair value $168.17 is -41% below the $283.72 price \u2014 even the most generous leg ($235.74) sits below the price.",
+        "Fair value $168.23 is -40% below the $280.20 price \u2014 even the most generous leg ($235.74) sits below the price.",
         "Free-cash-flow conversion is weak: FCF is only 14% of net income \u2014 capex is eating the cash the business earns.",
-        "Downtrend: price $283.72 sits below its 20-day EMA ($301.00) and 200-day EMA ($331.39); RSI 34.5 \u2014 timing is poor even if the business is fine.",
+        "Downtrend: price $280.20 sits below its 20-day EMA ($299.02) and 200-day EMA ($330.82); RSI 32.9 \u2014 timing is poor even if the business is fine.",
         "Our Story-Tracker rates it 'Out' (Story 56.2, Financials 46.1)."
       ],
       "flags": [
@@ -913,16 +912,16 @@
         "NASDAQ100",
         "DOW30"
       ],
-      "market_cap": 3491963534245.88,
-      "rel_vol": 0.8517,
+      "market_cap": 3448640146255.8,
+      "rel_vol": 0.7703,
       "lynch": {
-        "value": 168.17,
-        "pegy": 0.593,
+        "value": 168.23,
+        "pegy": 0.6,
         "growth_used": 0.1485,
         "growth_cap": null,
-        "dividend_yield": 0.003,
-        "pe_used": 25.56,
-        "eps": 11.1002,
+        "dividend_yield": 0.0031,
+        "pe_used": 25.25,
+        "eps": 11.097,
         "eps_adjusted": true,
         "available": true,
         "reason": null
