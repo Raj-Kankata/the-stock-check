@@ -868,6 +868,14 @@ tr.gap-above td {
 }
 
 /* ---- grid (sensitivity) ---- */
+/* The grid table's min-content width (median ~461px across the 227)
+   exceeds a phone viewport, so it scrolls inside its card instead of
+   forcing the card — and its .two-col sibling — wider than the screen.
+   A scroll container contributes zero min-content width, so this also
+   independently prevents the track blowout fixed above. */
+.grid-scroll {
+  overflow-x: auto;
+}
 .grid-table td,
 .grid-table th {
   text-align: center;
@@ -1012,7 +1020,12 @@ tr.gap-above td {
 .kv {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  /* A long value wraps to its own line instead of being pushed
+     off-screen: with min-width: 0 the spans may shrink below their
+     content width, and margin-left: auto keeps a wrapped value
+     right-aligned on its own line. */
+  flex-wrap: wrap;
+  gap: 4px 12px;
   padding: 5px 0;
   border-bottom: 1px solid var(--line);
   font-size: 15px;
@@ -1022,16 +1035,29 @@ tr.gap-above td {
 }
 .kv .k {
   color: var(--muted);
+  min-width: 0;
 }
 .kv .v {
   font-weight: bold;
   text-align: right;
   font-variant-numeric: tabular-nums;
+  min-width: 0;
+  margin-left: auto;
 }
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+}
+/* Grid items default to min-width: auto, so one wide item forces the
+   shared track wider than the viewport and stretches its sibling with
+   it. The DCF grid table's min-content width (median ~461px across the
+   227, worst 544px) did exactly that on phones: the Lynch card was
+   stretched to ~461px on a 390px screen, its values sitting at the far
+   right edge, off-screen, under body overflow-x: clip. min-width: 0
+   lets each card shrink to the track instead. */
+.two-col > * {
+  min-width: 0;
 }
 @media (max-width: 720px) {
   .two-col {
@@ -1045,6 +1071,13 @@ tr.gap-above td {
   }
   .scorebar .label {
     width: 120px;
+  }
+  /* Tighter grid cells on phones, so the sensitivity grid needs less
+     horizontal scrolling inside its card. */
+  .grid-table td,
+  .grid-table th {
+    padding: 5px 6px;
+    font-size: 13px;
   }
 }
 .pros li::marker {

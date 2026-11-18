@@ -119,35 +119,37 @@ export default function SensitivityGrid({
         )}
         .
       </p>
-      <table className="grid-table">
-        <thead>
-          <tr>
-            <th>FCF growth ↓ / rf →</th>
-            {rfCols.map((rf) => (
-              <th key={rf} className="num">
-                {rf}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {growthRows.map((g) => (
-            <tr key={g}>
-              <th>{g}</th>
+      <div className="grid-scroll">
+        <table className="grid-table">
+          <thead>
+            <tr>
+              <th>FCF growth ↓ / rf →</th>
               {rfCols.map((rf) => (
-                <td
-                  key={rf}
-                  className={`cell num${isDecisionCell(g, rf) ? ' decision' : heatClass(values[g][rf])}${sel?.growth === g && sel?.rf === rf ? ' selected' : ''}`}
-                  onClick={() => setSel({ growth: g, rf })}
-                  title={`DCF leg at ${g} growth, ${rf} risk-free rate`}
-                >
-                  {money(values[g][rf])}
-                </td>
+                <th key={rf} className="num">
+                  {rf}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {growthRows.map((g) => (
+              <tr key={g}>
+                <th>{g}</th>
+                {rfCols.map((rf) => (
+                  <td
+                    key={rf}
+                    className={`cell num${isDecisionCell(g, rf) ? ' decision' : heatClass(values[g][rf])}${sel?.growth === g && sel?.rf === rf ? ' selected' : ''}`}
+                    onClick={() => setSel({ growth: g, rf })}
+                    title={`DCF leg at ${g} growth, ${rf} risk-free rate`}
+                  >
+                    {money(values[g][rf])}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <p className="footnote">
         {decisionRowLabel !== null
           ? `The highlighted cell is this stock's published DCF value: ${money(decisionLeg)}. `
