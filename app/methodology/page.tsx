@@ -74,6 +74,15 @@ export default function MethodologyPage() {
           revenue growth can support. The third estimate, based on next year&rsquo;s
           earnings at the sector&rsquo;s multiple, is unaffected.
         </p>
+        <p>
+          When a one-off gain or charge is so large that it swamps a
+          company&rsquo;s whole year of earnings, the middle of the three
+          estimates stops meaning anything — so the fair value is based
+          instead on next year&rsquo;s expected earnings at the sector&rsquo;s
+          multiple, the estimate that does not depend on those reported
+          earnings at all. The card says so in plain words wherever this
+          applies.
+        </p>
 
         <h3>Quality / Forensics</h3>
         <p>

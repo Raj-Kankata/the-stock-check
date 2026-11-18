@@ -146,7 +146,7 @@ function LegBlock({
 }: {
   title: string
   value: number | null
-  badge: 'median' | 'mean' | null
+  badge: 'median' | 'mean' | 'forward' | null
   children?: ReactNode
 }) {
   const skipped = value === null
@@ -156,8 +156,7 @@ function LegBlock({
       <p className="leg-value">
         <strong>{skipped ? '—' : money(value)}</strong>
         {skipped && <span className="pill skipped">Skipped</span>}
-        {badge === 'median' && <span className="pill growth">Fair value</span>}
-        {badge === 'mean' && <span className="pill growth">Fair value</span>}
+        {badge !== null && <span className="pill growth">Fair value</span>}
       </p>
       {children}
     </div>
@@ -241,8 +240,24 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       meanLegKeys = availableLegs.map((l) => l.key)
     }
   }
-  const legBadge = (key: string): 'median' | 'mean' | null =>
-    medianLegKey === key ? 'median' : meanLegKeys.includes(key) ? 'mean' : null
+  // v1.6: when the fair value is set explicitly to the Forward-sector leg
+  // (trailing earnings dominated by a one-off), the median check above
+  // cannot find it, so badge the Forward leg directly.
+  const forwardLegKey: string | null =
+    pillars.valuation.detail.fv_method?.startsWith('forward_sector_explicit') ? 'forward' : null
+  const legBadge = (key: string): 'median' | 'mean' | 'forward' | null =>
+    medianLegKey === key
+      ? 'median'
+      : meanLegKeys.includes(key)
+        ? 'mean'
+        : forwardLegKey === key
+          ? 'forward'
+          : null
+  // Flags shown in §10: an applied one-off adjustment is already shown in
+  // full in the §7 earnings-quality callout, so it is not repeated here.
+  // GOOGL keeps its flag — its §7 callout is a curated summary, not the flag.
+  const otherFlags =
+    symbol === 'GOOGL' ? t.flags : t.flags.filter((f) => !/adjusted TTM NI/i.test(f))
   // Leg range for the live pros/cons line (StockLiveProConLine): the
   // Cons tail claims the most generous leg sits below the price, so
   // the live rewrite needs the min/max of the available legs.
@@ -615,9 +630,9 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       </Card>
 
       {/* (10) Flags */}
-      {t.flags.length > 0 && (
+      {otherFlags.length > 0 && (
         <Card title="Flags">
-          {t.flags.map((f) => (
+          {otherFlags.map((f) => (
             <div className="callout" key={f}>
               {f}
             </div>

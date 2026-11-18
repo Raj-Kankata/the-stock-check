@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Scoring engine v1.5-batch2 — The Stock Check.
-SPEC v1.3 FINAL (2026-11-17) — symmetric one-offs (§1–§2): GME negative quarters added back; guardrail unchanged; everything else frozen v1.4. The symmetric change is an INPUTS change (base_inputs.json GME adjusted fields), not a code change — no pillar, leg, guardrail, weight, gate or verdict code differs from v1.4.
+"""Scoring engine v1.6-batch2 — The Stock Check.
+SPEC v1.4 FINAL (2026-11-17) — BA-shape FV rule (§1) + Quality degenerate rule (§3): the fair value uses the Forward-sector leg explicitly when trailing earnings are dominated by a quantified one-off; Quality cash checks score neutral-50 when net income is near zero. BA T2 curation applied in the inputs (base_inputs.json BA adjusted fields). Everything else frozen v1.5.
 BATCH-2 ADAPTATIONS (v1.3 logic unchanged; see METHOD-batch2.md):
   (a) TICKERS = the 8 batch-2 names; TRUST COMPLETENESS generalised from
       the v1.3 hardcoded {NVDA/AAPL/MSFT: 100, GOOGL: 80, NVO: 65} by the
@@ -189,6 +189,12 @@ GUARDRAIL_SPREAD = 0.10  # g_cap = anchor + 10pp (margin expansion + buybacks)
 GUARDRAIL_FLOOR = 0.10   # g_cap floored at 10%
 GUARDRAIL_CAP = 0.30     # g_cap capped at 30% (mirrors the PEGY cap)
 GUARDRAIL_ENABLED = True  # False = frozen v1.3 control (regression gate only)
+# --- v1.6: BA-shape FV rule (SPEC v1.4 §1) + Quality degenerate rule (§3) ---
+FV_OVERRIDE_ENABLED = True       # False = frozen v1.5 control (regression gate only)
+FV_OVERRIDE_SPREAD = 0.75        # reuses the existing high-disagreement band (valuation score caps at 65 there)
+FV_OVERRIDE_SHARE = 0.50         # net one-off removed must exceed 50% of reported TTM NI (abs)
+DEGENERATE_QUALITY_ENABLED = True  # False = frozen v1.5 control (regression gate only)
+DEGENERATE_NI_DIV_REVENUE = 0.01  # |NI used| < 1% of TTM revenue => cash checks unreadable
 def guardrail(t, d):
     """SPEC v1.2 §1b. Returns (growth_for_legs, triggered, trigger, g_cap,
     anchor): growth_for_legs is the implied growth capped at g_cap when
@@ -357,6 +363,34 @@ def pillar_valuation(t, d):
         fv_method = "mean of 2 available legs (DCF skipped) — flagged"
     else:
         fv, fv_method = None, "insufficient legs"
+    # v1.6 BA-shape rule (SPEC v1.4 §1): when the legs disagree widely AND
+    # the trailing P/E is driven by a filing-quantified one-off that
+    # dominates TTM net income, the fair value is the Forward-sector leg
+    # explicitly — the undistorted operating leg. The spread test uses the
+    # preliminary (median) FV; upside/spread/score/ladder below are then
+    # recomputed on the new FV by the existing code. The net one-off is
+    # read from the curated oneoff_adjustments list, in $M — the list
+    # stores after-tax amounts as amount_after_tax_usd_m (BA, GME) or
+    # amount_after_tax_usd_b (GOOGL, AMZN, META, AVGO, BRK-B, TSLA); both
+    # are summed. NVO is DKK (currency_financials != USD) and is skipped.
+    fv_override_applied = False
+    if FV_OVERRIDE_ENABLED and len(vals) >= 3 and fv:
+        spread_pre = (max(vals) - min(vals)) / fv
+        adj_list = d.get("oneoff_adjustments") or []
+        net_removed_m = 0.0
+        if d.get("currency_financials") == "USD":
+            for it in adj_list:
+                if it.get("amount_after_tax_usd_m") is not None:
+                    net_removed_m += it["amount_after_tax_usd_m"]
+                elif it.get("amount_after_tax_usd_b") is not None:
+                    net_removed_m += it["amount_after_tax_usd_b"] * 1000
+        ni_m = d["net_income_ttm"] / 1e6 if d["net_income_ttm"] else 0
+        removed_share = abs(net_removed_m / ni_m) if ni_m else 0
+        if (spread_pre >= FV_OVERRIDE_SPREAD and adj_list
+                and removed_share > FV_OVERRIDE_SHARE):
+            fv = legs["forward_sector"]["value"]
+            fv_method = "forward_sector_explicit (SPEC v1.4 §1)"
+            fv_override_applied = True
     upside = (fv / price - 1) if fv else None
     spread = ((max(vals) - min(vals)) / fv) if (fv and len(vals) >= 2) else None
     score = None
@@ -370,6 +404,7 @@ def pillar_valuation(t, d):
         score = round(score, 1)
     ladder = {k: round(fv * r, 2) for k, r in LADDER_RATIOS.items()} if fv else None
     return score, {"legs": legs, "triangulated_fv": fv, "fv_method": fv_method,
+                   "fv_override_applied": fv_override_applied,
                    "upside_pct": round(upside, 3) if upside is not None else None,
                    "leg_spread_div_fv": round(spread, 3) if spread is not None else None,
                    "ladder": ladder, "ladder_ratios": LADDER_RATIOS,
@@ -378,6 +413,12 @@ def pillar_valuation(t, d):
 
 # ---------------- Pillar 3: Quality ----------------
 def pillar_quality(d):
+    # v1.6 degenerate rule (SPEC v1.4 §3): when |NI used| is < 1% of TTM
+    # revenue, the OCF/NI and FCF-conversion checks cannot be read (the
+    # ratios explode on a near-zero denominator) and score 50 (neutral).
+    ni_used = d["net_income_ttm_adjusted"] if d["net_income_ttm_adjusted"] else d["net_income_ttm"]
+    rev = d.get("revenue_ttm")
+    degenerate = bool(rev) and abs(ni_used) < DEGENERATE_NI_DIV_REVENUE * abs(rev)
     ocf_pct = d["ocf_pct_net_income_adjusted"] if d["ocf_pct_net_income_adjusted"] else d["ocf_pct_net_income_ttm"]
     s_ocf = band(ocf_pct, [(0.40, 20), (0.60, 40), (0.80, 60), (1.00, 80), (999, 100)])
     acc = d["accruals_sloan_latest_annual"]
@@ -388,16 +429,22 @@ def pillar_quality(d):
     if d["net_income_ttm_adjusted"]:  # ONEOFF-v1: use adjusted NI whenever set (GOOGL, NVO in v1.2)
         fcf_conv = d["fcf_ttm"] / d["net_income_ttm_adjusted"]
     s_fcf = band(fcf_conv, [(0.20, 20), (0.40, 45), (0.60, 65), (0.80, 85), (999, 100)])
+    if DEGENERATE_QUALITY_ENABLED and degenerate:
+        s_ocf = 50
+        s_fcf = 50
     s_roa = band(d["roa"], [(0.10, 35), (0.15, 55), (0.20, 70), (0.30, 85), (999, 100)])
     s_lev = band(d["debt_to_equity_ratio"], [(0.30, 100), (0.60, 80), (1.00, 60), (2.00, 40), (999, 20)])
     subs = {"ocf_vs_ni": s_ocf, "accruals": s_acc, "receivables_trend": s_recv,
             "fcf_conversion": s_fcf, "roa": s_roa, "leverage": s_lev}
     score = round(0.25 * s_ocf + 0.20 * s_acc + 0.15 * s_recv + 0.20 * s_fcf + 0.10 * s_roa + 0.10 * s_lev, 1)
     return score, {"subscores": subs,
+                   "degenerate_ni": degenerate,
                    "inputs": {"ocf_pct_ni_used": round(ocf_pct, 3), "accruals_sloan": d["accruals_sloan_latest_annual"],
                               "receivables_change_pp": d["receivables_ratio_change_pp"],
                               "fcf_conversion_used": round(fcf_conv, 3), "roa": d["roa"],
-                              "debt_to_equity": d["debt_to_equity_ratio"]}}
+                              "debt_to_equity": d["debt_to_equity_ratio"],
+                              "ni_used": ni_used,
+                              "ni_used_div_revenue": round(ni_used / rev, 4) if rev else None}}
 
 # ---------------- Pillar 4: Technical ----------------
 def pillar_technical(d):
@@ -486,9 +533,12 @@ def pros_cons(t, d, pillars, overall, vdt):
     price = d["price"]; val = pillars["valuation"]["detail"]; q = pillars["quality"]["detail"]; tc = pillars["technical"]["detail"]
     fv = val["triangulated_fv"]
     if val["upside_pct"] is not None and val["upside_pct"] > 0:
-        p.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:+.0%} above the ${price:,.2f} price — the DCF/PEGY/Forward-sector legs span "
-                 f"${min(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}–"
-                 f"${max(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}, so treat the fair value, not any single leg, as the anchor.")
+        if val.get("fv_override_applied"):
+            p.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:+.0%} above the ${price:,.2f} price — the value is based on expected operating earnings, not the midpoint of the legs.")
+        else:
+            p.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:+.0%} above the ${price:,.2f} price — the DCF/PEGY/Forward-sector legs span "
+                     f"${min(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}–"
+                     f"${max(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}, so treat the fair value, not any single leg, as the anchor.")
     if val["upside_pct"] is not None and val["upside_pct"] < 0:
         c.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:.0%} below the ${price:,.2f} price — even the most generous leg "
                  f"(${max(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}) sits below the price.")
@@ -496,16 +546,20 @@ def pros_cons(t, d, pillars, overall, vdt):
         p.append(f"Revenue compounded {d['revenue_cagr_3y_annual']:.0%} a year over the last 3 fiscal years.")
     if d["revenue_cagr_3y_annual"] is not None and d["revenue_cagr_3y_annual"] < 0.10:
         c.append(f"Revenue compounded only {d['revenue_cagr_3y_annual']:.0%} a year over the last 3 fiscal years — growth is no longer the story.")
-    if q["inputs"]["ocf_pct_ni_used"] >= 1.0:
-        p.append(f"Operating cash flow is {q['inputs']['ocf_pct_ni_used']:.0%} of net income — profit is backed by more cash than earnings.")
-    elif q["inputs"]["ocf_pct_ni_used"] < 0.80:
-        c.append(f"Operating cash flow is only {q['inputs']['ocf_pct_ni_used']:.0%} of net income — a large slice of profit is not cash yet.")
+    # v1.6: when net income is degenerate (SPEC v1.4 §3), the OCF/NI and
+    # FCF-conversion ratios cannot be read — do not emit lines built from them.
+    if not q.get("degenerate_ni", False):
+        if q["inputs"]["ocf_pct_ni_used"] >= 1.0:
+            p.append(f"Operating cash flow is {q['inputs']['ocf_pct_ni_used']:.0%} of net income — profit is backed by more cash than earnings.")
+        elif q["inputs"]["ocf_pct_ni_used"] < 0.80:
+            c.append(f"Operating cash flow is only {q['inputs']['ocf_pct_ni_used']:.0%} of net income — a large slice of profit is not cash yet.")
     if q["subscores"]["accruals"] >= 75:
         p.append("Accruals are low/negative (Sloan) — earnings quality looks clean on that check.")
-    if q["subscores"]["fcf_conversion"] <= 45:
-        c.append(f"Free-cash-flow conversion is weak: FCF is only {q['inputs']['fcf_conversion_used']:.0%} of net income — capex is eating the cash the business earns.")
-    if q["subscores"]["fcf_conversion"] >= 85:
-        p.append(f"Free-cash-flow conversion is strong: FCF is {q['inputs']['fcf_conversion_used']:.0%} of net income.")
+    if not q.get("degenerate_ni", False):
+        if q["subscores"]["fcf_conversion"] <= 45:
+            c.append(f"Free-cash-flow conversion is weak: FCF is only {q['inputs']['fcf_conversion_used']:.0%} of net income — capex is eating the cash the business earns.")
+        if q["subscores"]["fcf_conversion"] >= 85:
+            p.append(f"Free-cash-flow conversion is strong: FCF is {q['inputs']['fcf_conversion_used']:.0%} of net income.")
     if tc["subscores"]["trend_ema"] >= 75:
         p.append("Uptrend: price sits above its 20-, 50- and 200-day averages.")
     if tc["subscores"]["trend_ema"] <= 35:
@@ -521,7 +575,7 @@ def pros_cons(t, d, pillars, overall, vdt):
 
 # ---------------- Run ----------------
 results = {"as_of": "2026-11-16", "price_date": "2026-11-13",
-           "engine": "scoring-engine-v1.5-batch2 (SPEC v1.3 FINAL)",
+           "engine": "scoring-engine-v1.6-batch2 (SPEC v1.4 FINAL)",
            "locked_set": {"rf": 0.05, "discount_low_beta": 0.10, "discount_high_beta": 0.12,
                           "discount_tier_rule": "12% if raw beta >= 2.0, else 10% (batch-2 generalisation of the v1.3 NVDA 12% tier; no batch-2 ticker triggers 12% — max raw beta TSLA 1.743)",
                           "terminal_growth": 0.025, "dcf_growth_cap": 0.20,

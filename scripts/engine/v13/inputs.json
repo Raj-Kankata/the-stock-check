@@ -163,7 +163,7 @@
       "beta_adjusted": 1.83549,
       "debt_fcf": 0.0869,
       "market_cap": 3807348553774.66,
-      "rel_vol": 1.5869,
+      "rel_vol": 1.5984,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -275,7 +275,7 @@
       "beta_adjusted": 1.05963,
       "debt_fcf": 0.5888,
       "market_cap": 5192505178135.22,
-      "rel_vol": 0.9733,
+      "rel_vol": 1.0653,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -387,7 +387,7 @@
       "beta_adjusted": 1.03015,
       "debt_fcf": 0.9478,
       "market_cap": 3856024618691.19,
-      "rel_vol": 1.1509,
+      "rel_vol": 1.1516,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -521,7 +521,7 @@
       "beta_adjusted": 1.15142,
       "debt_fcf": 3.0025,
       "market_cap": 3491963534245.88,
-      "rel_vol": 0.8492,
+      "rel_vol": 0.8517,
       "indexes": [
         "SP500",
         "NASDAQ100",

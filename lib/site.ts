@@ -11,7 +11,7 @@
 
 export const SITE_NAME = 'The Stock Check'
 export const SITE_URL = 'https://www.thestockcheck.com'
-export const ENGINE_VERSION = 'scoring-engine-v1.5'
+export const ENGINE_VERSION = 'scoring-engine-v1.6'
 export const CONTACT_EMAIL = 'hello@thestockcheck.com'
 
 /** Top Picks — frozen entry prices, two cohorts.

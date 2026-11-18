@@ -88,7 +88,7 @@ magnitude gate on VIX (it can legitimately move >25% in a day) or on the
 computed in memory and staged in a temp dir; files are written only after
 all gates pass.
 
-Engines are scoring-engine-v1.5 + v1.5-batch2 (SPEC v1.3 FINAL — symmetric one-offs + GME negatives; frozen since 2026-11-17).
+Engines are scoring-engine-v1.6 + v1.6-batch2 (SPEC v1.4 FINAL — BA-shape FV rule + Quality degenerate rule + BA T2; frozen since 2026-11-17).
 This script copies them verbatim into scripts/engine/v13|batch2/engine.py
 and never edits them. They read inputs.json from their own directory and
 hardcode as_of "2026-11-16" / price_date "2026-11-13" in their output;

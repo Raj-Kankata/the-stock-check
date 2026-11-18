@@ -2662,8 +2662,8 @@
       "trailing_eps": 9.69,
       "forward_pe": 75.93,
       "trailing_pe": 17.05,
-      "trailing_pe_adjusted": null,
-      "trailing_eps_adjusted": null,
+      "trailing_pe_adjusted": 8575.0,
+      "trailing_eps_adjusted": 0.02,
       "peg_ratio_yahoo": 3.69,
       "implied_5y_eps_growth": 0.0462,
       "earnings_growth_yahoo_1y": null,
@@ -2684,14 +2684,14 @@
       "beta_source": "https://finance.yahoo.com/quote/BA",
       "revenue_ttm": 94913000000.0,
       "net_income_ttm": 7656000000.0,
-      "net_income_ttm_adjusted": null,
+      "net_income_ttm_adjusted": 15100000,
       "ocf_ttm": 4012000000.0,
       "fcf_ttm": 16000000.0,
       "fcf_per_share_ttm": 0.02,
-      "fcf_per_share_note": "USD per share; shares = NI_TTM/trailing EPS (total shares).",
+      "fcf_per_share_note": "USD per share; shares = EDGAR TTM net income \u00f7 EDGAR TTM diluted EPS (implied shares).",
       "shares_implied_total": 792546584,
       "ocf_pct_net_income_ttm": 0.524,
-      "ocf_pct_net_income_adjusted": null,
+      "ocf_pct_net_income_adjusted": 265.695,
       "accruals_sloan_latest_annual": 0.007,
       "receivables_to_revenue_latest": 0.033,
       "receivables_ratio_change_pp": -0.69,
@@ -2755,7 +2755,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
+        "Recent earnings include a large one-time gain from selling a business. That gain is not part of the company's normal earnings, so this value is based on expected operating earnings instead. Detail: TTM net income $7,656M includes a $9,672M pre-tax gain on the sale of the Digital Aviation Solutions business to Thoma Bravo (Q4 2025). After tax at 21%, $7,640.9M removed; adjusted TTM NI $15.1M, adjusted EPS $0.02, adjusted trailing P/E 8,575\u00d7. Figures are rounded. Source: FY2025 10-K (acc. 0001628280-26-004357)."
       ],
       "debt_fcf": 3028.875,
       "market_cap": 135921739156.0,
@@ -2763,6 +2763,14 @@
       "indexes": [
         "SP500",
         "DOW30"
+      ],
+      "oneoff_adjustments": [
+        {
+          "quarter": "2025-12-31",
+          "item": "Gain on sale of Digital Aviation Solutions business to Thoma Bravo (Q4 2025)",
+          "amount_after_tax_usd_m": 7640.9,
+          "amount_pre_tax_usd_m": 9672.0
+        }
       ]
     },
     "BE": {
@@ -9796,7 +9804,7 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "TTM net income $893.3M includes one-offs in all four quarters: Q1 FY27 (ended 2026-05-02) +$268.4M unrealised gain on derivative asset, net, +$1.1M gain on digital assets; Q2 FY27 (ended 2026-08-01) +$166.3M gain on derivative asset, net, +$72.1M unrealised gain on equity investment, -$75.0M loss on digital assets (net +$163.4M); Q3 FY26 (ended 2025-11-01) -$9.2M loss on digital assets, -$10.7M impairments, -$42.2M noncash, nonrecurring warrant interest charge (net -$62.1M); Q4 FY26 (ended 2026-01-31) -$151.0M loss on digital assets. Gains stripped and losses added back (ONEOFF-v1 symmetric rule, SPEC v1.3): pre-tax one-offs net +$219.8M (+$432.9M gains, -$213.1M losses); after-tax at 21% net +$173.7M removed. Adjusted TTM NI $719.6M, adjusted EPS $1.24, adjusted trailing P/E 20.8 used for Quality/PEGT (20.6 at the 16 Nov close of $25.60). Note: the company-disclosed adjusted TTM NI is $51.5M higher \u2014 no additional ~$65M pre-tax negative item was found in the filings, so the item-based $719.6M is used. Sources: Q1/Q2 FY27 10-Qs (acc. 0001326380-26-000025, -000055); Q3 FY26 10-Q (acc. 0001326380-25-000098); FY26 10-K (acc. 0001326380-26-000013). See SPEC-v1.3.md."
+        "TTM net income $893.3M includes one-offs in all four quarters: Q1 FY27 (ended 2026-05-02) +$268.4M unrealised gain on derivative asset, net, +$1.1M gain on digital assets; Q2 FY27 (ended 2026-08-01) +$166.3M gain on derivative asset, net, +$72.1M unrealised gain on equity investment, -$75.0M loss on digital assets (net +$163.4M); Q3 FY26 (ended 2025-11-01) -$9.2M loss on digital assets, -$10.7M impairments, -$42.2M noncash, nonrecurring warrant interest charge (net -$62.1M); Q4 FY26 (ended 2026-01-31) -$151.0M loss on digital assets. Gains stripped and losses added back: pre-tax one-offs net +$219.8M (+$432.9M gains, -$213.1M losses); after-tax at 21% net +$173.7M removed. Adjusted TTM NI $719.6M, adjusted EPS $1.24, adjusted trailing P/E 20.8 used for Quality/PEGT (20.6 at the 16 Nov close of $25.60). Note: the company-disclosed adjusted TTM NI is $51.5M higher \u2014 no additional ~$65M pre-tax negative item was found in the filings, so the item-based $719.6M is used. Sources: Q1/Q2 FY27 10-Qs (acc. 0001326380-26-000025, -000055); Q3 FY26 10-Q (acc. 0001326380-25-000098); FY26 10-K (acc. 0001326380-26-000013). Figures are rounded."
       ],
       "debt_fcf": 6.2983,
       "market_cap": 14994678569.75,

@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-16",
   "price_date": "2026-11-13",
-  "engine": "scoring-engine-v1.5 (SPEC v1.3 FINAL)",
+  "engine": "scoring-engine-v1.6 (SPEC v1.4 FINAL)",
   "locked_set": {
     "rf": 0.05,
     "discount_low_beta": 0.1,
@@ -83,6 +83,7 @@
             },
             "triangulated_fv": 238.72,
             "fv_method": "median of 3 legs",
+            "fv_override_applied": false,
             "upside_pct": 0.529,
             "leg_spread_div_fv": 0.656,
             "ladder": {
@@ -161,13 +162,16 @@
               "roa": 100,
               "leverage": 100
             },
+            "degenerate_ni": false,
             "inputs": {
               "ocf_pct_ni_used": 0.697,
               "accruals_sloan": 0.0839,
               "receivables_change_pp": 0.14,
               "fcf_conversion_used": 0.658,
               "roa": 0.53572,
-              "debt_to_equity": 0.16971
+              "debt_to_equity": 0.16971,
+              "ni_used": 192879000000.0,
+              "ni_used_div_revenue": 0.6366
             }
           }
         },
@@ -245,7 +249,7 @@
         "DOW30"
       ],
       "market_cap": 3807348553774.66,
-      "rel_vol": 1.5869
+      "rel_vol": 1.5984
     },
     "AAPL": {
       "name": "Apple Inc.",
@@ -286,6 +290,7 @@
             },
             "triangulated_fv": 172.99,
             "fv_method": "median of 3 legs",
+            "fv_override_applied": false,
             "upside_pct": -0.51,
             "leg_spread_div_fv": 0.429,
             "ladder": {
@@ -364,13 +369,16 @@
               "roa": 85,
               "leverage": 60
             },
+            "degenerate_ni": false,
             "inputs": {
               "ocf_pct_ni_used": 1.098,
               "accruals_sloan": -0.0319,
               "receivables_change_pp": -0.41,
               "fcf_conversion_used": 1.029,
               "roa": 0.25868,
-              "debt_to_equity": 0.84286
+              "debt_to_equity": 0.84286,
+              "ni_used": 132175000000.0,
+              "ni_used_div_revenue": 0.276
             }
           }
         },
@@ -446,7 +454,7 @@
         "DOW30"
       ],
       "market_cap": 5192505178135.22,
-      "rel_vol": 0.9733
+      "rel_vol": 1.0653
     },
     "MSFT": {
       "name": "Microsoft Corporation",
@@ -487,6 +495,7 @@
             },
             "triangulated_fv": 351.84,
             "fv_method": "median of 3 legs",
+            "fv_override_applied": false,
             "upside_pct": -0.321,
             "leg_spread_div_fv": 0.547,
             "ladder": {
@@ -565,13 +574,16 @@
               "roa": 55,
               "leverage": 100
             },
+            "degenerate_ni": false,
             "inputs": {
               "ocf_pct_ni_used": 1.373,
               "accruals_sloan": -0.0649,
               "receivables_change_pp": -0.44,
               "fcf_conversion_used": 0.42,
               "roa": 0.14408,
-              "debt_to_equity": 0.28465
+              "debt_to_equity": 0.28465,
+              "ni_used": 142631000000.0,
+              "ni_used_div_revenue": 0.4117
             }
           }
         },
@@ -646,7 +658,7 @@
         "DOW30"
       ],
       "market_cap": 3856024618691.19,
-      "rel_vol": 1.1509
+      "rel_vol": 1.1516
     },
     "GOOGL": {
       "name": "Alphabet Inc.",
@@ -687,6 +699,7 @@
             },
             "triangulated_fv": 168.17,
             "fv_method": "median of 3 legs",
+            "fv_override_applied": false,
             "upside_pct": -0.407,
             "leg_spread_div_fv": 1.186,
             "ladder": {
@@ -765,13 +778,16 @@
               "roa": 55,
               "leverage": 100
             },
+            "degenerate_ni": false,
             "inputs": {
               "ocf_pct_ni_used": 1.314,
               "accruals_sloan": -0.0547,
               "receivables_change_pp": 0.66,
               "fcf_conversion_used": 0.145,
               "roa": 0.12743,
-              "debt_to_equity": 0.22187
+              "debt_to_equity": 0.22187,
+              "ni_used": 136594000000.0,
+              "ni_used_div_revenue": 0.2899
             }
           }
         },
@@ -848,7 +864,7 @@
         "DOW30"
       ],
       "market_cap": 3491963534245.88,
-      "rel_vol": 0.8492
+      "rel_vol": 0.8517
     }
   }
 }

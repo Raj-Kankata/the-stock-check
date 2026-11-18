@@ -381,7 +381,7 @@
       "beta_adjusted": 1.05963,
       "debt_fcf": 0.5888,
       "market_cap": 5192505178135.22,
-      "rel_vol": 0.9733,
+      "rel_vol": 1.0653,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -496,7 +496,7 @@
       ],
       "debt_fcf": 3.2556,
       "market_cap": 524309139294.65,
-      "rel_vol": 0.9231,
+      "rel_vol": 1.0663,
       "indexes": [
         "SP500"
       ]
@@ -608,7 +608,7 @@
       ],
       "debt_fcf": 4.6527,
       "market_cap": 188478526161.1,
-      "rel_vol": 0.9267,
+      "rel_vol": 0.9316,
       "indexes": [
         "SP500"
       ]
@@ -1616,7 +1616,7 @@
       ],
       "debt_fcf": 1.3054,
       "market_cap": 835241156609.44,
-      "rel_vol": 1.0345,
+      "rel_vol": 1.0698,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -1839,7 +1839,7 @@
       ],
       "debt_fcf": 2.3696,
       "market_cap": 1565837438.36,
-      "rel_vol": 0.6712,
+      "rel_vol": 0.9551,
       "indexes": []
     },
     "AMZN": {
@@ -1965,7 +1965,7 @@
       "beta_adjusted": 1.33701,
       "debt_fcf": null,
       "market_cap": 2808349818150.0,
-      "rel_vol": 0.9566,
+      "rel_vol": 0.9604,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -2530,7 +2530,7 @@
       ],
       "debt_fcf": 1.6531,
       "market_cap": 1629316858212.0,
-      "rel_vol": 0.9704,
+      "rel_vol": 1.0064,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -2643,7 +2643,7 @@
       ],
       "debt_fcf": 1.1329,
       "market_cap": 2769382220.28,
-      "rel_vol": 1.1352,
+      "rel_vol": 1.1424,
       "indexes": []
     },
     "BA": {
@@ -2656,8 +2656,8 @@
       "trailing_eps": 9.69,
       "forward_pe": 75.93,
       "trailing_pe": 17.05,
-      "trailing_pe_adjusted": null,
-      "trailing_eps_adjusted": null,
+      "trailing_pe_adjusted": 8261.0,
+      "trailing_eps_adjusted": 0.02,
       "peg_ratio_yahoo": 3.69,
       "implied_5y_eps_growth": 0.0462,
       "earnings_growth_yahoo_1y": null,
@@ -2678,14 +2678,14 @@
       "beta_source": "https://finance.yahoo.com/quote/BA",
       "revenue_ttm": 94913000000.0,
       "net_income_ttm": 7656000000.0,
-      "net_income_ttm_adjusted": null,
+      "net_income_ttm_adjusted": 15100000,
       "ocf_ttm": 4012000000.0,
       "fcf_ttm": 16000000.0,
       "fcf_per_share_ttm": 0.02,
-      "fcf_per_share_note": "USD per share; shares = NI_TTM/trailing EPS (total shares).",
+      "fcf_per_share_note": "USD per share; shares = EDGAR TTM net income \u00f7 EDGAR TTM diluted EPS (implied shares).",
       "shares_implied_total": 792546584,
       "ocf_pct_net_income_ttm": 0.524,
-      "ocf_pct_net_income_adjusted": null,
+      "ocf_pct_net_income_adjusted": 265.695,
       "accruals_sloan_latest_annual": 0.007,
       "receivables_to_revenue_latest": 0.033,
       "receivables_ratio_change_pp": -0.69,
@@ -2749,14 +2749,22 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
+        "Recent earnings include a large one-time gain from selling a business. That gain is not part of the company's normal earnings, so this value is based on expected operating earnings instead. Detail: TTM net income $7,656M includes a $9,672M pre-tax gain on the sale of the Digital Aviation Solutions business to Thoma Bravo (Q4 2025). After tax at 21%, $7,640.9M removed; adjusted TTM NI $15.1M, adjusted EPS $0.02, adjusted trailing P/E 8,575\u00d7. Figures are rounded. Source: FY2025 10-K (acc. 0001628280-26-004357)."
       ],
       "debt_fcf": 3028.875,
       "market_cap": 130944546608.48,
-      "rel_vol": 0.7528,
+      "rel_vol": 0.7545,
       "indexes": [
         "SP500",
         "DOW30"
+      ],
+      "oneoff_adjustments": [
+        {
+          "quarter": "2025-12-31",
+          "item": "Gain on sale of Digital Aviation Solutions business to Thoma Bravo (Q4 2025)",
+          "amount_after_tax_usd_m": 7640.9,
+          "amount_pre_tax_usd_m": 9672.0
+        }
       ]
     },
     "BE": {
@@ -2866,7 +2874,7 @@
       ],
       "debt_fcf": 6.381,
       "market_cap": 56529511332.48,
-      "rel_vol": 0.7007,
+      "rel_vol": 0.7057,
       "indexes": [
         "SP500"
       ]
@@ -3322,7 +3330,7 @@
       ],
       "debt_fcf": 5.6697,
       "market_cap": 1279016216187.55,
-      "rel_vol": 0.7155,
+      "rel_vol": 0.7411,
       "indexes": [
         "SP500"
       ]
@@ -3882,7 +3890,7 @@
       ],
       "debt_fcf": 0.5873,
       "market_cap": 9570211367.04,
-      "rel_vol": 1.155,
+      "rel_vol": 1.1556,
       "indexes": []
     },
     "CDNS": {
@@ -4435,7 +4443,7 @@
       "flags": [],
       "debt_fcf": 3.7081,
       "market_cap": 46257702209.52,
-      "rel_vol": 0.6157,
+      "rel_vol": 0.628,
       "indexes": [
         "SP500"
       ]
@@ -4547,7 +4555,7 @@
       ],
       "debt_fcf": null,
       "market_cap": 40573208033.07,
-      "rel_vol": 0.7561,
+      "rel_vol": 0.7646,
       "indexes": [
         "SP500"
       ]
@@ -4657,7 +4665,7 @@
       "flags": [],
       "debt_fcf": 1.0852,
       "market_cap": 494959789527.94,
-      "rel_vol": 1.2953,
+      "rel_vol": 1.302,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -4882,7 +4890,7 @@
       ],
       "debt_fcf": 2.7964,
       "market_cap": 189387541956.69,
-      "rel_vol": 0.78,
+      "rel_vol": 0.8672,
       "indexes": [
         "SP500",
         "DOW30"
@@ -5105,7 +5113,7 @@
       ],
       "debt_fcf": 0.5098,
       "market_cap": 200866679000.0,
-      "rel_vol": 0.6875,
+      "rel_vol": 0.6953,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -5216,7 +5224,7 @@
       "flags": [],
       "debt_fcf": 2.3341,
       "market_cap": 376575627619.68,
-      "rel_vol": 1.0035,
+      "rel_vol": 1.0067,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -6230,7 +6238,7 @@
       ],
       "debt_fcf": 3.6803,
       "market_cap": 212170907368.05,
-      "rel_vol": 1.1522,
+      "rel_vol": 1.165,
       "indexes": [
         "SP500"
       ]
@@ -6452,7 +6460,7 @@
       ],
       "debt_fcf": 3.8078,
       "market_cap": 3851570160.0,
-      "rel_vol": 0.658,
+      "rel_vol": 0.7984,
       "indexes": []
     },
     "DIS": {
@@ -6562,7 +6570,7 @@
       ],
       "debt_fcf": 5.5518,
       "market_cap": 210913223124.8,
-      "rel_vol": 1.6389,
+      "rel_vol": 1.6418,
       "indexes": [
         "SP500",
         "DOW30"
@@ -7450,7 +7458,7 @@
       ],
       "debt_fcf": null,
       "market_cap": 23954022612.8,
-      "rel_vol": 1.3065,
+      "rel_vol": 1.342,
       "indexes": [
         "SP500"
       ]
@@ -8901,7 +8909,7 @@
       ],
       "debt_fcf": 0.1633,
       "market_cap": 91641407437.65,
-      "rel_vol": 0.6979,
+      "rel_vol": 0.7069,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -9570,7 +9578,7 @@
       ],
       "debt_fcf": 3.7265,
       "market_cap": 92790853675.8,
-      "rel_vol": 0.7724,
+      "rel_vol": 0.7744,
       "indexes": [
         "SP500"
       ]
@@ -9790,11 +9798,11 @@
       "sector_multiple_cap_floor_binds": false,
       "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
       "flags": [
-        "TTM net income $893.3M includes one-offs in all four quarters: Q1 FY27 (ended 2026-05-02) +$268.4M unrealised gain on derivative asset, net, +$1.1M gain on digital assets; Q2 FY27 (ended 2026-08-01) +$166.3M gain on derivative asset, net, +$72.1M unrealised gain on equity investment, -$75.0M loss on digital assets (net +$163.4M); Q3 FY26 (ended 2025-11-01) -$9.2M loss on digital assets, -$10.7M impairments, -$42.2M noncash, nonrecurring warrant interest charge (net -$62.1M); Q4 FY26 (ended 2026-01-31) -$151.0M loss on digital assets. Gains stripped and losses added back (ONEOFF-v1 symmetric rule, SPEC v1.3): pre-tax one-offs net +$219.8M (+$432.9M gains, -$213.1M losses); after-tax at 21% net +$173.7M removed. Adjusted TTM NI $719.6M, adjusted EPS $1.24, adjusted trailing P/E 20.8 used for Quality/PEGT (20.6 at the 16 Nov close of $25.60). Note: the company-disclosed adjusted TTM NI is $51.5M higher \u2014 no additional ~$65M pre-tax negative item was found in the filings, so the item-based $719.6M is used. Sources: Q1/Q2 FY27 10-Qs (acc. 0001326380-26-000025, -000055); Q3 FY26 10-Q (acc. 0001326380-25-000098); FY26 10-K (acc. 0001326380-26-000013). See SPEC-v1.3.md."
+        "TTM net income $893.3M includes one-offs in all four quarters: Q1 FY27 (ended 2026-05-02) +$268.4M unrealised gain on derivative asset, net, +$1.1M gain on digital assets; Q2 FY27 (ended 2026-08-01) +$166.3M gain on derivative asset, net, +$72.1M unrealised gain on equity investment, -$75.0M loss on digital assets (net +$163.4M); Q3 FY26 (ended 2025-11-01) -$9.2M loss on digital assets, -$10.7M impairments, -$42.2M noncash, nonrecurring warrant interest charge (net -$62.1M); Q4 FY26 (ended 2026-01-31) -$151.0M loss on digital assets. Gains stripped and losses added back: pre-tax one-offs net +$219.8M (+$432.9M gains, -$213.1M losses); after-tax at 21% net +$173.7M removed. Adjusted TTM NI $719.6M, adjusted EPS $1.24, adjusted trailing P/E 20.8 used for Quality/PEGT (20.6 at the 16 Nov close of $25.60). Note: the company-disclosed adjusted TTM NI is $51.5M higher \u2014 no additional ~$65M pre-tax negative item was found in the filings, so the item-based $719.6M is used. Sources: Q1/Q2 FY27 10-Qs (acc. 0001326380-26-000025, -000055); Q3 FY26 10-Q (acc. 0001326380-25-000098); FY26 10-K (acc. 0001326380-26-000013). Figures are rounded."
       ],
       "debt_fcf": 6.2983,
       "market_cap": 14849662336.0,
-      "rel_vol": 0.6838,
+      "rel_vol": 0.6876,
       "indexes": [],
       "oneoff_adjustments": [
         {
@@ -9950,7 +9958,7 @@
       "beta_adjusted": 1.15142,
       "debt_fcf": 3.0025,
       "market_cap": 3491963534245.88,
-      "rel_vol": 0.8492,
+      "rel_vol": 0.8517,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -12956,7 +12964,7 @@
       "flags": [],
       "debt_fcf": 2.9742,
       "market_cap": 428027329429.32,
-      "rel_vol": 1.0159,
+      "rel_vol": 1.0475,
       "indexes": [
         "SP500",
         "DOW30"
@@ -13850,7 +13858,7 @@
       ],
       "debt_fcf": 0.5714,
       "market_cap": 265497307792.74,
-      "rel_vol": 0.8908,
+      "rel_vol": 0.8923,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -14075,7 +14083,7 @@
       ],
       "debt_fcf": null,
       "market_cap": 24089320205.28,
-      "rel_vol": 0.8935,
+      "rel_vol": 0.9435,
       "indexes": [
         "SP500"
       ]
@@ -14738,7 +14746,7 @@
       ],
       "debt_fcf": 0.74,
       "market_cap": 133857938565.84,
-      "rel_vol": 1.0305,
+      "rel_vol": 1.2645,
       "indexes": [
         "SP500"
       ]
@@ -15200,7 +15208,7 @@
       "beta_adjusted": 1.18693,
       "debt_fcf": 2.9284,
       "market_cap": 1608213104629.48,
-      "rel_vol": 0.4857,
+      "rel_vol": 0.4873,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -15648,7 +15656,7 @@
       ],
       "debt_fcf": 3.0554,
       "market_cap": 127064855651.28,
-      "rel_vol": 0.7072,
+      "rel_vol": 0.769,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -15759,7 +15767,7 @@
       "beta_adjusted": 1.03015,
       "debt_fcf": 0.9478,
       "market_cap": 3856024618691.19,
-      "rel_vol": 1.1509,
+      "rel_vol": 1.1516,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -15873,7 +15881,7 @@
       ],
       "debt_fcf": 0.0878,
       "market_cap": 821934755540.58,
-      "rel_vol": 0.8712,
+      "rel_vol": 0.8847,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -16209,7 +16217,7 @@
       ],
       "debt_fcf": 0.5543,
       "market_cap": 118519116317.55,
-      "rel_vol": 0.8321,
+      "rel_vol": 0.8348,
       "indexes": [
         "SP500"
       ]
@@ -16321,7 +16329,7 @@
       ],
       "debt_fcf": 5.285,
       "market_cap": 56621138747.56,
-      "rel_vol": 0.8762,
+      "rel_vol": 0.8772,
       "indexes": [
         "SP500",
         "DOW30"
@@ -16432,7 +16440,7 @@
       "flags": [],
       "debt_fcf": 1.7716,
       "market_cap": 103301906442.65,
-      "rel_vol": 0.6306,
+      "rel_vol": 0.6413,
       "indexes": [
         "SP500"
       ]
@@ -16544,7 +16552,7 @@
       ],
       "debt_fcf": 33.5704,
       "market_cap": 20563377419.91,
-      "rel_vol": 0.5813,
+      "rel_vol": 0.6072,
       "indexes": [
         "SP500"
       ]
@@ -16882,7 +16890,7 @@
       ],
       "debt_fcf": null,
       "market_cap": 63913680380.28,
-      "rel_vol": 0.9923,
+      "rel_vol": 0.9944,
       "indexes": []
     },
     "NUE": {
@@ -17105,7 +17113,7 @@
       "beta_adjusted": 1.83549,
       "debt_fcf": 0.0869,
       "market_cap": 3807348553774.66,
-      "rel_vol": 1.5869,
+      "rel_vol": 1.5984,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -17663,7 +17671,7 @@
       ],
       "debt_fcf": 2.9122,
       "market_cap": 27931244941.39,
-      "rel_vol": 0.7222,
+      "rel_vol": 0.7233,
       "indexes": [
         "SP500"
       ]
@@ -17775,7 +17783,7 @@
       ],
       "debt_fcf": null,
       "market_cap": 353163448230.69,
-      "rel_vol": 0.4787,
+      "rel_vol": 0.4805,
       "indexes": [
         "SP500"
       ]
@@ -18000,7 +18008,7 @@
       ],
       "debt_fcf": 1.7579,
       "market_cap": 35973409271.04,
-      "rel_vol": 0.941,
+      "rel_vol": 0.9564,
       "indexes": [
         "SP500"
       ]
@@ -18112,7 +18120,7 @@
       ],
       "debt_fcf": 0.6241,
       "market_cap": 242599075000.0,
-      "rel_vol": 0.8527,
+      "rel_vol": 0.8547,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -18335,7 +18343,7 @@
       ],
       "debt_fcf": 5.3799,
       "market_cap": 166316057146.98,
-      "rel_vol": 0.8775,
+      "rel_vol": 1.1401,
       "indexes": [
         "SP500"
       ]
@@ -18445,7 +18453,7 @@
       "flags": [],
       "debt_fcf": 2.5375,
       "market_cap": 417619207783.38,
-      "rel_vol": 1.3968,
+      "rel_vol": 1.4862,
       "indexes": [
         "SP500",
         "DOW30"
@@ -18558,7 +18566,7 @@
       ],
       "debt_fcf": 0.9478,
       "market_cap": 13139280720.0,
-      "rel_vol": 0.666,
+      "rel_vol": 0.7846,
       "indexes": []
     },
     "PLTR": {
@@ -18668,7 +18676,7 @@
       ],
       "debt_fcf": 0.0556,
       "market_cap": 411529895719.88,
-      "rel_vol": 0.7158,
+      "rel_vol": 0.7219,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -19227,7 +19235,7 @@
       ],
       "debt_fcf": 1.8486,
       "market_cap": 180833902338.32,
-      "rel_vol": 0.8603,
+      "rel_vol": 0.8628,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -19448,7 +19456,7 @@
       ],
       "debt_fcf": null,
       "market_cap": 271384800.0,
-      "rel_vol": 0.5523,
+      "rel_vol": 0.6806,
       "indexes": []
     },
     "RCL": {
@@ -19670,7 +19678,7 @@
       ],
       "debt_fcf": 0.0262,
       "market_cap": 18795675024.93,
-      "rel_vol": 0.6318,
+      "rel_vol": 0.6334,
       "indexes": [
         "SP500"
       ]
@@ -21002,7 +21010,7 @@
       ],
       "debt_fcf": null,
       "market_cap": 19267161307.11,
-      "rel_vol": 0.7085,
+      "rel_vol": 0.7131,
       "indexes": [
         "SP500"
       ]
@@ -21335,7 +21343,7 @@
       ],
       "debt_fcf": 3.9458,
       "market_cap": 83208017934.57,
-      "rel_vol": 0.7471,
+      "rel_vol": 0.7606,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -21448,7 +21456,7 @@
       ],
       "debt_fcf": 2.4373,
       "market_cap": 139766715200.35,
-      "rel_vol": 0.5661,
+      "rel_vol": 0.6089,
       "indexes": [
         "SP500"
       ]
@@ -21902,7 +21910,7 @@
       ],
       "debt_fcf": 9.2898,
       "market_cap": 159618804358.52,
-      "rel_vol": 0.853,
+      "rel_vol": 0.8539,
       "indexes": [
         "SP500"
       ]
@@ -22014,7 +22022,7 @@
       ],
       "debt_fcf": 0.736,
       "market_cap": 39144482991.18,
-      "rel_vol": 1.2645,
+      "rel_vol": 1.2848,
       "indexes": []
     },
     "TJX": {
@@ -22344,7 +22352,7 @@
       "flags": [],
       "debt_fcf": 5.4463,
       "market_cap": 257863173278.73,
-      "rel_vol": 0.7091,
+      "rel_vol": 0.7154,
       "indexes": [
         "SP500"
       ]
@@ -22689,7 +22697,7 @@
       ],
       "debt_fcf": 4.4657,
       "market_cap": 1342860791108.64,
-      "rel_vol": 0.7648,
+      "rel_vol": 0.767,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -22802,7 +22810,7 @@
       ],
       "debt_fcf": 0.6742,
       "market_cap": 7079519610.63,
-      "rel_vol": 0.8658,
+      "rel_vol": 0.8666,
       "indexes": []
     },
     "TTEK": {
@@ -23137,7 +23145,7 @@
       ],
       "debt_fcf": 1.8523,
       "market_cap": 271077167099.97,
-      "rel_vol": 0.7215,
+      "rel_vol": 0.7235,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -23248,7 +23256,7 @@
       "flags": [],
       "debt_fcf": 30.7294,
       "market_cap": 36314254852.2,
-      "rel_vol": 1.0256,
+      "rel_vol": 1.03,
       "indexes": [
         "SP500"
       ]
@@ -23360,7 +23368,7 @@
       ],
       "debt_fcf": 1.702,
       "market_cap": 141821842072.11,
-      "rel_vol": 0.7612,
+      "rel_vol": 0.7729,
       "indexes": [
         "SP500"
       ]
@@ -24144,7 +24152,7 @@
       ],
       "debt_fcf": 1.0666,
       "market_cap": 73986852391.11,
-      "rel_vol": 0.8466,
+      "rel_vol": 0.8484,
       "indexes": [
         "SP500"
       ]
@@ -24593,7 +24601,7 @@
       ],
       "debt_fcf": 0.215,
       "market_cap": 108947350366.14,
-      "rel_vol": 0.7511,
+      "rel_vol": 0.754,
       "indexes": [
         "SP500",
         "NASDAQ100"
@@ -24815,7 +24823,7 @@
       "flags": [],
       "debt_fcf": 5.5587,
       "market_cap": 1027093898597.25,
-      "rel_vol": 0.8141,
+      "rel_vol": 0.815,
       "indexes": [
         "SP500",
         "NASDAQ100",
@@ -25379,7 +25387,7 @@
       ],
       "debt_fcf": 1.0164,
       "market_cap": 9497382000.0,
-      "rel_vol": 0.978,
+      "rel_vol": 0.9801,
       "indexes": []
     },
     "ZM": {
