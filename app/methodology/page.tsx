@@ -231,6 +231,176 @@ export default function MethodologyPage() {
         </p>
       </Card>
 
+      <Card title="(g) How scoring works" id="how-scoring-works">
+        <p>
+          Every score on this site — overall, pillar, and each check inside a pillar — runs
+          from 0 to 100. Scores are coloured green at 70 and above, amber from 40 to 69, and
+          red below 40. The overall score is a weighted average of the five pillars:
+          Conviction 25%, Valuation 30%, Quality 20%, Technical 10%, Trust 15%.
+        </p>
+        <h3>The verdict gates</h3>
+        <p>
+          Avoid when any of these is true: the overall score is below 45; the Valuation score
+          is below 30; the Quality score is below 40; or the price is at or above the Exit
+          rung of the ladder. Growth when the overall score is 60 or more, the price sits
+          below our fair value, the Quality score is 55 or more, Conviction is 50 or more,
+          and revenue has compounded at 10% a year or more over three years. Value when the
+          overall score is 60 or more, the upside is +25% or more, the Quality score is 60
+          or more, Conviction is 50 or more, and growth is slower. Anything else is Watch.
+        </p>
+        <h3>Valuation — from the upside, with a disagreement cap</h3>
+        <p>
+          The Valuation score comes from how far the price sits below or above our fair
+          value, on a sliding scale: −40% upside scores 10, −25% scores 25, −10% scores 40,
+          0% scores 55, +10% scores 70, +25% scores 85, and +50% scores 100, with a straight
+          line between those points. Then it is capped when the three estimates disagree: if
+          they span more than the fair value itself, the score is capped at 55; if they span
+          more than 75% of it, capped at 65.
+        </p>
+        <h3>Conviction — Story and Financials, averaged</h3>
+        <p>
+          Conviction is the average of two 0–100 scores from our weekly Story-Tracker. Story
+          is 35% forward revenue growth, 30% price leadership, 20% estimate revisions, and
+          15% theme strength. Financials is 30% revenue growth, 30% profitability, 20% cash
+          flow, and 20% revenue-growth acceleration. Both are percentile ranks across the
+          whole watchlist, so 50 is the middle stock.
+        </p>
+        <p>
+          The Story-Tracker also sorts names into four standings — Full position, Speculative,
+          Hold (don&rsquo;t add), and Out — from whether each side is &ldquo;strong&rdquo;: a
+          side is strong in the top third of the watchlist plus, for the story, next-year
+          revenue growth above zero and the price within 5% of its 200-day average, and for
+          the financials, revenue growing year on year. A side that was strong stays strong
+          until it falls 4 points below the line. Both strong is a Full position; story only
+          is Speculative; financials only is Hold, don&rsquo;t add; neither is Out. The
+          standing is a weekly Story-Tracker label and is not shown on the card.
+        </p>
+        <h3>Quality — six checks</h3>
+        <p>
+          Each check reads one number and scores it on fixed bands. The pillar score weights
+          them: OCF vs net income 25%, Accruals 20%, Receivables trend 15%, FCF conversion
+          20%, Return on assets 10%, Leverage 10%.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Check</th>
+              <th>What is scored</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>OCF vs net income</td>
+              <td>Operating cash flow as a share of net income</td>
+              <td>&le;40% → 20 · &le;60% → 40 · &le;80% → 60 · &le;100% → 80 · above 100% → 100</td>
+            </tr>
+            <tr>
+              <td>Accruals (Sloan)</td>
+              <td>How much of earnings is accruals, not cash</td>
+              <td>&le;0 → 100 · &le;0.05 → 75 · &le;0.10 → 50 · above 0.10 → 25</td>
+            </tr>
+            <tr>
+              <td>Receivables trend</td>
+              <td>Change in receivables &divide; revenue, in points</td>
+              <td>&le;1 → 100 · &le;3 → 70 · &le;5 → 40 · above 5 → 20</td>
+            </tr>
+            <tr>
+              <td>FCF conversion</td>
+              <td>Free cash flow as a share of net income</td>
+              <td>&le;20% → 20 · &le;40% → 45 · &le;60% → 65 · &le;80% → 85 · above 80% → 100</td>
+            </tr>
+            <tr>
+              <td>Return on assets</td>
+              <td>Net income &divide; assets</td>
+              <td>&le;10% → 35 · &le;15% → 55 · &le;20% → 70 · &le;30% → 85 · above 30% → 100</td>
+            </tr>
+            <tr>
+              <td>Leverage</td>
+              <td>Debt &divide; equity</td>
+              <td>&le;0.30 → 100 · &le;0.60 → 80 · &le;1.00 → 60 · &le;2.00 → 40 · above 2.00 → 20</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          When adjusted net income is under 1% of revenue, the two cash checks (OCF vs net
+          income and FCF conversion) cannot be read — their ratios explode on a near-zero
+          denominator — so both score a neutral 50 and the card shows &ldquo;not
+          meaningful&rdquo; instead of the percentages. The other four checks are unaffected.
+        </p>
+        <h3>Technical — four checks</h3>
+        <p>
+          Weights: EMA trend 35%, Price vs 200-day 25%, RSI 20%, MACD 20%.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Check</th>
+              <th>What is scored</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>EMA trend</td>
+              <td>Where the price sits against its 20-, 50- and 200-day averages</td>
+              <td>Above all three → 100 · Above 50 and 200 → 75 · Above 50 or 200 → 60 · Below all three → 15 · Anything else → 35</td>
+            </tr>
+            <tr>
+              <td>Price vs 200-day</td>
+              <td>Price against the 200-day average</td>
+              <td>&le;−10% → 20 · Below 0% → 45 · Below +10% → 75 · +10% or more → 100</td>
+            </tr>
+            <tr>
+              <td>RSI</td>
+              <td>14-day relative strength index</td>
+              <td>45–60 → 80 · 60–70 → 70 · 30–45 → 55 · Above 70 → 40 · Below 30 → 35</td>
+            </tr>
+            <tr>
+              <td>MACD</td>
+              <td>MACD histogram</td>
+              <td>Above zero → 75 · Zero or below → 40</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Trust — four checks</h3>
+        <p>
+          Weights: Data completeness 30%, Analyst coverage 25%, Target dispersion 25%,
+          Insider activity 20%.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Check</th>
+              <th>What is scored</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Data completeness</td>
+              <td>Whether every input the model needs is present</td>
+              <td>All present, no adjustment → 100 · A one-off adjustment was applied → 80 · One documented gap → 90 · Several gaps → 65 (in this build only 100 and 80 occur)</td>
+            </tr>
+            <tr>
+              <td>Analyst coverage</td>
+              <td>How many analysts publish a view</td>
+              <td>30 or more → 100 · 10 or more → 80 · Fewer than 10 → 50</td>
+            </tr>
+            <tr>
+              <td>Target dispersion</td>
+              <td>How far apart analysts&rsquo; targets are (spread &divide; mean)</td>
+              <td>&le;30% → 100 · &le;60% → 80 · &le;100% → 60 · Above 100% → 40</td>
+            </tr>
+            <tr>
+              <td>Insider activity</td>
+              <td>Buying and selling by insiders in the last 90 days</td>
+              <td>No insider data → 50 (neutral — never read as &ldquo;no selling&rdquo;) · Sales only, $500M or more → 35 · Sales only, under $500M → 45 · Mixed buying and selling → 60</td>
+            </tr>
+          </tbody>
+        </table>
+      </Card>
+
       {/* Reading cards — every metric, explained */}
       <Card title="Reading cards — every metric, explained">
         <p>
@@ -278,6 +448,9 @@ export default function MethodologyPage() {
           </li>
           <li>
             <Link href="#capm-cross-check">CAPM cross-check</Link>
+          </li>
+          <li>
+            <Link href="#how-scoring-works">How scoring works</Link>
           </li>
         </ul>
         <p className="footnote">

@@ -53,55 +53,76 @@ export async function generateMetadata({
   return { title: `${ticker.toUpperCase()} — ${t.name} | The Stock Check` }
 }
 
-const QUALITY_LABELS: Record<string, string> = {
-  ocf_vs_ni: 'OCF vs net income',
-  accruals: 'Accruals (Sloan)',
-  receivables_trend: 'Receivables trend',
-  fcf_conversion: 'FCF conversion',
-  roa: 'Return on assets',
-  leverage: 'Leverage',
+/** One row of a joined sub-score table: the check, the evidence that
+    produced its score, and the score itself — so a number is never shown
+    without the reading behind it. Scores always come from the stored
+    subscores; the evidence is formatted from the stored inputs only. */
+interface JoinedRow {
+  label: string
+  evidence: ReactNode
+  score: number
 }
 
-const TECHNICAL_LABELS: Record<string, string> = {
-  trend_ema: 'EMA trend',
-  price_vs_200d: 'Price vs 200-day',
-  rsi: 'RSI',
-  macd: 'MACD',
-}
-
-const TRUST_LABELS: Record<string, string> = {
-  completeness: 'Data completeness',
-  analyst_coverage: 'Analyst coverage',
-  target_dispersion: 'Target dispersion',
-  insider: 'Insider activity',
-}
-
-function SubscoreTable({
-  subscores,
-  labels,
-}: {
-  subscores: Record<string, number> | undefined
-  labels: Record<string, string>
-}) {
-  if (!subscores) return null
+function JoinedSubscoreTable({ rows }: { rows: JoinedRow[] | null }) {
+  if (!rows) return null
   return (
-    <table>
+    <table className="subscores">
       <thead>
         <tr>
           <th>Check</th>
+          <th>What we saw</th>
           <th className="num">Score</th>
         </tr>
       </thead>
       <tbody>
-        {Object.entries(subscores).map(([key, value]) => (
-          <tr key={key}>
-            <td>{labels[key] ?? key}</td>
-            <td className="num">{scoreSpan(value)}</td>
+        {rows.map((r) => (
+          <tr key={r.label}>
+            <td>{r.label}</td>
+            <td>{r.evidence}</td>
+            <td className="num">{scoreSpan(r.score)}</td>
           </tr>
         ))}
       </tbody>
     </table>
   )
+}
+
+/** Stored input as a number, or null when absent — a missing input never
+    crashes a row and is never invented. */
+function storedNum(v: unknown): number | null {
+  return typeof v === 'number' ? v : null
+}
+
+/** EMA-trend reading: the same five branches the engine scores on
+    (pillar_technical), in plain words. Only the wording is derived here;
+    the score always comes from the stored subscore. */
+function emaTrendText(price: number, ema20: number, ema50: number, ema200: number): string {
+  if (price > ema20 && ema20 > ema50 && ema50 > ema200) return 'Price above EMA 20, 50 and 200'
+  if (price > ema50 && ema50 > ema200) return 'Price above EMA 50 and 200'
+  if (price > ema50 || price > ema200) return 'Price above EMA 50 or 200'
+  if (price < ema20 && ema20 < ema50 && price < ema200) return 'Price below EMA 20, 50 and 200'
+  return 'Mixed — price between the averages'
+}
+
+/** Story / Financials reading: both are 0–100 percentile ranks across
+    the universe, so 50 is the universe median. The Story-Tracker quadrant
+    (Full position / Speculative / Hold, don't add / Out) is NOT shown here
+    — it needs the weekly top-third cuts, revenue growth and price vs the
+    200-day, which are not stored on the card, so no quadrant is ever
+    derived from these two numbers. */
+function medianWord(v: number): string {
+  if (v > 50) return 'Above the universe median (50)'
+  if (v < 50) return 'Below the universe median (50)'
+  return 'At the universe median (50)'
+}
+
+/** Data-completeness reading. 100 = all inputs present, no adjustment;
+    80 = a one-off earnings adjustment was applied (the only two values in
+    this build). Anything else states no reason — see Methodology. */
+function completenessText(score: number): string {
+  if (score === 100) return 'All inputs present, no adjustment'
+  if (score === 80) return 'A one-off earnings adjustment was applied'
+  return 'Some inputs adjusted or missing — see Methodology'
 }
 
 /** Compact market cap: $3.97T / $1.2B style. Null → '—'. */
@@ -340,6 +361,137 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           ? `Closest leg: ${vsWallStreet.closest.name} at ${money(vsWallStreet.closest.value)} — within ${pct(vsWallStreet.closest.distancePct, 1, false)} of the ${money(vsWallStreet.targetMean)} consensus mean.`
           : `No leg sits close to the consensus mean: the closest leg, ${vsWallStreet.closest.name} at ${money(vsWallStreet.closest.value)}, is still ${pct(vsWallStreet.closest.distancePct, 1, false)} from the ${money(vsWallStreet.targetMean)} consensus mean, while our fair value is ${money(t.triangulated_fv)} — the gap is not explained by the legs.`
 
+  // Joined sub-score rows (Score pillars card): one row per check — the
+  // check, the evidence that produced its score, and the score itself.
+  // Scores come from the stored subscores; evidence is formatted from the
+  // stored inputs only. A missing input shows '—' and is never invented.
+  const storyScore = pillars.conviction.detail.story ?? 0
+  const financialsScore = pillars.conviction.detail.financials ?? 0
+  const convictionRows: JoinedRow[] = [
+    { label: 'Story (50%)', evidence: medianWord(storyScore), score: storyScore },
+    { label: 'Financials (50%)', evidence: medianWord(financialsScore), score: financialsScore },
+  ]
+  const qi = quality.inputs ?? {}
+  const qs = quality.subscores
+  const ocfInput = storedNum(qi.ocf_pct_ni_used)
+  const accrualsInput = storedNum(qi.accruals_sloan)
+  const recvInput = storedNum(qi.receivables_change_pp)
+  const fcfInput = storedNum(qi.fcf_conversion_used)
+  const roaInput = storedNum(qi.roa)
+  const debtEqInput = storedNum(qi.debt_to_equity)
+  const qualityRows: JoinedRow[] | null = qs
+    ? [
+        {
+          label: 'OCF vs net income (25%)',
+          evidence: degenerateNi
+            ? 'not meaningful — adjusted earnings are near zero'
+            : ocfInput === null
+              ? '—'
+              : `OCF ${pct(ocfInput)} of net income`,
+          score: qs.ocf_vs_ni ?? 0,
+        },
+        {
+          label: 'Accruals (Sloan) (20%)',
+          evidence: accrualsInput === null ? '—' : accrualsInput.toFixed(4),
+          score: qs.accruals ?? 0,
+        },
+        {
+          label: 'Receivables trend (15%)',
+          evidence:
+            recvInput === null ? '—' : `${recvInput > 0 ? '+' : ''}${recvInput.toFixed(2)} pp`,
+          score: qs.receivables_trend ?? 0,
+        },
+        {
+          label: 'FCF conversion (20%)',
+          evidence: degenerateNi
+            ? 'not meaningful — adjusted earnings are near zero'
+            : fcfInput === null
+              ? '—'
+              : `FCF ${pct(fcfInput)} of net income`,
+          score: qs.fcf_conversion ?? 0,
+        },
+        {
+          label: 'Return on assets (10%)',
+          evidence: roaInput === null ? '—' : pct(roaInput),
+          score: qs.roa ?? 0,
+        },
+        {
+          label: 'Leverage (10%)',
+          evidence: debtEqInput === null ? '—' : `Debt / equity ${debtEqInput.toFixed(2)}`,
+          score: qs.leverage ?? 0,
+        },
+      ]
+    : null
+  const ti = technical.inputs ?? {}
+  const ts = technical.subscores
+  const ema20 = storedNum(ti.ema20)
+  const ema50 = storedNum(ti.ema50)
+  const ema200 = storedNum(ti.ema200)
+  const vs200 = storedNum(ti.price_vs_200d_pct)
+  const rsi14 = storedNum(ti.rsi14)
+  const macdHist = storedNum(ti.macd_hist)
+  const technicalRows: JoinedRow[] | null = ts
+    ? [
+        {
+          label: 'EMA trend (35%)',
+          evidence:
+            ema20 !== null && ema50 !== null && ema200 !== null
+              ? emaTrendText(t.price, ema20, ema50, ema200)
+              : '—',
+          score: ts.trend_ema ?? 0,
+        },
+        {
+          label: 'Price vs 200-day (25%)',
+          evidence: vs200 === null ? '—' : pct(vs200),
+          score: ts.price_vs_200d ?? 0,
+        },
+        {
+          label: 'RSI (20%)',
+          evidence: rsi14 === null ? '—' : `RSI (14) ${rsi14.toFixed(1)}`,
+          score: ts.rsi ?? 0,
+        },
+        {
+          label: 'MACD (20%)',
+          evidence:
+            macdHist === null
+              ? '—'
+              : `MACD histogram ${macdHist > 0 ? '+' : ''}${macdHist.toFixed(2)} (${
+                  macdHist > 0 ? 'above zero' : macdHist < 0 ? 'below zero' : 'at zero'
+                })`,
+          score: ts.macd ?? 0,
+        },
+      ]
+    : null
+  const tri = trust.inputs ?? {}
+  const trs = trust.subscores
+  const nAnalysts = storedNum(tri.n_analysts)
+  const dispInput = storedNum(tri.target_spread_div_mean)
+  const insiderNote = typeof tri.insider_note === 'string' ? tri.insider_note : null
+  const trustRows: JoinedRow[] | null = trs
+    ? [
+        {
+          label: 'Data completeness (30%)',
+          evidence: completenessText(trs.completeness ?? 0),
+          score: trs.completeness ?? 0,
+        },
+        {
+          label: 'Analyst coverage (25%)',
+          evidence: nAnalysts === null ? '—' : `${nAnalysts} analyst${nAnalysts === 1 ? '' : 's'}`,
+          score: trs.analyst_coverage ?? 0,
+        },
+        {
+          label: 'Target dispersion (25%)',
+          evidence: dispInput === null ? '—' : `Spread ÷ mean ${pct(dispInput)}`,
+          score: trs.target_dispersion ?? 0,
+        },
+        {
+          label: 'Insider activity (20%)',
+          evidence: insiderNote ?? '—',
+          score: trs.insider ?? 0,
+        },
+      ]
+    : null
+
   return (
     <div>
       {/* (1) Header */}
@@ -393,44 +545,20 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         <PillarBar label="Trust" score={pillars.trust.score} />
 
         <h3>Conviction</h3>
-        <Kv k="Story" v={scoreSpan(pillars.conviction.detail.story ?? 0)} />
-        <Kv k="Financials" v={scoreSpan(pillars.conviction.detail.financials ?? 0)} />
+        <JoinedSubscoreTable rows={convictionRows} />
 
         <h3>Quality</h3>
-        <SubscoreTable subscores={quality.subscores} labels={QUALITY_LABELS} />
-        {quality.inputs && (
-          <div>
-            <Kv k="OCF as % of net income" v={ocfVsNiText} />
-            <Kv k="Accruals (Sloan)" v={(quality.inputs.accruals_sloan as number).toFixed(4)} />
-            <Kv k="Receivables change" v={`${(quality.inputs.receivables_change_pp as number) > 0 ? '+' : ''}${(quality.inputs.receivables_change_pp as number).toFixed(2)} pp`} />
-            <Kv k="FCF conversion" v={fcfConversionText} />
-            <Kv k="Return on assets" v={pct(quality.inputs.roa as number)} />
-            <Kv k="Debt / equity" v={(quality.inputs.debt_to_equity as number).toFixed(2)} />
-          </div>
-        )}
+        <JoinedSubscoreTable rows={qualityRows} />
 
         <h3>Technical</h3>
-        <SubscoreTable subscores={technical.subscores} labels={TECHNICAL_LABELS} />
-        {technical.inputs && (
-          <div>
-            <Kv k="EMA 20" v={money(technical.inputs.ema20 as number)} />
-            <Kv k="EMA 50" v={money(technical.inputs.ema50 as number)} />
-            <Kv k="EMA 200" v={money(technical.inputs.ema200 as number)} />
-            <Kv k="RSI (14)" v={(technical.inputs.rsi14 as number).toFixed(1)} />
-            <Kv k="MACD histogram" v={(technical.inputs.macd_hist as number).toFixed(2)} />
-            <Kv k="Price vs 200-day" v={pct(technical.inputs.price_vs_200d_pct as number)} />
-          </div>
-        )}
+        <JoinedSubscoreTable rows={technicalRows} />
 
         <h3>Trust</h3>
-        <SubscoreTable subscores={trust.subscores} labels={TRUST_LABELS} />
-        {trust.inputs && (
-          <div>
-            <Kv k="Analysts covering" v={String(trust.inputs.n_analysts)} />
-            <Kv k="Target spread ÷ mean" v={(trust.inputs.target_spread_div_mean as number).toFixed(3)} />
-            <Kv k="Insider activity (90d)" v={String(trust.inputs.insider_note)} />
-          </div>
-        )}
+        <JoinedSubscoreTable rows={trustRows} />
+        <p className="footnote">
+          How every score is worked out —{' '}
+          <Link href="/methodology#how-scoring-works">Methodology: How scoring works</Link>.
+        </p>
       </Card>
 
       {/* (3) Valuation */}

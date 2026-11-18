@@ -596,6 +596,24 @@ tr:last-child td {
   font-weight: bold;
 }
 
+/* ---- joined sub-score tables (Score pillars card): one row per check
+    with its evidence next to the score. The table sizes to its content
+    instead of stretching full-width, so the score column sits right next
+    to the evidence instead of at the far card edge; rows are tighter. ---- */
+table.subscores {
+  width: auto;
+  max-width: 100%;
+  margin: 6px 0 10px;
+}
+table.subscores th,
+table.subscores td {
+  padding: 5px 8px;
+}
+table.subscores th.num,
+table.subscores td.num {
+  width: 64px;
+}
+
 /* ---- signed numbers: positive green, negative red, near-zero muted ---- */
 .num-pos {
   color: var(--green);
