@@ -15,7 +15,7 @@ Sources (no key, no account):
     return (adjusted closes, dividends included).
 
 Method (ETF_BOARD.md): Technical score is the stock engine's
-pillar_technical exactly (scoring-engine-v1.7/engine.py):
+pillar_technical exactly (scoring-engine-v1.8/engine.py):
 trend 35 / vs-200d 25 / RSI 20 / MACD 20, same bands. Reads:
 Strong >= 70, Mixed 40-69, Weak < 40.
 Momentum Score = 0.5*13W + 0.3*4W + 0.2*1W. Reads: Building >= +5%,

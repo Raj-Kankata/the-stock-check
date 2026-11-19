@@ -108,11 +108,9 @@ magnitude gate on VIX (it can legitimately move >25% in a day) or on the
 computed in memory and staged in a temp dir; files are written only after
 all gates pass.
 
-Engines are scoring-engine-v1.7 (SPEC v1.5 FINAL — searched-tickers rules:
-R1 receivables neutral-50, R2 EDGAR growth fallback, R3 conditional legs,
-R4 computed beta, R5/R6 2-leg publication + non-positive-FV exclusion, R7
-bank-pattern DCF skip narrowed; frozen since 2026-11-19). Both repo copies
-(v13 and batch2) are the same v1.7 engine file; the v13 copy scores its 4
+Engines are scoring-engine-v1.8 (SPEC v1.6 FINAL — the v1.7 searched-tickers rules
+plus R10, the PEGY guard on non-positive adjusted EPS; frozen since 2026-11-19).
+Both repo copies (v13 and batch2) are the same v1.8 engine file; the v13 copy scores its 4
 names and the batch2 copy scores every live ticker. This script copies them
 verbatim into scripts/engine/v13|batch2/engine.py and never edits them.
 They read inputs.json from their own directory and hardcode as_of

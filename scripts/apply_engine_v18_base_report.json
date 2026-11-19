@@ -1,0 +1,30 @@
+{
+  "as_of": "2026-11-16",
+  "price_date": "2026-11-13",
+  "tickers": 381,
+  "tickers_changed": 0,
+  "ionq_excluded": "2026-11-18 fix (live FV -$1.24); publishable at the Nov 13 workspace close (FV +$1.13)",
+  "unpublished_excluded": [
+    "AAOI",
+    "ALK",
+    "ALTI",
+    "AORT",
+    "BUR",
+    "BYND",
+    "CPNG",
+    "IREN",
+    "KLAR",
+    "KRUS",
+    "MNKD",
+    "MUX",
+    "OUST",
+    "RKLB",
+    "UUUU",
+    "UWMC",
+    "VITL",
+    "WGS"
+  ],
+  "nbis_crwv": "not in inputs (1-leg ONE_LEG_ONLY, no FV)",
+  "base_md5_before": "89a5deded49b343f2f6bae6046017a36",
+  "base_md5_after": "b6f8c5e3677194380d46f8f609e82d1a"
+}

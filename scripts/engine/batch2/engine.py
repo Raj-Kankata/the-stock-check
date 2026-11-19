@@ -1,11 +1,29 @@
 #!/usr/bin/env python3
-"""Scoring engine v1.7 — better Stock Verdicts platform.
-SPEC v1.5 FINAL (2026-11-18). Deterministic: reads inputs.json only
-(2026-11-13 inputs; v1.6 inputs + the v1.5 rule inputs: EDGAR revenue-CAGR
-growth fallback, computed betas, per-ticker DCF skip reasons; SO + NFLX
-added). No live calls, no invented numbers. Writes results.json.
+"""Scoring engine v1.8 — better Stock Verdicts platform.
+SPEC v1.6 FINAL (2026-11-19). Deterministic: reads inputs.json only
+(2026-11-13 inputs; v1.7 inputs + the v1.6 unlock records, NBIS/CRWV
+staging). No live calls, no invented numbers. Writes results.json.
 Run:  python3 engine.py  (8 batch-2 names, standalone)
-       python3 run_v17.py (full 398-name re-run; the supported path)
+       python3 run_v18.py (full 400-name re-run; the supported path)
+
+CHANGES vs v1.7 (v1.8, SPEC v1.6 §4 — PEGY guard on non-positive
+adjusted EPS; the ONLY code change in v1.8):
+  R10 PEGY GUARD: when a T2 one-off adjustment is applied
+  (net_income_ttm_adjusted is set) and the adjusted EPS is not
+  positive, the PEGY leg is SKIPPED — the adjusted P/E is undefined,
+  and falling back to the unadjusted trailing P/E would price the
+  leg on the stripped one-off gain. NBIS is the first name this
+  bites (adjusted EPS -$2.11 after stripping the $780.6M ClickHouse
+  gain). Flag-gated (PEGT_ADJUSTED_EPS_GUARD_ENABLED=False
+  reproduces the frozen v1.7 control exactly); inert for every v1.7
+  name (all adjusted EPS positive: BA +$0.02, GME +$1.24, GOOGL,
+  NVO, AMZN, META, AVGO, BRK-B, TSLA).
+  R8 (NBIS Yahoo-quarterly TTM primary for 20-F-only filers) and R9
+  (CRWV EDGAR 3y revenue CAGR growth source) are INPUT-SIDE ONLY
+  (like v1.5 R2/R4): the engine reads the inputs exactly as before.
+  Neither name reaches a publishable card in v1.8 (both 1-leg,
+  ONE_LEG_ONLY — see SPEC v1.6 §6), so the v1.8 run scores the same
+  400 names as v1.7 and the blast radius is empty by construction.
 
 CHANGES vs v1.6 (v1.7, SPEC v1.5 §2–§7 — searched-but-unavailable rules):
   (1) R1 RECEIVABLES NEUTRAL-50 (SPEC v1.5 §2): when
@@ -118,7 +136,7 @@ application path in build_inputs_v14.py, not in this file):
   SITE COPY: the Run section drops the stock_verdicts /
   vs_stock_verdicts record keys and the SV print tail (the site
   base carries no stock_verdicts input — the same adaptation
-  the v1.6 site copies carried). Scores, legs, FV, verdicts
+  the v1.7 site copies carried). Scores, legs, FV, verdicts
   and pillar details are identical to the workspace engine.
   No other number, weight, threshold, gate or leg formula changes.
 BATCH-2 ADAPTATIONS (v1.3 logic unchanged; see METHOD-batch2.md):
@@ -300,6 +318,8 @@ def dcf_skip_reason(t, d=None):
 # --- v1.7: searched-but-unavailable rules (SPEC v1.5 §2, §4) ---
 RECEIVABLES_NEUTRAL_ENABLED = True  # False = frozen v1.6 control (regression gate only)
 CONDITIONAL_LEGS_ENABLED = True     # False = frozen v1.6 control (regression gate only)
+# --- v1.8: PEGY guard on non-positive adjusted EPS (SPEC v1.6 §4) ---
+PEGT_ADJUSTED_EPS_GUARD_ENABLED = True  # False = frozen v1.7 control (regression gate only)
 TERMINAL_G = 0.025
 PEGS_CAP = 0.30      # PEGY growth cap (30%)
 DCF_GROWTH_CAP = 0.20  # LOCKED v1.1 (was 25%)
@@ -483,8 +503,26 @@ def pillar_valuation(t, d):
     # all present; otherwise it is skipped. With the flag OFF the leg is
     # computed unconditionally, as in v1.6 (the v1.6 control inputs never
     # have a None here).
+    # v1.8 (SPEC v1.6 §4): when a T2 one-off adjustment is applied and the
+    # adjusted EPS is not positive, the PEGY leg is skipped — the adjusted
+    # P/E is undefined, and falling back to the unadjusted trailing P/E
+    # would price the leg on the stripped one-off gain. NBIS is the first
+    # name this bites (adjusted EPS -$2.11). With the flag OFF the
+    # fallback applies as in v1.7 (the v1.7 control names all have
+    # positive adjusted EPS, so the flag is inert for the control).
     pe = d["trailing_pe_adjusted"] if d["trailing_pe_adjusted"] else d["trailing_pe"]
-    if CONDITIONAL_LEGS_ENABLED and (pe is None or d["dividend_yield"] is None):
+    adj_eps = d.get("trailing_eps_adjusted")
+    adj_eps_nonpositive = (PEGT_ADJUSTED_EPS_GUARD_ENABLED
+                           and d.get("net_income_ttm_adjusted") is not None
+                           and adj_eps is not None and adj_eps <= 0)
+    if adj_eps_nonpositive:
+        legs["pegy"] = {"value": None,
+                        "method": ("SKIPPED — adjusted earnings are negative "
+                                   "(one-off-adjusted EPS $%.2f); no P/E can be built on a "
+                                   "negative earnings base (SPEC v1.6 §4)." % adj_eps),
+                        "pegy": None, "growth_used": None, "pe_used": None,
+                        "uncapped_pegy": None}
+    elif CONDITIONAL_LEGS_ENABLED and (pe is None or d["dividend_yield"] is None):
         legs["pegy"] = {"value": None,
                         "method": ("SKIPPED — trailing P/E unavailable; PEGY uncomputable "
                                    "(SPEC v1.5 §4).") if pe is None else
@@ -794,7 +832,7 @@ def pros_cons(t, d, pillars, overall, vdt):
 
 # ---------------- Run ----------------
 results = {"as_of": "2026-11-16", "price_date": "2026-11-13",
-           "engine": "scoring-engine-v1.7 (SPEC v1.5 FINAL)",
+           "engine": "scoring-engine-v1.8 (SPEC v1.6 FINAL)",
            "locked_set": {"rf": 0.05, "discount_low_beta": 0.10, "discount_high_beta": 0.12,
                           "discount_tier_rule": "12% if raw beta >= 2.0, else 10% (batch-2 generalisation of the v1.3 NVDA 12% tier; no batch-2 ticker triggers 12% — max raw beta TSLA 1.743)",
                           "terminal_growth": 0.025, "dcf_growth_cap": 0.20,
