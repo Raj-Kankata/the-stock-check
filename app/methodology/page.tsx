@@ -29,7 +29,10 @@ export default function MethodologyPage() {
       <div className="callout">
         <strong>Research and education only — not investment advice.</strong> Fair values are
         model estimates built from stated assumptions, not predictions. The ladder is valuation
-        context, not a buy or sell signal. See Terms for the full position.
+        context, not a buy or sell signal. This is not a stock promotion. Data may be delayed,
+        incomplete or inaccurate — do your own research and consult a licensed financial
+        advisor. Past performance does not guarantee future results. See Terms and Legal for
+        the full position.
       </div>
 
       <Card title="(a) What the score is">
@@ -642,7 +645,9 @@ export default function MethodologyPage() {
           ETFs are a separate product on this site, with a different method. An ETF holds a
           basket of securities, not a business — it has no earnings to value, so it never
           gets a fair value, a verdict, or an overall score. What it gets is two reads,
-          each with its own evidence, and they are never combined into one number.
+          each with its own evidence, and they are never combined into one number. The
+          Technical and Momentum reads are informational only — they are not a
+          recommendation to buy or sell any fund.
         </p>
         <p>
           <strong>Technical score (0–100)</strong> — the stock engine&apos;s Technical

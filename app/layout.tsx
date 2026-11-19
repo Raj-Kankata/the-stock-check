@@ -72,18 +72,23 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
           <div className="wrap">
             <p>
               <strong style={{ color: 'var(--ink)' }}>The Stock Check</strong> — free, deterministic,
-              rules-based stock research. For research and education only — not investment advice.
-              Data may be delayed and can contain errors; verify before trading. Past performance
-              does not guarantee future results.
+              rules-based stock research. For research and education only — not investment advice,
+              and not a recommendation, offer or solicitation to buy or sell any security. This is
+              not a stock promotion. Scores, verdicts and fair values are valuation context only,
+              not buy or exit instructions. Data may be delayed, incomplete or inaccurate; do your
+              own research and consult a licensed financial advisor. Past performance does not
+              guarantee future results. We are not liable for decisions made from this content.
             </p>
             <div className="links">
               <Link href="/methodology">Methodology</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/privacy">Privacy Policy</Link>
               <Link href="/terms">Terms</Link>
+              <Link href="/legal">Legal</Link>
               <Link href="/picks">Top Picks</Link>
               <Link href="/performance">Performance</Link>
             </div>
+            <p>© 2026 The Stock Check. All rights reserved.</p>
             <p>
               Prices are the {RESULTS.price_date} close unless marked LIVE during market hours
               (quotes delayed ~15 min, TradingView) · Engine {ENGINE_VERSION} ·{' '}

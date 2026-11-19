@@ -377,6 +377,11 @@ export default function HomePage() {
           (quotes delayed ~15 min, TradingView). Scores and fair values come from {ENGINE_VERSION}.
           Data may be delayed and can contain errors — verify before trading. Past performance does not guarantee future results.
         </p>
+        <p>
+          This is not a stock promotion. ETFs on this site have no fair value and no verdict —
+          their Technical and Momentum reads are informational only. Do your own research and
+          consult a licensed financial advisor before investing.
+        </p>
       </Card>
 
       <p className="footnote">
