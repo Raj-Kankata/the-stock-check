@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Nightly ETF refresh — The Stock Check (ETF board, separate data product).
 
-Pulls the 55-ETF universe (lib/data/etf_universe.json) and writes
-lib/data/etf_results.json with the Nov-18-close style snapshot:
+Pulls the ETF universe (lib/data/etf_universe.json) and writes
+lib/data/etf_results.json with the latest-close snapshot:
 price, day change, volume, relative volume, EMA20/50/200, RSI(14),
 MACD, beta, 52-week high/low, 50DMA, 1W/4W/13W total returns,
 1-year total return, Technical score + read, Momentum Score + read.
@@ -22,10 +22,30 @@ Momentum Score = 0.5*13W + 0.3*4W + 0.2*1W. Reads: Building >= +5%,
 Flat -5% to +5%, Fading < -5%. NO fair value, NO verdict, NO
 composite score — those do not exist for ETFs.
 
-Fail-closed: any ticker unresolved on the scanner, any required
-field null, fewer than 200 Yahoo bars, or a Yahoo/TV close
-disagreeing by >0.5% aborts the run with NOTHING written. Sitemap
-ETF entries are synced only on a successful write.
+Fail-closed PER SYMBOL (since the 2026-11-19 expansion to 175):
+any ticker unresolved on the scanner, any missing Yahoo series,
+fewer than 200 bars, or a Yahoo/TV close disagreeing by >0.5% is
+held back with its reason — it never publishes without verified
+data, and one bad symbol never blocks the rest. A held-back ticker
+that already has a published record is carried forward unchanged
+(stale by one close, flagged in the run log); a brand-new ticker
+with no previous record is left out of the output entirely, and
+the universe file must then be pruned to match so the board and
+the universe never disagree. The run still aborts with nothing
+written if the scanner request itself fails or zero tickers end
+up with data. Sitemap ETF entries are synced only on a
+successful write, for the tickers actually in the output.
+
+Prev-close mode: the nightly run happens after the close, but a
+manual run during market hours must NOT bake today's partial bar
+as a "close". When the last Yahoo bar is dated today (Chicago)
+and the market is still open (before 15:00 CT), that bar is
+dropped and the previous bar is the close; price, day change and
+volume then come from Yahoo's kept bars, and the TV agreement
+check compares TV's derived previous close (close / (1 + change))
+against it. TV's EMA/RSI/MACD stay live intraday values in that
+mode — documented in ETF_BOARD.md — and the next nightly run
+re-snapshots at the true close.
 
 Usage: python3 scripts/etf_refresh.py [--as-of YYYY-MM-DD]
 """
@@ -45,6 +65,17 @@ SCAN_URL = "https://scanner.tradingview.com/america/scan"
 SITE = "https://www.thestockcheck.com"
 
 ET = datetime.timezone(datetime.timedelta(hours=-5))  # America/Chicago (CST)
+# Market close in Chicago time; the nightly run is after this, a manual
+# run before it is in prev-close mode (see module docstring).
+MARKET_CLOSE_CT = datetime.time(15, 0)
+
+
+class TickerError(Exception):
+    """One ticker's data failed verification — held back, run continues."""
+
+
+def now_ct():
+    return datetime.datetime.now(datetime.timezone.utc).astimezone(ET)
 
 
 def fail(msg):
@@ -101,7 +132,12 @@ def technical_score(price, ema20, ema50, ema200, rsi, macd_hist):
 
 
 def fetch_tv(tickers, tv_symbols):
-    """TradingView scanner: one batched POST for the whole universe."""
+    """TradingView scanner: one batched POST for the whole universe.
+
+    Returns (resolved, failures): resolved maps ticker -> fields,
+    failures maps ticker -> reason. A symbol the scanner does not
+    resolve, or one with a null required field, is a per-symbol
+    failure — never a whole-run abort (see module docstring)."""
     cols = ["name", "close", "change", "volume", "EMA20", "EMA50",
             "EMA200", "RSI", "MACD.macd", "MACD.signal", "beta_1_year",
             "price_52_week_high", "price_52_week_low"]
@@ -117,9 +153,6 @@ def fetch_tv(tickers, tv_symbols):
     except Exception as e:
         fail(f"TradingView scanner request failed: {e}")
     data = json.loads(resp)
-    if data.get("totalCount") != len(tickers):
-        fail(f"TradingView totalCount {data.get('totalCount')} != "
-             f"universe {len(tickers)}")
     out = {}
     for row in data.get("data", []):
         d = row["d"]
@@ -127,49 +160,53 @@ def fetch_tv(tickers, tv_symbols):
                          ema20=d[4], ema50=d[5], ema200=d[6], rsi14=d[7],
                          macd_line=d[8], macd_signal=d[9], beta=d[10],
                          high_52w=d[11], low_52w=d[12])
-    missing = sorted(set(tickers) - set(out))
-    if missing:
-        fail(f"TradingView did not resolve: {', '.join(missing)} — "
-             f"STOP, never guess an exchange or drop a name")
+    failures = {}
     for t in tickers:
+        if t not in out:
+            failures[t] = "TradingView did not resolve tv_symbol " \
+                          f"{tv_symbols[t]}"
+    for t in tickers:
+        if t in failures:
+            continue
         for k in ("close", "ema20", "ema50", "ema200", "rsi14",
                   "macd_line", "macd_signal", "high_52w", "low_52w"):
             if out[t][k] is None:
-                fail(f"TradingView returned null {k} for {t}")
-    return out
+                failures[t] = f"TradingView returned null {k}"
+                del out[t]
+                break
+    return out, failures
 
 
 def fetch_yahoo(ticker):
-    """Yahoo chart v8, 1y daily: closes, adjusted closes, volumes."""
+    """Yahoo chart v8, 1y daily: closes, adjusted closes, volumes.
+
+    Raises TickerError (per-symbol, held back) on any failure.
+    Returns (bar_dates, closes, adjcloses, vols): bar_dates are
+    Chicago dates, one per bar, in order."""
     url = (f"https://query1.finance.yahoo.com/v8/finance/chart/"
            f"{ticker}?range=1y&interval=1d")
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     try:
         d = json.loads(urllib.request.urlopen(req, timeout=60).read())
     except Exception as e:
-        fail(f"Yahoo chart v8 failed for {ticker}: {e}")
+        raise TickerError(f"Yahoo chart v8 failed: {e}")
     try:
         r = d["chart"]["result"][0]
     except (KeyError, IndexError, TypeError):
-        fail(f"Yahoo chart v8 returned no result for {ticker}")
+        raise TickerError("Yahoo chart v8 returned no result")
     ts = r.get("timestamp") or []
     q = r["indicators"]["quote"][0]
     adj = r["indicators"]["adjclose"][0]["adjclose"]
-    pairs = [(c, a, v) for c, a, v in
-             zip(q["close"], adj, q["volume"]) if c is not None]
-    if len(pairs) < 200:
-        fail(f"{ticker}: Yahoo returned only {len(pairs)} bars (< 200)")
-    closes = [p[0] for p in pairs]
-    adjcloses = [p[1] for p in pairs]
-    vols = [p[2] for p in pairs]
-    last_ts = ts[-1] if ts else None
-    price_date = None
-    if last_ts:
-        price_date = datetime.datetime.fromtimestamp(
-            last_ts, datetime.timezone.utc).astimezone(
-                datetime.timezone(datetime.timedelta(hours=-6))
-            ).date().isoformat()
-    return price_date, closes, adjcloses, vols
+    rows = [(t, c, a, v) for t, c, a, v in
+            zip(ts, q["close"], adj, q["volume"]) if c is not None]
+    if len(rows) < 200:
+        raise TickerError(f"Yahoo returned only {len(rows)} bars (< 200)")
+    dates = [datetime.datetime.fromtimestamp(
+        t, datetime.timezone.utc).astimezone(ET).date() for t, _, _, _ in rows]
+    closes = [c for _, c, _, _ in rows]
+    adjcloses = [a for _, _, a, _ in rows]
+    vols = [v for _, _, _, v in rows]
+    return dates, closes, adjcloses, vols
 
 
 def sync_sitemap(tickers, ts):
@@ -221,18 +258,65 @@ def main():
     meta = {u["ticker"]: u for u in universe}
     print(f"ETF refresh: as_of={as_of}; {len(tickers)} tickers")
 
-    tv = fetch_tv(tickers, tv_symbols)
+    tv, tv_failures = fetch_tv(tickers, tv_symbols)
     print(f"  TradingView: {len(tv)}/{len(tickers)} resolved")
+    stored = load_json(RESULTS) if os.path.exists(RESULTS) else None
+    prev_etfs = (stored or {}).get("etfs", {}) or {}
 
     etfs = {}
+    held_back = {}   # ticker -> reason (no verified data this run)
+    carried = []     # tickers carried forward on a previous record
     price_dates = set()
     for t in tickers:
-        price_date, closes, adjcloses, vols = fetch_yahoo(t)
-        price = closes[-1]
-        if abs(price - tv[t]["close"]) / tv[t]["close"] > 0.005:
-            fail(f"{t}: Yahoo close {price} vs TradingView "
-                 f"{tv[t]['close']} differ by >0.5%")
-        price_dates.add(price_date)
+        try:
+            if t in tv_failures:
+                raise TickerError(tv_failures[t])
+            dates, closes, adjcloses, vols = fetch_yahoo(t)
+            # Prev-close mode: drop today's partial bar when the market
+            # is still open, so the snapshot is the last completed
+            # close and never claims a close that has not happened.
+            prev_close_mode = (
+                dates[-1] == now_ct().date()
+                and now_ct().time() < MARKET_CLOSE_CT)
+            if prev_close_mode:
+                dates, closes, adjcloses, vols = (
+                    dates[:-1], closes[:-1], adjcloses[:-1], vols[:-1])
+                if len(closes) < 200:
+                    raise TickerError(
+                        "only %d completed-close bars (< 200) after "
+                        "dropping today's partial bar" % len(closes))
+            price = closes[-1]
+            if prev_close_mode:
+                if tv[t]["change_pct"] is None:
+                    raise TickerError(
+                        "no TV day change for the prev-close check")
+                tv_prev = tv[t]["close"] / (1 + tv[t]["change_pct"] / 100)
+                if abs(price - tv_prev) / tv_prev > 0.005:
+                    raise TickerError(
+                        f"Yahoo close {price} vs TV-derived prev close "
+                        f"{tv_prev:.2f} differ by >0.5%")
+                # Day change and volume come from Yahoo's kept bars in
+                # this mode — TV's are live intraday values.
+                change_pct = closes[-1] / closes[-2] - 1
+                volume = vols[-1]
+            else:
+                if abs(price - tv[t]["close"]) / tv[t]["close"] > 0.005:
+                    raise TickerError(
+                        f"Yahoo close {price} vs TradingView "
+                        f"{tv[t]['close']} differ by >0.5%")
+                change_pct = tv[t]["change_pct"] / 100
+                volume = tv[t]["volume"]
+            price_dates.add(dates[-1].isoformat())
+        except TickerError as e:
+            if t in prev_etfs:
+                etfs[t] = prev_etfs[t]
+                carried.append(t)
+                print(f"    {t}: HELD BACK ({e}) — carried forward on "
+                      f"the previous record")
+            else:
+                held_back[t] = str(e)
+                print(f"    {t}: HELD BACK ({e}) — no record published")
+            continue
         ret_1w = price / closes[-6] - 1
         ret_4w = price / closes[-21] - 1
         ret_13w = price / closes[-66] - 1
@@ -254,8 +338,8 @@ def main():
             "type": meta[t]["type"],
             "index": meta[t]["index"],
             "price": round(price, 2),
-            "change_pct": round(tv[t]["change_pct"] / 100, 4),
-            "volume": tv[t]["volume"],
+            "change_pct": round(change_pct, 4),
+            "volume": volume,
             "rel_vol": rel_vol,
             "ema20": round(tv[t]["ema20"], 2),
             "ema50": round(tv[t]["ema50"], 2),
@@ -285,23 +369,36 @@ def main():
         print(f"    {t}: ${price:.2f} tech={tech} "
               f"{etfs[t]['technical_read']} mom={mom:+.2%} "
               f"{etfs[t]['momentum_read']}")
-    if len(price_dates) != 1:
+    if not etfs:
+        fail("zero tickers with data — nothing to write")
+    if len(price_dates) > 1:
         fail(f"tickers disagree on latest close date: {sorted(price_dates)}")
-    price_date = price_dates.pop()
+    price_date = price_dates.pop() if price_dates else \
+        (stored or {}).get("price_date")
+    if price_date is None:
+        fail("no fresh tickers and no stored price_date")
 
     new = {"as_of": as_of, "price_date": price_date,
-           "universe_count": len(tickers), "etfs": etfs}
-    stored = load_json(RESULTS) if os.path.exists(RESULTS) else None
+           "universe_count": len(etfs), "etfs": etfs}
     if stored is not None and stored.get("etfs") == etfs and \
             stored.get("price_date") == price_date:
         print("No changes — nothing to write.")
-        return
-    write_json(RESULTS, new)
-    ts = (datetime.datetime.now(datetime.timezone.utc)
-          .strftime("%Y-%m-%dT%H:%M:%SZ"))
-    n = sync_sitemap(tickers, ts)
-    print(f"Wrote {RESULTS} (price_date {price_date}); "
-          f"sitemap synced ({n} ETF pages + /etfs).")
+    else:
+        write_json(RESULTS, new)
+        ts = (datetime.datetime.now(datetime.timezone.utc)
+              .strftime("%Y-%m-%dT%H:%M:%SZ"))
+        n = sync_sitemap(sorted(etfs), ts)
+        print(f"Wrote {RESULTS} (price_date {price_date}); "
+              f"sitemap synced ({n} ETF pages + /etfs).")
+    print(f"Fresh: {len(etfs) - len(carried)} tickers; "
+          f"carried forward: {len(carried)}; held back: {len(held_back)}")
+    if carried:
+        print("  CARRIED FORWARD (stale by one close): "
+              + ", ".join(sorted(carried)))
+    if held_back:
+        print("  HELD BACK (no record published):")
+        for t in sorted(held_back):
+            print(f"    {t}: {held_back[t]}")
 
 
 if __name__ == "__main__":

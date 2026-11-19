@@ -2,7 +2,7 @@
 //
 // SOURCE OF TRUTH: lib/data/etf_results.json (nightly, scripts/etf_refresh.py)
 // + lib/data/etf_facts.json (weekly, scripts/etf_facts_refresh.py)
-// + lib/data/etf_universe.json (the 55-ETF universe).
+// + lib/data/etf_universe.json (the ETF universe).
 //
 // ETFs have NO fair value, NO verdict, NO overall score — see ETF_BOARD.md.
 // What they have: a Technical score (the stock engine's Technical pillar

@@ -487,7 +487,7 @@ export function liveCloseFor(state: LiveQuotesState, symbol: string): number | n
 
 // ---------------------------------------------------------------------------
 // ETF live-price store — the same all-or-none scan, polling and states as
-// the stock store above, but over the 55 ETF tickers in
+// the stock store above, but over the ETF tickers in
 // lib/data/etf_exchanges.json. Separate module state so the stock store
 // (382 names, frozen behaviour) is never touched by ETF polling.
 // ---------------------------------------------------------------------------

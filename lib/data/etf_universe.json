@@ -19,6 +19,69 @@
    "tv_symbol": "AMEX:AGG"
   },
   {
+   "ticker": "ARGT",
+   "name": "Global X MSCI Argentina ETF",
+   "provider": "Global X",
+   "category": "Argentina",
+   "type": "equity",
+   "index": "MSCI Argentina 25/50",
+   "tv_symbol": "AMEX:ARGT"
+  },
+  {
+   "ticker": "ARKF",
+   "name": "ARK Fintech Innovation ETF",
+   "provider": "ARK",
+   "category": "Fintech",
+   "type": "equity",
+   "index": "Actively managed (fintech innovation)",
+   "tv_symbol": "CBOE:ARKF"
+  },
+  {
+   "ticker": "ARKG",
+   "name": "ARK Genomic Revolution ETF",
+   "provider": "ARK",
+   "category": "Genomics",
+   "type": "equity",
+   "index": "Actively managed (genomic revolution)",
+   "tv_symbol": "CBOE:ARKG"
+  },
+  {
+   "ticker": "ARKK",
+   "name": "ARK Innovation ETF",
+   "provider": "ARK",
+   "category": "Growth",
+   "type": "equity",
+   "index": "Actively managed (disruptive innovation)",
+   "tv_symbol": "CBOE:ARKK"
+  },
+  {
+   "ticker": "ARKQ",
+   "name": "ARK Autonomous Technology & Robotics ETF",
+   "provider": "ARK",
+   "category": "Autonomous Tech & Robotics",
+   "type": "equity",
+   "index": "Actively managed (autonomous technology & robotics)",
+   "tv_symbol": "CBOE:ARKQ"
+  },
+  {
+   "ticker": "ARKW",
+   "name": "ARK Next Generation Internet ETF",
+   "provider": "ARK",
+   "category": "Next Generation Internet",
+   "type": "equity",
+   "index": "Actively managed (next generation internet)",
+   "tv_symbol": "CBOE:ARKW"
+  },
+  {
+   "ticker": "ARKX",
+   "name": "ARK Space & Defense Innovation ETF",
+   "provider": "ARK",
+   "category": "Space & Defense",
+   "type": "equity",
+   "index": "Actively managed (space exploration & innovation)",
+   "tv_symbol": "CBOE:ARKX"
+  },
+  {
    "ticker": "AVUV",
    "name": "Avantis US Small Cap Value ETF",
    "provider": "Avantis",
@@ -28,6 +91,24 @@
    "tv_symbol": "AMEX:AVUV"
   },
   {
+   "ticker": "BIL",
+   "name": "State Street SPDR Bloomberg 1-3 Month T-Bill ETF",
+   "provider": "SPDR",
+   "category": "Treasury / Cash",
+   "type": "bond",
+   "index": "Bloomberg 1-3 Month US Treasury Bill",
+   "tv_symbol": "AMEX:BIL"
+  },
+  {
+   "ticker": "BITX",
+   "name": "Volatility Shares 2x Bitcoin Strategy ETF",
+   "provider": "Volatility Shares",
+   "category": "Crypto \u2014 Bitcoin",
+   "type": "leveraged",
+   "index": "Bitcoin (2x daily)",
+   "tv_symbol": "CBOE:BITX"
+  },
+  {
    "ticker": "BND",
    "name": "Vanguard Total Bond Market Index Fund ETF Shares",
    "provider": "Vanguard",
@@ -35,6 +116,249 @@
    "type": "bond",
    "index": "Bloomberg US Aggregate Float Adjusted",
    "tv_symbol": "NASDAQ:BND"
+  },
+  {
+   "ticker": "BNDW",
+   "name": "Vanguard Total World Bond ETF",
+   "provider": "Vanguard",
+   "category": "U.S. Bonds",
+   "type": "bond",
+   "index": "Bloomberg Global Aggregate Float Adjusted",
+   "tv_symbol": "NASDAQ:BNDW"
+  },
+  {
+   "ticker": "BOIL",
+   "name": "ProShares Ultra Bloomberg Natural Gas",
+   "provider": "ProShares",
+   "category": "Commodity \u2014 Natural Gas",
+   "type": "leveraged",
+   "index": "Bloomberg Natural Gas (2x daily)",
+   "tv_symbol": "AMEX:BOIL"
+  },
+  {
+   "ticker": "CQQQ",
+   "name": "Invesco China Technology ETF",
+   "provider": "Invesco",
+   "category": "China \u2014 Technology",
+   "type": "equity",
+   "index": "FTSE China Incl A 25% Technology",
+   "tv_symbol": "AMEX:CQQQ"
+  },
+  {
+   "ticker": "DDM",
+   "name": "ProShares Ultra Dow30",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Dow Jones (2x daily)",
+   "tv_symbol": "AMEX:DDM"
+  },
+  {
+   "ticker": "DIA",
+   "name": "State Street SPDR Dow Jones Industrial Average ETF Trust",
+   "provider": "SPDR",
+   "category": "Dow Jones",
+   "type": "equity",
+   "index": "Dow Jones Industrial Average",
+   "tv_symbol": "AMEX:DIA"
+  },
+  {
+   "ticker": "DRIP",
+   "name": "Direxion Daily S&P Oil & Gas Exp. & Prod. Bear 2X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P Oil & Gas Exploration & Production (-2x daily)",
+   "tv_symbol": "AMEX:DRIP"
+  },
+  {
+   "ticker": "DUSL",
+   "name": "Direxion Daily Industrials Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P Industrials Select Sector (3x daily)",
+   "tv_symbol": "AMEX:DUSL"
+  },
+  {
+   "ticker": "DUST",
+   "name": "Direxion Daily Gold Miners Index Bear 2X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "NYSE Arca Gold Miners (-2x daily)",
+   "tv_symbol": "AMEX:DUST"
+  },
+  {
+   "ticker": "DXJ",
+   "name": "WisdomTree Japan Hedged Equity Fund",
+   "provider": "WisdomTree",
+   "category": "Japan (Hedged)",
+   "type": "equity",
+   "index": "WisdomTree Japan Hedged Equity",
+   "tv_symbol": "AMEX:DXJ"
+  },
+  {
+   "ticker": "EEM",
+   "name": "iShares MSCI Emerging Markets ETF",
+   "provider": "iShares",
+   "category": "Emerging Markets",
+   "type": "equity",
+   "index": "MSCI Emerging Markets",
+   "tv_symbol": "AMEX:EEM"
+  },
+  {
+   "ticker": "EIDO",
+   "name": "iShares MSCI Indonesia ETF",
+   "provider": "iShares",
+   "category": "Indonesia",
+   "type": "equity",
+   "index": "MSCI Indonesia IMI 25/50",
+   "tv_symbol": "AMEX:EIDO"
+  },
+  {
+   "ticker": "EPHE",
+   "name": "iShares MSCI Philippines ETF",
+   "provider": "iShares",
+   "category": "Philippines",
+   "type": "equity",
+   "index": "MSCI Philippines IMI 25/50",
+   "tv_symbol": "AMEX:EPHE"
+  },
+  {
+   "ticker": "EPI",
+   "name": "WisdomTree India Earnings Fund",
+   "provider": "WisdomTree",
+   "category": "India",
+   "type": "equity",
+   "index": "WisdomTree India Earnings",
+   "tv_symbol": "AMEX:EPI"
+  },
+  {
+   "ticker": "EPOL",
+   "name": "iShares MSCI Poland ETF",
+   "provider": "iShares",
+   "category": "Poland",
+   "type": "equity",
+   "index": "MSCI Poland IMI 25/50",
+   "tv_symbol": "AMEX:EPOL"
+  },
+  {
+   "ticker": "EPU",
+   "name": "iShares MSCI Peru ETF",
+   "provider": "iShares",
+   "category": "Peru",
+   "type": "equity",
+   "index": "MSCI All Peru Capped",
+   "tv_symbol": "AMEX:EPU"
+  },
+  {
+   "ticker": "ERX",
+   "name": "Direxion Daily Energy Bull 2X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P Energy Select Sector (2x daily)",
+   "tv_symbol": "AMEX:ERX"
+  },
+  {
+   "ticker": "ERY",
+   "name": "Direxion Daily Energy Bear 2X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P Energy Select Sector (-2x daily)",
+   "tv_symbol": "AMEX:ERY"
+  },
+  {
+   "ticker": "ETHA",
+   "name": "iShares Ethereum Trust ETF",
+   "provider": "iShares",
+   "category": "Crypto \u2014 Ethereum",
+   "type": "commodity",
+   "index": "Ethereum (spot)",
+   "tv_symbol": "NASDAQ:ETHA"
+  },
+  {
+   "ticker": "ETHU",
+   "name": "Volatility Shares 2x Ether ETF",
+   "provider": "Volatility Shares",
+   "category": "Crypto \u2014 Ethereum",
+   "type": "leveraged",
+   "index": "Ether (2x daily)",
+   "tv_symbol": "CBOE:ETHU"
+  },
+  {
+   "ticker": "EWG",
+   "name": "iShares MSCI Germany ETF",
+   "provider": "iShares",
+   "category": "Germany",
+   "type": "equity",
+   "index": "MSCI Germany",
+   "tv_symbol": "AMEX:EWG"
+  },
+  {
+   "ticker": "EWJ",
+   "name": "iShares MSCI Japan ETF",
+   "provider": "iShares",
+   "category": "Japan",
+   "type": "equity",
+   "index": "MSCI Japan",
+   "tv_symbol": "AMEX:EWJ"
+  },
+  {
+   "ticker": "EWQ",
+   "name": "iShares MSCI France ETF",
+   "provider": "iShares",
+   "category": "France",
+   "type": "equity",
+   "index": "MSCI France",
+   "tv_symbol": "AMEX:EWQ"
+  },
+  {
+   "ticker": "EWW",
+   "name": "iShares MSCI Mexico ETF",
+   "provider": "iShares",
+   "category": "Mexico",
+   "type": "equity",
+   "index": "MSCI Mexico IMI 25/50",
+   "tv_symbol": "AMEX:EWW"
+  },
+  {
+   "ticker": "EWY",
+   "name": "iShares MSCI South Korea ETF",
+   "provider": "iShares",
+   "category": "South Korea",
+   "type": "equity",
+   "index": "MSCI 25/50 South Korea",
+   "tv_symbol": "AMEX:EWY"
+  },
+  {
+   "ticker": "EWZ",
+   "name": "iShares MSCI Brazil ETF",
+   "provider": "iShares",
+   "category": "Brazil",
+   "type": "equity",
+   "index": "MSCI Brazil 25/50",
+   "tv_symbol": "AMEX:EWZ"
+  },
+  {
+   "ticker": "FAS",
+   "name": "Direxion Daily Financial Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Russell 1000 Financial Services (3x daily)",
+   "tv_symbol": "AMEX:FAS"
+  },
+  {
+   "ticker": "FAZ",
+   "name": "Direxion Daily Financial Bear 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Russell 1000 Financial Services (-3x daily)",
+   "tv_symbol": "AMEX:FAZ"
   },
   {
    "ticker": "FBND",
@@ -64,6 +388,24 @@
    "tv_symbol": "AMEX:FDVV"
   },
   {
+   "ticker": "FETH",
+   "name": "Fidelity Ethereum Fund",
+   "provider": "Fidelity",
+   "category": "Crypto \u2014 Ethereum",
+   "type": "commodity",
+   "index": "Ethereum (spot)",
+   "tv_symbol": "CBOE:FETH"
+  },
+  {
+   "ticker": "FEZ",
+   "name": "State Street SPDR EURO STOXX 50 ETF",
+   "provider": "SPDR",
+   "category": "Europe",
+   "type": "equity",
+   "index": "EURO STOXX 50",
+   "tv_symbol": "AMEX:FEZ"
+  },
+  {
    "ticker": "FTEC",
    "name": "Fidelity MSCI Information Technology Index ETF",
    "provider": "Fidelity",
@@ -91,6 +433,87 @@
    "tv_symbol": "AMEX:GLD"
   },
   {
+   "ticker": "GOVZ",
+   "name": "iShares 25+ Year Treasury STRIPS Bond ETF",
+   "provider": "iShares",
+   "category": "Treasury STRIPS",
+   "type": "bond",
+   "index": "ICE U.S. Treasury 25+ Year Bond",
+   "tv_symbol": "CBOE:GOVZ"
+  },
+  {
+   "ticker": "GPIQ",
+   "name": "Goldman Sachs Nasdaq-100 Premium Income ETF",
+   "provider": "Goldman Sachs",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "Nasdaq-100 (covered-call overlay)",
+   "tv_symbol": "NASDAQ:GPIQ"
+  },
+  {
+   "ticker": "GPIX",
+   "name": "Goldman Sachs S&P 500 Premium Income ETF",
+   "provider": "Goldman Sachs",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "S&P 500 (covered-call overlay)",
+   "tv_symbol": "NASDAQ:GPIX"
+  },
+  {
+   "ticker": "GRNY",
+   "name": "Fundstrat Granny Shots US Large Cap ETF",
+   "provider": "Fundstrat",
+   "category": "U.S. Large-Cap",
+   "type": "equity",
+   "index": "Actively managed (Granny Shots)",
+   "tv_symbol": "AMEX:GRNY"
+  },
+  {
+   "ticker": "GUSH",
+   "name": "Direxion Daily S&P Oil & Gas Exp. & Prod. Bull 2X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P Oil & Gas Exploration & Production (2x daily)",
+   "tv_symbol": "AMEX:GUSH"
+  },
+  {
+   "ticker": "HYG",
+   "name": "iShares iBoxx $ High Yield Corporate Bond ETF",
+   "provider": "iShares",
+   "category": "High Yield Bonds",
+   "type": "bond",
+   "index": "iBoxx USD Liquid High Yield",
+   "tv_symbol": "AMEX:HYG"
+  },
+  {
+   "ticker": "HYGW",
+   "name": "iShares High Yield Corporate Bond Buywrite Strategy ETF",
+   "provider": "iShares",
+   "category": "High Yield Bonds",
+   "type": "bond",
+   "index": "iBoxx USD Liquid High Yield (buywrite overlay)",
+   "tv_symbol": "CBOE:HYGW"
+  },
+  {
+   "ticker": "IAI",
+   "name": "iShares U.S. Broker-Dealers & Securities Exchanges ETF",
+   "provider": "iShares",
+   "category": "Broker-Dealers",
+   "type": "equity",
+   "index": "Dow Jones U.S. Select Investment Services",
+   "tv_symbol": "AMEX:IAI"
+  },
+  {
+   "ticker": "ICLN",
+   "name": "iShares Global Clean Energy ETF",
+   "provider": "iShares",
+   "category": "Clean Energy",
+   "type": "equity",
+   "index": "S&P Global Clean Energy",
+   "tv_symbol": "NASDAQ:ICLN"
+  },
+  {
    "ticker": "IEF",
    "name": "iShares 7-10 Year Treasury Bond ETF",
    "provider": "iShares",
@@ -107,6 +530,87 @@
    "type": "equity",
    "index": "MSCI Emerging Markets",
    "tv_symbol": "AMEX:IEMG"
+  },
+  {
+   "ticker": "IGPT",
+   "name": "Invesco AI and Next Gen Software ETF",
+   "provider": "Invesco",
+   "category": "Technology",
+   "type": "equity",
+   "index": "STOXX World AC NexGen Software Development",
+   "tv_symbol": "AMEX:IGPT"
+  },
+  {
+   "ticker": "IGV",
+   "name": "iShares Expanded Tech-Software Sector ETF",
+   "provider": "iShares",
+   "category": "Software",
+   "type": "equity",
+   "index": "S&P North American Expanded Technology Software",
+   "tv_symbol": "CBOE:IGV"
+  },
+  {
+   "ticker": "IHI",
+   "name": "iShares U.S. Medical Devices ETF",
+   "provider": "iShares",
+   "category": "Medical Devices",
+   "type": "equity",
+   "index": "Dow Jones US Select Medical Equipment",
+   "tv_symbol": "AMEX:IHI"
+  },
+  {
+   "ticker": "IJH",
+   "name": "iShares Core S&P Mid-Cap ETF",
+   "provider": "iShares",
+   "category": "U.S. Mid-Cap",
+   "type": "equity",
+   "index": "S&P MidCap 400",
+   "tv_symbol": "AMEX:IJH"
+  },
+  {
+   "ticker": "INDA",
+   "name": "iShares MSCI India ETF",
+   "provider": "iShares",
+   "category": "India",
+   "type": "equity",
+   "index": "MSCI India",
+   "tv_symbol": "CBOE:INDA"
+  },
+  {
+   "ticker": "INDL",
+   "name": "Direxion Daily MSCI India Bull 2x Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "MSCI India (2x daily)",
+   "tv_symbol": "AMEX:INDL"
+  },
+  {
+   "ticker": "INDY",
+   "name": "iShares India 50 ETF",
+   "provider": "iShares",
+   "category": "India",
+   "type": "equity",
+   "index": "Nifty 50",
+   "tv_symbol": "NASDAQ:INDY"
+  },
+  {
+   "ticker": "INQQ",
+   "name": "INQQ The India Internet ETF",
+   "provider": "EMQQ Global",
+   "category": "India \u2014 Internet",
+   "type": "equity",
+   "index": "INQQ India Internet & Ecommerce",
+   "tv_symbol": "AMEX:INQQ"
+  },
+  {
+   "ticker": "ITB",
+   "name": "iShares U.S. Home Construction ETF",
+   "provider": "iShares",
+   "category": "Home Construction",
+   "type": "equity",
+   "index": "Dow Jones U.S. Select Home Construction",
+   "tv_symbol": "CBOE:ITB"
   },
   {
    "ticker": "ITOT",
@@ -127,6 +631,15 @@
    "tv_symbol": "AMEX:IVE"
   },
   {
+   "ticker": "IVOV",
+   "name": "Vanguard S&P Mid-Cap 400 Value Index Fund ETF Shares",
+   "provider": "Vanguard",
+   "category": "U.S. Mid-Cap",
+   "type": "equity",
+   "index": "CRSP US Mid Cap Value",
+   "tv_symbol": "AMEX:IVOV"
+  },
+  {
    "ticker": "IVV",
    "name": "iShares Core S&P 500 ETF",
    "provider": "iShares",
@@ -145,6 +658,24 @@
    "tv_symbol": "AMEX:IWM"
   },
   {
+   "ticker": "IWN",
+   "name": "iShares Russell 2000 Value ETF",
+   "provider": "iShares",
+   "category": "U.S. Small-Cap",
+   "type": "equity",
+   "index": "Russell 2000 Value",
+   "tv_symbol": "AMEX:IWN"
+  },
+  {
+   "ticker": "IWO",
+   "name": "iShares Russell 2000 Growth ETF",
+   "provider": "iShares",
+   "category": "U.S. Small-Cap",
+   "type": "equity",
+   "index": "Russell 2000 Growth",
+   "tv_symbol": "AMEX:IWO"
+  },
+  {
    "ticker": "IXUS",
    "name": "iShares Core MSCI Total International Stock ETF",
    "provider": "iShares",
@@ -154,6 +685,15 @@
    "tv_symbol": "NASDAQ:IXUS"
   },
   {
+   "ticker": "IYR",
+   "name": "iShares U.S. Real Estate ETF",
+   "provider": "iShares",
+   "category": "Real Estate",
+   "type": "equity",
+   "index": "Dow Jones US Real Estate",
+   "tv_symbol": "AMEX:IYR"
+  },
+  {
    "ticker": "IYW",
    "name": "iShares U.S. Technology ETF",
    "provider": "iShares",
@@ -161,6 +701,177 @@
    "type": "equity",
    "index": "Russell 1000 Technology RIC 22.5/45",
    "tv_symbol": "AMEX:IYW"
+  },
+  {
+   "ticker": "IZRL",
+   "name": "ARK Israel Innovative Technology ETF",
+   "provider": "ARK",
+   "category": "Israel",
+   "type": "equity",
+   "index": "Actively managed (Israeli innovation)",
+   "tv_symbol": "CBOE:IZRL"
+  },
+  {
+   "ticker": "JEPI",
+   "name": "JPMorgan Equity Premium Income ETF",
+   "provider": "JPMorgan",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "S&P 500 (active, covered-call overlay)",
+   "tv_symbol": "AMEX:JEPI"
+  },
+  {
+   "ticker": "JEPQ",
+   "name": "JPMorgan Nasdaq Equity Premium Income ETF",
+   "provider": "JPMorgan",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "Nasdaq-100 (active, covered-call overlay)",
+   "tv_symbol": "NASDAQ:JEPQ"
+  },
+  {
+   "ticker": "KORU",
+   "name": "Direxion Daily South Korea Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "MSCI Korea 25/50 (3x daily)",
+   "tv_symbol": "AMEX:KORU"
+  },
+  {
+   "ticker": "KRE",
+   "name": "State Street SPDR S&P Regional Banking ETF",
+   "provider": "State Street",
+   "category": "Regional Banks",
+   "type": "equity",
+   "index": "S&P Regional Banks Select Industry",
+   "tv_symbol": "AMEX:KRE"
+  },
+  {
+   "ticker": "LABD",
+   "name": "Direxion Daily S&P Biotech Bear 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P Biotechnology Select Industry (-3x daily)",
+   "tv_symbol": "AMEX:LABD"
+  },
+  {
+   "ticker": "LABU",
+   "name": "Direxion Daily S&P Biotech Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P Biotechnology Select Industry (3x daily)",
+   "tv_symbol": "AMEX:LABU"
+  },
+  {
+   "ticker": "LQDW",
+   "name": "iShares Investment Grade Corporate Bond Buywrite Strategy ETF",
+   "provider": "iShares",
+   "category": "Corporate Bonds",
+   "type": "bond",
+   "index": "iBoxx USD Liquid Investment Grade (buywrite overlay)",
+   "tv_symbol": "CBOE:LQDW"
+  },
+  {
+   "ticker": "MAGS",
+   "name": "Roundhill Magnificent Seven ETF",
+   "provider": "Roundhill",
+   "category": "Magnificent 7",
+   "type": "equity",
+   "index": "Magnificent Seven",
+   "tv_symbol": "CBOE:MAGS"
+  },
+  {
+   "ticker": "MAGY",
+   "name": "Roundhill Magnificent Seven Covered Call ETF",
+   "provider": "Roundhill",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "Magnificent Seven (covered call)",
+   "tv_symbol": "CBOE:MAGY"
+  },
+  {
+   "ticker": "MCHI",
+   "name": "iShares MSCI China ETF",
+   "provider": "iShares",
+   "category": "China",
+   "type": "equity",
+   "index": "MSCI China",
+   "tv_symbol": "NASDAQ:MCHI"
+  },
+  {
+   "ticker": "MVV",
+   "name": "ProShares Ultra MidCap400",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P MidCap 400 (2x daily)",
+   "tv_symbol": "AMEX:MVV"
+  },
+  {
+   "ticker": "NAIL",
+   "name": "Direxion Daily Homebuilders & Supplies Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Dow Jones US Select Home Construction (3x daily)",
+   "tv_symbol": "AMEX:NAIL"
+  },
+  {
+   "ticker": "NANC",
+   "name": "Unusual Whales Subversive Democratic Trading ETF",
+   "provider": "Subversive",
+   "category": "U.S. Large-Cap",
+   "type": "equity",
+   "index": "Actively managed (Democratic holdings)",
+   "tv_symbol": "CBOE:NANC"
+  },
+  {
+   "ticker": "NUGT",
+   "name": "Direxion Daily Gold Miners Index Bull 2X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "NYSE Arca Gold Miners (2x daily)",
+   "tv_symbol": "AMEX:NUGT"
+  },
+  {
+   "ticker": "PPH",
+   "name": "VanEck Pharmaceutical ETF",
+   "provider": "VanEck",
+   "category": "Pharmaceuticals",
+   "type": "equity",
+   "index": "MVIS US Listed Pharmaceutical 25",
+   "tv_symbol": "NASDAQ:PPH"
+  },
+  {
+   "ticker": "PRNT",
+   "name": "The 3D Printing ETF",
+   "provider": "ARK",
+   "category": "3D Printing",
+   "type": "equity",
+   "index": "Total 3D-Printing",
+   "tv_symbol": "CBOE:PRNT"
+  },
+  {
+   "ticker": "QAT",
+   "name": "iShares MSCI Qatar ETF",
+   "provider": "iShares",
+   "category": "Qatar",
+   "type": "equity",
+   "index": "MSCI All Qatar Capped",
+   "tv_symbol": "NASDAQ:QAT"
+  },
+  {
+   "ticker": "QDTE",
+   "name": "Roundhill Nasdaq-100 0DTE Covered Call ETF Strategy ETF",
+   "provider": "Roundhill",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "Nasdaq-100 (0DTE covered call)",
+   "tv_symbol": "CBOE:QDTE"
   },
   {
    "ticker": "QLD",
@@ -188,6 +899,51 @@
    "type": "equity",
    "index": "Nasdaq-100",
    "tv_symbol": "NASDAQ:QQQM"
+  },
+  {
+   "ticker": "QQQU",
+   "name": "Direxion Daily Magnificent 7 Bull 2X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Magnificent Seven (2x daily)",
+   "tv_symbol": "AMEX:QQQU"
+  },
+  {
+   "ticker": "QYLD",
+   "name": "Global X NASDAQ 100 Covered Call ETF",
+   "provider": "Global X",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "Nasdaq-100 (covered call)",
+   "tv_symbol": "NASDAQ:QYLD"
+  },
+  {
+   "ticker": "RDTE",
+   "name": "Roundhill Russell 2000 0DTE Covered Call Strategy ETF",
+   "provider": "Roundhill",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "Russell 2000 (0DTE covered call)",
+   "tv_symbol": "CBOE:RDTE"
+  },
+  {
+   "ticker": "RSP",
+   "name": "Invesco S&P 500 Equal Weight ETF",
+   "provider": "Invesco",
+   "category": "S&P 500",
+   "type": "equity",
+   "index": "S&P 500 Equal Weight",
+   "tv_symbol": "AMEX:RSP"
+  },
+  {
+   "ticker": "RYLD",
+   "name": "Global X Russell 2000 Covered Call ETF",
+   "provider": "Global X",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "Russell 2000 (covered call)",
+   "tv_symbol": "AMEX:RYLD"
   },
   {
    "ticker": "SCHB",
@@ -235,6 +991,15 @@
    "tv_symbol": "AMEX:SCHH"
   },
   {
+   "ticker": "SCHR",
+   "name": "Schwab Intermediate-Term U.S. Treasury ETF",
+   "provider": "Schwab",
+   "category": "Treasury Bonds",
+   "type": "bond",
+   "index": "Bloomberg US Treasury 3-10 Year",
+   "tv_symbol": "AMEX:SCHR"
+  },
+  {
    "ticker": "SCHV",
    "name": "Schwab U.S. Large-Cap Value ETF",
    "provider": "Schwab",
@@ -253,6 +1018,42 @@
    "tv_symbol": "AMEX:SCHZ"
   },
   {
+   "ticker": "SCUS",
+   "name": "Schwab Ultra-Short Income ETF",
+   "provider": "Schwab",
+   "category": "Ultra-Short Bonds",
+   "type": "bond",
+   "index": "Actively managed (ultra-short income)",
+   "tv_symbol": "AMEX:SCUS"
+  },
+  {
+   "ticker": "SCYB",
+   "name": "Schwab High Yield Bond ETF",
+   "provider": "Schwab",
+   "category": "High Yield Bonds",
+   "type": "bond",
+   "index": "Bloomberg US Corporate High Yield",
+   "tv_symbol": "AMEX:SCYB"
+  },
+  {
+   "ticker": "SDOW",
+   "name": "ProShares UltraPro Short Dow30",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Dow Jones (-3x daily)",
+   "tv_symbol": "AMEX:SDOW"
+  },
+  {
+   "ticker": "SDS",
+   "name": "ProShares UltraShort S&P500",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P 500 (-2x daily)",
+   "tv_symbol": "AMEX:SDS"
+  },
+  {
    "ticker": "SGOV",
    "name": "iShares 0-3 Month Treasury Bond ETF",
    "provider": "iShares",
@@ -260,6 +1061,15 @@
    "type": "bond",
    "index": "ICE 0-3 Month US Treasury",
    "tv_symbol": "NYSE:SGOV"
+  },
+  {
+   "ticker": "SMCX",
+   "name": "Defiance Daily Target 2X Long SMCI ETF",
+   "provider": "Defiance",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Super Micro Computer (2x daily)",
+   "tv_symbol": "NASDAQ:SMCX"
   },
   {
    "ticker": "SMH",
@@ -271,6 +1081,15 @@
    "tv_symbol": "NASDAQ:SMH"
   },
   {
+   "ticker": "SMIN",
+   "name": "iShares MSCI India Small-Cap ETF",
+   "provider": "iShares",
+   "category": "India \u2014 Small-Cap",
+   "type": "equity",
+   "index": "MSCI India Small Cap",
+   "tv_symbol": "CBOE:SMIN"
+  },
+  {
    "ticker": "SOXL",
    "name": "Direxion Daily Semiconductor Bull 3X Shares",
    "provider": "Direxion",
@@ -278,6 +1097,15 @@
    "type": "leveraged",
    "index": "NYSE Semiconductor (3x daily)",
    "tv_symbol": "AMEX:SOXL"
+  },
+  {
+   "ticker": "SOXS",
+   "name": "Direxion Daily Semiconductor Bear 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "NYSE Semiconductor (-3x daily)",
+   "tv_symbol": "AMEX:SOXS"
   },
   {
    "ticker": "SOXX",
@@ -316,6 +1144,24 @@
    "tv_symbol": "AMEX:SPGM"
   },
   {
+   "ticker": "SPLV",
+   "name": "Invesco S&P 500 Low Volatility ETF",
+   "provider": "Invesco",
+   "category": "S&P 500",
+   "type": "equity",
+   "index": "S&P 500 Low Volatility",
+   "tv_symbol": "AMEX:SPLV"
+  },
+  {
+   "ticker": "SPMO",
+   "name": "Invesco S&P 500 Momentum ETF",
+   "provider": "Invesco",
+   "category": "Momentum",
+   "type": "equity",
+   "index": "S&P 500 Momentum",
+   "tv_symbol": "AMEX:SPMO"
+  },
+  {
    "ticker": "SPTM",
    "name": "State Street SPDR Portfolio S&P 1500 Composite Stock Market ETF",
    "provider": "SPDR",
@@ -332,6 +1178,42 @@
    "type": "equity",
    "index": "S&P 500 Sharia Industry Exclusions",
    "tv_symbol": "AMEX:SPUS"
+  },
+  {
+   "ticker": "SPXL",
+   "name": "Direxion Daily S&P500 Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P 500 (3x daily)",
+   "tv_symbol": "AMEX:SPXL"
+  },
+  {
+   "ticker": "SPXS",
+   "name": "Direxion Daily S&P 500 Bear 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P 500 (-3x daily)",
+   "tv_symbol": "AMEX:SPXS"
+  },
+  {
+   "ticker": "SPXT",
+   "name": "ProShares S&P 500 ex-Technology ETF",
+   "provider": "ProShares",
+   "category": "S&P 500",
+   "type": "equity",
+   "index": "S&P 500 ex-Technology",
+   "tv_symbol": "AMEX:SPXT"
+  },
+  {
+   "ticker": "SPXU",
+   "name": "ProShares UltraPro Short S&P500",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P 500 (-3x daily)",
+   "tv_symbol": "AMEX:SPXU"
   },
   {
    "ticker": "SPY",
@@ -380,6 +1262,24 @@
    "tv_symbol": "AMEX:SPYV"
   },
   {
+   "ticker": "SQQQ",
+   "name": "ProShares UltraPro Short QQQ",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Nasdaq-100 (-3x daily)",
+   "tv_symbol": "NASDAQ:SQQQ"
+  },
+  {
+   "ticker": "SRLN",
+   "name": "State Street Blackstone Senior Loan ETF",
+   "provider": "State Street",
+   "category": "Senior Loans",
+   "type": "bond",
+   "index": "Morningstar LSTA US Leveraged Loan 100",
+   "tv_symbol": "AMEX:SRLN"
+  },
+  {
    "ticker": "SSO",
    "name": "ProShares Ultra S&P500",
    "provider": "ProShares",
@@ -387,6 +1287,42 @@
    "type": "leveraged",
    "index": "S&P 500 (2x daily)",
    "tv_symbol": "AMEX:SSO"
+  },
+  {
+   "ticker": "SVOL",
+   "name": "Simplify Volatility Premium ETF",
+   "provider": "Simplify",
+   "category": "Volatility",
+   "type": "leveraged",
+   "index": "S&P 500 VIX Short-Term Futures (inverse)",
+   "tv_symbol": "AMEX:SVOL"
+  },
+  {
+   "ticker": "SVXY",
+   "name": "ProShares Short VIX Short-Term Futures ETF",
+   "provider": "ProShares",
+   "category": "Volatility",
+   "type": "leveraged",
+   "index": "S&P 500 VIX Short-Term Futures (-0.5x daily)",
+   "tv_symbol": "CBOE:SVXY"
+  },
+  {
+   "ticker": "TECL",
+   "name": "Direxion Daily Technology Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Technology Select Sector (3x daily)",
+   "tv_symbol": "AMEX:TECL"
+  },
+  {
+   "ticker": "TECS",
+   "name": "Direxion Daily Technology Bear 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Technology Select Sector (-3x daily)",
+   "tv_symbol": "AMEX:TECS"
   },
   {
    "ticker": "TLT",
@@ -398,6 +1334,96 @@
    "tv_symbol": "NASDAQ:TLT"
   },
   {
+   "ticker": "TLTW",
+   "name": "iShares 20+ Year Treasury Bond Buywrite Strategy ETF",
+   "provider": "iShares",
+   "category": "Treasury Bonds",
+   "type": "bond",
+   "index": "ICE US Treasury 20+ Year (buywrite overlay)",
+   "tv_symbol": "CBOE:TLTW"
+  },
+  {
+   "ticker": "TMF",
+   "name": "Direxion Daily 20+ Year Treasury Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "ICE US Treasury 20+ Year (3x daily)",
+   "tv_symbol": "AMEX:TMF"
+  },
+  {
+   "ticker": "TNA",
+   "name": "Direxion Daily Small Cap Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Russell 2000 (3x daily)",
+   "tv_symbol": "AMEX:TNA"
+  },
+  {
+   "ticker": "TQQQ",
+   "name": "ProShares UltraPro QQQ",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Nasdaq-100 (3x daily)",
+   "tv_symbol": "NASDAQ:TQQQ"
+  },
+  {
+   "ticker": "TSLL",
+   "name": "Direxion Daily TSLA Bull 2X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Tesla (2x daily)",
+   "tv_symbol": "NASDAQ:TSLL"
+  },
+  {
+   "ticker": "TSLY",
+   "name": "YieldMax TSLA Option Income Strategy ETF",
+   "provider": "YieldMax",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "Tesla (covered-call option income)",
+   "tv_symbol": "AMEX:TSLY"
+  },
+  {
+   "ticker": "TWM",
+   "name": "ProShares UltraShort Russell2000",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Russell 2000 (-2x daily)",
+   "tv_symbol": "AMEX:TWM"
+  },
+  {
+   "ticker": "TZA",
+   "name": "Direxion Daily Small Cap Bear 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Russell 2000 (-3x daily)",
+   "tv_symbol": "AMEX:TZA"
+  },
+  {
+   "ticker": "UDOW",
+   "name": "ProShares UltraPro Dow30",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Dow Jones (3x daily)",
+   "tv_symbol": "AMEX:UDOW"
+  },
+  {
+   "ticker": "UPRO",
+   "name": "ProShares UltraPro S&P 500",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P 500 (3x daily)",
+   "tv_symbol": "AMEX:UPRO"
+  },
+  {
    "ticker": "USFR",
    "name": "WisdomTree Floating Rate Treasury Fund",
    "provider": "WisdomTree",
@@ -405,6 +1431,33 @@
    "type": "bond",
    "index": "Bloomberg US Treasury Floating Rate",
    "tv_symbol": "AMEX:USFR"
+  },
+  {
+   "ticker": "UTEN",
+   "name": "F/m US Treasury 10 Year Note ETF",
+   "provider": "F/m",
+   "category": "Treasury Bonds",
+   "type": "bond",
+   "index": "ICE US Treasury 10-Year Note (single bond)",
+   "tv_symbol": "NASDAQ:UTEN"
+  },
+  {
+   "ticker": "UVXY",
+   "name": "ProShares Ultra VIX Short-Term Futures ETF",
+   "provider": "ProShares",
+   "category": "Volatility",
+   "type": "leveraged",
+   "index": "S&P 500 VIX Short-Term Futures (1.5x daily)",
+   "tv_symbol": "CBOE:UVXY"
+  },
+  {
+   "ticker": "UWM",
+   "name": "ProShares Ultra Russell2000",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Russell 2000 (2x daily)",
+   "tv_symbol": "AMEX:UWM"
   },
   {
    "ticker": "VB",
@@ -423,6 +1476,24 @@
    "type": "equity",
    "index": "MSCI US IMI Information Technology 25/50",
    "tv_symbol": "AMEX:VGT"
+  },
+  {
+   "ticker": "VIXY",
+   "name": "ProShares VIX Short-Term Futures ETF",
+   "provider": "ProShares",
+   "category": "Volatility",
+   "type": "commodity",
+   "index": "S&P 500 VIX Short-Term Futures",
+   "tv_symbol": "CBOE:VIXY"
+  },
+  {
+   "ticker": "VNM",
+   "name": "VanEck Vietnam ETF",
+   "provider": "VanEck",
+   "category": "Vietnam",
+   "type": "equity",
+   "index": "MVIS Vietnam",
+   "tv_symbol": "CBOE:VNM"
   },
   {
    "ticker": "VNQ",
@@ -479,6 +1550,15 @@
    "tv_symbol": "NASDAQ:VXUS"
   },
   {
+   "ticker": "VXX",
+   "name": "iPath Series B S&P 500 VIX Short-Term Futures ETN",
+   "provider": "Barclays",
+   "category": "Volatility",
+   "type": "commodity",
+   "index": "S&P 500 VIX Short-Term Futures",
+   "tv_symbol": "CBOE:VXX"
+  },
+  {
    "ticker": "VYM",
    "name": "Vanguard High Dividend Yield Index Fund ETF Shares",
    "provider": "Vanguard",
@@ -488,6 +1568,60 @@
    "tv_symbol": "AMEX:VYM"
   },
   {
+   "ticker": "XDTE",
+   "name": "Roundhill S&P 500 0DTE Covered Call Strategy ETF",
+   "provider": "Roundhill",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "S&P 500 (0DTE covered call)",
+   "tv_symbol": "CBOE:XDTE"
+  },
+  {
+   "ticker": "XLB",
+   "name": "State Street Materials Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Materials",
+   "type": "equity",
+   "index": "S&P Materials Select Sector",
+   "tv_symbol": "AMEX:XLB"
+  },
+  {
+   "ticker": "XLC",
+   "name": "State Street Communication Services Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Communication Services",
+   "type": "equity",
+   "index": "S&P Communication Services Select Sector",
+   "tv_symbol": "AMEX:XLC"
+  },
+  {
+   "ticker": "XLE",
+   "name": "State Street Energy Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Energy",
+   "type": "equity",
+   "index": "S&P Energy Select Sector",
+   "tv_symbol": "AMEX:XLE"
+  },
+  {
+   "ticker": "XLF",
+   "name": "State Street Financial Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Financials",
+   "type": "equity",
+   "index": "S&P Financials Select Sector",
+   "tv_symbol": "AMEX:XLF"
+  },
+  {
+   "ticker": "XLI",
+   "name": "State Street Industrial Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Industrials",
+   "type": "equity",
+   "index": "S&P Industrials Select Sector",
+   "tv_symbol": "AMEX:XLI"
+  },
+  {
    "ticker": "XLK",
    "name": "State Street Technology Select Sector SPDR ETF",
    "provider": "SPDR",
@@ -495,6 +1629,69 @@
    "type": "equity",
    "index": "S&P Technology Select Sector",
    "tv_symbol": "AMEX:XLK"
+  },
+  {
+   "ticker": "XLRE",
+   "name": "State Street Real Estate Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Real Estate",
+   "type": "equity",
+   "index": "S&P Real Estate Select Sector",
+   "tv_symbol": "AMEX:XLRE"
+  },
+  {
+   "ticker": "XLU",
+   "name": "State Street Utilities Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Utilities",
+   "type": "equity",
+   "index": "S&P Utilities Select Sector",
+   "tv_symbol": "AMEX:XLU"
+  },
+  {
+   "ticker": "XLV",
+   "name": "State Street Health Care Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Health Care",
+   "type": "equity",
+   "index": "S&P Health Care Select Sector",
+   "tv_symbol": "AMEX:XLV"
+  },
+  {
+   "ticker": "XLY",
+   "name": "State Street Consumer Discretionary Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Consumer Discretionary",
+   "type": "equity",
+   "index": "S&P Consumer Discretionary Select Sector",
+   "tv_symbol": "AMEX:XLY"
+  },
+  {
+   "ticker": "XYLD",
+   "name": "Global X S&P 500 Covered Call ETF",
+   "provider": "Global X",
+   "category": "Covered-Call Income",
+   "type": "equity",
+   "index": "S&P 500 (covered call)",
+   "tv_symbol": "AMEX:XYLD"
+  },
+  {
+   "ticker": "YINN",
+   "name": "Direxion Daily FTSE China Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "FTSE China 50 (3x daily)",
+   "tv_symbol": "AMEX:YINN"
+  },
+  {
+   "ticker": "ZROZ",
+   "name": "PIMCO 25+ Year Zero Coupon U.S. Treasury Index Exchange-Traded Fund",
+   "provider": "PIMCO",
+   "category": "Treasury Bonds",
+   "type": "bond",
+   "index": "ICE US Treasury 25+ Year Zero Coupon",
+   "tv_symbol": "AMEX:ZROZ"
   }
  ]
 }

@@ -13,7 +13,7 @@ import { logSearch } from '@/lib/analytics'
 
 /**
  * Ticker search. Only the 382 scored tickers resolve to a stock card,
- * only the 55 tracked ETFs resolve to an ETF card, and only the 6
+ * only the tracked ETFs resolve to an ETF card, and only the 6
  * tracked indexes resolve to an index card. Anything else says so
  * plainly — never a guessed score.
  * The search indexes (symbol, name, verdict/score/fair value for

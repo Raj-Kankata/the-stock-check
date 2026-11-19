@@ -123,14 +123,20 @@ export function toEtfSearchEntry(symbol: string, t: EtfResult): PublicEtfSearchE
   }
 }
 
-/** All 55 ETF board rows, in universe order. */
+/** All ETF board rows, in universe order. A universe ticker with no
+    verified result yet (held back by the refresh) is skipped, never
+    rendered — the board and the universe can never crash on a gap. */
 export function allEtfRows(): PublicEtfRow[] {
-  return ETF_SYMBOLS.map((symbol) => toEtfRow(symbol, ETF_RESULTS.etfs[symbol]))
+  return ETF_SYMBOLS.filter((symbol) => ETF_RESULTS.etfs[symbol]).map(
+    (symbol) => toEtfRow(symbol, ETF_RESULTS.etfs[symbol]),
+  )
 }
 
-/** Header search index for ETFs. */
+/** Header search index for ETFs. Same skip rule as allEtfRows. */
 export function etfSearchIndex(): PublicEtfSearchEntry[] {
-  return ETF_SYMBOLS.map((symbol) => toEtfSearchEntry(symbol, ETF_RESULTS.etfs[symbol]))
+  return ETF_SYMBOLS.filter((symbol) => ETF_RESULTS.etfs[symbol]).map(
+    (symbol) => toEtfSearchEntry(symbol, ETF_RESULTS.etfs[symbol]),
+  )
 }
 
 // ---------------------------------------------------------------------------

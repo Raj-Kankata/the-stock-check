@@ -14,8 +14,14 @@ the independent Nov 13/16, 2026 rankings.
 
 GLD holds physical gold bullion: stockanalysis.com has no holdings
 page for it (404, expected) — its facts carry top_holdings [] with
-note "physical_gold". Any other fetch failure aborts the run with
-NOTHING written (fail-closed, same rule as the stock refresh).
+note "physical_gold". Fail-closed PER SYMBOL (since the 2026-11-19
+expansion): a ticker whose overview or holdings fetch fails, or
+whose page is missing expense ratio / AUM, is held back with its
+reason and never blocks the rest; a held-back ticker with a previous
+facts record is carried forward unchanged, a brand-new one is left
+out of the output (its card simply shows no Fund facts card). The
+run aborts with nothing written only if zero tickers end up with
+facts.
 
 Usage: python3 scripts/etf_facts_refresh.py [--as-of YYYY-MM-DD]
 Runs weekly (Sundays 06:00 UTC, .github/workflows/etf-facts-weekly.yml).
@@ -75,6 +81,64 @@ def parse_money(s):
         return None
 
 
+def fetch_one(t):
+    """Fund facts for one ticker from stockanalysis.com.
+
+    Raises ValueError on any fetch/parse failure — the caller holds
+    the ticker back per-symbol (see module docstring)."""
+    tl = t.lower()
+    try:
+        h = fetch(f"https://stockanalysis.com/etf/{tl}/")
+    except Exception as e:
+        raise ValueError(f"overview fetch failed: {e}")
+    rows = re.findall(
+        r'<td[^>]*>([^<]{1,60})</td>\s*<td[^>]*>([^<]{1,80})</td>', h)
+    kv = {k.strip(): re.sub(r"<[^>]+>", "", v).strip()
+          for k, v in rows}
+    dy = None
+    m = re.search(r"\(([\d.]+)%\)", kv.get("Dividend", ""))
+    if m:
+        dy = round(float(m.group(1)) / 100, 4)
+    rec = {
+        "expense_ratio": (round(float(kv["Expense Ratio"].rstrip("%")) / 100, 4)
+                          if "Expense Ratio" in kv else None),
+        "aum_usd": parse_money(kv["Assets"]) if "Assets" in kv else None,
+        "dividend_yield": dy,
+        "holdings_count": (int(kv["Holdings"].replace(",", ""))
+                           if "Holdings" in kv and
+                           kv["Holdings"].replace(",", "").isdigit()
+                           else None),
+        "inception": kv.get("Inception Date"),
+        "top_holdings": [],
+    }
+    if rec["expense_ratio"] is None or rec["aum_usd"] is None:
+        raise ValueError("overview page missing expense ratio or AUM")
+    if t == "GLD":
+        # Physical gold bullion — no holdings page exists (404).
+        rec["note"] = "physical_gold"
+    else:
+        try:
+            hh = fetch(f"https://stockanalysis.com/etf/{tl}/holdings/")
+        except Exception as e:
+            raise ValueError(f"holdings fetch failed: {e}")
+        trs = re.findall(r"<tr[^>]*>(.*?)</tr>", hh, re.S)
+        for tr in trs:
+            cells = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
+            clean = [re.sub(r"<[^>]+>", "", c).strip() for c in cells]
+            if len(clean) >= 4 and clean[0].isdigit() \
+                    and int(clean[0]) <= 10:
+                try:
+                    w = round(float(clean[3].rstrip("%")) / 100, 4)
+                except ValueError:
+                    w = None
+                rec["top_holdings"].append({
+                    "rank": int(clean[0]), "symbol": clean[1],
+                    "name": clean[2], "weight": w})
+        if len(rec["top_holdings"]) == 0:
+            raise ValueError("holdings page parsed to zero rows")
+    return rec
+
+
 def main():
     as_of = None
     if "--as-of" in sys.argv:
@@ -85,75 +149,47 @@ def main():
     tickers = [u["ticker"] for u in universe]
     print(f"ETF facts refresh: as_of={as_of}; {len(tickers)} tickers")
 
+    stored = json.load(open(FACTS)) if os.path.exists(FACTS) else None
+    prev_facts = (stored or {}).get("facts", {}) or {}
     facts = {}
+    held_back = {}
+    carried = []
     for t in tickers:
-        tl = t.lower()
         try:
-            h = fetch(f"https://stockanalysis.com/etf/{tl}/")
-        except Exception as e:
-            fail(f"{t}: overview fetch failed: {e}")
-        rows = re.findall(
-            r'<td[^>]*>([^<]{1,60})</td>\s*<td[^>]*>([^<]{1,80})</td>', h)
-        kv = {k.strip(): re.sub(r"<[^>]+>", "", v).strip()
-              for k, v in rows}
-        dy = None
-        m = re.search(r"\(([\d.]+)%\)", kv.get("Dividend", ""))
-        if m:
-            dy = round(float(m.group(1)) / 100, 4)
-        rec = {
-            "expense_ratio": (round(float(kv["Expense Ratio"].rstrip("%")) / 100, 4)
-                              if "Expense Ratio" in kv else None),
-            "aum_usd": parse_money(kv["Assets"]) if "Assets" in kv else None,
-            "dividend_yield": dy,
-            "holdings_count": (int(kv["Holdings"].replace(",", ""))
-                               if "Holdings" in kv and
-                               kv["Holdings"].replace(",", "").isdigit()
-                               else None),
-            "inception": kv.get("Inception Date"),
-            "top_holdings": [],
-        }
-        if rec["expense_ratio"] is None or rec["aum_usd"] is None:
-            fail(f"{t}: overview page missing expense ratio or AUM")
-        if t == "GLD":
-            # Physical gold bullion — no holdings page exists (404).
-            rec["note"] = "physical_gold"
-        else:
-            try:
-                hh = fetch(f"https://stockanalysis.com/etf/{tl}/holdings/")
-            except Exception as e:
-                fail(f"{t}: holdings fetch failed: {e}")
-            trs = re.findall(r"<tr[^>]*>(.*?)</tr>", hh, re.S)
-            for tr in trs:
-                cells = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
-                clean = [re.sub(r"<[^>]+>", "", c).strip() for c in cells]
-                if len(clean) >= 4 and clean[0].isdigit() \
-                        and int(clean[0]) <= 10:
-                    try:
-                        w = round(float(clean[3].rstrip("%")) / 100, 4)
-                    except ValueError:
-                        w = None
-                    rec["top_holdings"].append({
-                        "rank": int(clean[0]), "symbol": clean[1],
-                        "name": clean[2], "weight": w})
-            if len(rec["top_holdings"]) == 0:
-                fail(f"{t}: holdings page parsed to zero rows")
+            rec = fetch_one(t)
+        except ValueError as e:
+            if t in prev_facts:
+                facts[t] = prev_facts[t]
+                carried.append(t)
+                print(f"    {t}: HELD BACK ({e}) — carried forward")
+            else:
+                held_back[t] = str(e)
+                print(f"    {t}: HELD BACK ({e}) — no facts published")
+            continue
         facts[t] = rec
         print(f"    {t}: exp={rec['expense_ratio']} "
               f"aum={rec['aum_usd']} yld={rec['dividend_yield']} "
               f"n={rec['holdings_count']} top={len(rec['top_holdings'])}")
         time.sleep(0.4)
 
+    if not facts:
+        fail("zero tickers with facts — nothing to write")
     new = {"as_of": as_of, "source": "stockanalysis.com", "facts": facts}
-    stored = None
-    if os.path.exists(FACTS):
-        stored = json.load(open(FACTS))
     if stored is not None and stored.get("facts") == facts:
         print("No changes — nothing to write.")
-        return
-    with open(FACTS, "w") as f:
-        json.dump(new, f, indent=1)
-        f.write("\n")
-    print(f"Wrote {FACTS} (as_of {as_of}).")
+    else:
+        with open(FACTS, "w") as f:
+            json.dump(new, f, indent=1)
+            f.write("\n")
+        print(f"Wrote {FACTS} (as_of {as_of}).")
+    print(f"Fresh: {len(facts) - len(carried)} tickers; "
+          f"carried forward: {len(carried)}; held back: {len(held_back)}")
+    if carried:
+        print("  CARRIED FORWARD: " + ", ".join(sorted(carried)))
+    if held_back:
+        print("  HELD BACK (no facts published):")
+        for t in sorted(held_back):
+            print(f"    {t}: {held_back[t]}")
 
 
 if __name__ == "__main__":

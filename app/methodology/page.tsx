@@ -677,10 +677,14 @@ export default function MethodologyPage() {
           and Yahoo Finance daily history, refreshed nightly with the stock refresh. Fund
           facts (expense ratio, assets, yield, holdings, inception, top-10 holdings) come
           from stockanalysis.com and refresh weekly. The ETF universe (
-          {ETF_RESULTS.universe_count} funds) is curated from the tracker sheet; one ticker
-          was replaced at launch because its symbol no longer exists — SPLG was renamed SPYM
-          by State Street in October 2025, so the board carries SPYM. GLD holds physical gold
-          bullion, not stocks, so its card shows that instead of a holdings table.
+          {ETF_RESULTS.universe_count} funds) started from the tracker
+          sheet and grew to Raj&apos;s full TradingView ETF watchlists
+          on 2026-11-19; one ticker was replaced at launch because its
+          symbol no longer exists — SPLG was renamed SPYM by State
+          Street in October 2025, so the board carries SPYM. GLD holds
+          physical gold bullion, not stocks, so its card shows that
+          instead of a holdings table. VXX is an exchange-traded note
+          (ETN), not a fund, and its card says so.
         </p>
         <p>
           <Link href="/etfs">The ETF board →</Link>
