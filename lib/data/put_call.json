@@ -1,0 +1,229 @@
+{
+ "as_of": "2026-11-19",
+ "session_date": "2026-11-18",
+ "source": "CBOE U.S. Options Daily Market Statistics",
+ "source_url": "https://www.cboe.com/markets/us/options/market-statistics/daily",
+ "total": 1.05,
+ "equity": 0.72,
+ "index": 1.14,
+ "etp": 1.42,
+ "vix": 0.88,
+ "spx": 1.19,
+ "total_prev": 0.98,
+ "equity_prev": 0.71,
+ "index_prev": 0.98,
+ "total_change": 0.07,
+ "equity_change": 0.01,
+ "index_change": 0.16,
+ "total_5d_avg": 0.94,
+ "total_10d_avg": 0.95,
+ "equity_5d_avg": 0.7,
+ "equity_10d_avg": 0.69,
+ "index_5d_avg": 1.01,
+ "index_10d_avg": 1.05,
+ "total_read": "Elevated",
+ "bands": [
+  {
+   "max": 0.8,
+   "label": "Complacent",
+   "note": "Below 0.80 \u2014 calls dominate; contrarian warning, the crowd is all-in on upside."
+  },
+  {
+   "max": 1.0,
+   "label": "Neutral",
+   "note": "0.80\u20131.00 \u2014 inside the neutral zone; no sentiment extreme."
+  },
+  {
+   "max": 1.16,
+   "label": "Elevated",
+   "note": "1.00\u20131.16 \u2014 puts outnumber calls; defensive, below the 90th percentile."
+  },
+  {
+   "max": null,
+   "label": "Extreme",
+   "note": "Above 1.16 \u2014 above the 90th percentile; fear extreme, the zone that has historically marked bottoms."
+  }
+ ],
+ "history": [
+  {
+   "date": "2026-10-22",
+   "total": 0.94,
+   "equity": 0.69,
+   "index": 1.02,
+   "etp": 1.11,
+   "vix": 0.41,
+   "spx": 1.23
+  },
+  {
+   "date": "2026-10-23",
+   "total": 0.93,
+   "equity": 0.67,
+   "index": 1.1,
+   "etp": 0.95,
+   "vix": 0.48,
+   "spx": 1.25
+  },
+  {
+   "date": "2026-10-26",
+   "total": 0.86,
+   "equity": 0.6,
+   "index": 0.96,
+   "etp": 1.09,
+   "vix": 0.33,
+   "spx": 1.11
+  },
+  {
+   "date": "2026-10-27",
+   "total": 0.93,
+   "equity": 0.59,
+   "index": 1.06,
+   "etp": 1.09,
+   "vix": 0.59,
+   "spx": 1.16
+  },
+  {
+   "date": "2026-10-28",
+   "total": 0.9,
+   "equity": 0.54,
+   "index": 1.06,
+   "etp": 1.27,
+   "vix": 0.43,
+   "spx": 1.14
+  },
+  {
+   "date": "2026-10-29",
+   "total": 0.85,
+   "equity": 0.58,
+   "index": 0.95,
+   "etp": 1.06,
+   "vix": 0.29,
+   "spx": 1.1
+  },
+  {
+   "date": "2026-10-30",
+   "total": 0.9,
+   "equity": 0.66,
+   "index": 1.03,
+   "etp": 0.93,
+   "vix": 0.47,
+   "spx": 1.25
+  },
+  {
+   "date": "2026-11-02",
+   "total": 0.87,
+   "equity": 0.67,
+   "index": 0.96,
+   "etp": 0.91,
+   "vix": 0.28,
+   "spx": 1.13
+  },
+  {
+   "date": "2026-11-03",
+   "total": 0.86,
+   "equity": 0.6,
+   "index": 1.02,
+   "etp": 0.82,
+   "vix": 0.57,
+   "spx": 1.13
+  },
+  {
+   "date": "2026-11-04",
+   "total": 0.8,
+   "equity": 0.44,
+   "index": 0.97,
+   "etp": 1.2,
+   "vix": 0.38,
+   "spx": 1.2
+  },
+  {
+   "date": "2026-11-05",
+   "total": 1.06,
+   "equity": 0.89,
+   "index": 1.07,
+   "etp": 1.25,
+   "vix": 0.7,
+   "spx": 1.24
+  },
+  {
+   "date": "2026-11-06",
+   "total": 0.95,
+   "equity": 0.59,
+   "index": 1.26,
+   "etp": 0.91,
+   "vix": 1.49,
+   "spx": 1.22
+  },
+  {
+   "date": "2026-11-09",
+   "total": 0.88,
+   "equity": 0.56,
+   "index": 1.06,
+   "etp": 0.96,
+   "vix": 0.83,
+   "spx": 1.11
+  },
+  {
+   "date": "2026-11-10",
+   "total": 0.95,
+   "equity": 0.77,
+   "index": 1.02,
+   "etp": 1.04,
+   "vix": 0.59,
+   "spx": 1.11
+  },
+  {
+   "date": "2026-11-11",
+   "total": 0.92,
+   "equity": 0.59,
+   "index": 1.05,
+   "etp": 1.13,
+   "vix": 0.87,
+   "spx": 1.08
+  },
+  {
+   "date": "2026-11-12",
+   "total": 0.89,
+   "equity": 0.72,
+   "index": 0.97,
+   "etp": 1.06,
+   "vix": 0.42,
+   "spx": 1.1
+  },
+  {
+   "date": "2026-11-13",
+   "total": 0.85,
+   "equity": 0.63,
+   "index": 0.96,
+   "etp": 0.99,
+   "vix": 0.32,
+   "spx": 1.19
+  },
+  {
+   "date": "2026-11-16",
+   "total": 0.95,
+   "equity": 0.73,
+   "index": 1.01,
+   "etp": 1.16,
+   "vix": 0.42,
+   "spx": 1.23
+  },
+  {
+   "date": "2026-11-17",
+   "total": 0.98,
+   "equity": 0.71,
+   "index": 0.98,
+   "etp": 1.26,
+   "vix": 0.5,
+   "spx": 1.28
+  },
+  {
+   "date": "2026-11-18",
+   "total": 1.05,
+   "equity": 0.72,
+   "index": 1.14,
+   "etp": 1.42,
+   "vix": 0.88,
+   "spx": 1.19
+  }
+ ]
+}

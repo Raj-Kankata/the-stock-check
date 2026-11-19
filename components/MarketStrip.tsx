@@ -4,7 +4,10 @@
 // is shown honestly and it is never presented as the close date).
 // During US market hours (09:30–16:00 ET, Mon–Fri) the four index chips
 // and the 10Y yield refresh live from TradingView's public scanner
-// endpoint — no key, no signup, no proxy. The endpoint returns
+// endpoint — no key, no signup, no proxy. The put/call chip is NOT
+// live: CBOE publishes each session's ratio the following morning, so
+// it is always the last session's number with its own as-of date
+// (same honest-lag pattern as the 10Y Treasury). The endpoint returns
 // Access-Control-Allow-Origin for this site (verified 17 Nov 2026 from
 // curl with the site's Origin; all five symbols return 200 + JSON).
 // Index quotes are 10–15 min delayed (update_mode delayed_streaming_600
@@ -20,6 +23,7 @@
 
 import { useEffect, useState } from 'react'
 import marketJson from '@/lib/data/market.json'
+import putCallJson from '@/lib/data/put_call.json'
 
 interface MarketIndex {
   symbol?: string
@@ -33,6 +37,17 @@ interface MarketData {
   as_of?: string
   indices?: MarketIndex[]
   treasury_10y?: { value_pct?: number; as_of?: string }
+}
+
+// Put/call ratio (CBOE daily statistics, published the following
+// morning — always one session behind by construction). Baked from
+// lib/data/put_call.json; never live, never estimated. The chip uses
+// the neutral `flat` class on purpose: a rising ratio is not "good"
+// or "bad" the way a rising index is, so it gets no green/red.
+interface PutCallData {
+  session_date?: string
+  total?: number
+  total_change?: number
 }
 
 interface LiveQuote {
@@ -160,6 +175,12 @@ export default function MarketStrip() {
   const asOf = formatDate(data.as_of)
   const treasuryAsOf = formatDate(treasury?.as_of)
 
+  const pc = putCallJson as unknown as PutCallData
+  const showPc =
+    isFiniteNumber(pc.total) && typeof pc.session_date === 'string'
+  const pcAsOf = formatDate(pc.session_date)
+  const pcChange = isFiniteNumber(pc.total_change) ? pc.total_change! : null
+
   // Clock + live quotes live in state so the prerendered HTML (baked
   // closes, no clock) matches the first client render exactly — the
   // clock appears and live polling starts only after mount.
@@ -236,11 +257,13 @@ export default function MarketStrip() {
                 : showTreasury && treasuryAsOf
                   ? ` · 10Y as of ${treasuryAsOf}`
                   : ''}
+              {showPc && pcAsOf ? ` · Put/Call as of ${pcAsOf}` : ''}
             </>
           ) : (
             <>
               Markets as of {asOf} close
               {showTreasury && treasuryAsOf ? ` · 10Y as of ${treasuryAsOf}` : ''}
+              {showPc && pcAsOf ? ` · Put/Call as of ${pcAsOf}` : ''}
             </>
           )}
           {clock ? ` · ${clock} CT` : ''}
@@ -273,6 +296,21 @@ export default function MarketStrip() {
             </span>
           )
         })}
+        {showPc && (
+          <span className="market-chip flat">
+            <span className="market-chip-label">Put/Call</span>
+            <strong>{pc.total!.toFixed(2)}</strong>
+            {pcChange !== null && (
+              <>
+                {' '}
+                <span className="market-chip-change">
+                  {pcChange > 0 ? '+' : ''}
+                  {pcChange.toFixed(2)}
+                </span>
+              </>
+            )}
+          </span>
+        )}
         {showTreasury && (
           <span className="market-chip flat">
             <span className="market-chip-label">10Y Treasury</span>

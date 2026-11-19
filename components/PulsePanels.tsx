@@ -16,8 +16,13 @@
 //     exists, so this panel never pretends to be live.
 //   * Internals — % of the 382 above their 50-day EMA + new 52-week
 //     closing highs, baked from macro.json and recomputed live from
-//     the shared useLiveQuotes() store. Put/call has NO free CORS-clean
-//     source — it is not published here, and the panel says so.
+//     the shared useLiveQuotes() store.
+//   * Put/Call — CBOE total / equity / index ratios from the nightly
+//     refresh (lib/data/put_call.json, seeded from CBOE's daily
+//     statistics page). Daily only, published the following morning,
+//     so this panel is always one session behind by construction and
+//     never pretends to be live. Bands and averages are printed on
+//     the panel; the method is recorded in PULSE_PUT_CALL.md.
 //   * Macro Regime — the 4-component FRED composite in macro.json
 //     (GDP / industrial production / unemployment / retail sales; each
 //     favorable when it moved the right way vs its previous release).
@@ -25,8 +30,10 @@
 // Cadence (printed on the page, and the old "every 6 hours" claim is
 // gone): market panels refresh live during market hours (09:30–16:00
 // ET, 60s polls); credit and macro refresh nightly (~05:20 UTC) from
-// FRED. The brief at the top is recomputed from the same panel data,
-// never hand-written — baked values prerender it, live values update it.
+// FRED, and put/call refreshes nightly from CBOE (daily, one session
+// behind by construction). The brief at the top is recomputed from the
+// same panel data, never hand-written — baked values prerender it,
+// live values update it.
 //
 // Hydration: the prerendered HTML shows baked closes only; the first
 // client render is identical, and live values fill in after mount —
@@ -38,6 +45,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Card } from '@/components/ui'
 import macroJson from '@/lib/data/macro.json'
 import marketJson from '@/lib/data/market.json'
+import putCallJson from '@/lib/data/put_call.json'
 import {
   fetchMarketBreadth,
   fetchSymbolQuote,
@@ -132,6 +140,43 @@ interface MarketData {
   indices?: { symbol?: string; label?: string; close?: number }[]
 }
 
+interface PutCallBand {
+  max?: number | null
+  label?: string
+  note?: string
+}
+
+interface PutCallSession {
+  date?: string
+  total?: number
+  equity?: number
+  index?: number
+}
+
+interface PutCallData {
+  session_date?: string
+  source?: string
+  source_url?: string
+  total?: number
+  equity?: number
+  index?: number
+  total_prev?: number
+  equity_prev?: number
+  index_prev?: number
+  total_change?: number
+  equity_change?: number
+  index_change?: number
+  total_5d_avg?: number
+  total_10d_avg?: number
+  equity_5d_avg?: number
+  equity_10d_avg?: number
+  index_5d_avg?: number
+  index_10d_avg?: number
+  total_read?: string
+  bands?: PutCallBand[]
+  history?: PutCallSession[]
+}
+
 type Status = 'loading' | 'live' | 'closed' | 'stale' | 'error'
 
 interface LiveQuotes {
@@ -191,11 +236,30 @@ function internalsGuide(pctAbove: number): string {
   return 'mixed breadth under the surface'
 }
 
+// What the current total put/call read implies for direction —
+// conditional copy, not a prediction. The ratio is a contrarian
+// sentiment gauge: fear extremes have historically marked bottoms,
+// complacency has historically preceded pullbacks, and the middle
+// says nothing. Every branch states what would invalidate it.
+function pcDirection(read: string): string {
+  if (read === 'Complacent') {
+    return 'Direction: contrarian caution. The crowd is all-in on calls — low ratios have historically preceded pullbacks, not rallies. The read flips if the total rises back into the neutral zone (0.80–1.00), or if price breaks down while the ratio stays low (complacency confirmed, not cured).'
+  }
+  if (read === 'Elevated') {
+    return 'Direction: caution, not a sell signal. Options traders are defensive, but fear is well short of the extreme that has historically marked bottoms — this argues against chasing highs, not for shorting. The read flips if the total falls back under 1.00 (fear fading) or spikes above 1.16 (capitulation zone).'
+  }
+  if (read === 'Extreme') {
+    return 'Direction: contrarian bullish — with a condition. Readings above 1.16 have historically marked zones where the S&P 500 finds near-term bottoms, not tops. That is not a buy signal on its own: it is confirmed only when price stabilises and the ratio starts falling. It is invalidated if the ratio stays extreme while price keeps falling — fear can stay extreme through a real decline.'
+  }
+  return 'Direction: nothing to say. Inside the neutral zone the ratio carries no directional implication — it becomes interesting only at the edges: below 0.80 (complacency) or above 1.16 (fear extreme).'
+}
+
 const MACRO_ORDER = ['gdp', 'indpro', 'unrate', 'rsafs'] as const
 
 export default function PulsePanels() {
   const macro = macroJson as unknown as MacroData
   const market = marketJson as unknown as MarketData
+  const pc = putCallJson as unknown as PutCallData
 
   // ---- baked values (prerendered; also the after-hours reading) ----
   const spyBaked = macro.spy && isFiniteNumber(macro.spy.close)
@@ -229,6 +293,35 @@ export default function PulsePanels() {
     ? macro.macro.total!
     : null
   const universe = macro.universe
+
+  // ---- put/call (baked from the nightly refresh; daily, one session
+  // behind by construction — never live) ----
+  const pcTotal = isFiniteNumber(pc.total) ? pc.total! : null
+  const pcEquity = isFiniteNumber(pc.equity) ? pc.equity! : null
+  const pcIndex = isFiniteNumber(pc.index) ? pc.index! : null
+  const pcRead =
+    typeof pc.total_read === 'string' && pcTotal !== null
+      ? pc.total_read!
+      : null
+  const pcSession = formatDate(pc.session_date)
+  const pcBands = Array.isArray(pc.bands) ? pc.bands : []
+  const pcHistory = Array.isArray(pc.history) ? pc.history : []
+  const pcRecent = pcHistory
+    .filter(
+      (h) =>
+        typeof h.date === 'string' &&
+        isFiniteNumber(h.total) &&
+        isFiniteNumber(h.equity) &&
+        isFiniteNumber(h.index),
+    )
+    .slice(-5)
+    .reverse()
+  const pcAccent =
+    pcRead === 'Neutral'
+      ? 'green'
+      : pcRead === 'Complacent' || pcRead === 'Extreme'
+        ? 'red'
+        : undefined
 
   // ---- live state (fills in after mount; never in the prerender) ----
   const liveStore = useLiveQuotes()
@@ -429,6 +522,11 @@ export default function PulsePanels() {
   if (vixRegime && vixValue !== null) {
     briefParts.push(`VIX ${vixRegime.toLowerCase()} at ${vixValue.toFixed(2)}`)
   }
+  if (pcRead && pcTotal !== null) {
+    briefParts.push(
+      `put/call ${pcRead.toLowerCase()} at ${pcTotal.toFixed(2)}`,
+    )
+  }
   if (credit && hyBaked !== null) {
     briefParts.push(`credit ${credit.toLowerCase()} (HY spread ${hyBaked.toFixed(2)}%)`)
   }
@@ -484,8 +582,9 @@ export default function PulsePanels() {
         </p>
         <p className="footnote">
           Market panels refresh live during market hours (09:30–16:00 ET,
-          60-second polls) and show the last close after hours. Credit and
-          macro refresh nightly (~05:20 UTC) from FRED.
+          60-second polls) and show the last close after hours. Credit,
+          macro and put/call refresh nightly (~05:20 UTC) from FRED and
+          CBOE.
         </p>
       </div>
 
@@ -703,14 +802,182 @@ export default function PulsePanels() {
                 Source: nightly 50-day EMAs and 52-week highs from the
                 refresh, as of {formatDate(universe?.as_of) ?? '—'}; prices{' '}
                 {liveInternals ? 'live (TradingView)' : `at the ${closeLabel} close`}.
-                Put/call positioning has no free data source, so it is
-                not published here rather than estimated.
+                Put/call positioning is in its own panel below, sourced
+                from CBOE.
               </p>
             </>
           ) : (
             <p>
               <strong>Data unavailable.</strong> No internals inputs in
               this build, so no internals reading is published.
+            </p>
+          )}
+        </Card>
+
+        <Card title={`Put/Call Ratio — ${pcRead ?? 'Unavailable'}`} accent={pcAccent}>
+          {pcTotal !== null && pcRead !== null ? (
+            <>
+              <p>
+                <strong>
+                  Total put/call {pcTotal.toFixed(2)} — {pcRead}.
+                </strong>{' '}
+                For every 100 calls traded, {Math.round(pcTotal * 100)}{' '}
+                puts traded
+                {isFiniteNumber(pc.total_change) ? (
+                  <>
+                    {' '}({pc.total_change! > 0 ? '+' : ''}
+                    {pc.total_change!.toFixed(2)} vs the previous session)
+                  </>
+                ) : null}
+                .{' '}
+                {isFiniteNumber(pc.total_5d_avg) &&
+                isFiniteNumber(pc.total_10d_avg) ? (
+                  <>
+                    5-day average {pc.total_5d_avg!.toFixed(2)} · 10-day
+                    average {pc.total_10d_avg!.toFixed(2)} — the averages
+                    are the readable line; the single-day print is noisy.
+                  </>
+                ) : null}
+              </p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Series</th>
+                    <th className="num">Today</th>
+                    <th className="num">5-day avg</th>
+                    <th className="num">10-day avg</th>
+                    <th>Normal range</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Total (all products)</td>
+                    <td className="num">{pcTotal.toFixed(2)}</td>
+                    <td className="num">
+                      {isFiniteNumber(pc.total_5d_avg)
+                        ? pc.total_5d_avg!.toFixed(2)
+                        : '—'}
+                    </td>
+                    <td className="num">
+                      {isFiniteNumber(pc.total_10d_avg)
+                        ? pc.total_10d_avg!.toFixed(2)
+                        : '—'}
+                    </td>
+                    <td>0.80–1.00 neutral zone (avg 0.95)</td>
+                  </tr>
+                  <tr>
+                    <td>Equity (single stocks)</td>
+                    <td className="num">
+                      {pcEquity !== null ? pcEquity.toFixed(2) : '—'}
+                    </td>
+                    <td className="num">
+                      {isFiniteNumber(pc.equity_5d_avg)
+                        ? pc.equity_5d_avg!.toFixed(2)
+                        : '—'}
+                    </td>
+                    <td className="num">
+                      {isFiniteNumber(pc.equity_10d_avg)
+                        ? pc.equity_10d_avg!.toFixed(2)
+                        : '—'}
+                    </td>
+                    <td>0.50–0.90 (avg 0.65)</td>
+                  </tr>
+                  <tr>
+                    <td>Index (SPX, NDX…)</td>
+                    <td className="num">
+                      {pcIndex !== null ? pcIndex.toFixed(2) : '—'}
+                    </td>
+                    <td className="num">
+                      {isFiniteNumber(pc.index_5d_avg)
+                        ? pc.index_5d_avg!.toFixed(2)
+                        : '—'}
+                    </td>
+                    <td className="num">
+                      {isFiniteNumber(pc.index_10d_avg)
+                        ? pc.index_10d_avg!.toFixed(2)
+                        : '—'}
+                    </td>
+                    <td>0.86–1.58 (avg 1.20)</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                <strong>Ranges — total ratio.</strong>
+              </p>
+              <ul>
+                {pcBands.map((b) => (
+                  <li key={b.label ?? 'band'}>
+                    <strong>{b.label}.</strong> {b.note}
+                  </li>
+                ))}
+              </ul>
+              <p>
+                <strong>Scope.</strong> CBOE exchange volume only — not
+                all US exchanges. Volume-based (puts traded ÷ calls
+                traded), not open interest. Total covers every CBOE
+                product; equity is single-stock options, the
+                retail-sentiment gauge; index is index options (SPX,
+                NDX…), dominated by institutional hedging — which is why
+                the index ratio normally sits above 1.0 while the equity
+                ratio normally sits below it. Each series has its own
+                normal level; compare a reading with its own history,
+                not with 1.0.
+              </p>
+              <p>
+                <strong>{pcDirection(pcRead)}</strong>
+              </p>
+              {pcRecent.length > 0 ? (
+                <>
+                  <p>
+                    <strong>Recent sessions.</strong>
+                  </p>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Session</th>
+                        <th className="num">Total</th>
+                        <th className="num">Equity</th>
+                        <th className="num">Index</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pcRecent.map((h) => (
+                        <tr key={h.date}>
+                          <td>{formatDate(h.date) ?? h.date}</td>
+                          <td className="num">{h.total!.toFixed(2)}</td>
+                          <td className="num">{h.equity!.toFixed(2)}</td>
+                          <td className="num">{h.index!.toFixed(2)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              ) : null}
+              <p className="footnote">
+                Rule: total ratio = put volume ÷ call volume across all
+                CBOE products. Bands: Complacent below 0.80 · Neutral
+                0.80–1.00 · Elevated 1.00–1.16 · Extreme above 1.16 —
+                anchored to the CBOE total-ratio distribution, Nov
+                2006–Oct 2019 (average 0.95, 10th percentile 0.77, 90th
+                percentile 1.16, highest day 1.82). The ratio is a
+                contrarian sentiment gauge, not a timing signal: fear
+                extremes have historically marked bottoms, complacency
+                has historically preceded pullbacks, and the middle says
+                nothing.
+              </p>
+              <p className="footnote">
+                Source: CBOE U.S. Options Daily Market Statistics,
+                session {pcSession ?? '—'}. Nightly only (~05:20 UTC) —
+                CBOE publishes each session the following morning, so
+                this panel is always one session behind by construction,
+                never live. The 5-day and 10-day averages come from the
+                sessions the refresh has collected (last 20 kept).
+              </p>
+            </>
+          ) : (
+            <p>
+              <strong>Data unavailable.</strong> No put/call data in this
+              build, so no sentiment reading is published.
             </p>
           )}
         </Card>
@@ -793,11 +1060,12 @@ export default function PulsePanels() {
           Index quotes are delayed ~15 minutes (TradingView). Credit and
           Macro Regime refresh nightly (~05:20 UTC) from FRED — there is
           no intraday feed for either, so those two panels are always
-          dated, never live.
+          dated, never live. Put/Call refreshes nightly too, from CBOE —
+          the ratio is a daily number published the following morning,
+          so it is always one session behind, never live.
         </p>
         <p>
-          What is deliberately not here: put/call positioning (no free
-          data source — not estimated), and new 52-week lows (the nightly
+          What is deliberately not here: new 52-week lows (the nightly
           technicals carry the 52-week high only). A number that is not
           measured is not shown.
         </p>
