@@ -1,0 +1,51 @@
+# Weekly ETF fund-facts refresh — The Stock Check
+#
+# Sundays 06:00 UTC: pulls slow-moving fund facts (expense ratio, AUM,
+# dividend yield, holdings count, inception, top-10 holdings) from
+# stockanalysis.com into lib/data/etf_facts.json. No key, no account.
+# The script fails closed (nothing written) on any fetch failure, so a
+# bad week keeps last week's facts instead of publishing partial ones.
+# Vercel auto-deploys on push to main.
+
+name: Weekly ETF facts refresh
+
+on:
+  schedule:
+    - cron: '0 6 * * 0' # 06:00 UTC Sundays
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: etf-facts-weekly
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Refresh ETF fund facts
+        run: python3 scripts/etf_facts_refresh.py
+
+      - name: Commit and push if anything changed
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "the-stock-check-bot"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add lib/data/etf_facts.json
+            FACTS_DATE=$(python3 -c "import json; print(json.load(open('lib/data/etf_facts.json'))['as_of'])")
+            git commit -m "Weekly ETF facts refresh: as of ${FACTS_DATE}"
+            git push
+            echo "Pushed ETF facts refresh for ${FACTS_DATE}."
+          else
+            echo "No changes — nothing to commit."
+          fi
