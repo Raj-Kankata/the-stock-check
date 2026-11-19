@@ -1,4 +1,4 @@
-// Market Pulse panels — eight readings, each with its rule printed on
+// Market Pulse panels — nine readings, each with its rule printed on
 // the page. A regime label with no rule is worse than "unavailable".
 //
 // Data sources, and what is live vs baked:
@@ -14,6 +14,13 @@
 //     FRED VIXCLS otherwise; expected daily SPX move = VIX / sqrt(252).
 //   * Credit — nightly only (FRED BAML spreads); no intraday feed
 //     exists, so this panel never pretends to be live.
+//   * Credit spreads & recession signals — six FRED readings
+//     (lib/data/credit_signals.json): junk and BBB spreads, Baa minus
+//     the 10-year, the loan-officer survey, the Chicago Fed NFCI and
+//     the VIX 20-day average. Nightly only; each row carries its own
+//     as-of date because the series run daily, weekly and quarterly.
+//     A conditions gauge, not a recession prediction; the method is
+//     recorded in PULSE_CREDIT_SIGNALS.md.
 //   * Internals — % of the 382 above their 50-day EMA + new 52-week
 //     closing highs, baked from macro.json and recomputed live from
 //     the shared useLiveQuotes() store.
@@ -35,12 +42,13 @@
 //
 // Cadence (printed on the page, and the old "every 6 hours" claim is
 // gone): market panels refresh live during market hours (09:30–16:00
-// ET, 60s polls); credit and macro refresh nightly (~05:20 UTC) from
-// FRED, and put/call refreshes nightly from CBOE (daily, one session
-// behind by construction). Fear & Greed refreshes nightly from CNN
-// (close value) and live during market hours on 10-minute polls. The
-// brief at the top is recomputed from the same panel data, never
-// hand-written — baked values prerender it, live values update it.
+// ET, 60s polls); credit, credit signals and macro refresh nightly
+// (~05:20 UTC) from FRED, and put/call refreshes nightly from CBOE
+// (daily, one session behind by construction). Fear & Greed refreshes
+// nightly from CNN (close value) and live during market hours on
+// 10-minute polls. The brief at the top is recomputed from the same
+// panel data, never hand-written — baked values prerender it, live
+// values update it.
 //
 // Hydration: the prerendered HTML shows baked closes only; the first
 // client render is identical, and live values fill in after mount —
@@ -54,6 +62,7 @@ import macroJson from '@/lib/data/macro.json'
 import marketJson from '@/lib/data/market.json'
 import putCallJson from '@/lib/data/put_call.json'
 import fearGreedJson from '@/lib/data/fear_greed.json'
+import creditSignalsJson from '@/lib/data/credit_signals.json'
 import FearGreedDial, { fgBandFor } from '@/components/FearGreedDial'
 import {
   fetchFearGreed,
@@ -230,6 +239,44 @@ interface FearGreedData {
   history?: FearGreedHistoryRow[]
 }
 
+interface CreditSignalBand {
+  max?: number | null
+  label?: string
+  note?: string
+}
+
+interface CreditSignalRow {
+  key?: string
+  label?: string
+  detail?: string
+  value?: number
+  unit?: string
+  as_of?: string
+  prev_value?: number
+  prev_as_of?: string
+  band?: string
+  series?: string
+  frequency?: string
+  baa?: number
+  baa_as_of?: string
+  dgs10?: number
+  dgs10_as_of?: string
+  vix_today?: number
+  vix_today_as_of?: string
+  vix_today_prev?: number
+  vix_today_prev_as_of?: string
+}
+
+interface CreditSignalsData {
+  as_of?: string
+  source?: string
+  source_url?: string
+  rows?: CreditSignalRow[]
+  bands?: Record<string, CreditSignalBand[]>
+  counts?: { calm?: number; watch?: number; warning?: number }
+  overall?: string
+}
+
 type Status = 'loading' | 'live' | 'closed' | 'stale' | 'error'
 
 interface LiveQuotes {
@@ -326,6 +373,32 @@ function fgDirection(read: string): string {
     return 'Direction: contrarian bearish — with a condition. Readings above 75 have historically preceded pullbacks, not rallies. That is not a sell signal on its own: it is confirmed only when price weakens and the index starts falling. It is invalidated if the index stays in extreme greed while price keeps rising — greed can stay extreme through a real rally.'
   }
   return 'Direction: nothing to say. In the neutral zone the index carries no directional implication — it becomes interesting only at the edges: under 25 (fear extreme) or above 75 (greed extreme).'
+}
+
+// What the current credit-signals read implies — conditional copy,
+// not a prediction and not a recession call. These are conditions
+// that tightened before past recessions; tight spreads can stay
+// tight for years, and a warning is a condition, not a forecast.
+// Every branch states what would invalidate it.
+function csDirection(rows: CreditSignalRow[]): string {
+  const nonCalm = rows.filter((r) => r.band === 'Watch' || r.band === 'Warning')
+  const warnings = nonCalm.filter((r) => r.band === 'Warning')
+  if (warnings.length > 0) {
+    const names = warnings.map((r) => r.label ?? r.key).join(', ')
+    return `Direction: caution — ${names} ${warnings.length === 1 ? 'is' : 'are'} in Warning, the zone past stress episodes reached (COVID, 2008). That is a condition, not a recession call: spreads can stay wide without a recession, and they can snap back fast once policy responds. The read flips only when the warning rows fall back into Watch or Calm for more than a day — a single-day dip back under the line is noise, not a clear.`
+  }
+  if (nonCalm.length === 0) {
+    return 'Direction: nothing to say. All six signals are calm — spreads are tight, banks are not tightening, financial conditions are looser than average and volatility has been ordinary for a month. Calm conditions have historically persisted for years; the panel becomes interesting only when a row moves into Watch.'
+  }
+  const watchNames = nonCalm.map((r) => r.label ?? r.key).join(', ')
+  const vixWatch = nonCalm.some((r) => r.key === 'vix20d')
+  const creditWatch = nonCalm.some(
+    (r) => r.key === 'hy' || r.key === 'bbb' || r.key === 'baa10y',
+  )
+  if (vixWatch && !creditWatch && nonCalm.length === 1) {
+    return 'Direction: watch the volatility, not the credit. Only the VIX 20-day average is in Watch — volatility has run hot for a month — while every credit spread, lending standards and financial conditions are calm. A hot VIX with calm credit has historically been a volatility episode, not a credit event. The read flips if the VIX 20-day average falls back under 20 (volatility normalising) or if a credit row joins it in Watch (stress broadening beyond volatility).'
+  }
+  return `Direction: caution, not a sell signal. ${watchNames} ${nonCalm.length === 1 ? 'is' : 'are'} in Watch while the rest are calm — conditions are tightening at the edges, not breaking. The read flips if the watch rows fall back to Calm, or escalates if any of them crosses into Warning.`
 }
 
 const MACRO_ORDER = ['gdp', 'indpro', 'unrate', 'rsafs'] as const
@@ -436,6 +509,70 @@ export default function PulsePanels() {
     { label: '1 month ago', value: fg.prev_1_month },
     { label: '1 year ago', value: fg.prev_1_year },
   ].filter((r) => isFiniteNumber(r.value))
+
+  // ---- credit spreads & recession signals (baked from the nightly
+  // FRED refresh; each row carries its own as-of date because the
+  // series run daily, weekly and quarterly) ----
+  const cs = creditSignalsJson as unknown as CreditSignalsData
+  const csRows = Array.isArray(cs.rows)
+    ? cs.rows.filter(
+        (r) =>
+          typeof r.label === 'string' &&
+          isFiniteNumber(r.value) &&
+          typeof r.band === 'string' &&
+          typeof r.as_of === 'string',
+      )
+    : []
+  const csCounts = {
+    calm: csRows.filter((r) => r.band === 'Calm').length,
+    watch: csRows.filter((r) => r.band === 'Watch').length,
+    warning: csRows.filter((r) => r.band === 'Warning').length,
+  }
+  const csCalmCount = csCounts.calm
+  const csTotal = csRows.length
+  const csOverall =
+    csTotal === 6
+      ? csCounts.warning > 0
+        ? 'Warning'
+        : csCounts.watch > 0
+          ? 'Watch'
+          : 'Calm'
+      : null
+  const csAccent =
+    csOverall === 'Calm'
+      ? 'green'
+      : csOverall === 'Watch'
+        ? 'amber'
+        : csOverall === 'Warning'
+          ? 'red'
+          : undefined
+  // Band notes, in the panel's row order (hy, bbb, baa10y, sloos,
+  // nfci, vix20d), for the Ranges list.
+  const csBandNotes: { label: string; bands: CreditSignalBand[] }[] =
+    csRows.map((r) => ({
+      label: r.label ?? r.key ?? '—',
+      bands: Array.isArray(cs.bands?.[r.key ?? '']) ? cs.bands![r.key!]! : [],
+    }))
+  // Day-over-day moves, daily rows only (NFCI is weekly and SLOOS
+  // quarterly, so their previous readings are not daily moves).
+  const csMoves = csRows
+    .filter(
+      (r) =>
+        (r.key === 'hy' ||
+          r.key === 'bbb' ||
+          r.key === 'baa10y' ||
+          r.key === 'vix20d') &&
+        isFiniteNumber(r.prev_value),
+    )
+    .map((r) => {
+      const change = r.value! - r.prev_value!
+      const sign = change > 0 ? '+' : ''
+      return `${r.label} ${sign}${change.toFixed(2)} (${r.prev_value!.toFixed(2)} → ${r.value!.toFixed(2)})`
+    })
+    .join('; ')
+  const csBaaRow = csRows.find((r) => r.key === 'baa10y')
+
+  // ---- live state (fills in after mount; never in the prerender) ----
 
   // ---- live state (fills in after mount; never in the prerender) ----
   const liveStore = useLiveQuotes()
@@ -683,7 +820,11 @@ export default function PulsePanels() {
     )
   }
   if (credit && hyBaked !== null) {
-    briefParts.push(`credit ${credit.toLowerCase()} (HY spread ${hyBaked.toFixed(2)}%)`)
+    briefParts.push(
+      csTotal === 6
+        ? `credit ${credit.toLowerCase()} (HY spread ${hyBaked.toFixed(2)}%; ${csCalmCount} of 6 recession signals calm)`
+        : `credit ${credit.toLowerCase()} (HY spread ${hyBaked.toFixed(2)}%)`,
+    )
   }
   if (macroRegime && favCount !== null && favTotal !== null) {
     briefParts.push(
@@ -919,6 +1060,146 @@ export default function PulsePanels() {
             <p>
               <strong>Data unavailable.</strong> No credit-spread value in
               this build, so no credit reading is published.
+            </p>
+          )}
+        </Card>
+
+        <Card title={`Credit spreads & recession signals — ${csTotal === 6 && csOverall !== null ? `${csCalmCount} of 6 calm` : 'Unavailable'}`} accent={csAccent}>
+          {csTotal === 6 && csOverall !== null ? (
+            <>
+              <p>
+                <strong>
+                  {csCalmCount} of 6 calm
+                  {csCounts.watch > 0 ? ` — ${csCounts.watch} in Watch` : ''}
+                  {csCounts.warning > 0
+                    ? ` — ${csCounts.warning} in Warning`
+                    : ''}
+                  .
+                </strong>{' '}
+                Conditions that tightened before past recessions — a
+                conditions gauge, not a recession prediction.
+              </p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Signal</th>
+                    <th className="num">Value</th>
+                    <th>Band</th>
+                    <th>As of</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {csRows.map((r) => (
+                    <tr key={r.key}>
+                      <td>
+                        <strong>{r.label}</strong>
+                        <br />
+                        <span className="footnote">{r.detail}</span>
+                      </td>
+                      <td className="num">
+                        {r.key === 'sloos' && r.value! > 0 ? '+' : ''}
+                        {r.value!.toFixed(2)}
+                        {r.unit === '%'
+                          ? '%'
+                          : r.unit
+                            ? ` ${r.unit}`
+                            : ''}
+                        {r.key === 'vix20d' &&
+                        isFiniteNumber(r.vix_today) ? (
+                          <> (today {r.vix_today!.toFixed(2)})</>
+                        ) : null}
+                      </td>
+                      <td>{r.band}</td>
+                      <td>{formatDate(r.as_of) ?? '—'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {csMoves ? (
+                <p>
+                  Since the previous reading: {csMoves}. The loan survey
+                  is quarterly and financial conditions weekly, so those
+                  two rows move on their own schedule, not daily.
+                </p>
+              ) : null}
+              <p>
+                <strong>Ranges.</strong>
+              </p>
+              <ul>
+                {csBandNotes.map((b) => (
+                  <li key={b.label}>
+                    <strong>{b.label}.</strong>{' '}
+                    {b.bands.map((band, i) => (
+                      <span key={band.label ?? i}>
+                        <strong>{band.label}.</strong> {band.note}{' '}
+                      </span>
+                    ))}
+                  </li>
+                ))}
+              </ul>
+              <p>
+                <strong>{csDirection(csRows)}</strong>
+              </p>
+              <p>
+                <strong>Scope &amp; limits.</strong> Six signals, three
+                cadences: the spreads and the VIX average are daily, the
+                financial conditions index is weekly, the loan survey is
+                quarterly — each row is dated separately and shows the
+                latest available value, so the loan-survey row can sit
+                unchanged for three months. The Baa – 10Y row mixes a
+                monthly average with a daily yield
+                {csBaaRow &&
+                isFiniteNumber(csBaaRow.baa) &&
+                isFiniteNumber(csBaaRow.dgs10) ? (
+                  <>
+                    {' '}(Baa {csBaaRow.baa!.toFixed(2)}% for{' '}
+                    {formatDate(csBaaRow.baa_as_of) ?? '—'} minus the
+                    10-year {csBaaRow.dgs10!.toFixed(2)}% on{' '}
+                    {formatDate(csBaaRow.dgs10_as_of) ?? '—'})
+                  </>
+                ) : null}
+                ; the row is dated by the Treasury leg. The junk-bond
+                spread is the same series as the Credit panel above
+                (FRED BAMLH0A0HYM2) — one figure, two views, and the
+                two panels&apos; bands agree on the thresholds (Watch
+                covers the Credit panel&apos;s Normal, Warning covers
+                Elevated and Stressed). The VIX 20-day average is a
+                trend read — a month of volatility — distinct from the
+                Volatility panel&apos;s VIX level and from the index
+                board&apos;s VIX regime card. Since April 2026 FRED
+                serves only a rolling three-year window for the ICE
+                BofA spread series, so the pre-2023 history behind the
+                bands comes from ICE directly, not from FRED.
+              </p>
+              <p className="footnote">
+                Rule: junk-bond spread Calm below 4% · Watch 4–6% ·
+                Warning above 6%; BBB spread Calm below 1.5% · Watch
+                1.5–2.5% · Warning above 2.5%; Baa – 10Y Calm below 2% ·
+                Watch 2–3% · Warning above 3%; banks tightening Calm
+                below 10% · Watch 10–30% · Warning above 30%;
+                financial conditions Calm below 0 · Watch 0–0.5 ·
+                Warning above 0.5; VIX 20-day average Calm below 20 ·
+                Watch 20–30 · Warning above 30. Each band is anchored
+                to its own series&apos; history — the April 2025 tariff
+                shock, the 2022 tightening, COVID and 2008 — recorded
+                in PULSE_CREDIT_SIGNALS.md. A Warning is a condition,
+                not a recession call: spreads can stay tight for years,
+                and they can snap back fast once policy responds.
+              </p>
+              <p className="footnote">
+                Source: FRED — BAMLH0A0HYM2 (junk), BAMLC0A4CBBB
+                (BBB), BAA and DGS10 (Baa – 10Y), DRTSCILM (loan
+                survey), NFCI (financial conditions), VIXCLS (VIX
+                average). Nightly only (~05:20 UTC) — no intraday feed
+                exists for these series, so this panel is always dated,
+                never live.
+              </p>
+            </>
+          ) : (
+            <p>
+              <strong>Data unavailable.</strong> No credit-signals data
+              in this build, so no recession-signals reading is
+              published.
             </p>
           )}
         </Card>
@@ -1384,14 +1665,17 @@ export default function PulsePanels() {
           Market panels (Trend, Breadth, Volatility, Internals) refresh
           live during market hours, 09:30–16:00 ET, on 60-second polls;
           after hours they show the last close, labelled as the close.
-          Index quotes are delayed ~15 minutes (TradingView). Credit and
-          Macro Regime refresh nightly (~05:20 UTC) from FRED — there is
-          no intraday feed for either, so those two panels are always
-          dated, never live. Put/Call refreshes nightly too, from CBOE —
-          the ratio is a daily number published the following morning,
-          so it is always one session behind, never live. Fear &amp;
-          Greed refreshes nightly from CNN (close value) and live
-          during market hours on 10-minute polls.
+          Index quotes are delayed ~15 minutes (TradingView). Credit,
+          Credit spreads &amp; recession signals and Macro Regime refresh
+          nightly (~05:20 UTC) from FRED — there is no intraday feed
+          for any of them, so those panels are always dated, never
+          live. The signals panel mixes daily, weekly and quarterly
+          series, so each of its rows is dated separately. Put/Call
+          refreshes nightly too, from CBOE — the ratio is a daily
+          number published the following morning, so it is always one
+          session behind, never live. Fear &amp; Greed refreshes
+          nightly from CNN (close value) and live during market hours
+          on 10-minute polls.
         </p>
         <p>
           What is deliberately not here: new 52-week lows (the nightly

@@ -1,0 +1,527 @@
+{
+ "as_of": "2026-11-19",
+ "source": "FRED (Federal Reserve Bank of St. Louis)",
+ "source_url": "https://fred.stlouisfed.org/",
+ "rows": [
+  {
+   "key": "hy",
+   "label": "Junk-bond spread",
+   "detail": "ICE BofA US High Yield OAS",
+   "value": 3.47,
+   "unit": "%",
+   "as_of": "2026-11-18",
+   "prev_value": 3.43,
+   "prev_as_of": "2026-11-17",
+   "band": "Calm",
+   "series": "BAMLH0A0HYM2",
+   "frequency": "Daily"
+  },
+  {
+   "key": "bbb",
+   "label": "BBB bond spread",
+   "detail": "ICE BofA BBB US Corporate OAS",
+   "value": 1.16,
+   "unit": "%",
+   "as_of": "2026-11-18",
+   "prev_value": 1.15,
+   "prev_as_of": "2026-11-17",
+   "band": "Calm",
+   "series": "BAMLC0A4CBBB",
+   "frequency": "Daily"
+  },
+  {
+   "key": "baa10y",
+   "label": "Baa \u2013 10Y spread",
+   "detail": "Moody's Baa yield minus 10-year Treasury yield",
+   "value": 1.49,
+   "unit": "%",
+   "as_of": "2026-11-17",
+   "prev_value": 1.47,
+   "prev_as_of": "2026-11-16",
+   "band": "Calm",
+   "series": "BAA minus DGS10",
+   "frequency": "Daily (Baa is a monthly average)",
+   "baa": 6.59,
+   "baa_as_of": "2026-10-01",
+   "dgs10": 5.1,
+   "dgs10_as_of": "2026-11-17"
+  },
+  {
+   "key": "sloos",
+   "label": "Banks tightening loans",
+   "detail": "Net % of banks tightening C&I lending standards, large/middle-market firms",
+   "value": 1.7,
+   "unit": "pp",
+   "as_of": "2026-10-01",
+   "prev_value": 0.0,
+   "prev_as_of": "2026-07-01",
+   "band": "Calm",
+   "series": "DRTSCILM",
+   "frequency": "Quarterly"
+  },
+  {
+   "key": "nfci",
+   "label": "Financial conditions (NFCI)",
+   "detail": "Chicago Fed National Financial Conditions Index",
+   "value": -0.48,
+   "unit": "",
+   "as_of": "2026-11-13",
+   "prev_value": -0.47,
+   "prev_as_of": "2026-11-06",
+   "band": "Calm",
+   "series": "NFCI",
+   "frequency": "Weekly"
+  },
+  {
+   "key": "vix20d",
+   "label": "VIX, 20-day average",
+   "detail": "Mean of the last 20 daily VIX closes",
+   "value": 20.41,
+   "unit": "",
+   "as_of": "2026-11-18",
+   "prev_value": 20.01,
+   "prev_as_of": "2026-11-17",
+   "band": "Watch",
+   "series": "VIXCLS (20-day mean)",
+   "frequency": "Daily",
+   "vix_today": 24.56,
+   "vix_today_as_of": "2026-11-18",
+   "vix_today_prev": 25.46,
+   "vix_today_prev_as_of": "2026-11-17"
+  }
+ ],
+ "bands": {
+  "hy": [
+   {
+    "max": 4.0,
+    "label": "Calm",
+    "note": "Below 4% \u2014 inside the range of the last three calm years (2.59\u20133.48%)."
+   },
+   {
+    "max": 6.0,
+    "label": "Watch",
+    "note": "4\u20136% \u2014 widening; the April 2025 tariff shock peaked at 4.61%."
+   },
+   {
+    "max": null,
+    "label": "Warning",
+    "note": "Above 6% \u2014 the October 2022 peak; COVID cleared 10% and 2008 cleared 19%."
+   }
+  ],
+  "bbb": [
+   {
+    "max": 1.5,
+    "label": "Calm",
+    "note": "Below 1.5% \u2014 the post-2023 range tops out at 1.49% (April 2025)."
+   },
+   {
+    "max": 2.5,
+    "label": "Watch",
+    "note": "1.5\u20132.5% \u2014 the 2022 tightening ran through here."
+   },
+   {
+    "max": null,
+    "label": "Warning",
+    "note": "Above 2.5% \u2014 only genuine stress: March 2020 ran to about 4%."
+   }
+  ],
+  "baa10y": [
+   {
+    "max": 2.0,
+    "label": "Calm",
+    "note": "Below 2% \u2014 where it has sat since 2023."
+   },
+   {
+    "max": 3.0,
+    "label": "Watch",
+    "note": "2\u20133% \u2014 the October 2022 tightening peak, about 2.3%."
+   },
+   {
+    "max": null,
+    "label": "Warning",
+    "note": "Above 3% \u2014 the COVID spike ran to about 3.4%."
+   }
+  ],
+  "sloos": [
+   {
+    "max": 10.0,
+    "label": "Calm",
+    "note": "Below 10% \u2014 banks roughly neutral on standards (negative is net easing)."
+   },
+   {
+    "max": 30.0,
+    "label": "Watch",
+    "note": "10\u201330% \u2014 tightening is broadening; April 2025 printed 18.5%."
+   },
+   {
+    "max": null,
+    "label": "Warning",
+    "note": "Above 30% \u2014 2020 Q3 hit 71.2%, 2023 Q3 50.8%."
+   }
+  ],
+  "nfci": [
+   {
+    "max": 0.0,
+    "label": "Calm",
+    "note": "Below 0 \u2014 financial conditions looser than average."
+   },
+   {
+    "max": 0.5,
+    "label": "Watch",
+    "note": "0\u20130.5 \u2014 tighter than average; COVID peaked at 0.31."
+   },
+   {
+    "max": null,
+    "label": "Warning",
+    "note": "Above 0.5 \u2014 a level the COVID shock never reached."
+   }
+  ],
+  "vix20d": [
+   {
+    "max": 20.0,
+    "label": "Calm",
+    "note": "Below 20 \u2014 volatility has been ordinary for a month."
+   },
+   {
+    "max": 30.0,
+    "label": "Watch",
+    "note": "20\u201330 \u2014 volatility has run hot for a month."
+   },
+   {
+    "max": null,
+    "label": "Warning",
+    "note": "Above 30 \u2014 the April\u2013May 2025 tariff shock peaked near 32.5; COVID ran far above 30."
+   }
+  ]
+ },
+ "counts": {
+  "calm": 5,
+  "watch": 1,
+  "warning": 0
+ },
+ "overall": "Watch",
+ "history": {
+  "daily": [
+   {
+    "date": "2026-10-08",
+    "hy": 3.15,
+    "bbb": 1.02,
+    "baa10y": null,
+    "vix_close": null,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-09",
+    "hy": 3.11,
+    "bbb": 1.02,
+    "baa10y": null,
+    "vix_close": null,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-12",
+    "hy": 3.11,
+    "bbb": 1.02,
+    "baa10y": null,
+    "vix_close": null,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-13",
+    "hy": 3.16,
+    "bbb": 1.03,
+    "baa10y": null,
+    "vix_close": null,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-14",
+    "hy": 3.25,
+    "bbb": 1.04,
+    "baa10y": null,
+    "vix_close": null,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-15",
+    "hy": 3.23,
+    "bbb": 1.05,
+    "baa10y": null,
+    "vix_close": 16.46,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-16",
+    "hy": 3.31,
+    "bbb": 1.06,
+    "baa10y": null,
+    "vix_close": 19.99,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-19",
+    "hy": 3.29,
+    "bbb": 1.08,
+    "baa10y": null,
+    "vix_close": 18.44,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-20",
+    "hy": 3.33,
+    "bbb": 1.08,
+    "baa10y": null,
+    "vix_close": 17.31,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-21",
+    "hy": 3.27,
+    "bbb": 1.09,
+    "baa10y": null,
+    "vix_close": 16.68,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-22",
+    "hy": 3.4,
+    "bbb": 1.11,
+    "baa10y": null,
+    "vix_close": 19.03,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-23",
+    "hy": 3.38,
+    "bbb": 1.13,
+    "baa10y": null,
+    "vix_close": 19.45,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-26",
+    "hy": 3.3,
+    "bbb": 1.12,
+    "baa10y": null,
+    "vix_close": 18.39,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-27",
+    "hy": 3.18,
+    "bbb": 1.09,
+    "baa10y": null,
+    "vix_close": 17.52,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-28",
+    "hy": 3.14,
+    "bbb": 1.07,
+    "baa10y": null,
+    "vix_close": 16.91,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-29",
+    "hy": 3.26,
+    "bbb": 1.1,
+    "baa10y": null,
+    "vix_close": 17.2,
+    "vix20d": null
+   },
+   {
+    "date": "2026-10-30",
+    "hy": 3.44,
+    "bbb": 1.16,
+    "baa10y": null,
+    "vix_close": 19.42,
+    "vix20d": null
+   },
+   {
+    "date": "2026-11-02",
+    "hy": 3.43,
+    "bbb": 1.17,
+    "baa10y": 1.68,
+    "vix_close": 21.15,
+    "vix20d": null
+   },
+   {
+    "date": "2026-11-03",
+    "hy": 3.4,
+    "bbb": 1.16,
+    "baa10y": 1.64,
+    "vix_close": 20.83,
+    "vix20d": null
+   },
+   {
+    "date": "2026-11-04",
+    "hy": 3.32,
+    "bbb": 1.13,
+    "baa10y": 1.69,
+    "vix_close": 16.61,
+    "vix20d": null
+   },
+   {
+    "date": "2026-11-05",
+    "hy": 3.48,
+    "bbb": 1.16,
+    "baa10y": 1.75,
+    "vix_close": 28.18,
+    "vix20d": null
+   },
+   {
+    "date": "2026-11-06",
+    "hy": 3.42,
+    "bbb": 1.16,
+    "baa10y": 1.73,
+    "vix_close": 25.64,
+    "vix20d": null
+   },
+   {
+    "date": "2026-11-09",
+    "hy": 3.34,
+    "bbb": 1.13,
+    "baa10y": 1.71,
+    "vix_close": 19.92,
+    "vix20d": null
+   },
+   {
+    "date": "2026-11-10",
+    "hy": 3.3,
+    "bbb": 1.12,
+    "baa10y": 1.61,
+    "vix_close": 19.46,
+    "vix20d": null
+   },
+   {
+    "date": "2026-11-11",
+    "hy": 3.3,
+    "bbb": 1.12,
+    "baa10y": null,
+    "vix_close": 17.49,
+    "vix20d": 19.3
+   },
+   {
+    "date": "2026-11-12",
+    "hy": 3.2,
+    "bbb": 1.11,
+    "baa10y": 1.49,
+    "vix_close": 18.7,
+    "vix20d": 19.42
+   },
+   {
+    "date": "2026-11-13",
+    "hy": 3.23,
+    "bbb": 1.11,
+    "baa10y": 1.44,
+    "vix_close": 19.3,
+    "vix20d": 19.38
+   },
+   {
+    "date": "2026-11-16",
+    "hy": 3.34,
+    "bbb": 1.12,
+    "baa10y": 1.47,
+    "vix_close": 22.91,
+    "vix20d": 19.61
+   },
+   {
+    "date": "2026-11-17",
+    "hy": 3.43,
+    "bbb": 1.15,
+    "baa10y": 1.49,
+    "vix_close": 25.46,
+    "vix20d": 20.01
+   },
+   {
+    "date": "2026-11-18",
+    "hy": 3.47,
+    "bbb": 1.16,
+    "baa10y": null,
+    "vix_close": 24.56,
+    "vix20d": 20.41
+   }
+  ],
+  "nfci": [
+   {
+    "date": "2026-09-04",
+    "value": -0.541
+   },
+   {
+    "date": "2026-09-11",
+    "value": -0.532
+   },
+   {
+    "date": "2026-09-18",
+    "value": -0.52
+   },
+   {
+    "date": "2026-09-25",
+    "value": -0.507
+   },
+   {
+    "date": "2026-10-02",
+    "value": -0.494
+   },
+   {
+    "date": "2026-10-09",
+    "value": -0.484
+   },
+   {
+    "date": "2026-10-16",
+    "value": -0.476
+   },
+   {
+    "date": "2026-10-23",
+    "value": -0.471
+   },
+   {
+    "date": "2026-10-30",
+    "value": -0.47
+   },
+   {
+    "date": "2026-11-06",
+    "value": -0.473
+   },
+   {
+    "date": "2026-11-13",
+    "value": -0.478
+   }
+  ],
+  "sloos": [
+   {
+    "date": "2025-01-01",
+    "value": 6.2
+   },
+   {
+    "date": "2025-04-01",
+    "value": 18.5
+   },
+   {
+    "date": "2025-07-01",
+    "value": 9.5
+   },
+   {
+    "date": "2025-10-01",
+    "value": 6.5
+   },
+   {
+    "date": "2026-01-01",
+    "value": 5.3
+   },
+   {
+    "date": "2026-04-01",
+    "value": 8.1
+   },
+   {
+    "date": "2026-07-01",
+    "value": 0.0
+   },
+   {
+    "date": "2026-10-01",
+    "value": 1.7
+   }
+  ]
+ }
+}
