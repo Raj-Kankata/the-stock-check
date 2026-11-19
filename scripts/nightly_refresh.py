@@ -533,7 +533,14 @@ def _update_price_fields(rec, new_price):
     stored (frozen) fundamentals. Everything else in rec is untouched."""
     old_price = rec["price"]
     rec["price"] = round(new_price, 2)
-    if rec.get("trailing_eps"):
+    if rec.get("trailing_eps") and rec["trailing_eps"] > 0:
+        # A P/E is only meaningful on positive earnings. A loss-making
+        # name (trailing EPS <= 0) publishes no trailing P/E, so the
+        # base carries trailing_pe None and the PEGY leg stays skipped
+        # (mean of the other two legs). Deriving price/negative-EPS
+        # here would invent a negative P/E and resurrect a nonsense
+        # negative PEGY leg (seen 19 Nov 2026: 48 names gained one on
+        # the first v1.7 live refresh, flipping 6 verdicts).
         rec["trailing_pe"] = round(new_price / rec["trailing_eps"], 2)
     if rec.get("forward_eps"):
         rec["forward_pe"] = round(new_price / rec["forward_eps"], 2)
