@@ -18,7 +18,7 @@
 
 export const SEARCH_LOG_URL: string = 'https://stockcheck-search-log.thestockcheck.workers.dev/log'
 
-export const CF_BEACON_TOKEN: string = '25d44bebf2da4239ae5699937581f2d4'
+export const CF_BEACON_TOKEN: string = '25d44bebf2da4239ae5569937581f2d4'
 
 /** True once either stats half has been configured. Drives the footer line. */
 export const ANALYTICS_ENABLED = SEARCH_LOG_URL !== '' || CF_BEACON_TOKEN !== ''

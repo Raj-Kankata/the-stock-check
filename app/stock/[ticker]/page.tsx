@@ -350,6 +350,9 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   )
   const legMin = legValues.length > 0 ? Math.min(...legValues) : null
   const legMax = legValues.length > 0 ? Math.max(...legValues) : null
+  // Explainer copy below ("How to read this card") counts the legs: a
+  // 2-leg card has one other leg to compare against, not two.
+  const otherLegsWord = availableLegs.length === 2 ? 'the other leg' : 'the other two legs'
   const quality = pillars.quality.detail
   const technical = pillars.technical.detail
   const trust = pillars.trust.detail
@@ -713,7 +716,11 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           <p>
             CAPM DCF value <strong>{money(capm.value)}</strong> at a CAPM discount of{' '}
             <strong>{capm.discount_capm !== null ? pct(capm.discount_capm) : '—'}</strong>,
-            vs the decision DCF leg of {money(legs.dcf.value)}.
+            {legs.dcf.value !== null ? (
+              <> vs the decision DCF leg of {money(legs.dcf.value)}.</>
+            ) : (
+              <> the decision DCF leg is skipped for this name.</>
+            )}
           </p>
         )}
         <Kv k="CAPM discount" v={capm.discount_capm !== null ? pct(capm.discount_capm) : '—'} />
@@ -748,6 +755,16 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
                 : null
             }
           />
+          {/* 2-leg cards: the fair value is the mean of the two available
+              legs, not any single leg, so the grid note above (fvSource)
+              never fires for them — say so here, or the reader takes the
+              DCF grid for the fair value. */}
+          {meanLegKeys.length === 2 && (
+            <p className="footnote">
+              <strong>NOTE:</strong> These are DCF-leg values only. This card&apos;s fair value (
+              {money(t.triangulated_fv)}) is the mean of the two available legs, not this grid.
+            </p>
+          )}
         </Card>
 
         <Card title="Lynch value — comparison">
@@ -1024,30 +1041,30 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
       {/* (13) How to read this card - all the metric explainers in one
           place at the end of the card, instead of scattered through it. */}
       <Card title="How to read this card" id="how-to-read">
-        <h3>Fair value and the three legs</h3>
+        <h3>Fair value and the {availableLegs.length === 2 ? 'two' : 'three'} legs</h3>
         <p>
           <strong>Fair value.</strong> Our single fair-value estimate for the stock, drawn from
-          the three legs below. If the price is well below it, the stock looks cheap on our
+          the {availableLegs.length === 2 ? 'two' : 'three'} legs below. If the price is well below it, the stock looks cheap on our
           numbers. If it is well above it, the stock looks expensive — and a wide gap between
           the legs means more uncertainty.
         </p>
         <p>
           <strong>DCF leg.</strong> What the stock could be worth based only on the cash the
           business is expected to generate in the years ahead. A higher number means that
-          future cash looks more valuable. Compare it with the other two legs — if they
+          future cash looks more valuable. Compare it with {otherLegsWord} — if they
           disagree a lot, treat the fair value with more caution.
         </p>
         <p>
           <strong>PEGY leg.</strong> What the stock could be worth based on its earnings, how
           fast those earnings are expected to grow, and the dividend it pays. A higher number
-          means the stock looks cheaper against its growth. Compare it with the other two legs
+          means the stock looks cheaper against its growth. Compare it with {otherLegsWord}{' '}
           before judging the fair value.
         </p>
         <p>
           <strong>Forward-sector leg.</strong> What the stock could be worth based on next
           year&apos;s expected earnings, priced the way the market currently prices its sector.
           A higher number means the stock looks cheaper against next year&apos;s earnings.
-          Compare it with the other two legs before judging the fair value.
+          Compare it with {otherLegsWord} before judging the fair value.
         </p>
         <h3>The five scores</h3>
         <p>

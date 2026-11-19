@@ -19,6 +19,14 @@ What refreshes nightly (this script):
   * market_cap — RECOMPUTED every refresh as fresh price x
     shares_implied_total (from base_inputs.json); never frozen. Null if
     shares are missing for a ticker.
+  * stock splits — a split since the base price_date is detected from
+    the yfinance history's Stock Splits actions and the base record is
+    rescaled BEFORE the 25% move gate (per-share fields ÷ factor,
+    shares × factor), so a split-driven price step is not mistaken for
+    bad data; the rescaled base is written back to base_inputs.json
+    for the affected tickers only (see split_factor_since /
+    rescale_for_split). Without this, an 8-for-1 split (~$800 -> ~$100,
+    -88%) would trip the gate and fail the whole refresh.
   * rel_vol — COMPUTED every refresh from the same final yfinance daily
     bars the refresh publishes (after the intraday-bar drop): latest-day
     volume / mean volume of the 20 trading days PRECEDING the latest bar
@@ -122,8 +130,9 @@ frozen batch2 engine's sensitivity-grid NOTE prints the low-beta 10.0%
 discount for every non-NVDA ticker, even the 21 live names whose raw
 beta >= 2.0 puts them on the 12.0% tier (the grid VALUES use the right
 tier). The staged batch2 copy applies that fix to the grid note only
-(see _stage_engine); the DCF skip-reason change is not applied,
-since no live name has a skipped DCF leg.
+(see _stage_engine); the DCF skip-reason change is not applied yet,
+since no live name has a skipped DCF leg today — revisit when 2-leg
+cards go live.
 """
 import argparse
 import copy
@@ -416,6 +425,78 @@ def drop_intraday_bar(hist):
     return hist
 
 
+# ------------------------------------------------------------- stock splits
+# A stock split moves the price by the split factor overnight (an 8-for-1
+# split takes ~$800 to ~$100, -88%), which would trip the 25% move gate
+# in refresh_ticker and fail the WHOLE refresh as "bad data". Detection
+# runs on the fetched history's Stock Splits actions dated after the base
+# price_date; the base record is then rescaled to post-split scale BEFORE
+# the gate, and the rescaled base is written back to base_inputs.json
+# (cmd_live step 4) so the next refresh compares post-split vs post-split.
+# Only per-share fields move (÷ factor) and the share count (× factor);
+# absolute-dollar totals, ratios and margins are split-invariant. Market
+# cap is NOT rescaled: it recomputes as price x shares, which a split
+# leaves unchanged. NOTE the rescale covers the base record and the
+# engine inputs only — the technicals are still computed from the raw
+# (mixed-scale) history, so EMA/RSI/52w-high readings straddle the split
+# until the 1y window rolls past it (known limitation, not fixed here).
+SPLIT_PER_SHARE_FIELDS = ("price", "trailing_eps", "trailing_eps_adjusted",
+                          "forward_eps", "fcf_per_share_ttm")
+SPLIT_SHARE_COUNT_FIELDS = ("shares_implied_total",)
+
+
+def split_factor_since(hist, since_date):
+    """Product of yfinance Stock Splits actions dated after since_date
+    (YYYY-MM-DD, the base price_date). 1.0 when there is no split (or no
+    Stock Splits column) — the common case, and the refresh is unchanged
+    for it. An 8-for-1 split returns 8.0; a 1-for-10 reverse split 0.1.
+    Multiple splits in the window multiply (e.g. two 2-for-1s -> 4.0)."""
+    try:
+        splits = hist["Stock Splits"]
+    except (KeyError, TypeError):
+        return 1.0
+    since = None
+    if since_date:
+        try:
+            since = datetime.date.fromisoformat(since_date)
+        except ValueError:
+            since = None
+    factor = 1.0
+    for d, v in splits.items():
+        try:
+            f = float(v)
+        except (TypeError, ValueError):
+            continue
+        if not f or f == 1.0:
+            continue
+        try:
+            day = d.date()
+        except AttributeError:
+            continue
+        if since is None or day > since:
+            factor *= f
+    return factor
+
+
+def rescale_for_split(rec, factor):
+    """Rescale one base record for a stock split, in place: per-share
+    fields ÷ factor, share counts × factor. Returns the record. Price is
+    rounded to 2dp (the file's price convention); EPS / FCF-per-share
+    keep full precision so the engines see the exact restated values.
+    Share counts stay ints when the rescaled count is whole."""
+    if factor == 1.0:
+        return rec
+    for f in SPLIT_PER_SHARE_FIELDS:
+        if rec.get(f) is not None:
+            v = rec[f] / factor
+            rec[f] = round(v, 2) if f == "price" else v
+    for f in SPLIT_SHARE_COUNT_FIELDS:
+        if rec.get(f) is not None:
+            v = rec[f] * factor
+            rec[f] = int(v) if float(v).is_integer() else v
+    return rec
+
+
 # ------------------------------------------------------------- price updating
 def _update_price_fields(rec, new_price):
     """Recompute ONLY the price-derived fields from the new price and the
@@ -441,7 +522,8 @@ def _update_price_fields(rec, new_price):
 
 def refresh_ticker(base_rec, hist):
     """Apply one fetched history to a deep copy of a base ticker record.
-    Returns (new_rec, last_bar_date_str). Raises SystemExit on gate trip."""
+    Returns (new_rec, last_bar_date_str, split_factor). Raises SystemExit
+    on gate trip."""
     ticker = base_rec.get("name", "?")
     close = hist["Close"]
     if len(close) < MIN_BARS:
@@ -449,12 +531,22 @@ def refresh_ticker(base_rec, hist):
     new_price = float(close.iloc[-1])
     if new_price is None or new_price != new_price:  # NaN check
         fail(f"{ticker}: missing close")
-    old_price = base_rec["price"]
+    rec = copy.deepcopy(base_rec)
+    # Stock split since the base close: rescale the base record BEFORE
+    # the move gate, so the split-driven price step is measured against
+    # the restated base price (see split_factor_since). The rescale is
+    # on the copy only; cmd_live persists it to base_inputs.json.
+    split_factor = split_factor_since(hist, base_rec.get("price_date"))
+    if split_factor != 1.0:
+        rescale_for_split(rec, split_factor)
+        print(f"  SPLIT {ticker}: {split_factor:g}-for-1 since "
+              f"{base_rec.get('price_date')} — base rescaled "
+              f"${base_rec['price']:.2f} -> ${rec['price']:.2f}")
+    old_price = rec["price"]
     move = new_price / old_price - 1
     if abs(move) > MAX_DAY_MOVE:
         fail(f"{ticker}: price moved {move:+.1%} vs stored ${old_price:.2f} "
              f"(>${MAX_DAY_MOVE:.0%} gate — likely bad data)")
-    rec = copy.deepcopy(base_rec)
     rec["technicals"] = compute_technicals(close)
     _update_price_fields(rec, new_price)
     bar_date = hist.index[-1].date().isoformat()
@@ -466,13 +558,16 @@ def refresh_ticker(base_rec, hist):
     # deepcopy the values so later mutation cannot alias the base.
     # market_cap uses the ROUNDED fresh price in rec["price"] (set by
     # _update_price_fields above), so it matches the published price
-    # exactly. rel_vol is computed from this same final (post-drop) hist.
+    # exactly. Shares come from rec (not base_rec): on a split night rec
+    # carries the rescaled share count, so price x shares stays the true
+    # market cap; on a normal night rec == base, unchanged. rel_vol is
+    # computed from this same final (post-drop) hist.
     rec["debt_fcf"] = copy.deepcopy(base_rec.get("debt_fcf"))
     rec["indexes"] = copy.deepcopy(base_rec.get("indexes"))
     rec["market_cap"] = compute_market_cap(
-        rec["price"], base_rec.get("shares_implied_total"))
+        rec["price"], rec.get("shares_implied_total"))
     rec["rel_vol"] = compute_rel_vol(hist)
-    return rec, bar_date
+    return rec, bar_date, split_factor
 
 
 # --------------------------------------------------------------------- market
@@ -796,9 +891,10 @@ def _stage_engine(key, tickers, inputs, tmpdir):
         # (the grid VALUES use the right tier; only the note text is
         # wrong). Rewrite that one note expression to the discount the
         # grid actually uses (RF + dcf_spread); values are untouched.
-        # The textfix's DCF skip-reason change is NOT applied here: no
-        # live name has a skipped DCF leg, so that text never fires
-        # for the 227. Single substitution, asserted.
+        # The textfix's DCF skip-reason change is NOT applied here yet:
+        # no live name has a skipped DCF leg today, so that text never
+        # fires for the 227 — revisit when 2-leg cards go live.
+        # Single substitution, asserted.
         old_note = ("{DISCOUNT_HIGH if t == 'NVDA' "
                     "else DISCOUNT_LOW:.1%}")
         if patched.count(old_note) != 1:
@@ -1005,8 +1101,10 @@ def merge_results(v13_results, batch2_results, as_of, price_date,
       * debt_fcf, indexes - frozen passthrough from base_inputs.json
         (via `refreshed` when the caller has it, else the base).
       * market_cap - recomputed here from the MERGED (published) price
-        x shares_implied_total from base_inputs.json, so it always
-        matches the published price exactly. Null if shares missing.
+        x shares_implied_total from the refreshed record (`src`) — the
+        base value on a normal night, the split-rescaled count on a
+        split night — so it always matches the published price exactly.
+        Null if shares missing.
       * rel_vol - taken from `refreshed` (live path: computed in
         refresh_ticker from the final bar set). Dry-run callers pass the
         base records, which carry no rel_vol, so dry-run output has
@@ -1036,7 +1134,7 @@ def merge_results(v13_results, batch2_results, as_of, price_date,
         rec["debt_fcf"] = copy.deepcopy(src.get("debt_fcf"))
         rec["indexes"] = copy.deepcopy(src.get("indexes"))
         rec["market_cap"] = compute_market_cap(
-            rec["price"], base["tickers"][t].get("shares_implied_total"))
+            rec["price"], src.get("shares_implied_total"))
         rec["rel_vol"] = copy.deepcopy(src.get("rel_vol"))
         rec["lynch"] = lynch_block(rec, src)
         add_actual_growth_row(t, rec, src)
@@ -1137,11 +1235,23 @@ def cmd_live(as_of_arg):
     # 1. Fetch + recompute everything IN MEMORY (no writes yet).
     new_tickers = {}
     bar_dates = set()
+    split_rescaled = {}  # ticker -> rescaled BASE record, for write-back
     for t in all_tickers:
         print(f"  fetching {t} ...")
         hist = fetch_history(t, end=end)
         hist = drop_intraday_bar(hist)
-        rec, bar_date = refresh_ticker(base["tickers"][t], hist)
+        rec, bar_date, split_factor = refresh_ticker(base["tickers"][t], hist)
+        if split_factor != 1.0:
+            # Persist the rescaled BASE only (not the refreshed record):
+            # the restated base close, on post-split scale. price_date
+            # advances to the new bar date so the next refresh's
+            # "splits since base price_date" check does not re-apply the
+            # same split — without this the base would be rescaled again
+            # every night (÷8 each time) and the gate would trip.
+            rescaled_base = rescale_for_split(
+                copy.deepcopy(base["tickers"][t]), split_factor)
+            rescaled_base["price_date"] = bar_date
+            split_rescaled[t] = rescaled_base
         new_tickers[t] = rec
         bar_dates.add(bar_date)
         old = base["tickers"][t]["price"]
@@ -1275,6 +1385,17 @@ def cmd_live(as_of_arg):
         for key in ("v13", "batch2"):
             write_json(os.path.join(ENGINE_DIR, key, "inputs.json"), inputs[key])
             write_json(os.path.join(ENGINE_DIR, key, "results.json"), results[key])
+        if split_rescaled:
+            # The engine inputs above already carry the rescaled values
+            # (split_inputs is built from new_tickers, whose records
+            # were rescaled before the gate). Write the rescaled base
+            # back too, for the affected tickers only, so the next
+            # refresh compares post-split vs post-split.
+            for t, rescaled_base in split_rescaled.items():
+                base["tickers"][t] = rescaled_base
+            write_json(BASE_INPUTS, base)
+            print(f"  base_inputs.json: split-rescaled "
+                  f"{', '.join(sorted(split_rescaled))}")
     # SITE_RESULTS is written whenever its content moves, including a
     # coverage-only night (a coverage change alone must still publish
     # the new tile count; the engine files above are untouched then).
