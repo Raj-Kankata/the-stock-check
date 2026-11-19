@@ -78,7 +78,9 @@ export function LiveIpoRows({ rows }: { rows: PublicIpoRow[] }) {
       {rows.map((t) => {
         const livePrice = liveNow ? liveIpoCloseFor(live, t.symbol) : null
         const price = livePrice !== null ? livePrice : t.price
-        const vsOffer = price / t.offer_price - 1
+        // A resumed entry (NBIS) has no offer price — 'vs offer' is
+        // never computed for it; the row shows an em dash instead.
+        const vsOffer = t.offer_price !== null ? price / t.offer_price - 1 : null
         return (
           <tr key={t.symbol}>
             <td>
@@ -89,7 +91,9 @@ export function LiveIpoRows({ rows }: { rows: PublicIpoRow[] }) {
               <span className="footnote">{t.company}</span>
             </td>
             <td className="num">{money(price)}</td>
-            <td className="num">{signedPctSpan(vsOffer, 1, 0.001)}</td>
+            <td className="num">
+              {vsOffer !== null ? signedPctSpan(vsOffer, 1, 0.001) : '—'}
+            </td>
             <td className="num">{bigUsd(t.market_cap_outstanding_usd)}</td>
             <td className="num">
               {t.bars} / 200

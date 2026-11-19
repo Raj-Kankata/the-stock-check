@@ -14,8 +14,12 @@ Sources (no key, no account):
     All three tickers resolve as NASDAQ:* — verified 2026-11-19
     (totalCount 3). A new IPO's day change is null on the scanner
     (no previous close) — that is stored as null, never faked.
-  - Yahoo chart v8 (range=max, 1d) for the bar count, the close,
-    volume and 52-week high/low.
+  - Yahoo chart v8 (range=5y, 1d) for the bar count, the close,
+    volume and 52-week high/low. Range is 5y, not max: Yahoo silently
+    returns WEEKLY bars for NBIS on range=max (110 bars) while the
+    other three return daily — 5y returns daily bars for all four
+    (NBIS 523 bars from the Oct 21, 2024 resumption). A granularity
+    guard fails the run if Yahoo ever returns non-daily bars again.
 
 Method (IPO_DOSSIER.md): dossiers carry NO fair value, NO verdict,
 NO score — the refresh only moves prices. Market caps are price x
@@ -108,11 +112,15 @@ def fetch_tv(tickers, tv_symbols):
 
 
 def fetch_yahoo(symbol):
-    """Yahoo chart v8, range=max daily: closes, volumes, 52w high/low.
+    """Yahoo chart v8, range=5y daily: closes, volumes, 52w high/low.
     No 200-bar gate here — these names have few bars by design (ANT
-    has 1 on its first day). Fail only on zero bars."""
+    has 1 on its first day). Fail only on zero bars. Range is 5y, not
+    max: Yahoo silently returns WEEKLY bars for NBIS on range=max
+    (110 bars from Oct 2024) while the others return daily — 5y
+    returns daily bars for all four. The granularity guard below
+    fails the run if Yahoo ever returns non-daily bars again."""
     url = (f"https://query1.finance.yahoo.com/v8/finance/chart/"
-           f"{symbol}?range=max&interval=1d")
+           f"{symbol}?range=5y&interval=1d")
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     try:
         d = json.loads(urllib.request.urlopen(req, timeout=60).read())
@@ -122,6 +130,10 @@ def fetch_yahoo(symbol):
         r = d["chart"]["result"][0]
     except (KeyError, IndexError, TypeError):
         fail(f"Yahoo chart v8 returned no result for {symbol}")
+    meta = r.get("meta") or {}
+    if meta.get("dataGranularity") not in (None, "1d"):
+        fail(f"{symbol}: Yahoo returned {meta.get('dataGranularity')} bars, "
+             f"not daily — STOP, the bar count would be wrong")
     ts = r.get("timestamp") or []
     q = r["indicators"]["quote"][0]
     pairs = [(t, c, v) for t, c, v in
@@ -133,7 +145,6 @@ def fetch_yahoo(symbol):
     last_ts = pairs[-1][0]
     price_date = datetime.datetime.fromtimestamp(
         last_ts, datetime.timezone.utc).astimezone(ET).date().isoformat()
-    meta = r.get("meta") or {}
     high_52w = meta.get("fiftyTwoWeekHigh") or max(closes)
     low_52w = meta.get("fiftyTwoWeekLow") or min(closes)
     return price_date, closes, pairs[-1][2], high_52w, low_52w

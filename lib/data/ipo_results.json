@@ -1,7 +1,7 @@
 {
  "as_of": "2026-11-19",
  "price_date": "2026-11-19",
- "universe_count": 3,
+ "universe_count": 4,
  "ipos": {
   "ANT": {
    "name": "Anthropic",
@@ -9,7 +9,7 @@
    "sector": "Artificial intelligence \u2014 frontier AI models (Claude)",
    "price": 97.17,
    "change_pct": null,
-   "volume": 847305389,
+   "volume": 851818130,
    "bars": 1,
    "high_52w": 115.1,
    "low_52w": 92.72,
@@ -23,7 +23,7 @@
    "sector": "Space / Connectivity / Super Intelligence (AI)",
    "price": 138.43,
    "change_pct": -0.0353,
-   "volume": 118071728,
+   "volume": 118738256,
    "bars": 112,
    "high_52w": 225.64,
    "low_52w": 104.83,
@@ -37,13 +37,27 @@
    "sector": "AI cloud infrastructure (GPU cloud)",
    "price": 44.91,
    "change_pct": -0.061,
-   "volume": 76777701,
+   "volume": 77395534,
    "bars": 415,
    "high_52w": 138.25,
    "low_52w": 40.58,
    "market_cap_outstanding_usd": 24969959915,
    "market_cap_fully_diluted_usd": null,
    "market_cap_float_usd": 20919077929
+  },
+  "NBIS": {
+   "name": "Nebius",
+   "company": "Nebius Group N.V.",
+   "sector": "AI cloud infrastructure (GPU cloud)",
+   "price": 96.92,
+   "change_pct": -0.0939,
+   "volume": 37551610,
+   "bars": 523,
+   "high_52w": 299.86,
+   "low_52w": 73.52,
+   "market_cap_outstanding_usd": 28388100556,
+   "market_cap_fully_diluted_usd": null,
+   "market_cap_float_usd": 25160174881
   }
  }
 }

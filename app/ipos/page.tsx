@@ -21,9 +21,10 @@ export default function IposPage() {
         <p className="eyebrow">IPO dossiers — no score · no fair value · no verdict</p>
         <h1>IPO dossiers</h1>
         <p className="subhead">
-          Recent mega-IPOs that are too new for a five-pillar check. Each dossier carries the
-          tape, the filing, the calendar and the path to a check — with no score, no fair
-          value and no verdict, because a dossier is not a check.
+          Recent mega-IPOs that are too new for a five-pillar check — and one name that
+          is not a new listing at all. Each dossier carries the tape, the filing, the
+          calendar and the path to a check — with no score, no fair value and no verdict,
+          because a dossier is not a check.
         </p>
         <IpoLiveStatusLine priceDateLabel={priceDate} />
       </header>
@@ -76,7 +77,10 @@ export default function IposPage() {
           summaries alone — and cites the filing and date. The &ldquo;What the market is
           saying&rdquo; section is fenced speculation: every item carries its source and
           date, and nothing unattributed is repeated. Valuation context is arithmetic on
-          verified numbers — never a DCF, never a fair value, never a verdict.
+          verified numbers — never a DCF, never a fair value, never a verdict. Nebius
+          (NBIS) is the first dossier under the second clause that is not a new listing:
+          the former Yandex, heavily searched, with no card yet — its page says so up
+          front, and listing facts replace the IPO facts.
         </p>
       </Card>
 
@@ -84,7 +88,8 @@ export default function IposPage() {
         <ul>
           <li>
             &ldquo;Vs offer&rdquo; is the move since the offer price — the first print is
-            usually above it, so it is not a return anyone necessarily earned.
+            usually above it, so it is not a return anyone necessarily earned. NBIS has
+            no offer price — it resumed trading in 2024 — so its row shows —.
           </li>
           <li>
             A dossier with 200 price bars and four quarters becomes a full five-pillar

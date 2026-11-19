@@ -121,8 +121,9 @@ export default function HomePage() {
           {INDEX_RESULTS.universe_count} major indexes the same way: the five price indexes
           get the same two reads, and the VIX gets a volatility regime read instead. And it
           carries {IPO_RESULTS.universe_count} IPO dossiers — the tape, the filing and the
-          calendar for recent mega-IPOs that are too new for a check, with no score, no
-          fair value and no verdict — plus an upcoming-IPO calendar tracking{' '}
+          calendar for listings too new for a check — plus Nebius, a heavily-searched name
+          with no card yet — with no score, no fair value and no verdict — plus an
+          upcoming-IPO calendar tracking{' '}
           {IPO_UPCOMING_COUNT} filed mega-IPOs that have not listed yet.
         </p>
       </section>

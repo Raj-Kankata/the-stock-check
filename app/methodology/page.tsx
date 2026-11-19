@@ -790,12 +790,18 @@ export default function MethodologyPage() {
         <p>
           <strong>Path to a check.</strong> Two progress bars — price bars out of 200,
           public-company quarters filed out of four — with an unlock ETA. When a dossier
-          clears both gates it links to the full five-pillar check.
+          clears both gates it links to the full five-pillar check. For NBIS the gates
+          already pass — the block is the valuation legs, not bars or quarters — so its
+          path-to-check names the leg condition instead of a date.
         </p>
         <p>
           <strong>Qualification.</strong> A dossier is built for a listing when it is a
           mega-IPO (a raise of $1B or more, or a valuation of $10B or more) or a
           heavily-searched name with no card. Dossiers are not built for every IPO.
+          Nebius (NBIS) is the first dossier under the second clause that is not a new
+          listing — the former Yandex, heavily searched, with no scored card yet. Its
+          page is labelled &ldquo;not a new IPO&rdquo;, its listing facts replace the IPO
+          facts, and no move vs an offer price is ever computed for it.
         </p>
         <p>
           <strong>Data.</strong> Prices come from the TradingView scanner and Yahoo

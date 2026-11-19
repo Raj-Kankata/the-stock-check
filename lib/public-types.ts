@@ -123,7 +123,12 @@ export interface PublicIpoRow {
   company: string
   sector: string
   listing_date: string
-  offer_price: number
+  /** 'ipo' — a new listing with an offer price; 'resumed' — a
+      heavily-searched name with no card that is not a new listing
+      (NBIS). 'Vs offer' is never computed for a resumed row. */
+  kind: 'ipo' | 'resumed'
+  /** Null for a resumed row — there is no offer price. */
+  offer_price: number | null
   price: number
   change_pct: number | null
   volume: number
@@ -144,7 +149,8 @@ export interface PublicIpoSearchEntry {
   name: string
   company: string
   listing_date: string
-  offer_price: number
+  kind: 'ipo' | 'resumed'
+  offer_price: number | null
   price: number
   change_pct: number | null
 }

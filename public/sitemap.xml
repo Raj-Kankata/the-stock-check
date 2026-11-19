@@ -193,10 +193,13 @@
 <url><loc>https://www.thestockcheck.com/etf/YINN</loc><lastmod>2026-11-19T17:55:13Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/etf/ZROZ</loc><lastmod>2026-11-19T17:55:13Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/indexes</loc><lastmod>2026-11-19T15:36:16Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://www.thestockcheck.com/ipos</loc><lastmod>2026-11-19T21:36:03Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://www.thestockcheck.com/ipo/ANT</loc><lastmod>2026-11-19T21:36:03Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://www.thestockcheck.com/ipo/CRWV</loc><lastmod>2026-11-19T21:36:03Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://www.thestockcheck.com/ipo/SPCX</loc><lastmod>2026-11-19T21:36:03Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/ipos</loc><lastmod>2026-11-19T22:56:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/ipos/upcoming</loc><lastmod>2026-11-19T22:56:29Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.thestockcheck.com/ipo/ANT</loc><lastmod>2026-11-19T22:56:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/ipo/CRWV</loc><lastmod>2026-11-19T22:56:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/ipo/NBIS</loc><lastmod>2026-11-19T22:56:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/ipo/SPCX</loc><lastmod>2026-11-19T22:56:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/ipos/upcoming</loc><lastmod>2026-11-19T22:55:36Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.thestockcheck.com/index/DJI</loc><lastmod>2026-11-19T15:36:16Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/index/NDX</loc><lastmod>2026-11-19T15:36:16Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/index/RUT</loc><lastmod>2026-11-19T15:36:16Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>

@@ -743,8 +743,8 @@ export function liveIndexCloseFor(state: LiveQuotesState, symbol: string): numbe
 // ---------------------------------------------------------------------------
 
 /** TradingView scanner symbols for the IPO dossiers (same symbols as
-    lib/data/ipo_universe.json; all three list on Nasdaq). */
-export const IPO_TV_TICKERS: string[] = ['NASDAQ:ANT', 'NASDAQ:SPCX', 'NASDAQ:CRWV']
+    lib/data/ipo_universe.json; all four list on Nasdaq). */
+export const IPO_TV_TICKERS: string[] = ['NASDAQ:ANT', 'NASDAQ:SPCX', 'NASDAQ:CRWV', 'NASDAQ:NBIS']
 
 export async function fetchAllIpoQuotes(): Promise<Map<string, TvQuote> | null> {
   try {

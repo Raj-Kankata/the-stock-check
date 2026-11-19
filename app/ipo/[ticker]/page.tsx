@@ -29,6 +29,16 @@ export async function generateMetadata({
   const t = getIpo(ticker)
   const u = getIpoUniverse(ticker)
   if (!t || !u) return { title: 'IPO dossier not found · The Stock Check' }
+  if (u.kind === 'resumed') {
+    return {
+      title: `${ticker} dossier — ${u.company} · The Stock Check`,
+      description:
+        `${t.name} is the former Yandex — not a new IPO. It resumed trading ` +
+        `${dateLabel(u.listing_date)} after the 2024 restructuring — the tape, the ` +
+        `filing, the calendar and the path to a full check. No score, no fair value, ` +
+        `no verdict: a dossier is not a check.`,
+    }
+  }
   return {
     title: `${ticker} IPO dossier — ${u.company} · The Stock Check`,
     description:
@@ -65,19 +75,28 @@ export default async function IpoDossierPage({
   if (!t || !u || !dossier) notFound()
 
   const priceDate = dateLabel(IPO_RESULTS.price_date)
-  const vsOffer = t.price / u.offer_price - 1
+  const isIpo = u.kind !== 'resumed'
+  const offerPrice = u.offer_price
+  const vsOffer = offerPrice !== null ? t.price / offerPrice - 1 : null
   const path = dossier.path_to_check
   const barsLeft = barsRemaining(t.bars)
 
   return (
     <main>
       <header className="hero">
-        <p className="eyebrow">IPO dossier — no score · no fair value · no verdict</p>
+        <p className="eyebrow">
+          {isIpo
+            ? 'IPO dossier — no score · no fair value · no verdict'
+            : 'Dossier — not a new IPO · no score · no fair value · no verdict'}
+        </p>
         <h1>
           {ticker} — {t.name}
         </h1>
         <p className="subhead">
-          {u.company} · {t.sector} · {u.exchange} · Listed {dateLabel(u.listing_date)}
+          {u.company} · {t.sector} · {u.exchange} ·{' '}
+          {isIpo
+            ? `Listed ${dateLabel(u.listing_date)}`
+            : `Trading resumed ${dateLabel(u.listing_date)}`}
         </p>
         <p className="subhead">
           <IpoLivePrice symbol={ticker} price={t.price} changePct={t.change_pct} />
@@ -86,15 +105,33 @@ export default async function IpoDossierPage({
       </header>
 
       <Card title="What a dossier is — and what it is not" accent="amber">
-        <p>
-          {t.name} is too new for a five-pillar check: the engine needs 200 price bars and
-          four public-company quarters of filings, and {ticker} has neither yet. This dossier
-          is the next best thing — everything that can be verified about the listing, laid
-          out in the platform&apos;s framework, with no score, no fair value and no verdict.
-          Nothing here is a buy, hold or sell signal, and nothing in the
-          &ldquo;What the market is saying&rdquo; section is our view. When {ticker} clears
-          the bars and quarters gates, this page links to the full check.
-        </p>
+        {isIpo ? (
+          <p>
+            {t.name} is too new for a five-pillar check: the engine needs 200 price bars
+            and four public-company quarters of filings, and {ticker} has neither yet.
+            This dossier is the next best thing — everything that can be verified about
+            the listing, laid out in the platform&apos;s framework, with no score, no fair
+            value and no verdict. Nothing here is a buy, hold or sell signal, and nothing
+            in the &ldquo;What the market is saying&rdquo; section is our view. When{' '}
+            {ticker} clears the bars and quarters gates, this page links to the full
+            check.
+          </p>
+        ) : (
+          <p>
+            {t.name} is <strong>not a new IPO</strong>. It is the former Yandex N.V.,
+            listed since 2011, which sold its Russian businesses in 2024, renamed itself
+            Nebius Group, and resumed trading on Nasdaq under {ticker} in October 2024.
+            It has a dossier because searchers keep asking for it — it was the top
+            no-result query — and it has no scored card yet: the engine&apos;s bars and
+            quarters gates pass, but only one of the three valuation legs computes (the
+            DCF leg, −$1,172.90 on FCF/share −$42.41), so there is no fair value and no
+            verdict. This dossier is everything that can be verified about the company,
+            laid out in the platform&apos;s framework. Nothing here is a buy, hold or sell
+            signal, and nothing in the &ldquo;What the market is saying&rdquo; section is
+            our view. When a second valuation leg turns positive, this page links to the
+            full check.
+          </p>
+        )}
       </Card>
 
       <Card title="The tape">
@@ -116,10 +153,12 @@ export default async function IpoDossierPage({
                 )}
               </td>
             </tr>
-            <tr>
-              <td>Change vs the offer price</td>
-              <td className="num">{signedPctSpan(vsOffer, 1, 0.001)}</td>
-            </tr>
+            {vsOffer !== null ? (
+              <tr>
+                <td>Change vs the offer price</td>
+                <td className="num">{signedPctSpan(vsOffer, 1, 0.001)}</td>
+              </tr>
+            ) : null}
             <tr>
               <td>Volume</td>
               <td className="num">{int(t.volume)}</td>
@@ -145,7 +184,7 @@ export default async function IpoDossierPage({
               </td>
             </tr>
             <tr>
-              <td>First trade</td>
+              <td>{isIpo ? 'First trade' : 'Trading resumed'}</td>
               <td className="num">{dateLabel(u.listing_date)}</td>
             </tr>
             <tr>
@@ -155,73 +194,118 @@ export default async function IpoDossierPage({
           </tbody>
         </table>
         <p className="footnote">
-          Market caps are price × the share counts from the prospectus (see IPO Facts) — not
-          from a data vendor, because vendor share counts lag for new listings. Fully diluted
-          and outstanding differ when options, RSUs and convertibles exist: both are shown
-          so neither is mistaken for the other. Market caps are as of the {priceDate} close;
-          the live price above moves the value, the share counts do not.
+          Market caps are price × the share counts from{' '}
+          {isIpo ? 'the prospectus (see IPO Facts)' : 'the latest filing (see Listing facts)'}{' '}
+          — not from a data vendor, because vendor share counts lag for new listings.
+          Fully diluted and outstanding differ when options, RSUs and convertibles exist:
+          both are shown so neither is mistaken for the other. Market caps are as of the{' '}
+          {priceDate} close; the live price above moves the value, the share counts do not.
         </p>
       </Card>
 
-      <Card title="IPO facts">
-        <table className="tabled">
-          <tbody>
-            <tr>
-              <td>Offer price</td>
-              <td className="num">{money(u.offer_price)}</td>
-            </tr>
-            <tr>
-              <td>Shares sold</td>
-              <td className="num">
-                {int(u.shares_sold)}
-                {u.shares_sold_stockholders > 0
-                  ? ` — ${int(u.shares_sold_company)} by the company, ${int(u.shares_sold_stockholders)} by selling stockholders`
-                  : ' — all by the company'}
-              </td>
-            </tr>
-            <tr>
-              <td>Amount raised</td>
-              <td className="num">
-                {bigUsd(u.amount_raised_usd)}
-                {u.amount_raised_note ? ` (${u.amount_raised_note})` : ''}
-              </td>
-            </tr>
-            <tr>
-              <td>Lead underwriters</td>
-              <td className="num">{u.underwriters}</td>
-            </tr>
-            <tr>
-              <td>Shares outstanding</td>
-              <td className="num">
-                {int(u.shares_outstanding)}
-                {u.shares_outstanding_note ? ` — ${u.shares_outstanding_note}` : ''}
-              </td>
-            </tr>
-            {u.shares_fully_diluted_approx !== null ? (
+      {isIpo &&
+      offerPrice !== null &&
+      u.shares_sold !== null &&
+      u.shares_sold_company !== null &&
+      u.shares_sold_stockholders !== null &&
+      u.amount_raised_usd !== null &&
+      u.underwriters !== null ? (
+        <Card title="IPO facts">
+          <table className="tabled">
+            <tbody>
               <tr>
-                <td>Shares, fully diluted (approx.)</td>
+                <td>Offer price</td>
+                <td className="num">{money(offerPrice)}</td>
+              </tr>
+              <tr>
+                <td>Shares sold</td>
                 <td className="num">
-                  {int(u.shares_fully_diluted_approx)}
-                  {u.shares_fully_diluted_note
-                    ? ` — ${u.shares_fully_diluted_note}`
-                    : ''}
+                  {int(u.shares_sold)}
+                  {u.shares_sold_stockholders > 0
+                    ? ` — ${int(u.shares_sold_company)} by the company, ${int(u.shares_sold_stockholders)} by selling stockholders`
+                    : ' — all by the company'}
                 </td>
               </tr>
-            ) : null}
-            <tr>
-              <td>Float</td>
-              <td className="num">
-                {int(u.shares_float)}
-                {u.shares_float_note ? ` — ${u.shares_float_note}` : ''}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p className="footnote">
-          Offer price, shares sold, amount raised and underwriters are from the final
-          prospectus (Form 424B4) on SEC EDGAR — the listing date is the first trading day.
-        </p>
-      </Card>
+              <tr>
+                <td>Amount raised</td>
+                <td className="num">
+                  {bigUsd(u.amount_raised_usd)}
+                  {u.amount_raised_note ? ` (${u.amount_raised_note})` : ''}
+                </td>
+              </tr>
+              <tr>
+                <td>Lead underwriters</td>
+                <td className="num">{u.underwriters}</td>
+              </tr>
+              <tr>
+                <td>Shares outstanding</td>
+                <td className="num">
+                  {int(u.shares_outstanding)}
+                  {u.shares_outstanding_note ? ` — ${u.shares_outstanding_note}` : ''}
+                </td>
+              </tr>
+              {u.shares_fully_diluted_approx !== null ? (
+                <tr>
+                  <td>Shares, fully diluted (approx.)</td>
+                  <td className="num">
+                    {int(u.shares_fully_diluted_approx)}
+                    {u.shares_fully_diluted_note
+                      ? ` — ${u.shares_fully_diluted_note}`
+                      : ''}
+                  </td>
+                </tr>
+              ) : null}
+              <tr>
+                <td>Float</td>
+                <td className="num">
+                  {int(u.shares_float)}
+                  {u.shares_float_note ? ` — ${u.shares_float_note}` : ''}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="footnote">
+            Offer price, shares sold, amount raised and underwriters are from the final
+            prospectus (Form 424B4) on SEC EDGAR — the listing date is the first trading day.
+          </p>
+        </Card>
+      ) : (
+        <Card title="Listing facts">
+          <table className="tabled">
+            <tbody>
+              {(u.listing_facts ?? []).map((f) => (
+                <tr key={f.label}>
+                  <td>{f.label}</td>
+                  <td className="num">
+                    <strong>{f.value}</strong>
+                    {f.note ? <br /> : null}
+                    {f.note ? <span className="footnote">{f.note}</span> : null}
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td>Shares outstanding</td>
+                <td className="num">
+                  {int(u.shares_outstanding)}
+                  {u.shares_outstanding_note ? ` — ${u.shares_outstanding_note}` : ''}
+                </td>
+              </tr>
+              <tr>
+                <td>Float</td>
+                <td className="num">
+                  {int(u.shares_float)}
+                  {u.shares_float_note ? ` — ${u.shares_float_note}` : ''}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="footnote">
+            Listing history from company announcements, Nasdaq notices and the filings
+            cited — the resumption date is the first trading day under {ticker}. There is
+            no offer price: this is not a new listing.
+          </p>
+        </Card>
+      )}
 
       <Card title="The filing">
         <p>{dossier.what_it_does}</p>
@@ -305,8 +389,9 @@ export default async function IpoDossierPage({
           ))}
         </ul>
         <p className="footnote">
-          No analyst coverage exists yet where the quiet period is still running — initiations
-          and price targets are added here once they exist, with the firm and date.
+          {isIpo
+            ? 'No analyst coverage exists yet where the quiet period is still running — initiations and price targets are added here once they exist, with the firm and date.'
+            : 'Analyst targets exist for NBIS and are shown above where attributed — they are the firms’ views, not ours, and the spread between them is wide.'}
         </p>
       </Card>
 
@@ -354,8 +439,9 @@ export default async function IpoDossierPage({
           </tbody>
         </table>
         <p className="footnote">
-          No DCF, no fair value, no P/E from a single quarter — those need the four
-          quarters of filings the engine requires.
+          {isIpo
+            ? 'No DCF, no fair value, no P/E from a single quarter — those need the four quarters of filings the engine requires.'
+            : 'No fair value — the engine needs at least two valuation legs and NBIS has one: the DCF leg (−$1,172.90 on FCF/share −$42.41). The multiples above are arithmetic on verified numbers, not a verdict.'}
         </p>
       </Card>
 
@@ -391,9 +477,9 @@ export default async function IpoDossierPage({
             after the first print.
           </li>
           <li>
-            Market caps use prospectus share counts, because vendor counts lag for new
-            listings. Fully diluted counts everything that can become shares; outstanding
-            counts what exists today; the float is what trades.
+            Market caps use {isIpo ? 'prospectus' : 'filing'} share counts, because vendor
+            counts lag for new listings. Fully diluted counts everything that can become
+            shares; outstanding counts what exists today; the float is what trades.
           </li>
           <li>
             Lockup releases are dates when shares <em>can</em> be sold, not dates when they
@@ -405,8 +491,20 @@ export default async function IpoDossierPage({
             revenue basis is the same.
           </li>
           <li>
-            When {ticker} clears both gates, this page links to the full five-pillar check.
-            Until then, there is no score, no fair value and no verdict — by design.
+            {isIpo ? (
+              <>
+                When {ticker} clears both gates, this page links to the full five-pillar
+                check. Until then, there is no score, no fair value and no verdict — by
+                design.
+              </>
+            ) : (
+              <>
+                {ticker} already clears both gates — the block is the valuation legs, not
+                bars or quarters. When a second leg turns positive, this page links to
+                the full five-pillar check. Until then, there is no score, no fair value
+                and no verdict — by design.
+              </>
+            )}
           </li>
         </ul>
       </Card>

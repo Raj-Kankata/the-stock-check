@@ -26,6 +26,12 @@ import dossiersJson from './data/ipo_dossiers.json'
 import ipoUpcomingJson from './data/ipo_upcoming.json'
 import ipoUpcomingStatusJson from './data/ipo_upcoming_status.json'
 
+export interface IpoListingFact {
+  label: string
+  value: string
+  note?: string
+}
+
 export interface IpoUniverseEntry {
   ticker: string
   name: string
@@ -34,20 +40,31 @@ export interface IpoUniverseEntry {
   exchange: string
   tv_symbol: string
   yahoo_symbol: string
+  /** 'ipo' (default) — a new listing with an offer price; 'resumed' —
+      a heavily-searched name with no card that is NOT a new listing
+      (NBIS: the former Yandex, resumed trading Oct 2024). A resumed
+      entry has no offer price, no shares sold, no amount raised and
+      no underwriters — the dossier page renders listing facts
+      instead of IPO facts, and 'vs offer' is never computed. */
+  kind?: 'ipo' | 'resumed'
   listing_date: string
-  offer_price: number
-  shares_sold: number
-  shares_sold_company: number
-  shares_sold_stockholders: number
-  amount_raised_usd: number
+  /** Null for a resumed entry — there is no offer price. */
+  offer_price: number | null
+  shares_sold: number | null
+  shares_sold_company: number | null
+  shares_sold_stockholders: number | null
+  amount_raised_usd: number | null
   amount_raised_note?: string
-  underwriters: string
+  underwriters: string | null
   shares_outstanding: number
   shares_outstanding_note?: string
   shares_fully_diluted_approx: number | null
   shares_fully_diluted_note?: string
   shares_float: number
   shares_float_note?: string
+  /** Resumed entries only: the listing history, rendered in place of
+      the IPO facts card. */
+  listing_facts?: IpoListingFact[]
 }
 
 export interface IpoResult {

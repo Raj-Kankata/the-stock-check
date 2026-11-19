@@ -244,8 +244,10 @@ export default function SearchBox({
                   <span className="pill ipo">IPO</span>
                 </span>
                 <span>
-                  {money(t.price)} · {pct(t.price / t.offer_price - 1, 1)} vs offer $
-                  {t.offer_price}
+                  {money(t.price)}
+                  {t.offer_price !== null
+                    ? ` · ${pct(t.price / t.offer_price - 1, 1)} vs offer $${t.offer_price}`
+                    : ' · no offer price — resumed listing'}
                 </span>
               </Link>
             </li>
@@ -258,7 +260,7 @@ export default function SearchBox({
           {etfEntries.length} ETFs are tracked, {indexEntries.length} indexes are
           tracked and {ipoEntries.length} IPO dossiers are published — AAPL, AMZN, AVGO,
           META, MSFT and NVDA among the stocks, SPY, QQQ and GLD among the ETFs, SPX, NDX
-          and VIX among the indexes, ANT, SPCX and CRWV among the IPOs — use the search
+          and VIX among the indexes, ANT, SPCX, CRWV and NBIS among the IPOs — use the search
           above to find a covered name. No score is ever guessed for an unscored ticker,
           and ETFs, indexes and IPOs never carry a fair value or a verdict.
         </p>
