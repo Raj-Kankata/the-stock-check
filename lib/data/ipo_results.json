@@ -1,0 +1,49 @@
+{
+ "as_of": "2026-11-19",
+ "price_date": "2026-11-19",
+ "universe_count": 3,
+ "ipos": {
+  "ANT": {
+   "name": "Anthropic",
+   "company": "Anthropic, PBC",
+   "sector": "Artificial intelligence \u2014 frontier AI models (Claude)",
+   "price": 97.17,
+   "change_pct": null,
+   "volume": 847305389,
+   "bars": 1,
+   "high_52w": 115.1,
+   "low_52w": 92.72,
+   "market_cap_outstanding_usd": 1284552615753,
+   "market_cap_fully_diluted_usd": 1755861866913,
+   "market_cap_float_usd": 95226598206
+  },
+  "SPCX": {
+   "name": "SpaceX",
+   "company": "Space Exploration Technologies Corp.",
+   "sector": "Space / Connectivity / Super Intelligence (AI)",
+   "price": 138.43,
+   "change_pct": -0.0353,
+   "volume": 118071728,
+   "bars": 112,
+   "high_52w": 225.64,
+   "low_52w": 104.83,
+   "market_cap_outstanding_usd": 1810096741229,
+   "market_cap_fully_diluted_usd": null,
+   "market_cap_float_usd": 88441384086
+  },
+  "CRWV": {
+   "name": "CoreWeave",
+   "company": "CoreWeave, Inc.",
+   "sector": "AI cloud infrastructure (GPU cloud)",
+   "price": 44.91,
+   "change_pct": -0.061,
+   "volume": 76777701,
+   "bars": 415,
+   "high_52w": 138.25,
+   "low_52w": 40.58,
+   "market_cap_outstanding_usd": 24969959915,
+   "market_cap_fully_diluted_usd": null,
+   "market_cap_float_usd": 20919077929
+  }
+ }
+}

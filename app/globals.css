@@ -590,6 +590,12 @@ main {
   background: var(--track-bg);
   color: var(--neutral-fg);
 }
+/* IPO pill in search results — neutral, like .pill.etf/.pill.index:
+   a dossier has no verdict, so it carries no verdict colour. */
+.pill.ipo {
+  background: var(--track-bg);
+  color: var(--neutral-fg);
+}
 /* Index type badges — three types, three colours, never shared:
    broad market blue, sector green, volatility red. */
 .pill.type-broad {
@@ -708,6 +714,12 @@ table.subscores td.num {
 }
 .scorebar .fill.bad {
   background: var(--red);
+}
+/* Neutral fill for progress bars that are not scores — the IPO
+   path-to-a-check bars (bars/200, quarters/4). Navy, not green: a
+   progress bar must never read as a good score. */
+.scorebar .fill.neutral {
+  background: var(--navy);
 }
 .scorebar .value {
   width: 48px;

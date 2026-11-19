@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
 import { ETF_RESULTS } from '@/lib/etf-data'
 import { INDEX_RESULTS } from '@/lib/index-data'
+import { IPO_RESULTS } from '@/lib/ipo-data'
 import fearGreedJson from '@/lib/data/fear_greed.json'
 import { allGrids, toStockRow } from '@/lib/public'
 import { ENGINE_VERSION } from '@/lib/site'
@@ -118,7 +119,10 @@ export default function HomePage() {
           pulse. It also tracks {ETF_RESULTS.universe_count} ETFs — a Technical score and a
           Momentum Score for each, no fair value and no verdict — and{' '}
           {INDEX_RESULTS.universe_count} major indexes the same way: the five price indexes
-          get the same two reads, and the VIX gets a volatility regime read instead.
+          get the same two reads, and the VIX gets a volatility regime read instead. And it
+          carries {IPO_RESULTS.universe_count} IPO dossiers — the tape, the filing and the
+          calendar for recent mega-IPOs that are too new for a check, with no score, no
+          fair value and no verdict.
         </p>
       </section>
 
@@ -149,6 +153,7 @@ export default function HomePage() {
         avCoverage={RESULTS.av_earnings_coverage}
         etfCount={ETF_RESULTS.universe_count}
         indexCount={INDEX_RESULTS.universe_count}
+        ipoCount={IPO_RESULTS.universe_count}
         fearGreed={{
           score: fearGreedJson.score,
           rating: fearGreedJson.rating,

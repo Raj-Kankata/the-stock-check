@@ -14,12 +14,21 @@
 import { RESULTS, TICKER_SYMBOLS, type TickerData } from './data'
 import { ETF_RESULTS, ETF_SYMBOLS, type EtfResult } from './etf-data'
 import { INDEX_RESULTS, INDEX_SYMBOLS, type IndexResult } from './index-data'
+import {
+  IPO_DOSSIERS,
+  IPO_RESULTS,
+  IPO_SYMBOLS,
+  getIpoUniverse,
+  type IpoResult,
+} from './ipo-data'
 import type {
   PublicEtfRow,
   PublicEtfSearchEntry,
   PublicGrid,
   PublicIndexRow,
   PublicIndexSearchEntry,
+  PublicIpoRow,
+  PublicIpoSearchEntry,
   PublicRow,
   PublicSearchEntry,
   PublicStockRow,
@@ -190,4 +199,66 @@ export function allIndexRows(): PublicIndexRow[] {
 /** Header search index for indexes. */
 export function indexSearchIndex(): PublicIndexSearchEntry[] {
   return INDEX_SYMBOLS.map((symbol) => toIndexSearchEntry(symbol, INDEX_RESULTS.indexes[symbol]))
+}
+
+// ---------------------------------------------------------------------------
+// IPO projections — same server-only pattern as the ETF/index
+// projections above. No fair value, no verdict, no overall score
+// exists for IPO dossiers, so the shapes carry only the tape (price,
+// day change, volume, bars, market caps) plus the path-to-a-check
+// progress. The dossier content itself (filing financials, calendar,
+// market-says) is rendered server-side on the dossier page and never
+// crosses into a client component.
+// ---------------------------------------------------------------------------
+
+export function toIpoRow(symbol: string, t: IpoResult): PublicIpoRow {
+  const dossier = IPO_DOSSIERS[symbol]
+  const uni = getIpoUniverse(symbol)
+  return {
+    symbol,
+    name: t.name,
+    company: t.company,
+    sector: t.sector,
+    listing_date: uni?.listing_date ?? '',
+    offer_price: uni?.offer_price ?? 0,
+    price: t.price,
+    change_pct: t.change_pct,
+    volume: t.volume,
+    bars: t.bars,
+    market_cap_outstanding_usd: t.market_cap_outstanding_usd,
+    market_cap_fully_diluted_usd: t.market_cap_fully_diluted_usd,
+    market_cap_float_usd: t.market_cap_float_usd,
+    quarters_filed: dossier?.path_to_check.quarters_filed ?? 0,
+    quarters_needed: dossier?.path_to_check.quarters_needed ?? 4,
+    unlock_eta: dossier?.path_to_check.unlock_eta ?? '',
+  }
+}
+
+export function toIpoSearchEntry(symbol: string, t: IpoResult): PublicIpoSearchEntry {
+  const uni = getIpoUniverse(symbol)
+  return {
+    symbol,
+    name: t.name,
+    company: t.company,
+    listing_date: uni?.listing_date ?? '',
+    offer_price: uni?.offer_price ?? 0,
+    price: t.price,
+    change_pct: t.change_pct,
+  }
+}
+
+/** All IPO dossier rows, in universe order. A universe ticker with no
+    verified result yet is skipped, never rendered — the board and the
+    universe can never crash on a gap. */
+export function allIpoRows(): PublicIpoRow[] {
+  return IPO_SYMBOLS.filter((symbol) => IPO_RESULTS.ipos[symbol]).map(
+    (symbol) => toIpoRow(symbol, IPO_RESULTS.ipos[symbol]),
+  )
+}
+
+/** Header search index for IPO dossiers. Same skip rule as allIpoRows. */
+export function ipoSearchIndex(): PublicIpoSearchEntry[] {
+  return IPO_SYMBOLS.filter((symbol) => IPO_RESULTS.ipos[symbol]).map(
+    (symbol) => toIpoSearchEntry(symbol, IPO_RESULTS.ipos[symbol]),
+  )
 }

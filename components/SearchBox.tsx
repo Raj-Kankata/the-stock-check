@@ -6,6 +6,7 @@ import { money, pct } from '@/lib/format'
 import type {
   PublicEtfSearchEntry,
   PublicIndexSearchEntry,
+  PublicIpoSearchEntry,
   PublicSearchEntry,
 } from '@/lib/public-types'
 import { scoreSpan } from '@/components/ui'
@@ -24,16 +25,20 @@ import { logSearch } from '@/lib/analytics'
  * ETF rows carry an ETF pill and the two ETF reads — never a verdict
  * or a fair value, because ETFs have neither. Index rows carry an
  * INDEX pill and the two reads (or the VIX regime) — never a verdict
- * or a fair value, because indexes have neither.
+ * or a fair value, because indexes have neither. IPO rows carry an
+ * IPO pill, the price and the move vs the offer price — never a
+ * verdict, a score or a fair value, because a dossier has none.
  */
 export default function SearchBox({
   entries,
   etfEntries = [],
   indexEntries = [],
+  ipoEntries = [],
 }: {
   entries: PublicSearchEntry[]
   etfEntries?: PublicEtfSearchEntry[]
   indexEntries?: PublicIndexSearchEntry[]
+  ipoEntries?: PublicIpoSearchEntry[]
 }) {
   const [q, setQ] = useState('')
   const query = q.trim().toUpperCase()
@@ -75,6 +80,24 @@ export default function SearchBox({
             const bSym = norm(b.symbol).startsWith(nq) ? 0 : 1
             return aSym - bSym || a.symbol.localeCompare(b.symbol)
           })
+  // IPO dossiers match on the ticker AND the company name, the same
+  // way — ANT finds Anthropic, COREWEAVE finds CRWV — and rank after
+  // stocks, ETFs and indexes.
+  const ipoMatches =
+    nq.length === 0
+      ? []
+      : ipoEntries
+          .filter(
+            (e) =>
+              norm(e.symbol).startsWith(nq) ||
+              norm(e.name).startsWith(nq) ||
+              norm(e.company).startsWith(nq),
+          )
+          .sort((a, b) => {
+            const aSym = norm(a.symbol).startsWith(nq) ? 0 : 1
+            const bSym = norm(b.symbol).startsWith(nq) ? 0 : 1
+            return aSym - bSym || a.symbol.localeCompare(b.symbol)
+          })
   const firstHref =
     matches.length > 0
       ? `/stock/${matches[0].symbol}`
@@ -82,7 +105,9 @@ export default function SearchBox({
         ? `/etf/${etfMatches[0].symbol}`
         : indexMatches.length > 0
           ? `/index/${indexMatches[0].symbol}`
-          : null
+          : ipoMatches.length > 0
+            ? `/ipo/${ipoMatches[0].symbol}`
+            : null
   const firstTicker =
     matches.length > 0
       ? matches[0].symbol
@@ -90,12 +115,15 @@ export default function SearchBox({
         ? etfMatches[0].symbol
         : indexMatches.length > 0
           ? indexMatches[0].symbol
-          : null
+          : ipoMatches.length > 0
+            ? ipoMatches[0].symbol
+            : null
   const showNotCovered =
     query.length > 0 &&
     matches.length === 0 &&
     etfMatches.length === 0 &&
-    indexMatches.length === 0
+    indexMatches.length === 0 &&
+    ipoMatches.length === 0
 
   // Anonymous search count (see lib/analytics.ts): one log per distinct
   // no-result query — never per keystroke, never with personal data.
@@ -200,14 +228,39 @@ export default function SearchBox({
           ))}
         </ul>
       )}
+      {ipoMatches.length > 0 && (
+        <ul className="search-results">
+          {ipoMatches.map((t) => (
+            <li key={t.symbol}>
+              <Link
+                href={`/ipo/${t.symbol}`}
+                onClick={() => {
+                  setQ('')
+                  logSearch({ query, ticker: t.symbol })
+                }}
+              >
+                <span>
+                  <strong>{t.symbol}</strong> — {t.name}{' '}
+                  <span className="pill ipo">IPO</span>
+                </span>
+                <span>
+                  {money(t.price)} · {pct(t.price / t.offer_price - 1, 1)} vs offer $
+                  {t.offer_price}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
       {showNotCovered && (
         <p className="footnote">
           “{q.trim()}” is not covered yet. {entries.length} tickers are scored,{' '}
-          {etfEntries.length} ETFs are tracked and {indexEntries.length} indexes are
-          tracked — AAPL, AMZN, AVGO, META, MSFT and NVDA among the stocks, SPY, QQQ and
-          GLD among the ETFs, SPX, NDX and VIX among the indexes — use the search above
-          to find a covered name. No score is ever guessed for an unscored ticker, and
-          ETFs and indexes never carry a fair value or a verdict.
+          {etfEntries.length} ETFs are tracked, {indexEntries.length} indexes are
+          tracked and {ipoEntries.length} IPO dossiers are published — AAPL, AMZN, AVGO,
+          META, MSFT and NVDA among the stocks, SPY, QQQ and GLD among the ETFs, SPX, NDX
+          and VIX among the indexes, ANT, SPCX and CRWV among the IPOs — use the search
+          above to find a covered name. No score is ever guessed for an unscored ticker,
+          and ETFs, indexes and IPOs never carry a fair value or a verdict.
         </p>
       )}
     </div>

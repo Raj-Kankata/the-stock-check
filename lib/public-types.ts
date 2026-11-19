@@ -113,6 +113,42 @@ export interface PublicIndexSearchEntry {
   regime: 'Calm' | 'Normal' | 'Elevated' | 'High' | 'Extreme' | null
 }
 
+/** IPO dossier board row: symbol, company, the tape (price, day
+    change, volume, bars, market caps) and the path-to-a-check
+    progress. No fair value, no verdict, no score — a dossier is not
+    a check. */
+export interface PublicIpoRow {
+  symbol: string
+  name: string
+  company: string
+  sector: string
+  listing_date: string
+  offer_price: number
+  price: number
+  change_pct: number | null
+  volume: number
+  bars: number
+  market_cap_outstanding_usd: number
+  market_cap_fully_diluted_usd: number | null
+  market_cap_float_usd: number
+  quarters_filed: number
+  quarters_needed: number
+  unlock_eta: string
+}
+
+/** Header search entry for an IPO dossier: the tape in one line, with
+    an IPO pill — never a verdict, a score or a fair value, because a
+    dossier has none. */
+export interface PublicIpoSearchEntry {
+  symbol: string
+  name: string
+  company: string
+  listing_date: string
+  offer_price: number
+  price: number
+  change_pct: number | null
+}
+
 /** Homepage grid preview: one ticker's DCF sensitivity grid — the
     grid VALUES only (numbers), the decision leg value, the decision
     growth, and the price. The grid note is never included: it

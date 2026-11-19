@@ -731,3 +731,125 @@ export function liveIndexCloseFor(state: LiveQuotesState, symbol: string): numbe
   const q = state.quotes!.get(symbol)
   return q ? q.close : null
 }
+
+// ---------------------------------------------------------------------------
+// IPO live-price store — the same all-or-none scan, polling and states
+// as the ETF/index stores above, but over the IPO dossier tickers.
+// Separate module state so the stock, ETF and index stores are never
+// touched by IPO polling. A new IPO's day change is null on the
+// scanner (no previous close) — the fetch tolerates a null change
+// (close and volume must be present), and the dossier page shows the
+// change vs the offer price instead on day one.
+// ---------------------------------------------------------------------------
+
+/** TradingView scanner symbols for the IPO dossiers (same symbols as
+    lib/data/ipo_universe.json; all three list on Nasdaq). */
+export const IPO_TV_TICKERS: string[] = ['NASDAQ:ANT', 'NASDAQ:SPCX', 'NASDAQ:CRWV']
+
+export async function fetchAllIpoQuotes(): Promise<Map<string, TvQuote> | null> {
+  try {
+    const res = await fetch(SCAN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        symbols: { tickers: IPO_TV_TICKERS },
+        columns: ['name', 'close', 'change', 'volume'],
+        sort: { sortBy: 'change', sortOrder: 'desc' },
+        options: { lang: 'en' },
+        range: [0, IPO_TV_TICKERS.length],
+      }),
+    })
+    if (!res.ok) return null
+    const j = (await res.json()) as unknown
+    if (!j || typeof j !== 'object') return null
+    const data = (j as Record<string, unknown>).data
+    if (!Array.isArray(data)) return null
+    const quotes = new Map<string, TvQuote>()
+    for (const row of data) {
+      if (!row || typeof row !== 'object') continue
+      const d = (row as Record<string, unknown>).d
+      if (!Array.isArray(d) || d.length < 4) continue
+      const [name, close, change, volume] = d
+      if (typeof name !== 'string' || !isFiniteNumber(close)) continue
+      quotes.set(name, {
+        symbol: name,
+        close,
+        changePct: isFiniteNumber(change) ? change : null,
+        volume: isFiniteNumber(volume) ? volume : null,
+      })
+    }
+    if (quotes.size !== IPO_TV_TICKERS.length) return null
+    return quotes
+  } catch {
+    return null
+  }
+}
+
+let ipoLiveState: LiveQuotesState = { quotes: null, status: 'loading', updatedAt: null }
+const ipoLiveListeners = new Set<() => void>()
+let ipoLiveTimer: ReturnType<typeof setInterval> | null = null
+let ipoLiveInflight: Promise<Map<string, TvQuote> | null> | null = null
+
+function emitIpoLive() {
+  for (const l of ipoLiveListeners) l()
+}
+
+async function refreshIpoLive() {
+  if (typeof document !== 'undefined' && document.hidden) return
+  const now = new Date()
+  if (!isMarketHours(now)) {
+    if (ipoLiveState.status !== 'closed') {
+      ipoLiveState = { quotes: null, status: 'closed', updatedAt: ipoLiveState.updatedAt }
+      emitIpoLive()
+    }
+    return
+  }
+  if (!ipoLiveInflight) {
+    ipoLiveInflight = fetchAllIpoQuotes()
+    void ipoLiveInflight.then(() => {
+      ipoLiveInflight = null
+    })
+  }
+  const quotes = await ipoLiveInflight
+  if (quotes) {
+    ipoLiveState = { quotes, status: 'live', updatedAt: formatCtTime(new Date()) }
+  } else if (ipoLiveState.quotes) {
+    ipoLiveState = { ...ipoLiveState, status: 'stale' }
+  } else {
+    ipoLiveState = { quotes: null, status: 'error', updatedAt: null }
+  }
+  emitIpoLive()
+}
+
+function ensureIpoPolling() {
+  if (ipoLiveTimer !== null) return
+  void refreshIpoLive()
+  ipoLiveTimer = setInterval(() => {
+    void refreshIpoLive()
+  }, LIVE_POLL_MS)
+}
+
+export function useLiveIpoQuotes(): LiveQuotesState {
+  const [, setTick] = useState(0)
+  useEffect(() => {
+    const listener = () => setTick((t) => t + 1)
+    ipoLiveListeners.add(listener)
+    ensureIpoPolling()
+    return () => {
+      ipoLiveListeners.delete(listener)
+    }
+  }, [])
+  return ipoLiveState
+}
+
+/** True when the IPO store holds live values (fresh or last-good stale). */
+export function hasLiveIpoQuotes(state: LiveQuotesState): boolean {
+  return (state.status === 'live' || state.status === 'stale') && state.quotes !== null
+}
+
+/** Live close for one IPO ticker, or null when the store holds no live map. */
+export function liveIpoCloseFor(state: LiveQuotesState, symbol: string): number | null {
+  if (!hasLiveIpoQuotes(state)) return null
+  const q = state.quotes!.get(symbol)
+  return q ? q.close : null
+}

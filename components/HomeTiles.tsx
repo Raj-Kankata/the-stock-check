@@ -49,6 +49,7 @@ export default function HomeTiles({
   avCoverage,
   etfCount,
   indexCount,
+  ipoCount,
   fearGreed,
 }: {
   total: number
@@ -64,6 +65,8 @@ export default function HomeTiles({
   etfCount?: number
   /** Index board size. Optional: the tile hides when absent. */
   indexCount?: number
+  /** IPO dossier count. Optional: the tile hides when absent. */
+  ipoCount?: number
   /** CNN Fear & Greed Index (baked close value). Optional: the tile
       hides when absent. Goes live during market hours on 10-minute
       polls (fetchFearGreed) and shows the baked close after hours. */
@@ -203,6 +206,17 @@ export default function HomeTiles({
       value: String(indexCount),
       sub: 'Technical + Momentum reads · no fair value',
       href: '/indexes',
+    })
+  }
+
+  // IPO dossiers (separate data product — no fair values, no verdicts,
+  // no scores): an extra tile only when the count is present.
+  if (ipoCount !== undefined) {
+    tiles.push({
+      label: 'IPO dossiers',
+      value: String(ipoCount),
+      sub: 'Tape + filing + calendar · no score',
+      href: '/ipos',
     })
   }
 

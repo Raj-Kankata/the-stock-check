@@ -738,6 +738,77 @@ export default function MethodologyPage() {
           <Link href="/indexes">The index board →</Link>
         </p>
       </Card>
+
+      <Card title="(j) IPO dossiers — the tape, the filing, the calendar" id="ipos">
+        <p>
+          An IPO dossier is a separate product on this site, with a different method. A
+          new listing is too new for a five-pillar check — the engine needs 200 price
+          bars and four public-company quarters of filings — so a dossier never gets a
+          score, a fair value or a verdict. What it gets is everything that can be
+          verified about the listing, laid out in the platform&apos;s framework: the tape,
+          the IPO facts, the filing, the calendar, what the market is saying, valuation
+          context, and the path to a full check.
+        </p>
+        <p>
+          <strong>The tape.</strong> Price (live in market hours, otherwise the close),
+          day change, volume, and market cap on three bases — shares outstanding, fully
+          diluted, and float — labelled separately, because they differ when options,
+          RSUs and convertibles exist. Market caps are price × the share counts from the
+          prospectus, not from a data vendor, because vendor share counts lag for new
+          listings.
+        </p>
+        <p>
+          <strong>IPO facts.</strong> Offer price, shares sold (company vs selling
+          stockholders), amount raised, lead underwriters — all from the final prospectus
+          (Form 424B4) on SEC EDGAR.
+        </p>
+        <p>
+          <strong>The filing.</strong> Revenue history, operating result, operating cash
+          flow, cash and the explainers that matter, from the S-1 / 424B4 on SEC EDGAR —
+          never from press summaries alone. Every figure cites the filing and date.
+        </p>
+        <p>
+          <strong>The calendar.</strong> Dated events from the prospectus and listing
+          rules — lockup release schedule, quiet-period end, index-inclusion dates, first
+          earnings as a public company — each labelled with its source. Lockup releases
+          are maximums: the shares become sellable, they are not necessarily sold.
+        </p>
+        <p>
+          <strong>What the market is saying.</strong> Speculation, fenced in its own
+          section and labelled as such. Analyst initiations and price targets (only once
+          they exist), press narratives, index-flow estimates, options-market reads once
+          listed. Every item carries its source and date and a
+          &ldquo;speculation, not our view&rdquo; label. No anonymous &ldquo;the market
+          expects&rdquo; claims — attribute or drop.
+        </p>
+        <p>
+          <strong>Valuation context only.</strong> Honest arithmetic from verified
+          numbers — a market cap divided by a revenue figure from the filing, at the
+          close — labelled as arithmetic, never a verdict. No DCF, no fair value, no P/E
+          from a single quarter, no &ldquo;early read&rdquo;.
+        </p>
+        <p>
+          <strong>Path to a check.</strong> Two progress bars — price bars out of 200,
+          public-company quarters filed out of four — with an unlock ETA. When a dossier
+          clears both gates it links to the full five-pillar check.
+        </p>
+        <p>
+          <strong>Qualification.</strong> A dossier is built for a listing when it is a
+          mega-IPO (a raise of $1B or more, or a valuation of $10B or more) or a
+          heavily-searched name with no card. Dossiers are not built for every IPO.
+        </p>
+        <p>
+          <strong>Data.</strong> Prices come from the TradingView scanner and Yahoo
+          Finance daily history, refreshed nightly with the stock refresh (after the
+          close — a partial bar is never written as a close). Filing facts are static
+          until a new 10-Q or 10-K lands, then updated by the quarterly refresh. The
+          &ldquo;market is saying&rdquo; section is reviewed weekly and on major events:
+          earnings, lockup dates, coverage initiation.
+        </p>
+        <p>
+          <Link href="/ipos">The IPO dossiers →</Link>
+        </p>
+      </Card>
     </>
   )
 }

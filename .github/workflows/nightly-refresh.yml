@@ -70,12 +70,15 @@ jobs:
       - name: Refresh credit spreads & recession signals (separate data product)
         run: python3 scripts/credit_signals_refresh.py
 
+      - name: Refresh IPO dossiers (separate data product)
+        run: python3 scripts/ipo_refresh.py
+
       - name: Commit and push if anything changed
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             git config user.name "the-stock-check-bot"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add lib/data/results.json lib/data/market.json lib/data/macro.json lib/data/etf_results.json lib/data/index_results.json lib/data/put_call.json lib/data/fear_greed.json lib/data/credit_signals.json public/sitemap.xml scripts/engine/
+            git add lib/data/results.json lib/data/market.json lib/data/macro.json lib/data/etf_results.json lib/data/index_results.json lib/data/ipo_results.json lib/data/put_call.json lib/data/fear_greed.json lib/data/credit_signals.json public/sitemap.xml scripts/engine/
             PRICE_DATE=$(python3 -c "import json; print(json.load(open('lib/data/results.json'))['price_date'])")
             git commit -m "Nightly refresh: prices as of ${PRICE_DATE}"
             git push
