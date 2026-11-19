@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Card } from '@/components/ui'
 import { RESULTS } from '@/lib/data'
+import { ETF_RESULTS } from '@/lib/etf-data'
 import {
   BACKTEST_V2,
   BACKTEST_WIDE,
@@ -44,7 +45,8 @@ export default function MethodologyPage() {
         </p>
         <p>
           {Object.keys(RESULTS.tickers).length} stocks scored today — see them all on{' '}
-          <Link href="/stocks">All Stocks</Link>.
+          <Link href="/stocks">All Stocks</Link>. {ETF_RESULTS.universe_count} ETFs tracked
+          — see them on <Link href="/etfs">the ETF board</Link>.
         </p>
       </Card>
 
@@ -671,11 +673,11 @@ export default function MethodologyPage() {
           <strong>Data.</strong> Prices and technicals come from the TradingView scanner
           and Yahoo Finance daily history, refreshed nightly with the stock refresh. Fund
           facts (expense ratio, assets, yield, holdings, inception, top-10 holdings) come
-          from stockanalysis.com and refresh weekly. The ETF universe (55 funds) is
-          curated from the tracker sheet; one ticker was replaced at launch because its
-          symbol no longer exists — SPLG was renamed SPYM by State Street in October
-          2025, so the board carries SPYM. GLD holds physical gold bullion, not stocks,
-          so its card shows that instead of a holdings table.
+          from stockanalysis.com and refresh weekly. The ETF universe (
+          {ETF_RESULTS.universe_count} funds) is curated from the tracker sheet; one ticker
+          was replaced at launch because its symbol no longer exists — SPLG was renamed SPYM
+          by State Street in October 2025, so the board carries SPYM. GLD holds physical gold
+          bullion, not stocks, so its card shows that instead of a holdings table.
         </p>
         <p>
           <Link href="/etfs">The ETF board →</Link>

@@ -113,7 +113,8 @@ export default function HomePage() {
           value for each. Every card shows the score, the verdict, the fair value against
           today&apos;s price, and how it compares with Wall Street&apos;s targets — with live
           prices during market hours, plus trending movers, sector rotation, and a market
-          pulse.
+          pulse. It also tracks {ETF_RESULTS.universe_count} ETFs — a Technical score and a
+          Momentum Score for each, no fair value and no verdict.
         </p>
       </section>
 

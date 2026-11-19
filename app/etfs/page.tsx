@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { RESULTS } from '@/lib/data'
 import { ETF_FACTS, ETF_RESULTS } from '@/lib/etf-data'
 import { allEtfRows } from '@/lib/public'
 import { Card } from '@/components/ui'
 import EtfBrowser from '@/components/EtfBrowser'
 
-export const metadata: Metadata = {
-  title: 'Check any ETF before you buy',
-  description:
-    'Fifty-five ETFs, two honest reads each: a Technical score and a Momentum Score. No fair value, no verdict — an ETF has no earnings to value. Free, no sign-in.',
+export function generateMetadata(): Metadata {
+  return {
+    title: 'Check any ETF before you buy',
+    description: `${ETF_RESULTS.universe_count} ETFs, two honest reads each: a Technical score and a Momentum Score. No fair value, no verdict — an ETF has no earnings to value. Free, no sign-in.`,
+  }
 }
 
 export default function EtfsPage() {
@@ -27,7 +29,9 @@ export default function EtfsPage() {
           {rows.length} ETFs, each with two reads: a Technical score from the price chart and
           a Momentum Score from recent returns. An ETF holds a basket, not a business — it has
           no earnings to value, so this board never shows a fair value, a verdict, or an
-          overall score. What it shows is what can actually be measured.
+          overall score. What it shows is what can actually be measured. We also score{' '}
+          {Object.keys(RESULTS.tickers).length} stocks on five pillars — see them on{' '}
+          <Link href="/stocks">All Stocks</Link>.
         </p>
       </section>
 
