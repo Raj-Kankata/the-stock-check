@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
 import { ETF_RESULTS } from '@/lib/etf-data'
+import { INDEX_RESULTS } from '@/lib/index-data'
 import fearGreedJson from '@/lib/data/fear_greed.json'
 import { allGrids, toStockRow } from '@/lib/public'
 import { ENGINE_VERSION } from '@/lib/site'
@@ -115,7 +116,9 @@ export default function HomePage() {
           today&apos;s price, and how it compares with Wall Street&apos;s targets — with live
           prices during market hours, plus trending movers, sector rotation, and a market
           pulse. It also tracks {ETF_RESULTS.universe_count} ETFs — a Technical score and a
-          Momentum Score for each, no fair value and no verdict.
+          Momentum Score for each, no fair value and no verdict — and{' '}
+          {INDEX_RESULTS.universe_count} major indexes the same way: the five price indexes
+          get the same two reads, and the VIX gets a volatility regime read instead.
         </p>
       </section>
 
@@ -145,6 +148,7 @@ export default function HomePage() {
         fvs={tileFvs}
         avCoverage={RESULTS.av_earnings_coverage}
         etfCount={ETF_RESULTS.universe_count}
+        indexCount={INDEX_RESULTS.universe_count}
         fearGreed={{
           score: fearGreedJson.score,
           rating: fearGreedJson.rating,

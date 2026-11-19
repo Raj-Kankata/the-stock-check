@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Card } from '@/components/ui'
 import { RESULTS } from '@/lib/data'
 import { ETF_RESULTS } from '@/lib/etf-data'
+import { INDEX_RESULTS } from '@/lib/index-data'
 import {
   BACKTEST_V2,
   BACKTEST_WIDE,
@@ -46,7 +47,9 @@ export default function MethodologyPage() {
         <p>
           {Object.keys(RESULTS.tickers).length} stocks scored today — see them all on{' '}
           <Link href="/stocks">All Stocks</Link>. {ETF_RESULTS.universe_count} ETFs tracked
-          — see them on <Link href="/etfs">the ETF board</Link>.
+          — see them on <Link href="/etfs">the ETF board</Link>.{' '}
+          {INDEX_RESULTS.universe_count} indexes tracked — see them on{' '}
+          <Link href="/indexes">the index board</Link>.
         </p>
       </Card>
 
@@ -681,6 +684,54 @@ export default function MethodologyPage() {
         </p>
         <p>
           <Link href="/etfs">The ETF board →</Link>
+        </p>
+      </Card>
+
+      <Card title="(i) Indexes — two reads, no fair value" id="indexes">
+        <p>
+          Indexes are a separate product on this site, with a different method. An index is
+          a benchmark, not a business — it has no earnings to value, so it never gets a
+          fair value, a verdict, or an overall score. What a price index gets is the same
+          two reads as an ETF, each with its own evidence, and they are never combined
+          into one number. The Technical and Momentum reads are informational only — they
+          are not a recommendation to buy or sell anything.
+        </p>
+        <p>
+          <strong>Technical score (0–100)</strong> — the stock engine&apos;s Technical
+          pillar, exactly: EMA trend (35%), price vs the 200-day average (25%), RSI (20%),
+          MACD histogram (20%), with the same bands. Strong ≥ 70, Mixed 40–69, Weak
+          &lt; 40.
+        </p>
+        <p>
+          <strong>Momentum Score</strong> — 0.5 × 13-week return + 0.3 × 4-week return
+          + 0.2 × 1-week return, from Yahoo daily closes (price returns — indexes pay no
+          dividends). Building ≥ +5%, Flat −5% to +5%, Fading &lt; −5%.
+        </p>
+        <p>
+          <strong>The VIX is the exception.</strong> It carries no Technical or Momentum
+          score — scored naively it reads &ldquo;Strong&rdquo; when fear spikes, exactly
+          backwards. Instead it gets a regime read on the same five-band scale as the
+          /pulse Volatility panel: Calm below 15 · Normal 15–20 · Elevated 20–30 · High
+          30–40 · Extreme above 40. The card also shows the 3-month VIX (VIX3M), the
+          VIX/VIX3M ratio and curve state (below 1 is contango, above 1 is
+          backwardation), and the expected daily S&amp;P 500 move (VIX / √252). The VIX
+          sits in a separate Volatility section on the board, never in the shared momentum
+          sort — the same separation rule as leveraged funds on the ETF board.
+        </p>
+        <p>
+          <strong>Types stay distinct.</strong> Broad-market (SPX, NDX, DJI, RUT), sector
+          (SOX) and volatility (VIX) indexes are badged in different colours and filtered
+          separately.
+        </p>
+        <p>
+          <strong>Data.</strong> Levels and technicals come from the TradingView scanner
+          and Yahoo Finance daily history, refreshed nightly with the stock refresh. The
+          index universe ({INDEX_RESULTS.universe_count} US majors) is curated by hand —
+          the tracker sheet holds no index data. Russell 2000 resolves on TradingView
+          only as FTSE:RUT.
+        </p>
+        <p>
+          <Link href="/indexes">The index board →</Link>
         </p>
       </Card>
     </>

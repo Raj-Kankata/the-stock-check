@@ -48,6 +48,7 @@ export default function HomeTiles({
   fvs,
   avCoverage,
   etfCount,
+  indexCount,
   fearGreed,
 }: {
   total: number
@@ -61,6 +62,8 @@ export default function HomeTiles({
   avCoverage?: { pulled: number; universe: number; as_of: string }
   /** ETF board size. Optional: the tile hides when absent. */
   etfCount?: number
+  /** Index board size. Optional: the tile hides when absent. */
+  indexCount?: number
   /** CNN Fear & Greed Index (baked close value). Optional: the tile
       hides when absent. Goes live during market hours on 10-minute
       polls (fetchFearGreed) and shows the baked close after hours. */
@@ -192,6 +195,17 @@ export default function HomeTiles({
     })
   }
 
+  // Indexes tracked (separate data product — no fair values, no verdicts):
+  // an extra tile only when the count is present.
+  if (indexCount !== undefined) {
+    tiles.push({
+      label: 'Indexes tracked',
+      value: String(indexCount),
+      sub: 'Technical + Momentum reads · no fair value',
+      href: '/indexes',
+    })
+  }
+
   // CNN Fear & Greed Index — the homepage indicator only: value,
   // label, and a small dial gauge (FearGreedDial, CNN's own layout).
   // No analysis text here; the analysis lives on /pulse. The dial
@@ -269,6 +283,12 @@ export default function HomeTiles({
           <>
             {' · '}
             <Link href="/etfs">Browse all {etfCount} ETFs →</Link>
+          </>
+        )}
+        {indexCount !== undefined && (
+          <>
+            {' · '}
+            <Link href="/indexes">Browse all {indexCount} indexes →</Link>
           </>
         )}
       </p>

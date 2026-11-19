@@ -866,6 +866,11 @@ export default function PulsePanels() {
                 Extreme above 40.
               </p>
               <p className="footnote">
+                <a href="/index/VIX">The VIX card →</a> — regime, VIX3M,
+                curve state and the expected daily move, with the same
+                bands.
+              </p>
+              <p className="footnote">
                 Source: VIX {isLive ? 'live (TradingView, ~15 min delayed)' : `at the ${closeLabel} close (FRED VIXCLS)`};
                 S&amp;P 500 {isLive ? 'live' : `at the ${closeLabel} close`}.
               </p>
