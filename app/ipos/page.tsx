@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Card } from '@/components/ui'
 import { IpoLiveStatusLine, LiveIpoRows } from '@/components/IpoLive'
 import { dateLabel } from '@/lib/format'
-import { IPO_RESULTS } from '@/lib/ipo-data'
+import { IPO_RESULTS, IPO_UPCOMING, IPO_UPCOMING_COUNT } from '@/lib/ipo-data'
 import { allIpoRows } from '@/lib/public'
 
 export const metadata: Metadata = {
@@ -50,6 +51,20 @@ export default function IposPage() {
           &ldquo;Price bars&rdquo; is the path to a full check: the engine needs 200 price
           bars and four public-company quarters. &ldquo;Unlock ETA&rdquo; is when the full
           check becomes possible, not a price call.
+        </p>
+      </Card>
+
+      <Card title={`Upcoming — ${IPO_UPCOMING_COUNT} filed mega-IPOs not yet listed`}>
+        <p>
+          Companies that have filed to go public but have not listed yet:{' '}
+          {IPO_UPCOMING.entries
+            .map((e) => `${e.company}${e.ticker ? ` (${e.ticker})` : ''}`)
+            .join(', ')}
+          . The calendar carries the filing, the expected timing and the terms as filed —
+          with no score, no fair value and no verdict, because a tracker is not a check.
+        </p>
+        <p>
+          <Link href="/ipos/upcoming">The upcoming IPO calendar →</Link>
         </p>
       </Card>
 

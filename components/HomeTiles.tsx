@@ -50,6 +50,7 @@ export default function HomeTiles({
   etfCount,
   indexCount,
   ipoCount,
+  ipoUpcomingCount,
   fearGreed,
 }: {
   total: number
@@ -67,6 +68,8 @@ export default function HomeTiles({
   indexCount?: number
   /** IPO dossier count. Optional: the tile hides when absent. */
   ipoCount?: number
+  /** Upcoming-IPO calendar count. Optional: the tile hides when absent. */
+  ipoUpcomingCount?: number
   /** CNN Fear & Greed Index (baked close value). Optional: the tile
       hides when absent. Goes live during market hours on 10-minute
       polls (fetchFearGreed) and shows the baked close after hours. */
@@ -217,6 +220,17 @@ export default function HomeTiles({
       value: String(ipoCount),
       sub: 'Tape + filing + calendar · no score',
       href: '/ipos',
+    })
+  }
+
+  // Upcoming IPO calendar (tracker, not a check — no fair values, no
+  // verdicts, no scores): an extra tile only when the count is present.
+  if (ipoUpcomingCount !== undefined) {
+    tiles.push({
+      label: 'Upcoming IPOs',
+      value: String(ipoUpcomingCount),
+      sub: 'Filed mega-IPOs · not yet listed',
+      href: '/ipos/upcoming',
     })
   }
 

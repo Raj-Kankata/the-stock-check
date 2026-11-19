@@ -23,6 +23,8 @@
 import universeJson from './data/ipo_universe.json'
 import resultsJson from './data/ipo_results.json'
 import dossiersJson from './data/ipo_dossiers.json'
+import ipoUpcomingJson from './data/ipo_upcoming.json'
+import ipoUpcomingStatusJson from './data/ipo_upcoming_status.json'
 
 export interface IpoUniverseEntry {
   ticker: string
@@ -128,6 +130,73 @@ export const IPO_RESULTS = resultsJson as {
 export const IPO_DOSSIERS = (dossiersJson as { as_of: string; dossiers: Record<string, IpoDossier> })
   .dossiers
 export const IPO_DOSSIERS_AS_OF = (dossiersJson as { as_of: string }).as_of
+
+// Upcoming IPO calendar — companies that have filed to go public but
+// have NOT listed yet (plus priced-but-not-yet-trading names when they
+// exist). Hand-authored, like the dossiers: see IPO_DOSSIER.md §28
+// and lib/data/ipo_upcoming.json. The weekly check
+// (scripts/ipo_upcoming_check.py) writes only the status file below;
+// it never edits the entries. No score, no fair value, no verdict —
+// a tracker, not a check.
+export interface IpoUpcomingStatus {
+  has_424b4: boolean
+  latest_accession: string | null
+  latest_filing_date: string | null
+  latest_form: string | null
+  listed: boolean
+  notes: string
+  withdrawn: boolean
+}
+
+export interface IpoUpcomingEntry {
+  company: string
+  edgar_cik: string | null
+  exchange: string
+  expected: string
+  filing: string
+  filing_url: string
+  filing_url_note?: string
+  id: string
+  price_range: string | null
+  price_range_note: string
+  raise_target: string | null
+  raise_target_note: string
+  sector: string
+  shares_offered: string | null
+  shares_offered_note?: string
+  sources: string[]
+  status: 'confidential' | 'filed' | 'postponed' | 'priced' | 'terms-set'
+  status_label: string
+  ticker: string | null
+  tv_symbol: string | null
+  underwriters: string
+  valuation_target: string | null
+  valuation_target_note: string
+  watch: string
+  what_it_does: string
+}
+
+export interface IpoUpcoming {
+  as_of: string
+  entries: IpoUpcomingEntry[]
+  note: string
+}
+
+export interface IpoUpcomingStatusFile {
+  as_of: string
+  checked_at: string
+  checker: string
+  entries: Record<string, IpoUpcomingStatus>
+  note: string
+}
+
+export const IPO_UPCOMING: IpoUpcoming = ipoUpcomingJson as IpoUpcoming
+export const IPO_UPCOMING_STATUS: IpoUpcomingStatusFile = ipoUpcomingStatusJson as IpoUpcomingStatusFile
+export const IPO_UPCOMING_COUNT = IPO_UPCOMING.entries.length
+
+export function getIpoUpcomingStatus(id: string): IpoUpcomingStatus | null {
+  return IPO_UPCOMING_STATUS.entries[id] ?? null
+}
 
 export const IPO_SYMBOLS: string[] = IPO_UNIVERSE.map((u) => u.ticker)
 

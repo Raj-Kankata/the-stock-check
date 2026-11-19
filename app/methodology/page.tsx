@@ -809,6 +809,49 @@ export default function MethodologyPage() {
           <Link href="/ipos">The IPO dossiers →</Link>
         </p>
       </Card>
+
+      <Card title="(k) Upcoming IPO calendar — filed, not yet listed" id="ipo-calendar">
+        <p>
+          The upcoming-IPO calendar is the dossier&apos;s waiting room, with the same rule:
+          a tracker, not a check. It lists mega-IPOs that have filed to go public but have
+          not listed yet, so readers can follow a name from filing to first trade. It never
+          gets a score, a fair value or a verdict — and it never will, because an unlisted
+          company has no price to check against.
+        </p>
+        <p>
+          <strong>Qualification.</strong> An entry is added when it is a mega-IPO (a raise
+          of $1B or more, or a valuation of $10B or more) with a filing on record — a
+          public S-1 / F-1 on SEC EDGAR, or a company-confirmed confidential filing.
+          SPACs, funds and sub-$1B deals are not listed. An empty honest calendar beats a
+          padded one: if only a handful are verifiable, only the handful are shown.
+        </p>
+        <p>
+          <strong>Sources.</strong> EDGAR is the authority for what is actually filed —
+          the S-1, the F-1, the amendments, the final prospectus and the withdrawals. The
+          Nasdaq and Renaissance Capital calendars and stockanalysis.com&apos;s filings
+          list are discovery only: a date from any of them is cross-checked to EDGAR or a
+          named outlet before it is written. Every forward-looking item is labelled
+          expected or reported, with its source and date, and never stated as fact.
+        </p>
+        <p>
+          <strong>Statuses.</strong> Filed (S-1 / F-1 on record, no terms yet), terms set
+          (a price range is filed, not yet priced), priced (a final prospectus exists but
+          the name has not traded yet — a transient state), postponed (the launch was
+          pushed back; the filing stays on record and can return), confidential (a
+          company-confirmed draft filing with no public terms at all).
+        </p>
+        <p>
+          <strong>Refresh and graduation.</strong> A weekly check reads each company&apos;s
+          EDGAR filing index for new amendments, a final prospectus (424B4) or a withdrawal
+          (RW), and checks whether the ticker has started trading. The check only flags
+          changes — entries are hand-authored and hand-updated. When an IPO lists, it
+          graduates off the calendar and a dossier is built under the same mega rule; a
+          withdrawn name is removed, with the removal noted in the method record.
+        </p>
+        <p>
+          <Link href="/ipos/upcoming">The upcoming IPO calendar →</Link>
+        </p>
+      </Card>
     </>
   )
 }

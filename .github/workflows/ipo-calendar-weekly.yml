@@ -1,0 +1,54 @@
+# Weekly upcoming-IPO calendar check — The Stock Check
+#
+# Sundays 06:00 UTC: verifies each calendar entry's filing status on
+# SEC EDGAR (latest amendment, 424B4, RW withdrawal) and whether the
+# planned ticker has started trading on TradingView, into
+# lib/data/ipo_upcoming_status.json. No key, no account. The script
+# fails closed (nothing written) on any fetch failure, and it never
+# edits the hand-authored entries file (lib/data/ipo_upcoming.json) —
+# a 424B4 / RW / listed flag is printed for a human to act on
+# (graduate the name off the calendar, build the dossier).
+# Vercel auto-deploys on push to main.
+
+name: Weekly IPO calendar check
+
+on:
+  schedule:
+    - cron: '0 6 * * 0' # 06:00 UTC Sundays
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ipo-calendar-weekly
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check upcoming-IPO calendar status
+        run: python3 scripts/ipo_upcoming_check.py
+
+      - name: Commit and push if anything changed
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "the-stock-check-bot"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add lib/data/ipo_upcoming_status.json
+            CHECK_DATE=$(python3 -c "import json; print(json.load(open('lib/data/ipo_upcoming_status.json'))['as_of'])")
+            git commit -m "Weekly IPO calendar check: as of ${CHECK_DATE}"
+            git push
+            echo "Pushed IPO calendar check for ${CHECK_DATE}."
+          else
+            echo "No changes — nothing to commit."
+          fi

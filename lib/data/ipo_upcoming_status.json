@@ -1,0 +1,62 @@
+{
+  "as_of": "2026-11-19",
+  "checked_at": "2026-11-19T22:43:43Z",
+  "checker": "scripts/ipo_upcoming_check.py (weekly, Sundays 06:00 UTC)",
+  "entries": {
+    "AGKO": {
+      "has_424b4": false,
+      "latest_accession": "0001104659-26-126335",
+      "latest_filing_date": "2026-11-12",
+      "latest_form": "F-1/A",
+      "listed": false,
+      "notes": "F-1/A Amendment No. 2, Nov 12, 2026 \u2014 cover still shows the price range blank (verified from the filing).",
+      "withdrawn": false
+    },
+    "DODC": {
+      "has_424b4": false,
+      "latest_accession": "0001193125-26-414188",
+      "latest_filing_date": "2026-10-05",
+      "latest_form": "F-1",
+      "listed": false,
+      "notes": "F-1 Oct 5, 2026 \u2014 verified directly from EDGAR submissions JSON.",
+      "withdrawn": false
+    },
+    "NSCL": {
+      "has_424b4": false,
+      "latest_accession": "0001193125-26-458722",
+      "latest_filing_date": "2026-11-12",
+      "latest_form": "S-1/A",
+      "listed": false,
+      "notes": "S-1/A Nov 12, 2026 \u2014 verified directly from EDGAR submissions JSON; still no price range.",
+      "withdrawn": false
+    },
+    "OPENAI": {
+      "has_424b4": false,
+      "latest_accession": null,
+      "latest_filing_date": null,
+      "latest_form": null,
+      "listed": false,
+      "notes": "No public filing; status checked against press, not EDGAR. Confidential draft S-1 submitted Jun 8, 2026 (company-confirmed).",
+      "withdrawn": false
+    },
+    "OURA": {
+      "has_424b4": false,
+      "latest_accession": "0001193125-26-401224",
+      "latest_filing_date": "2026-09-24",
+      "latest_form": "FWP",
+      "listed": false,
+      "notes": "Latest filing is an FWP (Sep 24, 2026); the terms-bearing amendment is S-1/A Sep 21, 2026. Postponed Sep 29, 2026 (company press release); registration still on file, no RW withdrawal.",
+      "withdrawn": false
+    },
+    "SBE": {
+      "has_424b4": false,
+      "latest_accession": "0001628280-26-075026",
+      "latest_filing_date": "2026-11-19",
+      "latest_form": "S-1/A",
+      "listed": false,
+      "notes": "S-1/A No. 3 filed Nov 19, 2026 \u2014 first amendment since the reported delay; contents not yet read.",
+      "withdrawn": false
+    }
+  },
+  "note": "Written by scripts/ipo_upcoming_check.py only. A 424B4, an RW withdrawal or a listed ticker flags the entry for graduation off the calendar \u2014 the script never edits lib/data/ipo_upcoming.json. Seeded 2026-11-19 from direct EDGAR reads."
+}

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
 import { ETF_RESULTS } from '@/lib/etf-data'
 import { INDEX_RESULTS } from '@/lib/index-data'
-import { IPO_RESULTS } from '@/lib/ipo-data'
+import { IPO_RESULTS, IPO_UPCOMING_COUNT } from '@/lib/ipo-data'
 import fearGreedJson from '@/lib/data/fear_greed.json'
 import { allGrids, toStockRow } from '@/lib/public'
 import { ENGINE_VERSION } from '@/lib/site'
@@ -122,7 +122,8 @@ export default function HomePage() {
           get the same two reads, and the VIX gets a volatility regime read instead. And it
           carries {IPO_RESULTS.universe_count} IPO dossiers — the tape, the filing and the
           calendar for recent mega-IPOs that are too new for a check, with no score, no
-          fair value and no verdict.
+          fair value and no verdict — plus an upcoming-IPO calendar tracking{' '}
+          {IPO_UPCOMING_COUNT} filed mega-IPOs that have not listed yet.
         </p>
       </section>
 
@@ -154,6 +155,7 @@ export default function HomePage() {
         etfCount={ETF_RESULTS.universe_count}
         indexCount={INDEX_RESULTS.universe_count}
         ipoCount={IPO_RESULTS.universe_count}
+        ipoUpcomingCount={IPO_UPCOMING_COUNT}
         fearGreed={{
           score: fearGreedJson.score,
           rating: fearGreedJson.rating,

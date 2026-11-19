@@ -163,6 +163,9 @@ def sync_sitemap(tickers, ts):
         fail("sitemap.xml: no /indexes entry to anchor the /ipos line")
     idx = next(i for i, l in enumerate(out) if "/ipos</loc>" in l)
     idx_lines = [
+        f"<url><loc>{SITE}/ipos/upcoming</loc><lastmod>{ts}</lastmod>"
+        f"<changefreq>weekly</changefreq><priority>0.7</priority></url>",
+    ] + [
         f"<url><loc>{SITE}/ipo/{t}</loc><lastmod>{ts}</lastmod>"
         f"<changefreq>daily</changefreq><priority>0.8</priority></url>"
         for t in sorted(tickers)]
