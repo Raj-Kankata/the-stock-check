@@ -60,6 +60,7 @@ export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/stocks', label: 'All Stocks' },
   { href: '/etfs', label: 'ETFs' },
+  { href: '/indexes', label: 'Indexes' },
   { href: '/picks', label: 'Top Picks' },
   { href: '/trending', label: 'Trending' },
   { href: '/performance', label: 'Performance' },

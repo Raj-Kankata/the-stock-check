@@ -56,6 +56,12 @@ const ICONS: Record<string, ReactNode> = {
       <path d="M3 17l9 5 9-5" />
     </Icon>
   ),
+  '/indexes': (
+    <Icon>
+      <path d="M3 3v18h18" />
+      <path d="M7 14l4-5 3 3 5-7" />
+    </Icon>
+  ),
   '/picks': (
     <Icon>
       <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z" />
