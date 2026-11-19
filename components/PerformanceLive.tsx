@@ -131,6 +131,19 @@ export default function PerformanceLive({
           </span>
         </p>
       ) : null}
+      <p className="footnote">
+        <strong>How to read these prices.</strong> The entry price is the closing price on{' '}
+        {entryDate} — frozen forever; no refresh ever changes it. It is the audit anchor:
+        every return here can be recomputed from the entry price, the latest price, and the
+        equal-weight, no-cost, no-dividend method. During market hours (09:30–16:00 ET)
+        this table shows live prices, polled about once a minute from TradingView, and the
+        return shown is entry price → live price, so the numbers move while the market is
+        open. At the close, and outside market hours, the table shows the baked close from
+        the most recent nightly refresh (05:20 UTC) — the latest close shown is the{' '}
+        {latestCloseDate} close — and the return is entry price → that close; each nightly
+        refresh adds one more close and the record lengthens by a day. Past performance
+        does not guarantee future results — the full note is at the bottom of the page.
+      </p>
     </Card>
   )
 }
