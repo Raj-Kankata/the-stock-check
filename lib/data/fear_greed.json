@@ -1,12 +1,12 @@
 {
  "as_of": "2026-11-19",
  "value_date": "2026-11-19",
- "updated_at": "2026-11-19T15:03:48+00:00",
+ "updated_at": "2026-11-19T15:29:10+00:00",
  "source": "CNN Fear & Greed Index",
  "source_url": "https://www.cnn.com/markets/fear-and-greed",
- "score": 29.7,
+ "score": 28.6,
  "rating": "Fear",
- "prev_close": 29.9,
+ "prev_close": 24.6,
  "prev_1_week": 40.3,
  "prev_1_month": 19.5,
  "prev_1_year": 7.9,
@@ -15,47 +15,47 @@
    "key": "momentum",
    "label": "Market Momentum",
    "what": "S&P 500 vs its 125-day moving average",
-   "raw": "S&P 500 7,389.4 is below its 125-day average (7,592.4)",
-   "score": 9.0,
+   "raw": "S&P 500 7,352.2 is below its 125-day average (7,592.1)",
+   "score": 6.8,
    "rating": "Extreme Fear"
   },
   {
    "key": "strength",
    "label": "Stock Price Strength",
    "what": "NYSE stocks at 52-week highs vs 52-week lows",
-   "raw": "Net new highs -4.9 (more new lows than highs)",
-   "score": 33.6,
+   "raw": "Net new highs -5.0 (more new lows than highs)",
+   "score": 33.0,
    "rating": "Fear"
   },
   {
    "key": "breadth",
    "label": "Stock Price Breadth",
    "what": "McClellan Volume Summation Index",
-   "raw": "McClellan Volume Summation 469.9",
-   "score": 36.0,
+   "raw": "McClellan Volume Summation 467.9",
+   "score": 35.6,
    "rating": "Fear"
   },
   {
    "key": "put_call",
    "label": "Put and Call Options",
    "what": "5-day average put/call ratio (CNN's own series)",
-   "raw": "5-day average put/call 0.84",
-   "score": 21.0,
+   "raw": "5-day average put/call 0.85",
+   "score": 19.8,
    "rating": "Extreme Fear"
   },
   {
    "key": "volatility",
    "label": "Market Volatility",
    "what": "VIX vs its 50-day moving average",
-   "raw": "VIX 22.6 is above its 50-day average (17.9)",
-   "score": 50.0,
-   "rating": "Neutral"
+   "raw": "VIX 23.0 is above its 50-day average (17.9)",
+   "score": 44.7,
+   "rating": "Fear"
   },
   {
    "key": "junk_bond",
    "label": "Junk Bond Demand",
    "what": "Yield spread, junk bonds vs investment grade",
-   "raw": "Spread 1.22",
+   "raw": "Spread 1.21",
    "score": 45.8,
    "rating": "Neutral"
   },
@@ -63,8 +63,8 @@
    "key": "safe_haven",
    "label": "Safe Haven Demand",
    "what": "Stocks vs bonds, past 20 days",
-   "raw": "-2.5% over the past 20 days",
-   "score": 18.4,
+   "raw": "-3.3% over the past 20 days",
+   "score": 14.8,
    "rating": "Extreme Fear"
   }
  ],
@@ -243,7 +243,7 @@
   },
   {
    "date": "2026-11-19",
-   "score": 29.7,
+   "score": 28.6,
    "rating": "Fear"
   }
  ]

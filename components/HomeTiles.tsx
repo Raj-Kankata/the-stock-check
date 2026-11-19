@@ -10,6 +10,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import FearGreedDial from '@/components/FearGreedDial'
 import { pct } from '@/lib/format'
 import {
   fetchFearGreed,
@@ -26,17 +27,6 @@ import {
 // tile polls every 10 minutes during market hours only — never after
 // hours, when the baked close value is the reading.
 const FG_POLL_MS = 600_000
-
-// Gauge segments follow CNN's bands (width = band width in points):
-// Extreme Fear 0–25 red, Fear 25–45 orange, Neutral 45–55 yellow,
-// Greed 55–75 light green, Extreme Greed 75–100 green.
-const FG_GAUGE_SEGS = [
-  { width: 25, color: '#dc2626' },
-  { width: 20, color: '#ea580c' },
-  { width: 10, color: '#eab308' },
-  { width: 20, color: '#65a30d' },
-  { width: 25, color: '#15803d' },
-] as const
 
 export interface HomeTileFv {
   symbol: string
@@ -203,10 +193,12 @@ export default function HomeTiles({
   }
 
   // CNN Fear & Greed Index — the homepage indicator only: value,
-  // label, and a compact gauge. No analysis text here; the analysis
-  // lives on /pulse. The gauge marker sits at the score on CNN's
-  // 0–100 scale (Extreme Fear 0–25 · Fear 25–45 · Neutral 45–55 ·
-  // Greed 55–75 · Extreme Greed 75–100).
+  // label, and a small dial gauge (FearGreedDial, CNN's own layout).
+  // No analysis text here; the analysis lives on /pulse. The dial
+  // needle sits at the score on CNN's 0–100 scale (Extreme Fear 0–25
+  // · Fear 25–45 · Neutral 45–55 · Greed 55–75 · Extreme Greed
+  // 75–100); the tile's big number is the score, so the small dial
+  // carries no centre number of its own.
   if (fgScore !== null && fgRating !== null) {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     const asOfTxt =
@@ -254,20 +246,7 @@ export default function HomeTiles({
               <div className="stat-label">{tile.label}</div>
               <div className="footnote">{tile.sub}</div>
               {tile.gauge !== undefined ? (
-                <div className="fg-gauge" aria-hidden="true">
-                  <div className="fg-gauge-bar">
-                    {FG_GAUGE_SEGS.map((s) => (
-                      <span
-                        key={s.color}
-                        style={{ flexGrow: s.width, background: s.color }}
-                      />
-                    ))}
-                  </div>
-                  <span
-                    className="fg-gauge-marker"
-                    style={{ left: `${Math.max(0, Math.min(100, tile.gauge))}%` }}
-                  />
-                </div>
+                <FearGreedDial score={tile.gauge} variant="small" />
               ) : null}
             </>
           )

@@ -55,11 +55,18 @@ figures); history has >= 200 rows; the latest value date is within
 the last 5 calendar days. A fetch failure, a failed check, or a stale
 feed aborts the run with NOTHING written.
 
-Note on previous_close: the endpoint's previous_close field did NOT
-match the history series on 2026-11-19 (24.61 vs Nov 18's 29.89),
-while previous_1_week / 1_month / 1_year all match the history
-exactly. So the previous close is computed from the history series
-(the row before the latest date), not trusted from the field.
+Note on previous_close (resolved 2026-11-19): the endpoint's
+previous_close field (24.61) does NOT match the history series
+(Nov 18: 29.89), while previous_1_week / 1_month / 1_year all match
+the history exactly. CNN's own site displays the field's value
+(Previous close 24), so the NAMED fields are what the site shows —
+the history series is the odd one out for the previous close only.
+The refresh therefore uses the named fields for all four reference
+values, cross-checks 1-week / 1-month / 1-year against the history
+(fail on disagreement), and logs — does not fail — a previous_close
+mismatch, since it is a stable CNN quirk and failing would block the
+refresh over a value CNN itself publishes. Documented in
+PULSE_FEAR_GREED.md.
 
 Usage:
   python3 scripts/fear_greed_refresh.py
@@ -307,12 +314,26 @@ def main():
         fail(f"CNN composite {score} disagrees with history last row "
              f"{history[-1]['score']} on {value_date}")
 
-    # Previous values from the history series (the endpoint's
-    # previous_close field did not match the series on 2026-11-19, so
-    # it is not trusted — see module docstring).
+    # Reference values: the endpoint's NAMED fields — those are what
+    # CNN itself displays (its site shows Previous close 24, the
+    # field's 24.61, not the history series' Nov 18 value 29.89).
+    # 1-week / 1-month / 1-year match the history exactly, so they
+    # are cross-checked against it below (fail on disagreement);
+    # previous_close is the known exception — a mismatch is logged,
+    # not failed (see docstring).
+    def named_ref(field):
+        v = fg.get(field)
+        if not isinstance(v, (int, float)) or not 0 <= v <= 100:
+            fail(f"CNN {field} missing or out of range: {v!r}")
+        return round(float(v), 1)
+
+    prev_close = named_ref("previous_close")
+    prev_1_week = named_ref("previous_1_week")
+    prev_1_month = named_ref("previous_1_month")
+    prev_1_year = named_ref("previous_1_year")
+
     by_date = {h["date"]: h["score"] for h in history}
     prev_date = history[-2]["date"] if len(history) > 1 else None
-    prev_close = by_date.get(prev_date) if prev_date else None
 
     def value_n_days_ago(n):
         target = (datetime.date.fromisoformat(value_date)
@@ -339,6 +360,24 @@ def main():
             if h["date"] <= target.isoformat():
                 return h["score"]
         return None
+
+    # Cross-check the three reference values that should match the
+    # history (fail on disagreement — a mismatch means the payload
+    # is inconsistent). previous_close is the known exception: log
+    # the mismatch, don't fail (see docstring).
+    for field, named, hist in (
+        ("previous_1_week", prev_1_week, value_n_days_ago(7)),
+        ("previous_1_month", prev_1_month, value_one_month_ago()),
+        ("previous_1_year", prev_1_year, value_n_days_ago(365)),
+    ):
+        if hist is None or abs(named - hist) > 0.5:
+            fail(f"CNN {field} {named} disagrees with history "
+                 f"{hist} — payload looks inconsistent")
+    hist_prev = by_date.get(prev_date) if prev_date else None
+    if hist_prev is not None and abs(prev_close - hist_prev) > 0.5:
+        print(f"NOTE: CNN previous_close field {prev_close} differs "
+              f"from history {prev_date} value {hist_prev} — using "
+              f"the field, as CNN displays it (see docstring).")
 
     components = []
     comp_scores = []
@@ -381,24 +420,26 @@ def main():
         "score": round(float(score), 1),
         "rating": rating,
         "prev_close": prev_close,
-        "prev_1_week": value_n_days_ago(7),
-        "prev_1_month": value_one_month_ago(),
-        "prev_1_year": value_n_days_ago(365),
+        "prev_1_week": prev_1_week,
+        "prev_1_month": prev_1_month,
+        "prev_1_year": prev_1_year,
         "components": components,
         "bands": BANDS_JSON,
         "history": history[-HISTORY_KEEP:],
     }
-    if stored is not None and stored == out:
-        print("No changes — nothing to write.")
-        return
-    if stored is not None and stored.get("value_date") == value_date:
-        # Same value date but something else moved (e.g. the intraday
-        # timestamp) — the close value is what the site shows, and
-        # rewriting on every run would churn the commit. Only the
-        # value date (or the score/components) justifies a write, and
-        # those are already in the equality check above.
-        print(f"No new value date ({value_date}) — nothing to write.")
-        return
+    if stored is not None:
+        # The intraday timestamp moves on every fetch, so it is not
+        # part of the comparison — only content justifies a write.
+        # (The previous_close correction on 2026-11-19 — 29.9 to
+        # 24.6, same value date — is exactly the kind of content
+        # change that must still write, so the value-date check
+        # alone no longer suppresses it.)
+        content_keys = ("value_date", "score", "rating", "prev_close",
+                        "prev_1_week", "prev_1_month", "prev_1_year",
+                        "components", "bands", "history")
+        if all(stored.get(k) == out[k] for k in content_keys):
+            print("No changes — nothing to write.")
+            return
     with open(RESULTS, "w") as f:
         json.dump(out, f, indent=1)
         f.write("\n")

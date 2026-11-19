@@ -985,32 +985,74 @@ tr.gap-above td {
   font-weight: bold;
   margin: 2px 0;
 }
-/* Fear & Greed gauge (homepage tile + Pulse panel): a 0–100 bar in
-   CNN's five bands — Extreme Fear red, Fear orange, Neutral yellow,
-   Greed light green, Extreme Greed green — with a marker at the
-   score. Segment widths follow the band widths (25/20/10/20/25). */
-.fg-gauge {
-  position: relative;
-  margin: 8px 0 2px;
-}
-.fg-gauge-bar {
-  display: flex;
-  height: 8px;
-  border-radius: 999px;
-  overflow: hidden;
-}
-.fg-gauge-bar span {
+/* Fear & Greed dial gauge (homepage tile + Pulse panel): a
+   semicircular dial in CNN's layout — five bands along the arc, a
+   needle at the score, the score in the centre (medium only). The
+   small tile dial carries no centre number (the tile's big number is
+   the score). Reference rows beside the medium dial mirror CNN's own
+   page: label + band on the left, dotted leader, coloured dot with
+   the value on the right. */
+.fg-dial {
   display: block;
-  height: 100%;
+  height: auto;
 }
-.fg-gauge-marker {
-  position: absolute;
-  top: -3px;
-  bottom: -3px;
-  width: 3px;
-  background: var(--ink);
-  border-radius: 2px;
-  transform: translateX(-50%);
+.fg-dial-small {
+  width: 100%;
+  max-width: 150px;
+  margin: 6px auto 0;
+}
+.fg-dial-wrap {
+  display: flex;
+  gap: 8px 24px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px 0 4px;
+}
+.fg-dial-medium {
+  width: 264px;
+  max-width: 100%;
+  flex: 0 0 auto;
+}
+.fg-refs {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fg-ref {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fg-ref-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.fg-ref-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+.fg-ref-band {
+  font-weight: 700;
+  font-size: 14px;
+}
+.fg-ref-dots {
+  flex: 1;
+  min-width: 12px;
+  border-bottom: 1px dotted var(--muted);
+}
+.fg-ref-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  flex: 0 0 auto;
 }
 .mixbar {
   display: flex;

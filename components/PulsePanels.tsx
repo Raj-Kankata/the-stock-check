@@ -54,6 +54,7 @@ import macroJson from '@/lib/data/macro.json'
 import marketJson from '@/lib/data/market.json'
 import putCallJson from '@/lib/data/put_call.json'
 import fearGreedJson from '@/lib/data/fear_greed.json'
+import FearGreedDial, { fgBandFor } from '@/components/FearGreedDial'
 import {
   fetchFearGreed,
   fetchMarketBreadth,
@@ -73,15 +74,6 @@ const POLL_MS = 60_000
 // minutes during market hours only — never after hours, when the
 // baked close value is the reading.
 const FG_POLL_MS = 600_000
-
-// Gauge segments follow CNN's bands (width = band width in points).
-const FG_GAUGE_SEGS = [
-  { width: 25, color: '#dc2626' },
-  { width: 20, color: '#ea580c' },
-  { width: 10, color: '#eab308' },
-  { width: 20, color: '#65a30d' },
-  { width: 25, color: '#15803d' },
-] as const
 
 const MONTHS = [
   'Jan',
@@ -433,6 +425,17 @@ export default function PulsePanels() {
       )
     : []
   const fgRecent = fgHistory.slice(-10).reverse()
+
+  // Reference readings beside the dial (CNN's own displayed values —
+  // the endpoint's named fields; see PULSE_FEAR_GREED.md for the
+  // previous-close note). They are fixed for the day, so they always
+  // come from the baked close, never from the live poll.
+  const fgRefs = [
+    { label: 'Previous close', value: fg.prev_close },
+    { label: '1 week ago', value: fg.prev_1_week },
+    { label: '1 month ago', value: fg.prev_1_month },
+    { label: '1 year ago', value: fg.prev_1_year },
+  ].filter((r) => isFiniteNumber(r.value))
 
   // ---- live state (fills in after mount; never in the prerender) ----
   const liveStore = useLiveQuotes()
@@ -1146,38 +1149,37 @@ export default function PulsePanels() {
                   <>Live from CNN, updated {fgLiveAt ?? '—'} CT.</>
                 ) : (
                   <>As of the {fgValueDate ?? '—'} close (CNN).</>
-                )}{' '}
-                {isFiniteNumber(fg.prev_close) ? (
-                  <>Previous close {fg.prev_close!.toFixed(0)} · </>
-                ) : null}
-                {isFiniteNumber(fg.prev_1_week) ? (
-                  <>1 week ago {fg.prev_1_week!.toFixed(0)} · </>
-                ) : null}
-                {isFiniteNumber(fg.prev_1_month) ? (
-                  <>1 month ago {fg.prev_1_month!.toFixed(0)} · </>
-                ) : null}
-                {isFiniteNumber(fg.prev_1_year) ? (
-                  <>1 year ago {fg.prev_1_year!.toFixed(0)}.</>
-                ) : null}
+                )}
               </p>
-              <div className="fg-gauge" aria-hidden="true">
-                <div className="fg-gauge-bar">
-                  {FG_GAUGE_SEGS.map((s) => (
-                    <span
-                      key={s.color}
-                      style={{ flexGrow: s.width, background: s.color }}
-                    />
-                  ))}
-                </div>
-                <span
-                  className="fg-gauge-marker"
-                  style={{ left: `${Math.max(0, Math.min(100, fgScore))}%` }}
-                />
+              <div className="fg-dial-wrap">
+                <FearGreedDial score={fgScore} variant="medium" />
+                {fgRefs.length > 0 ? (
+                  <div className="fg-refs" aria-label="Previous readings">
+                    {fgRefs.map((r) => {
+                      const band = fgBandFor(r.value!)
+                      return (
+                        <div className="fg-ref" key={r.label}>
+                          <span className="fg-ref-text">
+                            <span className="fg-ref-label">{r.label}</span>
+                            <span className="fg-ref-band">{band.label}</span>
+                          </span>
+                          <span className="fg-ref-dots" aria-hidden="true" />
+                          <span
+                            className="fg-ref-dot"
+                            style={{
+                              background: band.color,
+                              color:
+                                band.label === 'Neutral' ? '#1a2332' : '#fff',
+                            }}
+                          >
+                            {Math.round(r.value!)}
+                          </span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                ) : null}
               </div>
-              <p className="footnote">
-                Extreme Fear 0–25 · Fear 25–45 · Neutral 45–55 · Greed
-                55–75 · Extreme Greed 75–100.
-              </p>
               {fgComponents.length > 0 ? (
                 <>
                   <p>
