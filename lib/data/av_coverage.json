@@ -1,9 +1,9 @@
 {
-  "pulled": 95,
+  "pulled": 120,
   "universe": 748,
-  "remaining": 652,
+  "remaining": 627,
   "skipped_no_data": 1,
-  "total_quarterly_rows": 6651,
-  "tickers_covering_all_12_quarters": 87,
-  "as_of": "2026-11-18"
+  "total_quarterly_rows": 8436,
+  "tickers_covering_all_12_quarters": 110,
+  "as_of": "2026-11-19"
 }
