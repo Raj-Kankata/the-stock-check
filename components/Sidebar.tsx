@@ -49,6 +49,13 @@ const ICONS: Record<string, ReactNode> = {
       <rect x="14" y="14" width="7" height="7" rx="1" />
     </Icon>
   ),
+  '/etfs': (
+    <Icon>
+      <path d="M12 2l9 5-9 5-9-5 9-5z" />
+      <path d="M3 12l9 5 9-5" />
+      <path d="M3 17l9 5 9-5" />
+    </Icon>
+  ),
   '/picks': (
     <Icon>
       <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z" />

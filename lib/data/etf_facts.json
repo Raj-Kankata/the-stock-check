@@ -1,0 +1,3711 @@
+{
+ "as_of": "2026-11-19",
+ "source": "stockanalysis.com",
+ "facts": {
+  "ACWI": {
+   "expense_ratio": 0.0032,
+   "aum_usd": 32380000000.0,
+   "dividend_yield": 0.0149,
+   "holdings_count": 2250,
+   "inception": "Mar 26, 2008",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0527
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0365
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0364
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0255
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0168
+    },
+    {
+     "rank": 6,
+     "symbol": "TPE:2330",
+     "name": "Taiwan Semiconductor Manufacturing Company Limited",
+     "weight": 0.0166
+    },
+    {
+     "rank": 7,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0158
+    },
+    {
+     "rank": 8,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0139
+    },
+    {
+     "rank": 9,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0133
+    },
+    {
+     "rank": 10,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0116
+    }
+   ]
+  },
+  "AGG": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 137460000000.0,
+   "dividend_yield": 0.0417,
+   "holdings_count": 13550,
+   "inception": "Sep 22, 2003",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "BLACKROCK CASH CL INST SL AGENCY",
+     "weight": 0.0274
+    },
+    {
+     "rank": 2,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.63 2035-02-15",
+     "weight": 0.004
+    },
+    {
+     "rank": 3,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.0 2030-02-28",
+     "weight": 0.004
+    },
+    {
+     "rank": 4,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 3.88 2034-08-15",
+     "weight": 0.0039
+    },
+    {
+     "rank": 5,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.25 2035-05-15",
+     "weight": 0.0039
+    },
+    {
+     "rank": 6,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE (2OLD) - 4.38 2036-05-15",
+     "weight": 0.0038
+    },
+    {
+     "rank": 7,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.25 2035-08-15",
+     "weight": 0.0038
+    },
+    {
+     "rank": 8,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.25 2034-11-15",
+     "weight": 0.0038
+    },
+    {
+     "rank": 9,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.38 2034-05-15",
+     "weight": 0.0038
+    },
+    {
+     "rank": 10,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.13 2036-02-15",
+     "weight": 0.0038
+    }
+   ]
+  },
+  "AVUV": {
+   "expense_ratio": 0.0025,
+   "aum_usd": 32500000000.0,
+   "dividend_yield": 0.0127,
+   "holdings_count": 795,
+   "inception": "Sep 24, 2019",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "GATX",
+     "name": "GATX Corporation",
+     "weight": 0.0105
+    },
+    {
+     "rank": 2,
+     "symbol": "MATX",
+     "name": "Matson, Inc.",
+     "weight": 0.0098
+    },
+    {
+     "rank": 3,
+     "symbol": "LYFT",
+     "name": "Lyft, Inc.",
+     "weight": 0.0086
+    },
+    {
+     "rank": 4,
+     "symbol": "M",
+     "name": "Macy's, Inc.",
+     "weight": 0.0077
+    },
+    {
+     "rank": 5,
+     "symbol": "TPC",
+     "name": "Tutor Perini Corporation",
+     "weight": 0.0077
+    },
+    {
+     "rank": 6,
+     "symbol": "CROX",
+     "name": "Crocs, Inc.",
+     "weight": 0.0074
+    },
+    {
+     "rank": 7,
+     "symbol": "RUSHA",
+     "name": "Rush Enterprises, Inc.",
+     "weight": 0.0073
+    },
+    {
+     "rank": 8,
+     "symbol": "ANF",
+     "name": "Abercrombie &amp; Fitch Co.",
+     "weight": 0.007
+    },
+    {
+     "rank": 9,
+     "symbol": "LEA",
+     "name": "Lear Corporation",
+     "weight": 0.0067
+    },
+    {
+     "rank": 10,
+     "symbol": "CBT",
+     "name": "Cabot Corporation",
+     "weight": 0.0067
+    }
+   ]
+  },
+  "BND": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 165320000000.0,
+   "dividend_yield": 0.0417,
+   "holdings_count": 15000,
+   "inception": "Apr 3, 2007",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "Mktliq 12/31/2049",
+     "weight": 0.0106
+    },
+    {
+     "rank": 2,
+     "symbol": "T.4.25 11.15.34",
+     "name": "United States Treasury Notes",
+     "weight": 0.0042
+    },
+    {
+     "rank": 3,
+     "symbol": "T.4.625 02.15.35",
+     "name": "United States Treasury Notes",
+     "weight": 0.0042
+    },
+    {
+     "rank": 4,
+     "symbol": "T.4.625 08.15.36",
+     "name": "United States Treasury Notes",
+     "weight": 0.0041
+    },
+    {
+     "rank": 5,
+     "symbol": "T.4.375 05.15.34",
+     "name": "United States Treasury Notes",
+     "weight": 0.0041
+    },
+    {
+     "rank": 6,
+     "symbol": "T.3.875 08.15.34",
+     "name": "United States Treasury Notes",
+     "weight": 0.0041
+    },
+    {
+     "rank": 7,
+     "symbol": "T.4 02.15.34",
+     "name": "United States Treasury Notes",
+     "weight": 0.004
+    },
+    {
+     "rank": 8,
+     "symbol": "T.3.5 01.31.28",
+     "name": "United States Treasury Notes",
+     "weight": 0.0039
+    },
+    {
+     "rank": 9,
+     "symbol": "T.4.125 02.15.36",
+     "name": "United States Treasury Notes",
+     "weight": 0.0039
+    },
+    {
+     "rank": 10,
+     "symbol": "T.4.25 08.15.35",
+     "name": "United States Treasury Notes",
+     "weight": 0.0038
+    }
+   ]
+  },
+  "FBND": {
+   "expense_ratio": 0.0036,
+   "aum_usd": 28380000000.0,
+   "dividend_yield": 0.0484,
+   "holdings_count": 4929,
+   "inception": "Oct 6, 2014",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "T.4.125 02.15.36",
+     "name": "United States Treasury Notes 4.125%",
+     "weight": 0.0199
+    },
+    {
+     "rank": 2,
+     "symbol": "T.4.375 05.15.36",
+     "name": "United States Treasury Notes 4.375%",
+     "weight": 0.0188
+    },
+    {
+     "rank": 3,
+     "symbol": "T.4.25 08.15.35",
+     "name": "United States Treasury Notes 4.25%",
+     "weight": 0.0184
+    },
+    {
+     "rank": 4,
+     "symbol": "T.5 05.15.56",
+     "name": "United States Treasury Bonds 5%",
+     "weight": 0.0136
+    },
+    {
+     "rank": 5,
+     "symbol": "T.5.125 08.15.56",
+     "name": "United States Treasury Bonds 5.125%",
+     "weight": 0.0136
+    },
+    {
+     "rank": 6,
+     "symbol": "T.3.875 12.31.32",
+     "name": "United States Treasury Notes 3.875%",
+     "weight": 0.0135
+    },
+    {
+     "rank": 7,
+     "symbol": "T.4.25 02.15.54",
+     "name": "United States Treasury Bonds 4.25%",
+     "weight": 0.0134
+    },
+    {
+     "rank": 8,
+     "symbol": "T.4.5 11.15.54",
+     "name": "United States Treasury Bonds 4.5%",
+     "weight": 0.011
+    },
+    {
+     "rank": 9,
+     "symbol": "n/a",
+     "name": "Fidelity Cash Central Fund",
+     "weight": 0.0109
+    },
+    {
+     "rank": 10,
+     "symbol": "FNCL.2 1.14",
+     "name": "Federal National Mortgage Association 2%",
+     "weight": 0.0104
+    }
+   ]
+  },
+  "FDRR": {
+   "expense_ratio": 0.0015,
+   "aum_usd": 755280000.0,
+   "dividend_yield": 0.0213,
+   "holdings_count": 126,
+   "inception": "Sep 12, 2016",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0894
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.069
+    },
+    {
+     "rank": 3,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0648
+    },
+    {
+     "rank": 4,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0447
+    },
+    {
+     "rank": 5,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0336
+    },
+    {
+     "rank": 6,
+     "symbol": "DELL",
+     "name": "Dell Technologies Inc.",
+     "weight": 0.0263
+    },
+    {
+     "rank": 7,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0255
+    },
+    {
+     "rank": 8,
+     "symbol": "JPM",
+     "name": "JPMorgan Chase &amp; Co.",
+     "weight": 0.0213
+    },
+    {
+     "rank": 9,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0209
+    },
+    {
+     "rank": 10,
+     "symbol": "JNJ",
+     "name": "Johnson &amp; Johnson",
+     "weight": 0.0182
+    }
+   ]
+  },
+  "FDVV": {
+   "expense_ratio": 0.0015,
+   "aum_usd": 10400000000.0,
+   "dividend_yield": 0.0283,
+   "holdings_count": 113,
+   "inception": "Sep 12, 2016",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0727
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0561
+    },
+    {
+     "rank": 3,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0527
+    },
+    {
+     "rank": 4,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0274
+    },
+    {
+     "rank": 5,
+     "symbol": "JPM",
+     "name": "JPMorgan Chase &amp; Co.",
+     "weight": 0.0273
+    },
+    {
+     "rank": 6,
+     "symbol": "KO",
+     "name": "The Coca-Cola Company",
+     "weight": 0.023
+    },
+    {
+     "rank": 7,
+     "symbol": "DELL",
+     "name": "Dell Technologies Inc.",
+     "weight": 0.0217
+    },
+    {
+     "rank": 8,
+     "symbol": "PG",
+     "name": "The Procter &amp; Gamble Company",
+     "weight": 0.0208
+    },
+    {
+     "rank": 9,
+     "symbol": "BBY",
+     "name": "Best Buy Co., Inc.",
+     "weight": 0.0203
+    },
+    {
+     "rank": 10,
+     "symbol": "PM",
+     "name": "Philip Morris International Inc.",
+     "weight": 0.0191
+    }
+   ]
+  },
+  "FTEC": {
+   "expense_ratio": 0.0008,
+   "aum_usd": 19360000000.0,
+   "dividend_yield": 0.0043,
+   "holdings_count": 295,
+   "inception": "Oct 21, 2013",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.1969
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.1404
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.1316
+    },
+    {
+     "rank": 4,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0456
+    },
+    {
+     "rank": 5,
+     "symbol": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "weight": 0.0356
+    },
+    {
+     "rank": 6,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.0352
+    },
+    {
+     "rank": 7,
+     "symbol": "CSCO",
+     "name": "Cisco Systems, Inc.",
+     "weight": 0.0165
+    },
+    {
+     "rank": 8,
+     "symbol": "PLTR",
+     "name": "Palantir Technologies Inc.",
+     "weight": 0.0155
+    },
+    {
+     "rank": 9,
+     "symbol": "AMAT",
+     "name": "Applied Materials, Inc.",
+     "weight": 0.0123
+    },
+    {
+     "rank": 10,
+     "symbol": "TXN",
+     "name": "Texas Instruments Incorporated",
+     "weight": 0.012
+    }
+   ]
+  },
+  "FVAL": {
+   "expense_ratio": 0.0015,
+   "aum_usd": 1360000000.0,
+   "dividend_yield": 0.0156,
+   "holdings_count": 138,
+   "inception": "Sep 12, 2016",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.083
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0633
+    },
+    {
+     "rank": 3,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0597
+    },
+    {
+     "rank": 4,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0438
+    },
+    {
+     "rank": 5,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0372
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.029
+    },
+    {
+     "rank": 7,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.0223
+    },
+    {
+     "rank": 8,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0213
+    },
+    {
+     "rank": 9,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0212
+    },
+    {
+     "rank": 10,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.0183
+    }
+   ]
+  },
+  "GLD": {
+   "expense_ratio": 0.004,
+   "aum_usd": 130840000000.0,
+   "dividend_yield": null,
+   "holdings_count": 1,
+   "inception": "Nov 18, 2004",
+   "top_holdings": [],
+   "note": "physical_gold"
+  },
+  "IEF": {
+   "expense_ratio": 0.0015,
+   "aum_usd": 42830000000.0,
+   "dividend_yield": 0.0411,
+   "holdings_count": 20,
+   "inception": "Jul 22, 2002",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.63 2035-02-15",
+     "weight": 0.0885
+    },
+    {
+     "rank": 2,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.13 2036-02-15",
+     "weight": 0.0867
+    },
+    {
+     "rank": 3,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.25 2034-11-15",
+     "weight": 0.0864
+    },
+    {
+     "rank": 4,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.25 2035-05-15",
+     "weight": 0.0858
+    },
+    {
+     "rank": 5,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.0 2035-11-15",
+     "weight": 0.0852
+    },
+    {
+     "rank": 6,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE (2OLD) - 4.38 2036-05-15",
+     "weight": 0.085
+    },
+    {
+     "rank": 7,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.25 2035-08-15",
+     "weight": 0.0835
+    },
+    {
+     "rank": 8,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.38 2034-05-15",
+     "weight": 0.0834
+    },
+    {
+     "rank": 9,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 4.0 2034-02-15",
+     "weight": 0.0816
+    },
+    {
+     "rank": 10,
+     "symbol": "n/a",
+     "name": "TREASURY NOTE - 3.88 2034-08-15",
+     "weight": 0.0804
+    }
+   ]
+  },
+  "IEMG": {
+   "expense_ratio": 0.0009,
+   "aum_usd": 145530000000.0,
+   "dividend_yield": 0.0255,
+   "holdings_count": 2886,
+   "inception": "Oct 18, 2012",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "TPE:2330",
+     "name": "Taiwan Semiconductor Manufacturing Company Limited",
+     "weight": 0.1331
+    },
+    {
+     "rank": 2,
+     "symbol": "KRX:005930",
+     "name": "Samsung Electronics Co., Ltd.",
+     "weight": 0.0545
+    },
+    {
+     "rank": 3,
+     "symbol": "KRX:000660",
+     "name": "SK hynix Inc.",
+     "weight": 0.0371
+    },
+    {
+     "rank": 4,
+     "symbol": "HKG:0700",
+     "name": "Tencent Holdings Limited",
+     "weight": 0.0241
+    },
+    {
+     "rank": 5,
+     "symbol": "HKG:9988",
+     "name": "Alibaba Group Holding Limited",
+     "weight": 0.0149
+    },
+    {
+     "rank": 6,
+     "symbol": "TPE:2454",
+     "name": "MediaTek Inc.",
+     "weight": 0.0138
+    },
+    {
+     "rank": 7,
+     "symbol": "HKG:0939",
+     "name": "China Construction Bank Corporation",
+     "weight": 0.0093
+    },
+    {
+     "rank": 8,
+     "symbol": "NSE:HDFCBANK",
+     "name": "HDFC Bank Limited",
+     "weight": 0.0082
+    },
+    {
+     "rank": 9,
+     "symbol": "KRX:005935",
+     "name": "Samsung Electronics Co., Ltd.",
+     "weight": 0.0075
+    },
+    {
+     "rank": 10,
+     "symbol": "NSE:ICICIBANK",
+     "name": "ICICI Bank Limited",
+     "weight": 0.0074
+    }
+   ]
+  },
+  "ITOT": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 95900000000.0,
+   "dividend_yield": 0.0106,
+   "holdings_count": 2436,
+   "inception": "Jan 20, 2004",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0723
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.053
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0529
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0356
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0231
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0229
+    },
+    {
+     "rank": 7,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0192
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0186
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0159
+    },
+    {
+     "rank": 10,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.0154
+    }
+   ]
+  },
+  "IVE": {
+   "expense_ratio": 0.0018,
+   "aum_usd": 50600000000.0,
+   "dividend_yield": 0.0153,
+   "holdings_count": 439,
+   "inception": "May 22, 2000",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0852
+    },
+    {
+     "rank": 2,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0395
+    },
+    {
+     "rank": 3,
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corporation",
+     "weight": 0.0228
+    },
+    {
+     "rank": 4,
+     "symbol": "WMT",
+     "name": "Walmart Inc.",
+     "weight": 0.0189
+    },
+    {
+     "rank": 5,
+     "symbol": "COST",
+     "name": "Costco Wholesale Corporation",
+     "weight": 0.0163
+    },
+    {
+     "rank": 6,
+     "symbol": "CVX",
+     "name": "Chevron Corporation",
+     "weight": 0.0141
+    },
+    {
+     "rank": 7,
+     "symbol": "TSLA",
+     "name": "Tesla, Inc.",
+     "weight": 0.0135
+    },
+    {
+     "rank": 8,
+     "symbol": "PG",
+     "name": "The Procter &amp; Gamble Company",
+     "weight": 0.0132
+    },
+    {
+     "rank": 9,
+     "symbol": "MRK",
+     "name": "Merck &amp; Co., Inc.",
+     "weight": 0.0117
+    },
+    {
+     "rank": 10,
+     "symbol": "UNH",
+     "name": "UnitedHealth Group Incorporated",
+     "weight": 0.0116
+    }
+   ]
+  },
+  "IVV": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 876400000000.0,
+   "dividend_yield": 0.0115,
+   "holdings_count": 509,
+   "inception": "May 15, 2000",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0811
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0594
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0594
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.04
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.026
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0257
+    },
+    {
+     "rank": 7,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0216
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0208
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0179
+    },
+    {
+     "rank": 10,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.0173
+    }
+   ]
+  },
+  "IWM": {
+   "expense_ratio": 0.0019,
+   "aum_usd": 76570000000.0,
+   "dividend_yield": 0.0101,
+   "holdings_count": 1975,
+   "inception": "May 22, 2000",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "GKOS",
+     "name": "Glaukos Corporation",
+     "weight": 0.0049
+    },
+    {
+     "rank": 2,
+     "symbol": "BTSG",
+     "name": "BrightSpring Health Services, Inc.",
+     "weight": 0.0041
+    },
+    {
+     "rank": 3,
+     "symbol": "FROG",
+     "name": "JFrog Ltd.",
+     "weight": 0.004
+    },
+    {
+     "rank": 4,
+     "symbol": "BKH",
+     "name": "BRIGHT HORIZON ENERGY CORP",
+     "weight": 0.004
+    },
+    {
+     "rank": 5,
+     "symbol": "UMBF",
+     "name": "UMB Financial Corporation",
+     "weight": 0.0034
+    },
+    {
+     "rank": 6,
+     "symbol": "MOG.A",
+     "name": "Moog Inc.",
+     "weight": 0.0033
+    },
+    {
+     "rank": 7,
+     "symbol": "RHP",
+     "name": "Ryman Hospitality Properties, Inc.",
+     "weight": 0.0032
+    },
+    {
+     "rank": 8,
+     "symbol": "TGTX",
+     "name": "TG Therapeutics, Inc.",
+     "weight": 0.0032
+    },
+    {
+     "rank": 9,
+     "symbol": "USD",
+     "name": "USD CASH",
+     "weight": 0.0031
+    },
+    {
+     "rank": 10,
+     "symbol": "CTRE",
+     "name": "CareTrust REIT, Inc.",
+     "weight": 0.0031
+    }
+   ]
+  },
+  "IXUS": {
+   "expense_ratio": 0.0007,
+   "aum_usd": 56490000000.0,
+   "dividend_yield": 0.0316,
+   "holdings_count": 4718,
+   "inception": "Oct 18, 2012",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "TPE:2330",
+     "name": "Taiwan Semiconductor Manufacturing Company Limited",
+     "weight": 0.0406
+    },
+    {
+     "rank": 2,
+     "symbol": "KRX:005930",
+     "name": "Samsung Electronics Co., Ltd.",
+     "weight": 0.0167
+    },
+    {
+     "rank": 3,
+     "symbol": "AMS:ASML",
+     "name": "ASML Holding N.V.",
+     "weight": 0.0132
+    },
+    {
+     "rank": 4,
+     "symbol": "KRX:000660",
+     "name": "SK hynix Inc.",
+     "weight": 0.0113
+    },
+    {
+     "rank": 5,
+     "symbol": "SWX:ROP",
+     "name": "Roche Holding AG",
+     "weight": 0.0085
+    },
+    {
+     "rank": 6,
+     "symbol": "LON:HSBA",
+     "name": "HSBC Holdings plc",
+     "weight": 0.0075
+    },
+    {
+     "rank": 7,
+     "symbol": "HKG:0700",
+     "name": "Tencent Holdings Limited",
+     "weight": 0.0073
+    },
+    {
+     "rank": 8,
+     "symbol": "SWX:NOVN",
+     "name": "Novartis AG",
+     "weight": 0.0073
+    },
+    {
+     "rank": 9,
+     "symbol": "LON:SHEL",
+     "name": "Shell plc",
+     "weight": 0.007
+    },
+    {
+     "rank": 10,
+     "symbol": "LON:AZN",
+     "name": "AstraZeneca PLC",
+     "weight": 0.0069
+    }
+   ]
+  },
+  "IYW": {
+   "expense_ratio": 0.0037,
+   "aum_usd": 23210000000.0,
+   "dividend_yield": 0.0011,
+   "holdings_count": 153,
+   "inception": "May 15, 2000",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.1937
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.1433
+    },
+    {
+     "rank": 3,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.138
+    },
+    {
+     "rank": 4,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0361
+    },
+    {
+     "rank": 5,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0347
+    },
+    {
+     "rank": 6,
+     "symbol": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "weight": 0.0314
+    },
+    {
+     "rank": 7,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.0241
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0239
+    },
+    {
+     "rank": 9,
+     "symbol": "PLTR",
+     "name": "Palantir Technologies Inc.",
+     "weight": 0.0198
+    },
+    {
+     "rank": 10,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0193
+    }
+   ]
+  },
+  "QLD": {
+   "expense_ratio": 0.0089,
+   "aum_usd": 12580000000.0,
+   "dividend_yield": 0.0017,
+   "holdings_count": 130,
+   "inception": "Jun 19, 2006",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "POWERSHARES QQQ (QQQ) SWAP GOLDMAN SACHS INTERNATIONAL",
+     "weight": 0.1485
+    },
+    {
+     "rank": 2,
+     "symbol": "n/a",
+     "name": "NASDAQ 100 E-MINI EQUITY INDEX 18/DEC/2026 NQZ6 INDEX",
+     "weight": 0.1346
+    },
+    {
+     "rank": 3,
+     "symbol": "n/a",
+     "name": "POWERSHARES QQQ (QQQ) SWAP MORGAN STANLEY &amp; CO. INTERNATIONAL PLC",
+     "weight": 0.1318
+    },
+    {
+     "rank": 4,
+     "symbol": "n/a",
+     "name": "NASDAQ 100 INDEX SWAP UBS AG",
+     "weight": 0.1097
+    },
+    {
+     "rank": 5,
+     "symbol": "n/a",
+     "name": "NASDAQ 100 INDEX SWAP NOMURA CAPITAL",
+     "weight": 0.1076
+    },
+    {
+     "rank": 6,
+     "symbol": "n/a",
+     "name": "NASDAQ 100 INDEX SWAP SOCIETE GENERALE",
+     "weight": 0.0852
+    },
+    {
+     "rank": 7,
+     "symbol": "n/a",
+     "name": "NASDAQ 100 INDEX SWAP CITIBANK NA",
+     "weight": 0.0813
+    },
+    {
+     "rank": 8,
+     "symbol": "n/a",
+     "name": "NASDAQ 100 INDEX SWAP BANK OF AMERICA NA",
+     "weight": 0.0789
+    },
+    {
+     "rank": 9,
+     "symbol": "n/a",
+     "name": "NASDAQ 100 INDEX SWAP JPMORGAN CHASE BANK NA",
+     "weight": 0.0788
+    },
+    {
+     "rank": 10,
+     "symbol": "n/a",
+     "name": "NASDAQ 100 INDEX SWAP GOLDMAN SACHS INTERNATIONAL",
+     "weight": 0.0783
+    }
+   ]
+  },
+  "QQQ": {
+   "expense_ratio": 0.0018,
+   "aum_usd": 475550000000.0,
+   "dividend_yield": 0.0047,
+   "holdings_count": 104,
+   "inception": "Mar 10, 1999",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0872
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0651
+    },
+    {
+     "rank": 3,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0637
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0471
+    },
+    {
+     "rank": 5,
+     "symbol": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "weight": 0.0385
+    },
+    {
+     "rank": 6,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.038
+    },
+    {
+     "rank": 7,
+     "symbol": "TSLA",
+     "name": "Tesla, Inc.",
+     "weight": 0.0338
+    },
+    {
+     "rank": 8,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0315
+    },
+    {
+     "rank": 9,
+     "symbol": "WMT",
+     "name": "Walmart Inc.",
+     "weight": 0.0292
+    },
+    {
+     "rank": 10,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0282
+    }
+   ]
+  },
+  "QQQM": {
+   "expense_ratio": 0.0015,
+   "aum_usd": 105310000000.0,
+   "dividend_yield": 0.0048,
+   "holdings_count": 106,
+   "inception": "Oct 13, 2020",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0872
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0651
+    },
+    {
+     "rank": 3,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0637
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0471
+    },
+    {
+     "rank": 5,
+     "symbol": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "weight": 0.0385
+    },
+    {
+     "rank": 6,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.038
+    },
+    {
+     "rank": 7,
+     "symbol": "TSLA",
+     "name": "Tesla, Inc.",
+     "weight": 0.0338
+    },
+    {
+     "rank": 8,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0315
+    },
+    {
+     "rank": 9,
+     "symbol": "WMT",
+     "name": "Walmart Inc.",
+     "weight": 0.0292
+    },
+    {
+     "rank": 10,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0282
+    }
+   ]
+  },
+  "SCHB": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 43490000000.0,
+   "dividend_yield": 0.0109,
+   "holdings_count": 2429,
+   "inception": "Nov 3, 2009",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0718
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0537
+    },
+    {
+     "rank": 3,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0527
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0353
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0232
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0221
+    },
+    {
+     "rank": 7,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0193
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0187
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.016
+    },
+    {
+     "rank": 10,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.0154
+    }
+   ]
+  },
+  "SCHD": {
+   "expense_ratio": 0.0006,
+   "aum_usd": 123860000000.0,
+   "dividend_yield": 0.0304,
+   "holdings_count": 102,
+   "inception": "Oct 20, 2011",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "PG",
+     "name": "The Procter &amp; Gamble Company",
+     "weight": 0.0455
+    },
+    {
+     "rank": 2,
+     "symbol": "TXN",
+     "name": "Texas Instruments Incorporated",
+     "weight": 0.0448
+    },
+    {
+     "rank": 3,
+     "symbol": "KO",
+     "name": "The Coca-Cola Company",
+     "weight": 0.0438
+    },
+    {
+     "rank": 4,
+     "symbol": "HD",
+     "name": "The Home Depot, Inc.",
+     "weight": 0.0424
+    },
+    {
+     "rank": 5,
+     "symbol": "AMGN",
+     "name": "Amgen Inc.",
+     "weight": 0.0405
+    },
+    {
+     "rank": 6,
+     "symbol": "PEP",
+     "name": "PepsiCo, Inc.",
+     "weight": 0.0405
+    },
+    {
+     "rank": 7,
+     "symbol": "UNH",
+     "name": "UnitedHealth Group Incorporated",
+     "weight": 0.04
+    },
+    {
+     "rank": 8,
+     "symbol": "CVX",
+     "name": "Chevron Corporation",
+     "weight": 0.0398
+    },
+    {
+     "rank": 9,
+     "symbol": "COP",
+     "name": "ConocoPhillips",
+     "weight": 0.0397
+    },
+    {
+     "rank": 10,
+     "symbol": "QCOM",
+     "name": "QUALCOMM Incorporated",
+     "weight": 0.0385
+    }
+   ]
+  },
+  "SCHF": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 67660000000.0,
+   "dividend_yield": 0.0325,
+   "holdings_count": 1439,
+   "inception": "Nov 3, 2009",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "KRX:005930",
+     "name": "Samsung Electronics Co., Ltd.",
+     "weight": 0.0238
+    },
+    {
+     "rank": 2,
+     "symbol": "AMS:ASML",
+     "name": "ASML Holding N.V.",
+     "weight": 0.0195
+    },
+    {
+     "rank": 3,
+     "symbol": "KRX:000660",
+     "name": "SK hynix Inc.",
+     "weight": 0.0169
+    },
+    {
+     "rank": 4,
+     "symbol": "n/a",
+     "name": "Roche Holding AG",
+     "weight": 0.012
+    },
+    {
+     "rank": 5,
+     "symbol": "LON:HSBA",
+     "name": "HSBC Holdings plc",
+     "weight": 0.0107
+    },
+    {
+     "rank": 6,
+     "symbol": "SWX:NOVN",
+     "name": "Novartis AG",
+     "weight": 0.0106
+    },
+    {
+     "rank": 7,
+     "symbol": "LON:SHEL",
+     "name": "Shell plc",
+     "weight": 0.01
+    },
+    {
+     "rank": 8,
+     "symbol": "TSX:RY",
+     "name": "Royal Bank of Canada",
+     "weight": 0.0098
+    },
+    {
+     "rank": 9,
+     "symbol": "LON:AZN",
+     "name": "AstraZeneca PLC",
+     "weight": 0.0097
+    },
+    {
+     "rank": 10,
+     "symbol": "SWX:NESN",
+     "name": "Nestl\u00e9 S.A.",
+     "weight": 0.0095
+    }
+   ]
+  },
+  "SCHG": {
+   "expense_ratio": 0.0004,
+   "aum_usd": 59890000000.0,
+   "dividend_yield": 0.0042,
+   "holdings_count": 189,
+   "inception": "Dec 11, 2009",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.1279
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0955
+    },
+    {
+     "rank": 3,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0939
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0628
+    },
+    {
+     "rank": 5,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0431
+    },
+    {
+     "rank": 6,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0413
+    },
+    {
+     "rank": 7,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0398
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0332
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.033
+    },
+    {
+     "rank": 10,
+     "symbol": "TSLA",
+     "name": "Tesla, Inc.",
+     "weight": 0.0308
+    }
+   ]
+  },
+  "SCHH": {
+   "expense_ratio": 0.0007,
+   "aum_usd": 12330000000.0,
+   "dividend_yield": 0.029,
+   "holdings_count": 120,
+   "inception": "Jan 13, 2011",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "WELL",
+     "name": "Welltower Inc.",
+     "weight": 0.1019
+    },
+    {
+     "rank": 2,
+     "symbol": "PLD",
+     "name": "Prologis, Inc.",
+     "weight": 0.081
+    },
+    {
+     "rank": 3,
+     "symbol": "SPG",
+     "name": "Simon Property Group, Inc.",
+     "weight": 0.0495
+    },
+    {
+     "rank": 4,
+     "symbol": "AMT",
+     "name": "American Tower Corporation",
+     "weight": 0.0493
+    },
+    {
+     "rank": 5,
+     "symbol": "EQIX",
+     "name": "Equinix, Inc.",
+     "weight": 0.0458
+    },
+    {
+     "rank": 6,
+     "symbol": "DLR",
+     "name": "Digital Realty Trust, Inc.",
+     "weight": 0.0435
+    },
+    {
+     "rank": 7,
+     "symbol": "PSA",
+     "name": "Public Storage",
+     "weight": 0.0394
+    },
+    {
+     "rank": 8,
+     "symbol": "O",
+     "name": "Realty Income Corporation",
+     "weight": 0.0389
+    },
+    {
+     "rank": 9,
+     "symbol": "VMRK",
+     "name": "Vivmark Residential",
+     "weight": 0.0327
+    },
+    {
+     "rank": 10,
+     "symbol": "VTR",
+     "name": "Ventas, Inc.",
+     "weight": 0.032
+    }
+   ]
+  },
+  "SCHV": {
+   "expense_ratio": 0.0004,
+   "aum_usd": 15610000000.0,
+   "dividend_yield": 0.0186,
+   "holdings_count": 568,
+   "inception": "Dec 11, 2009",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.0365
+    },
+    {
+     "rank": 2,
+     "symbol": "JPM",
+     "name": "JPMorgan Chase &amp; Co.",
+     "weight": 0.0297
+    },
+    {
+     "rank": 3,
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corporation",
+     "weight": 0.0227
+    },
+    {
+     "rank": 4,
+     "symbol": "JNJ",
+     "name": "Johnson &amp; Johnson",
+     "weight": 0.0225
+    },
+    {
+     "rank": 5,
+     "symbol": "WMT",
+     "name": "Walmart Inc.",
+     "weight": 0.0189
+    },
+    {
+     "rank": 6,
+     "symbol": "ABBV",
+     "name": "AbbVie Inc.",
+     "weight": 0.0172
+    },
+    {
+     "rank": 7,
+     "symbol": "CVX",
+     "name": "Chevron Corporation",
+     "weight": 0.0142
+    },
+    {
+     "rank": 8,
+     "symbol": "PG",
+     "name": "The Procter &amp; Gamble Company",
+     "weight": 0.0133
+    },
+    {
+     "rank": 9,
+     "symbol": "KO",
+     "name": "The Coca-Cola Company",
+     "weight": 0.0127
+    },
+    {
+     "rank": 10,
+     "symbol": "CSCO",
+     "name": "Cisco Systems, Inc.",
+     "weight": 0.0123
+    }
+   ]
+  },
+  "SCHZ": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 10680000000.0,
+   "dividend_yield": 0.0432,
+   "holdings_count": 12660,
+   "inception": "Jul 14, 2011",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "Ssc Government Mm Gvmxx",
+     "weight": 0.0125
+    },
+    {
+     "rank": 2,
+     "symbol": "T.4.625 08.15.36",
+     "name": "United States Treasury Notes 4.625%",
+     "weight": 0.0041
+    },
+    {
+     "rank": 3,
+     "symbol": "T.4.375 05.15.36",
+     "name": "United States Treasury Notes 4.375%",
+     "weight": 0.0039
+    },
+    {
+     "rank": 4,
+     "symbol": "T.4.625 02.15.35",
+     "name": "United States Treasury Notes 4.625%",
+     "weight": 0.0037
+    },
+    {
+     "rank": 5,
+     "symbol": "T.4.25 11.15.34",
+     "name": "United States Treasury Notes 4.25%",
+     "weight": 0.0037
+    },
+    {
+     "rank": 6,
+     "symbol": "T.4.25 05.15.35",
+     "name": "United States Treasury Notes 4.25%",
+     "weight": 0.0037
+    },
+    {
+     "rank": 7,
+     "symbol": "T.4.25 08.15.35",
+     "name": "United States Treasury Notes 4.25%",
+     "weight": 0.0037
+    },
+    {
+     "rank": 8,
+     "symbol": "T.3.875 08.15.34",
+     "name": "United States Treasury Notes 3.875%",
+     "weight": 0.0036
+    },
+    {
+     "rank": 9,
+     "symbol": "T.4.375 05.15.34",
+     "name": "United States Treasury Notes 4.375%",
+     "weight": 0.0036
+    },
+    {
+     "rank": 10,
+     "symbol": "T.4.125 02.15.36",
+     "name": "United States Treasury Notes 4.125%",
+     "weight": 0.0036
+    }
+   ]
+  },
+  "SGOV": {
+   "expense_ratio": 0.0009,
+   "aum_usd": 117340000000.0,
+   "dividend_yield": 0.0363,
+   "holdings_count": 24,
+   "inception": "May 26, 2020",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "B.0 12.08.26",
+     "name": "TREASURY BILL - 0.0 2026-12-08",
+     "weight": 0.0855
+    },
+    {
+     "rank": 2,
+     "symbol": "B.0 12.15.26",
+     "name": "TREASURY BILL - 0.0 2026-12-15",
+     "weight": 0.0821
+    },
+    {
+     "rank": 3,
+     "symbol": "B.0 12.22.26",
+     "name": "TREASURY BILL - 0.0 2026-12-22",
+     "weight": 0.0689
+    },
+    {
+     "rank": 4,
+     "symbol": "B.0 11.24.26",
+     "name": "TREASURY BILL - 0.0 2026-11-24",
+     "weight": 0.0683
+    },
+    {
+     "rank": 5,
+     "symbol": "B.0 01.12.27",
+     "name": "TREASURY BILL - 0.0 2027-01-12",
+     "weight": 0.0678
+    },
+    {
+     "rank": 6,
+     "symbol": "B.0 01.05.27",
+     "name": "TREASURY BILL - 0.0 2027-01-05",
+     "weight": 0.0612
+    },
+    {
+     "rank": 7,
+     "symbol": "B.0 01.28.27",
+     "name": "TREASURY BILL - 0.0 2027-01-28",
+     "weight": 0.0523
+    },
+    {
+     "rank": 8,
+     "symbol": "B.0 01.21.27",
+     "name": "TREASURY BILL - 0.0 2027-01-21",
+     "weight": 0.0509
+    },
+    {
+     "rank": 9,
+     "symbol": "B.0 12.17.26",
+     "name": "TREASURY BILL - 0.0 2026-12-17",
+     "weight": 0.0476
+    },
+    {
+     "rank": 10,
+     "symbol": "XIB.0 02.18.27",
+     "name": "TREASURY BILL - 0.0 2027-02-18",
+     "weight": 0.0443
+    }
+   ]
+  },
+  "SMH": {
+   "expense_ratio": 0.0035,
+   "aum_usd": 60670000000.0,
+   "dividend_yield": 0.0024,
+   "holdings_count": 26,
+   "inception": "Dec 20, 2011",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.1744
+    },
+    {
+     "rank": 2,
+     "symbol": "TSM",
+     "name": "Taiwan Semiconductor Manufacturing Company Limited",
+     "weight": 0.0997
+    },
+    {
+     "rank": 3,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.065
+    },
+    {
+     "rank": 4,
+     "symbol": "TXN",
+     "name": "Texas Instruments Incorporated",
+     "weight": 0.0631
+    },
+    {
+     "rank": 5,
+     "symbol": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "weight": 0.0604
+    },
+    {
+     "rank": 6,
+     "symbol": "ADI",
+     "name": "Analog Devices, Inc.",
+     "weight": 0.0515
+    },
+    {
+     "rank": 7,
+     "symbol": "ASML",
+     "name": "ASML Holding N.V.",
+     "weight": 0.0457
+    },
+    {
+     "rank": 8,
+     "symbol": "QCOM",
+     "name": "QUALCOMM Incorporated",
+     "weight": 0.0449
+    },
+    {
+     "rank": 9,
+     "symbol": "KLAC",
+     "name": "KLA Corporation",
+     "weight": 0.0441
+    },
+    {
+     "rank": 10,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.0437
+    }
+   ]
+  },
+  "SOXL": {
+   "expense_ratio": 0.0075,
+   "aum_usd": 15850000000.0,
+   "dividend_yield": 0.0019,
+   "holdings_count": 44,
+   "inception": "Mar 11, 2010",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "ICESEMI SWAP ASSET LEG",
+     "weight": 0.6639
+    },
+    {
+     "rank": 2,
+     "symbol": "n/a",
+     "name": "ICESEMI SWAP ASSET LEG",
+     "weight": 0.3967
+    },
+    {
+     "rank": 3,
+     "symbol": "n/a",
+     "name": "ICESEMI SWAP ASSET LEG",
+     "weight": 0.3927
+    },
+    {
+     "rank": 4,
+     "symbol": "n/a",
+     "name": "ICESEMI SWAP ASSET LEG",
+     "weight": 0.2622
+    },
+    {
+     "rank": 5,
+     "symbol": "n/a",
+     "name": "ICESEMI SWAP ASSET LEG",
+     "weight": 0.2087
+    },
+    {
+     "rank": 6,
+     "symbol": "n/a",
+     "name": "GOLDMAN FINL SQ TRSRY INST 506",
+     "weight": 0.205
+    },
+    {
+     "rank": 7,
+     "symbol": "n/a",
+     "name": "ICESEMI SWAP ASSET LEG",
+     "weight": 0.1616
+    },
+    {
+     "rank": 8,
+     "symbol": "n/a",
+     "name": "GOLDMAN SACHS FIN GOV 465 INSTITUT",
+     "weight": 0.1235
+    },
+    {
+     "rank": 9,
+     "symbol": "n/a",
+     "name": "DREYFUS GOVT CASH MAN INS",
+     "weight": 0.1155
+    },
+    {
+     "rank": 10,
+     "symbol": "n/a",
+     "name": "ICESEMI SWAP ASSET LEG",
+     "weight": 0.1142
+    }
+   ]
+  },
+  "SOXX": {
+   "expense_ratio": 0.0033,
+   "aum_usd": 38060000000.0,
+   "dividend_yield": 0.0029,
+   "holdings_count": 33,
+   "inception": "Jul 10, 2001",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "weight": 0.1023
+    },
+    {
+     "rank": 2,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0883
+    },
+    {
+     "rank": 3,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.0711
+    },
+    {
+     "rank": 4,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0674
+    },
+    {
+     "rank": 5,
+     "symbol": "INTC",
+     "name": "Intel Corporation",
+     "weight": 0.059
+    },
+    {
+     "rank": 6,
+     "symbol": "TXN",
+     "name": "Texas Instruments Incorporated",
+     "weight": 0.0542
+    },
+    {
+     "rank": 7,
+     "symbol": "ADI",
+     "name": "Analog Devices, Inc.",
+     "weight": 0.0507
+    },
+    {
+     "rank": 8,
+     "symbol": "QCOM",
+     "name": "QUALCOMM Incorporated",
+     "weight": 0.0468
+    },
+    {
+     "rank": 9,
+     "symbol": "NXPI",
+     "name": "NXP Semiconductors N.V.",
+     "weight": 0.0424
+    },
+    {
+     "rank": 10,
+     "symbol": "MPWR",
+     "name": "Monolithic Power Systems, Inc.",
+     "weight": 0.0413
+    }
+   ]
+  },
+  "SPAB": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 10510000000.0,
+   "dividend_yield": 0.0427,
+   "holdings_count": 8846,
+   "inception": "May 23, 2007",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "SSI US GOV MONEY MARKET CLASS",
+     "weight": 0.034
+    },
+    {
+     "rank": 2,
+     "symbol": "T.3.5 12.15.28",
+     "name": "US TREASURY N/B 12/28 3.5",
+     "weight": 0.0059
+    },
+    {
+     "rank": 3,
+     "symbol": "T.4.625 08.15.36",
+     "name": "US TREASURY N/B 08/36 4.625",
+     "weight": 0.0048
+    },
+    {
+     "rank": 4,
+     "symbol": "T.3.625 12.31.30",
+     "name": "US TREASURY N/B 12/30 3.625",
+     "weight": 0.0044
+    },
+    {
+     "rank": 5,
+     "symbol": "T.3.375 11.30.27",
+     "name": "US TREASURY N/B 11/27 3.375",
+     "weight": 0.0041
+    },
+    {
+     "rank": 6,
+     "symbol": "T.4 02.28.30",
+     "name": "US TREASURY N/B 02/30 4",
+     "weight": 0.0041
+    },
+    {
+     "rank": 7,
+     "symbol": "T.4.375 11.30.28",
+     "name": "US TREASURY N/B 11/28 4.375",
+     "weight": 0.0039
+    },
+    {
+     "rank": 8,
+     "symbol": "T.3.5 01.31.28",
+     "name": "US TREASURY N/B 01/28 3.5",
+     "weight": 0.0039
+    },
+    {
+     "rank": 9,
+     "symbol": "T.4.75 10.31.31",
+     "name": "US TREASURY N/B 10/31 4.75",
+     "weight": 0.0039
+    },
+    {
+     "rank": 10,
+     "symbol": "T.4.75 09.30.28",
+     "name": "US TREASURY N/B 09/28 4.75",
+     "weight": 0.0036
+    }
+   ]
+  },
+  "SPDW": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 41750000000.0,
+   "dividend_yield": 0.032,
+   "holdings_count": 2463,
+   "inception": "Apr 20, 2007",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "LON:SMSN",
+     "name": "Samsung Electronics Co., Ltd.",
+     "weight": 0.0202
+    },
+    {
+     "rank": 2,
+     "symbol": "AMS:ASML",
+     "name": "ASML Holding N.V.",
+     "weight": 0.0165
+    },
+    {
+     "rank": 3,
+     "symbol": "KRX:000660",
+     "name": "SK hynix Inc.",
+     "weight": 0.015
+    },
+    {
+     "rank": 4,
+     "symbol": "SWX:ROP",
+     "name": "Roche Holding AG",
+     "weight": 0.0106
+    },
+    {
+     "rank": 5,
+     "symbol": "LON:HSBA",
+     "name": "HSBC Holdings plc",
+     "weight": 0.0093
+    },
+    {
+     "rank": 6,
+     "symbol": "SWX:NOVN",
+     "name": "Novartis AG",
+     "weight": 0.0091
+    },
+    {
+     "rank": 7,
+     "symbol": "AZN",
+     "name": "AstraZeneca PLC",
+     "weight": 0.0088
+    },
+    {
+     "rank": 8,
+     "symbol": "LON:SHEL",
+     "name": "Shell plc",
+     "weight": 0.0088
+    },
+    {
+     "rank": 9,
+     "symbol": "TSX:RY",
+     "name": "Royal Bank of Canada",
+     "weight": 0.0086
+    },
+    {
+     "rank": 10,
+     "symbol": "SWX:NESN",
+     "name": "Nestl\u00e9 S.A.",
+     "weight": 0.0084
+    }
+   ]
+  },
+  "SPGM": {
+   "expense_ratio": 0.0009,
+   "aum_usd": 1870000000.0,
+   "dividend_yield": 0.0188,
+   "holdings_count": 2934,
+   "inception": "Feb 27, 2012",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0468
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0331
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0327
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0217
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0149
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0138
+    },
+    {
+     "rank": 7,
+     "symbol": "TSM",
+     "name": "Taiwan Semiconductor Manufacturing Company Limited",
+     "weight": 0.0136
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0124
+    },
+    {
+     "rank": 9,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0123
+    },
+    {
+     "rank": 10,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0102
+    }
+   ]
+  },
+  "SPTM": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 13800000000.0,
+   "dividend_yield": 0.0111,
+   "holdings_count": 1516,
+   "inception": "Oct 4, 2000",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0749
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0548
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0548
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0369
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.024
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0237
+    },
+    {
+     "rank": 7,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0199
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0193
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0165
+    },
+    {
+     "rank": 10,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.016
+    }
+   ]
+  },
+  "SPUS": {
+   "expense_ratio": 0.0045,
+   "aum_usd": 3300000000.0,
+   "dividend_yield": 0.0055,
+   "holdings_count": 219,
+   "inception": "Dec 18, 2019",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.1405
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.105
+    },
+    {
+     "rank": 3,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.1031
+    },
+    {
+     "rank": 4,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0453
+    },
+    {
+     "rank": 5,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0434
+    },
+    {
+     "rank": 6,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0313
+    },
+    {
+     "rank": 7,
+     "symbol": "TSLA",
+     "name": "Tesla, Inc.",
+     "weight": 0.0292
+    },
+    {
+     "rank": 8,
+     "symbol": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "weight": 0.0225
+    },
+    {
+     "rank": 9,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.0222
+    },
+    {
+     "rank": 10,
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corporation",
+     "weight": 0.0188
+    }
+   ]
+  },
+  "SPY": {
+   "expense_ratio": 0.0009,
+   "aum_usd": 791970000000.0,
+   "dividend_yield": 0.0104,
+   "holdings_count": 505,
+   "inception": "Jan 22, 1993",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.081
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0594
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0593
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0399
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0259
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0256
+    },
+    {
+     "rank": 7,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0215
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0208
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0179
+    },
+    {
+     "rank": 10,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.0172
+    }
+   ]
+  },
+  "SPYD": {
+   "expense_ratio": 0.0007,
+   "aum_usd": 7780000000.0,
+   "dividend_yield": 0.0421,
+   "holdings_count": 80,
+   "inception": "Oct 21, 2015",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "ACN",
+     "name": "Accenture plc",
+     "weight": 0.0222
+    },
+    {
+     "rank": 2,
+     "symbol": "HAS",
+     "name": "Hasbro, Inc.",
+     "weight": 0.0172
+    },
+    {
+     "rank": 3,
+     "symbol": "MDT",
+     "name": "Medtronic plc",
+     "weight": 0.0162
+    },
+    {
+     "rank": 4,
+     "symbol": "SWK",
+     "name": "Stanley Black &amp; Decker, Inc.",
+     "weight": 0.0159
+    },
+    {
+     "rank": 5,
+     "symbol": "TGT",
+     "name": "Target Corporation",
+     "weight": 0.015
+    },
+    {
+     "rank": 6,
+     "symbol": "PFE",
+     "name": "Pfizer Inc.",
+     "weight": 0.0149
+    },
+    {
+     "rank": 7,
+     "symbol": "HPQ",
+     "name": "HP Inc.",
+     "weight": 0.0149
+    },
+    {
+     "rank": 8,
+     "symbol": "SJM",
+     "name": "The J. M. Smucker Company",
+     "weight": 0.0147
+    },
+    {
+     "rank": 9,
+     "symbol": "BBY",
+     "name": "Best Buy Co., Inc.",
+     "weight": 0.0147
+    },
+    {
+     "rank": 10,
+     "symbol": "CLX",
+     "name": "The Clorox Company",
+     "weight": 0.0145
+    }
+   ]
+  },
+  "SPYG": {
+   "expense_ratio": 0.0004,
+   "aum_usd": 51370000000.0,
+   "dividend_yield": 0.0053,
+   "holdings_count": 155,
+   "inception": "Sep 25, 2000",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.1132
+    },
+    {
+     "rank": 2,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.1131
+    },
+    {
+     "rank": 3,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0773
+    },
+    {
+     "rank": 4,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0495
+    },
+    {
+     "rank": 5,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0489
+    },
+    {
+     "rank": 6,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0411
+    },
+    {
+     "rank": 7,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0404
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0397
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0341
+    },
+    {
+     "rank": 10,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.0329
+    }
+   ]
+  },
+  "SPYM": {
+   "expense_ratio": 0.0002,
+   "aum_usd": 185600000000.0,
+   "dividend_yield": 0.0106,
+   "holdings_count": 508,
+   "inception": "Nov 8, 2005",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0811
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0594
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0593
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.04
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.026
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0257
+    },
+    {
+     "rank": 7,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0215
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0208
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0179
+    },
+    {
+     "rank": 10,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.0173
+    }
+   ]
+  },
+  "SPYV": {
+   "expense_ratio": 0.0004,
+   "aum_usd": 38560000000.0,
+   "dividend_yield": 0.0168,
+   "holdings_count": 436,
+   "inception": "Sep 25, 2000",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0853
+    },
+    {
+     "rank": 2,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0395
+    },
+    {
+     "rank": 3,
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corporation",
+     "weight": 0.0228
+    },
+    {
+     "rank": 4,
+     "symbol": "WMT",
+     "name": "Walmart Inc.",
+     "weight": 0.0189
+    },
+    {
+     "rank": 5,
+     "symbol": "COST",
+     "name": "Costco Wholesale Corporation",
+     "weight": 0.0164
+    },
+    {
+     "rank": 6,
+     "symbol": "CVX",
+     "name": "Chevron Corporation",
+     "weight": 0.0141
+    },
+    {
+     "rank": 7,
+     "symbol": "TSLA",
+     "name": "Tesla, Inc.",
+     "weight": 0.0135
+    },
+    {
+     "rank": 8,
+     "symbol": "PG",
+     "name": "The Procter &amp; Gamble Company",
+     "weight": 0.0133
+    },
+    {
+     "rank": 9,
+     "symbol": "MRK",
+     "name": "Merck &amp; Co., Inc.",
+     "weight": 0.0118
+    },
+    {
+     "rank": 10,
+     "symbol": "UNH",
+     "name": "UnitedHealth Group Incorporated",
+     "weight": 0.0116
+    }
+   ]
+  },
+  "SSO": {
+   "expense_ratio": 0.0084,
+   "aum_usd": 6800000000.0,
+   "dividend_yield": 0.0076,
+   "holdings_count": 525,
+   "inception": "Jun 19, 2006",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "SPDR S&amp;P 500 (SPY) SWAP GOLDMAN SACHS INTERNATIONAL",
+     "weight": 0.3418
+    },
+    {
+     "rank": 2,
+     "symbol": "n/a",
+     "name": "S&amp;P500 EMINI FUT EQUITY INDEX 18/DEC/2026 ESZ6 INDEX",
+     "weight": 0.1606
+    },
+    {
+     "rank": 3,
+     "symbol": "n/a",
+     "name": "S&amp;P 500 INDEX SWAP CITIBANK NA",
+     "weight": 0.1149
+    },
+    {
+     "rank": 4,
+     "symbol": "n/a",
+     "name": "S&amp;P 500 INDEX SWAP BARCLAYS CAPITAL",
+     "weight": 0.1023
+    },
+    {
+     "rank": 5,
+     "symbol": "n/a",
+     "name": "S&amp;P 500 INDEX SWAP BANK OF AMERICA NA",
+     "weight": 0.1004
+    },
+    {
+     "rank": 6,
+     "symbol": "n/a",
+     "name": "S&amp;P 500 INDEX SWAP JPMORGAN CHASE BANK NA",
+     "weight": 0.0925
+    },
+    {
+     "rank": 7,
+     "symbol": "n/a",
+     "name": "S&amp;P 500 INDEX SWAP SOCIETE GENERALE",
+     "weight": 0.0902
+    },
+    {
+     "rank": 8,
+     "symbol": "n/a",
+     "name": "S&amp;P 500 INDEX SWAP GOLDMAN SACHS INTERNATIONAL",
+     "weight": 0.0785
+    },
+    {
+     "rank": 9,
+     "symbol": "n/a",
+     "name": "S&amp;P 500 INDEX SWAP UBS AG",
+     "weight": 0.0779
+    },
+    {
+     "rank": 10,
+     "symbol": "n/a",
+     "name": "S&amp;P 500 INDEX SWAP WELLS FARGO BANK NA WELLS FARGO",
+     "weight": 0.0741
+    }
+   ]
+  },
+  "TLT": {
+   "expense_ratio": 0.0015,
+   "aum_usd": 46220000000.0,
+   "dividend_yield": 0.0487,
+   "holdings_count": 49,
+   "inception": "Jul 22, 2002",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "TREASURY BOND - 4.63 2054-05-15",
+     "weight": 0.0404
+    },
+    {
+     "rank": 2,
+     "symbol": "n/a",
+     "name": "TREASURY BOND - 4.75 2055-05-15",
+     "weight": 0.04
+    },
+    {
+     "rank": 3,
+     "symbol": "n/a",
+     "name": "TREASURY BOND (2OLD) - 5.0 2056-05-15",
+     "weight": 0.0398
+    },
+    {
+     "rank": 4,
+     "symbol": "n/a",
+     "name": "TREASURY BOND - 4.75 2053-11-15",
+     "weight": 0.0394
+    },
+    {
+     "rank": 5,
+     "symbol": "n/a",
+     "name": "TREASURY BOND - 4.75 2056-02-15",
+     "weight": 0.0389
+    },
+    {
+     "rank": 6,
+     "symbol": "n/a",
+     "name": "TREASURY BOND - 4.63 2055-02-15",
+     "weight": 0.0386
+    },
+    {
+     "rank": 7,
+     "symbol": "n/a",
+     "name": "TREASURY BOND (OLD) - 5.13 2056-08-15",
+     "weight": 0.0384
+    },
+    {
+     "rank": 8,
+     "symbol": "n/a",
+     "name": "TREASURY BOND - 4.63 2055-11-15",
+     "weight": 0.0381
+    },
+    {
+     "rank": 9,
+     "symbol": "n/a",
+     "name": "TREASURY BOND - 4.25 2054-08-15",
+     "weight": 0.0379
+    },
+    {
+     "rank": 10,
+     "symbol": "n/a",
+     "name": "TREASURY BOND - 4.25 2054-02-15",
+     "weight": 0.0377
+    }
+   ]
+  },
+  "USFR": {
+   "expense_ratio": 0.0015,
+   "aum_usd": 21690000000.0,
+   "dividend_yield": 0.037,
+   "holdings_count": 5,
+   "inception": "Feb 4, 2014",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "TF.0 04.30.28",
+     "name": "United States Treasury Notes 4.2051%",
+     "weight": 0.2981
+    },
+    {
+     "rank": 2,
+     "symbol": "TF.0 01.31.28",
+     "name": "United States Treasury Notes 4.2011%",
+     "weight": 0.2981
+    },
+    {
+     "rank": 3,
+     "symbol": "TF.0 07.31.28",
+     "name": "United States Treasury Notes 4.1521%",
+     "weight": 0.298
+    },
+    {
+     "rank": 4,
+     "symbol": "TF.0 10.31.28",
+     "name": "US Treasury Note 4.1401%",
+     "weight": 0.1039
+    },
+    {
+     "rank": 5,
+     "symbol": "n/a",
+     "name": "Net Current Assets",
+     "weight": 0.0019
+    }
+   ]
+  },
+  "VB": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 79210000000.0,
+   "dividend_yield": 0.0129,
+   "holdings_count": 1308,
+   "inception": "Jan 26, 2004",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "Slcmt1142",
+     "weight": 0.0133
+    },
+    {
+     "rank": 2,
+     "symbol": "NTRA",
+     "name": "Natera, Inc.",
+     "weight": 0.007
+    },
+    {
+     "rank": 3,
+     "symbol": "P",
+     "name": "Everpure, Inc.",
+     "weight": 0.005
+    },
+    {
+     "rank": 4,
+     "symbol": "MRNA",
+     "name": "Moderna, Inc.",
+     "weight": 0.0049
+    },
+    {
+     "rank": 5,
+     "symbol": "RVMD",
+     "name": "Revolution Medicines, Inc.",
+     "weight": 0.0048
+    },
+    {
+     "rank": 6,
+     "symbol": "ILMN",
+     "name": "Illumina, Inc.",
+     "weight": 0.0044
+    },
+    {
+     "rank": 7,
+     "symbol": "OKTA",
+     "name": "Okta, Inc.",
+     "weight": 0.0043
+    },
+    {
+     "rank": 8,
+     "symbol": "TWLO",
+     "name": "Twilio Inc.",
+     "weight": 0.0039
+    },
+    {
+     "rank": 9,
+     "symbol": "EME",
+     "name": "EMCOR Group, Inc.",
+     "weight": 0.0037
+    },
+    {
+     "rank": 10,
+     "symbol": "WSM",
+     "name": "Williams-Sonoma, Inc.",
+     "weight": 0.0037
+    }
+   ]
+  },
+  "VGT": {
+   "expense_ratio": 0.0009,
+   "aum_usd": 139110000000.0,
+   "dividend_yield": 0.0044,
+   "holdings_count": 320,
+   "inception": "Jan 26, 2004",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.177
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.1693
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.122
+    },
+    {
+     "rank": 4,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.041
+    },
+    {
+     "rank": 5,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.0398
+    },
+    {
+     "rank": 6,
+     "symbol": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "weight": 0.0326
+    },
+    {
+     "rank": 7,
+     "symbol": "CSCO",
+     "name": "Cisco Systems, Inc.",
+     "weight": 0.0167
+    },
+    {
+     "rank": 8,
+     "symbol": "PLTR",
+     "name": "Palantir Technologies Inc.",
+     "weight": 0.0164
+    },
+    {
+     "rank": 9,
+     "symbol": "AMAT",
+     "name": "Applied Materials, Inc.",
+     "weight": 0.0126
+    },
+    {
+     "rank": 10,
+     "symbol": "PANW",
+     "name": "Palo Alto Networks, Inc.",
+     "weight": 0.0122
+    }
+   ]
+  },
+  "VNQ": {
+   "expense_ratio": 0.0013,
+   "aum_usd": 39180000000.0,
+   "dividend_yield": 0.0358,
+   "holdings_count": 155,
+   "inception": "Sep 23, 2004",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "n/a",
+     "name": "Vanguard Real Estate II Index",
+     "weight": 0.1456
+    },
+    {
+     "rank": 2,
+     "symbol": "WELL",
+     "name": "Welltower Inc.",
+     "weight": 0.0892
+    },
+    {
+     "rank": 3,
+     "symbol": "PLD",
+     "name": "Prologis, Inc.",
+     "weight": 0.0649
+    },
+    {
+     "rank": 4,
+     "symbol": "EQIX",
+     "name": "Equinix, Inc.",
+     "weight": 0.0544
+    },
+    {
+     "rank": 5,
+     "symbol": "AMT",
+     "name": "American Tower Corporation",
+     "weight": 0.0476
+    },
+    {
+     "rank": 6,
+     "symbol": "SPG",
+     "name": "Simon Property Group, Inc.",
+     "weight": 0.0384
+    },
+    {
+     "rank": 7,
+     "symbol": "DLR",
+     "name": "Digital Realty Trust, Inc.",
+     "weight": 0.0363
+    },
+    {
+     "rank": 8,
+     "symbol": "PSA",
+     "name": "Public Storage",
+     "weight": 0.0296
+    },
+    {
+     "rank": 9,
+     "symbol": "O",
+     "name": "Realty Income Corporation",
+     "weight": 0.0286
+    },
+    {
+     "rank": 10,
+     "symbol": "VMRK",
+     "name": "Vivmark Residential",
+     "weight": 0.0241
+    }
+   ]
+  },
+  "VOO": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 1050000000000.0,
+   "dividend_yield": 0.0111,
+   "holdings_count": 516,
+   "inception": "Sep 7, 2010",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.077
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0758
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0593
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0361
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0252
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0237
+    },
+    {
+     "rank": 7,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0208
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0202
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0174
+    },
+    {
+     "rank": 10,
+     "symbol": "TSLA",
+     "name": "Tesla, Inc.",
+     "weight": 0.0172
+    }
+   ]
+  },
+  "VT": {
+   "expense_ratio": 0.0006,
+   "aum_usd": 84180000000.0,
+   "dividend_yield": 0.0161,
+   "holdings_count": 10238,
+   "inception": "Jun 24, 2008",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0433
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0415
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0337
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0203
+    },
+    {
+     "rank": 5,
+     "symbol": "TPE:2330",
+     "name": "Taiwan Semiconductor Manufacturing Company Limited",
+     "weight": 0.0151
+    },
+    {
+     "rank": 6,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0145
+    },
+    {
+     "rank": 7,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0132
+    },
+    {
+     "rank": 8,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0118
+    },
+    {
+     "rank": 9,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0112
+    },
+    {
+     "rank": 10,
+     "symbol": "TSLA",
+     "name": "Tesla, Inc.",
+     "weight": 0.0102
+    }
+   ]
+  },
+  "VTI": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 679440000000.0,
+   "dividend_yield": 0.011,
+   "holdings_count": 3516,
+   "inception": "May 24, 2001",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.0691
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.0644
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.0533
+    },
+    {
+     "rank": 4,
+     "symbol": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "weight": 0.0321
+    },
+    {
+     "rank": 5,
+     "symbol": "GOOGL",
+     "name": "Alphabet Inc.",
+     "weight": 0.0226
+    },
+    {
+     "rank": 6,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0213
+    },
+    {
+     "rank": 7,
+     "symbol": "META",
+     "name": "Meta Platforms, Inc.",
+     "weight": 0.0186
+    },
+    {
+     "rank": 8,
+     "symbol": "GOOG",
+     "name": "Alphabet Inc.",
+     "weight": 0.0179
+    },
+    {
+     "rank": 9,
+     "symbol": "LLY",
+     "name": "Eli Lilly and Company",
+     "weight": 0.0165
+    },
+    {
+     "rank": 10,
+     "symbol": "TSLA",
+     "name": "Tesla, Inc.",
+     "weight": 0.0155
+    }
+   ]
+  },
+  "VTV": {
+   "expense_ratio": 0.0003,
+   "aum_usd": 197410000000.0,
+   "dividend_yield": 0.0188,
+   "holdings_count": 309,
+   "inception": "Jan 26, 2004",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.036
+    },
+    {
+     "rank": 2,
+     "symbol": "JPM",
+     "name": "JPMorgan Chase &amp; Co.",
+     "weight": 0.0322
+    },
+    {
+     "rank": 3,
+     "symbol": "BRK.B",
+     "name": "Berkshire Hathaway Inc.",
+     "weight": 0.0301
+    },
+    {
+     "rank": 4,
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corporation",
+     "weight": 0.0279
+    },
+    {
+     "rank": 5,
+     "symbol": "JNJ",
+     "name": "Johnson &amp; Johnson",
+     "weight": 0.0237
+    },
+    {
+     "rank": 6,
+     "symbol": "WMT",
+     "name": "Walmart Inc.",
+     "weight": 0.0195
+    },
+    {
+     "rank": 7,
+     "symbol": "ABBV",
+     "name": "AbbVie Inc.",
+     "weight": 0.0188
+    },
+    {
+     "rank": 8,
+     "symbol": "CVX",
+     "name": "Chevron Corporation",
+     "weight": 0.0159
+    },
+    {
+     "rank": 9,
+     "symbol": "PG",
+     "name": "The Procter &amp; Gamble Company",
+     "weight": 0.0135
+    },
+    {
+     "rank": 10,
+     "symbol": "CSCO",
+     "name": "Cisco Systems, Inc.",
+     "weight": 0.0133
+    }
+   ]
+  },
+  "VXUS": {
+   "expense_ratio": 0.0005,
+   "aum_usd": 162310000000.0,
+   "dividend_yield": 0.0251,
+   "holdings_count": 8976,
+   "inception": "Jan 26, 2011",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "TPE:2330",
+     "name": "Taiwan Semiconductor Manufacturing Company Limited",
+     "weight": 0.0402
+    },
+    {
+     "rank": 2,
+     "symbol": "KRX:005930",
+     "name": "Samsung Electronics Co., Ltd.",
+     "weight": 0.0175
+    },
+    {
+     "rank": 3,
+     "symbol": "n/a",
+     "name": "Slcmt1142",
+     "weight": 0.0164
+    },
+    {
+     "rank": 4,
+     "symbol": "AMS:ASML",
+     "name": "ASML Holding N.V.",
+     "weight": 0.0141
+    },
+    {
+     "rank": 5,
+     "symbol": "KRX:000660",
+     "name": "SK hynix Inc.",
+     "weight": 0.0135
+    },
+    {
+     "rank": 6,
+     "symbol": "SWX:ROP",
+     "name": "Roche Holding AG",
+     "weight": 0.008
+    },
+    {
+     "rank": 7,
+     "symbol": "LON:SHEL",
+     "name": "Shell plc",
+     "weight": 0.0073
+    },
+    {
+     "rank": 8,
+     "symbol": "HKG:0700",
+     "name": "Tencent Holdings Limited",
+     "weight": 0.0071
+    },
+    {
+     "rank": 9,
+     "symbol": "SWX:NOVN",
+     "name": "Novartis AG",
+     "weight": 0.007
+    },
+    {
+     "rank": 10,
+     "symbol": "LON:HSBA",
+     "name": "HSBC Holdings plc",
+     "weight": 0.0068
+    }
+   ]
+  },
+  "VYM": {
+   "expense_ratio": 0.0004,
+   "aum_usd": 83990000000.0,
+   "dividend_yield": 0.023,
+   "holdings_count": 602,
+   "inception": "Nov 10, 2006",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0611
+    },
+    {
+     "rank": 2,
+     "symbol": "JPM",
+     "name": "JPMorgan Chase &amp; Co.",
+     "weight": 0.0363
+    },
+    {
+     "rank": 3,
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corporation",
+     "weight": 0.031
+    },
+    {
+     "rank": 4,
+     "symbol": "JNJ",
+     "name": "Johnson &amp; Johnson",
+     "weight": 0.0265
+    },
+    {
+     "rank": 5,
+     "symbol": "ABBV",
+     "name": "AbbVie Inc.",
+     "weight": 0.021
+    },
+    {
+     "rank": 6,
+     "symbol": "CVX",
+     "name": "Chevron Corporation",
+     "weight": 0.0176
+    },
+    {
+     "rank": 7,
+     "symbol": "CSCO",
+     "name": "Cisco Systems, Inc.",
+     "weight": 0.0166
+    },
+    {
+     "rank": 8,
+     "symbol": "PG",
+     "name": "The Procter &amp; Gamble Company",
+     "weight": 0.0152
+    },
+    {
+     "rank": 9,
+     "symbol": "MRK",
+     "name": "Merck &amp; Co., Inc.",
+     "weight": 0.0149
+    },
+    {
+     "rank": 10,
+     "symbol": "UNH",
+     "name": "UnitedHealth Group Incorporated",
+     "weight": 0.0148
+    }
+   ]
+  },
+  "XLK": {
+   "expense_ratio": 0.0008,
+   "aum_usd": 114420000000.0,
+   "dividend_yield": 0.0051,
+   "holdings_count": 79,
+   "inception": "Dec 16, 1998",
+   "top_holdings": [
+    {
+     "rank": 1,
+     "symbol": "AAPL",
+     "name": "Apple Inc.",
+     "weight": 0.1715
+    },
+    {
+     "rank": 2,
+     "symbol": "NVDA",
+     "name": "NVIDIA Corporation",
+     "weight": 0.1256
+    },
+    {
+     "rank": 3,
+     "symbol": "MSFT",
+     "name": "Microsoft Corporation",
+     "weight": 0.1255
+    },
+    {
+     "rank": 4,
+     "symbol": "AVGO",
+     "name": "Broadcom Inc.",
+     "weight": 0.0543
+    },
+    {
+     "rank": 5,
+     "symbol": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "weight": 0.0497
+    },
+    {
+     "rank": 6,
+     "symbol": "MU",
+     "name": "Micron Technology, Inc.",
+     "weight": 0.0356
+    },
+    {
+     "rank": 7,
+     "symbol": "CSCO",
+     "name": "Cisco Systems, Inc.",
+     "weight": 0.0253
+    },
+    {
+     "rank": 8,
+     "symbol": "PLTR",
+     "name": "Palantir Technologies Inc.",
+     "weight": 0.0244
+    },
+    {
+     "rank": 9,
+     "symbol": "AMAT",
+     "name": "Applied Materials, Inc.",
+     "weight": 0.0187
+    },
+    {
+     "rank": 10,
+     "symbol": "INTC",
+     "name": "Intel Corporation",
+     "weight": 0.0185
+    }
+   ]
+  }
+ }
+}

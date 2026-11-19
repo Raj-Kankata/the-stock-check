@@ -12,7 +12,10 @@
 // a refresh can never re-introduce recipe text into a client chunk.
 
 import { RESULTS, TICKER_SYMBOLS, type TickerData } from './data'
+import { ETF_RESULTS, ETF_SYMBOLS, type EtfResult } from './etf-data'
 import type {
+  PublicEtfRow,
+  PublicEtfSearchEntry,
   PublicGrid,
   PublicRow,
   PublicSearchEntry,
@@ -79,4 +82,50 @@ export function searchIndex(): PublicSearchEntry[] {
 /** All 382 tickers' sensitivity grids, for the homepage preview. */
 export function allGrids(): PublicGrid[] {
   return TICKER_SYMBOLS.map((symbol) => toGrid(symbol, RESULTS.tickers[symbol]))
+}
+
+// ---------------------------------------------------------------------------
+// ETF projections — same server-only pattern as the stock projections
+// above. No fair value, no verdict, no overall score exists for ETFs,
+// so the ETF shapes carry only the two reads (Technical + Momentum)
+// plus the display facts.
+// ---------------------------------------------------------------------------
+
+export function toEtfRow(symbol: string, t: EtfResult): PublicEtfRow {
+  return {
+    symbol,
+    name: t.name,
+    type: t.type,
+    category: t.category,
+    provider: t.provider,
+    index: t.index,
+    price: t.price,
+    change_pct: t.change_pct,
+    technical_score: t.technical_score,
+    technical_read: t.technical_read,
+    momentum_score: t.momentum_score,
+    momentum_read: t.momentum_read,
+  }
+}
+
+export function toEtfSearchEntry(symbol: string, t: EtfResult): PublicEtfSearchEntry {
+  return {
+    symbol,
+    name: t.name,
+    type: t.type,
+    technical_score: t.technical_score,
+    technical_read: t.technical_read,
+    momentum_score: t.momentum_score,
+    momentum_read: t.momentum_read,
+  }
+}
+
+/** All 55 ETF board rows, in universe order. */
+export function allEtfRows(): PublicEtfRow[] {
+  return ETF_SYMBOLS.map((symbol) => toEtfRow(symbol, ETF_RESULTS.etfs[symbol]))
+}
+
+/** Header search index for ETFs. */
+export function etfSearchIndex(): PublicEtfSearchEntry[] {
+  return ETF_SYMBOLS.map((symbol) => toEtfSearchEntry(symbol, ETF_RESULTS.etfs[symbol]))
 }

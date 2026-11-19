@@ -50,6 +50,7 @@
 
 import { useEffect, useState } from 'react'
 import exchangesJson from './data/exchanges.json'
+import etfExchangesJson from './data/etf_exchanges.json'
 
 export const TV_TICKERS: string[] = Object.values(
   exchangesJson as Record<string, string>,
@@ -427,6 +428,125 @@ export function hasLiveQuotes(state: LiveQuotesState): boolean {
 /** Live close for one ticker, or null when the store holds no live map. */
 export function liveCloseFor(state: LiveQuotesState, symbol: string): number | null {
   if (!hasLiveQuotes(state)) return null
+  const q = state.quotes!.get(symbol)
+  return q ? q.close : null
+}
+
+// ---------------------------------------------------------------------------
+// ETF live-price store — the same all-or-none scan, polling and states as
+// the stock store above, but over the 55 ETF tickers in
+// lib/data/etf_exchanges.json. Separate module state so the stock store
+// (382 names, frozen behaviour) is never touched by ETF polling.
+// ---------------------------------------------------------------------------
+
+export const ETF_TV_TICKERS: string[] = Object.values(
+  etfExchangesJson as Record<string, string>,
+)
+
+export async function fetchAllEtfQuotes(): Promise<Map<string, TvQuote> | null> {
+  try {
+    const res = await fetch(SCAN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        symbols: { tickers: ETF_TV_TICKERS },
+        columns: ['name', 'close', 'change', 'volume'],
+        sort: { sortBy: 'change', sortOrder: 'desc' },
+        options: { lang: 'en' },
+        range: [0, ETF_TV_TICKERS.length],
+      }),
+    })
+    if (!res.ok) return null
+    const j = (await res.json()) as unknown
+    if (!j || typeof j !== 'object') return null
+    const data = (j as Record<string, unknown>).data
+    if (!Array.isArray(data)) return null
+    const quotes = new Map<string, TvQuote>()
+    for (const row of data) {
+      if (!row || typeof row !== 'object') continue
+      const d = (row as Record<string, unknown>).d
+      if (!Array.isArray(d) || d.length < 4) continue
+      const [name, close, change, volume] = d
+      if (typeof name !== 'string' || !isFiniteNumber(close)) continue
+      quotes.set(name, {
+        symbol: name,
+        close,
+        changePct: isFiniteNumber(change) ? change : null,
+        volume: isFiniteNumber(volume) ? volume : null,
+      })
+    }
+    if (quotes.size !== ETF_TV_TICKERS.length) return null
+    return quotes
+  } catch {
+    return null
+  }
+}
+
+let etfLiveState: LiveQuotesState = { quotes: null, status: 'loading', updatedAt: null }
+const etfLiveListeners = new Set<() => void>()
+let etfLiveTimer: ReturnType<typeof setInterval> | null = null
+let etfLiveInflight: Promise<Map<string, TvQuote> | null> | null = null
+
+function emitEtfLive() {
+  for (const l of etfLiveListeners) l()
+}
+
+async function refreshEtfLive() {
+  if (typeof document !== 'undefined' && document.hidden) return
+  const now = new Date()
+  if (!isMarketHours(now)) {
+    if (etfLiveState.status !== 'closed') {
+      etfLiveState = { quotes: null, status: 'closed', updatedAt: etfLiveState.updatedAt }
+      emitEtfLive()
+    }
+    return
+  }
+  if (!etfLiveInflight) {
+    etfLiveInflight = fetchAllEtfQuotes()
+    void etfLiveInflight.then(() => {
+      etfLiveInflight = null
+    })
+  }
+  const quotes = await etfLiveInflight
+  if (quotes) {
+    etfLiveState = { quotes, status: 'live', updatedAt: formatCtTime(new Date()) }
+  } else if (etfLiveState.quotes) {
+    etfLiveState = { ...etfLiveState, status: 'stale' }
+  } else {
+    etfLiveState = { quotes: null, status: 'error', updatedAt: null }
+  }
+  emitEtfLive()
+}
+
+function ensureEtfPolling() {
+  if (etfLiveTimer !== null) return
+  void refreshEtfLive()
+  etfLiveTimer = setInterval(() => {
+    void refreshEtfLive()
+  }, LIVE_POLL_MS)
+}
+
+export function useLiveEtfQuotes(): LiveQuotesState {
+  const [, setTick] = useState(0)
+  useEffect(() => {
+    const listener = () => setTick((t) => t + 1)
+    etfLiveListeners.add(listener)
+    ensureEtfPolling()
+    return () => {
+      etfLiveListeners.delete(listener)
+    }
+  }, [])
+  return etfLiveState
+}
+
+/** True when the ETF store holds live values (fresh or last-good stale). */
+export function hasLiveEtfQuotes(state: LiveQuotesState): boolean {
+  return (state.status === 'live' || state.status === 'stale') && state.quotes !== null
+}
+
+/** Live close for one ETF ticker, or null when the store holds no live map. */
+export function liveEtfCloseFor(state: LiveQuotesState, symbol: string): number | null {
+  if (!hasLiveEtfQuotes(state)) return null
   const q = state.quotes!.get(symbol)
   return q ? q.close : null
 }

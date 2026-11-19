@@ -48,6 +48,34 @@ export interface PublicSearchEntry {
   fv: number
 }
 
+/** ETF board row: symbol, name, type, category, the two reads. */
+export interface PublicEtfRow {
+  symbol: string
+  name: string
+  type: 'equity' | 'bond' | 'commodity' | 'leveraged'
+  category: string
+  provider: string
+  index: string
+  price: number
+  change_pct: number
+  technical_score: number
+  technical_read: 'Strong' | 'Mixed' | 'Weak'
+  momentum_score: number
+  momentum_read: 'Building' | 'Flat' | 'Fading'
+}
+
+/** Header search entry for an ETF: no verdict, no score, no fair value —
+    the two ETF reads instead, with an ETF pill. */
+export interface PublicEtfSearchEntry {
+  symbol: string
+  name: string
+  type: 'equity' | 'bond' | 'commodity' | 'leveraged'
+  technical_score: number
+  technical_read: 'Strong' | 'Mixed' | 'Weak'
+  momentum_score: number
+  momentum_read: 'Building' | 'Flat' | 'Fading'
+}
+
 /** Homepage grid preview: one ticker's DCF sensitivity grid — the
     grid VALUES only (numbers), the decision leg value, the decision
     growth, and the price. The grid note is never included: it

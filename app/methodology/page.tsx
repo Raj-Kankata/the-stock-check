@@ -636,6 +636,46 @@ export default function MethodologyPage() {
           of daily returns against the S&amp;P 500.
         </p>
       </section>
+
+      <Card title="(h) ETFs — two reads, no fair value" id="etfs">
+        <p>
+          ETFs are a separate product on this site, with a different method. An ETF holds a
+          basket of securities, not a business — it has no earnings to value, so it never
+          gets a fair value, a verdict, or an overall score. What it gets is two reads,
+          each with its own evidence, and they are never combined into one number.
+        </p>
+        <p>
+          <strong>Technical score (0–100)</strong> — the stock engine&apos;s Technical
+          pillar, exactly: EMA trend (35%), price vs the 200-day average (25%), RSI (20%),
+          MACD histogram (20%), with the same bands. Strong ≥ 70, Mixed 40–69, Weak
+          &lt; 40.
+        </p>
+        <p>
+          <strong>Momentum Score</strong> — 0.5 × 13-week total return + 0.3 × 4-week
+          total return + 0.2 × 1-week total return, dividends included (Yahoo adjusted
+          closes). Building ≥ +5%, Flat −5% to +5%, Fading &lt; −5%.
+        </p>
+        <p>
+          <strong>Types stay distinct.</strong> Equity, bond, commodity and leveraged
+          funds are badged in different colours and filtered separately. Bond and commodity
+          funds behave differently from equity funds. Leveraged funds reset their leverage
+          daily — they are flagged, kept out of the shared momentum sort, and compared
+          only with other leveraged funds.
+        </p>
+        <p>
+          <strong>Data.</strong> Prices and technicals come from the TradingView scanner
+          and Yahoo Finance daily history, refreshed nightly with the stock refresh. Fund
+          facts (expense ratio, assets, yield, holdings, inception, top-10 holdings) come
+          from stockanalysis.com and refresh weekly. The ETF universe (55 funds) is
+          curated from the tracker sheet; one ticker was replaced at launch because its
+          symbol no longer exists — SPLG was renamed SPYM by State Street in October
+          2025, so the board carries SPYM. GLD holds physical gold bullion, not stocks,
+          so its card shows that instead of a holdings table.
+        </p>
+        <p>
+          <Link href="/etfs">The ETF board →</Link>
+        </p>
+      </Card>
     </>
   )
 }

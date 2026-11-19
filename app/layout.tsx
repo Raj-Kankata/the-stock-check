@@ -8,7 +8,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 import BrandMark from '@/components/BrandMark'
 import { SITE_NAME, SITE_URL, ENGINE_VERSION } from '@/lib/site'
 import { ANALYTICS_ENABLED, CF_BEACON_TOKEN } from '@/lib/analytics'
-import { searchIndex } from '@/lib/public'
+import { searchIndex, etfSearchIndex } from '@/lib/public'
 import { RESULTS } from '@/lib/data'
 
 export const metadata: Metadata = {
@@ -58,7 +58,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
                 <span className="tagline">Five pillars. One honest check.</span>
               </div>
               <div className="header-search">
-                <SearchBox entries={searchIndex()} />
+                <SearchBox entries={searchIndex()} etfEntries={etfSearchIndex()} />
               </div>
               <ThemeToggle />
             </div>

@@ -2,27 +2,38 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { money } from '@/lib/format'
-import type { PublicSearchEntry } from '@/lib/public-types'
+import { money, pct } from '@/lib/format'
+import type { PublicEtfSearchEntry, PublicSearchEntry } from '@/lib/public-types'
 import { scoreSpan } from '@/components/ui'
 import { logSearch } from '@/lib/analytics'
 
 /**
- * Ticker search. Only the 382 scored tickers resolve to a card.
- * Anything else says so plainly — never a guessed score.
- * The search index (symbol, name, verdict, score, fair value) is
+ * Ticker search. Only the 382 scored tickers resolve to a stock card,
+ * and only the 55 tracked ETFs resolve to an ETF card. Anything else
+ * says so plainly — never a guessed score.
+ * The search indexes (symbol, name, verdict/score/fair value for
+ * stocks; symbol, name, type, Technical/Momentum reads for ETFs) are
  * passed in from the layout at build time; this component never
  * imports the full results data.
+ *
+ * ETF rows carry an ETF pill and the two ETF reads — never a verdict
+ * or a fair value, because ETFs have neither.
  */
-export default function SearchBox({ entries }: { entries: PublicSearchEntry[] }) {
+export default function SearchBox({
+  entries,
+  etfEntries = [],
+}: {
+  entries: PublicSearchEntry[]
+  etfEntries?: PublicEtfSearchEntry[]
+}) {
   const [q, setQ] = useState('')
   const query = q.trim().toUpperCase()
-  // Prefix match on the ticker AND on the company name, so TESLA finds
+  // Prefix match on the ticker AND on the company/fund name, so TESLA finds
   // TSLA and APPLE finds AAPL. Both sides are normalised the same way
   // (upper-cased, non-alphanumerics stripped), so "Tesla, Inc." matches
   // TESLA and "Advance Auto Parts" matches ADVANCEAUTO. Ticker-prefix
   // matches rank first, then name-only matches; each group sorts by
-  // symbol, as before.
+  // symbol, as before. ETFs match the same way and rank after stocks.
   const norm = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '')
   const nq = norm(query)
   const matches =
@@ -35,7 +46,29 @@ export default function SearchBox({ entries }: { entries: PublicSearchEntry[] })
             const bSym = norm(b.symbol).startsWith(nq) ? 0 : 1
             return aSym - bSym || a.symbol.localeCompare(b.symbol)
           })
-  const showNotCovered = query.length > 0 && matches.length === 0
+  const etfMatches =
+    nq.length === 0
+      ? []
+      : etfEntries
+          .filter((e) => norm(e.symbol).startsWith(nq) || norm(e.name).startsWith(nq))
+          .sort((a, b) => {
+            const aSym = norm(a.symbol).startsWith(nq) ? 0 : 1
+            const bSym = norm(b.symbol).startsWith(nq) ? 0 : 1
+            return aSym - bSym || a.symbol.localeCompare(b.symbol)
+          })
+  const firstHref =
+    matches.length > 0
+      ? `/stock/${matches[0].symbol}`
+      : etfMatches.length > 0
+        ? `/etf/${etfMatches[0].symbol}`
+        : null
+  const firstTicker =
+    matches.length > 0
+      ? matches[0].symbol
+      : etfMatches.length > 0
+        ? etfMatches[0].symbol
+        : null
+  const showNotCovered = query.length > 0 && matches.length === 0 && etfMatches.length === 0
 
   // Anonymous search count (see lib/analytics.ts): one log per distinct
   // no-result query — never per keystroke, never with personal data.
@@ -61,9 +94,9 @@ export default function SearchBox({ entries }: { entries: PublicSearchEntry[] })
         <button
           type="button"
           onClick={() => {
-            if (matches.length > 0) {
-              logSearch({ query, ticker: matches[0].symbol })
-              window.location.href = `/stock/${matches[0].symbol}`
+            if (firstHref && firstTicker) {
+              logSearch({ query, ticker: firstTicker })
+              window.location.href = firstHref
             }
           }}
         >
@@ -92,11 +125,36 @@ export default function SearchBox({ entries }: { entries: PublicSearchEntry[] })
           ))}
         </ul>
       )}
+      {etfMatches.length > 0 && (
+        <ul className="search-results">
+          {etfMatches.map((t) => (
+            <li key={t.symbol}>
+              <Link
+                href={`/etf/${t.symbol}`}
+                onClick={() => {
+                  setQ('')
+                  logSearch({ query, ticker: t.symbol })
+                }}
+              >
+                <span>
+                  <strong>{t.symbol}</strong> — {t.name}{' '}
+                  <span className="pill etf">ETF</span>
+                </span>
+                <span>
+                  Technical {t.technical_score.toFixed(1)} · Mom {pct(t.momentum_score, 1)}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
       {showNotCovered && (
         <p className="footnote">
-          “{q.trim()}” is not covered yet. {entries.length} tickers are scored — AAPL,
-          AMZN, AVGO, META, MSFT and NVDA among them — use the search above to find a covered
-          name. No score is ever guessed for an unscored ticker.
+          “{q.trim()}” is not covered yet. {entries.length} tickers are scored and{' '}
+          {etfEntries.length} ETFs are tracked — AAPL, AMZN, AVGO, META, MSFT and NVDA among
+          the stocks, SPY, QQQ and GLD among the ETFs — use the search above to find a
+          covered name. No score is ever guessed for an unscored ticker, and ETFs never
+          carry a fair value or a verdict.
         </p>
       )}
     </div>

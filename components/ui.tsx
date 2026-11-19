@@ -41,6 +41,34 @@ export function VerdictBadge({ verdict }: { verdict: Verdict }) {
   return <span className={`pill ${cls}`}>{verdict}</span>
 }
 
+/** ETF type badge — the visual-discretion axis of the ETF board:
+    equity (green), bond (blue), commodity (amber), leveraged (red).
+    The four types are never shown in the same colour. */
+export type EtfType = 'equity' | 'bond' | 'commodity' | 'leveraged'
+
+const ETF_TYPE_LABELS: Record<EtfType, string> = {
+  equity: 'Equity',
+  bond: 'Bond',
+  commodity: 'Commodity',
+  leveraged: 'Leveraged',
+}
+
+export function EtfTypeBadge({ type }: { type: EtfType }) {
+  return <span className={`pill type-${type}`}>{ETF_TYPE_LABELS[type]}</span>
+}
+
+/** ETF Technical read: Strong (green) / Mixed (amber) / Weak (red). */
+export function TechnicalReadBadge({ read }: { read: 'Strong' | 'Mixed' | 'Weak' }) {
+  const cls = read === 'Strong' ? 'growth' : read === 'Mixed' ? 'watch' : 'avoid'
+  return <span className={`pill ${cls}`}>{read}</span>
+}
+
+/** ETF Momentum read: Building (green) / Flat (neutral) / Fading (red). */
+export function MomentumReadBadge({ read }: { read: 'Building' | 'Flat' | 'Fading' }) {
+  const cls = read === 'Building' ? 'growth' : read === 'Flat' ? 'neutral' : 'avoid'
+  return <span className={`pill ${cls}`}>{read}</span>
+}
+
 export function Card({
   title,
   accent,

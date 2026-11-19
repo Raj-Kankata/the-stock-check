@@ -1,0 +1,500 @@
+{
+ "universe": [
+  {
+   "ticker": "ACWI",
+   "name": "iShares MSCI ACWI ETF",
+   "provider": "iShares",
+   "category": "Total World",
+   "type": "equity",
+   "index": "MSCI ACWI",
+   "tv_symbol": "NASDAQ:ACWI"
+  },
+  {
+   "ticker": "AGG",
+   "name": "iShares Core U.S. Aggregate Bond ETF",
+   "provider": "iShares",
+   "category": "U.S. Bonds",
+   "type": "bond",
+   "index": "Bloomberg US Aggregate Bond",
+   "tv_symbol": "AMEX:AGG"
+  },
+  {
+   "ticker": "AVUV",
+   "name": "Avantis US Small Cap Value ETF",
+   "provider": "Avantis",
+   "category": "U.S. Small-Cap Value",
+   "type": "equity",
+   "index": "Russell 2000 Value",
+   "tv_symbol": "AMEX:AVUV"
+  },
+  {
+   "ticker": "BND",
+   "name": "Vanguard Total Bond Market Index Fund ETF Shares",
+   "provider": "Vanguard",
+   "category": "U.S. Bonds",
+   "type": "bond",
+   "index": "Bloomberg US Aggregate Float Adjusted",
+   "tv_symbol": "NASDAQ:BND"
+  },
+  {
+   "ticker": "FBND",
+   "name": "Fidelity Total Bond ETF",
+   "provider": "Fidelity",
+   "category": "U.S. Bonds",
+   "type": "bond",
+   "index": "Bloomberg US Aggregate Bond",
+   "tv_symbol": "AMEX:FBND"
+  },
+  {
+   "ticker": "FDRR",
+   "name": "Fidelity Dividend ETF for Rising Rates",
+   "provider": "Fidelity",
+   "category": "Growth Income",
+   "type": "equity",
+   "index": "Fidelity Dividend Index for Rising Rates",
+   "tv_symbol": "AMEX:FDRR"
+  },
+  {
+   "ticker": "FDVV",
+   "name": "Fidelity High Dividend ETF",
+   "provider": "Fidelity",
+   "category": "Dividend Income",
+   "type": "equity",
+   "index": "Fidelity High Dividend",
+   "tv_symbol": "AMEX:FDVV"
+  },
+  {
+   "ticker": "FTEC",
+   "name": "Fidelity MSCI Information Technology Index ETF",
+   "provider": "Fidelity",
+   "category": "Technology",
+   "type": "equity",
+   "index": "MSCI USA IMI Information Technology 25/50",
+   "tv_symbol": "AMEX:FTEC"
+  },
+  {
+   "ticker": "FVAL",
+   "name": "Fidelity Value Factor ETF",
+   "provider": "Fidelity",
+   "category": "Value",
+   "type": "equity",
+   "index": "Fidelity US Value Factor",
+   "tv_symbol": "AMEX:FVAL"
+  },
+  {
+   "ticker": "GLD",
+   "name": "SPDR Gold Shares",
+   "provider": "SPDR",
+   "category": "Commodity \u2014 Gold",
+   "type": "commodity",
+   "index": "LBMA Gold Price",
+   "tv_symbol": "AMEX:GLD"
+  },
+  {
+   "ticker": "IEF",
+   "name": "iShares 7-10 Year Treasury Bond ETF",
+   "provider": "iShares",
+   "category": "Treasury Bonds",
+   "type": "bond",
+   "index": "ICE US Treasury 7-10 Year",
+   "tv_symbol": "NASDAQ:IEF"
+  },
+  {
+   "ticker": "IEMG",
+   "name": "iShares Core MSCI Emerging Markets ETF",
+   "provider": "iShares",
+   "category": "Emerging Markets",
+   "type": "equity",
+   "index": "MSCI Emerging Markets",
+   "tv_symbol": "AMEX:IEMG"
+  },
+  {
+   "ticker": "ITOT",
+   "name": "iShares Core S&P Total U.S. Stock Market ETF",
+   "provider": "iShares",
+   "category": "U.S. Market",
+   "type": "equity",
+   "index": "S&P Total Market",
+   "tv_symbol": "AMEX:ITOT"
+  },
+  {
+   "ticker": "IVE",
+   "name": "iShares S&P 500 Value ETF",
+   "provider": "iShares",
+   "category": "Value",
+   "type": "equity",
+   "index": "S&P 500 Value",
+   "tv_symbol": "AMEX:IVE"
+  },
+  {
+   "ticker": "IVV",
+   "name": "iShares Core S&P 500 ETF",
+   "provider": "iShares",
+   "category": "S&P 500",
+   "type": "equity",
+   "index": "S&P 500",
+   "tv_symbol": "AMEX:IVV"
+  },
+  {
+   "ticker": "IWM",
+   "name": "iShares Russell 2000 ETF",
+   "provider": "iShares",
+   "category": "U.S. Small-Cap",
+   "type": "equity",
+   "index": "Russell 2000",
+   "tv_symbol": "AMEX:IWM"
+  },
+  {
+   "ticker": "IXUS",
+   "name": "iShares Core MSCI Total International Stock ETF",
+   "provider": "iShares",
+   "category": "International (ex-U.S.)",
+   "type": "equity",
+   "index": "MSCI ACWI ex USA",
+   "tv_symbol": "NASDAQ:IXUS"
+  },
+  {
+   "ticker": "IYW",
+   "name": "iShares U.S. Technology ETF",
+   "provider": "iShares",
+   "category": "Technology",
+   "type": "equity",
+   "index": "Russell 1000 Technology RIC 22.5/45",
+   "tv_symbol": "AMEX:IYW"
+  },
+  {
+   "ticker": "QLD",
+   "name": "ProShares Ultra QQQ",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "Nasdaq-100 (2x daily)",
+   "tv_symbol": "AMEX:QLD"
+  },
+  {
+   "ticker": "QQQ",
+   "name": "Invesco QQQ Trust",
+   "provider": "Invesco",
+   "category": "Nasdaq-100",
+   "type": "equity",
+   "index": "Nasdaq-100",
+   "tv_symbol": "NASDAQ:QQQ"
+  },
+  {
+   "ticker": "QQQM",
+   "name": "Invesco NASDAQ 100 ETF",
+   "provider": "Invesco",
+   "category": "Nasdaq-100",
+   "type": "equity",
+   "index": "Nasdaq-100",
+   "tv_symbol": "NASDAQ:QQQM"
+  },
+  {
+   "ticker": "SCHB",
+   "name": "Schwab U.S. Broad Market ETF",
+   "provider": "Schwab",
+   "category": "U.S. Market",
+   "type": "equity",
+   "index": "Dow Jones US Broad Stock Market",
+   "tv_symbol": "AMEX:SCHB"
+  },
+  {
+   "ticker": "SCHD",
+   "name": "Schwab U.S. Dividend Equity ETF",
+   "provider": "Schwab",
+   "category": "Dividend Income",
+   "type": "equity",
+   "index": "Dow Jones US Dividend 100",
+   "tv_symbol": "AMEX:SCHD"
+  },
+  {
+   "ticker": "SCHF",
+   "name": "Schwab International Equity ETF",
+   "provider": "Schwab",
+   "category": "International (ex-U.S.)",
+   "type": "equity",
+   "index": "FTSE Developed ex US",
+   "tv_symbol": "AMEX:SCHF"
+  },
+  {
+   "ticker": "SCHG",
+   "name": "Schwab U.S. Large-Cap Growth ETF",
+   "provider": "Schwab",
+   "category": "Technology",
+   "type": "equity",
+   "index": "Dow Jones US Large-Cap Growth",
+   "tv_symbol": "AMEX:SCHG"
+  },
+  {
+   "ticker": "SCHH",
+   "name": "Schwab U.S. REIT ETF",
+   "provider": "Schwab",
+   "category": "Real Estate",
+   "type": "equity",
+   "index": "Dow Jones US Select REIT",
+   "tv_symbol": "AMEX:SCHH"
+  },
+  {
+   "ticker": "SCHV",
+   "name": "Schwab U.S. Large-Cap Value ETF",
+   "provider": "Schwab",
+   "category": "Value",
+   "type": "equity",
+   "index": "Dow Jones US Large-Cap Value",
+   "tv_symbol": "AMEX:SCHV"
+  },
+  {
+   "ticker": "SCHZ",
+   "name": "Schwab U.S. Aggregate Bond ETF",
+   "provider": "Schwab",
+   "category": "U.S. Bonds",
+   "type": "bond",
+   "index": "Bloomberg US Aggregate Bond",
+   "tv_symbol": "AMEX:SCHZ"
+  },
+  {
+   "ticker": "SGOV",
+   "name": "iShares 0-3 Month Treasury Bond ETF",
+   "provider": "iShares",
+   "category": "Treasury / Cash",
+   "type": "bond",
+   "index": "ICE 0-3 Month US Treasury",
+   "tv_symbol": "NYSE:SGOV"
+  },
+  {
+   "ticker": "SMH",
+   "name": "VanEck Semiconductor ETF",
+   "provider": "VanEck",
+   "category": "Semiconductors",
+   "type": "equity",
+   "index": "MVIS US Listed Semiconductor 25",
+   "tv_symbol": "NASDAQ:SMH"
+  },
+  {
+   "ticker": "SOXL",
+   "name": "Direxion Daily Semiconductor Bull 3X Shares",
+   "provider": "Direxion",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "NYSE Semiconductor (3x daily)",
+   "tv_symbol": "AMEX:SOXL"
+  },
+  {
+   "ticker": "SOXX",
+   "name": "iShares Semiconductor ETF",
+   "provider": "iShares",
+   "category": "Semiconductors",
+   "type": "equity",
+   "index": "NYSE Semiconductor",
+   "tv_symbol": "NASDAQ:SOXX"
+  },
+  {
+   "ticker": "SPAB",
+   "name": "State Street SPDR Portfolio Aggregate Bond Index ETF",
+   "provider": "SPDR",
+   "category": "U.S. Bonds",
+   "type": "bond",
+   "index": "Bloomberg US Aggregate Bond",
+   "tv_symbol": "AMEX:SPAB"
+  },
+  {
+   "ticker": "SPDW",
+   "name": "State Street SPDR Portfolio Developed World ex-US ETF",
+   "provider": "SPDR",
+   "category": "International (ex-U.S.)",
+   "type": "equity",
+   "index": "S&P Developed ex US BMI",
+   "tv_symbol": "AMEX:SPDW"
+  },
+  {
+   "ticker": "SPGM",
+   "name": "State Street SPDR Portfolio MSCI Global Stock Market ETF",
+   "provider": "SPDR",
+   "category": "Total World",
+   "type": "equity",
+   "index": "MSCI ACWI",
+   "tv_symbol": "AMEX:SPGM"
+  },
+  {
+   "ticker": "SPTM",
+   "name": "State Street SPDR Portfolio S&P 1500 Composite Stock Market ETF",
+   "provider": "SPDR",
+   "category": "U.S. Market",
+   "type": "equity",
+   "index": "S&P Composite 1500",
+   "tv_symbol": "AMEX:SPTM"
+  },
+  {
+   "ticker": "SPUS",
+   "name": "SP Funds S&P 500 Sharia Industry Exclusions ETF",
+   "provider": "SP Funds",
+   "category": "S&P 500",
+   "type": "equity",
+   "index": "S&P 500 Sharia Industry Exclusions",
+   "tv_symbol": "AMEX:SPUS"
+  },
+  {
+   "ticker": "SPY",
+   "name": "State Street SPDR S&P 500 ETF Trust",
+   "provider": "SPDR",
+   "category": "S&P 500",
+   "type": "equity",
+   "index": "S&P 500",
+   "tv_symbol": "AMEX:SPY"
+  },
+  {
+   "ticker": "SPYD",
+   "name": "State Street SPDR Portfolio S&P 500 High Dividend ETF",
+   "provider": "SPDR",
+   "category": "Dividend Income",
+   "type": "equity",
+   "index": "S&P 500 High Dividend",
+   "tv_symbol": "AMEX:SPYD"
+  },
+  {
+   "ticker": "SPYG",
+   "name": "State Street SPDR Portfolio S&P 500 Growth ETF",
+   "provider": "SPDR",
+   "category": "Growth",
+   "type": "equity",
+   "index": "S&P 500 Growth",
+   "tv_symbol": "AMEX:SPYG"
+  },
+  {
+   "ticker": "SPYM",
+   "name": "State Street SPDR Portfolio S&P 500 ETF",
+   "provider": "SPDR",
+   "category": "S&P 500",
+   "type": "equity",
+   "index": "S&P 500",
+   "tv_symbol": "AMEX:SPYM",
+   "former_ticker": "SPLG"
+  },
+  {
+   "ticker": "SPYV",
+   "name": "State Street SPDR Portfolio S&P 500 Value ETF",
+   "provider": "SPDR",
+   "category": "Value",
+   "type": "equity",
+   "index": "S&P 500 Value",
+   "tv_symbol": "AMEX:SPYV"
+  },
+  {
+   "ticker": "SSO",
+   "name": "ProShares Ultra S&P500",
+   "provider": "ProShares",
+   "category": "Leveraged",
+   "type": "leveraged",
+   "index": "S&P 500 (2x daily)",
+   "tv_symbol": "AMEX:SSO"
+  },
+  {
+   "ticker": "TLT",
+   "name": "iShares 20+ Year Treasury Bond ETF",
+   "provider": "iShares",
+   "category": "Treasury Bonds",
+   "type": "bond",
+   "index": "ICE US Treasury 20+ Year",
+   "tv_symbol": "NASDAQ:TLT"
+  },
+  {
+   "ticker": "USFR",
+   "name": "WisdomTree Floating Rate Treasury Fund",
+   "provider": "WisdomTree",
+   "category": "U.S. Bonds",
+   "type": "bond",
+   "index": "Bloomberg US Treasury Floating Rate",
+   "tv_symbol": "AMEX:USFR"
+  },
+  {
+   "ticker": "VB",
+   "name": "Vanguard Morningstar Small-Cap ETF",
+   "provider": "Vanguard",
+   "category": "U.S. Small-Cap",
+   "type": "equity",
+   "index": "CRSP US Small Cap",
+   "tv_symbol": "AMEX:VB"
+  },
+  {
+   "ticker": "VGT",
+   "name": "Vanguard Information Technology Index Fund ETF Shares",
+   "provider": "Vanguard",
+   "category": "Technology",
+   "type": "equity",
+   "index": "MSCI US IMI Information Technology 25/50",
+   "tv_symbol": "AMEX:VGT"
+  },
+  {
+   "ticker": "VNQ",
+   "name": "Vanguard Real Estate Index Fund ETF Shares",
+   "provider": "Vanguard",
+   "category": "Real Estate",
+   "type": "equity",
+   "index": "MSCI US IMI Real Estate 25/50",
+   "tv_symbol": "AMEX:VNQ"
+  },
+  {
+   "ticker": "VOO",
+   "name": "Vanguard S&P 500 ETF",
+   "provider": "Vanguard",
+   "category": "S&P 500",
+   "type": "equity",
+   "index": "S&P 500",
+   "tv_symbol": "AMEX:VOO"
+  },
+  {
+   "ticker": "VT",
+   "name": "Vanguard Total World Stock Index Fund ETF Shares",
+   "provider": "Vanguard",
+   "category": "Total World",
+   "type": "equity",
+   "index": "FTSE Global All Cap",
+   "tv_symbol": "AMEX:VT"
+  },
+  {
+   "ticker": "VTI",
+   "name": "Vanguard Morningstar Total Stock Market ETF",
+   "provider": "Vanguard",
+   "category": "U.S. Market",
+   "type": "equity",
+   "index": "CRSP US Total Market",
+   "tv_symbol": "AMEX:VTI"
+  },
+  {
+   "ticker": "VTV",
+   "name": "Vanguard Morningstar Value ETF",
+   "provider": "Vanguard",
+   "category": "Value",
+   "type": "equity",
+   "index": "CRSP US Large Cap Value",
+   "tv_symbol": "AMEX:VTV"
+  },
+  {
+   "ticker": "VXUS",
+   "name": "Vanguard Total International Stock Index Fund ETF Shares",
+   "provider": "Vanguard",
+   "category": "International (ex-U.S.)",
+   "type": "equity",
+   "index": "FTSE Global All Cap ex US",
+   "tv_symbol": "NASDAQ:VXUS"
+  },
+  {
+   "ticker": "VYM",
+   "name": "Vanguard High Dividend Yield Index Fund ETF Shares",
+   "provider": "Vanguard",
+   "category": "Dividend Income",
+   "type": "equity",
+   "index": "FTSE High Dividend Yield",
+   "tv_symbol": "AMEX:VYM"
+  },
+  {
+   "ticker": "XLK",
+   "name": "State Street Technology Select Sector SPDR ETF",
+   "provider": "SPDR",
+   "category": "Technology",
+   "type": "equity",
+   "index": "S&P Technology Select Sector",
+   "tv_symbol": "AMEX:XLK"
+  }
+ ]
+}

@@ -49,6 +49,9 @@
   --hero-eyebrow-fg: #86efac;
   --nav-active-bg: #166534;
   --red-btn: #b91c1c;
+  /* ETF type badges: bond is blue (distinct from green/amber/red). */
+  --type-bond: #1d4ed8;
+  --type-bond-bg: #dbeafe;
   --callout-amber-bg: #fffbeb;
   --callout-amber-border: #fcd34d;
   --callout-blue-bg: #eff6ff;
@@ -110,6 +113,9 @@
   --hero-eyebrow-fg: #4ade80;
   --nav-active-bg: #15803d;
   --red-btn: #b91c1c;
+  /* ETF type badges (dark): bond blue stays bright on dark surfaces. */
+  --type-bond: #93c5fd;
+  --type-bond-bg: #1e3a5f;
   --callout-amber-bg: #2a220f;
   --callout-amber-border: #6b5518;
   --callout-blue-bg: #16283d;
@@ -551,6 +557,30 @@ main {
   color: var(--amber);
 }
 .pill.neutral {
+  background: var(--track-bg);
+  color: var(--neutral-fg);
+}
+/* ETF type badges — four types, four colours, never shared:
+   equity green, bond blue, commodity amber, leveraged red. */
+.pill.type-equity {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.pill.type-bond {
+  background: var(--type-bond-bg);
+  color: var(--type-bond);
+}
+.pill.type-commodity {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+.pill.type-leveraged {
+  background: var(--red-bg);
+  color: var(--red);
+}
+/* ETF pill in search results — neutral, the type badge on the card
+   carries the colour. */
+.pill.etf {
   background: var(--track-bg);
   color: var(--neutral-fg);
 }

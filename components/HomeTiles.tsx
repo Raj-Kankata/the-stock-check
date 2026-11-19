@@ -31,6 +31,7 @@ export default function HomeTiles({
   priceDate,
   fvs,
   avCoverage,
+  etfCount,
 }: {
   total: number
   verdictCounts: { Growth: number; Value: number; Watch: number; Avoid: number }
@@ -41,6 +42,8 @@ export default function HomeTiles({
   /** Alpha Vantage trailing-earnings pull coverage (backtest data, not
       card coverage). Optional: the tile hides when the field is absent. */
   avCoverage?: { pulled: number; universe: number; as_of: string }
+  /** ETF board size. Optional: the tile hides when absent. */
+  etfCount?: number
 }) {
   const live = useLiveQuotes()
   const liveNow = hasLiveQuotes(live)
@@ -122,6 +125,17 @@ export default function HomeTiles({
         : `Median (fair value − price) / price, ${priceDate} close`,
     },
   ]
+
+  // ETFs tracked (separate data product — no fair values, no verdicts):
+  // an extra tile only when the count is present.
+  if (etfCount !== undefined) {
+    tiles.push({
+      label: 'ETFs tracked',
+      value: String(etfCount),
+      sub: 'Technical + Momentum reads · no fair value',
+      href: '/etfs',
+    })
+  }
 
   // Trailing-earnings pull coverage (backtest calibration data, NOT card
   // coverage): an extra tile only when the field is present in the baked
