@@ -1,0 +1,45 @@
+{
+  "as_of": "2026-11-16",
+  "price_date": "2026-11-13",
+  "tickers": 382,
+  "carried": 226,
+  "new": 156,
+  "unpublished_excluded": [
+    "AAOI",
+    "ALK",
+    "ALTI",
+    "AORT",
+    "BUR",
+    "BYND",
+    "CPNG",
+    "IREN",
+    "KLAR",
+    "KRUS",
+    "MNKD",
+    "MUX",
+    "OUST",
+    "RKLB",
+    "UUUU",
+    "UWMC",
+    "VITL",
+    "WGS"
+  ],
+  "t1_flags_verified_against_carried": 168,
+  "flag_translations_on_new_names": {
+    "t1_template": 130,
+    "growth_fallback": 81,
+    "beta_computed": 8,
+    "fcf_share": 3,
+    "nvo_oneoff": 1,
+    "jpm_t1": 1,
+    "jpm_q2_items": 1,
+    "jpm_fcf": 1,
+    "jpm_technicals": 1,
+    "jpm_dcf_skip": 1
+  },
+  "name_overrides": {
+    "ELPC": "Companhia Paranaense de Energia"
+  },
+  "base_md5_before": "3838529526952cc267a629f6b401a421",
+  "base_md5_after": "0b2e68bec975ec46ca642157eb537763"
+}

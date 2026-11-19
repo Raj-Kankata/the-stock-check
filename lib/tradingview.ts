@@ -2,14 +2,15 @@
 // API — no key, no signup, no proxy (same source as the header strip's
 // live chips in components/MarketStrip.tsx).
 //
-// VERIFIED 17 Nov 2026 from curl, and re-verified while building the
-// Trending page:
+// VERIFIED 17 Nov 2026 from curl, and re-verified 19 Nov 2026 for the
+// 382-name expansion (totalCount 382, all 382 distinct symbols, no null
+// closes):
 //   POST https://scanner.tradingview.com/america/scan
-//   body: {"symbols":{"tickers":[<227 exchange-prefixed tickers>]},
+//   body: {"symbols":{"tickers":[<382 exchange-prefixed tickers>]},
 //          "columns":["name","close","change","volume"],
 //          "sort":{"sortBy":"change"|"volume","sortOrder":"asc"|"desc"},
 //          "options":{"lang":"en"},"range":[0,10]}
-//   response: {"totalCount":227,"data":[{"s":"NASDAQ:AAPL",
+//   response: {"totalCount":382,"data":[{"s":"NASDAQ:AAPL",
 //          "d":["AAPL",354.12,0.38,7166875]},...]}
 //   where d = [bare symbol, close, day change in %, share volume].
 //   Three scans per poll: change desc (Gainers), change asc (Losers),
@@ -27,7 +28,7 @@
 //   1. The request does NOT include "query":{"types":["stock"]}. With
 //      that filter the scanner returns totalCount 0 for NYSE:INFY (the
 //      Infosys ADR) — the filter excludes it. Without the filter all
-//      227 tickers resolve. The explicit tickers list makes the filter
+//      382 tickers resolve. The explicit tickers list makes the filter
 //      redundant anyway.
 //   2. Rows are matched back to our tickers by d[0], the bare symbol —
 //      NOT by the `s` field's exchange prefix. TradingView currently
@@ -38,9 +39,9 @@
 //      are excluded from the Gainers/Losers boards (they can still rank
 //      on Most Active if volume is present).
 //
-// Exchange map: lib/data/exchanges.json, generated 17 Nov 2026 from the
-// free NASDAQ Trader symdir files (nasdaqlisted.txt + otherlisted.txt,
-// file creation 20261117 10:01) — 227/227 covered: NYSE 118, NASDAQ 108,
+// Exchange map: lib/data/exchanges.json, regenerated 19 Nov 2026 from
+// the free NASDAQ Trader symdir files (nasdaqlisted.txt + otherlisted.txt,
+// file creation 20261118 21:31) — 382/382 covered: NYSE 205, NASDAQ 176,
 // CBOE 1. One hand-correction, verified against the live scanner:
 // CBOE (Cboe Global Markets, Cboe BZX listing) is "CBOE:CBOE" —
 // "BATS:CBOE" returns symbol_not_exists. BRK-B is "NYSE:BRK.B".
@@ -160,13 +161,13 @@ export async function scanTradingView(
 }
 
 /**
- * One scan for ALL 227 quotes — the single live-price fetch every live
+ * One scan for ALL 382 quotes — the single live-price fetch every live
  * surface on a page shares. Same endpoint, same Content-Type: text/plain
  * rule, same row-matching (d[0], never the `s` prefix) as scanTradingView
- * above. Verified 17 Nov 2026 from curl: range [0,227] returns
- * totalCount 227 and all 227 distinct symbols in one response.
+ * above. Verified 19 Nov 2026 from curl: range [0,382] returns
+ * totalCount 382 and all 382 distinct symbols in one response.
  *
- * All-or-none: returns null unless every one of the 227 tickers came
+ * All-or-none: returns null unless every one of the 382 tickers came
  * back with a finite close. A partial map would leave some rows live
  * and others baked under one timestamp, so a short map is a failure
  * and the caller falls back to baked closes.
@@ -257,11 +258,11 @@ export async function fetchSymbolQuote(tvSymbol: string): Promise<TvSymbolQuote 
  * / total 11,836. The three sign counts need not sum to the total: a
  * few dozen names report no day change at all and are counted in the
  * total but in neither group. The universe is every US-listed stock the
- * scanner covers, including OTC names — it is NOT our 227.
+ * scanner covers, including OTC names — it is NOT our 382.
  *
  * Same CORS rule as the other scans: Content-Type: text/plain, never
  * application/json. Null on any failure — the caller falls back to the
- * baked 227-name counts in macro.json. After hours the scanner returns
+ * baked 382-name counts in macro.json. After hours the scanner returns
  * the frozen close values, which the caller labels as of the close,
  * never as live.
  */
@@ -322,7 +323,7 @@ export async function fetchMarketBreadth(): Promise<MarketBreadth | null> {
 // Any number of components on a page may call useLiveQuotes(); the fetch
 // and the poll timer exist exactly once per page (module state), so the
 // stock card's five live spots, the homepage's tables and tiles, and the
-// 227-row /stocks table all share one scan per poll. The header strip
+// 382-row /stocks table all share one scan per poll. The header strip
 // and the Trending boards keep their own existing fetches (different
 // symbols / different sorts) and are untouched by this store.
 //

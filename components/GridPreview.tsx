@@ -7,7 +7,7 @@ import SensitivityGrid from '@/components/SensitivityGrid'
 
 /**
  * Homepage fair-value grid preview. A native <select> picks one of the
- * 227 scored tickers (default NVDA) and renders that ticker's DCF
+ * 382 scored tickers (default NVDA) and renders that ticker's DCF
  * sensitivity grid with the same click-to-compare behaviour as the stock
  * page. The grids arrive as props from the homepage at build time —
  * grid VALUES only, never the grid notes or any other part of the

@@ -8,7 +8,7 @@ import { scoreSpan } from '@/components/ui'
 import { logSearch } from '@/lib/analytics'
 
 /**
- * Ticker search. Only the 227 scored tickers resolve to a card.
+ * Ticker search. Only the 382 scored tickers resolve to a card.
  * Anything else says so plainly — never a guessed score.
  * The search index (symbol, name, verdict, score, fair value) is
  * passed in from the layout at build time; this component never

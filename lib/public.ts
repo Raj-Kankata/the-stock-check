@@ -76,7 +76,7 @@ export function searchIndex(): PublicSearchEntry[] {
   return TICKER_SYMBOLS.map((symbol) => toSearchEntry(symbol, RESULTS.tickers[symbol]))
 }
 
-/** All 227 tickers' sensitivity grids, for the homepage preview. */
+/** All 382 tickers' sensitivity grids, for the homepage preview. */
 export function allGrids(): PublicGrid[] {
   return TICKER_SYMBOLS.map((symbol) => toGrid(symbol, RESULTS.tickers[symbol]))
 }

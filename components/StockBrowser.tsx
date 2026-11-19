@@ -227,7 +227,7 @@ export default function StockBrowser({ rows, priceDate }: { rows: PublicRow[]; p
   const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS)
   const [hydrated, setHydrated] = useState(false)
 
-  // All 227 scored rows, with the baked upside attached. Counts and
+  // All 382 scored rows, with the baked upside attached. Counts and
   // band tallies are computed from these rows (never from the full
   // results data — this component never sees it).
   const allRows: Row[] = useMemo(
@@ -299,7 +299,7 @@ export default function StockBrowser({ rows, priceDate }: { rows: PublicRow[]; p
 
   // On mount only: read the query string and apply it as initial state.
   // The search-params hook is deliberately not used — the prerendered
-  // HTML must show all 227 rows in default sort order, matching the
+  // HTML must show all 382 rows in default sort order, matching the
   // first-paint state exactly.
   useEffect(() => {
     setFilters(parseParams(window.location.search, stats.sectors))

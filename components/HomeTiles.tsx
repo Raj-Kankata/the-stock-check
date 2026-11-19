@@ -49,9 +49,10 @@ export default function HomeTiles({
   // value contributes (fair value − live price) / live price. If the
   // live map is missing a name (it never is — the scan is all-or-none),
   // that name keeps its baked close rather than dropping out.
-  // BYND carries a non-positive fair value, so it never contributes —
-  // the completeness check is against the scorable names only. (The
-  // old check compared against all 227 fvs, so it never passed and
+  // The completeness check is against the scorable names only — the
+  // published set carries positive fair values only, so a non-positive
+  // fair value never contributes. (The old check compared against all
+  // 227 fvs, BYND's non-positive one included, so it never passed and
   // both tiles stayed on the baked close even while live — the tile
   // said 90 while the /stocks pill said the live 92.)
   const scorableFvs = fvs.filter(({ fv }) => fv > 0)

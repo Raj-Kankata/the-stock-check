@@ -1,6 +1,126 @@
 #!/usr/bin/env python3
-"""Scoring engine v1.6-batch2 — The Stock Check.
-SPEC v1.4 FINAL (2026-11-17) — BA-shape FV rule (§1) + Quality degenerate rule (§3): the fair value uses the Forward-sector leg explicitly when trailing earnings are dominated by a quantified one-off; Quality cash checks score neutral-50 when net income is near zero. BA T2 curation applied in the inputs (base_inputs.json BA adjusted fields). Everything else frozen v1.5.
+"""Scoring engine v1.7 — better Stock Verdicts platform.
+SPEC v1.5 FINAL (2026-11-18). Deterministic: reads inputs.json only
+(2026-11-13 inputs; v1.6 inputs + the v1.5 rule inputs: EDGAR revenue-CAGR
+growth fallback, computed betas, per-ticker DCF skip reasons; SO + NFLX
+added). No live calls, no invented numbers. Writes results.json.
+Run:  python3 engine.py  (8 batch-2 names, standalone)
+       python3 run_v17.py (full 398-name re-run; the supported path)
+
+CHANGES vs v1.6 (v1.7, SPEC v1.5 §2–§7 — searched-but-unavailable rules):
+  (1) R1 RECEIVABLES NEUTRAL-50 (SPEC v1.5 §2): when
+      receivables_ratio_change_pp is None (the trend cannot be read —
+      structurally absent from EDGAR or not a fresh consecutive pair),
+      the receivables subscore is 50 (neutral), with
+      receivables_unreadable recorded in the Quality detail. Precedent:
+      SPEC v1.4 §3 degenerate neutral-50. Completeness counts the gap
+      (one gap = 90). RECEIVABLES_NEUTRAL_ENABLED=False reproduces the
+      frozen v1.6 control exactly (used by run_v17.py for the
+      regression gate).
+  (2) R2 GROWTH FALLBACK (SPEC v1.5 §3): input-side — when Yahoo
+      publishes no PEG/trailing P/E, build_inputs_v17.py sets
+      implied_5y_eps_growth to the EDGAR 3y revenue CAGR (only when it
+      is > 0) and records growth_source =
+      "revenue_cagr_3y_annual_fallback". The engine reads the growth
+      exactly as before; the leg method text says the growth is the
+      EDGAR 3y revenue CAGR, not implied EPS growth, and the guardrail
+      note is suppressed for fallback growth (the guardrail anchor IS
+      the fallback growth, so it can never change the leg growth —
+      proven in SPEC v1.5 §3b). No engine flag: a v1.6 input carries no
+      growth_source field, so the Yahoo wording applies.
+  (3) R3 CONDITIONAL LEGS (SPEC v1.5 §4): the PEGY leg builds only when
+      growth + trailing P/E + dividend yield are all present; the
+      Forward leg builds only when forward EPS > 0 + sector multiple is
+      present. Otherwise the leg is None with a SKIPPED method. The DCF
+      leg was already conditional and now also requires beta (a name
+      with no beta at all still scores on PEGY + Forward). A name with
+      >= 2 computable legs is scorable; FV = median (3) or mean (2),
+      and the 2-leg fv_method names the skipped leg. Enforces RULEBOOK
+      §5 (forward EPS <= 0 cannot be three-leg scorable). The CAPM
+      cross-check records value None when beta is None.
+      CONDITIONAL_LEGS_ENABLED=False reproduces the frozen v1.6 control
+      exactly.
+  (4) R4 COMPUTED BETA (SPEC v1.5 §5): input-side — when Yahoo beta is
+      missing and >= 200 bars exist, build_inputs_v17.py sets beta to
+      the 1y daily-return OLS regression vs SPY and records beta_source
+      = "computed_1y_regression_vs_spy". The engine uses the beta
+      exactly as before (discount tier, CAPM cross-check). No flag.
+  (5) R5/R6 PUBLICATION (SPEC v1.5 §6–§7): 2-leg cards publish (no
+      scoring change); a non-positive triangulated FV is not published
+      (driver/merge level, NOT the engine — the engine keeps computing
+      the negative FV for audit). DCF SKIP REASON: the engine reads a
+      per-ticker dcf_skip_reason from the input when present, else the
+      legacy default — the old code returned the DKK text for every
+      non-JPM name.
+  Everything else is FROZEN from v1.6: weights, gates, locked DCF set,
+  ladder ratios, PEGY/DCF/Forward-sector leg formulas, ONEOFF-v1,
+  growth guardrail, CAPM cross-check and sensitivity grid (display only).
+
+CHANGES vs v1.5 (v1.6, SPEC v1.4 §1–§3 — BA-shape FV rule; Quality
+degenerate-net-income rule; pros/cons guards):
+  (1) BA-SHAPE FV RULE (SPEC v1.4 §1): after the median/mean FV is
+      computed, when the leg spread on the median FV is >= 0.75 AND the
+      ticker carries a curated T2 one-off whose net after-tax amount
+      exceeds 50% of reported TTM net income in absolute terms, the fair
+      value is set to the Forward-sector leg explicitly — the undistorted
+      operating leg — and fv_method is recorded as
+      "forward_sector_explicit (SPEC v1.4 §1)". Upside, spread, score
+      caps, ladder and verdict rules are unchanged (recomputed on the new
+      FV). The net one-off is read from the input's oneoff_adjustments
+      list (sum of amount_after_tax_usd_m) — no new input field. Only BA
+      meets all three conditions in v1.6; GOOGL (42.0%), GME (19.4%) and
+      NVO (16.9%) do not. FV_OVERRIDE_ENABLED=False reproduces the frozen
+      v1.5 control exactly (used by run_v16.py for the regression gate).
+  (2) QUALITY DEGENERATE RULE (SPEC v1.4 §3): when |NI used| (adjusted if
+      set, else reported) is < 1% of TTM revenue, the OCF/NI and
+      FCF-conversion subscores are set to 50 (neutral — the check cannot
+      be read), with degenerate_ni recorded in the Quality detail. The
+      other four subscores are unaffected. DEGENERATE_QUALITY_ENABLED=
+      False reproduces the frozen v1.5 control exactly.
+  (3) PROS/CONS GUARDS: when degenerate_ni is true, the OCF/NI and
+      FCF-conversion lines are not emitted (they are built from the
+      unreadable ratios); the fair-value line says "Fair value" instead
+      of "Triangulated fair value" when the FV override fired, and does
+      not claim the midpoint is the anchor.
+  Everything else is FROZEN from v1.5: weights, gates, locked DCF set,
+  ladder ratios, PEGY/DCF/Forward-sector leg formulas, ONEOFF-v1, growth
+  guardrail, CAPM cross-check and sensitivity grid (display only).
+
+CHANGES vs v1.4 (v1.5, SPEC v1.3 §1–§2 — symmetric one-offs; the GME
+negative quarters are an INPUTS change in build_inputs_v15.py, not a code
+change in this file): the engine already uses trailing_pe_adjusted for PEGY
+and adjusted NI for Quality whenever set (ONEOFF-v1), so no pillar, leg,
+guardrail, weight, gate or verdict code changes. The guardrail logic is
+unchanged from v1.4.
+
+CHANGES vs v1.3 (v1.4, SPEC v1.2 §1 — growth guardrail; §2 — GME T2
+application path in build_inputs_v14.py, not in this file):
+  The engine's implied 5y EPS growth (trailing P/E / Yahoo PEG) is
+  derived, not published. When Yahoo publishes no long-term growth
+  estimate for a name (curated blank-LTG list, currently {GME}), or
+  when the implied growth exceeds the revenue anchor by more than
+  50 percentage points, the DCF and PEGY legs use a capped growth
+  instead of the implied growth:
+    anchor = revenue_cagr_3y_annual, else revenue_growth_yahoo (1y)
+    g_cap  = clamp(anchor + 0.10, 0.10, 0.30)
+    DCF growth  = min(g_implied, g_cap, 0.20)
+    PEGY growth = min(g_implied, g_cap, 0.30)
+  The Forward-sector leg is untouched (no growth rate). The CAPM
+  cross-check DCF leg and the sensitivity grid use the same capped
+  growth as the decision DCF leg. FV remains the median of the
+  available legs; all scores, gates and verdict rules are unchanged
+  (SPEC v1.1 §3-§4). NVDA's DCF leg keeps its LOCKED 20% growth
+  (not implied-growth-derived); its PEGY leg is guarded like any
+  other. GUARDRAIL_ENABLED=False reproduces the frozen v1.3 control
+  exactly (used by run_v15.py for the regression gate).
+  The run section tolerates inputs without a stock_verdicts block
+  (refresh fragments carry none); vs_stock_verdicts is then None.
+  SITE COPY: the Run section drops the stock_verdicts /
+  vs_stock_verdicts record keys and the SV print tail (the site
+  base carries no stock_verdicts input — the same adaptation
+  the v1.6 site copies carried). Scores, legs, FV, verdicts
+  and pillar details are identical to the workspace engine.
+  No other number, weight, threshold, gate or leg formula changes.
 BATCH-2 ADAPTATIONS (v1.3 logic unchanged; see METHOD-batch2.md):
   (a) TICKERS = the 8 batch-2 names; TRUST COMPLETENESS generalised from
       the v1.3 hardcoded {NVDA/AAPL/MSFT: 100, GOOGL: 80, NVO: 65} by the
@@ -22,7 +142,7 @@ BATCH-2 ADAPTATIONS (v1.3 logic unchanged; see METHOD-batch2.md):
   weights, gates, ladder ratios, PEGY/DCF/Forward-sector legs, ONEOFF-v1,
   CAPM cross-check and sensitivity grid (display only).
 
-Scoring engine v1.3 — The Stock Check.
+Scoring engine v1.3 — better Stock Verdicts platform.
 SPEC v1.1 FINAL (2026-11-16). Deterministic: reads inputs.json only
 (verified snapshot as of 2026-11-16, prices at 2026-11-13 close).
 No live calls, no invented numbers. Writes results.json.
@@ -112,7 +232,8 @@ PILLAR 2 — VALUATION (30%): triangulated fair value from three legs; the
         discounted 10% for 1 year. The old Forward-22 value (x 22x) is
         still computed and shown in the method note for traceability.
     Ladder from OUR triangulated FV: Heavy 0.60x / Buy 0.80x / Fair 1.00x /
-        Exit 1.20x (explicit; fixed for all names).
+        Exit 1.20x (explicit; SV used 0.60/0.80/1.20 for most names but
+        0.70/0.85/1.10 for AAPL — flagged where it differs).
     Valuation score from upside (FV/price - 1), piecewise-linear:
         -40%->10, -25%->25, -10%->40, 0%->55, +10%->70, +25%->85, +50%->100.
         Uncertainty cap: if (max leg - min leg)/median FV > 0.75, cap at 65;
@@ -168,8 +289,17 @@ COMPLETENESS = {"AMZN": 80, "META": 80, "TSLA": 80, "AVGO": 80, "BRK-B": 80,
 DCF_SKIP_REASONS = {
     "JPM": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row for JPM equals operating cash flow, which includes deposit/trading flows; StockAnalysis publishes no FCF for JPM",
 }
-def dcf_skip_reason(t):
+def dcf_skip_reason(t, d=None):
+    """v1.7 (SPEC v1.5 §6b): the per-ticker reason from the input wins when
+    present (set by build_inputs_v17.py from the fragment's fcf_per_share
+    class + dcf_skip_cause); else the legacy default. A v1.6 input carries
+    no dcf_skip_reason field, so the legacy path reproduces v1.6 exactly."""
+    if d is not None and d.get("dcf_skip_reason"):
+        return d["dcf_skip_reason"]
     return DCF_SKIP_REASONS.get(t, "FCF in DKK, USD per-share basis not verified")
+# --- v1.7: searched-but-unavailable rules (SPEC v1.5 §2, §4) ---
+RECEIVABLES_NEUTRAL_ENABLED = True  # False = frozen v1.6 control (regression gate only)
+CONDITIONAL_LEGS_ENABLED = True     # False = frozen v1.6 control (regression gate only)
 TERMINAL_G = 0.025
 PEGS_CAP = 0.30      # PEGY growth cap (30%)
 DCF_GROWTH_CAP = 0.20  # LOCKED v1.1 (was 25%)
@@ -181,9 +311,10 @@ BLANK_LTG = {"ALGT", "ASYS", "AVGO", "AXTI", "BIP", "BYND", "CDE", "DCTH",
              "LWAY", "LYTS", "M", "MORN", "MRTN", "NRG", "OLED", "PRIM",
              "QLYS", "RBBN", "RMBS", "ROG", "SMG", "STX", "TTEK", "VECO",
              "VYX"}  # curated blank-LTG list (SPEC v1.2 §1b, trigger A):
-# Zacks detailed-estimates "Next 5 Years" = NA, full 227-name census
-# 2026-11-17 (stock-verdicts-better/full-universe-pipeline/refresh/
-# blank_ltg_census_v14.json). Additions are curation updates (SPEC v1.2 §9).
+# Zacks detailed-estimates "Next 5 Years" = NA, verified by the full
+# 227-name census 2026-11-17 (refresh/blank_ltg_census_v14.json; GOOGL
+# 16.70% and BRK-B 12.00% resolved via Zacks crawls — not blank).
+# Additions are curation updates, not spec changes (SPEC v1.2 §9).
 GUARDRAIL_GAP = 0.50     # trigger B: implied growth exceeds anchor by > 50pp
 GUARDRAIL_SPREAD = 0.10  # g_cap = anchor + 10pp (margin expansion + buybacks)
 GUARDRAIL_FLOOR = 0.10   # g_cap floored at 10%
@@ -213,7 +344,6 @@ def guardrail(t, d):
     if (g - anchor) > GUARDRAIL_GAP:
         return min(g, g_cap), True, "B gap>50pp", g_cap, anchor
     return g, False, "none", g_cap, anchor
-
 # --- v1.3 additions: CAPM cross-check + sensitivity grid (DISPLAY ONLY) ---
 RF_CAPM = 0.051            # live 10Y Treasury, 5.10% as of 2026-11-12 (FRED DGS10) — cross-check only; locked rf 5.00% still drives the decision leg
 ERP_DAMODARAN = 0.0441     # Damodaran implied ERP, 4.41% as of 2026-11-01 (Trailing 12 month, with adjusted payout)
@@ -267,9 +397,18 @@ def pillar_valuation(t, d):
     # capped at g_cap when triggered, else the implied growth itself. The
     # leg caps below still apply on top (DCF 20%, PEGY 30%).
     g_guarded, gr_triggered, gr_trigger, gr_cap, gr_anchor = guardrail(t, d)
+    # v1.7 (SPEC v1.5 §3b): the guardrail note is suppressed for fallback
+    # growth — the guardrail anchor IS the fallback growth, so it can never
+    # change the leg growth (proven in the spec); claiming a cap was applied
+    # would be false. A v1.6 input carries no growth_source field, so the
+    # note behaviour is unchanged for the v1.6 control.
+    growth_is_fallback = d.get("growth_source") == "revenue_cagr_3y_annual_fallback"
+    growth_desc = (f"EDGAR 3y revenue CAGR {d['implied_5y_eps_growth']:.1%} "
+                   "(fallback growth, SPEC v1.5 §3)") if growth_is_fallback else \
+                  f"implied 5y EPS growth {d['implied_5y_eps_growth']:.1%}"
     gr_note = (" Growth guardrail applied (SPEC v1.2): implied growth is "
                "not supported by revenue growth, so the growth used is "
-               "capped — see Methodology.") if gr_triggered else ""
+               "capped — see Methodology.") if (gr_triggered and not growth_is_fallback) else ""
     # (a) DCF — LOCKED SET v1.1
     if t == "NVDA":
         legs["dcf"] = {"value": round(dcf(NVDA_BASE_FCF_NORM, USER_GRID_BASE_GROWTH, r=DISCOUNT_HIGH), 2),
@@ -279,23 +418,30 @@ def pillar_valuation(t, d):
                                  "difference is the higher base ($4.80 vs grid-implied ~$4.61) "
                                  "partly offset by the higher discount.",
                        "growth_scenario": USER_GRID_BASE_GROWTH}
-    elif d["fcf_per_share_ttm"] is not None:
+    elif d["fcf_per_share_ttm"] is not None and d["beta"] is not None:
         g = min(g_guarded, DCF_GROWTH_CAP)
         disc = discount_for(d["beta"])
         legs["dcf"] = {"value": round(dcf(d["fcf_per_share_ttm"], g, r=disc), 2),
                        "method": f"LOCKED v1.1: own 5y DCF on TTM FCF/share ${d['fcf_per_share_ttm']}, "
-                                 f"g={g:.1%} (implied 5y EPS growth {d['implied_5y_eps_growth']:.1%}, capped 20%), "
+                                 f"g={g:.1%} ({growth_desc}, capped 20%), "
                                  f"discount {disc:.1%} ({'high-beta tier, raw beta >= 2.0' if disc == DISCOUNT_HIGH else 'low-beta tier'}), terminal g 2.5%{gr_note}",
                        "growth_scenario": round(g, 4)}
     else:
         legs["dcf"] = {"value": None,
-                       "method": f"SKIPPED — {dcf_skip_reason(t)}",
+                       "method": f"SKIPPED — {dcf_skip_reason(t, d)}",
                        "growth_scenario": None}
     # (a2) v1.3 — CAPM cross-check DCF leg + sensitivity grid (DISPLAY ONLY).
     # Same base FCF/share and growth as the decision leg; never enters the
     # triangulation, any pillar score, or any verdict (SPEC v1.1 §3(a)).
-    beta_adj = round(BETA_ADJ_A * d["beta"] + BETA_ADJ_B, 5)
-    r_capm = capm_discount(d["beta"])
+    # v1.7 (SPEC v1.5 §4): a name can now score with no beta at all (PEGT +
+    # Forward legs) — the CAPM cross-check then records value None instead
+    # of crashing on the missing beta. A v1.6 input always has a beta, so
+    # this guard is inert for the v1.6 control.
+    if d["beta"] is None:
+        beta_adj, r_capm = None, None
+    else:
+        beta_adj = round(BETA_ADJ_A * d["beta"] + BETA_ADJ_B, 5)
+        r_capm = capm_discount(d["beta"])
     if legs["dcf"]["value"] is not None:
         if t == "NVDA":
             dcf_f0, dcf_g, dcf_spread = NVDA_BASE_FCF_NORM, USER_GRID_BASE_GROWTH, DISCOUNT_HIGH - RF
@@ -323,36 +469,73 @@ def pillar_valuation(t, d):
                      "(NVDA, 20% in v1.3); otherwise the decision leg sits between two grid rows. "
                      f"Base FCF/share ${dcf_f0}, terminal growth 2.5%, 5y horizon.")
     else:
-        capm_leg = {"value": None, "discount_capm": round(r_capm, 4),
+        capm_leg = {"value": None,
+                    "discount_capm": round(r_capm, 4) if r_capm is not None else None,
                     "beta_raw": d["beta"], "beta_adjusted": beta_adj,
                     "rf_live": RF_CAPM, "rf_live_asof": "2026-11-12",
                     "erp": ERP_DAMODARAN, "erp_asof": "2026-11-01",
-                    "method": f"SKIPPED — same reason as the decision DCF leg ({dcf_skip_reason(t)}); CAPM discount still recorded for transparency."}
-        grid, grid_note = None, f"SKIPPED — same reason as the decision DCF leg ({dcf_skip_reason(t)})."
+                    "method": f"SKIPPED — same reason as the decision DCF leg ({dcf_skip_reason(t, d)}); CAPM discount still recorded for transparency." if r_capm is not None else
+                              "SKIPPED — no beta (Yahoo publishes none and no computed beta exists), so neither the decision DCF leg nor the CAPM cross-check can be built."}
+        grid, grid_note = None, f"SKIPPED — same reason as the decision DCF leg ({dcf_skip_reason(t, d)})."
     # (b) Lynch PEGY — v1.4: growth is the guarded growth (SPEC v1.2 §1),
-    # still capped at 30% (Lynch's own caution).
-    g_cap = min(g_guarded, PEGS_CAP)
+    # still capped at 30% (Lynch's own caution). v1.7 (SPEC v1.5 §4):
+    # the leg builds only when growth + trailing P/E + dividend yield are
+    # all present; otherwise it is skipped. With the flag OFF the leg is
+    # computed unconditionally, as in v1.6 (the v1.6 control inputs never
+    # have a None here).
     pe = d["trailing_pe_adjusted"] if d["trailing_pe_adjusted"] else d["trailing_pe"]
-    pegy = ((g_cap * 100) + (d["dividend_yield"] * 100)) / pe
-    legs["pegy"] = {"value": round(price * pegy, 2),
-                    "method": f"PEGT = ({g_cap:.1%} growth capped at 30% + {d['dividend_yield']:.2%} div) / "
-                              f"P/E {pe:.2f} = {pegy:.3f}; fair = price x PEGY{gr_note}",
-                    "pegy": round(pegy, 3), "growth_used": round(g_cap, 4),
-                    "pe_used": pe,
-                    "uncapped_pegy": round(((d["implied_5y_eps_growth"] * 100) + (d["dividend_yield"] * 100)) / pe, 3)}
-    # (c) Forward-sector — v1.2: sector multiple replaces the fixed 22x
+    if CONDITIONAL_LEGS_ENABLED and (pe is None or d["dividend_yield"] is None):
+        legs["pegy"] = {"value": None,
+                        "method": ("SKIPPED — trailing P/E unavailable; PEGY uncomputable "
+                                   "(SPEC v1.5 §4).") if pe is None else
+                                  "SKIPPED — dividend yield unavailable; PEGY uncomputable (SPEC v1.5 §4).",
+                        "pegy": None, "growth_used": None, "pe_used": None,
+                        "uncapped_pegy": None}
+    else:
+        g_cap = min(g_guarded, PEGS_CAP)
+        pegy = ((g_cap * 100) + (d["dividend_yield"] * 100)) / pe
+        growth_label = ("EDGAR 3y revenue-CAGR growth" if growth_is_fallback
+                        else "growth")
+        legs["pegy"] = {"value": round(price * pegy, 2),
+                        "method": f"PEGT = ({g_cap:.1%} {growth_label} capped at 30% + {d['dividend_yield']:.2%} div) / "
+                                  f"P/E {pe:.2f} = {pegy:.3f}; fair = price x PEGY{gr_note}",
+                        "pegy": round(pegy, 3), "growth_used": round(g_cap, 4),
+                        "pe_used": pe,
+                        "uncapped_pegy": round(((d["implied_5y_eps_growth"] * 100) + (d["dividend_yield"] * 100)) / pe, 3)}
+    # (c) Forward-sector — v1.2: sector multiple replaces the fixed 22x.
+    # v1.7 (SPEC v1.5 §4): the leg builds only when forward EPS > 0 +
+    # sector multiple is present — this enforces RULEBOOK §5, which the
+    # engine never enforced (it computed a negative Forward leg, e.g.
+    # BYND −$184.06). With the flag OFF the leg is computed
+    # unconditionally, as in v1.6.
+    fwd_eps = d["forward_eps"]
     mult = d["sector_multiple"]
-    mult_capped = min(max(mult, 10.0), 35.0)
-    fwd_sector = d["forward_eps"] * mult_capped / 1.10
-    fwd22 = d["forward_eps"] * 22 / 1.10  # kept for traceability only
-    legs["forward_sector"] = {"value": round(fwd_sector, 2),
-                         "method": f"v1.2 Forward-sector: next-year EPS ${d['forward_eps']:.2f} x "
-                                   f"{d['gics_sector']} forward P/E {mult:.1f} "
-                                   f"(FactSet Earnings Insight, {d['sector_multiple_asof']}; "
-                                   f"cap 35x / floor 10x, {'BINDS' if mult_capped != mult else 'not binding'}) "
-                                   f"/ 1.10. Old Forward-22 value was ${fwd22:,.2f} (x 22x).",
-                         "sector_multiple": mult, "sector_multiple_asof": d["sector_multiple_asof"],
-                         "forward22_value": round(fwd22, 2)}
+    if CONDITIONAL_LEGS_ENABLED and (fwd_eps is None or fwd_eps <= 0 or mult is None):
+        if fwd_eps is not None and fwd_eps <= 0:
+            fwd_reason = (f"forward EPS ${fwd_eps:.2f} is not positive; the "
+                          "Forward-sector leg cannot be built on a "
+                          "non-positive earnings base (RULEBOOK §5, SPEC v1.5 §4).")
+        elif fwd_eps is None:
+            fwd_reason = "forward EPS unavailable; Forward-sector leg uncomputable (SPEC v1.5 §4)."
+        else:
+            fwd_reason = "sector multiple unavailable; Forward-sector leg uncomputable (SPEC v1.5 §4)."
+        legs["forward_sector"] = {"value": None,
+                             "method": f"SKIPPED — {fwd_reason}",
+                             "sector_multiple": mult,
+                             "sector_multiple_asof": d["sector_multiple_asof"],
+                             "forward22_value": None}
+    else:
+        mult_capped = min(max(mult, 10.0), 35.0)
+        fwd_sector = fwd_eps * mult_capped / 1.10
+        fwd22 = fwd_eps * 22 / 1.10  # kept for traceability only
+        legs["forward_sector"] = {"value": round(fwd_sector, 2),
+                             "method": f"v1.2 Forward-sector: next-year EPS ${fwd_eps:.2f} x "
+                                       f"{d['gics_sector']} forward P/E {mult:.1f} "
+                                       f"(FactSet Earnings Insight, {d['sector_multiple_asof']}; "
+                                       f"cap 35x / floor 10x, {'BINDS' if mult_capped != mult else 'not binding'}) "
+                                       f"/ 1.10. Old Forward-22 value was ${fwd22:,.2f} (x 22x).",
+                             "sector_multiple": mult, "sector_multiple_asof": d["sector_multiple_asof"],
+                             "forward22_value": round(fwd22, 2)}
     vals = [v["value"] for v in legs.values() if v["value"] is not None]
     if len(vals) >= 3:
         vals_sorted = sorted(vals)
@@ -360,7 +543,14 @@ def pillar_valuation(t, d):
         fv_method = "median of 3 legs"
     elif len(vals) == 2:
         fv = round(sum(vals) / 2, 2)
-        fv_method = "mean of 2 available legs (DCF skipped) — flagged"
+        # v1.7 (SPEC v1.5 §4): name the skipped leg. The DCF-skipped
+        # wording is the v1.6 text verbatim, so the v1.6 control is exact.
+        skipped = [k for k, v in legs.items() if v["value"] is None]
+        if skipped == ["dcf"]:
+            fv_method = "mean of 2 available legs (DCF skipped) — flagged"
+        else:
+            fv_method = "mean of 2 available legs (%s skipped) — flagged" % ", ".join(
+                {"pegy": "PEGY", "forward_sector": "Forward"}.get(k, k) for k in skipped)
     else:
         fv, fv_method = None, "insufficient legs"
     # v1.6 BA-shape rule (SPEC v1.4 §1): when the legs disagree widely AND
@@ -372,7 +562,12 @@ def pillar_valuation(t, d):
     # read from the curated oneoff_adjustments list, in $M — the list
     # stores after-tax amounts as amount_after_tax_usd_m (BA, GME) or
     # amount_after_tax_usd_b (GOOGL, AMZN, META, AVGO, BRK-B, TSLA); both
-    # are summed. NVO is DKK (currency_financials != USD) and is skipped.
+    # are summed. NVO is DKK (currency_financials != USD) and is skipped:
+    # its list has no USD net-income base to compare against, and its
+    # documented removed share (16.9%) is below the test in any case.
+    # Only BA meets all three conditions in v1.6; GOOGL (42.0%), GME
+    # (19.4%) and NVO (16.9%) do not. FV_OVERRIDE_ENABLED=False
+    # reproduces the frozen v1.5 control exactly (regression gate).
     fv_override_applied = False
     if FV_OVERRIDE_ENABLED and len(vals) >= 3 and fv:
         spread_pre = (max(vals) - min(vals)) / fv
@@ -424,9 +619,19 @@ def pillar_quality(d):
     acc = d["accruals_sloan_latest_annual"]
     s_acc = band(acc, [(0.0, 100), (0.05, 75), (0.10, 50), (999, 25)])
     dpp = d["receivables_ratio_change_pp"]
-    s_recv = band(dpp, [(1.0, 100), (3.0, 70), (5.0, 40), (999, 20)])
+    # v1.7 R1 (SPEC v1.5 §2): when the receivables trend cannot be read
+    # (None — structurally absent from EDGAR or not a fresh consecutive
+    # pair), the subscore is 50 (neutral), same precedent as the SPEC v1.4
+    # §3 degenerate rule. With the flag OFF the band is applied to None
+    # as in v1.6 (the v1.6 control inputs never have a None here, so the
+    # flag is inert for the control either way).
+    receivables_unreadable = dpp is None
+    if RECEIVABLES_NEUTRAL_ENABLED and receivables_unreadable:
+        s_recv = 50
+    else:
+        s_recv = band(dpp, [(1.0, 100), (3.0, 70), (5.0, 40), (999, 20)])
     fcf_conv = d["fcf_conversion_fcf_div_ni_ttm"]
-    if d["net_income_ttm_adjusted"]:  # ONEOFF-v1: use adjusted NI whenever set (GOOGL, NVO in v1.2)
+    if d["net_income_ttm_adjusted"]:  # ONEOFF-v1: use adjusted NI whenever set (GOOGL, NVO, GME in v1.5)
         fcf_conv = d["fcf_ttm"] / d["net_income_ttm_adjusted"]
     s_fcf = band(fcf_conv, [(0.20, 20), (0.40, 45), (0.60, 65), (0.80, 85), (999, 100)])
     if DEGENERATE_QUALITY_ENABLED and degenerate:
@@ -439,6 +644,7 @@ def pillar_quality(d):
     score = round(0.25 * s_ocf + 0.20 * s_acc + 0.15 * s_recv + 0.20 * s_fcf + 0.10 * s_roa + 0.10 * s_lev, 1)
     return score, {"subscores": subs,
                    "degenerate_ni": degenerate,
+                   "receivables_unreadable": receivables_unreadable,
                    "inputs": {"ocf_pct_ni_used": round(ocf_pct, 3), "accruals_sloan": d["accruals_sloan_latest_annual"],
                               "receivables_change_pp": d["receivables_ratio_change_pp"],
                               "fcf_conversion_used": round(fcf_conv, 3), "roa": d["roa"],
@@ -532,15 +738,28 @@ def pros_cons(t, d, pillars, overall, vdt):
     p, c = [], []
     price = d["price"]; val = pillars["valuation"]["detail"]; q = pillars["quality"]["detail"]; tc = pillars["technical"]["detail"]
     fv = val["triangulated_fv"]
+    # v1.6: when the FV override fired, the value is not a triangulation —
+    # say so, and do not claim the midpoint is the anchor.
+    # v1.7 (SPEC v1.5 §4): a 2-leg card's value is a mean of 2, not a
+    # triangulation — say so, and name only the available legs. Gated so
+    # the v1.6 control keeps the v1.6 wording exactly.
+    avail = [(k, v["value"]) for k, v in val["legs"].items() if v["value"] is not None]
+    leg_names = {"dcf": "DCF", "pegy": "PEGY", "forward_sector": "Forward-sector"}
+    two_leg = CONDITIONAL_LEGS_ENABLED and len(avail) == 2
+    fv_label = "Fair value" if (val.get("fv_override_applied") or two_leg) else "Triangulated fair value"
     if val["upside_pct"] is not None and val["upside_pct"] > 0:
         if val.get("fv_override_applied"):
             p.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:+.0%} above the ${price:,.2f} price — the value is based on expected operating earnings, not the midpoint of the legs.")
+        elif two_leg:
+            p.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:+.0%} above the ${price:,.2f} price — the {' and '.join(leg_names[k] for k, _ in avail)} legs span "
+                     f"${min(v for _, v in avail):,.2f}–"
+                     f"${max(v for _, v in avail):,.2f}, so treat their mean, not any single leg, as the anchor.")
         else:
-            p.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:+.0%} above the ${price:,.2f} price — the DCF/PEGY/Forward-sector legs span "
+            p.append(f"Triangulated fair value ${fv:,.2f} is {val['upside_pct']:+.0%} above the ${price:,.2f} price — the DCF/PEGY/Forward-sector legs span "
                      f"${min(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}–"
-                     f"${max(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}, so treat the fair value, not any single leg, as the anchor.")
+                     f"${max(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}, so treat the midpoint, not any single leg, as the anchor.")
     if val["upside_pct"] is not None and val["upside_pct"] < 0:
-        c.append(f"Fair value ${fv:,.2f} is {val['upside_pct']:.0%} below the ${price:,.2f} price — even the most generous leg "
+        c.append(f"{fv_label} ${fv:,.2f} is {val['upside_pct']:.0%} below the ${price:,.2f} price — even the most generous leg "
                  f"(${max(v['value'] for v in val['legs'].values() if v['value'] is not None):,.2f}) sits below the price.")
     if d["revenue_cagr_3y_annual"] is not None and d["revenue_cagr_3y_annual"] >= 0.15:
         p.append(f"Revenue compounded {d['revenue_cagr_3y_annual']:.0%} a year over the last 3 fiscal years.")
@@ -575,13 +794,13 @@ def pros_cons(t, d, pillars, overall, vdt):
 
 # ---------------- Run ----------------
 results = {"as_of": "2026-11-16", "price_date": "2026-11-13",
-           "engine": "scoring-engine-v1.6-batch2 (SPEC v1.4 FINAL)",
+           "engine": "scoring-engine-v1.7 (SPEC v1.5 FINAL)",
            "locked_set": {"rf": 0.05, "discount_low_beta": 0.10, "discount_high_beta": 0.12,
                           "discount_tier_rule": "12% if raw beta >= 2.0, else 10% (batch-2 generalisation of the v1.3 NVDA 12% tier; no batch-2 ticker triggers 12% — max raw beta TSLA 1.743)",
                           "terminal_growth": 0.025, "dcf_growth_cap": 0.20,
                           "nvda_base_fcf_share_normalised": 4.80, "pegy_basis": "non-GAAP consistently",
                           "forward_sector": "next-year EPS x GICS sector forward P/E (FactSet, 13 Nov 2026), discounted 10% for 1y; cap 35x / floor 10x",
-                          "oneoff_rule": "One-off check",
+                          "oneoff_rule": "ONEOFF-v1 — see ../recalibration/RECALIBRATION.md §2",
                           "growth_guardrail": "SPEC v1.2 §1 — DCF/PEGY growth capped when the implied growth is unsupported (no published long-term growth estimate, or implied growth far above revenue growth); Forward-sector leg untouched; CAPM cross-check and sensitivity grid use the same capped growth"},
            "capm_crosscheck": {"ten_year_treasury_pct": 5.10, "ten_year_treasury_asof": "2026-11-12",
                                "ten_year_treasury_source": "FRED series DGS10",

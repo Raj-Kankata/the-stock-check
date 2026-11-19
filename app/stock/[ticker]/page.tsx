@@ -370,10 +370,20 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
     ? 'not meaningful — adjusted earnings are near zero'
     : pct(quality.inputs?.fcf_conversion_used as number)
 
+  // Receivables trend (SPEC v1.5 R1): when the receivables trend is
+  // unreadable the engine scores that Quality subscore neutral-50 and
+  // records receivables_change_pp null — the card shows "—" instead of
+  // crashing on .toFixed. 68 of the 382 names are null here.
+  const recvPp = quality.inputs?.receivables_change_pp as number | null
+  const recvText =
+    recvPp === null || recvPp === undefined
+      ? '—'
+      : `${recvPp > 0 ? '+' : ''}${recvPp.toFixed(2)} pp`
+
   // (9) The Stock Check vs Wall Street — all figures from the stored data only.
   // The analysts block is optional: a name that carries no consensus
   // target renders the section as "not published" (see below) instead of
-  // crashing or showing a guessed target. All 227 names in this build do
+  // crashing or showing a guessed target. All 382 names in this build do
   // carry a complete block; the guard is for a future refresh that drops
   // one.
   const analysts = t.analysts ?? null
@@ -424,7 +434,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   // upside_pct: FV and price are stored to 2dp, so that ratio is exactly
   // the upside the engine scored on, while upside_pct is rounded to 3dp
   // in results.json and would shift the interpolated score by 0.1 on
-  // 9 of the 227 names. The spread row has no score of its own when no
+  // 19 of the 382 names. The spread row has no score of its own when no
   // cap applies — the spread only ever caps, it never adds. When the
   // fair value is the Forward-sector leg explicitly (BA-shape, SPEC
   // v1.4 §1), the upside row says so; the full explanation stays in the
@@ -874,8 +884,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
               OCF vs net income and FCF conversion: not meaningful — adjusted earnings are
               near zero; accruals (Sloan){' '}
               {(quality.inputs?.accruals_sloan as number).toFixed(4)}, receivables change{' '}
-              {(quality.inputs?.receivables_change_pp as number) > 0 ? '+' : ''}
-              {(quality.inputs?.receivables_change_pp as number).toFixed(2)} pp, return on
+              {recvText}, return on
               assets {pct(quality.inputs?.roa as number)}, debt / equity{' '}
               {(quality.inputs?.debt_to_equity as number).toFixed(2)}.
             </>
@@ -883,9 +892,7 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
             <>
               OCF {ocfVsNiText} of net income, FCF conversion {fcfConversionText} of net
               income, accruals (Sloan) {(quality.inputs?.accruals_sloan as number).toFixed(4)},
-              receivables change{' '}
-              {(quality.inputs?.receivables_change_pp as number) > 0 ? '+' : ''}
-              {(quality.inputs?.receivables_change_pp as number).toFixed(2)} pp, return on
+              receivables change {recvText}, return on
               assets {pct(quality.inputs?.roa as number)}, debt / equity{' '}
               {(quality.inputs?.debt_to_equity as number).toFixed(2)}.
             </>

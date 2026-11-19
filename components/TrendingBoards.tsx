@@ -1,5 +1,5 @@
 // Trending boards — Top Gainers / Top Losers / Most Active, ranked by
-// LIVE day move among the 227 stocks we score, from TradingView's free
+// LIVE day move among the 382 stocks we score, from TradingView's free
 // scanner (see lib/tradingview.ts). Live data fills in after mount: the
 // page is statically prerendered and the prerendered HTML (loading
 // placeholders, no numbers) must match the first client render exactly,
@@ -143,7 +143,7 @@ export default function TrendingBoards({
       if (!gainers || !losers || !active) return false
       // A row with no day change cannot rank on a movers board (it can
       // still rank on Most Active); a row with no volume cannot rank on
-      // Most Active. Unknown names (not in our 227) never reach a board.
+      // Most Active. Unknown names (not in our 382) never reach a board.
       const known = (rows: TvQuote[]) => rows.filter((q) => meta.has(q.symbol))
       const next: Boards = {
         gainers: known(gainers).filter((q) => q.changePct !== null).slice(0, BOARD_SIZE),

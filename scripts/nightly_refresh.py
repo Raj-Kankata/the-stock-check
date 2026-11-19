@@ -48,7 +48,7 @@ What refreshes nightly (this script):
     BAMLH0A0HYM2 / BAMLC0A0CM), and the 4-component macro composite
     (FRED GDP / INDPRO / UNRATE / RSAFS — each scored favorable when it
     moved the right way vs its previous release), plus per-ticker 50-day
-    EMA + 52-week high and the 227-name advance/decline counts for the
+    EMA + 52-week high and the 382-name advance/decline counts for the
     Market Pulse page. Same all-or-nothing gates; written with the
     market snapshot whenever it changed.
   * av_earnings_coverage — NOT computed here: carried from
@@ -80,12 +80,12 @@ Modes:
       Reproduction gate. No fetching. Re-runs the frozen engines on the
       frozen base inputs and compares triangulated_fv / overall_score /
       verdict against the site's current lib/data/results.json for all
-      227 tickers. Exits non-zero on ANY mismatch. Default --as-of
+      382 tickers. Exits non-zero on ANY mismatch. Default --as-of
       2026-11-13. (The engines' own TICKERS lists are patched in the
       staged temp-dir copies only — see "Staging" below.)
   python3 scripts/nightly_refresh.py --check-technicals
       Informational. Fetches 1y history ending 2026-11-13 (end=2026-11-14)
-      for all 227 tickers, recomputes technicals, and reports per-ticker /
+      for all 382 tickers, recomputes technicals, and reports per-ticker /
       per-field match vs the stored Nov-13 technicals. The rolling-window
       start can differ slightly from the original fetch, so diffs are
       reported honestly, never fudged. Always exits 0 (unless the fetch
@@ -94,7 +94,10 @@ Modes:
 Safety gates (live mode, checked BEFORE writing anything): any yfinance
 fetch failure or empty history -> FAIL; any missing close -> FAIL; any
 ticker's |new price vs stored price| > 25% day-over-day -> FAIL (likely bad
-data); fewer than 200 history bars -> FAIL; any engine output missing a
+data) — EXCEPT a move listed in VERIFIED_MOVES below, where the fetched
+close was verified real against independent sources and must match the
+verified price to the cent for that date, or the gate still trips; fewer
+than 200 history bars -> FAIL; any engine output missing a
 ticker or with a null triangulated_fv where the stored one was non-null
 -> FAIL. Market gates, same all-or-nothing rule: any index/10Y fetch
 failure or missing close -> FAIL; the four indices disagreeing on the
@@ -105,34 +108,37 @@ magnitude gate on VIX (it can legitimately move >25% in a day) or on the
 computed in memory and staged in a temp dir; files are written only after
 all gates pass.
 
-Engines are scoring-engine-v1.6 + v1.6-batch2 (SPEC v1.4 FINAL — BA-shape FV rule + Quality degenerate rule + BA T2; frozen since 2026-11-17).
-This script copies them verbatim into scripts/engine/v13|batch2/engine.py
-and never edits them. They read inputs.json from their own directory and
-hardcode as_of "2026-11-16" / price_date "2026-11-13" in their output;
-the merge step below overrides those two top-level fields in the site's
-results.json with the refresh date / latest close date.
+Engines are scoring-engine-v1.7 (SPEC v1.5 FINAL — searched-tickers rules:
+R1 receivables neutral-50, R2 EDGAR growth fallback, R3 conditional legs,
+R4 computed beta, R5/R6 2-leg publication + non-positive-FV exclusion, R7
+bank-pattern DCF skip narrowed; frozen since 2026-11-19). Both repo copies
+(v13 and batch2) are the same v1.7 engine file; the v13 copy scores its 4
+names and the batch2 copy scores every live ticker. This script copies them
+verbatim into scripts/engine/v13|batch2/engine.py and never edits them.
+They read inputs.json from their own directory and hardcode as_of
+"2026-11-16" / price_date "2026-11-13" in their output; the merge step
+below overrides those two top-level fields in the site's results.json with
+the refresh date / latest close date.
 
-Staging (Phase 2, 227 tickers): the frozen engines hardcode their own
-ticker lists (v1.4: 5 names incl. NVO; batch2: 8 names incl. JPM) and
-batch2 hardcodes a COMPLETENESS dict for those 8 names only — so a
-verbatim run against the 227-ticker base would KeyError on the removed
-names. run_engines_staged therefore patches the STAGED temp-dir copies
-only (the repo originals are never edited): each staged copy's single
-TICKERS = [...] line is replaced with the tickers that run scores
-(v1.4: its 4 continuing names; batch2: all 227, derived from
-base_inputs.json), and batch2's COMPLETENESS literal is replaced with
-the rule-derived dict (see completeness_for). Both patches are
-single-substitution and asserted — a staging failure aborts the run
-before anything is written. Values are unaffected: the patched batch2
-run reproduces the frozen 13 exactly (Phase 1 regression PASS) and the
-dry run re-verifies all 227 every time. One known text-only wart: the
-frozen batch2 engine's sensitivity-grid NOTE prints the low-beta 10.0%
-discount for every non-NVDA ticker, even the 21 live names whose raw
-beta >= 2.0 puts them on the 12.0% tier (the grid VALUES use the right
-tier). The staged batch2 copy applies that fix to the grid note only
-(see _stage_engine); the DCF skip-reason change is not applied yet,
-since no live name has a skipped DCF leg today — revisit when 2-leg
-cards go live.
+Staging (382 tickers since the v1.7 expansion): the frozen engine hardcodes
+its own ticker list (8 batch-2 names) and a COMPLETENESS dict for those 8
+names only — so a verbatim run against the 382-ticker base would KeyError.
+run_engines_staged therefore patches the STAGED temp-dir copies only (the
+repo originals are never edited): each staged copy's single TICKERS = [...]
+line is replaced with the tickers that run scores (v13: its 4 continuing
+names; batch2: all 382, derived from base_inputs.json), and each copy's
+COMPLETENESS literal is replaced with the rule-derived dict (see
+completeness_for). Both patches are single-substitution and asserted — a
+staging failure aborts the run before anything is written. Values are
+unaffected: the patched batch2 run reproduces the frozen 13 exactly
+(Phase 1 regression PASS) and the dry run re-verifies all 382 every time.
+One known text-only wart: the frozen batch2 engine's sensitivity-grid NOTE
+prints the low-beta 10.0% discount for every non-NVDA ticker, even the live
+names whose raw beta >= 2.0 puts them on the 12.0% tier (the grid VALUES
+use the right tier). The staged batch2 copy applies that fix to the grid
+note only (see _stage_engine). The DCF skip-reason text is the v1.7
+engine's own per-ticker `dcf_skip_reason` from the input record — no
+staging patch is needed for it.
 """
 import argparse
 import copy
@@ -167,17 +173,17 @@ AV_COVERAGE_FIELDS = ("pulled", "universe", "remaining", "skipped_no_data",
                       "tickers_covering_all_12_quarters", "as_of")
 SITEMAP = os.path.join(ROOT, "public", "sitemap.xml")
 
-# The tickers the v1.4 engine scores in its own subprocess run. These MUST
-# stay exactly the v1.4 engine's own TICKERS list minus removed NVO: the
-# staged copy's TICKERS line is patched to this list (see _stage_engine).
+# The tickers the v13 engine scores in its own subprocess run. These MUST
+# stay exactly the v1.7 engine's v13-equivalent set: the staged copy's
+# TICKERS line is patched to this list (see _stage_engine).
 V13_TICKERS = ["NVDA", "AAPL", "MSFT", "GOOGL"]
 # The batch2 engine scores EVERY live ticker (its discount tier, DCF/PEGY/
 # Forward legs, quality, technical and verdict code are already generalised;
 # only its TICKERS list and COMPLETENESS dict are per-ticker). Its list is
 # derived from base_inputs.json at run time — see load_all_tickers() — and
 # is never hardcoded here, so it cannot go stale when the base changes.
-# NVO and JPM appear in NO list in this file: both were removed from the
-# live set under Phase 2 Option A (2-leg names, unpublished).
+# NVO and JPM are live again since the v1.7 expansion (2-leg cards,
+# publishable) — they score in the batch2 run like every other ticker.
 
 # Market snapshot (lib/data/market.json): (yfinance symbol, display label).
 MARKET_SYMBOLS = [("^GSPC", "S&P 500"), ("^IXIC", "Nasdaq"),
@@ -207,6 +213,23 @@ MAX_INDEX_MOVE = 0.25  # |change_pct| above this for ^GSPC/^IXIC/^DJI = bad data
 
 MAX_DAY_MOVE = 0.25   # |new/old - 1| above this = bad data, FAIL
 MIN_BARS = 200        # fetch_inputs.py requires len(close) >= 200
+# Verified large moves: the 25% gate trips on a genuine crash as well as
+# on bad data, so a move verified real against independent sources is
+# listed here and the gate passes ONLY when the fetched close matches
+# the verified price to the cent for that exact date. Anything else —
+# a different price, a different date, an unverified ticker — still
+# fails. Add an entry only after a three-source check (yfinance +
+# Finnhub + a news wire / second quote source) and a documented cause.
+#   HY 2026-11-18 $15.44 (-43.3% vs Nov 13 $27.22): Hyster-Yale
+#   announced a $125M convertible senior notes offering due 2031 that
+#   morning (PRNewswire); trading halted 09:36 ET; volume 3.42M vs
+#   ~110K normal. Finnhub close $15.44 (prev $26.20, -41.07%),
+#   Morningstar/Dow Jones and AAII agree $15.44. No split.
+VERIFIED_MOVES = {
+    "HY": {"date": "2026-11-18", "price": 15.44,
+           "reason": "Convertible senior notes offering announced "
+                     "2026-11-18; verified Finnhub/yfinance/Morningstar"},
+}
 BASE_AS_OF = "2026-11-13"  # dry-run default: the frozen base close date
 
 ET = ZoneInfo("America/New_York")
@@ -282,26 +305,33 @@ def live_tickers(base, stored):
 
 
 def completeness_for(t, frag):
-    """Trust-completeness subscore for one ticker (METHOD-batch2 §1).
-    80 where a ONEOFF-v1 adjustment was applied (net_income_ttm_adjusted
-    set); otherwise 100 less 10 per gap (DCF leg skipped — counted once,
-    whatever the cause; empty insider feed), floored at 65. Reproduces
-    the frozen 13 exactly (GOOGL/AMZN/META/TSLA/AVGO/BRK-B 80;
-    NVDA/AAPL/MSFT/LLY/V 100) and the refresh provenance for all 227
-    live tickers (verified 227/227 before this rule was wired in).
-    Limitation: a dividend-yield override gap is not visible in base
-    fragments, so it is not counted here — no live ticker has one
-    (verified vs refresh provenance, where all 227 have zero gaps)."""
-    if frag.get("net_income_ttm_adjusted"):
-        return 80
+    """Trust-completeness subscore for one ticker (METHOD-batch2 §1, as
+    extended for v1.7). 100 less 10 per gap — DCF leg skipped (counted
+    once, whatever the cause), receivables trend unreadable, empty
+    insider feed, dividend-yield override (the yield came from a
+    non-Yahoo source) — with the mapping {0: 100, 1: 90, 2: 75, 3+: 65};
+    a ONEOFF-v1 adjustment caps the result at 80. Reproduces the
+    refresh provenance for all 382 live tickers (verified 382/382 after
+    the v1.7 rule was wired in; the pre-v1.7 version missed the
+    receivables and dividend-yield gaps and returned a flat 80 for any
+    adjusted name — NVO, adjusted with 3 gaps, is 65, not 80).
+    The dividend-yield gap is visible in the base record via
+    dividend_yield_source != 'Yahoo trailingAnnualDividendYield'."""
     gaps = 0
     if (frag.get("fcf_per_share_ttm") is None
             or frag.get("implied_5y_eps_growth") is None
             or frag.get("beta") is None):
         gaps += 1
+    if frag.get("receivables_ratio_change_pp") is None:
+        gaps += 1
     if (frag.get("insider_90d") or {}).get("n_rows", 0) == 0:
         gaps += 1
-    return {0: 100, 1: 90, 2: 75}.get(gaps, 65)
+    if frag.get("dividend_yield_source") != "Yahoo trailingAnnualDividendYield":
+        gaps += 1
+    base = {0: 100, 1: 90, 2: 75}.get(gaps, 65)
+    if frag.get("net_income_ttm_adjusted"):
+        return min(base, 80)
+    return base
 
 
 # ---------------------------------------------------------------- technicals
@@ -520,10 +550,11 @@ def _update_price_fields(rec, new_price):
             rec["dividend_yield"] * old_price / new_price, 4)
 
 
-def refresh_ticker(base_rec, hist):
+def refresh_ticker(base_rec, hist, symbol=None):
     """Apply one fetched history to a deep copy of a base ticker record.
     Returns (new_rec, last_bar_date_str, split_factor). Raises SystemExit
-    on gate trip."""
+    on gate trip. symbol is the ticker symbol (the record carries no
+    ticker key); it is used only for the VERIFIED_MOVES lookup."""
     ticker = base_rec.get("name", "?")
     close = hist["Close"]
     if len(close) < MIN_BARS:
@@ -545,8 +576,18 @@ def refresh_ticker(base_rec, hist):
     old_price = rec["price"]
     move = new_price / old_price - 1
     if abs(move) > MAX_DAY_MOVE:
-        fail(f"{ticker}: price moved {move:+.1%} vs stored ${old_price:.2f} "
-             f"(>${MAX_DAY_MOVE:.0%} gate — likely bad data)")
+        verified = VERIFIED_MOVES.get(symbol) if symbol else None
+        bar_date = hist.index[-1].date().isoformat()
+        if (verified and verified["date"] == bar_date
+                and abs(new_price - verified["price"]) < 0.005):
+            print(f"  VERIFIED MOVE {ticker}: {move:+.1%} vs stored "
+                  f"${old_price:.2f} — matches the verified close "
+                  f"${verified['price']:.2f} on {verified['date']} "
+                  f"({verified['reason']}); gate passes")
+        else:
+            fail(f"{ticker}: price moved {move:+.1%} vs stored "
+                 f"${old_price:.2f} "
+                 f"(>${MAX_DAY_MOVE:.0%} gate — likely bad data)")
     rec["technicals"] = compute_technicals(close)
     _update_price_fields(rec, new_price)
     bar_date = hist.index[-1].date().isoformat()
@@ -744,7 +785,7 @@ def fetch_macro(close_date, end, ticker_recs, prev_prices):
     (as_of + 1d when pinned, None for the latest close). ticker_recs maps
     ticker -> {"price", "technicals": {"ema50", "high_52w"}} (the
     refreshed records in live mode); prev_prices maps ticker -> the
-    previous close to compare against for the 227-name advance/decline
+    previous close to compare against for the 382-name advance/decline
     counts. Returns the macro dict. Raises SystemExit on any gate trip:
     any FRED fetch failure, a missing series value, a SPY fetch failure,
     or a SPY close date disagreeing with close_date."""
@@ -830,7 +871,7 @@ def fetch_macro(close_date, end, ticker_recs, prev_prices):
             dec += 1
         else:
             unch += 1
-    print(f"    universe (227): above 50-day EMA {above_50}, new 52w "
+    print(f"    universe ({len(ticker_recs)}): above 50-day EMA {above_50}, new 52w "
           f"highs {new_highs}, advancers {adv} / decliners {dec} / "
           f"unchanged {unch}")
 
@@ -857,11 +898,13 @@ def _stage_engine(key, tickers, inputs, tmpdir):
     in exactly the places the frozen code is per-ticker rather than
     general:
       * TICKERS = [...] — replaced with the tickers this run scores. The
-        verbatim engines hardcode their 5/8 names (incl. removed NVO/JPM)
-        and would KeyError on a base that no longer contains them.
-      * batch2 only: COMPLETENESS = {...} — replaced with the
-        rule-derived dict for these tickers (see completeness_for); the
-        verbatim dict covers 8 names only.
+        verbatim engine hardcodes its 8 batch-2 names and would KeyError
+        on a base that no longer contains them.
+      * COMPLETENESS = {...} — replaced with the rule-derived dict for
+        these tickers (see completeness_for); the verbatim dict covers
+        8 names only. Both copies get this patch since v1.7 (the v1.6
+        v13 copy hardcoded its completeness inline in pillar_trust;
+        the v1.7 engine uses the module-level dict for both roles).
     Each patch is a single substitution, asserted. A staging failure
     aborts the run (fail()) before anything is written. Returns the
     staged dir."""
@@ -876,24 +919,25 @@ def _stage_engine(key, tickers, inputs, tmpdir):
     if n != 1:
         fail(f"engine {key}: TICKERS line not found exactly once — "
              f"refusing to stage (frozen engine changed?)")
+    comp = {t: completeness_for(t, inputs["tickers"][t]) for t in tickers}
+    patched, n = re.subn(r"(?ms)^COMPLETENESS = \{[^}]*\}",
+                         lambda m: "COMPLETENESS = " + repr(comp),
+                         patched, count=1)
+    if n != 1:
+        fail(f"engine {key}: COMPLETENESS literal not found exactly "
+             f"once — refusing to stage (frozen engine changed?)")
     if key == "batch2":
-        comp = {t: completeness_for(t, inputs["tickers"][t]) for t in tickers}
-        patched, n = re.subn(r"(?ms)^COMPLETENESS = \{[^}]*\}",
-                             lambda m: "COMPLETENESS = " + repr(comp),
-                             patched, count=1)
-        if n != 1:
-            fail("engine batch2: COMPLETENESS literal not found exactly "
-                 "once — refusing to stage (frozen engine changed?)")
         # v1.3.1 textfix (Option E refresh), grid note only: the frozen
-        # batch2 engine prints the low-beta 10.0% discount in the
-        # sensitivity-grid note for every non-NVDA ticker, even the 21
-        # live names whose raw beta >= 2.0 puts them on the 12.0% tier
+        # engine prints the low-beta 10.0% discount in the
+        # sensitivity-grid note for every non-NVDA ticker, even the live
+        # names whose raw beta >= 2.0 puts them on the 12.0% tier
         # (the grid VALUES use the right tier; only the note text is
         # wrong). Rewrite that one note expression to the discount the
         # grid actually uses (RF + dcf_spread); values are untouched.
-        # The textfix's DCF skip-reason change is NOT applied here yet:
-        # no live name has a skipped DCF leg today, so that text never
-        # fires for the 227 — revisit when 2-leg cards go live.
+        # The v13 copy needs no textfix: its 4 names are NVDA (12% tier,
+        # handled by the expression) and three low-beta names (10%).
+        # The DCF skip-reason text is the v1.7 engine's own per-ticker
+        # `dcf_skip_reason` from the input record — no staging patch.
         # Single substitution, asserted.
         old_note = ("{DISCOUNT_HIGH if t == 'NVDA' "
                     "else DISCOUNT_LOW:.1%}")
@@ -911,8 +955,8 @@ def _stage_engine(key, tickers, inputs, tmpdir):
 def run_engines_staged(inputs_by_engine, all_tickers):
     """Run both frozen engine copies in a temp dir (no repo writes).
     inputs_by_engine: {"v13": {...inputs.json...}, "batch2": {...}}.
-    The v1.4 copy scores its 4 continuing names; the batch2 copy scores
-    all_tickers (all 227 live names). Returns {"v13": results_dict,
+    The v13 copy scores its 4 continuing names; the batch2 copy scores
+    all_tickers (all 382 live names). Returns {"v13": results_dict,
     "batch2": results_dict}."""
     out = {}
     with tempfile.TemporaryDirectory(prefix="stock-check-refresh-") as tmp:
@@ -928,8 +972,8 @@ def run_engines_staged(inputs_by_engine, all_tickers):
 
 def split_inputs(all_tickers, as_of, price_date):
     """Split the ticker dict into the two per-engine inputs.json dicts.
-    v1.4 gets its 4 continuing names; batch2 gets every ticker in
-    all_tickers (all 227 live names). Top-level metadata mirrors the
+    v13 gets its 4 continuing names; batch2 gets every ticker in
+    all_tickers (all 382 live names). Top-level metadata mirrors the
     frozen source inputs.json files."""
     base = load_json(BASE_INPUTS)
     out = {}
@@ -947,7 +991,7 @@ def split_inputs(all_tickers, as_of, price_date):
 def gate_engine_outputs(results, stored_results, all_tickers):
     """Engine-output gates: every ticker present; triangulated_fv non-null
     wherever the stored result had a non-null FV. The batch2 gate covers
-    all live tickers (all 227); v1.4 covers its 4 continuing names."""
+    all live tickers (all 382); v13 covers its 4 continuing names."""
     for key, tickers in (("v13", V13_TICKERS),
                          ("batch2", list(all_tickers))):
         got = results[key].get("tickers", {})
@@ -1085,9 +1129,9 @@ def add_actual_growth_row(ticker, rec, src):
 
 def merge_results(v13_results, batch2_results, as_of, price_date,
                   refreshed=None):
-    """Merged site results: top-level EXACTLY as v1.4's output (engine
+    """Merged site results: top-level EXACTLY as v13's output (engine
     string, locked_set, capm_crosscheck, weights, ladder_ratios), tickers
-    = batch2's 227, with v1.4's 4 taking precedence over batch2's copies
+    = batch2's 382, with v13's 4 taking precedence over batch2's copies
     of the same 4 names (see below). as_of / price_date overridden to
     the refresh. The frozen engines do not emit the analyst-consensus
     block, so it is carried through here from the frozen base inputs
@@ -1118,9 +1162,9 @@ def merge_results(v13_results, batch2_results, as_of, price_date,
     the new_tickers dict from cmd_live; dry-run path: base["tickers"]).
     Missing keys in older files are tolerated as null, never a crash."""
     merged = copy.deepcopy(v13_results)
-    # batch2 scores all 227, INCLUDING the 4 v1.4 names; v1.4's own output
+    # batch2 scores all 382, INCLUDING the 4 v13 names; v13's own output
     # takes precedence for those 4, so their published detail text stays
-    # exactly as the v1.4 engine produces it. Values are identical either
+    # exactly as the v13 engine produces it. Values are identical either
     # way (Phase 1 regression: driver vs v1.3 value diffs none), but the
     # sensitivity-grid note wording differs between the engines.
     merged["tickers"] = {**batch2_results["tickers"], **v13_results["tickers"]}
@@ -1217,6 +1261,47 @@ def cmd_check_technicals():
 
 
 # ---------------------------------------------------------------------- live
+def sync_sitemap(tickers, ts):
+    """Sync public/sitemap.xml to the published ticker set and bump every
+    lastmod to ts. Stock entries are rebuilt sorted from `tickers`
+    (additions + removals); the non-stock entries keep their order and
+    their line text apart from the lastmod bump. Returns
+    (n_stock, n_other). The refresh previously only bumped lastmod, so a
+    universe change left new pages out of the sitemap and removed names
+    in it — caught 2026-11-19, when the 382-name expansion shipped with
+    a 227-name sitemap (156 new pages missing, BYND still listed)."""
+    text = open(SITEMAP).read()
+    lines = text.splitlines()
+    head, foot, others = [], [], []
+    for line in lines:
+        if line.startswith("<url>"):
+            m = re.match(r"<url><loc>https://www\.thestockcheck\.com/stock/"
+                         r"([A-Z0-9.\-]+)</loc>", line)
+            if not m:
+                others.append(line)
+        elif line.startswith("</urlset>"):
+            foot.append(line)
+        elif not head and (line.startswith("<?xml")
+                           or line.startswith("<urlset")):
+            head.append(line)
+        elif head and not foot:
+            head.append(line)
+    if not head or not foot:
+        fail("sitemap.xml: unexpected structure — refusing to sync")
+    out = list(head)
+    for line in others:
+        out.append(re.sub(r"<lastmod>[^<]*</lastmod>",
+                          f"<lastmod>{ts}</lastmod>", line, count=1))
+    for t in sorted(tickers):
+        out.append(f"<url><loc>https://www.thestockcheck.com/stock/{t}"
+                   f"</loc><lastmod>{ts}</lastmod><changefreq>daily</changefreq>"
+                   f"<priority>0.8</priority></url>")
+    out.extend(foot)
+    with open(SITEMAP, "w") as f:
+        f.write("\n".join(out) + "\n")
+    return len(tickers), len(others)
+
+
 def cmd_live(as_of_arg):
     base = load_json(BASE_INPUTS)
     stored = load_json(SITE_RESULTS)
@@ -1240,7 +1325,8 @@ def cmd_live(as_of_arg):
         print(f"  fetching {t} ...")
         hist = fetch_history(t, end=end)
         hist = drop_intraday_bar(hist)
-        rec, bar_date, split_factor = refresh_ticker(base["tickers"][t], hist)
+        rec, bar_date, split_factor = refresh_ticker(base["tickers"][t],
+                                                     hist, symbol=t)
         if split_factor != 1.0:
             # Persist the rescaled BASE only (not the refreshed record):
             # the restated base close, on post-split scale. price_date
@@ -1271,7 +1357,7 @@ def cmd_live(as_of_arg):
              f"price_date {price_date}")
 
     # 1c. Macro snapshot for the Pulse page, also IN MEMORY. The
-    # previous close for the 227-name advance/decline counts is the last
+    # previous close for the 382-name advance/decline counts is the last
     # PUBLISHED close (stored results.json) on a normal night; on a
     # re-run of an already-published close it is the frozen base close
     # (base_inputs.json price_date 2026-11-13 is the trading day before
@@ -1418,14 +1504,9 @@ def cmd_live(as_of_arg):
               f"{macro['macro']['total']} favorable")
     ts = (datetime.datetime.now(datetime.timezone.utc)
           .strftime("%Y-%m-%dT%H:%M:%SZ"))
-    sitemap = open(SITEMAP).read()
-    sitemap_new, n_sub = re.subn(r"<lastmod>[^<]*</lastmod>",
-                                 f"<lastmod>{ts}</lastmod>", sitemap)
-    if n_sub == 0:
-        fail("sitemap.xml: no <lastmod> entries found to update")
-    with open(SITEMAP, "w") as f:
-        f.write(sitemap_new)
-    print(f"  sitemap.xml: {n_sub} lastmod entries -> {ts}")
+    n_stock, n_other = sync_sitemap(sorted(merged["tickers"]), ts)
+    print(f"  sitemap.xml: {n_stock} stock + {n_other} other urls, "
+          f"lastmod -> {ts}")
 
     # 5. Final gate: the site must still build.
     print("\nrunning `npm run build` ...")

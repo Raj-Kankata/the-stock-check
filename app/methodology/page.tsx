@@ -21,9 +21,9 @@ export default function MethodologyPage() {
       <p className="page-intro">
         Every stock on this site gets an overall score from 0 to 100 and one fair value — our
         estimate of what a share is worth. The score comes from five angles on the business;
-        the fair value comes from three independent estimates combined into one number. This
-        page explains, in plain language, what each number means and how to read it. Prices
-        are the {RESULTS.price_date} close unless marked LIVE during market hours.
+        the fair value comes from up to three independent estimates combined into one number.
+        This page explains, in plain language, what each number means and how to read it.
+        Prices are the {RESULTS.price_date} close unless marked LIVE during market hours.
       </p>
 
       <div className="callout">
@@ -54,10 +54,10 @@ export default function MethodologyPage() {
 
         <h3>Valuation</h3>
         <p>
-          How the share price compares with our fair value. Our fair value combines three
-          independent estimates: one based on the company&rsquo;s cash flow, one based on its
-          growth and dividend compared with its earnings multiple, and one based on next
-          year&rsquo;s expected earnings at its sector&rsquo;s going multiple.
+          How the share price compares with our fair value. Our fair value combines up to
+          three independent estimates: one based on the company&rsquo;s cash flow, one based
+          on its growth and dividend compared with its earnings multiple, and one based on
+          next year&rsquo;s expected earnings at its sector&rsquo;s going multiple.
         </p>
         <p>
           One-off gains are taken out and one-off charges are added back before
@@ -83,6 +83,18 @@ export default function MethodologyPage() {
           earnings at all. The card says so in plain words wherever this
           applies.
         </p>
+        <p>
+          When no analyst publishes a long-term growth estimate for a name, the growth used
+          comes from the company&rsquo;s own filings instead — how fast its revenue has
+          compounded over the last three fiscal years. The same caps still apply, so the
+          growth used never runs ahead of what the business itself has delivered.
+        </p>
+        <p>
+          When one of the three estimates cannot be computed at all — a bank&rsquo;s cash flow
+          is not a meaningful number, for example — the fair value is the average of the two
+          that can be, and the card names which two. A name whose fair value still comes out
+          at or below zero is not published at all.
+        </p>
 
         <h3>Quality / Forensics</h3>
         <p>
@@ -99,9 +111,7 @@ export default function MethodologyPage() {
         <h3>Trust</h3>
         <p>
           How much we can rely on the numbers behind the other four pillars: whether the data
-          is complete, analysts broadly agree, and insiders are not all selling. There is{' '}
-          <strong>no insider feed</strong> in this build, so that part stays neutral — it is
-          never read as &ldquo;no selling&rdquo;.
+          is complete, analysts broadly agree, and insiders are not all selling.
         </p>
       </Card>
 
@@ -186,13 +196,13 @@ export default function MethodologyPage() {
             </tr>
             <tr>
               <td>Insider activity</td>
-              <td>Form 4 / 13G-D filings</td>
-              <td>As filed (no live feed in this build — see Trust)</td>
+              <td>Buying and selling by insiders in the last 90 days</td>
+              <td>Daily (Yahoo insider feed)</td>
             </tr>
             <tr>
               <td>Macro (Market Pulse)</td>
               <td>FRED + Yahoo</td>
-              <td>Every 6 hours (feed not wired in this build)</td>
+              <td>Daily (nightly refresh)</td>
             </tr>
             <tr>
               <td>Conviction (Story-Tracker)</td>
@@ -334,6 +344,11 @@ export default function MethodologyPage() {
           denominator — so both score a neutral 50 and the card shows &ldquo;not
           meaningful&rdquo; instead of the percentages. The other four checks are unaffected.
         </p>
+        <p>
+          When the receivables trend cannot be read from the filings at all, that one check
+          scores a neutral 50 and the card shows a dash instead of a number — the missing
+          check neither helps nor hurts the Quality score.
+        </p>
         <h3>Technical — four checks</h3>
         <p>
           Weights: EMA trend 35%, Price vs 200-day 25%, RSI 20%, MACD 20%.
@@ -386,7 +401,7 @@ export default function MethodologyPage() {
             <tr>
               <td>Data completeness</td>
               <td>Whether every input the model needs is present</td>
-              <td>All present, no adjustment → 100 · A one-off adjustment was applied → 80 · One documented gap → 90 · Several gaps → 65 (in this build only 100 and 80 occur)</td>
+              <td>All present, no adjustment → 100 · A one-off adjustment was applied → 80 · One documented gap → 90 · Two gaps → 75 · Three or more gaps → 65 (an adjustment caps the score at 80)</td>
             </tr>
             <tr>
               <td>Analyst coverage</td>
@@ -460,7 +475,7 @@ export default function MethodologyPage() {
           </li>
         </ul>
         <p className="footnote">
-          Prices at the 13 November 2026 close; engine run 16 November 2026.
+          Prices at the {RESULTS.price_date} close; engine run {RESULTS.as_of}.
         </p>
       </Card>
 
@@ -472,6 +487,12 @@ export default function MethodologyPage() {
           means the company&rsquo;s expected cash flow supports a higher price — but it leans
           heavily on assumptions about future growth, so read it together with the other two
           estimates.
+        </p>
+        <p>
+          For banks and property companies whose cash-flow statement carries no meaningful
+          capital-spending line, this estimate is skipped — their reported cash flow is
+          dominated by deposits and trading flows, not by the cash the business generates
+          for its owners. The card says so, and the fair value uses the other two estimates.
         </p>
       </section>
 
@@ -516,6 +537,11 @@ export default function MethodologyPage() {
           estimate can dominate it. When the price is below our fair value, our estimates on
           balance say the stock is worth more than it costs — and when it is above, they say
           the opposite.
+        </p>
+        <p>
+          When only two of the three estimates can be computed, the fair value is their
+          average, and the card names the two. Names whose fair value comes out at or below
+          zero are not published.
         </p>
       </section>
 
@@ -604,6 +630,10 @@ export default function MethodologyPage() {
           rates instead of our fixed assumptions. It changes nothing — no fair value, score,
           or verdict — and is shown only so you can see how the estimate holds up under a
           market-based view.
+        </p>
+        <p>
+          Where no beta is published for a name, the beta used here is computed from a year
+          of daily returns against the S&amp;P 500.
         </p>
       </section>
     </>

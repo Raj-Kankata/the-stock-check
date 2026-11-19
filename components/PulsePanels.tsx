@@ -9,12 +9,12 @@
 //     TradingView scanner (fetchMarketBreadth: one filtered scan per
 //     sign of the day change; verified 17 Nov 2026 from curl). After
 //     hours the scanner returns the frozen close values, labelled as
-//     of the close. Baked fallback: the 227-name counts in macro.json.
+//     of the close. Baked fallback: the 382-name counts in macro.json.
 //   * Volatility — VIX live via fetchSymbolQuote (CBOE:VIX), baked
 //     FRED VIXCLS otherwise; expected daily SPX move = VIX / sqrt(252).
 //   * Credit — nightly only (FRED BAML spreads); no intraday feed
 //     exists, so this panel never pretends to be live.
-//   * Internals — % of the 227 above their 50-day EMA + new 52-week
+//   * Internals — % of the 382 above their 50-day EMA + new 52-week
 //     closing highs, baked from macro.json and recomputed live from
 //     the shared useLiveQuotes() store. Put/call has NO free CORS-clean
 //     source — it is not published here, and the panel says so.
@@ -324,7 +324,7 @@ export default function PulsePanels() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [retryTick])
 
-  // ---- live 227-name internals from the shared store ----
+  // ---- live 382-name internals from the shared store ----
   const liveInternals = useMemo(() => {
     if (!hasLiveQuotes(liveStore) || !universe?.tickers) return null
     let n = 0
@@ -382,7 +382,7 @@ export default function PulsePanels() {
       ? breadth.advancers / breadth.decliners
       : null
 
-  // Live 227 internals when the store has them, else the baked counts.
+  // Live 382 internals when the store has them, else the baked counts.
   const above50 = liveInternals
     ? liveInternals.above
     : universe && isFiniteNumber(universe.above_50dma)
