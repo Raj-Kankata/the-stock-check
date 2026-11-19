@@ -1324,7 +1324,10 @@
         "target_spread_div_mean": 0.477
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 108430294496.55,
       "rel_vol": 0.6583,
       "lynch": {
@@ -3929,7 +3932,9 @@
         "target_spread_div_mean": 0.799
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "NASDAQ100"
+      ],
       "market_cap": 39837440968.5,
       "rel_vol": 0.8884,
       "lynch": {
@@ -7036,7 +7041,10 @@
         "target_spread_div_mean": 0.558
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 131881064726.71,
       "rel_vol": 0.4934,
       "lynch": {
@@ -9181,7 +9189,10 @@
         "target_spread_div_mean": 0.263
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 217759267539.0,
       "rel_vol": 1.1134,
       "lynch": {
@@ -9808,7 +9819,9 @@
         "target_spread_div_mean": 0.24
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 374527453668.35,
       "rel_vol": 1.1757,
       "lynch": {
@@ -10462,7 +10475,10 @@
         "target_spread_div_mean": 0.543
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 119037936533.76,
       "rel_vol": 0.5648,
       "lynch": {
@@ -10893,7 +10909,9 @@
         "target_spread_div_mean": 0.206
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 184216538320.57,
       "rel_vol": 1.0135,
       "lynch": {
@@ -11785,7 +11803,9 @@
         "target_spread_div_mean": 0.286
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 220877982473.68,
       "rel_vol": 1.1841,
       "lynch": {
@@ -16835,7 +16855,9 @@
         "target_spread_div_mean": 0.426
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 244913360000.0,
       "rel_vol": 0.6046,
       "lynch": {
@@ -19274,7 +19296,9 @@
         "target_spread_div_mean": 0.62
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 29651103982.92,
       "rel_vol": 0.8421,
       "lynch": {
@@ -20561,7 +20585,9 @@
         "target_spread_div_mean": 0.268
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 69710633110.69,
       "rel_vol": 0.8075,
       "lynch": {
@@ -22497,7 +22523,9 @@
         "target_spread_div_mean": 0.351
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 16806932827.84,
       "rel_vol": 0.8026,
       "lynch": {
@@ -25324,7 +25352,9 @@
         "target_spread_div_mean": 0.332
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 51246422064.0,
       "rel_vol": 1.1123,
       "lynch": {
@@ -25766,7 +25796,9 @@
         "target_spread_div_mean": 0.533
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 44299636360.56,
       "rel_vol": 0.8542,
       "lynch": {
@@ -30383,7 +30415,10 @@
         "target_spread_div_mean": 0.395
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 208552632669.92,
       "rel_vol": 0.7654,
       "lynch": {
@@ -32116,7 +32151,10 @@
         "target_spread_div_mean": 0.505
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 278205338010.6,
       "rel_vol": 0.8692,
       "lynch": {
@@ -34100,7 +34138,9 @@
         "target_spread_div_mean": 0.869
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 63533925959.23,
       "rel_vol": 0.798,
       "lynch": {
@@ -36080,7 +36120,9 @@
         "target_spread_div_mean": 0.433
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 148154827549.3,
       "rel_vol": 0.575,
       "lynch": {
@@ -39377,7 +39419,10 @@
         "target_spread_div_mean": 0.303
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 896998896277.33,
       "rel_vol": 1.0342,
       "lynch": {
@@ -42026,7 +42071,9 @@
         "target_spread_div_mean": 0.738
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 19197964546.78,
       "rel_vol": 0.9853,
       "lynch": {
@@ -42253,7 +42300,10 @@
         "target_spread_div_mean": 0.692
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 40454022799.71,
       "rel_vol": 0.5073,
       "lynch": {
@@ -45116,7 +45166,9 @@
         "target_spread_div_mean": 0.484
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 19220939406.34,
       "rel_vol": 1.4339,
       "lynch": {
@@ -46626,7 +46678,10 @@
         "target_spread_div_mean": 0.535
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 195007899570.41,
       "rel_vol": 0.9009,
       "lynch": {
@@ -49685,7 +49740,9 @@
         "target_spread_div_mean": 0.364
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 294099299939.61,
       "rel_vol": 0.812,
       "lynch": {
@@ -49907,7 +49964,9 @@
         "target_spread_div_mean": 0.254
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 46653346627.8,
       "rel_vol": 0.9923,
       "lynch": {
@@ -52096,7 +52155,10 @@
         "target_spread_div_mean": 0.814
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 255300919778.52,
       "rel_vol": 0.6058,
       "lynch": {
@@ -55491,7 +55553,9 @@
         "target_spread_div_mean": 0.236
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 57284175642.84,
       "rel_vol": 0.9296,
       "lynch": {
@@ -58307,7 +58371,10 @@
         "target_spread_div_mean": 0.445
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 194197929633.27,
       "rel_vol": 0.9259,
       "lynch": {
@@ -60262,7 +60329,9 @@
         "target_spread_div_mean": 0.321
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 13186290443.04,
       "rel_vol": 1.285,
       "lynch": {
@@ -66596,7 +66665,9 @@
         "target_spread_div_mean": 0.557
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 168411733288.24,
       "rel_vol": 1.2819,
       "lynch": {
@@ -68766,7 +68837,10 @@
         "target_spread_div_mean": 1.04
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 120020259590.34,
       "rel_vol": 1.0117,
       "lynch": {
@@ -69656,7 +69730,9 @@
         "target_spread_div_mean": 0.426
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 105348038316.57,
       "rel_vol": 0.8485,
       "lynch": {
@@ -70100,7 +70176,9 @@
         "target_spread_div_mean": 0.29
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 87607896917.66,
       "rel_vol": 1.0351,
       "lynch": {
@@ -71120,7 +71198,9 @@
         "target_spread_div_mean": 0.31
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 24435034477.92,
       "rel_vol": 0.8257,
       "lynch": {
@@ -72366,7 +72446,9 @@
         "target_spread_div_mean": 0.464
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 75693716591.37,
       "rel_vol": 3.1066,
       "lynch": {
@@ -77823,7 +77905,9 @@
         "target_spread_div_mean": 0.674
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 46038428528.4,
       "rel_vol": 2.0601,
       "lynch": {
@@ -79590,7 +79674,9 @@
         "target_spread_div_mean": 0.355
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 192736539424.24,
       "rel_vol": 0.6679,
       "lynch": {
@@ -80664,7 +80750,9 @@
         "target_spread_div_mean": 0.205
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 262555683586.56,
       "rel_vol": 0.8718,
       "lynch": {

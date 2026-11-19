@@ -747,7 +747,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -2128,7 +2131,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "NASDAQ100"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -3738,7 +3743,10 @@
       "growth_source": "yahoo_trailingPE_pegRatio",
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -4897,7 +4905,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -5252,7 +5263,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -5593,7 +5606,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -5820,7 +5836,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -6291,7 +6309,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -8916,7 +8936,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -10178,7 +10200,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -10865,7 +10889,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -11884,7 +11910,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -13382,7 +13410,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -13610,7 +13640,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -16017,7 +16049,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -16979,7 +17014,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -18004,7 +18042,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -19035,7 +19075,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -19945,120 +19987,6 @@
       "market_cap": 94787496966.9,
       "rel_vol": 0.8081
     },
-    "IONQ": {
-      "name": "IonQ, Inc.",
-      "sector": "Technology",
-      "currency_financials": "USD",
-      "price": 28.88,
-      "price_date": "2026-11-13",
-      "forward_eps": -1.4208,
-      "trailing_eps": 1.73,
-      "forward_pe": -18.62,
-      "trailing_pe": 15.29,
-      "trailing_pe_adjusted": null,
-      "trailing_eps_adjusted": null,
-      "peg_ratio_yahoo": null,
-      "implied_5y_eps_growth": 1.2689,
-      "growth_source": "revenue_cagr_3y_annual_fallback",
-      "earnings_growth_yahoo_1y": null,
-      "revenue_growth_yahoo": 3.36,
-      "revenue_cagr_3y_annual": 1.2689,
-      "dividend_yield": 0.0,
-      "dividend_yield_source": "Yahoo trailingAnnualDividendYield",
-      "roe": 0.06903,
-      "roa": -0.11968,
-      "net_margin": 0.67091006,
-      "operating_margin": -3.06345,
-      "gross_margin": 0.2529,
-      "debt_to_equity_ratio": 0.030699999999999998,
-      "total_debt_latest_annual": 154254000.0,
-      "beta": 3.409,
-      "beta_adjusted": 2.61403,
-      "beta_asof": "2026-11-16",
-      "beta_source": "https://finance.yahoo.com/quote/IONQ",
-      "beta_computed": null,
-      "revenue_ttm": 380439000.0,
-      "net_income_ttm": 255242000.0,
-      "net_income_ttm_adjusted": null,
-      "ocf_ttm": -644828000.0,
-      "fcf_ttm": -688541000.0,
-      "fcf_per_share_ttm": -2.54,
-      "fcf_per_share_note": "USD per share; shares = EDGAR TTM net income \u00f7 EDGAR TTM diluted EPS (implied shares).",
-      "shares_implied_total": 271534043,
-      "ocf_pct_net_income_ttm": -2.526,
-      "ocf_pct_net_income_adjusted": null,
-      "accruals_sloan_latest_annual": -0.0346,
-      "receivables_to_revenue_latest": 0.512,
-      "receivables_ratio_change_pp": 27.52,
-      "fcf_conversion_fcf_div_ni_ttm": -2.698,
-      "fcf_margin_fcf_div_rev_ttm": -1.81,
-      "technicals": {
-        "ema20": 32.33,
-        "ema50": 35.37,
-        "ema200": 41.26,
-        "rsi14": 40.9,
-        "macd_line": -1.36,
-        "macd_signal": -1.72,
-        "macd_hist": 0.36,
-        "price_vs_200d_pct": -0.3,
-        "ret_6m": -0.414,
-        "ret_12m": -0.396,
-        "high_52w": 72.06999969482422
-      },
-      "analysts": {
-        "n_opinions": 14,
-        "target_mean": 54.275,
-        "target_high": 70.0,
-        "target_low": 40.0,
-        "target_spread_div_mean": 0.553
-      },
-      "insider_90d": {
-        "n_rows": 101,
-        "sales_90d": 1,
-        "buys_90d": 0,
-        "sale_shares_90d": 2407,
-        "buy_shares_90d": 0,
-        "sale_value_90d_usd": 89564.0,
-        "note": ""
-      },
-      "story_tracker": {
-        "story": 48.0,
-        "financials": 55.5,
-        "quadrant": "Out",
-        "story_sub": {
-          "fwd": 97.0,
-          "lead": 18.4,
-          "rev": 6.1,
-          "theme": 48.8,
-          "theme_name": "Quantum C"
-        },
-        "fin_sub": {
-          "rev": 93.5,
-          "prof": 32.9,
-          "cf": 5.0,
-          "acc": 82.8
-        },
-        "proxy_note": null
-      },
-      "gics_sector": "Information Technology",
-      "sector_multiple": 18.0,
-      "sector_multiple_asof": "2026-11-13",
-      "sector_multiple_cap_floor": [
-        10.0,
-        35.0
-      ],
-      "sector_multiple_cap_floor_binds": false,
-      "sector_multiple_source": "FactSet Earnings Insight, 13 Nov 2026",
-      "flags": [
-        "Growth: Yahoo publishes no PEG or trailing P/E \u2014 the 3-year revenue growth rate (126.89%) from the company's filings is used as the growth input instead.",
-        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
-      ],
-      "dcf_skip_reason": null,
-      "debt_fcf": null,
-      "indexes": null,
-      "market_cap": null,
-      "rel_vol": null
-    },
     "IPGP": {
       "name": "IPG Photonics Corporation",
       "sector": "Technology",
@@ -20745,7 +20673,10 @@
       "beta_adjusted": 1.0134,
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row for JPM equals operating cash flow, which includes deposit/trading flows; StockAnalysis publishes no FCF for JPM",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -22110,7 +22041,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -22226,7 +22159,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -23708,7 +23644,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -24513,7 +24451,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -26136,7 +26077,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -26250,7 +26193,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -27402,7 +27347,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -29243,7 +29191,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -30732,7 +30682,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -31771,7 +31724,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -35071,7 +35026,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -36211,7 +36168,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -36679,7 +36639,9 @@
       "beta_computed": null,
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -36913,7 +36875,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -37489,7 +37453,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -38175,7 +38141,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -41040,7 +41008,9 @@
       "growth_source": "yahoo_trailingPE_pegRatio",
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -41957,7 +41927,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },
@@ -42538,7 +42510,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": null,
       "rel_vol": null
     },

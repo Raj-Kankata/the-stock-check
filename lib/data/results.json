@@ -1358,7 +1358,10 @@
         "target_spread_div_mean": 0.477
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 108430294496.55,
       "rel_vol": 0.6583,
       "lynch": {
@@ -3963,7 +3966,9 @@
         "target_spread_div_mean": 0.799
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "NASDAQ100"
+      ],
       "market_cap": 39837440968.5,
       "rel_vol": 0.8884,
       "lynch": {
@@ -7070,7 +7075,10 @@
         "target_spread_div_mean": 0.558
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 131881064726.71,
       "rel_vol": 0.4934,
       "lynch": {
@@ -9215,7 +9223,10 @@
         "target_spread_div_mean": 0.263
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 217759267539.0,
       "rel_vol": 1.1134,
       "lynch": {
@@ -9842,7 +9853,9 @@
         "target_spread_div_mean": 0.24
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 374527453668.35,
       "rel_vol": 1.1757,
       "lynch": {
@@ -10496,7 +10509,10 @@
         "target_spread_div_mean": 0.543
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 119037936533.76,
       "rel_vol": 0.5648,
       "lynch": {
@@ -10927,7 +10943,9 @@
         "target_spread_div_mean": 0.206
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 184216538320.57,
       "rel_vol": 1.0135,
       "lynch": {
@@ -11819,7 +11837,9 @@
         "target_spread_div_mean": 0.286
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 220877982473.68,
       "rel_vol": 1.1841,
       "lynch": {
@@ -16869,7 +16889,9 @@
         "target_spread_div_mean": 0.426
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 244913360000.0,
       "rel_vol": 0.6046,
       "lynch": {
@@ -19308,7 +19330,9 @@
         "target_spread_div_mean": 0.62
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 29651103982.92,
       "rel_vol": 0.8421,
       "lynch": {
@@ -20595,7 +20619,9 @@
         "target_spread_div_mean": 0.268
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 69710633110.69,
       "rel_vol": 0.8075,
       "lynch": {
@@ -22531,7 +22557,9 @@
         "target_spread_div_mean": 0.351
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 16806932827.84,
       "rel_vol": 0.8026,
       "lynch": {
@@ -25358,7 +25386,9 @@
         "target_spread_div_mean": 0.332
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 51246422064.0,
       "rel_vol": 1.1123,
       "lynch": {
@@ -25800,7 +25830,9 @@
         "target_spread_div_mean": 0.533
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 44299636360.56,
       "rel_vol": 0.8542,
       "lynch": {
@@ -30417,7 +30449,10 @@
         "target_spread_div_mean": 0.395
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 208552632669.92,
       "rel_vol": 0.7654,
       "lynch": {
@@ -32177,7 +32212,10 @@
         "target_spread_div_mean": 0.505
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 278205338010.6,
       "rel_vol": 0.8692,
       "lynch": {
@@ -34161,7 +34199,9 @@
         "target_spread_div_mean": 0.869
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 63533925959.23,
       "rel_vol": 0.798,
       "lynch": {
@@ -36141,7 +36181,9 @@
         "target_spread_div_mean": 0.433
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 148154827549.3,
       "rel_vol": 0.575,
       "lynch": {
@@ -37938,224 +37980,6 @@
         "reason": null
       }
     },
-    "IONQ": {
-      "name": "IonQ, Inc.",
-      "sector": "Technology",
-      "price": 23.48,
-      "pillars": {
-        "conviction": {
-          "score": 51.8,
-          "detail": {
-            "story": 48.0,
-            "financials": 55.5
-          }
-        },
-        "valuation": {
-          "score": 10,
-          "detail": {
-            "legs": {
-              "dcf": {
-                "value": -54.39,
-                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $-2.54, g=20.0% (EDGAR 3y revenue CAGR 126.9% (fallback growth, SPEC v1.5 \u00a73), capped 20%), discount 12.0% (high-beta tier, raw beta >= 2.0), terminal g 2.5%",
-                "growth_scenario": 0.2
-              },
-              "pegy": {
-                "value": 51.91,
-                "method": "PEGT = (30.0% EDGAR 3y revenue-CAGR growth capped at 30% + 0.00% div) / P/E 13.57 = 2.211; fair = price x PEGY",
-                "pegy": 2.211,
-                "growth_used": 0.3,
-                "pe_used": 13.57,
-                "uncapped_pegy": 9.351
-              },
-              "forward_sector": {
-                "value": null,
-                "method": "SKIPPED \u2014 forward EPS $-1.42 is not positive; the Forward-sector leg cannot be built on a non-positive earnings base (RULEBOOK \u00a75, SPEC v1.5 \u00a74).",
-                "sector_multiple": 18.0,
-                "sector_multiple_asof": "2026-11-13",
-                "forward22_value": null
-              }
-            },
-            "triangulated_fv": -1.24,
-            "fv_method": "mean of 2 available legs (Forward skipped) \u2014 flagged",
-            "fv_override_applied": false,
-            "upside_pct": -1.053,
-            "leg_spread_div_fv": -85.726,
-            "ladder": {
-              "heavy": -0.74,
-              "buy": -0.99,
-              "fair": -1.24,
-              "exit": -1.49
-            },
-            "ladder_ratios": {
-              "heavy": 0.6,
-              "buy": 0.8,
-              "fair": 1.0,
-              "exit": 1.2
-            },
-            "dcf_capm_crosscheck": {
-              "value": -35.1,
-              "discount_capm": 0.1663,
-              "beta_raw": 3.409,
-              "beta_adjusted": 2.61403,
-              "rf_live": 0.051,
-              "rf_live_asof": "2026-11-12",
-              "erp": 0.0441,
-              "erp_asof": "2026-11-01",
-              "method": "v1.3 CAPM cross-check (SPEC v1.1 \u00a73(a)): same base FCF/share $-2.54 and growth 20.0% as the decision DCF leg, discount = 10Y 5.10% (2026-11-12, FRED DGS10) + adjusted beta 2.614 x Damodaran implied ERP 4.41% (2026-11-01) = 16.63%. Cross-check only \u2014 does not change the fair value, score or verdict."
-            },
-            "dcf_sensitivity_grid": {
-              "values": {
-                "0%": {
-                  "4.0%": -27.56,
-                  "4.5%": -26.06,
-                  "5.0%": -24.71,
-                  "5.5%": -23.49,
-                  "6.0%": -22.39
-                },
-                "5%": {
-                  "4.0%": -33.98,
-                  "4.5%": -32.07,
-                  "5.0%": -30.35,
-                  "5.5%": -28.81,
-                  "6.0%": -27.42
-                },
-                "10%": {
-                  "4.0%": -41.64,
-                  "4.5%": -39.23,
-                  "5.0%": -37.08,
-                  "5.5%": -35.15,
-                  "6.0%": -33.4
-                },
-                "15%": {
-                  "4.0%": -50.7,
-                  "4.5%": -47.71,
-                  "5.0%": -45.04,
-                  "5.5%": -42.63,
-                  "6.0%": -40.46
-                },
-                "20%": {
-                  "4.0%": -61.37,
-                  "4.5%": -57.69,
-                  "5.0%": -54.39,
-                  "5.5%": -51.43,
-                  "6.0%": -48.75
-                }
-              },
-              "note": "v1.3 sensitivity grid (SPEC v1.1 \u00a73(a)): decision DCF leg across FCF growth 0\u201320% x rf 4.0\u20136.0%. Discount = rf + locked spread 7.0% (locked discount 12.0% - locked rf 5.00%). The rf 5.0% column reproduces the decision DCF leg exactly where the base growth is a grid row (NVDA, 20% in v1.3); otherwise the decision leg sits between two grid rows. Base FCF/share $-2.54, terminal growth 2.5%, 5y horizon."
-            }
-          }
-        },
-        "quality": {
-          "score": 45.5,
-          "detail": {
-            "subscores": {
-              "ocf_vs_ni": 20,
-              "accruals": 100,
-              "receivables_trend": 20,
-              "fcf_conversion": 20,
-              "roa": 35,
-              "leverage": 100
-            },
-            "degenerate_ni": false,
-            "receivables_unreadable": false,
-            "inputs": {
-              "ocf_pct_ni_used": -2.526,
-              "accruals_sloan": -0.0346,
-              "receivables_change_pp": 27.52,
-              "fcf_conversion_used": -2.698,
-              "roa": -0.11968,
-              "debt_to_equity": 0.030699999999999998,
-              "ni_used": 255242000.0,
-              "ni_used_div_revenue": 0.6709
-            }
-          }
-        },
-        "technical": {
-          "score": 29.2,
-          "detail": {
-            "subscores": {
-              "trend_ema": 15,
-              "price_vs_200d": 20,
-              "rsi": 55,
-              "macd": 40
-            },
-            "inputs": {
-              "ema20": 30.38,
-              "ema50": 34.18,
-              "ema200": 40.78,
-              "rsi14": 32.8,
-              "macd_hist": -0.49,
-              "price_vs_200d_pct": -0.424
-            }
-          }
-        },
-        "trust": {
-          "score": 79.0,
-          "detail": {
-            "subscores": {
-              "completeness": 100,
-              "analyst_coverage": 80,
-              "target_dispersion": 80,
-              "insider": 45
-            },
-            "inputs": {
-              "n_analysts": 14,
-              "target_spread_div_mean": 0.553,
-              "insider_note": "1 sales, 2,407 shares, $0M, 0 buys in 90d"
-            }
-          }
-        }
-      },
-      "overall_score": 39.8,
-      "verdict": "Avoid",
-      "verdict_reason": "Avoid gate: overall 39.8 < 45; valuation score 10 < 30; price $23.48 at/above our Exit $-1.49",
-      "triangulated_fv": -1.24,
-      "ladder": {
-        "heavy": -0.74,
-        "buy": -0.99,
-        "fair": -1.24,
-        "exit": -1.49
-      },
-      "pros": [
-        "Revenue compounded 127% a year over the last 3 fiscal years.",
-        "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check."
-      ],
-      "cons": [
-        "Fair value $-1.24 is -105% below the $23.48 price \u2014 even the most generous leg ($51.91) sits below the price.",
-        "Operating cash flow is only -253% of net income \u2014 a large slice of profit is not cash yet.",
-        "Free-cash-flow conversion is weak: FCF is only -270% of net income \u2014 capex is eating the cash the business earns.",
-        "Downtrend: price $23.48 sits below its 20-day EMA ($30.38) and 200-day EMA ($40.78); RSI 32.8 \u2014 timing is poor even if the business is fine.",
-        "Insiders are net sellers \u2014 1 sales, 2,407 shares, $0M, 0 buys in 90d.",
-        "Our Story-Tracker rates it 'Out' (Story 48.0, Financials 55.5)."
-      ],
-      "flags": [
-        "Growth: Yahoo publishes no PEG or trailing P/E \u2014 the 3-year revenue growth rate (126.89%) from the company's filings is used as the growth input instead.",
-        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
-      ],
-      "analysts": {
-        "n_opinions": 14,
-        "target_mean": 54.275,
-        "target_high": 70.0,
-        "target_low": 40.0,
-        "target_spread_div_mean": 0.553
-      },
-      "debt_fcf": null,
-      "indexes": null,
-      "market_cap": 6375619329.64,
-      "rel_vol": 1.1538,
-      "lynch": {
-        "value": 51.91,
-        "pegy": 2.211,
-        "growth_used": 0.3,
-        "growth_cap": "30%",
-        "dividend_yield": 0.0,
-        "pe_used": 13.57,
-        "eps": 1.7303,
-        "eps_adjusted": false,
-        "available": true,
-        "reason": null
-      }
-    },
     "IPGP": {
       "name": "IPG Photonics Corporation",
       "sector": "Technology",
@@ -39438,7 +39262,10 @@
         "target_spread_div_mean": 0.303
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 896998896277.33,
       "rel_vol": 1.0342,
       "lynch": {
@@ -42087,7 +41914,9 @@
         "target_spread_div_mean": 0.738
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 19197964546.78,
       "rel_vol": 0.9853,
       "lynch": {
@@ -42314,7 +42143,10 @@
         "target_spread_div_mean": 0.692
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 40454022799.71,
       "rel_vol": 0.5073,
       "lynch": {
@@ -45177,7 +45009,9 @@
         "target_spread_div_mean": 0.484
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 19220939406.34,
       "rel_vol": 1.4339,
       "lynch": {
@@ -46687,7 +46521,10 @@
         "target_spread_div_mean": 0.535
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 195007899570.41,
       "rel_vol": 0.9009,
       "lynch": {
@@ -49746,7 +49583,9 @@
         "target_spread_div_mean": 0.364
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 294099299939.61,
       "rel_vol": 0.812,
       "lynch": {
@@ -49968,7 +49807,9 @@
         "target_spread_div_mean": 0.254
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 46653346627.8,
       "rel_vol": 0.9923,
       "lynch": {
@@ -52191,7 +52032,10 @@
         "target_spread_div_mean": 0.814
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 255300919778.52,
       "rel_vol": 0.6058,
       "lynch": {
@@ -55613,7 +55457,9 @@
         "target_spread_div_mean": 0.236
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 57284175642.84,
       "rel_vol": 0.9296,
       "lynch": {
@@ -58429,7 +58275,10 @@
         "target_spread_div_mean": 0.445
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 194197929633.27,
       "rel_vol": 0.9259,
       "lynch": {
@@ -60384,7 +60233,9 @@
         "target_spread_div_mean": 0.321
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 13186290443.04,
       "rel_vol": 1.285,
       "lynch": {
@@ -66718,7 +66569,9 @@
         "target_spread_div_mean": 0.557
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 168411733288.24,
       "rel_vol": 1.2819,
       "lynch": {
@@ -68888,7 +68741,10 @@
         "target_spread_div_mean": 1.04
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 120020259590.34,
       "rel_vol": 1.0117,
       "lynch": {
@@ -69778,7 +69634,9 @@
         "target_spread_div_mean": 0.426
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 105348038316.57,
       "rel_vol": 0.8485,
       "lynch": {
@@ -70222,7 +70080,9 @@
         "target_spread_div_mean": 0.29
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 87607896917.66,
       "rel_vol": 1.0351,
       "lynch": {
@@ -71242,7 +71102,9 @@
         "target_spread_div_mean": 0.31
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 24435034477.92,
       "rel_vol": 0.8257,
       "lynch": {
@@ -72488,7 +72350,9 @@
         "target_spread_div_mean": 0.464
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 75693716591.37,
       "rel_vol": 3.1066,
       "lynch": {
@@ -77945,7 +77809,9 @@
         "target_spread_div_mean": 0.674
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 46038428528.4,
       "rel_vol": 2.0601,
       "lynch": {
@@ -79712,7 +79578,9 @@
         "target_spread_div_mean": 0.355
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 192736539424.24,
       "rel_vol": 0.6679,
       "lynch": {
@@ -80786,7 +80654,9 @@
         "target_spread_div_mean": 0.205
       },
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 262555683586.56,
       "rel_vol": 0.8718,
       "lynch": {

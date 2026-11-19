@@ -995,6 +995,23 @@ def split_inputs(all_tickers, as_of, price_date):
     return out
 
 
+def drop_nonpositive_fv(merged, all_tickers):
+    """SPEC v1.5 §7 (R6) publication gate: remove every ticker whose
+    triangulated FV is non-positive from the merged (published) dict
+    and return the dropped tickers. The engine still computed them
+    (audit); they are NOT published. Callers also remove them from the
+    base universe so live_tickers() agrees on the next run — the same
+    pattern the v1.7 seed used for BYND (excluded from base_inputs.json
+    and results.json). A dropped name returns only by a deliberate
+    re-add to base_inputs.json."""
+    dropped = [t for t in all_tickers
+               if (merged["tickers"][t]["triangulated_fv"] is not None
+                   and merged["tickers"][t]["triangulated_fv"] <= 0)]
+    for t in dropped:
+        del merged["tickers"][t]
+    return dropped
+
+
 def gate_engine_outputs(results, stored_results, all_tickers):
     """Engine-output gates: every ticker present; triangulated_fv non-null
     wherever the stored result had a non-null FV. The batch2 gate covers
@@ -1388,6 +1405,17 @@ def cmd_live(as_of_arg):
     # snapshot the AV pull cron commits (never computed here).
     merged["av_earnings_coverage"] = load_av_coverage(stored)
 
+    # SPEC v1.5 §7 (R6) publication gate, enforced on the refresh path
+    # (added 2026-11-18): a non-positive triangulated FV is computed for
+    # audit but NOT published. Without this the first v1.7 live refresh
+    # published IONQ at FV -$1.24. The drop happens here, after the
+    # engine gate and the merge; the base write-back below removes the
+    # name from the universe in the same run.
+    dropped = drop_nonpositive_fv(merged, all_tickers)
+    if dropped:
+        print(f"NON-POSITIVE FV — unpublished (SPEC v1.5 §7): "
+              f"{', '.join(sorted(dropped))}")
+
     # 3. Per-ticker summary + CHANGED flag (computed BEFORE any write, so
     #    a no-change night writes nothing at all: no as_of/lastmod bumps,
     #    no empty commit, no pointless redeploy).
@@ -1396,7 +1424,15 @@ def cmd_live(as_of_arg):
     changed_tickers = False
     flips = []
     for t in all_tickers:
-        old, new = stored["tickers"][t], merged["tickers"][t]
+        old = stored["tickers"][t]
+        new = merged["tickers"].get(t)
+        if new is None:
+            # Dropped by the §7 gate above: non-positive FV, unpublished
+            # this run. Counts as a change, so the removal publishes.
+            print(f"{t:<7} DROPPED — non-positive FV, unpublished "
+                  f"(SPEC v1.5 §7)")
+            changed_tickers = True
+            continue
         p_ch = old["price"] != new["price"]
         f_ch = old["triangulated_fv"] != new["triangulated_fv"]
         v_ch = old["verdict"] != new["verdict"]
@@ -1489,6 +1525,15 @@ def cmd_live(as_of_arg):
             write_json(BASE_INPUTS, base)
             print(f"  base_inputs.json: split-rescaled "
                   f"{', '.join(sorted(split_rescaled))}")
+        if dropped:
+            # §7 gate (above): the dropped names leave the base
+            # universe in the same run, so live_tickers() still agrees
+            # on the next night.
+            for t in dropped:
+                base["tickers"].pop(t, None)
+            write_json(BASE_INPUTS, base)
+            print(f"  base_inputs.json: removed {', '.join(sorted(dropped))} "
+                  f"(non-positive FV, SPEC v1.5 §7)")
     # SITE_RESULTS is written whenever its content moves, including a
     # coverage-only night (a coverage change alone must still publish
     # the new tile count; the engine files above are untouched then).

@@ -740,7 +740,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 108430294496.55,
       "rel_vol": 0.6583
     },
@@ -2121,7 +2124,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "NASDAQ100"
+      ],
       "market_cap": 39837440968.5,
       "rel_vol": 0.8884
     },
@@ -3731,7 +3736,10 @@
       "growth_source": "yahoo_trailingPE_pegRatio",
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 131881064726.71,
       "rel_vol": 0.4934
     },
@@ -4890,7 +4898,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 217759267539.0,
       "rel_vol": 1.1134
     },
@@ -5245,7 +5256,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 374527453668.35,
       "rel_vol": 1.1757
     },
@@ -5586,7 +5599,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 119037936533.76,
       "rel_vol": 0.5648
     },
@@ -5813,7 +5829,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 184216538320.57,
       "rel_vol": 1.0135
     },
@@ -6284,7 +6302,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 220877982473.68,
       "rel_vol": 1.1841
     },
@@ -8909,7 +8929,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 244913360000.0,
       "rel_vol": 0.6046
     },
@@ -10171,7 +10193,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 29651103982.92,
       "rel_vol": 0.8421
     },
@@ -10858,7 +10882,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 69710633110.69,
       "rel_vol": 0.8075
     },
@@ -11877,7 +11903,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 16806932827.84,
       "rel_vol": 0.8026
     },
@@ -13375,7 +13403,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 51246422064.0,
       "rel_vol": 1.1123
     },
@@ -13603,7 +13633,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 44299636360.56,
       "rel_vol": 0.8542
     },
@@ -16010,7 +16042,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 208552632669.92,
       "rel_vol": 0.7654
     },
@@ -16972,7 +17007,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 278205338010.6,
       "rel_vol": 0.8692
     },
@@ -17997,7 +18035,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 63533925959.23,
       "rel_vol": 0.798
     },
@@ -19028,7 +19068,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 148154827549.3,
       "rel_vol": 0.575
     },
@@ -20738,7 +20780,10 @@
       "beta_adjusted": 1.0134,
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row for JPM equals operating cash flow, which includes deposit/trading flows; StockAnalysis publishes no FCF for JPM",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 896998896277.33,
       "rel_vol": 1.0342
     },
@@ -22103,7 +22148,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 19197964546.78,
       "rel_vol": 0.9853
     },
@@ -22219,7 +22266,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 40454022799.71,
       "rel_vol": 0.5073
     },
@@ -23701,7 +23751,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 19220939406.34,
       "rel_vol": 1.4339
     },
@@ -24506,7 +24558,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "DOW30"
+      ],
       "market_cap": 195007899570.41,
       "rel_vol": 0.9009
     },
@@ -26129,7 +26184,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 294099299939.61,
       "rel_vol": 0.812
     },
@@ -26243,7 +26300,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 46653346627.8,
       "rel_vol": 0.9923
     },
@@ -27395,7 +27454,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 255300919778.52,
       "rel_vol": 0.6058
     },
@@ -29236,7 +29298,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 57284175642.84,
       "rel_vol": 0.9296
     },
@@ -30725,7 +30789,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 194197929633.27,
       "rel_vol": 0.9259
     },
@@ -31764,7 +31831,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 13186290443.04,
       "rel_vol": 1.285
     },
@@ -35064,7 +35133,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 168411733288.24,
       "rel_vol": 1.2819
     },
@@ -36204,7 +36275,10 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500",
+        "NASDAQ100"
+      ],
       "market_cap": 120020259590.34,
       "rel_vol": 1.0117
     },
@@ -36672,7 +36746,9 @@
       "beta_computed": null,
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 105348038316.57,
       "rel_vol": 0.8485
     },
@@ -36906,7 +36982,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 87607896917.66,
       "rel_vol": 1.0351
     },
@@ -37482,7 +37560,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 24435034477.92,
       "rel_vol": 0.8257
     },
@@ -38168,7 +38248,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 75693716591.37,
       "rel_vol": 3.1066
     },
@@ -41033,7 +41115,9 @@
       "growth_source": "yahoo_trailingPE_pegRatio",
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 46038428528.4,
       "rel_vol": 2.0601
     },
@@ -41950,7 +42034,9 @@
       ],
       "dcf_skip_reason": null,
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 192736539424.24,
       "rel_vol": 0.6679
     },
@@ -42531,7 +42617,9 @@
       ],
       "dcf_skip_reason": "bank FCF undefined under the v1.3 Yahoo-row definition \u2014 Yahoo's Free Cash Flow row equals operating cash flow, which includes deposit/trading flows",
       "debt_fcf": null,
-      "indexes": null,
+      "indexes": [
+        "SP500"
+      ],
       "market_cap": 262555683586.56,
       "rel_vol": 0.8718
     },
