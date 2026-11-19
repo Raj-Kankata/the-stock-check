@@ -1,0 +1,250 @@
+{
+ "as_of": "2026-11-19",
+ "value_date": "2026-11-19",
+ "updated_at": "2026-11-19T15:03:48+00:00",
+ "source": "CNN Fear & Greed Index",
+ "source_url": "https://www.cnn.com/markets/fear-and-greed",
+ "score": 29.7,
+ "rating": "Fear",
+ "prev_close": 29.9,
+ "prev_1_week": 40.3,
+ "prev_1_month": 19.5,
+ "prev_1_year": 7.9,
+ "components": [
+  {
+   "key": "momentum",
+   "label": "Market Momentum",
+   "what": "S&P 500 vs its 125-day moving average",
+   "raw": "S&P 500 7,389.4 is below its 125-day average (7,592.4)",
+   "score": 9.0,
+   "rating": "Extreme Fear"
+  },
+  {
+   "key": "strength",
+   "label": "Stock Price Strength",
+   "what": "NYSE stocks at 52-week highs vs 52-week lows",
+   "raw": "Net new highs -4.9 (more new lows than highs)",
+   "score": 33.6,
+   "rating": "Fear"
+  },
+  {
+   "key": "breadth",
+   "label": "Stock Price Breadth",
+   "what": "McClellan Volume Summation Index",
+   "raw": "McClellan Volume Summation 469.9",
+   "score": 36.0,
+   "rating": "Fear"
+  },
+  {
+   "key": "put_call",
+   "label": "Put and Call Options",
+   "what": "5-day average put/call ratio (CNN's own series)",
+   "raw": "5-day average put/call 0.84",
+   "score": 21.0,
+   "rating": "Extreme Fear"
+  },
+  {
+   "key": "volatility",
+   "label": "Market Volatility",
+   "what": "VIX vs its 50-day moving average",
+   "raw": "VIX 22.6 is above its 50-day average (17.9)",
+   "score": 50.0,
+   "rating": "Neutral"
+  },
+  {
+   "key": "junk_bond",
+   "label": "Junk Bond Demand",
+   "what": "Yield spread, junk bonds vs investment grade",
+   "raw": "Spread 1.22",
+   "score": 45.8,
+   "rating": "Neutral"
+  },
+  {
+   "key": "safe_haven",
+   "label": "Safe Haven Demand",
+   "what": "Stocks vs bonds, past 20 days",
+   "raw": "-2.5% over the past 20 days",
+   "score": 18.4,
+   "rating": "Extreme Fear"
+  }
+ ],
+ "bands": [
+  {
+   "max": 25,
+   "label": "Extreme Fear",
+   "note": "0\u201325 \u2014 investors are very fearful; the crowd is selling."
+  },
+  {
+   "max": 45,
+   "label": "Fear",
+   "note": "25\u201345 \u2014 investors are fearful: defensive, but short of panic."
+  },
+  {
+   "max": 55,
+   "label": "Neutral",
+   "note": "45\u201355 \u2014 no strong emotion either way; the middle says nothing."
+  },
+  {
+   "max": 75,
+   "label": "Greed",
+   "note": "55\u201375 \u2014 investors are greedy: leaning into risk."
+  },
+  {
+   "max": null,
+   "label": "Extreme Greed",
+   "note": "75\u2013100 \u2014 investors are very greedy; the crowd is all-in on upside."
+  }
+ ],
+ "history": [
+  {
+   "date": "2026-10-09",
+   "score": 43.5,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-10-12",
+   "score": 45.2,
+   "rating": "Neutral"
+  },
+  {
+   "date": "2026-10-13",
+   "score": 45.6,
+   "rating": "Neutral"
+  },
+  {
+   "date": "2026-10-14",
+   "score": 28.8,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-10-15",
+   "score": 32.0,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-10-16",
+   "score": 18.2,
+   "rating": "Extreme Fear"
+  },
+  {
+   "date": "2026-10-19",
+   "score": 19.5,
+   "rating": "Extreme Fear"
+  },
+  {
+   "date": "2026-10-20",
+   "score": 28.7,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-10-21",
+   "score": 30.3,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-10-22",
+   "score": 20.0,
+   "rating": "Extreme Fear"
+  },
+  {
+   "date": "2026-10-23",
+   "score": 16.7,
+   "rating": "Extreme Fear"
+  },
+  {
+   "date": "2026-10-26",
+   "score": 29.8,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-10-27",
+   "score": 32.9,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-10-28",
+   "score": 34.4,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-10-29",
+   "score": 30.8,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-10-30",
+   "score": 26.3,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-02",
+   "score": 19.4,
+   "rating": "Extreme Fear"
+  },
+  {
+   "date": "2026-11-03",
+   "score": 23.5,
+   "rating": "Extreme Fear"
+  },
+  {
+   "date": "2026-11-04",
+   "score": 34.2,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-05",
+   "score": 20.0,
+   "rating": "Extreme Fear"
+  },
+  {
+   "date": "2026-11-06",
+   "score": 24.4,
+   "rating": "Extreme Fear"
+  },
+  {
+   "date": "2026-11-09",
+   "score": 31.5,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-10",
+   "score": 37.4,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-11",
+   "score": 35.9,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-12",
+   "score": 40.3,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-13",
+   "score": 37.4,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-16",
+   "score": 31.1,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-17",
+   "score": 26.0,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-18",
+   "score": 29.9,
+   "rating": "Fear"
+  },
+  {
+   "date": "2026-11-19",
+   "score": 29.7,
+   "rating": "Fear"
+  }
+ ]
+}

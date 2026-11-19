@@ -248,6 +248,59 @@ export async function fetchSymbolQuote(tvSymbol: string): Promise<TvSymbolQuote 
 }
 
 /**
+ * CNN Fear & Greed Index, live — the same endpoint the nightly
+ * refresh reads (scripts/fear_greed_refresh.py), fetched from the
+ * browser. The endpoint sends Access-Control-Allow-Origin: * (verified
+ * 19 Nov 2026 from curl with the site's Origin), so no proxy is
+ * needed. The CDN returns HTTP 418 to non-browser User-Agents, but a
+ * real browser sends its own UA and Referer, so the fetch works from
+ * the page. The payload is ~178 KB (a full year of history rides
+ * along), so callers poll at most every 10 minutes and only during
+ * market hours. Null on any failure — the caller falls back to the
+ * baked close value in lib/data/fear_greed.json. The timestamp is
+ * CNN's last-update time, returned as-is so the caller can label the
+ * value honestly.
+ */
+export interface FearGreedLive {
+  score: number
+  rating: string
+  updatedAt: string
+}
+
+const FG_RATINGS = [
+  'Extreme Fear',
+  'Fear',
+  'Neutral',
+  'Greed',
+  'Extreme Greed',
+]
+
+export async function fetchFearGreed(): Promise<FearGreedLive | null> {
+  try {
+    const res = await fetch(
+      'https://production.dataviz.cnn.io/index/fearandgreed/graphdata',
+    )
+    if (!res.ok) return null
+    const j = (await res.json()) as unknown
+    if (!j || typeof j !== 'object') return null
+    const fg = (j as Record<string, unknown>)['fear_and_greed']
+    if (!fg || typeof fg !== 'object') return null
+    const { score, rating, timestamp } = fg as Record<string, unknown>
+    if (!isFiniteNumber(score) || score < 0 || score > 100) return null
+    if (typeof rating !== 'string') return null
+    const normRating = rating
+      .split(' ')
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ')
+    if (!FG_RATINGS.includes(normRating)) return null
+    if (typeof timestamp !== 'string' || !timestamp) return null
+    return { score, rating: normRating, updatedAt: timestamp }
+  } catch {
+    return null
+  }
+}
+
+/**
  * Market-wide advance/decline counts from the same TradingView scanner
  * — one filtered scan per sign of the day change, plus one unfiltered
  * scan for the total. Only totalCount is read (range [0,1] keeps each

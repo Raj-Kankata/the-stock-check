@@ -1,4 +1,4 @@
-// Market Pulse panels — six readings, each with its rule printed on
+// Market Pulse panels — eight readings, each with its rule printed on
 // the page. A regime label with no rule is worse than "unavailable".
 //
 // Data sources, and what is live vs baked:
@@ -23,6 +23,12 @@
 //     so this panel is always one session behind by construction and
 //     never pretends to be live. Bands and averages are printed on
 //     the panel; the method is recorded in PULSE_PUT_CALL.md.
+//   * Fear & Greed — CNN's index from the nightly refresh
+//     (lib/data/fear_greed.json) plus a live fetch during market
+//     hours on 10-minute polls (fetchFearGreed — the endpoint is
+//     CORS-open, ~178 KB, so the slow cadence). The nightly value is
+//     the close; the live value is labelled with CNN's update time.
+//     The method is recorded in PULSE_FEAR_GREED.md.
 //   * Macro Regime — the 4-component FRED composite in macro.json
 //     (GDP / industrial production / unemployment / retail sales; each
 //     favorable when it moved the right way vs its previous release).
@@ -31,9 +37,10 @@
 // gone): market panels refresh live during market hours (09:30–16:00
 // ET, 60s polls); credit and macro refresh nightly (~05:20 UTC) from
 // FRED, and put/call refreshes nightly from CBOE (daily, one session
-// behind by construction). The brief at the top is recomputed from the
-// same panel data, never hand-written — baked values prerender it,
-// live values update it.
+// behind by construction). Fear & Greed refreshes nightly from CNN
+// (close value) and live during market hours on 10-minute polls. The
+// brief at the top is recomputed from the same panel data, never
+// hand-written — baked values prerender it, live values update it.
 //
 // Hydration: the prerendered HTML shows baked closes only; the first
 // client render is identical, and live values fill in after mount —
@@ -46,18 +53,35 @@ import { Card } from '@/components/ui'
 import macroJson from '@/lib/data/macro.json'
 import marketJson from '@/lib/data/market.json'
 import putCallJson from '@/lib/data/put_call.json'
+import fearGreedJson from '@/lib/data/fear_greed.json'
 import {
+  fetchFearGreed,
   fetchMarketBreadth,
   fetchSymbolQuote,
   formatCtTime,
   hasLiveQuotes,
   isMarketHours,
   useLiveQuotes,
+  type FearGreedLive,
   type MarketBreadth,
   type TvSymbolQuote,
 } from '@/lib/tradingview'
 
 const POLL_MS = 60_000
+// CNN Fear & Greed live polls: the endpoint updates through the
+// session and the payload is ~178 KB, so the panel polls every 10
+// minutes during market hours only — never after hours, when the
+// baked close value is the reading.
+const FG_POLL_MS = 600_000
+
+// Gauge segments follow CNN's bands (width = band width in points).
+const FG_GAUGE_SEGS = [
+  { width: 25, color: '#dc2626' },
+  { width: 20, color: '#ea580c' },
+  { width: 10, color: '#eab308' },
+  { width: 20, color: '#65a30d' },
+  { width: 25, color: '#15803d' },
+] as const
 
 const MONTHS = [
   'Jan',
@@ -177,6 +201,43 @@ interface PutCallData {
   history?: PutCallSession[]
 }
 
+interface FearGreedBand {
+  max?: number | null
+  label?: string
+  note?: string
+}
+
+interface FearGreedComponent {
+  key?: string
+  label?: string
+  what?: string
+  raw?: string
+  score?: number
+  rating?: string
+}
+
+interface FearGreedHistoryRow {
+  date?: string
+  score?: number
+  rating?: string
+}
+
+interface FearGreedData {
+  value_date?: string
+  updated_at?: string
+  source?: string
+  source_url?: string
+  score?: number
+  rating?: string
+  prev_close?: number
+  prev_1_week?: number
+  prev_1_month?: number
+  prev_1_year?: number
+  components?: FearGreedComponent[]
+  bands?: FearGreedBand[]
+  history?: FearGreedHistoryRow[]
+}
+
 type Status = 'loading' | 'live' | 'closed' | 'stale' | 'error'
 
 interface LiveQuotes {
@@ -254,6 +315,27 @@ function pcDirection(read: string): string {
   return 'Direction: nothing to say. Inside the neutral zone the ratio carries no directional implication — it becomes interesting only at the edges: below 0.80 (complacency) or above 1.16 (fear extreme).'
 }
 
+// What the current Fear & Greed read implies for trader psychology —
+// conditional copy, not a prediction. The index is a contrarian
+// sentiment composite: fear extremes have historically marked bottoms,
+// greed extremes have historically preceded pullbacks, and the middle
+// says nothing. Every branch states what would invalidate it.
+function fgDirection(read: string): string {
+  if (read === 'Extreme Fear') {
+    return 'Direction: contrarian bullish — with a condition. Readings under 25 have historically marked zones where stocks find near-term bottoms, not tops. That is not a buy signal on its own: it is confirmed only when price stabilises and the index starts rising. It is invalidated if the index stays in extreme fear while price keeps falling — fear can stay extreme through a real decline.'
+  }
+  if (read === 'Fear') {
+    return 'Direction: caution, not a sell signal. Traders are defensive, but fear is short of the extreme that has historically marked bottoms — this argues against chasing highs, not for shorting. The read flips if the index rises into Neutral (fear fading) or falls under 25 (capitulation zone).'
+  }
+  if (read === 'Greed') {
+    return 'Direction: contrarian caution. The crowd is leaning into risk — greed has historically preceded pullbacks, not rallies. The read flips if the index falls back into Neutral (greed fading) or rises above 75 (euphoria zone).'
+  }
+  if (read === 'Extreme Greed') {
+    return 'Direction: contrarian bearish — with a condition. Readings above 75 have historically preceded pullbacks, not rallies. That is not a sell signal on its own: it is confirmed only when price weakens and the index starts falling. It is invalidated if the index stays in extreme greed while price keeps rising — greed can stay extreme through a real rally.'
+  }
+  return 'Direction: nothing to say. In the neutral zone the index carries no directional implication — it becomes interesting only at the edges: under 25 (fear extreme) or above 75 (greed extreme).'
+}
+
 const MACRO_ORDER = ['gdp', 'indpro', 'unrate', 'rsafs'] as const
 
 export default function PulsePanels() {
@@ -323,6 +405,35 @@ export default function PulsePanels() {
         ? 'red'
         : undefined
 
+  // ---- fear & greed (baked close from the nightly refresh; live
+  // during market hours on 10-minute polls — never presented as live
+  // after hours) ----
+  const fg = fearGreedJson as unknown as FearGreedData
+  const fgBakedScore = isFiniteNumber(fg.score) ? fg.score! : null
+  const fgBakedRating =
+    typeof fg.rating === 'string' && fgBakedScore !== null ? fg.rating! : null
+  const fgValueDate = formatDate(fg.value_date)
+  const fgBands = Array.isArray(fg.bands) ? fg.bands : []
+  const fgComponents = Array.isArray(fg.components)
+    ? fg.components.filter(
+        (c) =>
+          typeof c.label === 'string' &&
+          typeof c.what === 'string' &&
+          typeof c.raw === 'string' &&
+          isFiniteNumber(c.score) &&
+          typeof c.rating === 'string',
+      )
+    : []
+  const fgHistory = Array.isArray(fg.history)
+    ? fg.history.filter(
+        (h) =>
+          typeof h.date === 'string' &&
+          isFiniteNumber(h.score) &&
+          typeof h.rating === 'string',
+      )
+    : []
+  const fgRecent = fgHistory.slice(-10).reverse()
+
   // ---- live state (fills in after mount; never in the prerender) ----
   const liveStore = useLiveQuotes()
   const [quotes, setQuotes] = useState<LiveQuotes | null>(null)
@@ -332,6 +443,11 @@ export default function PulsePanels() {
   const [breadthStatus, setBreadthStatus] = useState<Status>('loading')
   const [breadthUpdatedAt, setBreadthUpdatedAt] = useState<string | null>(null)
   const [retryTick, setRetryTick] = useState(0)
+  // Fear & Greed live state — separate from the quote/breadth polls:
+  // the CNN payload is ~178 KB, so it polls every 10 minutes, not
+  // every 60 seconds, and only during market hours.
+  const [fgLive, setFgLive] = useState<FearGreedLive | null>(null)
+  const [fgLiveAt, setFgLiveAt] = useState<string | null>(null)
   // Refs mirror the last-good values so the interval callbacks (bound
   // once per retryTick) can tell stale (something on screen) from error
   // (nothing ever loaded) without a stale state closure.
@@ -417,6 +533,26 @@ export default function PulsePanels() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [retryTick])
 
+  // Fear & Greed live polls (10-minute cadence, market hours only).
+  // A failed fetch leaves the baked close value on screen — the panel
+  // never goes blank and never labels a stale value live.
+  useEffect(() => {
+    let stopped = false
+    const refreshFg = async () => {
+      if (document.hidden || !isMarketHours(new Date())) return
+      const next = await fetchFearGreed()
+      if (stopped || !next) return
+      setFgLive(next)
+      setFgLiveAt(formatCtTime(new Date(next.updatedAt)))
+    }
+    refreshFg()
+    const pollId = setInterval(refreshFg, FG_POLL_MS)
+    return () => {
+      stopped = true
+      clearInterval(pollId)
+    }
+  }, [])
+
   // ---- live 382-name internals from the shared store ----
   const liveInternals = useMemo(() => {
     if (!hasLiveQuotes(liveStore) || !universe?.tickers) return null
@@ -475,6 +611,17 @@ export default function PulsePanels() {
       ? breadth.advancers / breadth.decliners
       : null
 
+  // Fear & Greed: live during market hours, baked close otherwise.
+  // The accent follows the displayed rating — both extremes are the
+  // warning zones, the middle is unaccented.
+  const fgScore = fgLive !== null ? fgLive.score : fgBakedScore
+  const fgRating = fgLive !== null ? fgLive.rating : fgBakedRating
+  const fgIsLive = fgLive !== null
+  const fgAccent =
+    fgRating === 'Extreme Fear' || fgRating === 'Extreme Greed'
+      ? 'red'
+      : undefined
+
   // Live 382 internals when the store has them, else the baked counts.
   const above50 = liveInternals
     ? liveInternals.above
@@ -525,6 +672,11 @@ export default function PulsePanels() {
   if (pcRead && pcTotal !== null) {
     briefParts.push(
       `put/call ${pcRead.toLowerCase()} at ${pcTotal.toFixed(2)}`,
+    )
+  }
+  if (fgRating && fgScore !== null) {
+    briefParts.push(
+      `fear & greed ${fgRating.toLowerCase()} at ${Math.round(fgScore)}`,
     )
   }
   if (credit && hyBaked !== null) {
@@ -584,7 +736,8 @@ export default function PulsePanels() {
           Market panels refresh live during market hours (09:30–16:00 ET,
           60-second polls) and show the last close after hours. Credit,
           macro and put/call refresh nightly (~05:20 UTC) from FRED and
-          CBOE.
+          CBOE. Fear &amp; Greed refreshes nightly from CNN (close value)
+          and live during market hours on 10-minute polls.
         </p>
       </div>
 
@@ -982,6 +1135,169 @@ export default function PulsePanels() {
           )}
         </Card>
 
+        <Card title={`Fear & Greed — ${fgRating ?? 'Unavailable'}`} accent={fgAccent}>
+          {fgScore !== null && fgRating !== null ? (
+            <>
+              <p>
+                <strong>
+                  {Math.round(fgScore)} — {fgRating}.
+                </strong>{' '}
+                {fgIsLive ? (
+                  <>Live from CNN, updated {fgLiveAt ?? '—'} CT.</>
+                ) : (
+                  <>As of the {fgValueDate ?? '—'} close (CNN).</>
+                )}{' '}
+                {isFiniteNumber(fg.prev_close) ? (
+                  <>Previous close {fg.prev_close!.toFixed(0)} · </>
+                ) : null}
+                {isFiniteNumber(fg.prev_1_week) ? (
+                  <>1 week ago {fg.prev_1_week!.toFixed(0)} · </>
+                ) : null}
+                {isFiniteNumber(fg.prev_1_month) ? (
+                  <>1 month ago {fg.prev_1_month!.toFixed(0)} · </>
+                ) : null}
+                {isFiniteNumber(fg.prev_1_year) ? (
+                  <>1 year ago {fg.prev_1_year!.toFixed(0)}.</>
+                ) : null}
+              </p>
+              <div className="fg-gauge" aria-hidden="true">
+                <div className="fg-gauge-bar">
+                  {FG_GAUGE_SEGS.map((s) => (
+                    <span
+                      key={s.color}
+                      style={{ flexGrow: s.width, background: s.color }}
+                    />
+                  ))}
+                </div>
+                <span
+                  className="fg-gauge-marker"
+                  style={{ left: `${Math.max(0, Math.min(100, fgScore))}%` }}
+                />
+              </div>
+              <p className="footnote">
+                Extreme Fear 0–25 · Fear 25–45 · Neutral 45–55 · Greed
+                55–75 · Extreme Greed 75–100.
+              </p>
+              {fgComponents.length > 0 ? (
+                <>
+                  <p>
+                    <strong>What is driving it — the seven components.</strong>
+                  </p>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Component</th>
+                        <th>Reading</th>
+                        <th className="num">Score</th>
+                        <th>Band</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {fgComponents.map((c) => (
+                        <tr key={c.key}>
+                          <td>
+                            <strong>{c.label}</strong>
+                            <br />
+                            <span className="footnote">{c.what}</span>
+                          </td>
+                          <td>{c.raw}</td>
+                          <td className="num">{c.score!.toFixed(0)}</td>
+                          <td>{c.rating}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              ) : null}
+              <p>
+                <strong>Ranges.</strong>
+              </p>
+              <ul>
+                {fgBands.map((b) => (
+                  <li key={b.label ?? 'band'}>
+                    <strong>{b.label}.</strong> {b.note}
+                  </li>
+                ))}
+              </ul>
+              <p>
+                <strong>{fgDirection(fgRating)}</strong>
+              </p>
+              <p>
+                <strong>Scope &amp; limits.</strong> The index is the
+                equal-weighted average of the seven indicators above —
+                a sentiment composite, not a timing signal and not a
+                measure of value: it says how traders feel, not whether
+                prices are right. One overlap to read honestly: the Put
+                and Call Options component is CNN&apos;s own 5-day
+                average put/call ratio — the same family as the
+                Put/Call panel on this page, but not the same number.
+                The Put/Call panel shows the CBOE total ratio for the
+                latest session (currently {pcTotal !== null ? pcTotal.toFixed(2) : '—'}); the
+                component above is CNN&apos;s 5-day equity average
+                (currently{' '}
+                {fgComponents.find((c) => c.key === 'put_call')?.raw ?? '—'}
+                ). The two agree in direction far more often than in
+                level — read each against its own history.
+              </p>
+              {fgRecent.length > 0 ? (
+                <>
+                  <p>
+                    <strong>Recent days.</strong>
+                  </p>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Day</th>
+                        <th className="num">Score</th>
+                        <th>Band</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {fgRecent.map((h) => (
+                        <tr key={h.date}>
+                          <td>{formatDate(h.date) ?? h.date}</td>
+                          <td className="num">{h.score!.toFixed(0)}</td>
+                          <td>{h.rating}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              ) : null}
+              <p className="footnote">
+                Rule: the composite is CNN&apos;s Fear &amp; Greed Index
+                (0–100), the equal-weighted average of the seven
+                indicators. Bands: Extreme Fear 0–25 · Fear 25–45 ·
+                Neutral 45–55 · Greed 55–75 · Extreme Greed 75–100 —
+                CNN&apos;s published scale, verified against a year of
+                CNN&apos;s own daily ratings (Extreme Fear never above
+                24.77, Fear 25.26–44.86, Neutral 45.23–54.97, Greed
+                56.20–71.17). The index is a contrarian sentiment gauge,
+                not a timing signal: fear extremes have historically
+                marked bottoms, greed extremes have historically
+                preceded pullbacks, and the middle says nothing.
+              </p>
+              <p className="footnote">
+                Source: CNN Fear &amp; Greed Index,{' '}
+                {fgIsLive ? (
+                  <>live, updated {fgLiveAt ?? '—'} CT (10-minute polls during market hours)</>
+                ) : (
+                  <>as of the {fgValueDate ?? '—'} close</>
+                )}
+                . Nightly refresh (~05:20 UTC) captures the close value;
+                after hours the panel shows that close, labelled with
+                its date. Component scores and ratings are CNN&apos;s
+                published figures, not recomputed here.
+              </p>
+            </>
+          ) : (
+            <p>
+              <strong>Data unavailable.</strong> No Fear &amp; Greed data
+              in this build, so no sentiment reading is published.
+            </p>
+          )}
+        </Card>
+
         <Card title={`Macro Regime — ${macroRegime ?? 'Unavailable'}`} accent={macroRegime === 'Expansion' || macroRegime === 'Growth' ? 'green' : macroRegime === 'Contraction' || macroRegime === 'Slowing' ? 'red' : undefined}>
           {favCount !== null && favTotal !== null && macro.macro?.components ? (
             <>
@@ -1062,7 +1378,9 @@ export default function PulsePanels() {
           no intraday feed for either, so those two panels are always
           dated, never live. Put/Call refreshes nightly too, from CBOE —
           the ratio is a daily number published the following morning,
-          so it is always one session behind, never live.
+          so it is always one session behind, never live. Fear &amp;
+          Greed refreshes nightly from CNN (close value) and live
+          during market hours on 10-minute polls.
         </p>
         <p>
           What is deliberately not here: new 52-week lows (the nightly

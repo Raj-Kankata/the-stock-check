@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
 import { ETF_RESULTS } from '@/lib/etf-data'
+import fearGreedJson from '@/lib/data/fear_greed.json'
 import { allGrids, toStockRow } from '@/lib/public'
 import { ENGINE_VERSION } from '@/lib/site'
 import {
@@ -144,6 +145,11 @@ export default function HomePage() {
         fvs={tileFvs}
         avCoverage={RESULTS.av_earnings_coverage}
         etfCount={ETF_RESULTS.universe_count}
+        fearGreed={{
+          score: fearGreedJson.score,
+          rating: fearGreedJson.rating,
+          as_of: fearGreedJson.value_date,
+        }}
       />
 
       <Card title="Verdict mix">

@@ -985,6 +985,33 @@ tr.gap-above td {
   font-weight: bold;
   margin: 2px 0;
 }
+/* Fear & Greed gauge (homepage tile + Pulse panel): a 0–100 bar in
+   CNN's five bands — Extreme Fear red, Fear orange, Neutral yellow,
+   Greed light green, Extreme Greed green — with a marker at the
+   score. Segment widths follow the band widths (25/20/10/20/25). */
+.fg-gauge {
+  position: relative;
+  margin: 8px 0 2px;
+}
+.fg-gauge-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.fg-gauge-bar span {
+  display: block;
+  height: 100%;
+}
+.fg-gauge-marker {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 3px;
+  background: var(--ink);
+  border-radius: 2px;
+  transform: translateX(-50%);
+}
 .mixbar {
   display: flex;
   border-radius: 12px;

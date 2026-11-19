@@ -8,9 +8,35 @@
 
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { pct } from '@/lib/format'
-import { hasLiveQuotes, liveCloseFor, useLiveQuotes } from '@/lib/tradingview'
+import {
+  fetchFearGreed,
+  formatCtTime,
+  hasLiveQuotes,
+  isMarketHours,
+  liveCloseFor,
+  useLiveQuotes,
+  type FearGreedLive,
+} from '@/lib/tradingview'
+
+// CNN Fear & Greed live polls: the endpoint updates through the
+// session (roughly every 30 min) and the payload is ~178 KB, so the
+// tile polls every 10 minutes during market hours only — never after
+// hours, when the baked close value is the reading.
+const FG_POLL_MS = 600_000
+
+// Gauge segments follow CNN's bands (width = band width in points):
+// Extreme Fear 0–25 red, Fear 25–45 orange, Neutral 45–55 yellow,
+// Greed 55–75 light green, Extreme Greed 75–100 green.
+const FG_GAUGE_SEGS = [
+  { width: 25, color: '#dc2626' },
+  { width: 20, color: '#ea580c' },
+  { width: 10, color: '#eab308' },
+  { width: 20, color: '#65a30d' },
+  { width: 25, color: '#15803d' },
+] as const
 
 export interface HomeTileFv {
   symbol: string
@@ -32,6 +58,7 @@ export default function HomeTiles({
   fvs,
   avCoverage,
   etfCount,
+  fearGreed,
 }: {
   total: number
   verdictCounts: { Growth: number; Value: number; Watch: number; Avoid: number }
@@ -44,9 +71,41 @@ export default function HomeTiles({
   avCoverage?: { pulled: number; universe: number; as_of: string }
   /** ETF board size. Optional: the tile hides when absent. */
   etfCount?: number
+  /** CNN Fear & Greed Index (baked close value). Optional: the tile
+      hides when absent. Goes live during market hours on 10-minute
+      polls (fetchFearGreed) and shows the baked close after hours. */
+  fearGreed?: { score: number; rating: string; as_of: string }
 }) {
   const live = useLiveQuotes()
   const liveNow = hasLiveQuotes(live)
+
+  // Fear & Greed live state (homepage indicator only — the analysis
+  // lives on /pulse). Baked close value until the first live poll
+  // lands; after hours the baked value stays on screen, labelled
+  // with its date, never as live.
+  const [fgLive, setFgLive] = useState<FearGreedLive | null>(null)
+  const [fgLiveAt, setFgLiveAt] = useState<string | null>(null)
+  useEffect(() => {
+    let stopped = false
+    const refresh = async () => {
+      if (document.hidden || !isMarketHours(new Date())) return
+      const next = await fetchFearGreed()
+      if (stopped || !next) return
+      setFgLive(next)
+      setFgLiveAt(formatCtTime(new Date(next.updatedAt)))
+    }
+    refresh()
+    const pollId = setInterval(refresh, FG_POLL_MS)
+    return () => {
+      stopped = true
+      clearInterval(pollId)
+    }
+  }, [])
+  const fgScore =
+    fgLive !== null ? fgLive.score : fearGreed ? fearGreed.score : null
+  const fgRating =
+    fgLive !== null ? fgLive.rating : fearGreed ? fearGreed.rating : null
+  const fgAsOf = fearGreed ? fearGreed.as_of : null
 
   // Live recompute: every ticker with a live close and a positive fair
   // value contributes (fair value − live price) / live price. If the
@@ -76,7 +135,13 @@ export default function HomeTiles({
     }
   }
 
-  const tiles: { label: string; value: string; sub: string; href?: string }[] = [
+  const tiles: {
+    label: string
+    value: string
+    sub: string
+    href?: string
+    gauge?: number
+  }[] = [
     {
       label: 'Names scored',
       value: String(total),
@@ -137,6 +202,34 @@ export default function HomeTiles({
     })
   }
 
+  // CNN Fear & Greed Index — the homepage indicator only: value,
+  // label, and a compact gauge. No analysis text here; the analysis
+  // lives on /pulse. The gauge marker sits at the score on CNN's
+  // 0–100 scale (Extreme Fear 0–25 · Fear 25–45 · Neutral 45–55 ·
+  // Greed 55–75 · Extreme Greed 75–100).
+  if (fgScore !== null && fgRating !== null) {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const asOfTxt =
+      fgAsOf !== null
+        ? (() => {
+            const [, mm, dd] = fgAsOf.split('-').map(Number)
+            return `${months[mm - 1]} ${dd}`
+          })()
+        : null
+    tiles.push({
+      label: 'Fear & Greed',
+      value: String(Math.round(fgScore)),
+      sub:
+        fgLive !== null && fgLiveAt !== null
+          ? `${fgRating} · live ${fgLiveAt} CT`
+          : asOfTxt !== null
+            ? `${fgRating} · as of ${asOfTxt} close`
+            : fgRating,
+      href: '/pulse',
+      gauge: fgScore,
+    })
+  }
+
   // Trailing-earnings pull coverage (backtest calibration data, NOT card
   // coverage): an extra tile only when the field is present in the baked
   // data. The count updates with the nightly refresh and lags the pull
@@ -160,6 +253,22 @@ export default function HomeTiles({
               <div className="stat-value">{tile.value}</div>
               <div className="stat-label">{tile.label}</div>
               <div className="footnote">{tile.sub}</div>
+              {tile.gauge !== undefined ? (
+                <div className="fg-gauge" aria-hidden="true">
+                  <div className="fg-gauge-bar">
+                    {FG_GAUGE_SEGS.map((s) => (
+                      <span
+                        key={s.color}
+                        style={{ flexGrow: s.width, background: s.color }}
+                      />
+                    ))}
+                  </div>
+                  <span
+                    className="fg-gauge-marker"
+                    style={{ left: `${Math.max(0, Math.min(100, tile.gauge))}%` }}
+                  />
+                </div>
+              ) : null}
             </>
           )
           return (
