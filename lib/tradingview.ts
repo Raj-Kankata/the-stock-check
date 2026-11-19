@@ -603,3 +603,131 @@ export function liveEtfCloseFor(state: LiveQuotesState, symbol: string): number 
   const q = state.quotes!.get(symbol)
   return q ? q.close : null
 }
+
+// ---------------------------------------------------------------------------
+// Index live-level store — the same all-or-none scan, polling and states
+// as the ETF store above, but over the 6 index tickers. Separate module
+// state so the stock and ETF stores are never touched by index polling.
+// The scanner returns the short index name (SPX, NDX, DJI, RUT, SOX,
+// VIX) as d[0], so the map is keyed by ticker, like the ETF store.
+// ---------------------------------------------------------------------------
+
+/** TradingView scanner symbols for the 6 index levels (same symbols as
+    lib/data/index_universe.json; FTSE:RUT is the only symbol that
+    resolves for the Russell 2000). */
+export const INDEX_TV_TICKERS: string[] = [
+  'SP:SPX',
+  'NASDAQ:NDX',
+  'DJ:DJI',
+  'FTSE:RUT',
+  'NASDAQ:SOX',
+  'CBOE:VIX',
+]
+
+export async function fetchAllIndexQuotes(): Promise<Map<string, TvQuote> | null> {
+  try {
+    const res = await fetch(SCAN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        symbols: { tickers: INDEX_TV_TICKERS },
+        columns: ['name', 'close', 'change'],
+        sort: { sortBy: 'change', sortOrder: 'desc' },
+        options: { lang: 'en' },
+        range: [0, INDEX_TV_TICKERS.length],
+      }),
+    })
+    if (!res.ok) return null
+    const j = (await res.json()) as unknown
+    if (!j || typeof j !== 'object') return null
+    const data = (j as Record<string, unknown>).data
+    if (!Array.isArray(data)) return null
+    const quotes = new Map<string, TvQuote>()
+    for (const row of data) {
+      if (!row || typeof row !== 'object') continue
+      const d = (row as Record<string, unknown>).d
+      if (!Array.isArray(d) || d.length < 3) continue
+      const [name, close, change] = d
+      if (typeof name !== 'string' || !isFiniteNumber(close)) continue
+      quotes.set(name, {
+        symbol: name,
+        close,
+        changePct: isFiniteNumber(change) ? change : null,
+        volume: null,
+      })
+    }
+    if (quotes.size !== INDEX_TV_TICKERS.length) return null
+    return quotes
+  } catch {
+    return null
+  }
+}
+
+let indexLiveState: LiveQuotesState = { quotes: null, status: 'loading', updatedAt: null }
+const indexLiveListeners = new Set<() => void>()
+let indexLiveTimer: ReturnType<typeof setInterval> | null = null
+let indexLiveInflight: Promise<Map<string, TvQuote> | null> | null = null
+
+function emitIndexLive() {
+  for (const l of indexLiveListeners) l()
+}
+
+async function refreshIndexLive() {
+  if (typeof document !== 'undefined' && document.hidden) return
+  const now = new Date()
+  if (!isMarketHours(now)) {
+    if (indexLiveState.status !== 'closed') {
+      indexLiveState = { quotes: null, status: 'closed', updatedAt: indexLiveState.updatedAt }
+      emitIndexLive()
+    }
+    return
+  }
+  if (!indexLiveInflight) {
+    indexLiveInflight = fetchAllIndexQuotes()
+    void indexLiveInflight.then(() => {
+      indexLiveInflight = null
+    })
+  }
+  const quotes = await indexLiveInflight
+  if (quotes) {
+    indexLiveState = { quotes, status: 'live', updatedAt: formatCtTime(new Date()) }
+  } else if (indexLiveState.quotes) {
+    indexLiveState = { ...indexLiveState, status: 'stale' }
+  } else {
+    indexLiveState = { quotes: null, status: 'error', updatedAt: null }
+  }
+  emitIndexLive()
+}
+
+function ensureIndexPolling() {
+  if (indexLiveTimer !== null) return
+  void refreshIndexLive()
+  indexLiveTimer = setInterval(() => {
+    void refreshIndexLive()
+  }, LIVE_POLL_MS)
+}
+
+export function useLiveIndexQuotes(): LiveQuotesState {
+  const [, setTick] = useState(0)
+  useEffect(() => {
+    const listener = () => setTick((t) => t + 1)
+    indexLiveListeners.add(listener)
+    ensureIndexPolling()
+    return () => {
+      indexLiveListeners.delete(listener)
+    }
+  }, [])
+  return indexLiveState
+}
+
+/** True when the index store holds live values (fresh or last-good stale). */
+export function hasLiveIndexQuotes(state: LiveQuotesState): boolean {
+  return (state.status === 'live' || state.status === 'stale') && state.quotes !== null
+}
+
+/** Live level for one index ticker, or null when the store holds no live map. */
+export function liveIndexCloseFor(state: LiveQuotesState, symbol: string): number | null {
+  if (!hasLiveIndexQuotes(state)) return null
+  const q = state.quotes!.get(symbol)
+  return q ? q.close : null
+}

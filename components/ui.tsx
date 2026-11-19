@@ -57,6 +57,21 @@ export function EtfTypeBadge({ type }: { type: EtfType }) {
   return <span className={`pill type-${type}`}>{ETF_TYPE_LABELS[type]}</span>
 }
 
+/** Index type badge — the visual-discretion axis of the index board:
+    broad market (blue), sector (green), volatility (red). The three
+    types are never shown in the same colour. */
+export type IndexType = 'broad' | 'sector' | 'volatility'
+
+const INDEX_TYPE_LABELS: Record<IndexType, string> = {
+  broad: 'Broad market',
+  sector: 'Sector',
+  volatility: 'Volatility',
+}
+
+export function IndexTypeBadge({ type }: { type: IndexType }) {
+  return <span className={`pill type-${type}`}>{INDEX_TYPE_LABELS[type]}</span>
+}
+
 /** ETF Technical read: Strong (green) / Mixed (amber) / Weak (red). */
 export function TechnicalReadBadge({ read }: { read: 'Strong' | 'Mixed' | 'Weak' }) {
   const cls = read === 'Strong' ? 'growth' : read === 'Mixed' ? 'watch' : 'avoid'

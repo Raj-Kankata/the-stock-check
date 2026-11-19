@@ -13,10 +13,13 @@
 
 import { RESULTS, TICKER_SYMBOLS, type TickerData } from './data'
 import { ETF_RESULTS, ETF_SYMBOLS, type EtfResult } from './etf-data'
+import { INDEX_RESULTS, INDEX_SYMBOLS, type IndexResult } from './index-data'
 import type {
   PublicEtfRow,
   PublicEtfSearchEntry,
   PublicGrid,
+  PublicIndexRow,
+  PublicIndexSearchEntry,
   PublicRow,
   PublicSearchEntry,
   PublicStockRow,
@@ -128,4 +131,57 @@ export function allEtfRows(): PublicEtfRow[] {
 /** Header search index for ETFs. */
 export function etfSearchIndex(): PublicEtfSearchEntry[] {
   return ETF_SYMBOLS.map((symbol) => toEtfSearchEntry(symbol, ETF_RESULTS.etfs[symbol]))
+}
+
+// ---------------------------------------------------------------------------
+// Index projections — same server-only pattern as the ETF projections
+// above. No fair value, no verdict, no overall score exists for
+// indexes, so the shapes carry only the two reads (Technical +
+// Momentum) for price indexes, and the VIX regime block for VIX.
+// ---------------------------------------------------------------------------
+
+export function toIndexRow(symbol: string, t: IndexResult): PublicIndexRow {
+  return {
+    symbol,
+    name: t.name,
+    type: t.type,
+    category: t.category,
+    provider: t.provider,
+    index: t.index,
+    price: t.price,
+    change_pct: t.change_pct,
+    technical_score: t.technical_score ?? null,
+    technical_read: t.technical_read ?? null,
+    momentum_score: t.momentum_score ?? null,
+    momentum_read: t.momentum_read ?? null,
+    vix3m: t.vix3m ?? null,
+    vix_vix3m_ratio: t.vix_vix3m_ratio ?? null,
+    curve_state: t.curve_state ?? null,
+    regime: t.regime ?? null,
+    expected_move_pct: t.expected_move_pct ?? null,
+    expected_move_points: t.expected_move_points ?? null,
+  }
+}
+
+export function toIndexSearchEntry(symbol: string, t: IndexResult): PublicIndexSearchEntry {
+  return {
+    symbol,
+    name: t.name,
+    type: t.type,
+    technical_score: t.technical_score ?? null,
+    technical_read: t.technical_read ?? null,
+    momentum_score: t.momentum_score ?? null,
+    momentum_read: t.momentum_read ?? null,
+    regime: t.regime ?? null,
+  }
+}
+
+/** All 6 index board rows, in universe order. */
+export function allIndexRows(): PublicIndexRow[] {
+  return INDEX_SYMBOLS.map((symbol) => toIndexRow(symbol, INDEX_RESULTS.indexes[symbol]))
+}
+
+/** Header search index for indexes. */
+export function indexSearchIndex(): PublicIndexSearchEntry[] {
+  return INDEX_SYMBOLS.map((symbol) => toIndexSearchEntry(symbol, INDEX_RESULTS.indexes[symbol]))
 }

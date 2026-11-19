@@ -76,6 +76,43 @@ export interface PublicEtfSearchEntry {
   momentum_read: 'Building' | 'Flat' | 'Fading'
 }
 
+/** Index board row: symbol, name, type, category, the two reads (price
+    indexes) or the VIX regime block. VIX carries no technical or
+    momentum score — its fields are null there. */
+export interface PublicIndexRow {
+  symbol: string
+  name: string
+  type: 'broad' | 'sector' | 'volatility'
+  category: string
+  provider: string
+  index: string
+  price: number
+  change_pct: number
+  technical_score: number | null
+  technical_read: 'Strong' | 'Mixed' | 'Weak' | null
+  momentum_score: number | null
+  momentum_read: 'Building' | 'Flat' | 'Fading' | null
+  vix3m: number | null
+  vix_vix3m_ratio: number | null
+  curve_state: 'Contango' | 'Backwardation' | null
+  regime: 'Calm' | 'Normal' | 'Elevated' | 'High' | 'Extreme' | null
+  expected_move_pct: number | null
+  expected_move_points: number | null
+}
+
+/** Header search entry for an index: the two reads for price indexes,
+    the regime for VIX — with an INDEX pill. No fair value, no verdict. */
+export interface PublicIndexSearchEntry {
+  symbol: string
+  name: string
+  type: 'broad' | 'sector' | 'volatility'
+  technical_score: number | null
+  technical_read: 'Strong' | 'Mixed' | 'Weak' | null
+  momentum_score: number | null
+  momentum_read: 'Building' | 'Flat' | 'Fading' | null
+  regime: 'Calm' | 'Normal' | 'Elevated' | 'High' | 'Extreme' | null
+}
+
 /** Homepage grid preview: one ticker's DCF sensitivity grid — the
     grid VALUES only (numbers), the decision leg value, the decision
     growth, and the price. The grid note is never included: it

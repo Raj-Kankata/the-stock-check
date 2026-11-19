@@ -584,6 +584,26 @@ main {
   background: var(--track-bg);
   color: var(--neutral-fg);
 }
+/* Index pill in search results — neutral, the type badge on the card
+   carries the colour. */
+.pill.index {
+  background: var(--track-bg);
+  color: var(--neutral-fg);
+}
+/* Index type badges — three types, three colours, never shared:
+   broad market blue, sector green, volatility red. */
+.pill.type-broad {
+  background: var(--type-bond-bg);
+  color: var(--type-bond);
+}
+.pill.type-sector {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.pill.type-volatility {
+  background: var(--red-bg);
+  color: var(--red);
+}
 
 /* ---- tables ---- */
 table {

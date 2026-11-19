@@ -1172,7 +1172,11 @@ export default function PulsePanels() {
                                 band.label === 'Neutral' ? '#1a2332' : '#fff',
                             }}
                           >
-                            {Math.round(r.value!)}
+                            {/* Truncated, not rounded — CNN displays the
+                                reference values floored (24.61 → 24,
+                                19.51 → 19, 7.86 → 7); rounding would
+                                show 25 / 20 / 8 and contradict CNN. */}
+                            {Math.floor(r.value!)}
                           </span>
                         </div>
                       )

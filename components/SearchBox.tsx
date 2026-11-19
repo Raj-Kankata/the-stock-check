@@ -3,28 +3,37 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { money, pct } from '@/lib/format'
-import type { PublicEtfSearchEntry, PublicSearchEntry } from '@/lib/public-types'
+import type {
+  PublicEtfSearchEntry,
+  PublicIndexSearchEntry,
+  PublicSearchEntry,
+} from '@/lib/public-types'
 import { scoreSpan } from '@/components/ui'
 import { logSearch } from '@/lib/analytics'
 
 /**
  * Ticker search. Only the 382 scored tickers resolve to a stock card,
- * and only the 55 tracked ETFs resolve to an ETF card. Anything else
- * says so plainly — never a guessed score.
+ * only the 55 tracked ETFs resolve to an ETF card, and only the 6
+ * tracked indexes resolve to an index card. Anything else says so
+ * plainly — never a guessed score.
  * The search indexes (symbol, name, verdict/score/fair value for
- * stocks; symbol, name, type, Technical/Momentum reads for ETFs) are
- * passed in from the layout at build time; this component never
- * imports the full results data.
+ * stocks; symbol, name, type, Technical/Momentum reads for ETFs and
+ * indexes) are passed in from the layout at build time; this component
+ * never imports the full results data.
  *
  * ETF rows carry an ETF pill and the two ETF reads — never a verdict
- * or a fair value, because ETFs have neither.
+ * or a fair value, because ETFs have neither. Index rows carry an
+ * INDEX pill and the two reads (or the VIX regime) — never a verdict
+ * or a fair value, because indexes have neither.
  */
 export default function SearchBox({
   entries,
   etfEntries = [],
+  indexEntries = [],
 }: {
   entries: PublicSearchEntry[]
   etfEntries?: PublicEtfSearchEntry[]
+  indexEntries?: PublicIndexSearchEntry[]
 }) {
   const [q, setQ] = useState('')
   const query = q.trim().toUpperCase()
@@ -56,19 +65,37 @@ export default function SearchBox({
             const bSym = norm(b.symbol).startsWith(nq) ? 0 : 1
             return aSym - bSym || a.symbol.localeCompare(b.symbol)
           })
+  const indexMatches =
+    nq.length === 0
+      ? []
+      : indexEntries
+          .filter((e) => norm(e.symbol).startsWith(nq) || norm(e.name).startsWith(nq))
+          .sort((a, b) => {
+            const aSym = norm(a.symbol).startsWith(nq) ? 0 : 1
+            const bSym = norm(b.symbol).startsWith(nq) ? 0 : 1
+            return aSym - bSym || a.symbol.localeCompare(b.symbol)
+          })
   const firstHref =
     matches.length > 0
       ? `/stock/${matches[0].symbol}`
       : etfMatches.length > 0
         ? `/etf/${etfMatches[0].symbol}`
-        : null
+        : indexMatches.length > 0
+          ? `/index/${indexMatches[0].symbol}`
+          : null
   const firstTicker =
     matches.length > 0
       ? matches[0].symbol
       : etfMatches.length > 0
         ? etfMatches[0].symbol
-        : null
-  const showNotCovered = query.length > 0 && matches.length === 0 && etfMatches.length === 0
+        : indexMatches.length > 0
+          ? indexMatches[0].symbol
+          : null
+  const showNotCovered =
+    query.length > 0 &&
+    matches.length === 0 &&
+    etfMatches.length === 0 &&
+    indexMatches.length === 0
 
   // Anonymous search count (see lib/analytics.ts): one log per distinct
   // no-result query — never per keystroke, never with personal data.
@@ -148,13 +175,39 @@ export default function SearchBox({
           ))}
         </ul>
       )}
+      {indexMatches.length > 0 && (
+        <ul className="search-results">
+          {indexMatches.map((t) => (
+            <li key={t.symbol}>
+              <Link
+                href={`/index/${t.symbol}`}
+                onClick={() => {
+                  setQ('')
+                  logSearch({ query, ticker: t.symbol })
+                }}
+              >
+                <span>
+                  <strong>{t.symbol}</strong> — {t.name}{' '}
+                  <span className="pill index">INDEX</span>
+                </span>
+                <span>
+                  {t.regime !== null
+                    ? `VIX regime ${t.regime}`
+                    : `Technical ${t.technical_score!.toFixed(1)} · Mom ${pct(t.momentum_score!, 1)}`}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
       {showNotCovered && (
         <p className="footnote">
-          “{q.trim()}” is not covered yet. {entries.length} tickers are scored and{' '}
-          {etfEntries.length} ETFs are tracked — AAPL, AMZN, AVGO, META, MSFT and NVDA among
-          the stocks, SPY, QQQ and GLD among the ETFs — use the search above to find a
-          covered name. No score is ever guessed for an unscored ticker, and ETFs never
-          carry a fair value or a verdict.
+          “{q.trim()}” is not covered yet. {entries.length} tickers are scored,{' '}
+          {etfEntries.length} ETFs are tracked and {indexEntries.length} indexes are
+          tracked — AAPL, AMZN, AVGO, META, MSFT and NVDA among the stocks, SPY, QQQ and
+          GLD among the ETFs, SPX, NDX and VIX among the indexes — use the search above
+          to find a covered name. No score is ever guessed for an unscored ticker, and
+          ETFs and indexes never carry a fair value or a verdict.
         </p>
       )}
     </div>
