@@ -9,6 +9,8 @@ import {
   PICKS_NEW_ENTRY_DATE,
 } from '@/lib/site'
 import { Card } from '@/components/ui'
+import SearchBox from '@/components/SearchBox'
+import { searchIndex, etfSearchIndex, indexSearchIndex, ipoSearchIndex } from '@/lib/public'
 import PerformanceLive, { type PerformanceRow } from '@/components/PerformanceLive'
 import BenchmarkLive from '@/components/BenchmarkLive'
 
@@ -173,6 +175,20 @@ export default function PerformancePage() {
       />
 
       <BenchmarkLive bakedLatest={bakedSpx} latestCloseDate={latestCloseDate} />
+
+      <Card title="Check any ticker">
+        <p>
+          Looking for a different name? Search any ticker or company below — the same search
+          as the header, over every scored stock, tracked ETF, index and IPO dossier — and it
+          takes you to that card.
+        </p>
+        <SearchBox
+          entries={searchIndex()}
+          etfEntries={etfSearchIndex()}
+          indexEntries={indexSearchIndex()}
+          ipoEntries={ipoSearchIndex()}
+        />
+      </Card>
 
       <Card title="Why the record is still short">
         <p>
