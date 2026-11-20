@@ -51,6 +51,7 @@ export default function HomeTiles({
   indexCount,
   ipoCount,
   ipoUpcomingCount,
+  congressMembers,
   fearGreed,
 }: {
   total: number
@@ -70,6 +71,9 @@ export default function HomeTiles({
   ipoCount?: number
   /** Upcoming-IPO calendar count. Optional: the tile hides when absent. */
   ipoUpcomingCount?: number
+  /** Congress-trading members in the captured filings. Optional: the
+      tile hides when absent. */
+  congressMembers?: number
   /** CNN Fear & Greed Index (baked close value). Optional: the tile
       hides when absent. Goes live during market hours on 10-minute
       polls (fetchFearGreed) and shows the baked close after hours. */
@@ -231,6 +235,18 @@ export default function HomeTiles({
       value: String(ipoUpcomingCount),
       sub: 'Filed mega-IPOs · not yet listed',
       href: '/ipos/upcoming',
+    })
+  }
+
+  // Congress trading (separate data product — disclosed filings, no
+  // fair values, no verdicts, no scores): an extra tile only when the
+  // count is present.
+  if (congressMembers !== undefined) {
+    tiles.push({
+      label: 'Congress members tracked',
+      value: String(congressMembers),
+      sub: 'Disclosed trades · STOCK Act filings',
+      href: '/congress',
     })
   }
 

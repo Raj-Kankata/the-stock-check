@@ -4,6 +4,7 @@ import { RESULTS, TICKER_SYMBOLS, getTicker, money, pct } from '@/lib/data'
 import { ETF_RESULTS } from '@/lib/etf-data'
 import { INDEX_RESULTS } from '@/lib/index-data'
 import { IPO_RESULTS, IPO_UPCOMING_COUNT } from '@/lib/ipo-data'
+import { CONGRESS_MEMBERS, CONGRESS_TRADES } from '@/lib/congress-data'
 import fearGreedJson from '@/lib/data/fear_greed.json'
 import { allGrids, toStockRow } from '@/lib/public'
 import { ENGINE_VERSION } from '@/lib/site'
@@ -124,7 +125,10 @@ export default function HomePage() {
           calendar for listings too new for a check — plus Nebius, a heavily-searched name
           with no card yet — with no score, no fair value and no verdict — plus an
           upcoming-IPO calendar tracking{' '}
-          {IPO_UPCOMING_COUNT} filed mega-IPOs that have not listed yet.
+          {IPO_UPCOMING_COUNT} filed mega-IPOs that have not listed yet. It also tracks
+          what members of Congress disclose buying and selling — {CONGRESS_TRADES.length}{' '}
+          captured STOCK Act filings from {CONGRESS_MEMBERS.length} members so far — as
+          context, never as a signal.
         </p>
       </section>
 
@@ -157,6 +161,7 @@ export default function HomePage() {
         indexCount={INDEX_RESULTS.universe_count}
         ipoCount={IPO_RESULTS.universe_count}
         ipoUpcomingCount={IPO_UPCOMING_COUNT}
+        congressMembers={CONGRESS_MEMBERS.length}
         fearGreed={{
           score: fearGreedJson.score,
           rating: fearGreedJson.rating,

@@ -222,6 +222,11 @@ export default function MethodologyPage() {
               <td>Engine output</td>
               <td>Frozen at publication; changes only by decision</td>
             </tr>
+            <tr>
+              <td>Congress trading</td>
+              <td>Bargo — official House &amp; Senate STOCK Act filings</td>
+              <td>Daily (nightly refresh)</td>
+            </tr>
           </tbody>
         </table>
         <p className="footnote">
@@ -856,6 +861,35 @@ export default function MethodologyPage() {
         </p>
         <p>
           <Link href="/ipos/upcoming">The upcoming IPO calendar →</Link>
+        </p>
+      </Card>
+
+      <Card title="(l) Congress trading — the filings, not a signal" id="congress">
+        <p>
+          The Congress board tracks what members of the House and Senate disclose buying
+          and selling under the STOCK Act. It never gets a score, a fair value or a
+          verdict — a disclosed trade is a public filing, not a check, and following a
+          member&apos;s trades is not a strategy this site endorses or measures.
+        </p>
+        <p>
+          <strong>Sources.</strong> The filings themselves are the authority: the House
+          Clerk&apos;s financial disclosure system and the Senate eFD. We read them via
+          Bargo, which parses the filings into structured records; a nightly step pulls
+          the newest disclosures into our own store and dedupes them, so coverage grows
+          from the capture date forward. Party is matched from the congress-legislators
+          record of the current Congress (each member&apos;s latest term); a member who
+          cannot be matched is shown without a party rather than guessed.
+        </p>
+        <p>
+          <strong>How to read it.</strong> Amounts are the dollar ranges the law requires
+          — never exact figures. Filings lag trades by up to ~45 days, so every trade
+          shows its trade date and disclosure date side by side, and a position disclosed
+          today may already be gone. A member&apos;s &ldquo;portfolio&rdquo; page is a
+          reconstruction from the filings we have captured, labelled as an estimate —
+          never a live portfolio.
+        </p>
+        <p>
+          <Link href="/congress">The Congress board →</Link>
         </p>
       </Card>
     </>

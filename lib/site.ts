@@ -95,6 +95,7 @@ export const NAV_LINKS = [
   { href: '/screener', label: 'Screener' },
   { href: '/etfs', label: 'ETFs' },
   { href: '/indexes', label: 'Indexes' },
+  { href: '/congress', label: 'Congress' },
   { href: '/ipos', label: 'IPOs' },
   { href: '/ipos/upcoming', label: 'IPO calendar' },
   { href: '/themes/neo-cloud', label: 'Neo-cloud theme' },

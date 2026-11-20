@@ -23,6 +23,7 @@ import {
   signedSpan,
 } from '@/components/ui'
 import SensitivityGrid from '@/components/SensitivityGrid'
+import CongressPanel from '@/components/CongressPanel'
 import {
   StockLiveIntro,
   StockLiveLadder,
@@ -847,6 +848,11 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           )}
         </Card>
       </div>
+
+      {/* (6c) Congress trading — disclosed STOCK Act filings in this
+          ticker from the captured store (RULEBOOK §31). Context
+          only: no score, no verdict, never a signal. */}
+      <CongressPanel ticker={symbol} />
 
       {/* (7) Earnings-quality evidence — the one-off callout comes
           first, so a reader opening this section sees it without

@@ -21,6 +21,8 @@ const PAGE_NAMES: { match: (path: string) => boolean; name: string }[] = [
   { match: (p) => p.startsWith('/etf/'), name: 'ETF' },
   { match: (p) => p === '/indexes', name: 'Indexes' },
   { match: (p) => p.startsWith('/index/'), name: 'Index' },
+  { match: (p) => p === '/congress', name: 'Congress' },
+  { match: (p) => p.startsWith('/congress/'), name: 'Congress member' },
   { match: (p) => p === '/ipos/upcoming', name: 'Upcoming IPOs' },
   { match: (p) => p === '/ipos', name: 'IPOs' },
   { match: (p) => p.startsWith('/ipo/'), name: 'IPO' },

@@ -67,6 +67,16 @@ const ICONS: Record<string, ReactNode> = {
       <path d="M7 14l4-5 3 3 5-7" />
     </Icon>
   ),
+  '/congress': (
+    <Icon>
+      <path d="M3 21h18" />
+      <path d="M5 21v-8" />
+      <path d="M9.7 21v-8" />
+      <path d="M14.3 21v-8" />
+      <path d="M19 21v-8" />
+      <path d="M12 3l9 6H3l9-6z" />
+    </Icon>
+  ),
   '/ipos': (
     <Icon>
       <path d="M12 2v4" />
