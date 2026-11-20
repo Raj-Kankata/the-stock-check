@@ -219,6 +219,19 @@ def fetch_yahoo(symbol, truncate_to=None):
                  if datetime.datetime.fromtimestamp(
                      t, datetime.timezone.utc).astimezone(ET).date()
                  <= datetime.date.fromisoformat(truncate_to)]
+    # Drop today's partial bar. VIX trades nearly around the clock, so
+    # Yahoo already serves a current-day ^VIX bar pre-market while every
+    # other index still closes yesterday — without this, the tickers
+    # disagree on the latest close date and the run fails. A bar dated
+    # today before the 16:00 close is not a close (same rule as
+    # nightly_refresh.drop_intraday_bar; ET here is the file's fixed
+    # UTC-5 zone, which matches Eastern in winter).
+    if pairs:
+        last_date = datetime.datetime.fromtimestamp(
+            pairs[-1][0], datetime.timezone.utc).astimezone(ET).date()
+        now_et = datetime.datetime.now(ET)
+        if last_date == now_et.date() and now_et.hour < 16:
+            pairs = pairs[:-1]
     if len(pairs) < 200:
         fail(f"{symbol}: Yahoo returned only {len(pairs)} bars (< 200)")
     closes = [p[1] for p in pairs]
