@@ -307,6 +307,8 @@ export default function HomeTiles({
       </div>
       <p>
         <Link href="/stocks">Browse all {total} →</Link>
+        {' · '}
+        <Link href="/screener">Screen all {total} by score, verdict and upside →</Link>
         {etfCount !== undefined && (
           <>
             {' · '}

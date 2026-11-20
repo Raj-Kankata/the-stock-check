@@ -975,7 +975,10 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
                 <tr>
                   <td>Analysts covering</td>
                   <td>—</td>
-                  <td>{vsWallStreet.nOpinions}</td>
+                  <td>
+                    {vsWallStreet.nOpinions}
+                    {vsWallStreet.nOpinions === 1 ? ' — based on 1 analyst' : ''}
+                  </td>
                 </tr>
                 <tr
                   className={

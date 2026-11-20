@@ -56,6 +56,7 @@ export function toPublicRow(symbol: string, t: TickerData): PublicRow {
     market_cap: t.market_cap,
     rel_vol: t.rel_vol,
     indexes: t.indexes ?? [],
+    quality: t.pillars.quality.score,
   }
 }
 

@@ -15,6 +15,7 @@ const PAGE_NAMES: { match: (path: string) => boolean; name: string }[] = [
   { match: (p) => p === '/picks', name: 'Top Picks' },
   { match: (p) => p === '/pulse', name: 'Market Pulse' },
   { match: (p) => p === '/stocks', name: 'Stocks' },
+  { match: (p) => p === '/screener', name: 'Screener' },
   { match: (p) => p.startsWith('/stock/'), name: 'Stock check' },
   { match: (p) => p === '/etfs', name: 'ETFs' },
   { match: (p) => p.startsWith('/etf/'), name: 'ETF' },

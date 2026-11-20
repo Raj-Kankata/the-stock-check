@@ -85,6 +85,7 @@ export const BENCHMARK = {
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/stocks', label: 'All Stocks' },
+  { href: '/screener', label: 'Screener' },
   { href: '/etfs', label: 'ETFs' },
   { href: '/indexes', label: 'Indexes' },
   { href: '/ipos', label: 'IPOs' },

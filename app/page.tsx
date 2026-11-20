@@ -313,7 +313,15 @@ export default function HomePage() {
                   <span className="footnote">{t.name}</span>
                 </td>
                 <td className="num">{money(t.triangulated_fv)}</td>
-                <td className="num">{money(t.analysts!.target_mean)}</td>
+                <td className="num">
+                  {money(t.analysts!.target_mean)}
+                  {t.analysts!.n_opinions === 1 ? (
+                    <>
+                      <br />
+                      <span className="footnote">based on 1 analyst</span>
+                    </>
+                  ) : null}
+                </td>
                 <td className="num">{signedPctSpan(gap)}</td>
               </tr>
             ))}

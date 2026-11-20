@@ -49,6 +49,11 @@ const ICONS: Record<string, ReactNode> = {
       <rect x="14" y="14" width="7" height="7" rx="1" />
     </Icon>
   ),
+  '/screener': (
+    <Icon>
+      <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
+    </Icon>
+  ),
   '/etfs': (
     <Icon>
       <path d="M12 2l9 5-9 5-9-5 9-5z" />

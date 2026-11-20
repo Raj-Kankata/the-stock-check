@@ -28,7 +28,9 @@ export interface PublicStockRow {
 
 /** /stocks browser row: the list row plus the six filter values
     (beta and trailing P/E are display values from the card facts
-    strip; the rest are the stored filter fields). */
+    strip; the rest are the stored filter fields). Quality is the
+    Quality pillar score (0–100) — a display value only, used by the
+    /screener as a filter and a column. */
 export interface PublicRow extends PublicStockRow {
   sector: string
   beta: number | null
@@ -37,6 +39,7 @@ export interface PublicRow extends PublicStockRow {
   market_cap: number | null
   rel_vol: number | null
   indexes: string[]
+  quality: number
 }
 
 /** Header search entry: what one dropdown row shows. */
