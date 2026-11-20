@@ -12,7 +12,7 @@
 export const SITE_NAME = 'The Stock Check'
 export const SITE_URL = 'https://www.thestockcheck.com'
 export const ENGINE_VERSION = 'scoring-engine-v1.8'
-export const CONTACT_EMAIL = 'hello@thestockcheck.com'
+export const CONTACT_EMAIL = 'legal@thestockcheck.com'
 
 /** Top Picks — frozen entry prices.
  * Two frozen cohorts: launch entered at the 13 Nov 2026 close; new
