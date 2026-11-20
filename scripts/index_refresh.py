@@ -393,10 +393,11 @@ def main():
     vix3m = vix3m_closes[-1]
     if vix3m_date != price_date:
         fail(f"VIX3M price_date {vix3m_date} != index price_date {price_date}")
-    if tv is not None:
-        if abs(vix - tv["VIX"]["close"]) / tv["VIX"]["close"] > 0.005:
-            fail(f"VIX: Yahoo close {vix} vs TradingView "
-                 f"{tv['VIX']['close']} differ by >0.5%")
+    # No TradingView cross-check on VIX: TV's VIX "close" is the LIVE
+    # quote (VIX trades nearly around the clock — 31.57 pre-market Nov 20
+    # vs the Nov 19 close 28.44), not a close, so the 0.5% band can never
+    # hold during a session. Yahoo's VIX close is already verified by the
+    # date agreement with the five indexes and VIX3M above.
     spx_close = indexes["SPX"]["price"]
     ratio = round(vix / vix3m, 3)
     # VIX is quoted in percent points (24.56 = 24.56% annualised), so the
