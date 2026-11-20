@@ -91,22 +91,35 @@ Modes:
       reported honestly, never fudged. Always exits 0 (unless the fetch
       itself fails).
 
-Safety gates (live mode, checked BEFORE writing anything): any yfinance
-fetch failure or empty history -> FAIL; any missing close -> FAIL; any
-ticker's |new price vs stored price| > 25% day-over-day -> FAIL (likely bad
-data) — EXCEPT a move listed in VERIFIED_MOVES below, where the fetched
-close was verified real against independent sources and must match the
-verified price to the cent for that date, or the gate still trips; fewer
-than 200 history bars -> FAIL; any engine output missing a
-ticker or with a null triangulated_fv where the stored one was non-null
--> FAIL. Market gates, same all-or-nothing rule: any index/10Y fetch
-failure or missing close -> FAIL; the four indices disagreeing on the
-latest close date, or disagreeing with the tickers' price_date -> FAIL;
-|^GSPC/^IXIC/^DJI change_pct| > 25% -> FAIL (likely bad data); NO
-magnitude gate on VIX (it can legitimately move >25% in a day) or on the
-10Y. On any failure: exit non-zero and write NOTHING. Everything is
-computed in memory and staged in a temp dir; files are written only after
-all gates pass.
+Safety gates (live mode, checked BEFORE writing anything). Recovery
+rules (RULEBOOK §30, 2026-11-20) apply first — a single bad bar or a
+transient fetch failure must not kill a night: a yfinance exception or
+an empty history is retried ONCE after 30s; a history below 200 bars
+is retried ONCE with period=5y (sliced to the last 252 bars, with the
+granularity guard); a null close on an otherwise-present bar is
+retried once, then recovered from a TradingView close verified
+against Yahoo's own regularMarketPrice within 0.5%. After recovery:
+any missing close -> FAIL; any ticker's |new close vs PREVIOUS BAR's
+close| > 25% day-over-day -> FAIL (likely bad data) — EXCEPT a move
+listed in VERIFIED_MOVES below, where the fetched close was verified
+real against independent sources and must match the verified price to
+the cent for that date, or a move TradingView agrees with (Yahoo
+close vs TradingView close within 0.5%); fewer than 200 history bars
+-> FAIL; any engine output missing a ticker or with a null
+triangulated_fv where the stored one was non-null -> FAIL. Market
+gates, same all-or-nothing rule: any index/10Y fetch failure or
+missing close -> FAIL (after the same retry / null-close recovery);
+the four indices disagreeing on the latest close date, or disagreeing
+with the tickers' price_date -> FAIL; |^GSPC/^IXIC/^DJI change_pct|
+> 25% -> FAIL (likely bad data) unless TradingView agrees within
+0.5%; NO magnitude gate on VIX (it can legitimately move >25% in a
+day) or on the 10Y. FRED fetches retry once on network error; a
+genuinely missing FRED series still fails closed (no second source
+for FRED). On any failure: exit non-zero and write NOTHING.
+Everything is computed in memory and staged in a temp dir; files are
+written only after all gates pass. The fail-closed policy itself is
+unchanged: a close is never published unless verified, and a ticker
+is never silently skipped.
 
 Engines are scoring-engine-v1.8 (SPEC v1.6 FINAL — the v1.7 searched-tickers rules
 plus R10, the PEGY guard on non-positive adjusted EPS; frozen since 2026-11-19).
@@ -147,6 +160,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.request
 from zoneinfo import ZoneInfo
@@ -211,13 +225,33 @@ MAX_INDEX_MOVE = 0.25  # |change_pct| above this for ^GSPC/^IXIC/^DJI = bad data
 
 MAX_DAY_MOVE = 0.25   # |new/old - 1| above this = bad data, FAIL
 MIN_BARS = 200        # fetch_inputs.py requires len(close) >= 200
+# Recovery rules (RULEBOOK §30, 2026-11-20): a single bad bar or a
+# transient fetch failure must not kill a whole night. Retry once
+# after RETRY_DELAY_S; then verify against TradingView (the same
+# scanner the IPO/ETF/index refreshes use) and accept only inside
+# TV_AGREEMENT (0.5%). Anything unverified still fails closed.
+TV_SCAN_URL = "https://scanner.tradingview.com/america/scan"
+TV_AGREEMENT = 0.005  # Yahoo vs TradingView close must agree within 0.5%
+RETRY_DELAY_S = 30    # delay before a single re-fetch of a failed pull
+EXCHANGES_JSON = os.path.join(ROOT, "lib", "data", "exchanges.json")
+# TradingView symbols for the market snapshot (^GSPC/^IXIC/^DJI/^VIX)
+# and SPY, which are not in exchanges.json (stocks only). All five
+# verified to resolve on the scanner 2026-11-20 (SP:SPX, NASDAQ:IXIC,
+# DJ:DJI, TVC:VIX, AMEX:SPY).
+MARKET_TV_SYMBOLS = {"^GSPC": "SP:SPX", "^IXIC": "NASDAQ:IXIC",
+                     "^DJI": "DJ:DJI", "^VIX": "TVC:VIX"}
+SPY_TV_SYMBOL = "AMEX:SPY"
 # Verified large moves: the 25% gate trips on a genuine crash as well as
 # on bad data, so a move verified real against independent sources is
 # listed here and the gate passes ONLY when the fetched close matches
 # the verified price to the cent for that exact date. Anything else —
 # a different price, a different date, an unverified ticker — still
-# fails. Add an entry only after a three-source check (yfinance +
-# Finnhub + a news wire / second quote source) and a documented cause.
+# fails, unless TradingView agrees with the fetched close (RULEBOOK
+# §30: the gate is day-over-day vs the previous bar, so a verified
+# crash needs an entry only for the crash day's own bar; later bars
+# are gated against the already-published crashed close). Add an entry
+# only after a three-source check (yfinance + Finnhub + a news wire /
+# second quote source) and a documented cause.
 #   HY 2026-11-18 $15.44 (-43.3% vs Nov 13 $27.22): Hyster-Yale
 #   announced a $125M convertible senior notes offering due 2031 that
 #   morning (PRNewswire); trading halted 09:36 ET; volume 3.42M vs
@@ -426,17 +460,175 @@ def compute_market_cap(price, shares):
 
 
 # ------------------------------------------------------------------- fetching
+def _is_null(value):
+    """True for a missing close: None or NaN (NaN != NaN)."""
+    return value is None or value != value
+
+
+def assert_daily_bars(hist, ticker):
+    """Granularity guard (NBIS lesson, 2026-11-19): Yahoo silently
+    returned WEEKLY bars for NBIS on chart v8 range=max. Daily bars
+    are 1-3 days apart (Fri->Mon is 3; a 4-day holiday weekend is 4);
+    weekly bars are 7 days apart. Fail the run if any gap in the last
+    15 bars exceeds 5 days."""
+    dates = [d.date() for d in hist.index[-15:]]
+    for a, b in zip(dates, dates[1:]):
+        gap = (b - a).days
+        if gap > 5:
+            fail(f"{ticker}: non-daily bars detected — {gap}-day gap "
+                 f"between {a} and {b} (Yahoo returned weekly bars?)")
+
+
 def fetch_history(ticker, end=None):
     """1y daily history, auto_adjust=False. end (YYYY-MM-DD) is exclusive,
-    as in yfinance: end=2026-11-14 returns bars through 2026-11-13."""
-    tk = yf.Ticker(ticker)
-    kwargs = {"period": "1y", "auto_adjust": False}
-    if end:
-        kwargs["end"] = end
-    hist = tk.history(**kwargs)
+    as in yfinance: end=2026-11-14 returns bars through 2026-11-13.
+    Hardening (RULEBOOK §30): a yfinance exception or an empty history
+    is retried ONCE after a short delay before failing; a history below
+    MIN_BARS is retried ONCE with period=5y (SNDK, 2026-11-19: Yahoo
+    returned 2 bars around the 8-for-1 split) and sliced to the last
+    252 bars so the technicals match the 1y computation. The
+    granularity guard runs on every return."""
+    def _once(period, use_end):
+        kwargs = {"period": period, "auto_adjust": False}
+        if use_end and end:
+            kwargs["end"] = end
+        return yf.Ticker(ticker).history(**kwargs)
+
+    try:
+        hist = _once("1y", True)
+    except Exception as e:  # noqa: BLE001 — any yfinance failure retries once
+        print(f"  {ticker}: yfinance 1y fetch failed ({e}) — retrying once")
+        time.sleep(RETRY_DELAY_S)
+        try:
+            hist = _once("1y", True)
+        except Exception as e2:  # noqa: BLE001
+            fail(f"{ticker}: yfinance fetch failed after 1 retry: {e2}")
     if hist is None or hist.empty or "Close" not in hist:
-        fail(f"{ticker}: yfinance returned empty history (end={end})")
+        print(f"  {ticker}: yfinance returned empty history — retrying once")
+        time.sleep(RETRY_DELAY_S)
+        try:
+            hist = _once("1y", True)
+        except Exception as e:  # noqa: BLE001
+            fail(f"{ticker}: yfinance fetch failed on retry: {e}")
+        if hist is None or hist.empty or "Close" not in hist:
+            fail(f"{ticker}: yfinance returned empty history (end={end}) "
+                 f"after 1 retry")
+    if len(hist) < MIN_BARS:
+        print(f"  {ticker}: only {len(hist)} bars (< {MIN_BARS}) — "
+              f"retrying once with period=5y")
+        time.sleep(RETRY_DELAY_S)
+        try:
+            hist5 = _once("5y", False)
+        except Exception as e:  # noqa: BLE001
+            fail(f"{ticker}: 5y retry fetch failed: {e}")
+        if hist5 is None or hist5.empty or "Close" not in hist5:
+            fail(f"{ticker}: 5y retry returned empty history")
+        if end:
+            end_d = datetime.date.fromisoformat(end)
+            hist5 = hist5[hist5.index.date < end_d]
+        if len(hist5) < MIN_BARS:
+            fail(f"{ticker}: only {len(hist5)} history bars "
+                 f"(< {MIN_BARS}) even on 5y — Yahoo history truncated?")
+        hist = hist5.iloc[-252:]
+    assert_daily_bars(hist, ticker)
     return hist
+
+
+def tv_close(tv_symbol):
+    """One TradingView scanner close for a single symbol, or None when
+    the scanner does not resolve it or returns a null close. Never
+    fails the run itself — the caller decides what a missing second
+    source means. Same endpoint/payload shape as the IPO/ETF/index
+    refreshes (america/scan, Content-Type: text/plain)."""
+    body = json.dumps({
+        "symbols": {"tickers": [tv_symbol]},
+        "columns": ["name", "close"],
+        "options": {"lang": "en"},
+        "range": [0, 1]})
+    req = urllib.request.Request(
+        TV_SCAN_URL, data=body.encode(),
+        headers={"Content-Type": "text/plain"})
+    try:
+        data = json.loads(urllib.request.urlopen(req, timeout=60).read())
+    except Exception as e:  # noqa: BLE001 — scanner down is "no second source"
+        print(f"  TradingView {tv_symbol}: scanner request failed: {e}")
+        return None
+    if data.get("totalCount") != 1:
+        print(f"  TradingView {tv_symbol}: totalCount "
+              f"{data.get('totalCount')} != 1 — unresolved")
+        return None
+    rows = data.get("data") or []
+    if not rows:
+        print(f"  TradingView {tv_symbol}: no rows — unresolved")
+        return None
+    close = rows[0]["d"][1]
+    if close is None:
+        print(f"  TradingView {tv_symbol}: null close")
+        return None
+    return float(close)
+
+
+def yahoo_chart_meta(ticker):
+    """Yahoo chart v8 (range=5d) meta for one ticker: (last_bar_close,
+    regularMarketPrice, dataGranularity). Any value may be None.
+    Used only by the null-close recovery path — the chart endpoint is
+    the same one ipo_refresh.py uses."""
+    url = (f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}"
+           f"?range=5d&interval=1d")
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        d = json.loads(urllib.request.urlopen(req, timeout=60).read())
+        r = d["chart"]["result"][0]
+    except Exception as e:  # noqa: BLE001 — chart down is "no second source"
+        print(f"  Yahoo chart v8 {ticker}: fetch failed: {e}")
+        return None, None, None
+    meta = r.get("meta") or {}
+    q = (r.get("indicators") or {}).get("quote") or [{}]
+    closes = (q[0] or {}).get("close") or []
+    last = closes[-1] if closes else None
+    return last, meta.get("regularMarketPrice"), meta.get("dataGranularity")
+
+
+def recover_null_close(ticker, tv_symbol, end):
+    """Yahoo served the latest bar but left its close blank (ABBV,
+    2026-11-19: bar present, volume 5,014,775, close null; Yahoo
+    backfilled $283.54 by morning). Retry the fetch once; if the close
+    is still blank, verify a TradingView close against Yahoo's own
+    regularMarketPrice (both must agree within 0.5%) and return the
+    TradingView close. Anything else fails closed, naming the ticker,
+    every source tried, and the values seen. Returns (price,
+    refetched_hist_or_None): when the retry healed the close, the
+    caller uses the refetched history (technicals come from it); when
+    the TradingView fallback healed it, the caller patches the bar's
+    close with the returned price."""
+    time.sleep(RETRY_DELAY_S)
+    hist = fetch_history(ticker, end=end)
+    hist = drop_intraday_bar(hist)
+    last = float(hist["Close"].iloc[-1])
+    if not _is_null(last):
+        print(f"  NULL CLOSE recovered on retry: {ticker} ${last:.2f} "
+              f"(close date {hist.index[-1].date().isoformat()})")
+        return last, hist
+    _last_bar, meta_price, _gran = yahoo_chart_meta(ticker)
+    tv = tv_close(tv_symbol) if tv_symbol else None
+    if tv is None:
+        fail(f"{ticker}: null Yahoo close (bar present, close blank; "
+             f"retry also blank) and TradingView did not resolve "
+             f"{tv_symbol or '—'} — no verified close")
+    if meta_price is None:
+        fail(f"{ticker}: null Yahoo close (retry also blank); "
+             f"TradingView ${tv:.2f} but Yahoo regularMarketPrice "
+             f"missing — no second source to agree with")
+    if abs(tv - meta_price) / meta_price > TV_AGREEMENT:
+        fail(f"{ticker}: null Yahoo close (retry also blank); "
+             f"TradingView ${tv:.2f} vs Yahoo regularMarketPrice "
+             f"${meta_price:.2f} differ by "
+             f"{abs(tv - meta_price) / meta_price:+.2%} (>0.5%) — "
+             f"no verified close")
+    print(f"  NULL CLOSE recovered via TradingView: {ticker} "
+          f"${tv:.2f} (Yahoo regularMarketPrice ${meta_price:.2f}, "
+          f"agree within 0.5%)")
+    return tv, None
 
 
 def drop_intraday_bar(hist):
@@ -555,18 +747,23 @@ def _update_price_fields(rec, new_price):
             rec["dividend_yield"] * old_price / new_price, 4)
 
 
-def refresh_ticker(base_rec, hist, symbol=None):
+def refresh_ticker(base_rec, hist, symbol=None, tv_symbol=None):
     """Apply one fetched history to a deep copy of a base ticker record.
     Returns (new_rec, last_bar_date_str, split_factor). Raises SystemExit
     on gate trip. symbol is the ticker symbol (the record carries no
-    ticker key); it is used only for the VERIFIED_MOVES lookup."""
+    ticker key); it is used for the VERIFIED_MOVES lookup and the
+    TradingView verification. tv_symbol is the TradingView symbol
+    (lib/data/exchanges.json) for that verification."""
     ticker = base_rec.get("name", "?")
     close = hist["Close"]
     if len(close) < MIN_BARS:
         fail(f"{ticker}: only {len(close)} history bars (< {MIN_BARS})")
     new_price = float(close.iloc[-1])
-    if new_price is None or new_price != new_price:  # NaN check
-        fail(f"{ticker}: missing close")
+    if _is_null(new_price):
+        fail(f"{ticker}: missing close (null last bar — no verified close)")
+    prev_price = float(close.iloc[-2])
+    if _is_null(prev_price):
+        fail(f"{ticker}: missing previous close (null second-to-last bar)")
     rec = copy.deepcopy(base_rec)
     # Stock split since the base close: rescale the base record BEFORE
     # the move gate, so the split-driven price step is measured against
@@ -578,21 +775,38 @@ def refresh_ticker(base_rec, hist, symbol=None):
         print(f"  SPLIT {ticker}: {split_factor:g}-for-1 since "
               f"{base_rec.get('price_date')} — base rescaled "
               f"${base_rec['price']:.2f} -> ${rec['price']:.2f}")
-    old_price = rec["price"]
-    move = new_price / old_price - 1
+    # The move gate is day-over-day: the new close vs the PREVIOUS
+    # BAR's close from the same fetch (same scale, adjacent trading
+    # day). Comparing vs the frozen Nov 13 base (the old code) measured
+    # a multi-day move and tripped on any genuine crash after a missed
+    # refresh — HY, Nov 2026: the Nov 18 crash (-41%) was already in
+    # the published Nov 18 close, but the gate re-measured it against
+    # Nov 13 every night. RULEBOOK §30. A split needs no special
+    # handling here: both bars are split-adjusted identically.
+    move = new_price / prev_price - 1
     if abs(move) > MAX_DAY_MOVE:
         verified = VERIFIED_MOVES.get(symbol) if symbol else None
         bar_date = hist.index[-1].date().isoformat()
         if (verified and verified["date"] == bar_date
                 and abs(new_price - verified["price"]) < 0.005):
-            print(f"  VERIFIED MOVE {ticker}: {move:+.1%} vs stored "
-                  f"${old_price:.2f} — matches the verified close "
+            print(f"  VERIFIED MOVE {ticker}: {move:+.1%} vs previous close "
+                  f"${prev_price:.2f} — matches the verified close "
                   f"${verified['price']:.2f} on {verified['date']} "
                   f"({verified['reason']}); gate passes")
         else:
-            fail(f"{ticker}: price moved {move:+.1%} vs stored "
-                 f"${old_price:.2f} "
-                 f"(>${MAX_DAY_MOVE:.0%} gate — likely bad data)")
+            tv = tv_close(tv_symbol) if tv_symbol else None
+            if tv is not None and abs(new_price - tv) / tv <= TV_AGREEMENT:
+                print(f"  VERIFIED MOVE {ticker}: {move:+.1%} vs previous "
+                      f"close ${prev_price:.2f} — TradingView agrees "
+                      f"${tv:.2f} (within 0.5%); gate passes")
+            else:
+                tv_txt = (f"TradingView ${tv:.2f}" if tv is not None
+                          else "TradingView did not resolve "
+                               f"{tv_symbol or '—'}")
+                fail(f"{ticker}: price moved {move:+.1%} vs previous close "
+                     f"${prev_price:.2f} (>${MAX_DAY_MOVE:.0%} gate); "
+                     f"Yahoo close ${new_price:.2f}, {tv_txt} — "
+                     f"unverified move, failing closed")
     rec["technicals"] = compute_technicals(close)
     _update_price_fields(rec, new_price)
     bar_date = hist.index[-1].date().isoformat()
@@ -616,6 +830,25 @@ def refresh_ticker(base_rec, hist, symbol=None):
     return rec, bar_date, split_factor
 
 
+def _urlopen_text(url, timeout=30):
+    """urllib GET with ONE retry after a short delay. Returns the decoded
+    text. Fails closed (naming the URL) only when both attempts fail.
+    Used by the FRED fetchers — a transient network error must not kill
+    a night (RULEBOOK §30). There is no second source for FRED series,
+    so a genuinely missing series still fails closed below."""
+    try:
+        with urllib.request.urlopen(url, timeout=timeout) as r:
+            return r.read().decode("utf-8")
+    except (urllib.error.URLError, TimeoutError, OSError) as e:
+        print(f"  {url}: fetch failed ({e}) — retrying once")
+        time.sleep(RETRY_DELAY_S)
+        try:
+            with urllib.request.urlopen(url, timeout=timeout) as r:
+                return r.read().decode("utf-8")
+        except (urllib.error.URLError, TimeoutError, OSError) as e2:
+            fail(f"fetch failed after 1 retry ({url}): {e2}")
+
+
 # --------------------------------------------------------------------- market
 def fetch_fred_dgs10(close_date):
     """Latest FRED DGS10 (10Y Treasury, %) dated on or before close_date.
@@ -623,11 +856,7 @@ def fetch_fred_dgs10(close_date):
     e.g. 2026-11-11 Veterans Day), so the returned (value, date) may be
     one trading day behind the indices — the date is recorded in
     market.json, never assumed. Returns (value_pct, as_of_str)."""
-    try:
-        with urllib.request.urlopen(FRED_DGS10_URL, timeout=30) as r:
-            text = r.read().decode("utf-8")
-    except (urllib.error.URLError, TimeoutError, OSError) as e:
-        fail(f"FRED DGS10 fetch failed: {e}")
+    text = _urlopen_text(FRED_DGS10_URL, timeout=30)
     best = None
     for line in text.splitlines():
         parts = line.strip().split(",")
@@ -653,37 +882,51 @@ def fetch_market(as_of_arg, end):
     prev close, point change and % change (yfinance), plus the 10Y from
     FRED. as_of_arg/end follow cmd_live: end is exclusive (as_of + 1d)
     when pinned, None for the latest close. Returns (market_dict,
-    close_date_str). Raises SystemExit on any gate trip."""
-    if as_of_arg:
-        start = (datetime.date.fromisoformat(as_of_arg)
-                 - datetime.timedelta(days=10)).isoformat()
-    else:
-        start = (datetime.date.today()
-                 - datetime.timedelta(days=10)).isoformat()
+    close_date_str). Raises SystemExit on any gate trip. Fetches go
+    through fetch_history (retry + 5y + granularity guard) and the
+    null-close recovery (RULEBOOK §30); a >25% index move is verified
+    against TradingView before it can fail the run."""
     indices = []
     close_dates = set()
     for symbol, label in MARKET_SYMBOLS:
-        try:
-            hist = yf.Ticker(symbol).history(start=start, end=end,
-                                              auto_adjust=False)
-        except Exception as e:  # noqa: BLE001 — any yfinance failure is a gate trip
-            fail(f"{symbol}: yfinance fetch failed: {e}")
-        if hist is None or hist.empty or "Close" not in hist:
-            fail(f"{symbol}: yfinance returned empty history (end={end})")
+        hist = fetch_history(symbol, end=end)
         hist = drop_intraday_bar(hist)
         close = hist["Close"]
         if len(close) < 2:
             fail(f"{symbol}: fewer than 2 bars — no prev close")
         last_close = float(close.iloc[-1])
+        if _is_null(last_close):
+            price, refetched = recover_null_close(
+                symbol, MARKET_TV_SYMBOLS.get(symbol), end)
+            if refetched is not None:
+                hist = refetched
+                close = hist["Close"]
+            else:
+                hist = hist.copy()
+                hist.iloc[-1, hist.columns.get_loc("Close")] = price
+                close = hist["Close"]
+            last_close = price
         prev_close = float(close.iloc[-2])
-        if last_close != last_close or prev_close != prev_close:  # NaN
-            fail(f"{symbol}: missing close")
+        if _is_null(prev_close):
+            fail(f"{symbol}: missing previous close "
+                 f"(null second-to-last bar)")
         c2, p2 = round(last_close, 2), round(prev_close, 2)
         ch = round(c2 - p2, 2)
         pct = round(ch / p2, 4)
         if symbol != "^VIX" and abs(pct) > MAX_INDEX_MOVE:
-            fail(f"{symbol}: change {pct:+.2%} exceeds "
-                 f"{MAX_INDEX_MOVE:.0%} gate — likely bad data")
+            tv_sym = MARKET_TV_SYMBOLS.get(symbol)
+            tv = tv_close(tv_sym) if tv_sym else None
+            if tv is not None and abs(c2 - tv) / tv <= TV_AGREEMENT:
+                print(f"    VERIFIED INDEX MOVE {label}: {pct:+.2%} — "
+                      f"TradingView agrees ${tv:.2f} (within 0.5%); "
+                      f"gate passes")
+            else:
+                tv_txt = (f"TradingView ${tv:.2f}" if tv is not None
+                          else "TradingView did not resolve "
+                               f"{tv_sym or '—'}")
+                fail(f"{symbol}: change {pct:+.2%} exceeds "
+                     f"{MAX_INDEX_MOVE:.0%} gate; Yahoo close ${c2:.2f}, "
+                     f"{tv_txt} — unverified move, failing closed")
         bar_date = hist.index[-1].date().isoformat()
         close_dates.add(bar_date)
         indices.append({"symbol": symbol, "label": label, "close": c2,
@@ -707,12 +950,10 @@ def fetch_market(as_of_arg, end):
 def fetch_fred_series(series_id):
     """Full FRED CSV series as sorted [(date, value)] (blank days skipped).
     Any fetch failure or an empty series is a gate trip — same
-    all-or-nothing rule as the other fetches: fail without writing."""
-    try:
-        with urllib.request.urlopen(FRED_CSV_URL + series_id, timeout=30) as r:
-            text = r.read().decode("utf-8")
-    except (urllib.error.URLError, TimeoutError, OSError) as e:
-        fail(f"FRED {series_id} fetch failed: {e}")
+    all-or-nothing rule as the other fetches: fail without writing.
+    The fetch itself retries once (_urlopen_text); a genuinely missing
+    series still fails closed (no second source for FRED)."""
+    text = _urlopen_text(FRED_CSV_URL + series_id, timeout=30)
     rows = []
     for line in text.splitlines():
         parts = line.strip().split(",")
@@ -761,21 +1002,24 @@ def fetch_spy(end):
     """SPY 1y history (yfinance), intraday-bar-dropped like the tickers,
     with 50/200-day EMAs from the EXACT compute_technicals formulas.
     Returns (spy_dict, close_date_str). Gates: empty history, fewer
-    than MIN_BARS bars, or a missing close all fail the run."""
-    try:
-        hist = yf.Ticker("SPY").history(period="1y", auto_adjust=False,
-                                        end=end)
-    except Exception as e:  # noqa: BLE001 — any yfinance failure is a gate trip
-        fail(f"SPY: yfinance fetch failed: {e}")
-    if hist is None or hist.empty or "Close" not in hist:
-        fail("SPY: yfinance returned empty history")
+    than MIN_BARS bars, or a missing close all fail the run — a missing
+    close first goes through the null-close recovery (retry, then a
+    TradingView close verified against Yahoo's regularMarketPrice;
+    RULEBOOK §30)."""
+    hist = fetch_history("SPY", end=end)
     hist = drop_intraday_bar(hist)
     close = hist["Close"]
-    if len(close) < MIN_BARS:
-        fail(f"SPY: only {len(close)} history bars (< {MIN_BARS})")
     last_close = float(close.iloc[-1])
-    if last_close != last_close:  # NaN
-        fail("SPY: missing close")
+    if _is_null(last_close):
+        price, refetched = recover_null_close("SPY", SPY_TV_SYMBOL, end)
+        if refetched is not None:
+            hist = refetched
+            close = hist["Close"]
+        else:
+            hist = hist.copy()
+            hist.iloc[-1, hist.columns.get_loc("Close")] = price
+            close = hist["Close"]
+        last_close = price
     tech = compute_technicals(close)
     bar_date = hist.index[-1].date().isoformat()
     print(f"    SPY: close ${last_close:.2f}, EMA50 ${tech['ema50']:.2f}, "
@@ -1343,12 +1587,22 @@ def cmd_live(as_of_arg):
     new_tickers = {}
     bar_dates = set()
     split_rescaled = {}  # ticker -> rescaled BASE record, for write-back
+    tv_symbols = load_json(EXCHANGES_JSON)
     for t in all_tickers:
         print(f"  fetching {t} ...")
         hist = fetch_history(t, end=end)
         hist = drop_intraday_bar(hist)
-        rec, bar_date, split_factor = refresh_ticker(base["tickers"][t],
-                                                     hist, symbol=t)
+        if _is_null(float(hist["Close"].iloc[-1])):
+            price, refetched = recover_null_close(
+                t, tv_symbols.get(t), end)
+            if refetched is not None:
+                hist = refetched
+            else:
+                hist = hist.copy()
+                hist.iloc[-1, hist.columns.get_loc("Close")] = price
+        rec, bar_date, split_factor = refresh_ticker(
+            base["tickers"][t], hist, symbol=t,
+            tv_symbol=tv_symbols.get(t))
         if split_factor != 1.0:
             # Persist the rescaled BASE only (not the refreshed record):
             # the restated base close, on post-split scale. price_date
@@ -1362,9 +1616,9 @@ def cmd_live(as_of_arg):
             split_rescaled[t] = rescaled_base
         new_tickers[t] = rec
         bar_dates.add(bar_date)
-        old = base["tickers"][t]["price"]
-        print(f"    {t}: ${old:.2f} -> ${rec['price']:.2f} "
-              f"({rec['price'] / old - 1:+.2%}), close date {bar_date}, "
+        prev = float(hist["Close"].iloc[-2])
+        print(f"    {t}: ${prev:.2f} -> ${rec['price']:.2f} "
+              f"({rec['price'] / prev - 1:+.2%}), close date {bar_date}, "
               f"{len(hist)} bars")
     if len(bar_dates) != 1:
         fail(f"tickers disagree on latest close date: {sorted(bar_dates)}")
