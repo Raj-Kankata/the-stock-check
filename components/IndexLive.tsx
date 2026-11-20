@@ -116,7 +116,13 @@ export function LiveIndexRows({
             {variant === 'price' ? (
               <>
                 <td className="num">
-                  {t.technical_score === null ? '—' : `${scoreSpan(t.technical_score)} · ${t.technical_read}`}
+                  {t.technical_score === null ? (
+                    '—'
+                  ) : (
+                    <>
+                      {scoreSpan(t.technical_score)} · {t.technical_read}
+                    </>
+                  )}
                 </td>
                 <td className="num">
                   {t.momentum_score === null ? '—' : signedPctSpan(t.momentum_score, 1, 0.001)}

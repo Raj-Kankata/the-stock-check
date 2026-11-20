@@ -5,6 +5,7 @@ import Sidebar from '@/components/Sidebar'
 import SearchBox from '@/components/SearchBox'
 import MarketStrip from '@/components/MarketStrip'
 import ThemeToggle from '@/components/ThemeToggle'
+import PageName from '@/components/PageName'
 import BrandMark from '@/components/BrandMark'
 import { SITE_NAME, SITE_URL, ENGINE_VERSION } from '@/lib/site'
 import { ANALYTICS_ENABLED, CF_BEACON_TOKEN } from '@/lib/analytics'
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
                 <SearchBox entries={searchIndex()} etfEntries={etfSearchIndex()} indexEntries={indexSearchIndex()} ipoEntries={ipoSearchIndex()} />
               </div>
               <ThemeToggle />
+              <PageName />
             </div>
             <MarketStrip />
           </div>

@@ -229,13 +229,13 @@ li {
    on every section with an id keeps the target fully visible below
    the header. Desktop header is ~145px tall (up to ~176px when the
    market-strip chips wrap to two rows), so 180px; the mobile pinned
-   header-top row is ~109px, so 130px. */
+   header-top row is ~131px with the page-name line, so 152px. */
 section[id] {
   scroll-margin-top: 180px;
 }
 @media (max-width: 860px) {
   section[id] {
-    scroll-margin-top: 130px;
+    scroll-margin-top: 152px;
   }
 }
 .site-header .wrap {
@@ -325,6 +325,15 @@ section[id] {
 .header-search {
   flex: 1 1 320px;
   min-width: 0;
+}
+/* Current page name in the sticky header — mobile only (Issue 2,
+   2026-11-19). Desktop hides it: the desktop header already carries
+   the brand, tagline and search, and there is no room for a name
+   there. On mobile it renders as a compact line under the search
+   inside the pinned header-top, so a scrolled-down user always sees
+   which page they are on. */
+.page-name {
+  display: none;
 }
 /* ---- theme toggle (header, every page) ----
    Sun/moon button at the right end of the header row. Flips
@@ -1427,6 +1436,37 @@ a.rail-brand:hover {
   }
   .site-header .search-results {
     margin-bottom: 0;
+  }
+  /* Sticky page name (Issue 2): a compact line under the search in
+     the pinned header-top, so the page stays identified while
+     scrolling. Full-width third row (order 3, after menu/brand/
+     toggle row 1 and the search row 2); small and muted so it never
+     crowds the search box or the Check button. */
+  .page-name {
+    display: block;
+    order: 3;
+    flex: 1 1 100%;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--muted);
+    padding: 6px 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /* Wide tables on phones (Issue 1): a table whose columns need more
+     than the card width used to run past the card's right edge, its
+     last column silently cut off at the viewport edge. display:block
+     + overflow-x:auto turns the table itself into its own scroll
+     container (the GitHub markdown-table pattern): the table scrolls
+     sideways inside its card, the card boundary stays visible, and
+     no column is clipped at the viewport edge. The inner anonymous
+     table keeps collapsed borders and column widths, and the rule is
+     mobile-only so desktop rendering is untouched. */
+  table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
   }
   .market-strip {
     padding: 0 16px 14px;
