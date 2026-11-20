@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-19",
+ "as_of": "2026-11-20",
  "source": "FRED (Federal Reserve Bank of St. Louis)",
  "source_url": "https://fred.stlouisfed.org/",
  "rows": [
@@ -33,18 +33,18 @@
    "key": "baa10y",
    "label": "Baa \u2013 10Y spread",
    "detail": "Moody's Baa yield minus 10-year Treasury yield",
-   "value": 1.49,
+   "value": 1.52,
    "unit": "%",
-   "as_of": "2026-11-17",
-   "prev_value": 1.47,
-   "prev_as_of": "2026-11-16",
+   "as_of": "2026-11-18",
+   "prev_value": 1.49,
+   "prev_as_of": "2026-11-17",
    "band": "Calm",
    "series": "BAA minus DGS10",
    "frequency": "Daily (Baa is a monthly average)",
    "baa": 6.59,
    "baa_as_of": "2026-10-01",
-   "dgs10": 5.1,
-   "dgs10_as_of": "2026-11-17"
+   "dgs10": 5.07,
+   "dgs10_as_of": "2026-11-18"
   },
   {
    "key": "sloos",
@@ -206,137 +206,137 @@
     "date": "2026-10-08",
     "hy": 3.15,
     "bbb": 1.02,
-    "baa10y": null,
-    "vix_close": null,
-    "vix20d": null
+    "baa10y": 1.37,
+    "vix_close": 15.41,
+    "vix20d": 15.7
    },
    {
     "date": "2026-10-09",
     "hy": 3.11,
     "bbb": 1.02,
-    "baa10y": null,
-    "vix_close": null,
-    "vix20d": null
+    "baa10y": 1.35,
+    "vix_close": 14.84,
+    "vix20d": 15.65
    },
    {
     "date": "2026-10-12",
     "hy": 3.11,
     "bbb": 1.02,
     "baa10y": null,
-    "vix_close": null,
-    "vix20d": null
+    "vix_close": 15.21,
+    "vix20d": 15.56
    },
    {
     "date": "2026-10-13",
     "hy": 3.16,
     "bbb": 1.03,
-    "baa10y": null,
-    "vix_close": null,
-    "vix20d": null
+    "baa10y": 1.38,
+    "vix_close": 15.27,
+    "vix20d": 15.46
    },
    {
     "date": "2026-10-14",
     "hy": 3.25,
     "bbb": 1.04,
-    "baa10y": null,
-    "vix_close": null,
-    "vix20d": null
+    "baa10y": 1.4,
+    "vix_close": 16.87,
+    "vix20d": 15.42
    },
    {
     "date": "2026-10-15",
     "hy": 3.23,
     "bbb": 1.05,
-    "baa10y": null,
+    "baa10y": 1.49,
     "vix_close": 16.46,
-    "vix20d": null
+    "vix20d": 15.47
    },
    {
     "date": "2026-10-16",
     "hy": 3.31,
     "bbb": 1.06,
-    "baa10y": null,
+    "baa10y": 1.5,
     "vix_close": 19.99,
-    "vix20d": null
+    "vix20d": 15.73
    },
    {
     "date": "2026-10-19",
     "hy": 3.29,
     "bbb": 1.08,
-    "baa10y": null,
+    "baa10y": 1.44,
     "vix_close": 18.44,
-    "vix20d": null
+    "vix20d": 15.91
    },
    {
     "date": "2026-10-20",
     "hy": 3.33,
     "bbb": 1.08,
-    "baa10y": null,
+    "baa10y": 1.47,
     "vix_close": 17.31,
-    "vix20d": null
+    "vix20d": 16.06
    },
    {
     "date": "2026-10-21",
     "hy": 3.27,
     "bbb": 1.09,
-    "baa10y": null,
+    "baa10y": 1.46,
     "vix_close": 16.68,
-    "vix20d": null
+    "vix20d": 16.14
    },
    {
     "date": "2026-10-22",
     "hy": 3.4,
     "bbb": 1.11,
-    "baa10y": null,
+    "baa10y": 1.63,
     "vix_close": 19.03,
-    "vix20d": null
+    "vix20d": 16.31
    },
    {
     "date": "2026-10-23",
     "hy": 3.38,
     "bbb": 1.13,
-    "baa10y": null,
+    "baa10y": 1.59,
     "vix_close": 19.45,
-    "vix20d": null
+    "vix20d": 16.54
    },
    {
     "date": "2026-10-26",
     "hy": 3.3,
     "bbb": 1.12,
-    "baa10y": null,
+    "baa10y": 1.59,
     "vix_close": 18.39,
-    "vix20d": null
+    "vix20d": 16.65
    },
    {
     "date": "2026-10-27",
     "hy": 3.18,
     "bbb": 1.09,
-    "baa10y": null,
+    "baa10y": 1.6,
     "vix_close": 17.52,
-    "vix20d": null
+    "vix20d": 16.73
    },
    {
     "date": "2026-10-28",
     "hy": 3.14,
     "bbb": 1.07,
-    "baa10y": null,
+    "baa10y": 1.54,
     "vix_close": 16.91,
-    "vix20d": null
+    "vix20d": 16.75
    },
    {
     "date": "2026-10-29",
     "hy": 3.26,
     "bbb": 1.1,
-    "baa10y": null,
+    "baa10y": 1.61,
     "vix_close": 17.2,
-    "vix20d": null
+    "vix20d": 16.79
    },
    {
     "date": "2026-10-30",
     "hy": 3.44,
     "bbb": 1.16,
-    "baa10y": null,
+    "baa10y": 1.65,
     "vix_close": 19.42,
-    "vix20d": null
+    "vix20d": 17.0
    },
    {
     "date": "2026-11-02",
@@ -344,7 +344,7 @@
     "bbb": 1.17,
     "baa10y": 1.68,
     "vix_close": 21.15,
-    "vix20d": null
+    "vix20d": 17.28
    },
    {
     "date": "2026-11-03",
@@ -352,7 +352,7 @@
     "bbb": 1.16,
     "baa10y": 1.64,
     "vix_close": 20.83,
-    "vix20d": null
+    "vix20d": 17.57
    },
    {
     "date": "2026-11-04",
@@ -360,7 +360,7 @@
     "bbb": 1.13,
     "baa10y": 1.69,
     "vix_close": 16.61,
-    "vix20d": null
+    "vix20d": 17.65
    },
    {
     "date": "2026-11-05",
@@ -368,7 +368,7 @@
     "bbb": 1.16,
     "baa10y": 1.75,
     "vix_close": 28.18,
-    "vix20d": null
+    "vix20d": 18.29
    },
    {
     "date": "2026-11-06",
@@ -376,7 +376,7 @@
     "bbb": 1.16,
     "baa10y": 1.73,
     "vix_close": 25.64,
-    "vix20d": null
+    "vix20d": 18.83
    },
    {
     "date": "2026-11-09",
@@ -384,7 +384,7 @@
     "bbb": 1.13,
     "baa10y": 1.71,
     "vix_close": 19.92,
-    "vix20d": null
+    "vix20d": 19.06
    },
    {
     "date": "2026-11-10",
@@ -392,7 +392,7 @@
     "bbb": 1.12,
     "baa10y": 1.61,
     "vix_close": 19.46,
-    "vix20d": null
+    "vix20d": 19.27
    },
    {
     "date": "2026-11-11",
@@ -438,12 +438,16 @@
     "date": "2026-11-18",
     "hy": 3.47,
     "bbb": 1.16,
-    "baa10y": null,
+    "baa10y": 1.52,
     "vix_close": 24.56,
     "vix20d": 20.41
    }
   ],
   "nfci": [
+   {
+    "date": "2026-08-28",
+    "value": -0.547
+   },
    {
     "date": "2026-09-04",
     "value": -0.541

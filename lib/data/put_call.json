@@ -1,26 +1,26 @@
 {
- "as_of": "2026-11-19",
- "session_date": "2026-11-18",
+ "as_of": "2026-11-20",
+ "session_date": "2026-11-19",
  "source": "CBOE U.S. Options Daily Market Statistics",
  "source_url": "https://www.cboe.com/markets/us/options/market-statistics/daily",
- "total": 1.05,
- "equity": 0.72,
- "index": 1.14,
- "etp": 1.42,
- "vix": 0.88,
- "spx": 1.19,
- "total_prev": 0.98,
- "equity_prev": 0.71,
- "index_prev": 0.98,
- "total_change": 0.07,
- "equity_change": 0.01,
- "index_change": 0.16,
- "total_5d_avg": 0.94,
- "total_10d_avg": 0.95,
- "equity_5d_avg": 0.7,
- "equity_10d_avg": 0.69,
- "index_5d_avg": 1.01,
- "index_10d_avg": 1.05,
+ "total": 1.01,
+ "equity": 0.62,
+ "index": 1.2,
+ "etp": 1.09,
+ "vix": 1.1,
+ "spx": 1.21,
+ "total_prev": 1.05,
+ "equity_prev": 0.72,
+ "index_prev": 1.14,
+ "total_change": -0.04,
+ "equity_change": -0.1,
+ "index_change": 0.06,
+ "total_5d_avg": 0.97,
+ "total_10d_avg": 0.94,
+ "equity_5d_avg": 0.68,
+ "equity_10d_avg": 0.66,
+ "index_5d_avg": 1.06,
+ "index_10d_avg": 1.06,
  "total_read": "Elevated",
  "bands": [
   {
@@ -45,15 +45,6 @@
   }
  ],
  "history": [
-  {
-   "date": "2026-10-22",
-   "total": 0.94,
-   "equity": 0.69,
-   "index": 1.02,
-   "etp": 1.11,
-   "vix": 0.41,
-   "spx": 1.23
-  },
   {
    "date": "2026-10-23",
    "total": 0.93,
@@ -224,6 +215,15 @@
    "etp": 1.42,
    "vix": 0.88,
    "spx": 1.19
+  },
+  {
+   "date": "2026-11-19",
+   "total": 1.01,
+   "equity": 0.62,
+   "index": 1.2,
+   "etp": 1.09,
+   "vix": 1.1,
+   "spx": 1.21
   }
  ]
 }

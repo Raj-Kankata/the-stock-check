@@ -1,70 +1,70 @@
 {
- "as_of": "2026-11-19",
- "value_date": "2026-11-19",
- "updated_at": "2026-11-19T15:29:10+00:00",
+ "as_of": "2026-11-20",
+ "value_date": "2026-11-20",
+ "updated_at": "2026-11-20T14:02:33+00:00",
  "source": "CNN Fear & Greed Index",
  "source_url": "https://www.cnn.com/markets/fear-and-greed",
- "score": 28.6,
- "rating": "Fear",
- "prev_close": 24.6,
- "prev_1_week": 40.3,
- "prev_1_month": 19.5,
- "prev_1_year": 7.9,
+ "score": 14.8,
+ "rating": "Extreme Fear",
+ "prev_close": 18.7,
+ "prev_1_week": 37.4,
+ "prev_1_month": 28.7,
+ "prev_1_year": 5.2,
  "components": [
   {
    "key": "momentum",
    "label": "Market Momentum",
    "what": "S&P 500 vs its 125-day moving average",
-   "raw": "S&P 500 7,352.2 is below its 125-day average (7,592.1)",
-   "score": 6.8,
+   "raw": "S&P 500 7,175.8 is below its 125-day average (7,590.7)",
+   "score": 1.2,
    "rating": "Extreme Fear"
   },
   {
    "key": "strength",
    "label": "Stock Price Strength",
    "what": "NYSE stocks at 52-week highs vs 52-week lows",
-   "raw": "Net new highs -5.0 (more new lows than highs)",
-   "score": 33.0,
+   "raw": "Net new highs -6.1 (more new lows than highs)",
+   "score": 29.2,
    "rating": "Fear"
   },
   {
    "key": "breadth",
    "label": "Stock Price Breadth",
    "what": "McClellan Volume Summation Index",
-   "raw": "McClellan Volume Summation 467.9",
-   "score": 35.6,
-   "rating": "Fear"
+   "raw": "McClellan Volume Summation 329.1",
+   "score": 19.6,
+   "rating": "Extreme Fear"
   },
   {
    "key": "put_call",
    "label": "Put and Call Options",
    "what": "5-day average put/call ratio (CNN's own series)",
-   "raw": "5-day average put/call 0.85",
-   "score": 19.8,
+   "raw": "5-day average put/call 0.93",
+   "score": 2.8,
    "rating": "Extreme Fear"
   },
   {
    "key": "volatility",
    "label": "Market Volatility",
    "what": "VIX vs its 50-day moving average",
-   "raw": "VIX 23.0 is above its 50-day average (17.9)",
-   "score": 44.7,
-   "rating": "Fear"
+   "raw": "VIX 30.1 is above its 50-day average (18.3)",
+   "score": 4.6,
+   "rating": "Extreme Fear"
   },
   {
    "key": "junk_bond",
    "label": "Junk Bond Demand",
    "what": "Yield spread, junk bonds vs investment grade",
-   "raw": "Spread 1.21",
-   "score": 45.8,
-   "rating": "Neutral"
+   "raw": "Spread 1.23",
+   "score": 38.0,
+   "rating": "Fear"
   },
   {
    "key": "safe_haven",
    "label": "Safe Haven Demand",
    "what": "Stocks vs bonds, past 20 days",
-   "raw": "-3.3% over the past 20 days",
-   "score": 14.8,
+   "raw": "-5.5% over the past 20 days",
+   "score": 9.0,
    "rating": "Extreme Fear"
   }
  ],
@@ -96,11 +96,6 @@
   }
  ],
  "history": [
-  {
-   "date": "2026-10-09",
-   "score": 43.5,
-   "rating": "Fear"
-  },
   {
    "date": "2026-10-12",
    "score": 45.2,
@@ -243,8 +238,13 @@
   },
   {
    "date": "2026-11-19",
-   "score": 28.6,
-   "rating": "Fear"
+   "score": 14.8,
+   "rating": "Extreme Fear"
+  },
+  {
+   "date": "2026-11-20",
+   "score": 14.8,
+   "rating": "Extreme Fear"
   }
  ]
 }
