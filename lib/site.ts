@@ -14,32 +14,58 @@ export const SITE_URL = 'https://www.thestockcheck.com'
 export const ENGINE_VERSION = 'scoring-engine-v1.8'
 export const CONTACT_EMAIL = 'hello@thestockcheck.com'
 
-/** Top Picks — frozen entry prices, two cohorts.
- * Launch cohort entered at the 13 Nov 2026 close.
- * New cohort entered at the 16 Nov 2026 close: the top 5 Growth and
- * top 5 Value names as of that close. NVDA is a launch pick only —
- * it appears once, in the launch cohort. The list is frozen at
- * publication and changes only when Raj decides — no automatic
- * rotation. DECK was replaced by GME on 17 Nov 2026 (Raj's decision):
- * GME overall 78.3 ranks above DECK 78.0 in Value as of the 16 Nov
- * close, so the top-5-Value rule now holds exactly. */
+/** Top Picks — frozen entry prices.
+ * Two frozen cohorts: launch entered at the 13 Nov 2026 close; new
+ * entered at the 16 Nov 2026 close (the top 5 Growth and top 5 Value
+ * names as of that close). NVDA is a launch pick only — it appears
+ * once, in the launch cohort. The frozen cohorts never change except
+ * by Raj's decision — no automatic rotation. DECK was replaced by GME
+ * on 17 Nov 2026 (Raj's decision): GME overall 78.3 ranks above DECK
+ * 78.0 in Value as of the 16 Nov close, so the top-5-Value rule now
+ * holds exactly.
+ * Daily picks (cohort 'daily'): one table per day, appended by
+ * scripts/daily_picks.py under Raj's rule of 19 Nov 2026 — the top 5
+ * by overall score at the previous close, entered at that close.
+ * Each day's five entries share one entryDate (the close date) and
+ * are grouped into one table on /performance, newest first. */
 export const PICKS_ENTRY_DATE = '2026-11-13'
 export const PICKS_NEW_ENTRY_DATE = '2026-11-16'
-export const PICKS = [
-  { symbol: 'NVDA', entryPrice: 162.85, cohort: 'launch' as const, entryDate: PICKS_ENTRY_DATE },
-  { symbol: 'AAPL', entryPrice: 356.27, cohort: 'launch' as const, entryDate: PICKS_ENTRY_DATE },
-  { symbol: 'MSFT', entryPrice: 523.88, cohort: 'launch' as const, entryDate: PICKS_ENTRY_DATE },
-  { symbol: 'GOOGL', entryPrice: 295.77, cohort: 'launch' as const, entryDate: PICKS_ENTRY_DATE },
-  { symbol: 'GEN', entryPrice: 30.4, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-  { symbol: 'PATH', entryPrice: 13.14, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-  { symbol: 'LYTS', entryPrice: 15.36, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-  { symbol: 'RDDT', entryPrice: 92.87, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-  { symbol: 'HPE', entryPrice: 46.57, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-  { symbol: 'NXPI', entryPrice: 254.19, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-  { symbol: 'GME', entryPrice: 25.6, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-  { symbol: 'LOVE', entryPrice: 14.94, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-  { symbol: 'DELL', entryPrice: 320.55, cohort: 'new' as const, entryDate: PICKS_NEW_ENTRY_DATE },
-] as const
+
+/** Cohort of a pick: the two frozen cohorts, or 'daily' for the
+ * one-table-per-day picks appended by scripts/daily_picks.py.
+ * Declared explicitly (not inferred from the array) so the 'daily'
+ * arm exists before the first daily table lands. */
+export type PickCohort = 'launch' | 'new' | 'daily'
+
+export const PICKS: {
+  symbol: string
+  entryPrice: number
+  cohort: PickCohort
+  entryDate: string
+}[] = [
+  { symbol: 'NVDA', entryPrice: 162.85, cohort: 'launch', entryDate: PICKS_ENTRY_DATE },
+  { symbol: 'AAPL', entryPrice: 356.27, cohort: 'launch', entryDate: PICKS_ENTRY_DATE },
+  { symbol: 'MSFT', entryPrice: 523.88, cohort: 'launch', entryDate: PICKS_ENTRY_DATE },
+  { symbol: 'GOOGL', entryPrice: 295.77, cohort: 'launch', entryDate: PICKS_ENTRY_DATE },
+  { symbol: 'GEN', entryPrice: 30.4, cohort: 'new', entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'PATH', entryPrice: 13.14, cohort: 'new', entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'LYTS', entryPrice: 15.36, cohort: 'new', entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'RDDT', entryPrice: 92.87, cohort: 'new', entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'HPE', entryPrice: 46.57, cohort: 'new', entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'NXPI', entryPrice: 254.19, cohort: 'new', entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'GME', entryPrice: 25.6, cohort: 'new', entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'LOVE', entryPrice: 14.94, cohort: 'new', entryDate: PICKS_NEW_ENTRY_DATE },
+  { symbol: 'DELL', entryPrice: 320.55, cohort: 'new', entryDate: PICKS_NEW_ENTRY_DATE },
+]
+
+/** S&P 500 close on each daily-picks entry date — one per daily
+ * table, appended by scripts/daily_picks.py alongside the picks
+ * (from lib/data/market.json, ^GSPC close on the same close date).
+ * Key = entry date (ISO), value = index close. Empty until the
+ * first daily table lands. */
+export const DAILY_BENCHMARK_CLOSES: Record<string, number> = {
+  // One line per daily table, appended by scripts/daily_picks.py.
+}
 
 /** S&P 500 benchmark — frozen closes from Yahoo Finance (yfinance
  * ^GSPC history, cross-checked against market.json to the cent).

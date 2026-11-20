@@ -27,6 +27,7 @@ export default function PerformanceLive({
   latestCloseDate,
   title,
   nvoNote,
+  benchmark,
 }: {
   rows: PerformanceRow[]
   entryDate: string
@@ -35,6 +36,12 @@ export default function PerformanceLive({
   title: string
   /** Only the launch cohort carries the NVO audit note. */
   nvoNote?: boolean
+  /** Benchmark comparison for daily tables: the S&P 500 close on the
+   * entry date and the latest baked close. Frozen cohorts use the
+   * BenchmarkLive card below instead, so they pass nothing. The
+   * benchmark line is close-based (labelled as such) even while the
+   * picks show live prices. */
+  benchmark?: { entryClose: number; latestClose: number }
 }) {
   const live = useLiveQuotes()
   const liveNow = hasLiveQuotes(live)
@@ -128,6 +135,18 @@ export default function PerformanceLive({
           <span className="footnote">
             (mean of the {measured.length} picks above, {entryDate} entry to{' '}
             {liveNow ? 'live price' : `${latestCloseDate} close`})
+          </span>
+        </p>
+      ) : null}
+      {benchmark ? (
+        <p>
+          <strong>
+            S&amp;P 500 since entry:{' '}
+            {signedPctSpan((benchmark.latestClose - benchmark.entryClose) / benchmark.entryClose)}
+          </strong>{' '}
+          <span className="footnote">
+            (entry close {money(benchmark.entryClose)} on {entryDate} → {latestCloseDate}{' '}
+            close {money(benchmark.latestClose)}; benchmark at the latest close)
           </span>
         </p>
       ) : null}

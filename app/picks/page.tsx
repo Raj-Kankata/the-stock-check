@@ -9,13 +9,16 @@ export function generateMetadata(): Metadata {
   const fresh = PICKS.filter((p) => p.cohort === 'new').length
   return {
     title: 'Top Picks',
-    description: `The Stock Check Top Picks: ${PICKS.length} scored names — ${launch} launch picks entered 13 Nov 2026 and ${fresh} new picks entered 16 Nov 2026 — with entry prices frozen at publication. A fifth pick, NVO, was removed when its card was unpublished.`,
+    description: `The Stock Check Top Picks: ${launch + fresh} scored names — ${launch} launch picks entered 13 Nov 2026 and ${fresh} new picks entered 16 Nov 2026 — with entry prices frozen at publication. A fifth pick, NVO, was removed when its card was unpublished.`,
   }
 }
 
 export default function PicksPage() {
   const rows: PickRow[] = []
+  // Frozen cohorts only — the daily picks (cohort 'daily') are tracked
+  // on /performance, never on this list.
   for (const { symbol, entryPrice, cohort, entryDate } of PICKS) {
+    if (cohort === 'daily') continue
     const t = getTicker(symbol)
     if (!t) continue
     const upside = (t.triangulated_fv - entryPrice) / entryPrice

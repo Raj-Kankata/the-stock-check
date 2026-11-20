@@ -1,17 +1,36 @@
 import type { Metadata } from 'next'
 import { RESULTS, getTicker } from '@/lib/data'
 import marketJson from '@/lib/data/market.json'
-import { BENCHMARK, PICKS, PICKS_ENTRY_DATE, PICKS_NEW_ENTRY_DATE } from '@/lib/site'
+import {
+  BENCHMARK,
+  DAILY_BENCHMARK_CLOSES,
+  PICKS,
+  PICKS_ENTRY_DATE,
+  PICKS_NEW_ENTRY_DATE,
+} from '@/lib/site'
 import { Card } from '@/components/ui'
 import PerformanceLive, { type PerformanceRow } from '@/components/PerformanceLive'
 import BenchmarkLive from '@/components/BenchmarkLive'
 
+const DAILY_SHOWN = 5
+
+function formatEntryDate(iso: string): string {
+  const [y, m, d] = iso.split('-').map(Number)
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ]
+  return `${d} ${months[m - 1]} ${y}`
+}
+
 export function generateMetadata(): Metadata {
   const launch = PICKS.filter((p) => p.cohort === 'launch').length
   const fresh = PICKS.filter((p) => p.cohort === 'new').length
+  const daily = PICKS.filter((p) => p.cohort === 'daily').length
+  const dailyDays = new Set(PICKS.filter((p) => p.cohort === 'daily').map((p) => p.entryDate)).size
   return {
     title: 'Performance',
-    description: `How the Top Picks are tracked: two equal-weight cohorts — ${launch} launch picks entered 13 Nov 2026 and ${fresh} new picks entered 16 Nov 2026 — at frozen entry prices, no costs, no dividends, against the S&P 500 benchmark. No return is published without its pick list.`,
+    description: `How the Top Picks are tracked: two equal-weight frozen cohorts — ${launch} launch picks entered 13 Nov 2026 and ${fresh} new picks entered 16 Nov 2026 — plus one daily table of the top 5 by overall score (${daily} daily picks across ${dailyDays} days) — at frozen entry prices, no costs, no dividends, against the S&P 500 benchmark. No return is published without its pick list.`,
   }
 }
 
@@ -25,10 +44,51 @@ function cohortRows(cohort: 'launch' | 'new'): PerformanceRow[] {
     .filter((r): r is NonNullable<typeof r> => r !== null)
 }
 
+/** Daily tables: one group per entry date, newest first. */
+function dailyGroups(): { entryDate: string; rows: PerformanceRow[] }[] {
+  const byDate = new Map<string, PerformanceRow[]>()
+  for (const { symbol, entryPrice, entryDate } of PICKS.filter((p) => p.cohort === 'daily')) {
+    const t = getTicker(symbol)
+    if (!t) continue
+    const row = { symbol, name: t.name, entryPrice, bakedLatest: t.price }
+    const rows = byDate.get(entryDate)
+    if (rows) rows.push(row)
+    else byDate.set(entryDate, [row])
+  }
+  return [...byDate.entries()]
+    .sort((a, b) => (a[0] < b[0] ? 1 : -1))
+    .map(([entryDate, rows]) => ({ entryDate, rows }))
+}
+
+function dailyTable(
+  group: { entryDate: string; rows: PerformanceRow[] },
+  latestCloseDate: string,
+  bakedSpx: number,
+) {
+  const entryClose = DAILY_BENCHMARK_CLOSES[group.entryDate]
+  return (
+    <PerformanceLive
+      key={group.entryDate}
+      rows={group.rows}
+      entryDate={group.entryDate}
+      latestCloseDate={latestCloseDate}
+      title={`Picks (entered ${formatEntryDate(group.entryDate)})`}
+      benchmark={
+        typeof entryClose === 'number'
+          ? { entryClose, latestClose: bakedSpx }
+          : undefined
+      }
+    />
+  )
+}
+
 export default function PerformancePage() {
   const latestCloseDate = RESULTS.price_date
   const launchRows = cohortRows('launch')
   const newRows = cohortRows('new')
+  const daily = dailyGroups()
+  const dailyShown = daily.slice(0, DAILY_SHOWN)
+  const dailyEarlier = daily.slice(DAILY_SHOWN)
 
   // Baked S&P 500 close in this build's data (market.json); the entry
   // closes stay frozen in BENCHMARK and never move with the refresh.
@@ -66,6 +126,13 @@ export default function PerformancePage() {
             is then entry → live price.
           </li>
           <li>
+            <strong>Daily picks:</strong> one new table each morning — the top 5 by overall
+            score at the previous close, entered at that close (Raj&apos;s rule, 19 Nov 2026).
+            Newest table first; the latest {DAILY_SHOWN} are shown in full and older tables
+            sit collapsed under &ldquo;Earlier daily picks&rdquo;. A table is only ever built
+            on a fresh close — if the nightly refresh fails, that day gets no table.
+          </li>
+          <li>
             <strong>Weighting:</strong> equal weight across the picks in each cohort.
           </li>
           <li>
@@ -81,6 +148,14 @@ export default function PerformancePage() {
           </li>
         </ul>
       </Card>
+
+      {dailyShown.map((group) => dailyTable(group, latestCloseDate, bakedSpx))}
+      {dailyEarlier.length > 0 ? (
+        <details className="metric-note">
+          <summary>Earlier daily picks ({dailyEarlier.length} tables)</summary>
+          {dailyEarlier.map((group) => dailyTable(group, latestCloseDate, bakedSpx))}
+        </details>
+      ) : null}
 
       <PerformanceLive
         rows={launchRows}
