@@ -506,6 +506,14 @@ export default async function IpoDossierPage({
               </>
             )}
           </li>
+          {(ticker === 'NBIS' || ticker === 'CRWV') && (
+            <li>
+              {ticker} is also on the{' '}
+              <a href="/themes/neo-cloud">Neo-cloud theme board</a> — the price, the
+              year so far, and the run since the first trade, alongside the other
+              GPU-compute names.
+            </li>
+          )}
         </ul>
       </Card>
 

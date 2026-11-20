@@ -1,0 +1,97 @@
+{
+ "as_of": "2026-11-19",
+ "price_date": "2026-11-18",
+ "note": "Seeded 2026-11-19 from Yahoo chart v8 daily bars verified by hand (see RULEBOOK \u00a729); the nightly refresh (scripts/theme_neo_cloud_refresh.py) overwrites from the next run. Prices: Yahoo chart v8 (range=5y, daily) cross-checked to the TradingView scanner (\u22640.5%). First-trade closes are frozen baselines from lib/data/themes/neo-cloud-universe.json. YTD base is the last close of the prior calendar year.",
+ "rows": {
+  "NBIS": {
+   "price": 106.96,
+   "ytd_base_date": "2025-12-31",
+   "ytd_base_close": 83.71,
+   "ytd_pct": 0.2778,
+   "first_trade_date": "2024-10-21",
+   "first_close": 20.0,
+   "first_close_split_adjusted": false,
+   "since_first_pct": 4.348
+  },
+  "CRWV": {
+   "price": 47.83,
+   "ytd_base_date": "2025-12-31",
+   "ytd_base_close": 71.61,
+   "ytd_pct": -0.3321,
+   "first_trade_date": "2025-03-28",
+   "first_close": 40.0,
+   "first_close_split_adjusted": false,
+   "since_first_pct": 0.1958
+  },
+  "IREN": {
+   "price": 15.24,
+   "ytd_base_date": "2025-12-31",
+   "ytd_base_close": 37.77,
+   "ytd_pct": -0.5965,
+   "first_trade_date": "2021-11-17",
+   "first_close": 24.45,
+   "first_close_split_adjusted": false,
+   "since_first_pct": -0.3767
+  },
+  "CIFR": {
+   "price": 6.57,
+   "ytd_base_date": "2025-12-31",
+   "ytd_base_close": 14.76,
+   "ytd_pct": -0.5549,
+   "first_trade_date": "2021-08-30",
+   "first_close": 10.27,
+   "first_close_split_adjusted": false,
+   "since_first_pct": -0.3603
+  },
+  "APLD": {
+   "price": 14.45,
+   "ytd_base_date": "2025-12-31",
+   "ytd_base_close": 24.52,
+   "ytd_pct": -0.4107,
+   "first_trade_date": "2022-04-13",
+   "first_close": 4.85,
+   "first_close_split_adjusted": false,
+   "since_first_pct": 1.9794
+  },
+  "HUT": {
+   "price": 57.19,
+   "ytd_base_date": "2025-12-31",
+   "ytd_base_close": 45.94,
+   "ytd_pct": 0.2449,
+   "first_trade_date": "2021-06-15",
+   "first_close": 21.45,
+   "first_close_split_adjusted": false,
+   "since_first_pct": 1.6662
+  },
+  "CORZ": {
+   "price": 14.05,
+   "ytd_base_date": "2025-12-31",
+   "ytd_base_close": 14.56,
+   "ytd_pct": -0.035,
+   "first_trade_date": "2024-01-24",
+   "first_close": 3.44,
+   "first_close_split_adjusted": false,
+   "since_first_pct": 3.0843
+  },
+  "WULF": {
+   "price": 12.0,
+   "ytd_base_date": "2025-12-31",
+   "ytd_base_close": 11.49,
+   "ytd_pct": 0.0444,
+   "first_trade_date": "2021-12-14",
+   "first_close": 20.3,
+   "first_close_split_adjusted": false,
+   "since_first_pct": -0.4089
+  },
+  "ORCL": {
+   "price": 113.89,
+   "ytd_base_date": "2025-12-31",
+   "ytd_base_close": 194.91,
+   "ytd_pct": -0.4157,
+   "first_trade_date": "1986-03-12",
+   "first_close": 0.0633,
+   "first_close_split_adjusted": true,
+   "since_first_pct": 1798.2101
+  }
+ }
+}

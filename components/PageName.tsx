@@ -24,6 +24,8 @@ const PAGE_NAMES: { match: (path: string) => boolean; name: string }[] = [
   { match: (p) => p === '/ipos/upcoming', name: 'Upcoming IPOs' },
   { match: (p) => p === '/ipos', name: 'IPOs' },
   { match: (p) => p.startsWith('/ipo/'), name: 'IPO' },
+  { match: (p) => p === '/themes/neo-cloud', name: 'Neo-cloud theme' },
+  { match: (p) => p.startsWith('/themes/'), name: 'Theme' },
   { match: (p) => p === '/trending', name: 'Trending' },
   { match: (p) => p === '/sectors', name: 'Sectors' },
   { match: (p) => p === '/methodology', name: 'Methodology' },

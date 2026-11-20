@@ -21,6 +21,11 @@ import {
   getIpoUniverse,
   type IpoResult,
 } from './ipo-data'
+import {
+  THEME_MEMBERS,
+  THEME_RESULTS,
+  type ThemeResultRow,
+} from './theme-data'
 import type {
   PublicEtfRow,
   PublicEtfSearchEntry,
@@ -32,6 +37,7 @@ import type {
   PublicRow,
   PublicSearchEntry,
   PublicStockRow,
+  PublicThemeRow,
 } from './public-types'
 
 export function toStockRow(symbol: string, t: TickerData): PublicStockRow {
@@ -263,5 +269,48 @@ export function allIpoRows(): PublicIpoRow[] {
 export function ipoSearchIndex(): PublicIpoSearchEntry[] {
   return IPO_SYMBOLS.filter((symbol) => IPO_RESULTS.ipos[symbol]).map(
     (symbol) => toIpoSearchEntry(symbol, IPO_RESULTS.ipos[symbol]),
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Theme projections — same server-only pattern as the IPO projections
+// above. A theme board carries NO score, NO fair value and NO verdict
+// of its own: the only score/verdict on a row is the scored card's
+// (ORCL), read from results.json at build time. Every other member's
+// score/verdict is null, never computed or implied. The row's own
+// numbers are tape arithmetic only: the baked close, YTD vs the last
+// close of the prior calendar year, and the gain since the frozen
+// first-trade close in the universe file.
+// ---------------------------------------------------------------------------
+
+export function toThemeRow(symbol: string, t: ThemeResultRow): PublicThemeRow {
+  const member = THEME_MEMBERS.find((m) => m.ticker === symbol)!
+  const card = RESULTS.tickers[symbol]
+  return {
+    symbol,
+    name: member.name,
+    kind: member.kind,
+    price: t.price,
+    ytd_base_date: t.ytd_base_date,
+    ytd_base_close: t.ytd_base_close,
+    ytd_pct: t.ytd_pct,
+    first_trade_date: t.first_trade_date,
+    first_close: t.first_close,
+    first_close_split_adjusted: t.first_close_split_adjusted,
+    first_trade_note: member.first_trade_note,
+    since_first_pct: t.since_first_pct,
+    overall_score: card ? card.overall_score : null,
+    verdict: card ? card.verdict : null,
+    has_card: Boolean(card),
+    has_dossier: IPO_SYMBOLS.includes(symbol),
+  }
+}
+
+/** All theme rows, in universe order (the hyperscaler comparison last).
+    A universe member with no verified result yet is skipped, never
+    rendered — the board and the universe can never crash on a gap. */
+export function allThemeRows(): PublicThemeRow[] {
+  return THEME_MEMBERS.filter((m) => THEME_RESULTS.rows[m.ticker]).map((m) =>
+    toThemeRow(m.ticker, THEME_RESULTS.rows[m.ticker]),
   )
 }

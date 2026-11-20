@@ -853,3 +853,134 @@ export function liveIpoCloseFor(state: LiveQuotesState, symbol: string): number 
   const q = state.quotes!.get(symbol)
   return q ? q.close : null
 }
+
+// ---------------------------------------------------------------------------
+// Theme live-price store — the same all-or-none scan, polling and states
+// as the IPO store above, but over the 9 Neo-cloud theme members.
+// Separate module state so the stock, ETF, index and IPO stores are
+// never touched by theme polling. NBIS/CRWV are also in the IPO store
+// and ORCL in the stock store, but the theme page polls only this
+// store — one scan per poll for its own nine rows.
+// ---------------------------------------------------------------------------
+
+/** TradingView scanner symbols for the Neo-cloud theme (same symbols
+    as lib/data/themes/neo-cloud-universe.json). */
+export const THEME_TV_TICKERS: string[] = [
+  'NASDAQ:NBIS',
+  'NASDAQ:CRWV',
+  'NASDAQ:IREN',
+  'NASDAQ:CIFR',
+  'NASDAQ:APLD',
+  'NASDAQ:HUT',
+  'NASDAQ:CORZ',
+  'NASDAQ:WULF',
+  'NYSE:ORCL',
+]
+
+export async function fetchAllThemeQuotes(): Promise<Map<string, TvQuote> | null> {
+  try {
+    const res = await fetch(SCAN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        symbols: { tickers: THEME_TV_TICKERS },
+        columns: ['name', 'close', 'change', 'volume'],
+        sort: { sortBy: 'change', sortOrder: 'desc' },
+        options: { lang: 'en' },
+        range: [0, THEME_TV_TICKERS.length],
+      }),
+    })
+    if (!res.ok) return null
+    const j = (await res.json()) as unknown
+    if (!j || typeof j !== 'object') return null
+    const data = (j as Record<string, unknown>).data
+    if (!Array.isArray(data)) return null
+    const quotes = new Map<string, TvQuote>()
+    for (const row of data) {
+      if (!row || typeof row !== 'object') continue
+      const d = (row as Record<string, unknown>).d
+      if (!Array.isArray(d) || d.length < 4) continue
+      const [name, close, change, volume] = d
+      if (typeof name !== 'string' || !isFiniteNumber(close)) continue
+      quotes.set(name, {
+        symbol: name,
+        close,
+        changePct: isFiniteNumber(change) ? change : null,
+        volume: isFiniteNumber(volume) ? volume : null,
+      })
+    }
+    if (quotes.size !== THEME_TV_TICKERS.length) return null
+    return quotes
+  } catch {
+    return null
+  }
+}
+
+let themeLiveState: LiveQuotesState = { quotes: null, status: 'loading', updatedAt: null }
+const themeLiveListeners = new Set<() => void>()
+let themeLiveTimer: ReturnType<typeof setInterval> | null = null
+let themeLiveInflight: Promise<Map<string, TvQuote> | null> | null = null
+
+function emitThemeLive() {
+  for (const l of themeLiveListeners) l()
+}
+
+async function refreshThemeLive() {
+  if (typeof document !== 'undefined' && document.hidden) return
+  const now = new Date()
+  if (!isMarketHours(now)) {
+    if (themeLiveState.status !== 'closed') {
+      themeLiveState = { quotes: null, status: 'closed', updatedAt: themeLiveState.updatedAt }
+      emitThemeLive()
+    }
+    return
+  }
+  if (!themeLiveInflight) {
+    themeLiveInflight = fetchAllThemeQuotes()
+    void themeLiveInflight.then(() => {
+      themeLiveInflight = null
+    })
+  }
+  const quotes = await themeLiveInflight
+  if (quotes) {
+    themeLiveState = { quotes, status: 'live', updatedAt: formatCtTime(new Date()) }
+  } else if (themeLiveState.quotes) {
+    themeLiveState = { ...themeLiveState, status: 'stale' }
+  } else {
+    themeLiveState = { quotes: null, status: 'error', updatedAt: null }
+  }
+  emitThemeLive()
+}
+
+function ensureThemePolling() {
+  if (themeLiveTimer !== null) return
+  void refreshThemeLive()
+  themeLiveTimer = setInterval(() => {
+    void refreshThemeLive()
+  }, LIVE_POLL_MS)
+}
+
+export function useLiveThemeQuotes(): LiveQuotesState {
+  const [, setTick] = useState(0)
+  useEffect(() => {
+    const listener = () => setTick((t) => t + 1)
+    themeLiveListeners.add(listener)
+    ensureThemePolling()
+    return () => {
+      themeLiveListeners.delete(listener)
+    }
+  }, [])
+  return themeLiveState
+}
+
+/** True when the theme store holds live values (fresh or last-good stale). */
+export function hasLiveThemeQuotes(state: LiveQuotesState): boolean {
+  return (state.status === 'live' || state.status === 'stale') && state.quotes !== null
+}
+
+/** Live close for one theme ticker, or null when the store holds no live map. */
+export function liveThemeCloseFor(state: LiveQuotesState, symbol: string): number | null {
+  if (!hasLiveThemeQuotes(state)) return null
+  const q = state.quotes!.get(symbol)
+  return q ? q.close : null
+}

@@ -74,6 +74,11 @@ const ICONS: Record<string, ReactNode> = {
       <path d="M8 18h8" />
     </Icon>
   ),
+  '/themes/neo-cloud': (
+    <Icon>
+      <path d="M17.5 18a4.5 4.5 0 0 0 .4-8.98 6 6 0 0 0-11.7-1.62A4 4 0 0 0 7 18h10.5z" />
+    </Icon>
+  ),
   '/picks': (
     <Icon>
       <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z" />

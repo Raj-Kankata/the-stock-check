@@ -1,0 +1,95 @@
+{
+ "theme": "neo-cloud",
+ "members": [
+  {
+   "ticker": "NBIS",
+   "name": "Nebius Group N.V.",
+   "kind": "neo-cloud",
+   "tv_symbol": "NASDAQ:NBIS",
+   "first_trade_date": "2024-10-21",
+   "first_close": 20.0,
+   "first_close_split_adjusted": false,
+   "first_trade_note": "Trading resumed Oct 21, 2024 \u2014 former Yandex N.V.; first close after resumption."
+  },
+  {
+   "ticker": "CRWV",
+   "name": "CoreWeave, Inc.",
+   "kind": "neo-cloud",
+   "tv_symbol": "NASDAQ:CRWV",
+   "first_trade_date": "2025-03-28",
+   "first_close": 40.0,
+   "first_close_split_adjusted": false,
+   "first_trade_note": "IPO \u2014 offer price $40.00."
+  },
+  {
+   "ticker": "IREN",
+   "name": "IREN Limited",
+   "kind": "neo-cloud",
+   "tv_symbol": "NASDAQ:IREN",
+   "first_trade_date": "2021-11-17",
+   "first_close": 24.45,
+   "first_close_split_adjusted": false,
+   "first_trade_note": "IPO \u2014 first trading day."
+  },
+  {
+   "ticker": "CIFR",
+   "name": "Cipher Mining Inc.",
+   "kind": "neo-cloud",
+   "tv_symbol": "NASDAQ:CIFR",
+   "first_trade_date": "2021-08-30",
+   "first_close": 10.27,
+   "first_close_split_adjusted": false,
+   "first_trade_note": "First trading day under the CIFR ticker; GWAC merger closed Aug 27, 2021, ticker change effective Aug 30, 2021."
+  },
+  {
+   "ticker": "APLD",
+   "name": "Applied Digital Corporation",
+   "kind": "neo-cloud",
+   "tv_symbol": "NASDAQ:APLD",
+   "first_trade_date": "2022-04-13",
+   "first_close": 4.85,
+   "first_close_split_adjusted": false,
+   "first_trade_note": "IPO \u2014 first trading day."
+  },
+  {
+   "ticker": "HUT",
+   "name": "Hut 8 Corp.",
+   "kind": "neo-cloud",
+   "tv_symbol": "NASDAQ:HUT",
+   "first_trade_date": "2021-06-15",
+   "first_close": 21.45,
+   "first_close_split_adjusted": false,
+   "first_trade_note": "Nasdaq listing \u2014 first trading day on Nasdaq; traded on the TSX before."
+  },
+  {
+   "ticker": "CORZ",
+   "name": "Core Scientific, Inc.",
+   "kind": "neo-cloud",
+   "tv_symbol": "NASDAQ:CORZ",
+   "first_trade_date": "2024-01-24",
+   "first_close": 3.44,
+   "first_close_split_adjusted": false,
+   "first_trade_note": "Nasdaq relisting after Chapter 11 emergence \u2014 first trading day."
+  },
+  {
+   "ticker": "WULF",
+   "name": "TeraWulf Inc.",
+   "kind": "neo-cloud",
+   "tv_symbol": "NASDAQ:WULF",
+   "first_trade_date": "2021-12-14",
+   "first_close": 20.3,
+   "first_close_split_adjusted": false,
+   "first_trade_note": "First trading day under the WULF ticker; IKONICS merger closed Dec 13, 2021, ticker change effective Dec 14, 2021."
+  },
+  {
+   "ticker": "ORCL",
+   "name": "Oracle Corporation",
+   "kind": "hyperscaler",
+   "tv_symbol": "NYSE:ORCL",
+   "first_trade_date": "1986-03-12",
+   "first_close": 0.0633,
+   "first_close_split_adjusted": true,
+   "first_trade_note": "IPO \u2014 first trading day. Close shown split-adjusted; the gain is a 40-year split-adjusted return, not comparable to the neo-clouds' short histories."
+  }
+ ]
+}

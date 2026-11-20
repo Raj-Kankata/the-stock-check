@@ -90,6 +90,7 @@ export const NAV_LINKS = [
   { href: '/indexes', label: 'Indexes' },
   { href: '/ipos', label: 'IPOs' },
   { href: '/ipos/upcoming', label: 'IPO calendar' },
+  { href: '/themes/neo-cloud', label: 'Neo-cloud theme' },
   { href: '/picks', label: 'Top Picks' },
   { href: '/trending', label: 'Trending' },
   { href: '/performance', label: 'Performance' },

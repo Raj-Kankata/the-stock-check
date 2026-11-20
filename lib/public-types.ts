@@ -146,8 +146,7 @@ export interface PublicIpoRow {
 
 /** Header search entry for an IPO dossier: the tape in one line, with
     an IPO pill — never a verdict, a score or a fair value, because a
-    dossier has none. */
-export interface PublicIpoSearchEntry {
+    dossier has none. */export interface PublicIpoSearchEntry {
   symbol: string
   name: string
   company: string
@@ -169,4 +168,32 @@ export interface PublicGrid {
   dcfLeg: number | null
   dcfGrowth: number | null
   gridValues: Record<string, Record<string, number>> | null
+}
+
+/** Theme-board row (first theme: neo-cloud): the tape arithmetic only
+    — baked close, YTD vs the last close of the prior calendar year,
+    gain since the frozen first-trade close — plus the scored card's
+    overall score and verdict where one exists (ORCL only). No score,
+    fair value or verdict is ever computed or implied for a member
+    without a card: overall_score and verdict are null there, and the
+    page renders an em dash. has_card / has_dossier decide where the
+    ticker links: /stock/ for a card, /ipo/ for a dossier, nowhere
+    for neither. */
+export interface PublicThemeRow {
+  symbol: string
+  name: string
+  kind: 'neo-cloud' | 'hyperscaler'
+  price: number
+  ytd_base_date: string
+  ytd_base_close: number
+  ytd_pct: number
+  first_trade_date: string
+  first_close: number
+  first_close_split_adjusted: boolean
+  first_trade_note: string
+  since_first_pct: number
+  overall_score: number | null
+  verdict: Verdict | null
+  has_card: boolean
+  has_dossier: boolean
 }

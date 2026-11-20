@@ -321,6 +321,8 @@ export default function HomeTiles({
             <Link href="/indexes">Browse all {indexCount} indexes →</Link>
           </>
         )}
+        {' · '}
+        <Link href="/themes/neo-cloud">Neo-cloud theme →</Link>
       </p>
     </section>
   )
