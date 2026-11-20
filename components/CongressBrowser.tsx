@@ -174,7 +174,8 @@ export default function CongressBrowser({
           </button>
         </p>
       ) : (
-        <table className="tabled">
+        <div className="table-scroll">
+        <table className="tabled dense">
           <thead>
             <tr>
               <th>Disclosed</th>
@@ -183,10 +184,10 @@ export default function CongressBrowser({
               <th>Chamber / State</th>
               <th>Ticker</th>
               <th>Type</th>
-              <th>Amount range</th>
-              <th>Trade date</th>
-              <th className="num">Lag</th>
-              <th className="num">Price then → now</th>
+              <th className="nw">Amount range</th>
+              <th className="nw">Trade date</th>
+              <th className="num nw">Lag</th>
+              <th className="num nw">Price then → now</th>
             </tr>
           </thead>
           <tbody>
@@ -210,10 +211,10 @@ export default function CongressBrowser({
                   )}
                 </td>
                 <td>{r.typeLabel}</td>
-                <td>{r.amountRange}</td>
-                <td>{r.tradeDateLabel}</td>
-                <td className="num">{r.lagDays === null ? '—' : `${r.lagDays}d`}</td>
-                <td className="num">
+                <td className="nw">{r.amountRange}</td>
+                <td className="nw">{r.tradeDateLabel}</td>
+                <td className="num nw">{r.lagDays === null ? '—' : `${r.lagDays}d`}</td>
+                <td className="num nw">
                   {r.estPrice === null && r.recentPrice === null
                     ? '—'
                     : `${money(r.estPrice)} → ${money(r.recentPrice)}`}
@@ -222,6 +223,7 @@ export default function CongressBrowser({
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       <p className="footnote">

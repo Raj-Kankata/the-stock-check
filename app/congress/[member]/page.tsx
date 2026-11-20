@@ -49,6 +49,13 @@ function rangeLabel(low: number, high: number): string {
   return `${money(low, 0)} – ${money(high, 0)}`
 }
 
+/** Bargo's perf_pct is already in percent units (3.87 = +3.87%) —
+    unlike lib/format's pct(), which takes a fraction. */
+function perfPct(v: number | null): string {
+  if (v === null) return '—'
+  return `${v > 0 ? '+' : ''}${v.toFixed(1)}%`
+}
+
 export default async function CongressMemberPage({
   params,
 }: PageProps<'/congress/[member]'>) {
@@ -123,11 +130,27 @@ export default async function CongressMemberPage({
           k="Late filings (over 45 days)"
           v={String(m.late_filings)}
         />
+        {m.buy_perf_count > 0 && m.avg_buy_perf_pct !== null && (
+          <Kv
+            k="Avg buy performance"
+            v={`${perfPct(m.avg_buy_perf_pct)} across ${m.buy_perf_count} ${
+              m.buy_perf_count === 1 ? 'buy' : 'buys'
+            }`}
+          />
+        )}
         <p className="footnote">
           The STOCK Act window is ~45 days from trade to disclosure. A late filing here is
           one whose disclosure in the captured record came after that window — the count
           covers only the filings we hold, not the member&apos;s whole history.
         </p>
+        {m.buy_perf_count > 0 && (
+          <p className="footnote">
+            Avg buy performance is the average return since trade date on disclosed buys
+            (Bargo price estimates), over the captured buys that carry a price estimate —
+            a record of past moves, not what anyone following the filings could have
+            earned, since each filing arrived weeks after its trade.
+          </p>
+        )}
       </Card>
 
       <Card title="Most-traded tickers">
@@ -203,16 +226,17 @@ export default async function CongressMemberPage({
       </Card>
 
       <Card title={`All captured trades — ${trades.length}`}>
-        <table className="tabled">
+        <div className="table-scroll">
+        <table className="tabled dense">
           <thead>
             <tr>
               <th>Disclosed</th>
               <th>Ticker</th>
               <th>Type</th>
-              <th>Amount range</th>
-              <th>Trade date</th>
-              <th className="num">Lag</th>
-              <th className="num">Price then → now</th>
+              <th className="nw">Amount range</th>
+              <th className="nw">Trade date</th>
+              <th className="num nw">Lag</th>
+              <th className="num nw">Price then → now</th>
             </tr>
           </thead>
           <tbody>
@@ -229,10 +253,10 @@ export default async function CongressMemberPage({
                   )}
                 </td>
                 <td>{congressTypeLabel(t.type)}</td>
-                <td>{t.amount_range}</td>
-                <td>{dateLabel(t.transaction_date)}</td>
-                <td className="num">{t.lag_days === null ? '—' : `${t.lag_days}d`}</td>
-                <td className="num">
+                <td className="nw">{t.amount_range}</td>
+                <td className="nw">{dateLabel(t.transaction_date)}</td>
+                <td className="num nw">{t.lag_days === null ? '—' : `${t.lag_days}d`}</td>
+                <td className="num nw">
                   {t.est_price === null && t.recent_price === null
                     ? '—'
                     : `${money(t.est_price)} → ${money(t.recent_price)}`}
@@ -241,6 +265,7 @@ export default async function CongressMemberPage({
             ))}
           </tbody>
         </table>
+        </div>
         <p className="footnote">
           &ldquo;Price then → now&rdquo; is Bargo&apos;s estimate of the price at the trade
           and its recent price — neither is a fill price. The authoritative record is the

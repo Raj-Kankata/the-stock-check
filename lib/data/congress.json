@@ -1,6 +1,6 @@
 {
  "as_of": "2026-11-19",
- "updated_at": "2026-11-20T20:08:40Z",
+ "updated_at": "2026-11-20T20:19:09Z",
  "capture_start": "2026-11-20",
  "source": "Bargo \u2014 built from official House & Senate filings",
  "source_url": "https://www.bargo.ai/free-apis/congress",
@@ -142,7 +142,8 @@
    "perf_pct": 3.87,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -163,7 +164,8 @@
    "perf_pct": -6.22,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "good_exit"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -184,7 +186,8 @@
    "perf_pct": -0.59,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "flat_exit"
   },
   {
    "member": "Michael Rulli",
@@ -205,7 +208,8 @@
    "perf_pct": 0.15,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 6
+   "lag_days": 6,
+   "outcome": "flat_exit"
   },
   {
    "member": "Michael Rulli",
@@ -226,7 +230,8 @@
    "perf_pct": -10.35,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "Michael Rulli",
@@ -247,7 +252,8 @@
    "perf_pct": -4.72,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "good_exit"
   },
   {
    "member": "Michael Rulli",
@@ -268,7 +274,8 @@
    "perf_pct": -14.62,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "good_exit"
   },
   {
    "member": "Michael Rulli",
@@ -289,7 +296,8 @@
    "perf_pct": -32.22,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "good_exit"
   },
   {
    "member": "James French Hill",
@@ -310,7 +318,8 @@
    "perf_pct": -4.68,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 4
+   "lag_days": 4,
+   "outcome": "good_exit"
   },
   {
    "member": "Jonathan Jackson",
@@ -331,7 +340,8 @@
    "perf_pct": -35.42,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 22
+   "lag_days": 22,
+   "outcome": "loss"
   },
   {
    "member": "Jonathan Jackson",
@@ -415,7 +425,8 @@
    "perf_pct": 0.45,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 7
+   "lag_days": 7,
+   "outcome": "flat_exit"
   },
   {
    "member": "David J. Taylor",
@@ -436,7 +447,8 @@
    "perf_pct": 9.98,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 7
+   "lag_days": 7,
+   "outcome": "gain"
   },
   {
    "member": "David J. Taylor",
@@ -457,7 +469,8 @@
    "perf_pct": -3.79,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 7
+   "lag_days": 7,
+   "outcome": "good_exit"
   },
   {
    "member": "David J. Taylor",
@@ -478,7 +491,8 @@
    "perf_pct": 18.91,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 7
+   "lag_days": 7,
+   "outcome": "gain"
   },
   {
    "member": "David J. Taylor",
@@ -499,7 +513,8 @@
    "perf_pct": -2.61,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "loss"
   },
   {
    "member": "David J. Taylor",
@@ -520,7 +535,8 @@
    "perf_pct": -4.32,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "good_exit"
   },
   {
    "member": "David J. Taylor",
@@ -541,7 +557,8 @@
    "perf_pct": 2.15,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "gain"
   },
   {
    "member": "David J. Taylor",
@@ -562,7 +579,8 @@
    "perf_pct": -4.13,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "good_exit"
   },
   {
    "member": "David J. Taylor",
@@ -583,7 +601,8 @@
    "perf_pct": 1.69,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "early_exit"
   },
   {
    "member": "David J. Taylor",
@@ -604,7 +623,8 @@
    "perf_pct": 4.52,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "gain"
   },
   {
    "member": "David J. Taylor",
@@ -625,7 +645,8 @@
    "perf_pct": -15.61,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "loss"
   },
   {
    "member": "David J. Taylor",
@@ -646,7 +667,8 @@
    "perf_pct": -4.86,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -667,7 +689,8 @@
    "perf_pct": 4.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 8
+   "lag_days": 8,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -688,7 +711,8 @@
    "perf_pct": -14.1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -709,7 +733,8 @@
    "perf_pct": -6.34,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -730,7 +755,8 @@
    "perf_pct": -14.52,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -751,7 +777,8 @@
    "perf_pct": -28.2,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -772,7 +799,8 @@
    "perf_pct": 12.7,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -793,7 +821,8 @@
    "perf_pct": -10.75,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 18
+   "lag_days": 18,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -814,7 +843,8 @@
    "perf_pct": -41.96,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -835,7 +865,8 @@
    "perf_pct": -27.32,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -856,7 +887,8 @@
    "perf_pct": 3.14,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -877,7 +909,8 @@
    "perf_pct": -4.9,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -898,7 +931,8 @@
    "perf_pct": 11.18,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -919,7 +953,8 @@
    "perf_pct": -2.06,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -940,7 +975,8 @@
    "perf_pct": -1.93,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -961,7 +997,8 @@
    "perf_pct": -4.84,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -982,7 +1019,8 @@
    "perf_pct": 15.1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1003,7 +1041,8 @@
    "perf_pct": -3.79,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1024,7 +1063,8 @@
    "perf_pct": 2.34,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1045,7 +1085,8 @@
    "perf_pct": -32.56,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1066,7 +1107,8 @@
    "perf_pct": 9.07,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1087,7 +1129,8 @@
    "perf_pct": -17.66,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1108,7 +1151,8 @@
    "perf_pct": 4.58,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1129,7 +1173,8 @@
    "perf_pct": 5.26,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1150,7 +1195,8 @@
    "perf_pct": -34.94,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1171,7 +1217,8 @@
    "perf_pct": -28.79,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1192,7 +1239,8 @@
    "perf_pct": 11.48,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1213,7 +1261,8 @@
    "perf_pct": -11.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1234,7 +1283,8 @@
    "perf_pct": 17.57,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1255,7 +1305,8 @@
    "perf_pct": 1.62,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1276,7 +1327,8 @@
    "perf_pct": 22.43,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1297,7 +1349,8 @@
    "perf_pct": 9.28,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1318,7 +1371,8 @@
    "perf_pct": -1.84,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1339,7 +1393,8 @@
    "perf_pct": 39.11,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1360,7 +1415,8 @@
    "perf_pct": 9.96,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1381,7 +1437,8 @@
    "perf_pct": 19.23,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1402,7 +1459,8 @@
    "perf_pct": 2.11,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1423,7 +1481,8 @@
    "perf_pct": 11.66,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1444,7 +1503,8 @@
    "perf_pct": 36.44,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1465,7 +1525,8 @@
    "perf_pct": -10.41,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1486,7 +1547,8 @@
    "perf_pct": 2.1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1507,7 +1569,8 @@
    "perf_pct": -39.4,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1528,7 +1591,8 @@
    "perf_pct": 9.93,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1549,7 +1613,8 @@
    "perf_pct": 44.56,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1570,7 +1635,8 @@
    "perf_pct": -0.18,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 28
+   "lag_days": 28,
+   "outcome": "flat_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1591,7 +1657,8 @@
    "perf_pct": -17.04,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 32
+   "lag_days": 32,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1612,7 +1679,8 @@
    "perf_pct": -42.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1654,7 +1722,8 @@
    "perf_pct": 2.84,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 35
+   "lag_days": 35,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -1675,7 +1744,8 @@
    "perf_pct": 17.44,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 35
+   "lag_days": 35,
+   "outcome": "early_exit"
   },
   {
    "member": "John J Mr McGuire III",
@@ -1696,7 +1766,8 @@
    "perf_pct": -16.74,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 22
+   "lag_days": 22,
+   "outcome": "good_exit"
   },
   {
    "member": "Josh Gottheimer",
@@ -1717,7 +1788,8 @@
    "perf_pct": -12.55,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "loss"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -1738,7 +1810,8 @@
    "perf_pct": 4.24,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "gain"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -1759,7 +1832,8 @@
    "perf_pct": -30.8,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "loss"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -1780,7 +1854,8 @@
    "perf_pct": -11.08,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -1801,7 +1876,8 @@
    "perf_pct": -1.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -1822,7 +1898,8 @@
    "perf_pct": -10.12,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -1843,7 +1920,8 @@
    "perf_pct": -10.12,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -1864,7 +1942,8 @@
    "perf_pct": -24.43,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -1885,7 +1964,8 @@
    "perf_pct": -43.43,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -1906,7 +1986,8 @@
    "perf_pct": -1.17,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "loss"
   },
   {
    "member": "Josh Gottheimer",
@@ -1927,7 +2008,8 @@
    "perf_pct": -12.21,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -1948,7 +2030,8 @@
    "perf_pct": 24.22,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -1969,7 +2052,8 @@
    "perf_pct": 3.9,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 34
+   "lag_days": 34,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -1990,7 +2074,8 @@
    "perf_pct": 2.75,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 34
+   "lag_days": 34,
+   "outcome": "gain"
   },
   {
    "member": "Shelley M Capito",
@@ -2011,7 +2096,8 @@
    "perf_pct": 1.47,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "early_exit"
   },
   {
    "member": "Shelley M Capito",
@@ -2032,7 +2118,8 @@
    "perf_pct": -6.5,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "good_exit"
   },
   {
    "member": "Shelley M Capito",
@@ -2053,7 +2140,8 @@
    "perf_pct": -14.52,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "good_exit"
   },
   {
    "member": "Shelley M Capito",
@@ -2074,7 +2162,8 @@
    "perf_pct": 1.52,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "early_exit"
   },
   {
    "member": "Robert E. Latta",
@@ -2095,7 +2184,8 @@
    "perf_pct": -1.27,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "Sheldon Whitehouse",
@@ -2116,7 +2206,8 @@
    "perf_pct": -7.63,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Democrat",
-   "lag_days": 18
+   "lag_days": 18,
+   "outcome": "good_exit"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -2137,7 +2228,8 @@
    "perf_pct": 13.69,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 30
+   "lag_days": 30,
+   "outcome": "early_exit"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -2158,7 +2250,8 @@
    "perf_pct": 0.91,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 30
+   "lag_days": 30,
+   "outcome": "flat_exit"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -2179,7 +2272,8 @@
    "perf_pct": 14.29,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 31
+   "lag_days": 31,
+   "outcome": "gain"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -2200,7 +2294,8 @@
    "perf_pct": 6.92,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 37
+   "lag_days": 37,
+   "outcome": "early_exit"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -2221,7 +2316,8 @@
    "perf_pct": 10.7,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 43
+   "lag_days": 43,
+   "outcome": "gain"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -2242,7 +2338,8 @@
    "perf_pct": 1.6,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 43
+   "lag_days": 43,
+   "outcome": "early_exit"
   },
   {
    "member": "David J. Taylor",
@@ -2263,7 +2360,8 @@
    "perf_pct": 0.63,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "flat_exit"
   },
   {
    "member": "David J. Taylor",
@@ -2284,7 +2382,8 @@
    "perf_pct": -7.02,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "David J. Taylor",
@@ -2305,7 +2404,8 @@
    "perf_pct": 3.57,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "gain"
   },
   {
    "member": "David J. Taylor",
@@ -2326,7 +2426,8 @@
    "perf_pct": -2.82,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "David J. Taylor",
@@ -2347,7 +2448,8 @@
    "perf_pct": -22.85,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "good_exit"
   },
   {
    "member": "David J. Taylor",
@@ -2368,7 +2470,8 @@
    "perf_pct": -26.59,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "Kevin Hern",
@@ -2389,7 +2492,8 @@
    "perf_pct": -17.3,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 5
+   "lag_days": 5,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -2410,7 +2514,8 @@
    "perf_pct": 1.82,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2431,7 +2536,8 @@
    "perf_pct": 9.17,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 0
+   "lag_days": 0,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2452,7 +2558,8 @@
    "perf_pct": 1.69,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 0
+   "lag_days": 0,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2473,7 +2580,8 @@
    "perf_pct": 7.23,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 5
+   "lag_days": 5,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2494,7 +2602,8 @@
    "perf_pct": 2.73,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 5
+   "lag_days": 5,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2515,7 +2624,8 @@
    "perf_pct": -0.66,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 6
+   "lag_days": 6,
+   "outcome": "flat_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2536,7 +2646,8 @@
    "perf_pct": 21.22,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 6
+   "lag_days": 6,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2557,7 +2668,8 @@
    "perf_pct": 3.19,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 6
+   "lag_days": 6,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2578,7 +2690,8 @@
    "perf_pct": -7.46,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 7
+   "lag_days": 7,
+   "outcome": "good_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2599,7 +2712,8 @@
    "perf_pct": -10.21,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2620,7 +2734,8 @@
    "perf_pct": -7,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2641,7 +2756,8 @@
    "perf_pct": 14.58,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2662,7 +2778,8 @@
    "perf_pct": 11.46,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 19
+   "lag_days": 19,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2683,7 +2800,8 @@
    "perf_pct": -20.37,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2704,7 +2822,8 @@
    "perf_pct": 20.89,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2725,7 +2844,8 @@
    "perf_pct": -0.39,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "flat_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2746,7 +2866,8 @@
    "perf_pct": 11.53,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2767,7 +2888,8 @@
    "perf_pct": 1.03,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2788,7 +2910,8 @@
    "perf_pct": 5.07,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2809,7 +2932,8 @@
    "perf_pct": 10.31,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2830,7 +2954,8 @@
    "perf_pct": -37.6,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2851,7 +2976,8 @@
    "perf_pct": -3.72,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2872,7 +2998,8 @@
    "perf_pct": 17.45,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2893,7 +3020,8 @@
    "perf_pct": 13.44,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2914,7 +3042,8 @@
    "perf_pct": 18.81,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2935,7 +3064,8 @@
    "perf_pct": 12.18,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2956,7 +3086,8 @@
    "perf_pct": 2.33,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2977,7 +3108,8 @@
    "perf_pct": 6.53,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -2998,7 +3130,8 @@
    "perf_pct": 4.65,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -3019,7 +3152,8 @@
    "perf_pct": 1.89,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Richard Blumenthal",
@@ -3040,7 +3174,8 @@
    "perf_pct": -53.37,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "good_exit"
   },
   {
    "member": "Richard Blumenthal",
@@ -3061,7 +3196,8 @@
    "perf_pct": -54.89,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Democrat",
-   "lag_days": 34
+   "lag_days": 34,
+   "outcome": "good_exit"
   },
   {
    "member": "Richard Blumenthal",
@@ -3082,7 +3218,8 @@
    "perf_pct": -54.89,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Democrat",
-   "lag_days": 34
+   "lag_days": 34,
+   "outcome": "good_exit"
   },
   {
    "member": "Richard Blumenthal",
@@ -3103,7 +3240,8 @@
    "perf_pct": -54.31,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Democrat",
-   "lag_days": 38
+   "lag_days": 38,
+   "outcome": "good_exit"
   },
   {
    "member": "Richard Blumenthal",
@@ -3124,7 +3262,8 @@
    "perf_pct": -54.31,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Democrat",
-   "lag_days": 38
+   "lag_days": 38,
+   "outcome": "good_exit"
   },
   {
    "member": "Cleo Fields",
@@ -3187,7 +3326,8 @@
    "perf_pct": -16.59,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "John Boozman",
@@ -3208,7 +3348,8 @@
    "perf_pct": 4.06,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "gain"
   },
   {
    "member": "John Boozman",
@@ -3229,7 +3370,8 @@
    "perf_pct": -11.47,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "loss"
   },
   {
    "member": "John Boozman",
@@ -3250,7 +3392,8 @@
    "perf_pct": -36.1,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 27
+   "lag_days": 27,
+   "outcome": "good_exit"
   },
   {
    "member": "John Boozman",
@@ -3271,7 +3414,8 @@
    "perf_pct": -1.43,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 42
+   "lag_days": 42,
+   "outcome": "loss"
   },
   {
    "member": "John Boozman",
@@ -3292,7 +3436,8 @@
    "perf_pct": -1.96,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 42
+   "lag_days": 42,
+   "outcome": "loss"
   },
   {
    "member": "John Boozman",
@@ -3313,7 +3458,8 @@
    "perf_pct": -0.96,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 42
+   "lag_days": 42,
+   "outcome": "flat"
   },
   {
    "member": "John Boozman",
@@ -3334,7 +3480,8 @@
    "perf_pct": -9.78,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 42
+   "lag_days": 42,
+   "outcome": "good_exit"
   },
   {
    "member": "John Boozman",
@@ -3355,7 +3502,8 @@
    "perf_pct": -6.12,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 42
+   "lag_days": 42,
+   "outcome": "good_exit"
   },
   {
    "member": "John Boozman",
@@ -3376,7 +3524,8 @@
    "perf_pct": -32.82,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 42
+   "lag_days": 42,
+   "outcome": "good_exit"
   },
   {
    "member": "John Boozman",
@@ -3397,7 +3546,8 @@
    "perf_pct": -7.3,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 42
+   "lag_days": 42,
+   "outcome": "good_exit"
   },
   {
    "member": "Michael Rulli",
@@ -3418,7 +3568,8 @@
    "perf_pct": -19.56,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 3
+   "lag_days": 3,
+   "outcome": "good_exit"
   },
   {
    "member": "Michael Rulli",
@@ -3439,7 +3590,8 @@
    "perf_pct": -1.21,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 3
+   "lag_days": 3,
+   "outcome": "good_exit"
   },
   {
    "member": "Jonathan Jackson",
@@ -3586,7 +3738,8 @@
    "perf_pct": 9.56,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 3
+   "lag_days": 3,
+   "outcome": "early_exit"
   },
   {
    "member": "David J. Taylor",
@@ -3607,7 +3760,8 @@
    "perf_pct": 6.07,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 6
+   "lag_days": 6,
+   "outcome": "gain"
   },
   {
    "member": "David J. Taylor",
@@ -3628,7 +3782,8 @@
    "perf_pct": 0.41,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 6
+   "lag_days": 6,
+   "outcome": "flat"
   },
   {
    "member": "David J. Taylor",
@@ -3649,7 +3804,8 @@
    "perf_pct": -1.49,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 6
+   "lag_days": 6,
+   "outcome": "loss"
   },
   {
    "member": "Michael T. McCaul",
@@ -3670,7 +3826,8 @@
    "perf_pct": -15.32,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 47
+   "lag_days": 47,
+   "outcome": "good_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3691,7 +3848,8 @@
    "perf_pct": -10.48,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 47
+   "lag_days": 47,
+   "outcome": "good_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3712,7 +3870,8 @@
    "perf_pct": 15.28,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 47
+   "lag_days": 47,
+   "outcome": "gain"
   },
   {
    "member": "Michael T. McCaul",
@@ -3733,7 +3892,8 @@
    "perf_pct": -10.44,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 48
+   "lag_days": 48,
+   "outcome": "good_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3754,7 +3914,8 @@
    "perf_pct": 3.35,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 49
+   "lag_days": 49,
+   "outcome": "early_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3775,7 +3936,8 @@
    "perf_pct": -10.83,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 50
+   "lag_days": 50,
+   "outcome": "good_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3796,7 +3958,8 @@
    "perf_pct": 4.53,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 50
+   "lag_days": 50,
+   "outcome": "early_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3817,7 +3980,8 @@
    "perf_pct": 11.94,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 50
+   "lag_days": 50,
+   "outcome": "gain"
   },
   {
    "member": "Michael T. McCaul",
@@ -3838,7 +4002,8 @@
    "perf_pct": -0.05,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 50
+   "lag_days": 50,
+   "outcome": "flat_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3859,7 +4024,8 @@
    "perf_pct": 3.39,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 50
+   "lag_days": 50,
+   "outcome": "early_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3880,7 +4046,8 @@
    "perf_pct": 16.93,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 50
+   "lag_days": 50,
+   "outcome": "gain"
   },
   {
    "member": "Michael T. McCaul",
@@ -3901,7 +4068,8 @@
    "perf_pct": 11.1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 51
+   "lag_days": 51,
+   "outcome": "gain"
   },
   {
    "member": "Michael T. McCaul",
@@ -3922,7 +4090,8 @@
    "perf_pct": 1.23,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 51
+   "lag_days": 51,
+   "outcome": "early_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3943,7 +4112,8 @@
    "perf_pct": -4.17,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 54
+   "lag_days": 54,
+   "outcome": "loss"
   },
   {
    "member": "Michael T. McCaul",
@@ -3964,7 +4134,8 @@
    "perf_pct": 3.01,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 54
+   "lag_days": 54,
+   "outcome": "early_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -3985,7 +4156,8 @@
    "perf_pct": -12.14,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 55
+   "lag_days": 55,
+   "outcome": "good_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -4006,7 +4178,8 @@
    "perf_pct": -0.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 55
+   "lag_days": 55,
+   "outcome": "flat"
   },
   {
    "member": "Michael T. McCaul",
@@ -4027,7 +4200,8 @@
    "perf_pct": 5.11,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 55
+   "lag_days": 55,
+   "outcome": "early_exit"
   },
   {
    "member": "Michael T. McCaul",
@@ -4048,7 +4222,8 @@
    "perf_pct": 3.19,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 55
+   "lag_days": 55,
+   "outcome": "gain"
   },
   {
    "member": "Kevin Hern",
@@ -4069,7 +4244,8 @@
    "perf_pct": 9.06,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4090,7 +4266,8 @@
    "perf_pct": -12.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4111,7 +4288,8 @@
    "perf_pct": -10.99,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4132,7 +4310,8 @@
    "perf_pct": 10.97,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4153,7 +4332,8 @@
    "perf_pct": 8.99,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4174,7 +4354,8 @@
    "perf_pct": -12.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4195,7 +4376,8 @@
    "perf_pct": 0.48,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "flat_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4216,7 +4398,8 @@
    "perf_pct": 13.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4237,7 +4420,8 @@
    "perf_pct": 10.41,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4258,7 +4442,8 @@
    "perf_pct": -6.57,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4279,7 +4464,8 @@
    "perf_pct": 6.27,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4300,7 +4486,8 @@
    "perf_pct": 11.28,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4321,7 +4508,8 @@
    "perf_pct": 6.92,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -4342,7 +4530,8 @@
    "perf_pct": 12.85,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4363,7 +4552,8 @@
    "perf_pct": -27.48,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4468,7 +4658,8 @@
    "perf_pct": -14.17,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4489,7 +4680,8 @@
    "perf_pct": 1.39,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4510,7 +4702,8 @@
    "perf_pct": -43.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4531,7 +4724,8 @@
    "perf_pct": 12.4,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4552,7 +4746,8 @@
    "perf_pct": 10.64,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4573,7 +4768,8 @@
    "perf_pct": 1.92,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4594,7 +4790,8 @@
    "perf_pct": -23.12,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4615,7 +4812,8 @@
    "perf_pct": 0.84,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "flat_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4636,7 +4834,8 @@
    "perf_pct": -16.6,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4657,7 +4856,8 @@
    "perf_pct": -10.4,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4678,7 +4878,8 @@
    "perf_pct": -21.6,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4699,7 +4900,8 @@
    "perf_pct": 18.51,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4720,7 +4922,8 @@
    "perf_pct": -6.79,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4741,7 +4944,8 @@
    "perf_pct": 13.19,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4762,7 +4966,8 @@
    "perf_pct": -22.35,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4783,7 +4988,8 @@
    "perf_pct": -25.08,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4804,7 +5010,8 @@
    "perf_pct": -13.13,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "Lisa McClain",
@@ -4867,7 +5074,8 @@
    "perf_pct": -22.1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4888,7 +5096,8 @@
    "perf_pct": -21.7,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4909,7 +5118,8 @@
    "perf_pct": 0.28,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "flat_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4930,7 +5140,8 @@
    "perf_pct": -3.82,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4951,7 +5162,8 @@
    "perf_pct": 6.83,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4972,7 +5184,8 @@
    "perf_pct": 4.6,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -4993,7 +5206,8 @@
    "perf_pct": 13.15,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5014,7 +5228,8 @@
    "perf_pct": 23.03,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5035,7 +5250,8 @@
    "perf_pct": -32.76,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5056,7 +5272,8 @@
    "perf_pct": -4.89,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5077,7 +5294,8 @@
    "perf_pct": -2.4,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5098,7 +5316,8 @@
    "perf_pct": 2.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5119,7 +5338,8 @@
    "perf_pct": -27.18,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5140,7 +5360,8 @@
    "perf_pct": 19.74,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5161,7 +5382,8 @@
    "perf_pct": 0.66,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "flat_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5182,7 +5404,8 @@
    "perf_pct": 11.27,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5203,7 +5426,8 @@
    "perf_pct": 1.23,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 24
+   "lag_days": 24,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5224,7 +5448,8 @@
    "perf_pct": -7.75,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5245,7 +5470,8 @@
    "perf_pct": -3.55,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5266,7 +5492,8 @@
    "perf_pct": 10.45,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5287,7 +5514,8 @@
    "perf_pct": -33.62,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5308,7 +5536,8 @@
    "perf_pct": 15.9,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5329,7 +5558,8 @@
    "perf_pct": -0.13,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "flat"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5350,7 +5580,8 @@
    "perf_pct": -15.98,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5371,7 +5602,8 @@
    "perf_pct": 2.1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5392,7 +5624,8 @@
    "perf_pct": -1.45,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 28
+   "lag_days": 28,
+   "outcome": "good_exit"
   },
   {
    "member": "Lisa McClain",
@@ -5497,7 +5730,8 @@
    "perf_pct": 22.4,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5518,7 +5752,8 @@
    "perf_pct": 12.74,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "gain"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5539,7 +5774,8 @@
    "perf_pct": 16.41,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 38
+   "lag_days": 38,
+   "outcome": "early_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -5560,7 +5796,8 @@
    "perf_pct": 16.05,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 39
+   "lag_days": 39,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -5581,7 +5818,8 @@
    "perf_pct": 17.61,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -5602,7 +5840,8 @@
    "perf_pct": 24.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -5623,7 +5862,8 @@
    "perf_pct": 10.58,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -5644,7 +5884,8 @@
    "perf_pct": 20.05,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -5665,7 +5906,8 @@
    "perf_pct": 16.12,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -5707,7 +5949,8 @@
    "perf_pct": -1.78,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -5728,7 +5971,8 @@
    "perf_pct": 15.39,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -5749,7 +5993,8 @@
    "perf_pct": 11.91,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -5770,7 +6015,8 @@
    "perf_pct": 4.64,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -5791,7 +6037,8 @@
    "perf_pct": 0.87,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "flat"
   },
   {
    "member": "Rohit Khanna",
@@ -5812,7 +6059,8 @@
    "perf_pct": 0.51,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "flat"
   },
   {
    "member": "Rohit Khanna",
@@ -5833,7 +6081,8 @@
    "perf_pct": 11.07,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -5854,7 +6103,8 @@
    "perf_pct": 10.96,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -5875,7 +6125,8 @@
    "perf_pct": -0.4,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "flat"
   },
   {
    "member": "Rohit Khanna",
@@ -5896,7 +6147,8 @@
    "perf_pct": 15.86,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 12
+   "lag_days": 12,
+   "outcome": "gain"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -5917,7 +6169,8 @@
    "perf_pct": -6.49,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -5938,7 +6191,8 @@
    "perf_pct": 0.1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "flat_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -5959,7 +6213,8 @@
    "perf_pct": -23.32,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -5980,7 +6235,8 @@
    "perf_pct": -35.21,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6001,7 +6257,8 @@
    "perf_pct": -10.09,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6022,7 +6279,8 @@
    "perf_pct": 3.71,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "early_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6043,7 +6301,8 @@
    "perf_pct": -11.87,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6064,7 +6323,8 @@
    "perf_pct": -19.58,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6085,7 +6345,8 @@
    "perf_pct": -8.49,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6106,7 +6367,8 @@
    "perf_pct": 5.85,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "early_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6127,7 +6389,8 @@
    "perf_pct": 0.07,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "flat_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6148,7 +6411,8 @@
    "perf_pct": -46.53,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6169,7 +6433,8 @@
    "perf_pct": 2.31,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "early_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6190,7 +6455,8 @@
    "perf_pct": -10.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6211,7 +6477,8 @@
    "perf_pct": 2.86,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "early_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6232,7 +6499,8 @@
    "perf_pct": -1.65,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6253,7 +6521,8 @@
    "perf_pct": -8.21,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6274,7 +6543,8 @@
    "perf_pct": -31.26,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6295,7 +6565,8 @@
    "perf_pct": -0.28,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "flat_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6316,7 +6587,8 @@
    "perf_pct": 12.56,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "early_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6337,7 +6609,8 @@
    "perf_pct": -11.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6358,7 +6631,8 @@
    "perf_pct": -11.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6379,7 +6653,8 @@
    "perf_pct": -12.73,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6400,7 +6675,8 @@
    "perf_pct": -23.05,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6421,7 +6697,8 @@
    "perf_pct": 10.53,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "early_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6442,7 +6719,8 @@
    "perf_pct": 9.18,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "early_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6463,7 +6741,8 @@
    "perf_pct": -18.44,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6484,7 +6763,8 @@
    "perf_pct": -11.31,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -6505,7 +6785,8 @@
    "perf_pct": -35.59,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -6526,7 +6807,8 @@
    "perf_pct": -19.06,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -6547,7 +6829,8 @@
    "perf_pct": 5.11,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6568,7 +6851,8 @@
    "perf_pct": -13.36,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6589,7 +6873,8 @@
    "perf_pct": 8.81,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -6610,7 +6895,8 @@
    "perf_pct": 8.54,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -6631,7 +6917,8 @@
    "perf_pct": 8.49,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6652,7 +6939,8 @@
    "perf_pct": -2.58,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -6673,7 +6961,8 @@
    "perf_pct": -9.71,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6694,7 +6983,8 @@
    "perf_pct": -3.31,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6715,7 +7005,8 @@
    "perf_pct": 6.4,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6736,7 +7027,8 @@
    "perf_pct": -41.35,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6757,7 +7049,8 @@
    "perf_pct": 1.24,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6778,7 +7071,8 @@
    "perf_pct": -0.63,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "flat"
   },
   {
    "member": "Rohit Khanna",
@@ -6799,7 +7093,8 @@
    "perf_pct": -8.17,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6820,7 +7115,8 @@
    "perf_pct": -6.4,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6841,7 +7137,8 @@
    "perf_pct": 3.26,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6862,7 +7159,8 @@
    "perf_pct": 10.32,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -6883,7 +7181,8 @@
    "perf_pct": -5.27,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6904,7 +7203,8 @@
    "perf_pct": 13.3,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6925,7 +7225,8 @@
    "perf_pct": 4.08,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -6946,7 +7247,8 @@
    "perf_pct": -6.53,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -6967,7 +7269,8 @@
    "perf_pct": 20.9,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -6988,7 +7291,8 @@
    "perf_pct": 5.87,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 26
+   "lag_days": 26,
+   "outcome": "early_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -7009,7 +7313,8 @@
    "perf_pct": -36.15,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 29
+   "lag_days": 29,
+   "outcome": "loss"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -7030,7 +7335,8 @@
    "perf_pct": -13.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 29
+   "lag_days": 29,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7051,7 +7357,8 @@
    "perf_pct": 5.37,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7072,7 +7379,8 @@
    "perf_pct": 6.67,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7093,7 +7401,8 @@
    "perf_pct": -6.57,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7114,7 +7423,8 @@
    "perf_pct": -41.04,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -7135,7 +7445,8 @@
    "perf_pct": -43.78,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -7156,7 +7467,8 @@
    "perf_pct": -8.78,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -7177,7 +7489,8 @@
    "perf_pct": -13.41,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -7198,7 +7511,8 @@
    "perf_pct": -5.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7219,7 +7533,8 @@
    "perf_pct": 10.57,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7240,7 +7555,8 @@
    "perf_pct": 1.23,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -7261,7 +7577,8 @@
    "perf_pct": 1.83,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7282,7 +7599,8 @@
    "perf_pct": 11.55,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7303,7 +7621,8 @@
    "perf_pct": 10.5,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -7324,7 +7643,8 @@
    "perf_pct": -3.84,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -7345,7 +7665,8 @@
    "perf_pct": -38.06,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7366,7 +7687,8 @@
    "perf_pct": -11.36,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7387,7 +7709,8 @@
    "perf_pct": 4.89,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7408,7 +7731,8 @@
    "perf_pct": -12.27,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -7429,7 +7753,8 @@
    "perf_pct": -2.94,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -7450,7 +7775,8 @@
    "perf_pct": 2.51,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -7471,7 +7797,8 @@
    "perf_pct": 11.06,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -7492,7 +7819,8 @@
    "perf_pct": 28.82,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7513,7 +7841,8 @@
    "perf_pct": 16.43,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7534,7 +7863,8 @@
    "perf_pct": 8.31,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -7555,7 +7885,8 @@
    "perf_pct": 11.99,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7576,7 +7907,8 @@
    "perf_pct": 9.26,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -7597,7 +7929,8 @@
    "perf_pct": 3.74,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7618,7 +7951,8 @@
    "perf_pct": -9.34,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -7639,7 +7973,8 @@
    "perf_pct": -10.06,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7660,7 +7995,8 @@
    "perf_pct": -15.67,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7681,7 +8017,8 @@
    "perf_pct": 2.77,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7702,7 +8039,8 @@
    "perf_pct": 0.66,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "flat_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7723,7 +8061,8 @@
    "perf_pct": -4.12,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -7744,7 +8083,8 @@
    "perf_pct": 21.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "gain"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -7765,7 +8105,8 @@
    "perf_pct": -20.34,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -7786,7 +8127,8 @@
    "perf_pct": -20.34,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "loss"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -7807,7 +8149,8 @@
    "perf_pct": -4.69,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -7828,7 +8171,8 @@
    "perf_pct": -31.32,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 33
+   "lag_days": 33,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7849,7 +8193,8 @@
    "perf_pct": 4.37,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 35
+   "lag_days": 35,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7870,7 +8215,8 @@
    "perf_pct": -27.78,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 35
+   "lag_days": 35,
+   "outcome": "good_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -7891,7 +8237,8 @@
    "perf_pct": 5.7,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 35
+   "lag_days": 35,
+   "outcome": "early_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -7912,7 +8259,8 @@
    "perf_pct": -2.49,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 35
+   "lag_days": 35,
+   "outcome": "loss"
   },
   {
    "member": "Michael Rulli",
@@ -7996,7 +8344,8 @@
    "perf_pct": -5.58,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "good_exit"
   },
   {
    "member": "David J. Taylor",
@@ -8017,7 +8366,8 @@
    "perf_pct": 10.26,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "gain"
   },
   {
    "member": "David J. Taylor",
@@ -8038,7 +8388,8 @@
    "perf_pct": 6.97,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "gain"
   },
   {
    "member": "Cleo Fields",
@@ -8143,7 +8494,8 @@
    "perf_pct": 3,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8164,7 +8516,8 @@
    "perf_pct": 11.89,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8185,7 +8538,8 @@
    "perf_pct": -32.45,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8206,7 +8560,8 @@
    "perf_pct": -8.54,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8227,7 +8582,8 @@
    "perf_pct": 2.65,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8248,7 +8604,8 @@
    "perf_pct": -5.69,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8269,7 +8626,8 @@
    "perf_pct": 8.3,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8290,7 +8648,8 @@
    "perf_pct": 6.27,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8311,7 +8670,8 @@
    "perf_pct": -15.44,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8332,7 +8692,8 @@
    "perf_pct": 9.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8353,7 +8714,8 @@
    "perf_pct": 8.3,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8374,7 +8736,8 @@
    "perf_pct": 6.27,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8395,7 +8758,8 @@
    "perf_pct": -10.45,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "Kevin Hern",
@@ -8416,7 +8780,8 @@
    "perf_pct": -10.45,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "loss"
   },
   {
    "member": "Kevin Hern",
@@ -8437,7 +8802,8 @@
    "perf_pct": -14.89,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8458,7 +8824,8 @@
    "perf_pct": 10.14,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8479,7 +8846,8 @@
    "perf_pct": -11.68,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8500,7 +8868,8 @@
    "perf_pct": -19.21,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8521,7 +8890,8 @@
    "perf_pct": -4.38,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8542,7 +8912,8 @@
    "perf_pct": 4.89,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8563,7 +8934,8 @@
    "perf_pct": -3.34,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 17
+   "lag_days": 17,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8584,7 +8956,8 @@
    "perf_pct": 10.43,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 17
+   "lag_days": 17,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8605,7 +8978,8 @@
    "perf_pct": 2.51,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8626,7 +9000,8 @@
    "perf_pct": -10.06,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8647,7 +9022,8 @@
    "perf_pct": -9.34,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8668,7 +9044,8 @@
    "perf_pct": -12.51,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 21
+   "lag_days": 21,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8689,7 +9066,8 @@
    "perf_pct": -50.82,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 22
+   "lag_days": 22,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8710,7 +9088,8 @@
    "perf_pct": -7.76,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 22
+   "lag_days": 22,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8731,7 +9110,8 @@
    "perf_pct": -8.43,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 22
+   "lag_days": 22,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8752,7 +9132,8 @@
    "perf_pct": 6.17,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8773,7 +9154,8 @@
    "perf_pct": -9.94,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8794,7 +9176,8 @@
    "perf_pct": 6.48,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8815,7 +9198,8 @@
    "perf_pct": 7.58,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8836,7 +9220,8 @@
    "perf_pct": 4.67,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8857,7 +9242,8 @@
    "perf_pct": 2.9,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8878,7 +9264,8 @@
    "perf_pct": 5.7,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8899,7 +9286,8 @@
    "perf_pct": -0.58,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "flat_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8920,7 +9308,8 @@
    "perf_pct": -2.11,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8941,7 +9330,8 @@
    "perf_pct": 0.83,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "flat_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8962,7 +9352,8 @@
    "perf_pct": 9.66,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -8983,7 +9374,8 @@
    "perf_pct": 8.41,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9004,7 +9396,8 @@
    "perf_pct": 7.52,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9025,7 +9418,8 @@
    "perf_pct": -14.24,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 23
+   "lag_days": 23,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9046,7 +9440,8 @@
    "perf_pct": -9.88,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9067,7 +9462,8 @@
    "perf_pct": 2.1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9088,7 +9484,8 @@
    "perf_pct": 4.29,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9109,7 +9506,8 @@
    "perf_pct": 4.21,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9130,7 +9528,8 @@
    "perf_pct": 0.55,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "flat_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9151,7 +9550,8 @@
    "perf_pct": 2.02,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9172,7 +9572,8 @@
    "perf_pct": 2.7,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9193,7 +9594,8 @@
    "perf_pct": -13.32,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9214,7 +9616,8 @@
    "perf_pct": 6.56,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9235,7 +9638,8 @@
    "perf_pct": 10.84,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9256,7 +9660,8 @@
    "perf_pct": 4.11,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9277,7 +9682,8 @@
    "perf_pct": -11.56,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9298,7 +9704,8 @@
    "perf_pct": -8.45,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9319,7 +9726,8 @@
    "perf_pct": -10.99,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9340,7 +9748,8 @@
    "perf_pct": -14.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9361,7 +9770,8 @@
    "perf_pct": -19.37,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9382,7 +9792,8 @@
    "perf_pct": -1.05,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9403,7 +9814,8 @@
    "perf_pct": 7.86,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9424,7 +9836,8 @@
    "perf_pct": -1.26,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9445,7 +9858,8 @@
    "perf_pct": -13.32,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9466,7 +9880,8 @@
    "perf_pct": 8.37,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "gain"
   },
   {
    "member": "Kevin Hern",
@@ -9487,7 +9902,8 @@
    "perf_pct": 9.31,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 25
+   "lag_days": 25,
+   "outcome": "gain"
   },
   {
    "member": "Kevin Hern",
@@ -9508,7 +9924,8 @@
    "perf_pct": 0.62,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 29
+   "lag_days": 29,
+   "outcome": "flat_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9529,7 +9946,8 @@
    "perf_pct": -2.22,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 29
+   "lag_days": 29,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9550,7 +9968,8 @@
    "perf_pct": 22.81,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 29
+   "lag_days": 29,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9571,7 +9990,8 @@
    "perf_pct": 3.87,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 29
+   "lag_days": 29,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9592,7 +10012,8 @@
    "perf_pct": 2.46,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 29
+   "lag_days": 29,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9613,7 +10034,8 @@
    "perf_pct": -3.03,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 29
+   "lag_days": 29,
+   "outcome": "good_exit"
   },
   {
    "member": "Kevin Hern",
@@ -9634,7 +10056,8 @@
    "perf_pct": 6.51,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 29
+   "lag_days": 29,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -9655,7 +10078,8 @@
    "perf_pct": 2.78,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 0
+   "lag_days": 0,
+   "outcome": "early_exit"
   },
   {
    "member": "Pete Sessions",
@@ -9676,7 +10100,8 @@
    "perf_pct": -21.6,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 4
+   "lag_days": 4,
+   "outcome": "good_exit"
   },
   {
    "member": "Pete Sessions",
@@ -9697,7 +10122,8 @@
    "perf_pct": 8.32,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 4
+   "lag_days": 4,
+   "outcome": "early_exit"
   },
   {
    "member": "David J. Taylor",
@@ -9718,7 +10144,8 @@
    "perf_pct": 15.3,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "gain"
   },
   {
    "member": "David J. Taylor",
@@ -9739,7 +10166,8 @@
    "perf_pct": -2.62,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 9
+   "lag_days": 9,
+   "outcome": "loss"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -9760,7 +10188,8 @@
    "perf_pct": -19.75,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "good_exit"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -9781,7 +10210,8 @@
    "perf_pct": -1.34,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "good_exit"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -9802,7 +10232,8 @@
    "perf_pct": 0.52,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "flat_exit"
   },
   {
    "member": "Thomas H. Kean Jr",
@@ -9823,7 +10254,8 @@
    "perf_pct": -38.12,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 22
+   "lag_days": 22,
+   "outcome": "loss"
   },
   {
    "member": "John Boozman",
@@ -9844,7 +10276,8 @@
    "perf_pct": -7.19,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "John Boozman",
@@ -9865,7 +10298,8 @@
    "perf_pct": 6.25,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "gain"
   },
   {
    "member": "John Boozman",
@@ -9886,7 +10320,8 @@
    "perf_pct": -0.09,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 22
+   "lag_days": 22,
+   "outcome": "flat_exit"
   },
   {
    "member": "John Boozman",
@@ -9907,7 +10342,8 @@
    "perf_pct": -6.15,
    "filing_portal": "https://efdsearch.senate.gov/search/",
    "party": "Republican",
-   "lag_days": 22
+   "lag_days": 22,
+   "outcome": "loss"
   },
   {
    "member": "Gilbert Cisneros",
@@ -9928,7 +10364,8 @@
    "perf_pct": -33.63,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 13
+   "lag_days": 13,
+   "outcome": "good_exit"
   },
   {
    "member": "Gilbert Cisneros",
@@ -9949,7 +10386,8 @@
    "perf_pct": -10.69,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 14
+   "lag_days": 14,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -9970,7 +10408,8 @@
    "perf_pct": 4.43,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "early_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -9991,7 +10430,8 @@
    "perf_pct": 9.5,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "early_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10012,7 +10452,8 @@
    "perf_pct": -5.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10033,7 +10474,8 @@
    "perf_pct": -3.98,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10054,7 +10496,8 @@
    "perf_pct": -5.46,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10075,7 +10518,8 @@
    "perf_pct": 3,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "early_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10096,7 +10540,8 @@
    "perf_pct": -0.81,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "flat_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10117,7 +10562,8 @@
    "perf_pct": -2.85,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10138,7 +10584,8 @@
    "perf_pct": -7.26,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10159,7 +10606,8 @@
    "perf_pct": -17.95,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10180,7 +10628,8 @@
    "perf_pct": -10.87,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10201,7 +10650,8 @@
    "perf_pct": 5.29,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "early_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10222,7 +10672,8 @@
    "perf_pct": -4.7,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10243,7 +10694,8 @@
    "perf_pct": 7.89,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "early_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10264,7 +10716,8 @@
    "perf_pct": 18.18,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "early_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10285,7 +10738,8 @@
    "perf_pct": -4.07,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10306,7 +10760,8 @@
    "perf_pct": 4.47,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "early_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10327,7 +10782,8 @@
    "perf_pct": 0.14,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "flat_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10348,7 +10804,8 @@
    "perf_pct": -9.79,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10369,7 +10826,8 @@
    "perf_pct": -19.44,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10390,7 +10848,8 @@
    "perf_pct": -0.53,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "flat_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10411,7 +10870,8 @@
    "perf_pct": -14.03,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10432,7 +10892,8 @@
    "perf_pct": -7.35,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10453,7 +10914,8 @@
    "perf_pct": -21.82,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10474,7 +10936,8 @@
    "perf_pct": -1.35,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 15
+   "lag_days": 15,
+   "outcome": "good_exit"
   },
   {
    "member": "Maria Elvira Salazar",
@@ -10495,7 +10958,8 @@
    "perf_pct": -3.1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10516,7 +10980,8 @@
    "perf_pct": 3.86,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "early_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10537,7 +11002,8 @@
    "perf_pct": -0.54,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "flat_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10558,7 +11024,8 @@
    "perf_pct": 16.9,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "early_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10579,7 +11046,8 @@
    "perf_pct": 1.77,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "gain"
   },
   {
    "member": "April McClain Delaney",
@@ -10600,7 +11068,8 @@
    "perf_pct": -19.08,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 16
+   "lag_days": 16,
+   "outcome": "loss"
   },
   {
    "member": "April McClain Delaney",
@@ -10621,7 +11090,8 @@
    "perf_pct": -2.25,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 19
+   "lag_days": 19,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10642,7 +11112,8 @@
    "perf_pct": -1.91,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "good_exit"
   },
   {
    "member": "April McClain Delaney",
@@ -10663,7 +11134,8 @@
    "perf_pct": -21.63,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 20
+   "lag_days": 20,
+   "outcome": "loss"
   },
   {
    "member": "David J. Taylor",
@@ -10684,7 +11156,8 @@
    "perf_pct": -4.87,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "good_exit"
   },
   {
    "member": "David J. Taylor",
@@ -10705,7 +11178,8 @@
    "perf_pct": 0.39,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "flat_exit"
   },
   {
    "member": "David J. Taylor",
@@ -10726,7 +11200,8 @@
    "perf_pct": -0.35,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "flat_exit"
   },
   {
    "member": "David J. Taylor",
@@ -10747,7 +11222,8 @@
    "perf_pct": -7.71,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "loss"
   },
   {
    "member": "David J. Taylor",
@@ -10768,7 +11244,8 @@
    "perf_pct": -2.51,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "loss"
   },
   {
    "member": "David J. Taylor",
@@ -10789,7 +11266,8 @@
    "perf_pct": 1.31,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 10
+   "lag_days": 10,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -10810,7 +11288,8 @@
    "perf_pct": 10.35,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "early_exit"
   },
   {
    "member": "Rohit Khanna",
@@ -10831,7 +11310,8 @@
    "perf_pct": -39.61,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -10852,7 +11332,8 @@
    "perf_pct": -14.05,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "loss"
   },
   {
    "member": "Rohit Khanna",
@@ -10873,7 +11354,8 @@
    "perf_pct": 9.01,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "gain"
   },
   {
    "member": "Rohit Khanna",
@@ -10894,7 +11376,8 @@
    "perf_pct": 10.57,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Democrat",
-   "lag_days": 11
+   "lag_days": 11,
+   "outcome": "early_exit"
   },
   {
    "member": "Jonathan Jackson",
@@ -10936,7 +11419,8 @@
    "perf_pct": 14.5,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 8
+   "lag_days": 8,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -10957,7 +11441,8 @@
    "perf_pct": 5.13,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 8
+   "lag_days": 8,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -10978,7 +11463,8 @@
    "perf_pct": 8.3,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 8
+   "lag_days": 8,
+   "outcome": "early_exit"
   },
   {
    "member": "Kevin Hern",
@@ -10999,7 +11485,8 @@
    "perf_pct": 1,
    "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
    "party": "Republican",
-   "lag_days": 8
+   "lag_days": 8,
+   "outcome": "flat_exit"
   },
   {
    "member": "Michael Rulli",
@@ -11036,7 +11523,9 @@
    "last_trade": "2026-11-02",
    "last_disclosure": "2026-11-10",
    "avg_lag_days": 21.4,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -2.5,
+   "buy_perf_count": 52
   },
   {
    "slug": "kevin-hern",
@@ -11050,7 +11539,9 @@
    "last_trade": "2026-10-23",
    "last_disclosure": "2026-10-28",
    "avg_lag_days": 20.2,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": 8.84,
+   "buy_perf_count": 2
   },
   {
    "slug": "rohit-khanna",
@@ -11064,7 +11555,9 @@
    "last_trade": "2026-10-21",
    "last_disclosure": "2026-11-05",
    "avg_lag_days": 24.7,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -1.7,
+   "buy_perf_count": 45
   },
   {
    "slug": "maria-elvira-salazar",
@@ -11078,7 +11571,9 @@
    "last_trade": "2026-10-23",
    "last_disclosure": "2026-11-05",
    "avg_lag_days": 17.0,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -12.96,
+   "buy_perf_count": 8
   },
   {
    "slug": "april-mcclain-delaney",
@@ -11092,7 +11587,9 @@
    "last_trade": "2026-08-25",
    "last_disclosure": "2026-09-09",
    "avg_lag_days": 15.6,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -12.98,
+   "buy_perf_count": 3
   },
   {
    "slug": "david-j-taylor",
@@ -11106,7 +11603,9 @@
    "last_trade": "2026-11-05",
    "last_disclosure": "2026-11-12",
    "avg_lag_days": 9.4,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": 0.52,
+   "buy_perf_count": 20
   },
   {
    "slug": "pete-sessions",
@@ -11120,7 +11619,9 @@
    "last_trade": "2026-10-27",
    "last_disclosure": "2026-10-27",
    "avg_lag_days": 16.5,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": null,
+   "buy_perf_count": 0
   },
   {
    "slug": "michael-t-mccaul",
@@ -11134,7 +11635,9 @@
    "last_trade": "2026-08-28",
    "last_disclosure": "2026-10-14",
    "avg_lag_days": 50.9,
-   "late_filings": 19
+   "late_filings": 19,
+   "avg_buy_perf_pct": 7.69,
+   "buy_perf_count": 7
   },
   {
    "slug": "john-boozman",
@@ -11148,7 +11651,9 @@
    "last_trade": "2026-09-25",
    "last_disclosure": "2026-10-21",
    "avg_lag_days": 31.7,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -1.67,
+   "buy_perf_count": 7
   },
   {
    "slug": "thomas-h-kean-jr",
@@ -11162,7 +11667,9 @@
    "last_trade": "2026-10-27",
    "last_disclosure": "2026-11-19",
    "avg_lag_days": 27.2,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -4.38,
+   "buy_perf_count": 3
   },
   {
    "slug": "jonathan-jackson",
@@ -11176,7 +11683,9 @@
    "last_trade": "2026-10-22",
    "last_disclosure": "2026-11-13",
    "avg_lag_days": 25.9,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -16.63,
+   "buy_perf_count": 5
   },
   {
    "slug": "michael-rulli",
@@ -11190,7 +11699,9 @@
    "last_trade": "2026-11-12",
    "last_disclosure": "2026-11-18",
    "avg_lag_days": 12.5,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -14.34,
+   "buy_perf_count": 2
   },
   {
    "slug": "lisa-mcclain",
@@ -11204,7 +11715,9 @@
    "last_trade": "2026-09-30",
    "last_disclosure": "2026-10-12",
    "avg_lag_days": 19.6,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -18.14,
+   "buy_perf_count": 8
   },
   {
    "slug": "cleo-fields",
@@ -11218,7 +11731,9 @@
    "last_trade": "2026-10-09",
    "last_disclosure": "2026-10-22",
    "avg_lag_days": 18.7,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -16.05,
+   "buy_perf_count": 6
   },
   {
    "slug": "richard-blumenthal",
@@ -11232,7 +11747,9 @@
    "last_trade": "2026-09-23",
    "last_disclosure": "2026-10-26",
    "avg_lag_days": 35.4,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": null,
+   "buy_perf_count": 0
   },
   {
    "slug": "shelley-m-capito",
@@ -11246,7 +11763,9 @@
    "last_trade": "2026-10-21",
    "last_disclosure": "2026-11-04",
    "avg_lag_days": 14.0,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": null,
+   "buy_perf_count": 0
   },
   {
    "slug": "josh-gottheimer",
@@ -11260,7 +11779,9 @@
    "last_trade": "2026-10-26",
    "last_disclosure": "2026-11-05",
    "avg_lag_days": 15.5,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -12.55,
+   "buy_perf_count": 1
   },
   {
    "slug": "james-french-hill",
@@ -11274,7 +11795,9 @@
    "last_trade": "2026-11-09",
    "last_disclosure": "2026-11-13",
    "avg_lag_days": 4.0,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": null,
+   "buy_perf_count": 0
   },
   {
    "slug": "john-j-mr-mcguire-iii",
@@ -11288,7 +11811,9 @@
    "last_trade": "2026-10-15",
    "last_disclosure": "2026-11-06",
    "avg_lag_days": 22.0,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": null,
+   "buy_perf_count": 0
   },
   {
    "slug": "robert-e-latta",
@@ -11302,7 +11827,9 @@
    "last_trade": "2026-10-20",
    "last_disclosure": "2026-11-03",
    "avg_lag_days": 14.0,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": -1.27,
+   "buy_perf_count": 1
   },
   {
    "slug": "sheldon-whitehouse",
@@ -11316,7 +11843,9 @@
    "last_trade": "2026-10-15",
    "last_disclosure": "2026-11-02",
    "avg_lag_days": 18.0,
-   "late_filings": 0
+   "late_filings": 0,
+   "avg_buy_perf_pct": null,
+   "buy_perf_count": 0
   }
  ],
  "party_map": [
@@ -11643,6 +12172,341 @@
    "rep_sells": 1,
    "group": "Democratic",
    "total": 2
+  }
+ ],
+ "perf_as_of": "2026-11-19",
+ "top_buys": [
+  {
+   "member": "Gilbert Cisneros",
+   "member_slug": "gilbert-cisneros",
+   "chamber": "house",
+   "state": "CA31",
+   "ticker": "SARO",
+   "asset": "StandardAero, Inc. Common Stock (SARO) [ST]",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-10-14",
+   "disclosure_date": "2026-11-10",
+   "est_price": 19.76,
+   "recent_price": 26.96,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 36.44,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 27,
+   "outcome": "gain"
+  },
+  {
+   "member": "Gilbert Cisneros",
+   "member_slug": "gilbert-cisneros",
+   "chamber": "house",
+   "state": "CA31",
+   "ticker": "APP",
+   "asset": "Applovin Corporation - Class A Common Stock",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-09-18",
+   "disclosure_date": "2026-10-12",
+   "est_price": 308.06,
+   "recent_price": 379.02,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 23.03,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 24,
+   "outcome": "gain"
+  },
+  {
+   "member": "Maria Elvira Salazar",
+   "member_slug": "maria-elvira-salazar",
+   "chamber": "house",
+   "state": "FL27",
+   "ticker": "OKTA",
+   "asset": "Okta, Inc. - Class A Common Stock",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-09-04",
+   "disclosure_date": "2026-10-07",
+   "est_price": 170.6,
+   "recent_price": 206.85,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 21.25,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Republican",
+   "lag_days": 33,
+   "outcome": "gain"
+  },
+  {
+   "member": "Rohit Khanna",
+   "member_slug": "rohit-khanna",
+   "chamber": "house",
+   "state": "CA17",
+   "ticker": "COST",
+   "asset": "COSTCO WHOLESALE CORPORATION CMN",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-09-11",
+   "disclosure_date": "2026-10-07",
+   "est_price": 904.77,
+   "recent_price": 1093.83,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 20.9,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 26,
+   "outcome": "gain"
+  },
+  {
+   "member": "Rohit Khanna",
+   "member_slug": "rohit-khanna",
+   "chamber": "house",
+   "state": "CA17",
+   "ticker": "TSCO",
+   "asset": "TRACTOR SUPPLY COMPANY CMN",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-09-25",
+   "disclosure_date": "2026-10-07",
+   "est_price": 32.27,
+   "recent_price": 38.74,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 20.05,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 12,
+   "outcome": "gain"
+  },
+  {
+   "member": "Gilbert Cisneros",
+   "member_slug": "gilbert-cisneros",
+   "chamber": "house",
+   "state": "CA31",
+   "ticker": "MBGL",
+   "asset": "Mobility Global Inc. Common Stock (MBGL) [ST]",
+   "type": "purchase",
+   "amount_low": 50001,
+   "amount_high": 100000,
+   "amount_range": "$50,001 - $100,000",
+   "transaction_date": "2026-10-15",
+   "disclosure_date": "2026-11-10",
+   "est_price": 18.72,
+   "recent_price": 22.32,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 19.23,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 26,
+   "outcome": "gain"
+  },
+  {
+   "member": "David J. Taylor",
+   "member_slug": "david-j-taylor",
+   "chamber": "house",
+   "state": "OH02",
+   "ticker": "AVGO",
+   "asset": "Broadcom Inc. - Common Stock",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-11-05",
+   "disclosure_date": "2026-11-12",
+   "est_price": 291.53,
+   "recent_price": 346.65,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 18.91,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Republican",
+   "lag_days": 7,
+   "outcome": "gain"
+  },
+  {
+   "member": "Michael T. McCaul",
+   "member_slug": "michael-t-mccaul",
+   "chamber": "house",
+   "state": "TX10",
+   "ticker": "ACN",
+   "asset": "ACCENTURE PLC",
+   "type": "purchase",
+   "amount_low": 15001,
+   "amount_high": 50000,
+   "amount_range": "$15,001 - $50,000",
+   "transaction_date": "2026-08-25",
+   "disclosure_date": "2026-10-14",
+   "est_price": 186.93,
+   "recent_price": 218.58,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 16.93,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Republican",
+   "lag_days": 50,
+   "outcome": "gain"
+  },
+  {
+   "member": "Rohit Khanna",
+   "member_slug": "rohit-khanna",
+   "chamber": "house",
+   "state": "CA17",
+   "ticker": "UPS",
+   "asset": "UNITED PARCEL SERVICE INC. CLASS B COMMON STOCK",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-09-25",
+   "disclosure_date": "2026-10-07",
+   "est_price": 93.96,
+   "recent_price": 109.11,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 16.12,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 12,
+   "outcome": "gain"
+  },
+  {
+   "member": "Gilbert Cisneros",
+   "member_slug": "gilbert-cisneros",
+   "chamber": "house",
+   "state": "CA31",
+   "ticker": "COCO",
+   "asset": "The Vita Coco Company, Inc. - Common Stock",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-09-17",
+   "disclosure_date": "2026-10-12",
+   "est_price": 56.24,
+   "recent_price": 65.18,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": 15.9,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 25,
+   "outcome": "gain"
+  }
+ ],
+ "worst_buys": [
+  {
+   "member": "Rohit Khanna",
+   "member_slug": "rohit-khanna",
+   "chamber": "house",
+   "state": "CA17",
+   "ticker": "HOOD",
+   "asset": "ROBINHOOD MARKETS INC. CMN CLASS A",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-09-04",
+   "disclosure_date": "2026-10-07",
+   "est_price": 122.11,
+   "recent_price": 68.65,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": -43.78,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 33,
+   "outcome": "loss"
+  },
+  {
+   "member": "Rohit Khanna",
+   "member_slug": "rohit-khanna",
+   "chamber": "house",
+   "state": "CA17",
+   "ticker": "MRVL",
+   "asset": "MARVELL TECHNOLOGY INC COM",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-10-21",
+   "disclosure_date": "2026-11-05",
+   "est_price": 244.76,
+   "recent_price": 138.47,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": -43.43,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 15,
+   "outcome": "loss"
+  },
+  {
+   "member": "Gilbert Cisneros",
+   "member_slug": "gilbert-cisneros",
+   "chamber": "house",
+   "state": "CA31",
+   "ticker": "MRAAF",
+   "asset": "Murata Manufacturing Ordinary Shares (MRAAF) [ST]",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-10-08",
+   "disclosure_date": "2026-11-10",
+   "est_price": 54.22,
+   "recent_price": 31.314,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": -42.25,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 33,
+   "outcome": "loss"
+  },
+  {
+   "member": "Gilbert Cisneros",
+   "member_slug": "gilbert-cisneros",
+   "chamber": "house",
+   "state": "CA31",
+   "ticker": "NOW",
+   "asset": "ServiceNow, Inc. Common Stock (NOW) [ST]",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-10-21",
+   "disclosure_date": "2026-11-10",
+   "est_price": 153.12,
+   "recent_price": 88.87,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": -41.96,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 20,
+   "outcome": "loss"
+  },
+  {
+   "member": "Rohit Khanna",
+   "member_slug": "rohit-khanna",
+   "chamber": "house",
+   "state": "CA17",
+   "ticker": "COIN",
+   "asset": "COINBASE GLOBAL, INC. CMN CLASS A",
+   "type": "purchase",
+   "amount_low": 1001,
+   "amount_high": 15000,
+   "amount_range": "$1,001 - $15,000",
+   "transaction_date": "2026-09-04",
+   "disclosure_date": "2026-10-07",
+   "est_price": 184.64,
+   "recent_price": 108.87,
+   "recent_price_date": "2026-11-19",
+   "perf_pct": -41.04,
+   "filing_portal": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+   "party": "Democrat",
+   "lag_days": 33,
+   "outcome": "loss"
   }
  ]
 }

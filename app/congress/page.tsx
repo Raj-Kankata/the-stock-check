@@ -2,18 +2,22 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Card } from '@/components/ui'
 import CongressBrowser, { type CongressTradeRow } from '@/components/CongressBrowser'
-import { dateLabel, int } from '@/lib/format'
+import { dateLabel, int, money } from '@/lib/format'
 import { TICKER_SYMBOLS } from '@/lib/data'
 import {
   CONGRESS_AS_OF,
   CONGRESS_CAPTURE_START,
   CONGRESS_MEMBERS,
   CONGRESS_PARTY_MAP,
+  CONGRESS_PERF_AS_OF,
   CONGRESS_STATS,
+  CONGRESS_TOP_BUYS,
   CONGRESS_TRADES,
+  CONGRESS_WORST_BUYS,
   congressChamberLabel,
   congressStateLabel,
   congressTypeLabel,
+  type CongressTrade,
 } from '@/lib/congress-data'
 
 export const metadata: Metadata = {
@@ -27,6 +31,76 @@ export const metadata: Metadata = {
 const BOARD_ROWS = 500
 
 const BARGO_URL = 'https://www.bargo.ai/free-apis/congress'
+
+/** Bargo's perf_pct is already in percent units (3.87 = +3.87%) —
+    unlike lib/format's pct(), which takes a fraction. */
+function perfPct(v: number | null): string {
+  if (v === null) return '—'
+  return `${v > 0 ? '+' : ''}${v.toFixed(1)}%`
+}
+
+function PerfTable({
+  rows,
+  cardSet,
+}: {
+  rows: CongressTrade[]
+  cardSet: Set<string>
+}) {
+  return (
+    <div className="table-scroll">
+    <table className="tabled dense">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Member</th>
+          <th className="nw">Trade date</th>
+          <th>Disclosed</th>
+          <th className="nw">Amount range</th>
+          <th className="num nw">Price then → now</th>
+          <th className="num">Return</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((t, i) => (
+          <tr key={`${t.member_slug}-${t.ticker}-${t.transaction_date}-${i}`}>
+            <td>
+              {cardSet.has(t.ticker) ? (
+                <Link href={`/stock/${t.ticker}`}>
+                  <strong>{t.ticker}</strong>
+                </Link>
+              ) : (
+                <strong>{t.ticker}</strong>
+              )}
+            </td>
+            <td>
+              <Link href={`/congress/${t.member_slug}`}>{t.member}</Link>
+            </td>
+            <td className="nw">{dateLabel(t.transaction_date)}</td>
+            <td>{dateLabel(t.disclosure_date)}</td>
+            <td className="nw">{t.amount_range}</td>
+            <td className="num nw">
+              {t.est_price === null && t.recent_price === null
+                ? '—'
+                : `${money(t.est_price)} → ${money(t.recent_price)}`}
+            </td>
+            <td className="num">
+              <span
+                className={
+                  t.perf_pct !== null && t.perf_pct >= 0
+                    ? 'num-pos'
+                    : 'num-neg'
+                }
+              >
+                {perfPct(t.perf_pct)}
+              </span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    </div>
+  )
+}
 
 export default function CongressPage() {
   const cardSet = new Set(TICKER_SYMBOLS)
@@ -134,6 +208,34 @@ export default function CongressPage() {
           disclosed trades from {int(CONGRESS_STATS.totals.members)} members in total) — not
           just the filings we have captured below. A ticker links to its check when we score
           it.
+        </p>
+      </Card>
+
+      <Card title="How disclosed buys have done">
+        {CONGRESS_TOP_BUYS.length === 0 ? (
+          <p className="footnote">
+            No disclosed buys with a price estimate in the filings captured so far.
+          </p>
+        ) : (
+          <>
+            <h3>Best-performing disclosed buys</h3>
+            <PerfTable rows={CONGRESS_TOP_BUYS} cardSet={cardSet} />
+            <h3>Worst-performing disclosed buys</h3>
+            <PerfTable rows={CONGRESS_WORST_BUYS} cardSet={cardSet} />
+          </>
+        )}
+        <p className="footnote">
+          Performance is the return since the member&apos;s trade date using{' '}
+          <a href={BARGO_URL} target="_blank" rel="noreferrer">
+            Bargo
+          </a>
+          &apos;s price estimates, as of{' '}
+          {CONGRESS_PERF_AS_OF ? dateLabel(CONGRESS_PERF_AS_OF) : 'the latest capture'}. It
+          is a record of past moves, not a backtest, not a signal, and not what a follower
+          could have earned — filings arrive up to ~45 days after the trade, so the move
+          was already history before the filing became public. Buys only, from the filings
+          we have captured since {captureStart}; a member&apos;s average across their buys
+          is on their page.
         </p>
       </Card>
 

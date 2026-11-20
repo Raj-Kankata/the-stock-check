@@ -947,6 +947,28 @@ tr.gap-above td {
 .grid-scroll {
   overflow-x: auto;
 }
+
+/* ---- wide data tables (Congress filings tables): ten columns
+   whose min-content width can exceed the card at desktop widths
+   too, so the table scrolls inside its card like the grid does and
+   the last column is never clipped at the card's edge. Cells marked
+   .nw (amount ranges, dates, lags, prices) never wrap mid-value;
+   the dense variant tightens cell padding and type a step so the
+   table fits without scrolling more often. ---- */
+.table-scroll {
+  overflow-x: auto;
+}
+table.tabled.dense {
+  font-size: 14px;
+}
+table.tabled.dense th,
+table.tabled.dense td {
+  padding: 6px 8px;
+}
+table.tabled th.nw,
+table.tabled td.nw {
+  white-space: nowrap;
+}
 .grid-table td,
 .grid-table th {
   text-align: center;

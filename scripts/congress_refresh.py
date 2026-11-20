@@ -25,9 +25,17 @@ What this script does:
      deduped on member_slug|ticker|transaction_date|type|amount_low|
      amount_high|disclosure_date, and capped at 5,000 trades (oldest
      by disclosure date dropped first). The store therefore grows
-     nightly inside Bargo's rolling 3-month window.
-  4. Recomputes per-member aggregates and the Party Money Map from
-     the store (see RULEBOOK §31).
+     nightly inside Bargo's rolling 3-month window. When a pulled
+     trade's key matches a stored trade, the stored row is kept and
+     only its performance fields are refreshed from the newer pull
+     (recent_price, recent_price_date, perf_pct, outcome — plus
+     est_price when the stored row has none): Bargo revises its
+     price estimates as prices move, and the stored values would
+     otherwise go stale the night they land.
+  4. Recomputes per-member aggregates, the Party Money Map and the
+     performance layer (per-member average buy performance; the
+     store's best/worst disclosed buys by perf_pct) from the store
+     (see RULEBOOK §31).
 
 Rate-limit discipline (Bargo keyless: X-RateLimit-Limit 30 requests,
 X-RateLimit-Rows-Limit 100 rows per window; the Remaining counters
@@ -35,10 +43,15 @@ ride on every response): the pull reads the Remaining headers after
 every response, stops pulling member pages when rows-remaining drops
 below 20, and on HTTP 429 stops pulling immediately. A 429 or any
 other failure on a core fetch (stats / feed / members index /
-legislators) aborts the run with the existing store untouched. A
-failure on one member's deep pull skips that member (their feed
-trades are still merged); a 429 stops the deep pulls and the run
-proceeds with what it has. This step NEVER fails the nightly run
+legislators) stops the pulling for the night: every stored trade is
+kept exactly as it stands, and the run still recomputes the derived
+layer (aggregates, performance panels, and the party map when the
+roster was fetched) from the stored trades, writing the file if the
+derived layer changed — so a rate-limited night still refreshes
+everything that does not depend on a fresh pull. A failure on one
+member's deep pull skips that member (their feed trades are still
+merged); a 429 stops the deep pulls and the run proceeds with what
+it has. This step NEVER fails the nightly run
 over Bargo: failures print a WARN line and exit 0. The one exit-1
 case is a corrupt existing store (unreadable or wrong shape) — that
 is a local data problem a human should see, not a Bargo problem.
@@ -81,7 +94,7 @@ TRADE_KEYS = ("member", "member_slug", "chamber", "state", "ticker",
               "asset", "type", "amount_low", "amount_high",
               "amount_range", "transaction_date", "disclosure_date",
               "est_price", "recent_price", "recent_price_date",
-              "perf_pct", "filing_portal")
+              "perf_pct", "outcome", "filing_portal")
 # The identity/display keys a row must carry to enter the store; the
 # price fields may legitimately be null on some rows.
 TRADE_REQUIRED = ("member", "member_slug", "chamber", "state",
@@ -239,9 +252,41 @@ def clean_trade(raw):
     return out
 
 
+# The fields a newer pull of the SAME trade may refresh: Bargo
+# revises its price estimates as prices move, so a stored row's
+# values go stale the night they land. Everything else on the row
+# is filing fact (member, ticker, dates, disclosed band) and never
+# changes, so the stored row is kept and only these are updated.
+PERF_FIELDS = ("recent_price", "recent_price_date", "perf_pct",
+               "outcome")
+
+
+def merge_rows(store, raw_rows):
+    """Merge pulled rows into the store dict (dedupe key -> row).
+    A new key inserts the pulled row; a matching key keeps the
+    stored row and refreshes only the perf fields the newer pull
+    actually carries (a null in the newer pull never erases a stored
+    value), plus est_price when the stored row has none."""
+    for raw in raw_rows:
+        t = clean_trade(raw)
+        key = dedupe_key(t)
+        old = store.get(key)
+        if old is None:
+            store[key] = t
+            continue
+        for f in PERF_FIELDS:
+            if t.get(f) is not None:
+                old[f] = t[f]
+        if old.get("est_price") is None \
+                and t.get("est_price") is not None:
+            old["est_price"] = t["est_price"]
+
+
 def member_aggregates(trades):
     """Per-member aggregates computed FROM THE STORE: counts, last
-    trade, mean filing lag, late filings (lag > 45 days)."""
+    trade, mean filing lag, late filings (lag > 45 days), and the
+    performance layer's per-member figure — the mean perf_pct over
+    the member's disclosed buys that carry one, with its count."""
     by_member = {}
     for t in trades:
         by_member.setdefault(t["member_slug"], []).append(t)
@@ -252,6 +297,9 @@ def member_aggregates(trades):
         head = rows_sorted[0]
         lags = [lag_days(r) for r in rows]
         lags = [x for x in lags if x is not None]
+        buy_perfs = [r["perf_pct"] for r in rows
+                     if r["type"] == "purchase"
+                     and r.get("perf_pct") is not None]
         parties = [r.get("party") for r in rows if r.get("party")]
         members.append({
             "slug": slug,
@@ -267,6 +315,9 @@ def member_aggregates(trades):
             "avg_lag_days": (round(sum(lags) / len(lags), 1)
                              if lags else None),
             "late_filings": sum(1 for x in lags if x > 45),
+            "avg_buy_perf_pct": (round(sum(buy_perfs) / len(buy_perfs), 2)
+                                 if buy_perfs else None),
+            "buy_perf_count": len(buy_perfs),
         })
     members.sort(key=lambda m: (-m["trades"], m["name"]))
     return members
@@ -326,6 +377,27 @@ def party_money_map(trades, as_of):
     return out
 
 
+def perf_panels(trades):
+    """The performance layer (RULEBOOK §31): the best and worst
+    disclosed BUYS in the store by perf_pct — Bargo's return from
+    its trade-date price estimate to its recent price — plus the
+    as-of those prices carry (the newest recent_price_date in the
+    store). Buys only: a sale's perf_pct measures the stock's move
+    after the sale, not a position the member took. The worst list
+    never repeats a row already in the best list."""
+    buys = [t for t in trades if t["type"] == "purchase"
+            and t.get("perf_pct") is not None]
+    asc = sorted(buys, key=lambda t: (t["perf_pct"],
+                                      t["disclosure_date"],
+                                      t["ticker"]))
+    top = list(reversed(asc[-10:]))
+    top_keys = {dedupe_key(t) for t in top}
+    worst = [t for t in asc if dedupe_key(t) not in top_keys][:5]
+    dates = [t["recent_price_date"] for t in trades
+             if t.get("recent_price_date")]
+    return top, worst, (max(dates) if dates else None)
+
+
 def validate_trades(rows, where):
     for r in rows:
         if not isinstance(r, dict) or any(
@@ -353,6 +425,10 @@ def main():
             return 1
 
     budget = Budget()
+    stats = None
+    legislators = None
+    members_idx = None
+    pulled_rows = []
     try:
         stats = fetch_json(f"{BARGO}/stats", budget)
         if not isinstance(stats, dict) \
@@ -369,6 +445,7 @@ def main():
             raise FetchFail("/trades: unexpected shape (schema "
                             "surprise)")
         validate_trades(feed["trades"], "/trades")
+        pulled_rows = list(feed["trades"])
         print(f"  /trades: {len(feed['trades'])} rows "
               f"(budget: {budget})")
 
@@ -386,75 +463,88 @@ def main():
                             "shape")
         print(f"  legislators: {len(legislators)} current members")
     except RateLimited as e:
-        warn(f"{e} — keeping the existing store untouched.")
-        return 0
+        warn(f"{e} — no new filings pulled this run; the derived "
+             f"layer is recomputed from the stored trades.")
+        if existing is None:
+            print("  no store exists yet — nothing to recompute.")
+            return 0
     except FetchFail as e:
-        warn(f"{e} — keeping the existing store untouched.")
-        return 0
+        warn(f"{e} — no new filings pulled this run; the derived "
+             f"layer is recomputed from the stored trades.")
+        if existing is None:
+            print("  no store exists yet — nothing to recompute.")
+            return 0
 
     # Deep pulls: the top members by Bargo's own trade counts, inside
     # whatever budget is left. A 429 stops the pulls; a plain failure
     # skips that one member. Either way the run proceeds with what it
-    # has — the feed trades are already in hand.
+    # has — the feed trades are already in hand. Skipped entirely on
+    # a night when a core fetch failed (members_idx is None).
     deep_rows = []
-    ranked = sorted(members_idx["members"],
-                    key=lambda m: -(m.get("trades") or 0))
-    pulled = 0
-    for m in ranked[:TOP_MEMBERS]:
-        slug = m.get("member_slug")
-        if not slug:
-            continue
-        if budget.rows_remaining is not None \
-                and budget.rows_remaining < ROWS_FLOOR:
-            print(f"  deep pulls stopped: rows-remaining "
-                  f"{budget.rows_remaining} < {ROWS_FLOOR}")
-            break
-        if budget.requests_remaining is not None \
-                and budget.requests_remaining <= 1:
-            print("  deep pulls stopped: request budget exhausted")
-            break
-        try:
-            page = fetch_json(f"{BARGO}/members/{slug}", budget)
-            if not isinstance(page, dict) \
-                    or not isinstance(page.get("trades"), list):
-                print(f"  /members/{slug}: unexpected shape — skipped")
+    if members_idx is not None:
+        ranked = sorted(members_idx["members"],
+                        key=lambda m: -(m.get("trades") or 0))
+        pulled = 0
+        for m in ranked[:TOP_MEMBERS]:
+            slug = m.get("member_slug")
+            if not slug:
                 continue
-            validate_trades(page["trades"], f"/members/{slug}")
-            deep_rows.extend(page["trades"])
-            pulled += 1
-            print(f"  /members/{slug}: {len(page['trades'])} rows "
-                  f"(budget: {budget})")
-        except RateLimited:
-            print("  deep pulls stopped: HTTP 429")
-            break
-        except FetchFail as e:
-            print(f"  /members/{slug}: {e} — skipped")
-            continue
-        time.sleep(0.3)
+            if budget.rows_remaining is not None \
+                    and budget.rows_remaining < ROWS_FLOOR:
+                print(f"  deep pulls stopped: rows-remaining "
+                      f"{budget.rows_remaining} < {ROWS_FLOOR}")
+                break
+            if budget.requests_remaining is not None \
+                    and budget.requests_remaining <= 1:
+                print("  deep pulls stopped: request budget exhausted")
+                break
+            try:
+                page = fetch_json(f"{BARGO}/members/{slug}", budget)
+                if not isinstance(page, dict) \
+                        or not isinstance(page.get("trades"), list):
+                    print(f"  /members/{slug}: unexpected shape — "
+                          f"skipped")
+                    continue
+                validate_trades(page["trades"], f"/members/{slug}")
+                deep_rows.extend(page["trades"])
+                pulled += 1
+                print(f"  /members/{slug}: {len(page['trades'])} rows "
+                      f"(budget: {budget})")
+            except RateLimited:
+                print("  deep pulls stopped: HTTP 429")
+                break
+            except FetchFail as e:
+                print(f"  /members/{slug}: {e} — skipped")
+                continue
+            time.sleep(0.3)
+    pulled_rows += deep_rows
 
-    # Merge into the store and dedupe.
+    # Merge into the store: new keys insert; a matching key keeps the
+    # stored row and refreshes only its perf fields (merge_rows).
     store = {}
     for t in (existing or {}).get("trades", []):
         store[dedupe_key(t)] = t
     before = len(store)
-    for raw in feed["trades"] + deep_rows:
-        t = clean_trade(raw)
-        store[dedupe_key(t)] = t
+    merge_rows(store, pulled_rows)
     merged = list(store.values())
-    print(f"  merge: {before} stored + "
-          f"{len(feed['trades']) + len(deep_rows)} pulled -> "
+    print(f"  merge: {before} stored + {len(pulled_rows)} pulled -> "
           f"{len(merged)} unique")
 
-    # Party enrichment for every stored trade (recomputed each run so
-    # a matcher improvement repairs old rows).
-    parties = PartyIndex(legislators)
+    # Party enrichment (recomputed each run so a matcher improvement
+    # repairs old rows). On a night the roster fetch failed, each
+    # stored trade keeps the party it already carries.
     tier_counts = {}
-    for t in merged:
-        party, tier = parties.match(t["member_slug"], t["member"],
-                                    t["state"])
-        t["party"] = party
-        t["lag_days"] = lag_days(t)
-        tier_counts[tier] = tier_counts.get(tier, 0) + 1
+    if legislators is not None:
+        parties = PartyIndex(legislators)
+        for t in merged:
+            party, tier = parties.match(t["member_slug"], t["member"],
+                                        t["state"])
+            t["party"] = party
+            t["lag_days"] = lag_days(t)
+            tier_counts[tier] = tier_counts.get(tier, 0) + 1
+    else:
+        for t in merged:
+            t["lag_days"] = lag_days(t)
 
     # Newest first: disclosure date, then transaction date.
     merged.sort(key=lambda t: (t["disclosure_date"],
@@ -469,6 +559,7 @@ def main():
     matched = sum(1 for m in members if m["party"])
     tickers = sorted({t["ticker"] for t in merged})
     pmap = party_money_map(merged, as_of)
+    top_buys, worst_buys, perf_as_of = perf_panels(merged)
 
     out = {
         "as_of": as_of,
@@ -477,10 +568,17 @@ def main():
         "capture_start": CAPTURE_START,
         "source": "Bargo — built from official House & Senate filings",
         "source_url": "https://www.bargo.ai/free-apis/congress",
-        "stats": stats,
+        # On a night the /stats fetch failed, the stored stats block
+        # is carried over verbatim — it is Bargo's dataset snapshot,
+        # not something we compute.
+        "stats": stats if stats is not None
+                 else (existing or {}).get("stats"),
         "trades": merged,
         "members": members,
         "party_map": pmap,
+        "perf_as_of": perf_as_of,
+        "top_buys": top_buys,
+        "worst_buys": worst_buys,
     }
 
     if existing is not None:
@@ -499,6 +597,14 @@ def main():
           f"members ({matched} with party matched; tiers "
           f"{tier_counts}), {len(tickers)} tickers covered, "
           f"{len(pmap)} party-map tickers, as of {as_of}.")
+    if top_buys:
+        print(f"  perf layer (as of {perf_as_of}): best buy "
+              f"{top_buys[0]['ticker']} {top_buys[0]['perf_pct']:+.2f}% "
+              f"({top_buys[0]['member']}); worst buy "
+              f"{worst_buys[0]['ticker']} "
+              f"{worst_buys[0]['perf_pct']:+.2f}% "
+              f"({worst_buys[0]['member']}); "
+              f"{len(top_buys)} top / {len(worst_buys)} worst rows.")
     return 0
 
 

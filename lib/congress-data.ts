@@ -56,6 +56,9 @@ export interface CongressTrade {
   recent_price: number | null
   recent_price_date: string | null
   perf_pct: number | null
+  /** Bargo's outcome label for the trade; refreshed on merge like
+      the other perf fields. May be absent on older stored rows. */
+  outcome?: string | null
   filing_portal: string
   party: string | null
   lag_days: number | null
@@ -76,6 +79,12 @@ export interface CongressMember {
   last_disclosure: string
   avg_lag_days: number | null
   late_filings: number
+  /** Performance layer: mean perf_pct over this member's disclosed
+      buys that carry one (return since the trade date, on Bargo's
+      price estimates), and how many buys went into it. Null / 0
+      when no captured buy carries a perf figure. */
+  avg_buy_perf_pct: number | null
+  buy_perf_count: number
 }
 
 export interface CongressPartyRow {
@@ -98,6 +107,12 @@ export interface CongressFile {
   trades: CongressTrade[]
   members: CongressMember[]
   party_map: CongressPartyRow[]
+  /** Performance layer, precomputed by the refresh from the store:
+      the newest recent_price_date the perf figures carry, and the
+      best / worst disclosed buys by perf_pct (full trade rows). */
+  perf_as_of: string | null
+  top_buys: CongressTrade[]
+  worst_buys: CongressTrade[]
 }
 
 export const CONGRESS = congressJson as unknown as CongressFile
@@ -107,6 +122,9 @@ export const CONGRESS_STATS = CONGRESS.stats
 export const CONGRESS_TRADES = CONGRESS.trades
 export const CONGRESS_MEMBERS = CONGRESS.members
 export const CONGRESS_PARTY_MAP = CONGRESS.party_map
+export const CONGRESS_PERF_AS_OF = CONGRESS.perf_as_of
+export const CONGRESS_TOP_BUYS = CONGRESS.top_buys
+export const CONGRESS_WORST_BUYS = CONGRESS.worst_buys
 
 export function getCongressMember(slug: string): CongressMember | undefined {
   return CONGRESS_MEMBERS.find((m) => m.slug === slug)
