@@ -19,6 +19,13 @@ What refreshes nightly (this script):
   * market_cap — RECOMPUTED every refresh as fresh price x
     shares_implied_total (from base_inputs.json); never frozen. Null if
     shares are missing for a ticker.
+  * revenue_ttm, ps_ttm, sector_ps — DISPLAY ONLY (RULEBOOK §36):
+    revenue_ttm is the frozen base_inputs.json TTM revenue (the same
+    figure the engines' TTM ratios use) carried through the merge like
+    debt_fcf; ps_ttm = market_cap / revenue_ttm, rounded to 2dp, null
+    when revenue is missing or <= 0; sector_ps is a top-level block of
+    per-sector median ps_ttm across the published cards, with the
+    count of tickers used. Never an input to any score, FV or verdict.
   * stock splits — a split since the base price_date is detected from
     the yfinance history's Stock Splits actions and the base record is
     rescaled BEFORE the 25% move gate (per-share fields ÷ factor,
@@ -457,6 +464,45 @@ def compute_market_cap(price, shares):
         return round(float(price) * float(shares), 2)
     except (TypeError, ValueError):
         return None
+
+
+def compute_ps(market_cap, revenue_ttm):
+    """Price / sales (TTM): market cap / TTM revenue, rounded to 2dp.
+    Display only (RULEBOOK §36) — never an input to any score, FV or
+    verdict. Null when either input is missing or revenue is not
+    positive — never a gate trip."""
+    if market_cap is None or revenue_ttm is None:
+        return None
+    try:
+        revenue = float(revenue_ttm)
+        if revenue <= 0:
+            return None
+        return round(float(market_cap) / revenue, 2)
+    except (TypeError, ValueError):
+        return None
+
+
+def sector_ps_block(tickers):
+    """Sector P/S medians (display only, RULEBOOK §36): for each sector
+    present in the given ticker records, the median ps_ttm across the
+    tickers with a valid ps_ttm, plus how many tickers went into it.
+    The median of an even count is the mean of the two middle values;
+    rounded to 2dp like ps_ttm itself. A sector whose tickers all lack
+    a valid P/S gets median null, count 0."""
+    by_sector = {}
+    for rec in tickers.values():
+        by_sector.setdefault(rec.get("sector"), []).append(rec.get("ps_ttm"))
+    out = {}
+    for sector in sorted(by_sector, key=lambda s: (s is None, s or "")):
+        vals = sorted(v for v in by_sector[sector] if v is not None)
+        if not vals:
+            out[sector] = {"median": None, "count": 0}
+            continue
+        n = len(vals)
+        mid = n // 2
+        median = vals[mid] if n % 2 else (vals[mid - 1] + vals[mid]) / 2
+        out[sector] = {"median": round(median, 2), "count": n}
+    return out
 
 
 # ------------------------------------------------------------------- fetching
@@ -1424,6 +1470,13 @@ def merge_results(v13_results, batch2_results, as_of, price_date,
         own PEGY leg plus the dividend yield from `refreshed` (live path:
         rescaled by refresh_ticker; dry-run path: base yield). Display
         only; no score, FV, leg or verdict is touched.
+      * revenue_ttm, ps_ttm - display only (RULEBOOK §36): revenue_ttm
+        is the frozen TTM revenue from `src` (the same passthrough
+        family as debt_fcf); ps_ttm = market cap / revenue_ttm via
+        compute_ps, null when revenue is missing or <= 0.
+    The top-level sector_ps block is computed here too, from the merged
+    tickers (sector_ps_block); cmd_live recomputes it if the §7 gate
+    drops a name afterwards, so it only ever covers published cards.
     `refreshed`: per-ticker records carrying the new fields (live path:
     the new_tickers dict from cmd_live; dry-run path: base["tickers"]).
     Missing keys in older files are tolerated as null, never a crash."""
@@ -1448,6 +1501,9 @@ def merge_results(v13_results, batch2_results, as_of, price_date,
         rec["rel_vol"] = copy.deepcopy(src.get("rel_vol"))
         rec["lynch"] = lynch_block(rec, src)
         add_actual_growth_row(t, rec, src)
+        rec["revenue_ttm"] = copy.deepcopy(src.get("revenue_ttm"))
+        rec["ps_ttm"] = compute_ps(rec["market_cap"], rec["revenue_ttm"])
+    merged["sector_ps"] = sector_ps_block(merged["tickers"])
     return merged
 
 
@@ -1665,6 +1721,9 @@ def cmd_live(as_of_arg):
     # name from the universe in the same run.
     dropped = drop_nonpositive_fv(merged, all_tickers)
     if dropped:
+        # sector_ps was computed in the merge over the pre-drop set;
+        # recompute so it only ever covers published cards.
+        merged["sector_ps"] = sector_ps_block(merged["tickers"])
         print(f"NON-POSITIVE FV — unpublished (SPEC v1.5 §7): "
               f"{', '.join(sorted(dropped))}")
 
@@ -1693,8 +1752,11 @@ def cmd_live(as_of_arg):
         # every night by construction (daily volume), market_cap moves
         # with price, and debt_fcf/indexes move on the quarterly refresh
         # of base_inputs.json. lynch moves whenever its inputs move
-        # (price, growth, yield). .get(..., None) tolerates stored files
-        # that predate the fields. Consequence, by design: a night with
+        # (price, growth, yield). revenue_ttm / ps_ttm (display only,
+        # RULEBOOK §36) move with market_cap and the base refresh, and
+        # must count here or they would never first publish.
+        # .get(..., None) tolerates stored files that predate the
+        # fields. Consequence, by design: a night with
         # no price/FV/verdict change still writes when rel_vol changed.
         # Same for overall_score, the three leg values and flags: a
         # curation-only change (e.g. SPEC v1.3 symmetric one-offs — GME's
@@ -1703,7 +1765,7 @@ def cmd_live(as_of_arg):
         # without these it would silently never publish. Added 2026-11-17.
         n_ch = any(old.get(f) != new.get(f)
                    for f in ("debt_fcf", "market_cap", "rel_vol", "indexes",
-                             "lynch"))
+                             "lynch", "revenue_ttm", "ps_ttm"))
         o_ch = old["overall_score"] != new["overall_score"]
         legs_old = old["pillars"]["valuation"]["detail"]["legs"]
         legs_new = new["pillars"]["valuation"]["detail"]["legs"]

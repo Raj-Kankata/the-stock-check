@@ -144,6 +144,12 @@ export interface TickerData {
   /** Lynch value panel (display only, see LynchValue). Optional: a card
       must render without it (see app/stock/[ticker]/page.tsx). */
   lynch?: LynchValue
+  /** Price / Sales panel (display only, RULEBOOK §36). Optional: a card
+      must render without them. revenue_ttm = the frozen TTM revenue from
+      base_inputs.json; ps_ttm = market_cap / revenue_ttm, null when
+      revenue is missing or <= 0. */
+  revenue_ttm?: number | null
+  ps_ttm?: number | null
 }
 
 export interface EngineResults {
@@ -164,6 +170,11 @@ export interface EngineResults {
     tickers_covering_all_12_quarters: number
     as_of: string
   }
+  /** Sector P/S medians (display only, RULEBOOK §36): per-sector median
+      ps_ttm across the published cards, with the count of tickers used.
+      Written by nightly_refresh.py (sector_ps_block). Optional: the
+      card's Price / Sales panel hides the comparison when absent. */
+  sector_ps?: Record<string, { median: number | null; count: number }>
   locked_set: Record<string, string | number>
   capm_crosscheck: {
     ten_year_treasury_pct: number

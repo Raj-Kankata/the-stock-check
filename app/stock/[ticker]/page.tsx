@@ -304,6 +304,9 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   const legs = val.legs!
   const capm = val.dcf_capm_crosscheck!
   const grid = val.dcf_sensitivity_grid!
+  // Price / Sales panel (display only, RULEBOOK §36): this card's
+  // sector median multiple, from the refresh's sector_ps block.
+  const sectorPs = RESULTS.sector_ps?.[t.sector]
 
   // Which leg(s) match the stored fair value, computed from the stored
   // leg values — never hardcoded per ticker. A leg is badged only if the
@@ -866,7 +869,38 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
         </Card>
       </div>
 
-      {/* (6c) Congress trading — disclosed STOCK Act filings in this
+      {/* (6c) Price / Sales — display-only context multiple
+          (RULEBOOK §36), in the Lynch panel's family: never an input
+          to the score, fair value or verdict, and not a valuation
+          leg. Hidden entirely when the TTM revenue is missing or
+          not positive (ps_ttm null); the sector comparison and the
+          implied price hide when the sector has fewer than 3 cards
+          with a valid P/S. */}
+      {t.ps_ttm !== undefined && t.ps_ttm !== null && (
+        <Card title="Price / Sales — comparison">
+          <Kv k="Price / sales (TTM)" v={`${t.ps_ttm.toFixed(2)}×`} />
+          {sectorPs !== undefined && sectorPs.median !== null && sectorPs.count >= 3 && (
+            <>
+              <Kv
+                k={`${t.sector} median`}
+                v={`${sectorPs.median.toFixed(2)}× (n=${sectorPs.count} cards)`}
+              />
+              <Kv
+                k="Price at the sector median multiple"
+                v={money((t.price * sectorPs.median) / t.ps_ttm)}
+              />
+            </>
+          )}
+          <p className="footnote">
+            Price-to-sales is a context multiple — the price paid for each dollar of
+            trailing-twelve-month revenue. The sector median is computed across The Stock
+            Check&rsquo;s own scored cards in the same sector. Display only — not used in
+            this card&rsquo;s score, fair value or verdict.
+          </p>
+        </Card>
+      )}
+
+      {/* (6d) Congress trading — disclosed STOCK Act filings in this
           ticker from the captured store (RULEBOOK §31). Context
           only: no score, no verdict, never a signal. */}
       <CongressPanel ticker={symbol} />
