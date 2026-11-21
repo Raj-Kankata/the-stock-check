@@ -62,6 +62,11 @@ jobs:
         run: python3 scripts/put_call_refresh.py
 
       - name: Refresh Fear & Greed Index (separate data product)
+        # Warn-and-continue (2026-11-21, Raj approved): a bad CNN payload
+        # must never veto the nightly commit — the panel keeps its last
+        # good data and the prices still land. The script itself stays
+        # fail-closed; only the workflow stops treating it as fatal.
+        continue-on-error: true
         run: python3 scripts/fear_greed_refresh.py
 
       - name: Refresh index board (separate data product)
