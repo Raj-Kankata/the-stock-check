@@ -894,8 +894,9 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
           <p className="footnote">
             Price-to-sales is a context multiple — the price paid for each dollar of
             trailing-twelve-month revenue. The sector median is computed across The Stock
-            Check&rsquo;s own scored cards in the same sector. Display only — not used in
-            this card&rsquo;s score, fair value or verdict.
+            Check&rsquo;s own scored cards in the same sector. n is the number of cards
+            behind that median. Display only — not used in this card&rsquo;s score, fair
+            value or verdict.
           </p>
         </Card>
       )}
