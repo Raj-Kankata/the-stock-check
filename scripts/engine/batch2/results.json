@@ -260,7 +260,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7372000000.0,
+      "ps_ttm": 6.55
     },
     "AAL": {
       "name": "American Airlines Group Inc.",
@@ -483,7 +485,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 60981000000.0,
+      "ps_ttm": 0.13
     },
     "AAP": {
       "name": "Advance Auto Parts, Inc.",
@@ -699,7 +703,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 8598000000.0,
+      "ps_ttm": 0.32
     },
     "AAPL": {
       "name": "Apple Inc.",
@@ -1116,7 +1122,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 66014000000.0,
+      "ps_ttm": 7.72
     },
     "ABNB": {
       "name": "Airbnb, Inc.",
@@ -1341,7 +1349,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 13933000000.0,
+      "ps_ttm": 7.36
     },
     "ABT": {
       "name": "Abbott Laboratories",
@@ -1560,7 +1570,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 48229000000.0,
+      "ps_ttm": 3.75
     },
     "ACLS": {
       "name": "Axcelis Technologies, Inc.",
@@ -1775,7 +1787,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 890242000.0,
+      "ps_ttm": 3.15
     },
     "ACMR": {
       "name": "ACM Research, Inc.",
@@ -1993,7 +2007,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1136299000.0,
+      "ps_ttm": 2.54
     },
     "ACN": {
       "name": "Accenture plc",
@@ -2216,7 +2232,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 74183445000.0,
+      "ps_ttm": 1.84
     },
     "ADBE": {
       "name": "Adobe Inc.",
@@ -2432,7 +2450,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 25970000000.0,
+      "ps_ttm": 3.41
     },
     "ADP": {
       "name": "Automatic Data Processing, Inc.",
@@ -2653,7 +2673,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 22262900000.0,
+      "ps_ttm": 5.44
     },
     "ADSK": {
       "name": "Autodesk, Inc.",
@@ -2870,7 +2892,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7790000000.0,
+      "ps_ttm": 6.68
     },
     "AFRM": {
       "name": "Affirm Holdings, Inc.",
@@ -3095,7 +3119,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4589961000.0,
+      "ps_ttm": 4.1
     },
     "AGL": {
       "name": "agilon health, inc.",
@@ -3312,7 +3338,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 6004180000.0,
+      "ps_ttm": 0.2
     },
     "AGNC": {
       "name": "AGNC Investment Corp.",
@@ -3502,7 +3530,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": null,
+      "ps_ttm": null
     },
     "AIP": {
       "name": "Arteris, Inc.",
@@ -3727,7 +3757,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 92981000.0,
+      "ps_ttm": 8.31
     },
     "ALAB": {
       "name": "Astera Labs, Inc.",
@@ -3946,7 +3978,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1556243000.0,
+      "ps_ttm": 21.3
     },
     "ALB": {
       "name": "Albemarle Corporation",
@@ -4164,7 +4198,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6153172000.0,
+      "ps_ttm": 2.14
     },
     "ALGT": {
       "name": "Allegiant Travel Company",
@@ -4387,7 +4423,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3293670000.0,
+      "ps_ttm": 0.45
     },
     "ALNT": {
       "name": "Allient Inc.",
@@ -4611,7 +4649,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 600438000.0,
+      "ps_ttm": 2.01
     },
     "AMAT": {
       "name": "Applied Materials, Inc.",
@@ -4830,7 +4870,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 30837000000.0,
+      "ps_ttm": 7.85
     },
     "AMBA": {
       "name": "Ambarella, Inc.",
@@ -5049,7 +5091,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 417801000.0,
+      "ps_ttm": 5.5
     },
     "AMC": {
       "name": "AMC Entertainment Holdings, Inc.",
@@ -5273,7 +5317,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 5641500000.0,
+      "ps_ttm": 0.25
     },
     "AMD": {
       "name": "Advanced Micro Devices, Inc.",
@@ -5492,7 +5538,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 45436000000.0,
+      "ps_ttm": 15.47
     },
     "AMKR": {
       "name": "Amkor Technology, Inc.",
@@ -5716,7 +5764,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7461269000.0,
+      "ps_ttm": 1.02
     },
     "AMN": {
       "name": "AMN Healthcare Services, Inc.",
@@ -5938,7 +5988,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3517095000.0,
+      "ps_ttm": 0.4
     },
     "AMPL": {
       "name": "Amplitude, Inc.",
@@ -6162,7 +6214,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 396449000.0,
+      "ps_ttm": 5.31
     },
     "AMZN": {
       "name": "Amazon.com, Inc.",
@@ -6394,7 +6448,9 @@
         "eps_adjusted": true,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 797455000000.0,
+      "ps_ttm": 3.37
     },
     "ANF": {
       "name": "Abercrombie & Fitch Co.",
@@ -6614,7 +6670,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5340931000.0,
+      "ps_ttm": 1.19
     },
     "AON": {
       "name": "Aon plc",
@@ -6835,7 +6893,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 17681000000.0,
+      "ps_ttm": 4.06
     },
     "APP": {
       "name": "AppLovin Corporation",
@@ -7055,7 +7115,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7608894000.0,
+      "ps_ttm": 15.44
     },
     "APPN": {
       "name": "Appian Corporation",
@@ -7279,7 +7341,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 842935000.0,
+      "ps_ttm": 4.69
     },
     "ARCC": {
       "name": "Ares Capital Corporation",
@@ -7465,7 +7529,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": null,
+      "ps_ttm": null
     },
     "ARDX": {
       "name": "Ardelyx, Inc.",
@@ -7684,7 +7750,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 468220000.0,
+      "ps_ttm": 1.54
     },
     "ARM": {
       "name": "Arm Holdings plc",
@@ -7905,7 +7973,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5464000000.0,
+      "ps_ttm": 29.8
     },
     "ASAN": {
       "name": "Asana, Inc.",
@@ -8130,7 +8200,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 828127000.0,
+      "ps_ttm": 2.49
     },
     "ASX": {
       "name": "ASE Technology Holding Co., Ltd.",
@@ -8312,7 +8384,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 786802862000.0,
+      "ps_ttm": 0.08
     },
     "ASYS": {
       "name": "Amtech Systems, Inc.",
@@ -8528,7 +8602,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 81666000.0,
+      "ps_ttm": 1.95
     },
     "ATNI": {
       "name": "ATN International, Inc.",
@@ -8752,7 +8828,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 734176000.0,
+      "ps_ttm": 0.58
     },
     "AVGO": {
       "name": "Broadcom Inc.",
@@ -8973,7 +9051,9 @@
         "eps_adjusted": true,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 89104000000.0,
+      "ps_ttm": 16.7
     },
     "AVNW": {
       "name": "Aviat Networks, Inc.",
@@ -9197,7 +9277,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 434331000.0,
+      "ps_ttm": 0.4
     },
     "AXP": {
       "name": "American Express Company",
@@ -9425,7 +9507,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 43903000000.0,
+      "ps_ttm": 4.74
     },
     "AXTI": {
       "name": "AXT, Inc.",
@@ -9649,7 +9733,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 170964000.0,
+      "ps_ttm": 12.88
     },
     "BA": {
       "name": "The Boeing Company",
@@ -9865,7 +9951,9 @@
         "eps_adjusted": true,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 94913000000.0,
+      "ps_ttm": 1.3
     },
     "BAC": {
       "name": "Bank of America Corporation",
@@ -10054,7 +10142,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 120155000000.0,
+      "ps_ttm": 3.0
     },
     "BE": {
       "name": "Bloom Energy Corporation",
@@ -10273,7 +10363,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3829939000.0,
+      "ps_ttm": 11.86
     },
     "BIP": {
       "name": "Brookfield Infrastructure Partners L.P.",
@@ -10489,7 +10581,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 25643000000.0,
+      "ps_ttm": 5.62
     },
     "BKNG": {
       "name": "Booking Holdings Inc.",
@@ -10711,7 +10805,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 28126000000.0,
+      "ps_ttm": 4.0
     },
     "BLDR": {
       "name": "Builders FirstSource, Inc.",
@@ -10925,7 +11021,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 14361561000.0,
+      "ps_ttm": 0.41
     },
     "BLK": {
       "name": "BlackRock, Inc.",
@@ -11143,7 +11241,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 28542000000.0,
+      "ps_ttm": 6.08
     },
     "BLSH": {
       "name": "Bullish",
@@ -11361,7 +11461,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 190571197000.0,
+      "ps_ttm": 0.01
     },
     "BOX": {
       "name": "Box, Inc.",
@@ -11585,7 +11687,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1234070000.0,
+      "ps_ttm": 6.84
     },
     "BRK-B": {
       "name": "Berkshire Hathaway Inc.",
@@ -11816,7 +11920,9 @@
         "eps_adjusted": true,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 438990000000.0,
+      "ps_ttm": 2.8
     },
     "C": {
       "name": "Citigroup Inc.",
@@ -12037,7 +12143,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 93115000000.0,
+      "ps_ttm": 2.24
     },
     "CAT": {
       "name": "Caterpillar Inc.",
@@ -12256,7 +12364,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 77773000000.0,
+      "ps_ttm": 3.05
     },
     "CAVA": {
       "name": "CAVA Group, Inc.",
@@ -12472,7 +12582,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1438127000.0,
+      "ps_ttm": 4.07
     },
     "CBOE": {
       "name": "Cboe Global Markets, Inc.",
@@ -12698,7 +12810,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5278400000.0,
+      "ps_ttm": 7.14
     },
     "CCJ": {
       "name": "Cameco Corporation",
@@ -12880,7 +12994,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3479131000.0,
+      "ps_ttm": 14.41
     },
     "CDE": {
       "name": "Coeur Mining, Inc.",
@@ -13104,7 +13220,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3600247000.0,
+      "ps_ttm": 2.16
     },
     "CDNS": {
       "name": "Cadence Design Systems, Inc.",
@@ -13322,7 +13440,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6132096000.0,
+      "ps_ttm": 12.6
     },
     "CELH": {
       "name": "Celsius Holdings, Inc.",
@@ -13538,7 +13658,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3169396000.0,
+      "ps_ttm": 3.16
     },
     "CHCT": {
       "name": "Community Healthcare Trust Incorporated",
@@ -13768,7 +13890,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 126137000.0,
+      "ps_ttm": 3.42
     },
     "CHWY": {
       "name": "Chewy, Inc.",
@@ -13992,7 +14116,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 13068700000.0,
+      "ps_ttm": 0.62
     },
     "CIEN": {
       "name": "Ciena Corporation",
@@ -14218,7 +14344,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6020894000.0,
+      "ps_ttm": 5.69
     },
     "CLOV": {
       "name": "Clover Health Investments, Corp.",
@@ -14436,7 +14564,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2739367000.0,
+      "ps_ttm": 0.28
     },
     "CMG": {
       "name": "Chipotle Mexican Grill, Inc.",
@@ -14658,7 +14788,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 12713477000.0,
+      "ps_ttm": 3.6
     },
     "COHR": {
       "name": "Coherent Corp.",
@@ -14875,7 +15007,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7907127000.0,
+      "ps_ttm": 4.72
     },
     "COST": {
       "name": "Costco Wholesale Corporation",
@@ -15093,7 +15227,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 303154000000.0,
+      "ps_ttm": 1.62
     },
     "CRCL": {
       "name": "Circle Internet Group",
@@ -15318,7 +15454,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3030568000.0,
+      "ps_ttm": 1.57
     },
     "CRDO": {
       "name": "Credo Technology Group Holding Ltd",
@@ -15535,7 +15673,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1591045000.0,
+      "ps_ttm": 11.9
     },
     "CRL": {
       "name": "Charles River Laboratories International, Inc.",
@@ -15753,7 +15893,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3976867000.0,
+      "ps_ttm": 3.31
     },
     "CRM": {
       "name": "Salesforce, Inc.",
@@ -15971,7 +16113,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 43938000000.0,
+      "ps_ttm": 3.62
     },
     "CROX": {
       "name": "Crocs, Inc.",
@@ -16194,7 +16338,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4101148000.0,
+      "ps_ttm": 1.91
     },
     "CRWD": {
       "name": "CrowdStrike Holdings, Inc.",
@@ -16411,7 +16557,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5396145000.0,
+      "ps_ttm": 38.26
     },
     "CSCO": {
       "name": "Cisco Systems, Inc.",
@@ -16630,7 +16778,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 63325000000.0,
+      "ps_ttm": 5.7
     },
     "CTOS": {
       "name": "Custom Truck One Source, Inc.",
@@ -16857,7 +17007,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2048476000.0,
+      "ps_ttm": 0.9
     },
     "CTSH": {
       "name": "Cognizant Technology Solutions Corporation",
@@ -17083,7 +17235,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 21891000000.0,
+      "ps_ttm": 1.24
     },
     "CVNA": {
       "name": "Carvana Co.",
@@ -17309,7 +17463,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 27451000000.0,
+      "ps_ttm": 7.94
     },
     "CVX": {
       "name": "Chevron Corporation",
@@ -17535,7 +17691,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 233333000000.0,
+      "ps_ttm": 1.77
     },
     "CZR": {
       "name": "Caesars Entertainment, Inc.",
@@ -17760,7 +17918,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 11719000000.0,
+      "ps_ttm": 0.51
     },
     "DAKT": {
       "name": "Daktronics, Inc.",
@@ -17976,7 +18136,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 854299000.0,
+      "ps_ttm": 1.04
     },
     "DAL": {
       "name": "Delta Air Lines, Inc.",
@@ -18202,7 +18364,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 71800000000.0,
+      "ps_ttm": 0.73
     },
     "DASH": {
       "name": "DoorDash, Inc.",
@@ -18422,7 +18586,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 17061000000.0,
+      "ps_ttm": 3.91
     },
     "DAVE": {
       "name": "Dave Inc.",
@@ -18641,7 +18807,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 690632000.0,
+      "ps_ttm": 5.18
     },
     "DCTH": {
       "name": "Delcath Systems, Inc.",
@@ -18857,7 +19025,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 109957000.0,
+      "ps_ttm": 7.11
     },
     "DDOG": {
       "name": "Datadog, Inc.",
@@ -19077,7 +19247,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4278164000.0,
+      "ps_ttm": 13.39
     },
     "DECK": {
       "name": "Deckers Outdoor Corporation",
@@ -19302,7 +19474,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5577003000.0,
+      "ps_ttm": 1.97
     },
     "DELL": {
       "name": "Dell Technologies Inc.",
@@ -19522,7 +19696,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 151197000000.0,
+      "ps_ttm": 1.22
     },
     "DG": {
       "name": "Dollar General Corporation",
@@ -19749,7 +19925,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 43637998000.0,
+      "ps_ttm": 0.66
     },
     "DGX": {
       "name": "Quest Diagnostics Incorporated",
@@ -19972,7 +20150,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 11841000000.0,
+      "ps_ttm": 2.45
     },
     "DIOD": {
       "name": "Diodes Incorporated",
@@ -20188,7 +20368,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1775161000.0,
+      "ps_ttm": 1.9
     },
     "DIS": {
       "name": "The Walt Disney Company",
@@ -20415,7 +20597,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 98861000000.0,
+      "ps_ttm": 2.12
     },
     "DKNG": {
       "name": "DraftKings Inc.",
@@ -20633,7 +20817,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 6407567000.0,
+      "ps_ttm": 1.2
     },
     "DKS": {
       "name": "DICK'S Sporting Goods, Inc.",
@@ -20849,7 +21035,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 21145146000.0,
+      "ps_ttm": 0.58
     },
     "DLR": {
       "name": "Digital Realty Trust, Inc.",
@@ -21038,7 +21226,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7096302000.0,
+      "ps_ttm": 8.95
     },
     "DOCN": {
       "name": "DigitalOcean Holdings, Inc.",
@@ -21255,7 +21445,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1102671000.0,
+      "ps_ttm": 6.91
     },
     "DOCU": {
       "name": "DocuSign, Inc.",
@@ -21476,7 +21668,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3361191000.0,
+      "ps_ttm": 4.46
     },
     "DUOL": {
       "name": "Duolingo, Inc.",
@@ -21692,7 +21886,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1182296000.0,
+      "ps_ttm": 5.8
     },
     "DXC": {
       "name": "DXC Technology Company",
@@ -21906,7 +22102,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 12357000000.0,
+      "ps_ttm": 0.18
     },
     "DXCM": {
       "name": "DexCom, Inc.",
@@ -22124,7 +22322,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5104400000.0,
+      "ps_ttm": 6.06
     },
     "EBAY": {
       "name": "eBay Inc.",
@@ -22346,7 +22546,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 12394000000.0,
+      "ps_ttm": 4.26
     },
     "EFOR": {
       "name": "Everforth, Inc.",
@@ -22562,7 +22764,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3986800000.0,
+      "ps_ttm": 0.33
     },
     "EFX": {
       "name": "Equifax Inc.",
@@ -22785,7 +22989,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6592100000.0,
+      "ps_ttm": 3.23
     },
     "EG": {
       "name": "Everest Group, Ltd.",
@@ -22973,7 +23179,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 16165000000.0,
+      "ps_ttm": 1.04
     },
     "EGBN": {
       "name": "Eagle Bancorp, Inc.",
@@ -23200,7 +23408,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": null,
+      "ps_ttm": null
     },
     "EIX": {
       "name": "Edison International",
@@ -23428,7 +23638,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 19952000000.0,
+      "ps_ttm": 1.21
     },
     "ELPC": {
       "name": "Companhia Paranaense de Energia",
@@ -23610,7 +23822,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 27985378000.0,
+      "ps_ttm": 0.27
     },
     "ENLT": {
       "name": "Enlight Renewable Energy Ltd",
@@ -23826,7 +24040,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 727041000.0,
+      "ps_ttm": 12.03
     },
     "ENPH": {
       "name": "Enphase Energy, Inc.",
@@ -24042,7 +24258,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1211404000.0,
+      "ps_ttm": 2.2
     },
     "ENS": {
       "name": "EnerSys",
@@ -24265,7 +24483,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3792609000.0,
+      "ps_ttm": 1.23
     },
     "ENTG": {
       "name": "Entegris, Inc.",
@@ -24483,7 +24703,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3524700000.0,
+      "ps_ttm": 5.4
     },
     "EOLS": {
       "name": "Evolus, Inc.",
@@ -24702,7 +24924,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 325473000.0,
+      "ps_ttm": 1.3
     },
     "EQIX": {
       "name": "Equinix, Inc.",
@@ -24923,7 +25147,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 10060000000.0,
+      "ps_ttm": 9.52
     },
     "EQPT": {
       "name": "EquipmentShare.com Inc.",
@@ -25145,7 +25371,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5477000000.0,
+      "ps_ttm": 1.34
     },
     "ERII": {
       "name": "Energy Recovery, Inc.",
@@ -25368,7 +25596,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 99769000.0,
+      "ps_ttm": 4.16
     },
     "ESTC": {
       "name": "Elastic N.V.",
@@ -25590,7 +25820,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1802156000.0,
+      "ps_ttm": 4.45
     },
     "ETOR": {
       "name": "eToro Group Ltd.",
@@ -25809,7 +26041,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 9357182000.0,
+      "ps_ttm": 0.19
     },
     "ETR": {
       "name": "Entergy Corporation",
@@ -26029,7 +26263,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 14035376000.0,
+      "ps_ttm": 3.53
     },
     "ETSY": {
       "name": "Etsy, Inc.",
@@ -26245,7 +26481,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3010072000.0,
+      "ps_ttm": 2.94
     },
     "EXE": {
       "name": "Expand Energy Corporation",
@@ -26470,7 +26708,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 13915000000.0,
+      "ps_ttm": 1.39
     },
     "EXEL": {
       "name": "Exelixis, Inc.",
@@ -26690,7 +26930,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2496861000.0,
+      "ps_ttm": 6.84
     },
     "F": {
       "name": "Ford Motor Company",
@@ -26917,7 +27159,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 186965000000.0,
+      "ps_ttm": 0.23
     },
     "FDS": {
       "name": "FactSet Research Systems Inc.",
@@ -27132,7 +27376,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2476256000.0,
+      "ps_ttm": 4.61
     },
     "FDX": {
       "name": "FedEx Corporation",
@@ -27360,7 +27606,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 97143000000.0,
+      "ps_ttm": 0.75
     },
     "FEIM": {
       "name": "Frequency Electronics, Inc.",
@@ -27576,7 +27824,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 72866000.0,
+      "ps_ttm": 7.98
     },
     "FFIV": {
       "name": "F5, Inc.",
@@ -27793,7 +28043,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3417000000.0,
+      "ps_ttm": 5.13
     },
     "FG": {
       "name": "F&G Annuities & Life, Inc.",
@@ -28015,7 +28267,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5504000000.0,
+      "ps_ttm": 0.55
     },
     "FICO": {
       "name": "Fair Isaac Corporation",
@@ -28234,7 +28488,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2534873000.0,
+      "ps_ttm": 6.3
     },
     "FLEX": {
       "name": "Flex Ltd.",
@@ -28454,7 +28710,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 30954000000.0,
+      "ps_ttm": 0.78
     },
     "FLG": {
       "name": "Flagstar Bank, National Association",
@@ -28678,7 +28936,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 27000000.0,
+      "ps_ttm": 221.33
     },
     "FLUT": {
       "name": "Flutter Entertainment plc",
@@ -28897,7 +29157,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 17241000000.0,
+      "ps_ttm": 0.9
     },
     "FSLR": {
       "name": "First Solar, Inc.",
@@ -29114,7 +29376,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5014151000.0,
+      "ps_ttm": 2.96
     },
     "FTAI": {
       "name": "FTAI Aviation Ltd.",
@@ -29329,7 +29593,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3423467000.0,
+      "ps_ttm": 4.72
     },
     "FTNT": {
       "name": "Fortinet, Inc.",
@@ -29549,7 +29815,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7880900000.0,
+      "ps_ttm": 11.75
     },
     "FUNC": {
       "name": "First United Corporation",
@@ -29770,7 +30038,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 16157000.0,
+      "ps_ttm": 17.6
     },
     "FWRG": {
       "name": "First Watch Restaurant Group, Inc.",
@@ -29994,7 +30264,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1351844000.0,
+      "ps_ttm": 0.52
     },
     "GAP": {
       "name": "The Gap, Inc.",
@@ -30218,7 +30490,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 15326000000.0,
+      "ps_ttm": 0.51
     },
     "GBX": {
       "name": "The Greenbrier Companies, Inc.",
@@ -30436,7 +30710,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2461100000.0,
+      "ps_ttm": 0.46
     },
     "GE": {
       "name": "GE Aerospace",
@@ -30653,7 +30929,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 52575000000.0,
+      "ps_ttm": 6.18
     },
     "GEL": {
       "name": "Genesis Energy, L.P.",
@@ -30869,7 +31147,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1868556000.0,
+      "ps_ttm": 2.5
     },
     "GEN": {
       "name": "Gen Digital Inc.",
@@ -31093,7 +31373,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5228000000.0,
+      "ps_ttm": 3.4
     },
     "GEV": {
       "name": "GE Vernova Inc.",
@@ -31318,7 +31600,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 44041000000.0,
+      "ps_ttm": 4.33
     },
     "GFS": {
       "name": "GLOBALFOUNDRIES Inc.",
@@ -31534,7 +31818,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7149000000.0,
+      "ps_ttm": 2.8
     },
     "GILD": {
       "name": "Gilead Sciences, Inc.",
@@ -31762,7 +32048,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 30988000000.0,
+      "ps_ttm": 6.63
     },
     "GKOS": {
       "name": "Glaukos Corporation",
@@ -31981,7 +32269,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 690332000.0,
+      "ps_ttm": 19.79
     },
     "GLW": {
       "name": "Corning Incorporated",
@@ -32209,7 +32499,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 17719000000.0,
+      "ps_ttm": 4.66
     },
     "GM": {
       "name": "General Motors Company",
@@ -32434,7 +32726,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 186951000000.0,
+      "ps_ttm": 0.36
     },
     "GME": {
       "name": "GameStop Corp.",
@@ -32648,7 +32942,9 @@
         "eps_adjusted": true,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3550800000.0,
+      "ps_ttm": 4.36
     },
     "GOGO": {
       "name": "Gogo Inc.",
@@ -32864,7 +33160,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 892925000.0,
+      "ps_ttm": 0.3
     },
     "GOLD": {
       "name": "Gold.com, Inc.",
@@ -33079,7 +33377,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 25097912000.0,
+      "ps_ttm": 0.04
     },
     "GOOGL": {
       "name": "Alphabet Inc.",
@@ -33500,7 +33800,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 69698000000.0,
+      "ps_ttm": 3.61
     },
     "GWRE": {
       "name": "Guidewire Software, Inc.",
@@ -33717,7 +34019,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1475363000.0,
+      "ps_ttm": 7.74
     },
     "HD": {
       "name": "The Home Depot, Inc.",
@@ -33941,7 +34245,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 169176000000.0,
+      "ps_ttm": 2.0
     },
     "HDL": {
       "name": "Super Hi International Holding Ltd.",
@@ -34157,7 +34463,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 888776000.0,
+      "ps_ttm": 0.41
     },
     "HE": {
       "name": "Hawaiian Electric Industries, Inc.",
@@ -34380,7 +34688,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3500684000.0,
+      "ps_ttm": 0.39
     },
     "HGTY": {
       "name": "Hagerty, Inc.",
@@ -34598,7 +34908,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1378221000.0,
+      "ps_ttm": 11.73
     },
     "HII": {
       "name": "Huntington Ingalls Industries, Inc.",
@@ -34820,7 +35132,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 13530000000.0,
+      "ps_ttm": 0.82
     },
     "HIMS": {
       "name": "Hims & Hers Health, Inc.",
@@ -35040,7 +35354,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 2869509000.0,
+      "ps_ttm": 1.17
     },
     "HLI": {
       "name": "Houlihan Lokey, Inc.",
@@ -35265,7 +35581,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2555516000.0,
+      "ps_ttm": 3.5
     },
     "HOOD": {
       "name": "Robinhood Markets, Inc.",
@@ -35487,7 +35805,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5082000000.0,
+      "ps_ttm": 11.24
     },
     "HP": {
       "name": "Helmerich & Payne, Inc.",
@@ -35706,7 +36026,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 3995992000.0,
+      "ps_ttm": 0.78
     },
     "HPE": {
       "name": "Hewlett Packard Enterprise Company",
@@ -35932,7 +36254,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 41871000000.0,
+      "ps_ttm": 1.41
     },
     "HPQ": {
       "name": "HP Inc.",
@@ -36157,7 +36481,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 59162000000.0,
+      "ps_ttm": 0.44
     },
     "HROW": {
       "name": "Harrow, Inc.",
@@ -36375,7 +36701,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 303253000.0,
+      "ps_ttm": 3.76
     },
     "HSY": {
       "name": "The Hershey Company",
@@ -36593,7 +36921,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 12258004000.0,
+      "ps_ttm": 12.9
     },
     "HUM": {
       "name": "Humana Inc.",
@@ -36807,7 +37137,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 154185000000.0,
+      "ps_ttm": 0.31
     },
     "HXL": {
       "name": "Hexcel Corporation",
@@ -37024,7 +37356,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2018500000.0,
+      "ps_ttm": 16.3
     },
     "HY": {
       "name": "Hyster-Yale, Inc.",
@@ -37249,7 +37583,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 3358700000.0,
+      "ps_ttm": 0.09
     },
     "IBKR": {
       "name": "Interactive Brokers Group, Inc.",
@@ -37471,7 +37807,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2816000000.0,
+      "ps_ttm": 48.99
     },
     "IBM": {
       "name": "International Business Machines Corporation",
@@ -37698,7 +38036,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 69868000000.0,
+      "ps_ttm": 3.05
     },
     "ICE": {
       "name": "Intercontinental Exchange, Inc.",
@@ -37924,7 +38264,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 14049000000.0,
+      "ps_ttm": 6.87
     },
     "ICHR": {
       "name": "Ichor Holdings, Ltd.",
@@ -38139,7 +38481,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1103157000.0,
+      "ps_ttm": 1.74
     },
     "IDXX": {
       "name": "IDEXX Laboratories, Inc.",
@@ -38363,7 +38707,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4662221000.0,
+      "ps_ttm": 11.55
     },
     "ILMN": {
       "name": "Illumina, Inc.",
@@ -38589,7 +38935,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4538000000.0,
+      "ps_ttm": 6.55
     },
     "INFY": {
       "name": "Infosys Limited",
@@ -38809,7 +39157,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 20366000000.0,
+      "ps_ttm": 2.41
     },
     "INOD": {
       "name": "Innodata Inc.",
@@ -39026,7 +39376,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 350232000.0,
+      "ps_ttm": 2.82
     },
     "INTU": {
       "name": "Intuit Inc.",
@@ -39252,7 +39604,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 21448000000.0,
+      "ps_ttm": 3.5
     },
     "IPGP": {
       "name": "IPG Photonics Corporation",
@@ -39468,7 +39822,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1106048000.0,
+      "ps_ttm": 2.3
     },
     "IRDM": {
       "name": "Iridium Communications Inc.",
@@ -39691,7 +40047,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 902967000.0,
+      "ps_ttm": 5.03
     },
     "IRTC": {
       "name": "iRhythm Holdings, Inc.",
@@ -39910,7 +40268,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 854044000.0,
+      "ps_ttm": 3.66
     },
     "JACK": {
       "name": "Jack in the Box Inc.",
@@ -40138,7 +40498,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1427556000.0,
+      "ps_ttm": 0.18
     },
     "JNJ": {
       "name": "Johnson & Johnson",
@@ -40364,7 +40726,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 99335000000.0,
+      "ps_ttm": 6.66
     },
     "JPM": {
       "name": "JPMorgan Chase & Co.",
@@ -40554,7 +40918,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 198653000000.0,
+      "ps_ttm": 4.33
     },
     "KBH": {
       "name": "KB Home",
@@ -40779,7 +41145,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5180925000.0,
+      "ps_ttm": 0.56
     },
     "KEYS": {
       "name": "Keysight Technologies, Inc.",
@@ -40998,7 +41366,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6582000000.0,
+      "ps_ttm": 6.86
     },
     "KMX": {
       "name": "CarMax, Inc.",
@@ -41214,7 +41584,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 27631335000.0,
+      "ps_ttm": 0.24
     },
     "KNF": {
       "name": "Knife River Corporation",
@@ -41437,7 +41809,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3379384000.0,
+      "ps_ttm": 0.83
     },
     "KNX": {
       "name": "Knight-Swift Transportation Holdings Inc.",
@@ -41655,7 +42029,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 8003191000.0,
+      "ps_ttm": 1.23
     },
     "KO": {
       "name": "The Coca-Cola Company",
@@ -41879,7 +42255,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 51054000000.0,
+      "ps_ttm": 8.17
     },
     "KR": {
       "name": "The Kroger Co.",
@@ -42096,7 +42474,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 149326000000.0,
+      "ps_ttm": 0.27
     },
     "KRMN": {
       "name": "Karman Holdings Inc.",
@@ -42313,7 +42693,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 669388000.0,
+      "ps_ttm": 5.65
     },
     "KSS": {
       "name": "Kohl's Corporation",
@@ -42539,7 +42921,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 15430000000.0,
+      "ps_ttm": 0.17
     },
     "KTOS": {
       "name": "Kratos Defense & Security Solutions, Inc.",
@@ -42762,7 +43146,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1646700000.0,
+      "ps_ttm": 2.99
     },
     "LAZ": {
       "name": "Lazard, Inc.",
@@ -42981,7 +43367,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3375354000.0,
+      "ps_ttm": 1.19
     },
     "LEN": {
       "name": "Lennar Corporation",
@@ -43207,7 +43595,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 31973076000.0,
+      "ps_ttm": 0.58
     },
     "LEU": {
       "name": "Centrus Energy Corp.",
@@ -43430,7 +43820,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 454500000.0,
+      "ps_ttm": 4.33
     },
     "LITE": {
       "name": "Lumentum Holdings Inc.",
@@ -43660,7 +44052,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 3742800000.0,
+      "ps_ttm": 9.03
     },
     "LLY": {
       "name": "Eli Lilly and Company",
@@ -43880,7 +44274,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 86462000000.0,
+      "ps_ttm": 13.95
     },
     "LMT": {
       "name": "Lockheed Martin Corporation",
@@ -44104,7 +44500,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 79116000000.0,
+      "ps_ttm": 1.65
     },
     "LOGI": {
       "name": "Logitech International S.A.",
@@ -44321,7 +44719,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4953074000.0,
+      "ps_ttm": 2.87
     },
     "LOVE": {
       "name": "The Lovesac Company",
@@ -44537,7 +44937,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 697653000.0,
+      "ps_ttm": 0.28
     },
     "LOW": {
       "name": "Lowe's Companies, Inc.",
@@ -44760,7 +45162,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 90431000000.0,
+      "ps_ttm": 1.37
     },
     "LPX": {
       "name": "Louisiana-Pacific Corporation",
@@ -44976,7 +45380,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2495000000.0,
+      "ps_ttm": 2.05
     },
     "LRCX": {
       "name": "Lam Research Corporation",
@@ -45193,7 +45599,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 26127935000.0,
+      "ps_ttm": 8.83
     },
     "LUCK": {
       "name": "Lucky Strike Entertainment Corporation",
@@ -45421,7 +45829,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 1255684000.0,
+      "ps_ttm": 0.35
     },
     "LULU": {
       "name": "lululemon athletica inc.",
@@ -45645,7 +46055,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 11093955000.0,
+      "ps_ttm": 1.08
     },
     "LUV": {
       "name": "Southwest Airlines Co.",
@@ -45869,7 +46281,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 31545000000.0,
+      "ps_ttm": 0.72
     },
     "LW": {
       "name": "Lamb Weston Holdings, Inc.",
@@ -46084,7 +46498,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6623300000.0,
+      "ps_ttm": 1.09
     },
     "LWAY": {
       "name": "Lifeway Foods, Inc.",
@@ -46306,7 +46722,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 253063000.0,
+      "ps_ttm": 1.2
     },
     "LYB": {
       "name": "LyondellBasell Industries N.V.",
@@ -46525,7 +46943,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 31964000000.0,
+      "ps_ttm": 0.57
     },
     "LYFT": {
       "name": "Lyft, Inc.",
@@ -46751,7 +47171,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6908566000.0,
+      "ps_ttm": 1.0
     },
     "LYTS": {
       "name": "LSI Industries Inc.",
@@ -46966,7 +47388,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 758003000.0,
+      "ps_ttm": 0.64
     },
     "M": {
       "name": "Macy's, Inc.",
@@ -47188,7 +47612,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 22780000000.0,
+      "ps_ttm": 0.28
     },
     "MA": {
       "name": "Mastercard Incorporated",
@@ -47403,7 +47829,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 36288000000.0,
+      "ps_ttm": 15.29
     },
     "MAIN": {
       "name": "Main Street Capital Corporation",
@@ -47590,7 +48018,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": null,
+      "ps_ttm": null
     },
     "MBLY": {
       "name": "Mobileye Global Inc.",
@@ -47808,7 +48238,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 2004000000.0,
+      "ps_ttm": 1.87
     },
     "MCD": {
       "name": "McDonald's Corporation",
@@ -48036,7 +48468,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 27781000000.0,
+      "ps_ttm": 7.0
     },
     "MCK": {
       "name": "McKesson Corporation",
@@ -48254,7 +48688,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 418790000000.0,
+      "ps_ttm": 0.31
     },
     "MCO": {
       "name": "Moody's Corporation",
@@ -48479,7 +48915,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 8176000000.0,
+      "ps_ttm": 10.04
     },
     "MDB": {
       "name": "MongoDB, Inc.",
@@ -48699,7 +49137,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2782770000.0,
+      "ps_ttm": 8.4
     },
     "MDXG": {
       "name": "MiMedx Group, Inc.",
@@ -48927,7 +49367,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 303731000.0,
+      "ps_ttm": 1.48
     },
     "MEC": {
       "name": "Mayville Engineering Company, Inc.",
@@ -49144,7 +49586,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 612389000.0,
+      "ps_ttm": 0.42
     },
     "MELI": {
       "name": "MercadoLibre, Inc.",
@@ -49361,7 +49805,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 38523000000.0,
+      "ps_ttm": 1.78
     },
     "META": {
       "name": "Meta Platforms, Inc.",
@@ -49584,7 +50030,9 @@
         "eps_adjusted": true,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 241606000000.0,
+      "ps_ttm": 5.96
     },
     "MFC": {
       "name": "Manulife Financial Corporation",
@@ -49767,7 +50215,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 52129000000.0,
+      "ps_ttm": 1.37
     },
     "MMM": {
       "name": "3M Company",
@@ -49993,7 +50443,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 25247000000.0,
+      "ps_ttm": 3.72
     },
     "MORN": {
       "name": "Morningstar, Inc.",
@@ -50214,7 +50666,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2621200000.0,
+      "ps_ttm": 3.46
     },
     "MRCY": {
       "name": "Mercury Systems, Inc.",
@@ -50431,7 +50885,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 1011566000.0,
+      "ps_ttm": 3.63
     },
     "MRTN": {
       "name": "Marten Transport, Ltd.",
@@ -50650,7 +51106,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 860408000.0,
+      "ps_ttm": 0.72
     },
     "MRVL": {
       "name": "Marvell Technology, Inc.",
@@ -50868,7 +51326,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 9450300000.0,
+      "ps_ttm": 11.31
     },
     "MS": {
       "name": "Morgan Stanley",
@@ -51099,7 +51559,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 80156000000.0,
+      "ps_ttm": 3.36
     },
     "MSCI": {
       "name": "MSCI Inc.",
@@ -51323,7 +51785,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3432359000.0,
+      "ps_ttm": 13.03
     },
     "MSFT": {
       "name": "Microsoft Corporation",
@@ -51732,7 +52196,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 133188000000.0,
+      "ps_ttm": 5.1
     },
     "NCLH": {
       "name": "Norwegian Cruise Line Holdings Ltd.",
@@ -51957,7 +52423,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 10162928000.0,
+      "ps_ttm": 0.7
     },
     "NDAQ": {
       "name": "Nasdaq, Inc.",
@@ -52180,7 +52648,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 9148000000.0,
+      "ps_ttm": 6.41
     },
     "NE": {
       "name": "Noble Corporation plc",
@@ -52401,7 +52871,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2998554000.0,
+      "ps_ttm": 1.99
     },
     "NEM": {
       "name": "Newmont Corporation",
@@ -52621,7 +53093,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 26606000000.0,
+      "ps_ttm": 3.82
     },
     "NEO": {
       "name": "NeoGenomics, Inc.",
@@ -52843,7 +53317,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 787752000.0,
+      "ps_ttm": 2.53
     },
     "NET": {
       "name": "Cloudflare, Inc.",
@@ -53061,7 +53537,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 2732836000.0,
+      "ps_ttm": 35.9
     },
     "NEWT": {
       "name": "NewtekOne, Inc.",
@@ -53289,7 +53767,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": null,
+      "ps_ttm": null
     },
     "NFLX": {
       "name": "Netflix, Inc.",
@@ -53516,7 +53996,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 49734633000.0,
+      "ps_ttm": 4.87
     },
     "NKE": {
       "name": "NIKE, Inc.",
@@ -53742,7 +54224,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 45891000000.0,
+      "ps_ttm": 1.06
     },
     "NNI": {
       "name": "Nelnet, Inc.",
@@ -53963,7 +54447,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 0.0,
+      "ps_ttm": null
     },
     "NOK": {
       "name": "Nokia Oyj",
@@ -54142,7 +54628,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 20591000000.0,
+      "ps_ttm": 1.74
     },
     "NOW": {
       "name": "ServiceNow, Inc.",
@@ -54359,7 +54847,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 15431000000.0,
+      "ps_ttm": 5.9
     },
     "NRDS": {
       "name": "NerdWallet, Inc.",
@@ -54583,7 +55073,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 884500000.0,
+      "ps_ttm": 0.55
     },
     "NRG": {
       "name": "NRG Energy, Inc.",
@@ -54801,7 +55293,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 34956000000.0,
+      "ps_ttm": 0.55
     },
     "NTAP": {
       "name": "NetApp, Inc.",
@@ -55029,7 +55523,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6388300000.0,
+      "ps_ttm": 4.94
     },
     "NTNX": {
       "name": "Nutanix, Inc.",
@@ -55251,7 +55747,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2853545000.0,
+      "ps_ttm": 5.54
     },
     "NU": {
       "name": "Nu Holdings Ltd.",
@@ -55468,7 +55966,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 14475425000.0,
+      "ps_ttm": 3.92
     },
     "NUE": {
       "name": "Nucor Corporation",
@@ -55693,7 +56193,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 38829000000.0,
+      "ps_ttm": 1.41
     },
     "NVDA": {
       "name": "NVIDIA Corporation",
@@ -56066,7 +56568,9 @@
         "eps_adjusted": true,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 333650000000.0,
+      "ps_ttm": null
     },
     "NVT": {
       "name": "nVent Electric plc",
@@ -56284,7 +56788,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5294900000.0,
+      "ps_ttm": 3.14
     },
     "NXPI": {
       "name": "NXP Semiconductors N.V.",
@@ -56504,7 +57010,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 13798000000.0,
+      "ps_ttm": 4.32
     },
     "NXT": {
       "name": "Nextpower Inc.",
@@ -56725,7 +57233,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3834315000.0,
+      "ps_ttm": 2.69
     },
     "O": {
       "name": "Realty Income Corporation",
@@ -56914,7 +57424,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6205962000.0,
+      "ps_ttm": 9.19
     },
     "OKTA": {
       "name": "Okta, Inc.",
@@ -57133,7 +57645,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3073000000.0,
+      "ps_ttm": 11.11
     },
     "OLED": {
       "name": "Universal Display Corporation",
@@ -57358,7 +57872,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 627727000.0,
+      "ps_ttm": 5.77
     },
     "ON": {
       "name": "ON Semiconductor Corporation",
@@ -57576,7 +58092,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6369200000.0,
+      "ps_ttm": 3.94
     },
     "ONON": {
       "name": "On Holding AG",
@@ -57758,7 +58276,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3357400000.0,
+      "ps_ttm": 3.0
     },
     "OPFI": {
       "name": "OppFi Inc.",
@@ -57977,7 +58497,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 351792000.0,
+      "ps_ttm": 0.57
     },
     "OPRT": {
       "name": "Oportun Financial Corporation",
@@ -58199,7 +58721,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 956016000.0,
+      "ps_ttm": 0.54
     },
     "ORCL": {
       "name": "Oracle Corporation",
@@ -58416,7 +58940,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 71776000000.0,
+      "ps_ttm": 4.18
     },
     "OSCR": {
       "name": "Oscar Health, Inc.",
@@ -58636,7 +59162,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 17471947000.0,
+      "ps_ttm": 0.49
     },
     "OXY": {
       "name": "Occidental Petroleum Corporation",
@@ -58855,7 +59383,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 24974000000.0,
+      "ps_ttm": 2.41
     },
     "P": {
       "name": "Everpure, Inc.",
@@ -59073,7 +59603,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4262150000.0,
+      "ps_ttm": 7.49
     },
     "PANW": {
       "name": "Palo Alto Networks, Inc.",
@@ -59291,7 +59823,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 11480000000.0,
+      "ps_ttm": 22.95
     },
     "PATH": {
       "name": "UiPath, Inc.",
@@ -59508,7 +60042,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1720858000.0,
+      "ps_ttm": 3.44
     },
     "PEP": {
       "name": "PepsiCo, Inc.",
@@ -59735,7 +60271,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 98241000000.0,
+      "ps_ttm": 1.96
     },
     "PFE": {
       "name": "Pfizer Inc.",
@@ -59952,7 +60490,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 63625000000.0,
+      "ps_ttm": 2.48
     },
     "PFSI": {
       "name": "PennyMac Financial Services, Inc.",
@@ -60177,7 +60717,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 37388000.0,
+      "ps_ttm": 83.53
     },
     "PG": {
       "name": "The Procter & Gamble Company",
@@ -60402,7 +60944,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 87922000000.0,
+      "ps_ttm": 4.65
     },
     "PGY": {
       "name": "Pagaya Technologies Ltd.",
@@ -60620,7 +61164,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1430286000.0,
+      "ps_ttm": 0.86
     },
     "PINS": {
       "name": "Pinterest, Inc.",
@@ -60836,7 +61382,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4680444000.0,
+      "ps_ttm": 2.49
     },
     "PLTR": {
       "name": "Palantir Technologies Inc.",
@@ -61056,7 +61604,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7288260000.0,
+      "ps_ttm": 50.52
     },
     "PM": {
       "name": "Philip Morris International Inc.",
@@ -61282,7 +61832,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 43138000000.0,
+      "ps_ttm": 6.68
     },
     "PNNT": {
       "name": "PennantPark Investment Corporation",
@@ -61472,7 +62024,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": null,
+      "ps_ttm": null
     },
     "PNW": {
       "name": "Pinnacle West Capital Corporation",
@@ -61692,7 +62246,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5706259000.0,
+      "ps_ttm": 2.24
     },
     "PPIH": {
       "name": "Perma-Pipe International Holdings, Inc.",
@@ -61907,7 +62463,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 226108000.0,
+      "ps_ttm": 0.92
     },
     "PRCH": {
       "name": "Porch Group, Inc.",
@@ -62124,7 +62682,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 530169000.0,
+      "ps_ttm": 3.27
     },
     "PRIM": {
       "name": "Primoris Services Corporation",
@@ -62340,7 +62900,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7058200000.0,
+      "ps_ttm": 0.41
     },
     "PTEN": {
       "name": "Patterson-UTI Energy, Inc.",
@@ -62557,7 +63119,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 4838345000.0,
+      "ps_ttm": 0.81
     },
     "PTLO": {
       "name": "Portillo's Inc.",
@@ -62781,7 +63345,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 761396000.0,
+      "ps_ttm": 0.62
     },
     "PWP": {
       "name": "Perella Weinberg Partners",
@@ -63008,7 +63574,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 775975000.0,
+      "ps_ttm": 1.28
     },
     "PYPL": {
       "name": "PayPal Holdings, Inc.",
@@ -63233,7 +63801,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 34295000000.0,
+      "ps_ttm": 1.4
     },
     "PZZA": {
       "name": "Papa John's International, Inc.",
@@ -63457,7 +64027,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1914028000.0,
+      "ps_ttm": 0.32
     },
     "QCOM": {
       "name": "QUALCOMM Incorporated",
@@ -63683,7 +64255,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 43120000000.0,
+      "ps_ttm": 3.73
     },
     "QLYS": {
       "name": "Qualys, Inc.",
@@ -63896,7 +64470,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 721144000.0,
+      "ps_ttm": 9.15
     },
     "RAIL": {
       "name": "FreightCar America, Inc.",
@@ -64120,7 +64696,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 379501000.0,
+      "ps_ttm": 0.36
     },
     "RBBN": {
       "name": "Ribbon Communications Inc.",
@@ -64343,7 +64921,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 800979000.0,
+      "ps_ttm": 0.29
     },
     "RCL": {
       "name": "Royal Caribbean Cruises Ltd.",
@@ -64568,7 +65148,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 19134000000.0,
+      "ps_ttm": 4.17
     },
     "RDDT": {
       "name": "Reddit, Inc.",
@@ -64787,7 +65369,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3088880000.0,
+      "ps_ttm": 5.59
     },
     "RDNT": {
       "name": "RadNet, Inc.",
@@ -65012,7 +65596,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 2384320000.0,
+      "ps_ttm": 2.26
     },
     "RH": {
       "name": "RH",
@@ -65228,7 +65814,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3448911000.0,
+      "ps_ttm": 0.62
     },
     "RKT": {
       "name": "Rocket Companies, Inc.",
@@ -65446,7 +66034,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 11457000000.0,
+      "ps_ttm": 2.95
     },
     "RMBS": {
       "name": "Rambus Inc.",
@@ -65668,7 +66258,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 796107000.0,
+      "ps_ttm": 9.12
     },
     "RNW": {
       "name": "ReNew Energy Global Plc",
@@ -65849,7 +66441,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 148000000000.0,
+      "ps_ttm": 0.02
     },
     "ROG": {
       "name": "Rogers Corporation",
@@ -66065,7 +66659,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 854900000.0,
+      "ps_ttm": 2.35
     },
     "ROK": {
       "name": "Rockwell Automation, Inc.",
@@ -66290,7 +66886,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 8989000000.0,
+      "ps_ttm": 4.52
     },
     "ROST": {
       "name": "Ross Stores, Inc.",
@@ -66517,7 +67115,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 24511798000.0,
+      "ps_ttm": 2.8
     },
     "RPD": {
       "name": "Rapid7, Inc.",
@@ -66742,7 +67342,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 850366000.0,
+      "ps_ttm": 1.11
     },
     "RTX": {
       "name": "RTX Corporation",
@@ -66959,7 +67561,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 95987000000.0,
+      "ps_ttm": 2.7
     },
     "RXO": {
       "name": "RXO, Inc.",
@@ -67183,7 +67787,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 6539000000.0,
+      "ps_ttm": 0.73
     },
     "SAP": {
       "name": "SAP SE",
@@ -67362,7 +67968,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 39387000000.0,
+      "ps_ttm": 5.77
     },
     "SBUX": {
       "name": "Starbucks Corporation",
@@ -67583,7 +68191,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 37910600000.0,
+      "ps_ttm": 3.11
     },
     "SCHL": {
       "name": "Scholastic Corporation",
@@ -67809,7 +68419,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1573100000.0,
+      "ps_ttm": 0.96
     },
     "SCHW": {
       "name": "The Charles Schwab Corporation",
@@ -68029,7 +68641,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 27061000000.0,
+      "ps_ttm": 6.06
     },
     "SDRL": {
       "name": "Seadrill Limited",
@@ -68257,7 +68871,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 1597000000.0,
+      "ps_ttm": 1.5
     },
     "SHAK": {
       "name": "Shake Shack Inc.",
@@ -68478,7 +69094,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1608159000.0,
+      "ps_ttm": 1.9
     },
     "SIRI": {
       "name": "Sirius XM Holdings Inc.",
@@ -68693,7 +69311,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 8597000000.0,
+      "ps_ttm": 1.34
     },
     "SLB": {
       "name": "SLB N.V.",
@@ -68917,7 +69537,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 36886000000.0,
+      "ps_ttm": 1.89
     },
     "SLF": {
       "name": "Sun Life Financial Inc.",
@@ -69097,7 +69719,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 31843000000.0,
+      "ps_ttm": 1.19
     },
     "SMCI": {
       "name": "Super Micro Computer, Inc.",
@@ -69321,7 +69945,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 53991114000.0,
+      "ps_ttm": 0.31
     },
     "SMG": {
       "name": "The Scotts Miracle-Gro Company",
@@ -69539,7 +70165,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3288900000.0,
+      "ps_ttm": 1.05
     },
     "SMTI": {
       "name": "Sanara MedTech Inc.",
@@ -69756,7 +70384,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 111911264.0,
+      "ps_ttm": 3.13
     },
     "SNAP": {
       "name": "Snap Inc.",
@@ -69982,7 +70612,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 6566716000.0,
+      "ps_ttm": 1.16
     },
     "SNDK": {
       "name": "Sandisk Corporation",
@@ -70203,7 +70835,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 28971000000.0,
+      "ps_ttm": 3.38
     },
     "SNDR": {
       "name": "Schneider National, Inc.",
@@ -70426,7 +71060,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5952100000.0,
+      "ps_ttm": 0.82
     },
     "SNOW": {
       "name": "Snowflake Inc.",
@@ -70644,7 +71280,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 5434647000.0,
+      "ps_ttm": 16.08
     },
     "SNPS": {
       "name": "Synopsys, Inc.",
@@ -70864,7 +71502,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 9416465000.0,
+      "ps_ttm": 7.93
     },
     "SO": {
       "name": "The Southern Company",
@@ -71096,7 +71736,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 30175000000.0,
+      "ps_ttm": 3.44
     },
     "SOFI": {
       "name": "SoFi Technologies, Inc.",
@@ -71316,7 +71958,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 616767000.0,
+      "ps_ttm": 26.66
     },
     "SPG": {
       "name": "Simon Property Group, Inc.",
@@ -71542,7 +72186,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7153709000.0,
+      "ps_ttm": 11.87
     },
     "SPGI": {
       "name": "S&P Global Inc.",
@@ -71758,7 +72404,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 16356000000.0,
+      "ps_ttm": 7.97
     },
     "SPOT": {
       "name": "Spotify Technology S.A.",
@@ -71937,7 +72585,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 18810000000.0,
+      "ps_ttm": 7.0
     },
     "STX": {
       "name": "Seagate Technology Holdings plc",
@@ -72157,7 +72807,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 13799000000.0,
+      "ps_ttm": 7.64
     },
     "SWKS": {
       "name": "Skyworks Solutions, Inc.",
@@ -72373,7 +73025,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3959600000.0,
+      "ps_ttm": 2.82
     },
     "SYF": {
       "name": "Synchrony Financial",
@@ -72562,7 +73216,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": null,
+      "ps_ttm": null
     },
     "SYM": {
       "name": "Symbotic Inc.",
@@ -72779,7 +73435,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2645760000.0,
+      "ps_ttm": 1.93
     },
     "T": {
       "name": "AT&T Inc.",
@@ -73007,7 +73665,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 128852000000.0,
+      "ps_ttm": 1.24
     },
     "TAC": {
       "name": "TransAlta Corporation",
@@ -73188,7 +73848,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2187000000.0,
+      "ps_ttm": 3.59
     },
     "TD": {
       "name": "The Toronto-Dominion Bank",
@@ -73368,7 +74030,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 65072000000.0,
+      "ps_ttm": 2.99
     },
     "TEAM": {
       "name": "Atlassian Corporation",
@@ -73583,7 +74247,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6911905000.0,
+      "ps_ttm": 5.09
     },
     "TGT": {
       "name": "Target Corporation",
@@ -73811,7 +74477,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 107705000000.0,
+      "ps_ttm": 0.7
     },
     "TJX": {
       "name": "The TJX Companies, Inc.",
@@ -74028,7 +74696,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 62363000000.0,
+      "ps_ttm": 2.52
     },
     "TMDX": {
       "name": "TransMedics Group, Inc.",
@@ -74242,7 +74912,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 727650000.0,
+      "ps_ttm": 4.62
     },
     "TMO": {
       "name": "Thermo Fisher Scientific Inc.",
@@ -74464,7 +75136,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 47351000000.0,
+      "ps_ttm": 5.27
     },
     "TMUS": {
       "name": "T-Mobile US, Inc.",
@@ -74681,7 +75355,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 93816000000.0,
+      "ps_ttm": 1.92
     },
     "TOL": {
       "name": "Toll Brothers, Inc.",
@@ -74904,7 +75580,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 10759036000.0,
+      "ps_ttm": 1.27
     },
     "TRU": {
       "name": "TransUnion",
@@ -75128,7 +75806,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5039200000.0,
+      "ps_ttm": 2.87
     },
     "TSLA": {
       "name": "Tesla, Inc.",
@@ -75350,7 +76030,9 @@
         "eps_adjusted": true,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 103570000000.0,
+      "ps_ttm": 11.81
     },
     "TSLX": {
       "name": "Sixth Street Specialty Lending, Inc.",
@@ -75537,7 +76219,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": null,
+      "ps_ttm": null
     },
     "TSM": {
       "name": "Taiwan Semiconductor Manufacturing Company Limited",
@@ -75717,7 +76401,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4944817423000.0,
+      "ps_ttm": 0.33
     },
     "TTD": {
       "name": "The Trade Desk, Inc.",
@@ -75940,7 +76626,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2986670000.0,
+      "ps_ttm": 2.14
     },
     "TTEK": {
       "name": "Tetra Tech, Inc.",
@@ -76156,7 +76844,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5076737000.0,
+      "ps_ttm": 1.9
     },
     "TWLO": {
       "name": "Twilio Inc.",
@@ -76376,7 +77066,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 5831462000.0,
+      "ps_ttm": 4.71
     },
     "TXN": {
       "name": "Texas Instruments Incorporated",
@@ -76595,7 +77287,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 20766000000.0,
+      "ps_ttm": 11.7
     },
     "U": {
       "name": "Unity Software Inc.",
@@ -76814,7 +77508,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 2179887000.0,
+      "ps_ttm": 8.72
     },
     "UAL": {
       "name": "United Airlines Holdings, Inc.",
@@ -77037,7 +77733,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 65551000000.0,
+      "ps_ttm": 0.51
     },
     "UBER": {
       "name": "Uber Technologies, Inc.",
@@ -77261,7 +77959,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 56526000000.0,
+      "ps_ttm": 2.28
     },
     "UCTT": {
       "name": "Ultra Clean Holdings, Inc.",
@@ -77477,7 +78177,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2444200000.0,
+      "ps_ttm": 0.71
     },
     "UHAL": {
       "name": "U-Haul Holding Company",
@@ -77705,7 +78407,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6142129000.0,
+      "ps_ttm": 2.62
     },
     "ULTA": {
       "name": "Ulta Beauty, Inc.",
@@ -77929,7 +78633,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 12955517000.0,
+      "ps_ttm": 2.1
     },
     "UNH": {
       "name": "UnitedHealth Group Incorporated",
@@ -78148,7 +78854,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 449662000000.0,
+      "ps_ttm": 0.68
     },
     "UPS": {
       "name": "United Parcel Service, Inc.",
@@ -78373,7 +79081,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 91368000000.0,
+      "ps_ttm": 0.99
     },
     "UPST": {
       "name": "Upstart Holdings, Inc.",
@@ -78597,7 +79307,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1339534000.0,
+      "ps_ttm": 1.23
     },
     "V": {
       "name": "Visa Inc.",
@@ -78827,7 +79539,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 45903000000.0,
+      "ps_ttm": 16.7
     },
     "VECO": {
       "name": "Veeco Instruments Inc.",
@@ -79051,7 +79765,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 726223000.0,
+      "ps_ttm": 3.07
     },
     "VEEV": {
       "name": "Veeva Systems Inc.",
@@ -79269,7 +79985,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3458098000.0,
+      "ps_ttm": 12.79
     },
     "VOXR": {
       "name": "Vox Royalty Corp.",
@@ -79487,7 +80205,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 33367229.0,
+      "ps_ttm": 9.55
     },
     "VRNS": {
       "name": "Varonis Systems, Inc.",
@@ -79704,7 +80424,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 715979000.0,
+      "ps_ttm": 7.97
     },
     "VRT": {
       "name": "Vertiv Holdings Co",
@@ -79923,7 +80645,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 13116600000.0,
+      "ps_ttm": 4.97
     },
     "VSH": {
       "name": "Vishay Intertechnology, Inc.",
@@ -80140,7 +80864,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3507678000.0,
+      "ps_ttm": 0.98
     },
     "VSNT": {
       "name": "Versant Media Group, Inc.",
@@ -80364,7 +81090,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 6536000000.0,
+      "ps_ttm": 0.85
     },
     "VSTS": {
       "name": "Vestis Corporation",
@@ -80586,7 +81314,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 2696499000.0,
+      "ps_ttm": 0.54
     },
     "VYX": {
       "name": "NCR Voyix Corporation",
@@ -80810,7 +81540,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 2406000000.0,
+      "ps_ttm": 0.63
     },
     "VZ": {
       "name": "Verizon Communications Inc.",
@@ -81039,7 +81771,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 139387000000.0,
+      "ps_ttm": 1.39
     },
     "W": {
       "name": "Wayfair Inc.",
@@ -81265,7 +81999,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 13207000000.0,
+      "ps_ttm": 0.94
     },
     "WBTN": {
       "name": "WEBTOON Entertainment Inc.",
@@ -81490,7 +82226,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 1352798000.0,
+      "ps_ttm": 0.8
     },
     "WDAY": {
       "name": "Workday, Inc.",
@@ -81710,7 +82448,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 10155000000.0,
+      "ps_ttm": 4.35
     },
     "WDC": {
       "name": "Western Digital Corporation",
@@ -81928,7 +82668,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 14482000000.0,
+      "ps_ttm": 6.99
     },
     "WFC": {
       "name": "Wells Fargo & Company",
@@ -82116,7 +82858,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 87230000000.0,
+      "ps_ttm": 2.92
     },
     "WING": {
       "name": "Wingstop Inc.",
@@ -82340,7 +83084,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 730114000.0,
+      "ps_ttm": 5.66
     },
     "WIT": {
       "name": "Wipro Limited",
@@ -82521,7 +83267,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 970234000000.0,
+      "ps_ttm": 0.02
     },
     "WMT": {
       "name": "Walmart Inc.",
@@ -82747,7 +83495,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 735840000000.0,
+      "ps_ttm": 1.39
     },
     "WST": {
       "name": "West Pharmaceutical Services, Inc.",
@@ -82965,7 +83715,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 3396700000.0,
+      "ps_ttm": 8.24
     },
     "WYNN": {
       "name": "Wynn Resorts, Limited",
@@ -83185,7 +83937,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 7268731000.0,
+      "ps_ttm": 1.2
     },
     "XMTR": {
       "name": "Xometry, Inc.",
@@ -83405,7 +84159,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 879255000.0,
+      "ps_ttm": 6.18
     },
     "XOM": {
       "name": "ExxonMobil Holdings Corporation",
@@ -83628,7 +84384,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 396627000000.0,
+      "ps_ttm": 1.68
     },
     "XYZ": {
       "name": "Block, Inc.",
@@ -83845,7 +84603,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 25646371000.0,
+      "ps_ttm": 1.69
     },
     "ZETA": {
       "name": "Zeta Global Holdings Corp.",
@@ -84060,7 +84820,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 1726366000.0,
+      "ps_ttm": 4.53
     },
     "ZG": {
       "name": "Zillow Group, Inc.",
@@ -84278,7 +85040,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 2858000000.0,
+      "ps_ttm": 2.18
     },
     "ZM": {
       "name": "Zoom Communications, Inc.",
@@ -84501,7 +85265,9 @@
         "eps_adjusted": false,
         "available": true,
         "reason": null
-      }
+      },
+      "revenue_ttm": 4993050000.0,
+      "ps_ttm": 4.91
     },
     "ZS": {
       "name": "Zscaler, Inc.",
@@ -84718,7 +85484,9 @@
         "eps_adjusted": false,
         "available": false,
         "reason": "the PEGY leg has no value for this name."
-      }
+      },
+      "revenue_ttm": 3352523000.0,
+      "ps_ttm": 9.41
     }
   }
 }
