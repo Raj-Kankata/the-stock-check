@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-20",
+ "as_of": "2026-11-21",
  "source": "FRED (Federal Reserve Bank of St. Louis)",
  "source_url": "https://fred.stlouisfed.org/",
  "rows": [
@@ -7,11 +7,11 @@
    "key": "hy",
    "label": "Junk-bond spread",
    "detail": "ICE BofA US High Yield OAS",
-   "value": 3.47,
+   "value": 3.52,
    "unit": "%",
-   "as_of": "2026-11-18",
-   "prev_value": 3.43,
-   "prev_as_of": "2026-11-17",
+   "as_of": "2026-11-19",
+   "prev_value": 3.47,
+   "prev_as_of": "2026-11-18",
    "band": "Calm",
    "series": "BAMLH0A0HYM2",
    "frequency": "Daily"
@@ -20,11 +20,11 @@
    "key": "bbb",
    "label": "BBB bond spread",
    "detail": "ICE BofA BBB US Corporate OAS",
-   "value": 1.16,
+   "value": 1.17,
    "unit": "%",
-   "as_of": "2026-11-18",
-   "prev_value": 1.15,
-   "prev_as_of": "2026-11-17",
+   "as_of": "2026-11-19",
+   "prev_value": 1.16,
+   "prev_as_of": "2026-11-18",
    "band": "Calm",
    "series": "BAMLC0A4CBBB",
    "frequency": "Daily"
@@ -33,18 +33,18 @@
    "key": "baa10y",
    "label": "Baa \u2013 10Y spread",
    "detail": "Moody's Baa yield minus 10-year Treasury yield",
-   "value": 1.52,
+   "value": 1.55,
    "unit": "%",
-   "as_of": "2026-11-18",
-   "prev_value": 1.49,
-   "prev_as_of": "2026-11-17",
+   "as_of": "2026-11-19",
+   "prev_value": 1.52,
+   "prev_as_of": "2026-11-18",
    "band": "Calm",
    "series": "BAA minus DGS10",
    "frequency": "Daily (Baa is a monthly average)",
    "baa": 6.59,
    "baa_as_of": "2026-10-01",
-   "dgs10": 5.07,
-   "dgs10_as_of": "2026-11-18"
+   "dgs10": 5.04,
+   "dgs10_as_of": "2026-11-19"
   },
   {
    "key": "sloos",
@@ -76,18 +76,18 @@
    "key": "vix20d",
    "label": "VIX, 20-day average",
    "detail": "Mean of the last 20 daily VIX closes",
-   "value": 20.41,
+   "value": 20.88,
    "unit": "",
-   "as_of": "2026-11-18",
-   "prev_value": 20.01,
-   "prev_as_of": "2026-11-17",
+   "as_of": "2026-11-19",
+   "prev_value": 20.41,
+   "prev_as_of": "2026-11-18",
    "band": "Watch",
    "series": "VIXCLS (20-day mean)",
    "frequency": "Daily",
-   "vix_today": 24.56,
-   "vix_today_as_of": "2026-11-18",
-   "vix_today_prev": 25.46,
-   "vix_today_prev_as_of": "2026-11-17"
+   "vix_today": 28.44,
+   "vix_today_as_of": "2026-11-19",
+   "vix_today_prev": 24.56,
+   "vix_today_prev_as_of": "2026-11-18"
   }
  ],
  "bands": {
@@ -202,14 +202,6 @@
  "overall": "Watch",
  "history": {
   "daily": [
-   {
-    "date": "2026-10-08",
-    "hy": 3.15,
-    "bbb": 1.02,
-    "baa10y": 1.37,
-    "vix_close": 15.41,
-    "vix20d": 15.7
-   },
    {
     "date": "2026-10-09",
     "hy": 3.11,
@@ -441,6 +433,14 @@
     "baa10y": 1.52,
     "vix_close": 24.56,
     "vix20d": 20.41
+   },
+   {
+    "date": "2026-11-19",
+    "hy": 3.52,
+    "bbb": 1.17,
+    "baa10y": 1.55,
+    "vix_close": 28.44,
+    "vix20d": 20.88
    }
   ],
   "nfci": [

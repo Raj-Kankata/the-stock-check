@@ -1,63 +1,63 @@
 {
- "as_of": "2026-11-20",
- "price_date": "2026-11-19",
+ "as_of": "2026-11-21",
+ "price_date": "2026-11-20",
  "universe_count": 4,
  "ipos": {
   "ANT": {
    "name": "Anthropic",
    "company": "Anthropic, PBC",
    "sector": "Artificial intelligence \u2014 frontier AI models (Claude)",
-   "price": 97.17,
-   "change_pct": null,
-   "volume": 853213200,
-   "bars": 1,
+   "price": 88.91,
+   "change_pct": -0.085,
+   "volume": 399561400,
+   "bars": 2,
    "high_52w": 115.1,
-   "low_52w": 92.72,
-   "market_cap_outstanding_usd": 1284552615753,
-   "market_cap_fully_diluted_usd": 1755861866913,
-   "market_cap_float_usd": 95226598206
+   "low_52w": 83.05,
+   "market_cap_outstanding_usd": 1175358443171,
+   "market_cap_fully_diluted_usd": 1606603766174,
+   "market_cap_float_usd": 87131803589
   },
   "SPCX": {
    "name": "SpaceX",
    "company": "Space Exploration Technologies Corp.",
    "sector": "Space / Connectivity / Super Intelligence (AI)",
-   "price": 138.43,
-   "change_pct": -0.0353,
-   "volume": 118996800,
-   "bars": 112,
+   "price": 127.79,
+   "change_pct": -0.0769,
+   "volume": 124025300,
+   "bars": 113,
    "high_52w": 225.64,
    "low_52w": 104.83,
-   "market_cap_outstanding_usd": 1810096741229,
+   "market_cap_outstanding_usd": 1670969272971,
    "market_cap_fully_diluted_usd": null,
-   "market_cap_float_usd": 88441384086
+   "market_cap_float_usd": 81643611582
   },
   "CRWV": {
    "name": "CoreWeave",
    "company": "CoreWeave, Inc.",
    "sector": "AI cloud infrastructure (GPU cloud)",
-   "price": 44.91,
-   "change_pct": -0.061,
-   "volume": 77707900,
-   "bars": 415,
+   "price": 39.51,
+   "change_pct": -0.1202,
+   "volume": 76629000,
+   "bars": 416,
    "high_52w": 138.25,
-   "low_52w": 40.58,
-   "market_cap_outstanding_usd": 24969959915,
+   "low_52w": 39.28,
+   "market_cap_outstanding_usd": 21967559067,
    "market_cap_fully_diluted_usd": null,
-   "market_cap_float_usd": 20919077929
+   "market_cap_float_usd": 18403757218
   },
   "NBIS": {
    "name": "Nebius",
    "company": "Nebius Group N.V.",
    "sector": "AI cloud infrastructure (GPU cloud)",
-   "price": 96.92,
-   "change_pct": -0.0939,
-   "volume": 37745600,
-   "bars": 523,
+   "price": 81.31,
+   "change_pct": -0.1611,
+   "volume": 49539900,
+   "bars": 524,
    "high_52w": 299.86,
    "low_52w": 73.52,
-   "market_cap_outstanding_usd": 28388100556,
+   "market_cap_outstanding_usd": 23815893835,
    "market_cap_fully_diluted_usd": null,
-   "market_cap_float_usd": 25160174881
+   "market_cap_float_usd": 21107860057
   }
  }
 }
