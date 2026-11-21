@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
-"""Scoring engine v1.8 — better Stock Verdicts platform.
-SPEC v1.6 FINAL (2026-11-19). Deterministic: reads inputs.json only
-(2026-11-13 inputs; v1.7 inputs + the v1.6 unlock records, NBIS/CRWV
-staging). No live calls, no invented numbers. Writes results.json.
+"""Scoring engine v1.9 — better Stock Verdicts platform.
+SPEC v1.7 FINAL (2026-11-21). Deterministic: reads inputs.json only
+(2026-11-13 inputs; v1.8 inputs carried verbatim + the SPEC v1.7
+coverage completions, ARM/CLOV staging). No live calls, no invented
+numbers. Writes results.json.
 Run:  python3 engine.py  (8 batch-2 names, standalone)
-       python3 run_v18.py (full 400-name re-run; the supported path)
+       python3 run_v19.py (full 402-name re-run; the supported path)
+
+CHANGES vs v1.8 (v1.9, SPEC v1.7 — coverage completion): NO CODE
+CHANGE. This engine is v1.8's code byte-for-byte except this docstring
+and the engine version string. SPEC v1.7 changes no scoring rule: it
+completes two records whose data was missing — ARM (R8 Yahoo-quarterly
+TTM for a 20-F-only filer, SPEC v1.7 §2) and CLOV (the documented
+EDGAR D/E fallback plus the §3 zero-debt clarification) — so the
+scored set grows 400 -> 402 with an empty blast radius on the carried
+400 (run_v19.py Control A/B + blast gate prove it).
 
 CHANGES vs v1.7 (v1.8, SPEC v1.6 §4 — PEGY guard on non-positive
 adjusted EPS; the ONLY code change in v1.8):
@@ -832,7 +842,7 @@ def pros_cons(t, d, pillars, overall, vdt):
 
 # ---------------- Run ----------------
 results = {"as_of": "2026-11-16", "price_date": "2026-11-13",
-           "engine": "scoring-engine-v1.8 (SPEC v1.6 FINAL)",
+           "engine": "scoring-engine-v1.9 (SPEC v1.7 FINAL)",
            "locked_set": {"rf": 0.05, "discount_low_beta": 0.10, "discount_high_beta": 0.12,
                           "discount_tier_rule": "12% if raw beta >= 2.0, else 10% (batch-2 generalisation of the v1.3 NVDA 12% tier; no batch-2 ticker triggers 12% — max raw beta TSLA 1.743)",
                           "terminal_growth": 0.025, "dcf_growth_cap": 0.20,

@@ -49,7 +49,20 @@ export default function SearchBox({
   // matches rank first, then name-only matches; each group sorts by
   // symbol, as before. ETFs match the same way and rank after stocks.
   const norm = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '')
-  const nq = norm(query)
+  const nqRaw = norm(query)
+  // Typo aliases for the misspellings the search log actually shows
+  // (APPL is AAPL with two letters swapped — it can never prefix-match
+  // AAPL or APPLEINC). An alias applies ONLY when the typed query itself
+  // matches nothing in any index, so it can never shadow a real result.
+  const TYPO_ALIASES: Record<string, string> = { APPL: 'AAPL' }
+  const aliasHit =
+    nqRaw.length >= 3 &&
+    TYPO_ALIASES[nqRaw] !== undefined &&
+    ![...entries, ...etfEntries, ...indexEntries, ...ipoEntries].some(
+      (e) =>
+        norm(e.symbol).startsWith(nqRaw) || norm(e.name).startsWith(nqRaw),
+    )
+  const nq = aliasHit ? TYPO_ALIASES[nqRaw] : nqRaw
   const matches =
     nq.length === 0
       ? []

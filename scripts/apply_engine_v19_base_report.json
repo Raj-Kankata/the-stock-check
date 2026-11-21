@@ -1,0 +1,32 @@
+{
+  "as_of": "2026-11-16",
+  "price_date": "2026-11-13",
+  "tickers": 383,
+  "added": [
+    "ARM",
+    "CLOV"
+  ],
+  "ionq_excluded": "live-price FV <= 0 at the 2026-11-20 close ($20.72); engine-publishable (seed FV +$1.13)",
+  "unpublished_excluded": [
+    "AAOI",
+    "ALK",
+    "ALTI",
+    "AORT",
+    "BUR",
+    "BYND",
+    "CPNG",
+    "IREN",
+    "KLAR",
+    "KRUS",
+    "MNKD",
+    "MUX",
+    "OUST",
+    "RKLB",
+    "UUUU",
+    "UWMC",
+    "VITL",
+    "WGS"
+  ],
+  "base_md5_before": "049f87627ae71253519daca6853bdeac",
+  "base_md5_after": "dc49f346d06a705981b3194bebe11ddc"
+}

@@ -113,7 +113,7 @@ def fetch_one(t):
     }
     if rec["expense_ratio"] is None or rec["aum_usd"] is None:
         raise ValueError("overview page missing expense ratio or AUM")
-    if t == "GLD":
+    if t in ("GLD", "GLDM"):
         # Physical gold bullion — no holdings page exists (404).
         rec["note"] = "physical_gold"
     else:

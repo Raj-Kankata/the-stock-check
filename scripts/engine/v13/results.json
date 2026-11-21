@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-16",
   "price_date": "2026-11-13",
-  "engine": "scoring-engine-v1.8 (SPEC v1.6 FINAL)",
+  "engine": "scoring-engine-v1.9 (SPEC v1.7 FINAL)",
   "locked_set": {
     "rf": 0.05,
     "discount_low_beta": 0.1,
