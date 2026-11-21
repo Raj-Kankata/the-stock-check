@@ -1,0 +1,68 @@
+{
+  "as_of": "2026-11-21",
+  "price_date": "2026-11-20",
+  "tickers_before": 383,
+  "tickers_after": 388,
+  "dropped_by_fv_gate": [
+    "IONQ"
+  ],
+  "ionq_fv_at_close": -1.25,
+  "blast_radius_carried_383": 0,
+  "added": {
+    "GEV": {
+      "price": 699.33,
+      "triangulated_fv": 553.45,
+      "overall_score": 58.6,
+      "verdict": "Avoid",
+      "legs": {
+        "dcf": 1387.07,
+        "pegy": 553.45,
+        "forward_sector": 529.77
+      }
+    },
+    "EXE": {
+      "price": 81.27,
+      "triangulated_fv": 138.19,
+      "overall_score": 66.6,
+      "verdict": "Value",
+      "legs": {
+        "dcf": 194.22,
+        "pegy": 138.19,
+        "forward_sector": 85.91
+      }
+    },
+    "ENS": {
+      "price": 124.35,
+      "triangulated_fv": 294.59,
+      "overall_score": 62.1,
+      "verdict": "Watch",
+      "legs": {
+        "dcf": 459.3,
+        "pegy": 197.74,
+        "forward_sector": 294.59
+      }
+    },
+    "LEU": {
+      "price": 81.43,
+      "triangulated_fv": 28.38,
+      "overall_score": 32.7,
+      "verdict": "Avoid",
+      "legs": {
+        "dcf": -213.87,
+        "pegy": 28.38,
+        "forward_sector": 49.06
+      }
+    },
+    "EXEL": {
+      "price": 64.63,
+      "triangulated_fv": 74.16,
+      "overall_score": 74.8,
+      "verdict": "Growth",
+      "legs": {
+        "dcf": 74.16,
+        "pegy": 25.25,
+        "forward_sector": 77.72
+      }
+    }
+  }
+}

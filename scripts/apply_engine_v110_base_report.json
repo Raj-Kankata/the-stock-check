@@ -1,0 +1,36 @@
+{
+  "as_of": "2026-11-16",
+  "price_date": "2026-11-13",
+  "tickers": 388,
+  "added": [
+    "GEV",
+    "EXE",
+    "ENS",
+    "LEU",
+    "EXEL"
+  ],
+  "ionq_excluded": "live-price FV <= 0 at the 2026-11-20 close ($20.72); engine-publishable (seed FV +$1.13)",
+  "ncda_excluded": "symbol does not resolve in Yahoo data; not a traded company",
+  "unpublished_excluded": [
+    "AAOI",
+    "ALK",
+    "ALTI",
+    "AORT",
+    "BUR",
+    "BYND",
+    "CPNG",
+    "IREN",
+    "KLAR",
+    "KRUS",
+    "MNKD",
+    "MUX",
+    "OUST",
+    "RKLB",
+    "UUUU",
+    "UWMC",
+    "VITL",
+    "WGS"
+  ],
+  "base_md5_before": "dc49f346d06a705981b3194bebe11ddc",
+  "base_md5_after": "a00115a1e023851e48c45c279d397fbc"
+}

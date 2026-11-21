@@ -1,11 +1,20 @@
 #!/usr/bin/env python3
-"""Scoring engine v1.9 — better Stock Verdicts platform.
-SPEC v1.7 FINAL (2026-11-21). Deterministic: reads inputs.json only
-(2026-11-13 inputs; v1.8 inputs carried verbatim + the SPEC v1.7
-coverage completions, ARM/CLOV staging). No live calls, no invented
+"""Scoring engine v1.10 — better Stock Verdicts platform.
+SPEC v1.8 FINAL (2026-11-21). Deterministic: reads inputs.json only
+(2026-11-13 inputs; v1.9 inputs carried verbatim + the SPEC v1.8
+universe additions GEV/EXE/ENS/LEU/EXEL, staged after the five were
+scored into the Story x Financials tracker). No live calls, no invented
 numbers. Writes results.json.
 Run:  python3 engine.py  (8 batch-2 names, standalone)
-       python3 run_v19.py (full 402-name re-run; the supported path)
+       python3 run_v110.py (full 407-name re-run; the supported path)
+
+CHANGES vs v1.9 (v1.10, SPEC v1.8 — universe addition): NO CODE
+CHANGE. This engine is v1.9's code byte-for-byte except this docstring
+and the engine version string. SPEC v1.8 changes no scoring rule: it
+admits five names whose only blocker was NO_STORY (absent from the
+Story x Financials tracker), after the tracker scored them — so the
+scored set grows 402 -> 407 with an empty blast radius on the carried
+402 (run_v110.py Control A/B + blast gate prove it).
 
 CHANGES vs v1.8 (v1.9, SPEC v1.7 — coverage completion): NO CODE
 CHANGE. This engine is v1.8's code byte-for-byte except this docstring
@@ -842,7 +851,7 @@ def pros_cons(t, d, pillars, overall, vdt):
 
 # ---------------- Run ----------------
 results = {"as_of": "2026-11-16", "price_date": "2026-11-13",
-           "engine": "scoring-engine-v1.9 (SPEC v1.7 FINAL)",
+           "engine": "scoring-engine-v1.10 (SPEC v1.8 FINAL)",
            "locked_set": {"rf": 0.05, "discount_low_beta": 0.10, "discount_high_beta": 0.12,
                           "discount_tier_rule": "12% if raw beta >= 2.0, else 10% (batch-2 generalisation of the v1.3 NVDA 12% tier; no batch-2 ticker triggers 12% — max raw beta TSLA 1.743)",
                           "terminal_growth": 0.025, "dcf_growth_cap": 0.20,

@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-16",
   "price_date": "2026-11-13",
-  "engine": "scoring-engine-v1.9 (SPEC v1.7 FINAL)",
+  "engine": "scoring-engine-v1.10 (SPEC v1.8 FINAL)",
   "locked_set": {
     "rf": 0.05,
     "discount_low_beta": 0.1,
@@ -24044,6 +24044,229 @@
         "reason": null
       }
     },
+    "ENS": {
+      "name": "EnerSys",
+      "sector": "Industrials",
+      "price": 124.35,
+      "pillars": {
+        "conviction": {
+          "score": 39.4,
+          "detail": {
+            "story": 34.1,
+            "financials": 44.6
+          }
+        },
+        "valuation": {
+          "score": 65,
+          "detail": {
+            "legs": {
+              "dcf": {
+                "value": 459.3,
+                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $17.32, g=18.9% (implied 5y EPS growth 18.9%, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
+                "growth_scenario": 0.189
+              },
+              "pegy": {
+                "value": 197.74,
+                "method": "PEGT = (18.9% growth capped at 30% + 0.93% div) / P/E 12.47 = 1.590; fair = price x PEGY",
+                "pegy": 1.59,
+                "growth_used": 0.189,
+                "pe_used": 12.47,
+                "uncapped_pegy": 1.59
+              },
+              "forward_sector": {
+                "value": 294.59,
+                "method": "v1.2 Forward-sector: next-year EPS $14.40 x Industrials forward P/E 22.5 (FactSet Earnings Insight, 2026-11-13; cap 35x / floor 10x, not binding) / 1.10. Old Forward-22 value was $288.04 (x 22x).",
+                "sector_multiple": 22.5,
+                "sector_multiple_asof": "2026-11-13",
+                "forward22_value": 288.04
+              }
+            },
+            "triangulated_fv": 294.59,
+            "fv_method": "median of 3 legs",
+            "fv_override_applied": false,
+            "upside_pct": 1.369,
+            "leg_spread_div_fv": 0.888,
+            "ladder": {
+              "heavy": 176.75,
+              "buy": 235.67,
+              "fair": 294.59,
+              "exit": 353.51
+            },
+            "ladder_ratios": {
+              "heavy": 0.6,
+              "buy": 0.8,
+              "fair": 1.0,
+              "exit": 1.2
+            },
+            "dcf_capm_crosscheck": {
+              "value": 452.57,
+              "discount_capm": 0.101,
+              "beta_raw": 1.201,
+              "beta_adjusted": 1.13467,
+              "rf_live": 0.051,
+              "rf_live_asof": "2026-11-12",
+              "erp": 0.0441,
+              "erp_asof": "2026-11-01",
+              "method": "v1.3 CAPM cross-check (SPEC v1.1 \u00a73(a)): same base FCF/share $17.32 and growth 18.9% as the decision DCF leg, discount = 10Y 5.10% (2026-11-12, FRED DGS10) + adjusted beta 1.135 x Damodaran implied ERP 4.41% (2026-11-01) = 10.10%. Cross-check only \u2014 does not change the fair value, score or verdict."
+            },
+            "dcf_sensitivity_grid": {
+              "values": {
+                "0%": {
+                  "4.0%": 244.88,
+                  "4.5%": 227.61,
+                  "5.0%": 212.63,
+                  "5.5%": 199.53,
+                  "6.0%": 187.96
+                },
+                "5%": {
+                  "4.0%": 304.07,
+                  "4.5%": 282.1,
+                  "5.0%": 263.07,
+                  "5.5%": 246.41,
+                  "6.0%": 231.72
+                },
+                "10%": {
+                  "4.0%": 374.9,
+                  "4.5%": 347.25,
+                  "5.0%": 323.31,
+                  "5.5%": 302.37,
+                  "6.0%": 283.91
+                },
+                "15%": {
+                  "4.0%": 459.03,
+                  "4.5%": 424.59,
+                  "5.0%": 394.77,
+                  "5.5%": 368.7,
+                  "6.0%": 345.73
+                },
+                "18.9%": {
+                  "4.0%": 535.08,
+                  "4.5%": 494.46,
+                  "5.0%": 459.3,
+                  "5.5%": 428.56,
+                  "6.0%": 401.48
+                },
+                "20%": {
+                  "4.0%": 558.33,
+                  "4.5%": 515.81,
+                  "5.0%": 479.01,
+                  "5.5%": 446.85,
+                  "6.0%": 418.51
+                }
+              },
+              "note": "v1.3 sensitivity grid (SPEC v1.1 \u00a73(a)): decision DCF leg across FCF growth 0\u201320% x rf 4.0\u20136.0%. Discount = rf + locked spread 5.0% (locked discount 10.0% - locked rf 5.00%). The rf 5.0% column reproduces the decision DCF leg exactly where the base growth is a grid row (NVDA, 20% in v1.3); otherwise the decision leg sits between two grid rows. Base FCF/share $17.32, terminal growth 2.5%, 5y horizon."
+            }
+          }
+        },
+        "quality": {
+          "score": 91.5,
+          "detail": {
+            "subscores": {
+              "ocf_vs_ni": 100,
+              "accruals": 100,
+              "receivables_trend": 100,
+              "fcf_conversion": 100,
+              "roa": 35,
+              "leverage": 80
+            },
+            "degenerate_ni": false,
+            "receivables_unreadable": false,
+            "inputs": {
+              "ocf_pct_ni_used": 1.877,
+              "accruals_sloan": -0.0635,
+              "receivables_change_pp": -3.04,
+              "fcf_conversion_used": 1.741,
+              "roa": 0.085360005,
+              "debt_to_equity": 0.45591000000000004,
+              "ni_used": 373697000.0,
+              "ni_used_div_revenue": 0.0985
+            }
+          }
+        },
+        "technical": {
+          "score": 25.2,
+          "detail": {
+            "subscores": {
+              "trend_ema": 15,
+              "price_vs_200d": 20,
+              "rsi": 35,
+              "macd": 40
+            },
+            "inputs": {
+              "ema20": 148.46,
+              "ema50": 163.45,
+              "ema200": 178.45,
+              "rsi14": 23.2,
+              "macd_hist": -1.96,
+              "price_vs_200d_pct": -0.303
+            }
+          }
+        },
+        "trust": {
+          "score": 79.5,
+          "detail": {
+            "subscores": {
+              "completeness": 100,
+              "analyst_coverage": 50,
+              "target_dispersion": 100,
+              "insider": 60
+            },
+            "inputs": {
+              "n_analysts": 4,
+              "target_spread_div_mean": 0.268,
+              "insider_note": "mixed insider activity"
+            }
+          }
+        }
+      },
+      "overall_score": 62.1,
+      "verdict": "Watch",
+      "verdict_reason": "overall 62.1 \u2014 no Growth/Value gate met, no Avoid gate tripped",
+      "triangulated_fv": 294.59,
+      "ladder": {
+        "heavy": 176.75,
+        "buy": 235.67,
+        "fair": 294.59,
+        "exit": 353.51
+      },
+      "pros": [
+        "Triangulated fair value $294.59 is +137% above the $124.35 price \u2014 the DCF/PEGY/Forward-sector legs span $197.74\u2013$459.30, so treat the midpoint, not any single leg, as the anchor.",
+        "Operating cash flow is 188% of net income \u2014 profit is backed by more cash than earnings.",
+        "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check.",
+        "Free-cash-flow conversion is strong: FCF is 174% of net income."
+      ],
+      "cons": [
+        "Revenue compounded only 0% a year over the last 3 fiscal years \u2014 growth is no longer the story.",
+        "Downtrend: price $124.35 sits below its 20-day EMA ($148.46) and 200-day EMA ($178.45); RSI 23.2 \u2014 timing is poor even if the business is fine.",
+        "Our Story-Tracker rates it 'Out' (Story 34.1, Financials 44.6)."
+      ],
+      "flags": [
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
+      ],
+      "analysts": {
+        "n_opinions": 4,
+        "target_mean": 231.98,
+        "target_high": 265.0,
+        "target_low": 202.92,
+        "target_spread_div_mean": 0.268
+      },
+      "debt_fcf": null,
+      "indexes": null,
+      "market_cap": 4670273508.45,
+      "rel_vol": 1.0437,
+      "lynch": {
+        "value": 197.74,
+        "pegy": 1.59,
+        "growth_used": 0.189,
+        "growth_cap": null,
+        "dividend_yield": 0.0093,
+        "pe_used": 12.47,
+        "eps": 9.9719,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
+    },
     "ENTG": {
       "name": "Entegris, Inc.",
       "sector": "Technology",
@@ -26019,6 +26242,451 @@
         "dividend_yield": 0.0,
         "pe_used": 20.35,
         "eps": 3.7602,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
+    },
+    "EXE": {
+      "name": "Expand Energy Corporation",
+      "sector": "Energy",
+      "price": 81.27,
+      "pillars": {
+        "conviction": {
+          "score": 54.5,
+          "detail": {
+            "story": 43.2,
+            "financials": 65.8
+          }
+        },
+        "valuation": {
+          "score": 65,
+          "detail": {
+            "legs": {
+              "dcf": {
+                "value": 194.22,
+                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $10.89, g=8.9% (implied 5y EPS growth 8.9%, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
+                "growth_scenario": 0.0888
+              },
+              "pegy": {
+                "value": 138.19,
+                "method": "PEGT = (8.9% growth capped at 30% + 3.04% div) / P/E 7.01 = 1.700; fair = price x PEGY",
+                "pegy": 1.7,
+                "growth_used": 0.0888,
+                "pe_used": 7.01,
+                "uncapped_pegy": 1.7
+              },
+              "forward_sector": {
+                "value": 85.91,
+                "method": "v1.2 Forward-sector: next-year EPS $7.75 x Energy forward P/E 12.2 (FactSet Earnings Insight, 2026-11-13; cap 35x / floor 10x, not binding) / 1.10. Old Forward-22 value was $154.91 (x 22x).",
+                "sector_multiple": 12.2,
+                "sector_multiple_asof": "2026-11-13",
+                "forward22_value": 154.91
+              }
+            },
+            "triangulated_fv": 138.19,
+            "fv_method": "median of 3 legs",
+            "fv_override_applied": false,
+            "upside_pct": 0.7,
+            "leg_spread_div_fv": 0.784,
+            "ladder": {
+              "heavy": 82.91,
+              "buy": 110.55,
+              "fair": 138.19,
+              "exit": 165.83
+            },
+            "ladder_ratios": {
+              "heavy": 0.6,
+              "buy": 0.8,
+              "fair": 1.0,
+              "exit": 1.2
+            },
+            "dcf_capm_crosscheck": {
+              "value": 285.84,
+              "discount_capm": 0.0765,
+              "beta_raw": 0.37,
+              "beta_adjusted": 0.5779,
+              "rf_live": 0.051,
+              "rf_live_asof": "2026-11-12",
+              "erp": 0.0441,
+              "erp_asof": "2026-11-01",
+              "method": "v1.3 CAPM cross-check (SPEC v1.1 \u00a73(a)): same base FCF/share $10.89 and growth 8.9% as the decision DCF leg, discount = 10Y 5.10% (2026-11-12, FRED DGS10) + adjusted beta 0.578 x Damodaran implied ERP 4.41% (2026-11-01) = 7.65%. Cross-check only \u2014 does not change the fair value, score or verdict."
+            },
+            "dcf_sensitivity_grid": {
+              "values": {
+                "0%": {
+                  "4.0%": 153.97,
+                  "4.5%": 143.11,
+                  "5.0%": 133.69,
+                  "5.5%": 125.45,
+                  "6.0%": 118.18
+                },
+                "5%": {
+                  "4.0%": 191.19,
+                  "4.5%": 177.37,
+                  "5.0%": 165.4,
+                  "5.5%": 154.93,
+                  "6.0%": 145.7
+                },
+                "8.88%": {
+                  "4.0%": 225.05,
+                  "4.5%": 208.53,
+                  "5.0%": 194.22,
+                  "5.5%": 181.7,
+                  "6.0%": 170.66
+                },
+                "10%": {
+                  "4.0%": 235.72,
+                  "4.5%": 218.34,
+                  "5.0%": 203.28,
+                  "5.5%": 190.12,
+                  "6.0%": 178.51
+                },
+                "15%": {
+                  "4.0%": 288.62,
+                  "4.5%": 266.96,
+                  "5.0%": 248.21,
+                  "5.5%": 231.82,
+                  "6.0%": 217.38
+                },
+                "20%": {
+                  "4.0%": 351.05,
+                  "4.5%": 324.32,
+                  "5.0%": 301.18,
+                  "5.5%": 280.96,
+                  "6.0%": 263.14
+                }
+              },
+              "note": "v1.3 sensitivity grid (SPEC v1.1 \u00a73(a)): decision DCF leg across FCF growth 0\u201320% x rf 4.0\u20136.0%. Discount = rf + locked spread 5.0% (locked discount 10.0% - locked rf 5.00%). The rf 5.0% column reproduces the decision DCF leg exactly where the base growth is a grid row (NVDA, 20% in v1.3); otherwise the decision leg sits between two grid rows. Base FCF/share $10.89, terminal growth 2.5%, 5y horizon."
+            }
+          }
+        },
+        "quality": {
+          "score": 93.5,
+          "detail": {
+            "subscores": {
+              "ocf_vs_ni": 100,
+              "accruals": 100,
+              "receivables_trend": 100,
+              "fcf_conversion": 100,
+              "roa": 35,
+              "leverage": 100
+            },
+            "degenerate_ni": false,
+            "receivables_unreadable": false,
+            "inputs": {
+              "ocf_pct_ni_used": 2.045,
+              "accruals_sloan": -0.0974,
+              "receivables_change_pp": -15.76,
+              "fcf_conversion_used": 0.942,
+              "roa": 0.08167,
+              "debt_to_equity": 0.23949,
+              "ni_used": 2753000000.0,
+              "ni_used_div_revenue": 0.1978
+            }
+          }
+        },
+        "technical": {
+          "score": 25.2,
+          "detail": {
+            "subscores": {
+              "trend_ema": 15,
+              "price_vs_200d": 20,
+              "rsi": 35,
+              "macd": 40
+            },
+            "inputs": {
+              "ema20": 86.85,
+              "ema50": 89.0,
+              "ema200": 95.23,
+              "rsi14": 29.8,
+              "macd_hist": -0.66,
+              "price_vs_200d_pct": -0.147
+            }
+          }
+        },
+        "trust": {
+          "score": 82.0,
+          "detail": {
+            "subscores": {
+              "completeness": 100,
+              "analyst_coverage": 80,
+              "target_dispersion": 80,
+              "insider": 60
+            },
+            "inputs": {
+              "n_analysts": 27,
+              "target_spread_div_mean": 0.531,
+              "insider_note": "mixed insider activity"
+            }
+          }
+        }
+      },
+      "overall_score": 66.6,
+      "verdict": "Value",
+      "verdict_reason": "overall 66.6 \u2265 60, upside +70% \u2265 +25%, quality 93.5 \u2265 60, conviction 54.5 \u2265 50, slower growth",
+      "triangulated_fv": 138.19,
+      "ladder": {
+        "heavy": 82.91,
+        "buy": 110.55,
+        "fair": 138.19,
+        "exit": 165.83
+      },
+      "pros": [
+        "Triangulated fair value $138.19 is +70% above the $81.27 price \u2014 the DCF/PEGY/Forward-sector legs span $85.91\u2013$194.22, so treat the midpoint, not any single leg, as the anchor.",
+        "Operating cash flow is 204% of net income \u2014 profit is backed by more cash than earnings.",
+        "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check.",
+        "Free-cash-flow conversion is strong: FCF is 94% of net income.",
+        "Our Story-Tracker rates it 'Hold, don't add' (Story 43.2, Financials 65.8)."
+      ],
+      "cons": [
+        "Revenue compounded only 1% a year over the last 3 fiscal years \u2014 growth is no longer the story.",
+        "Downtrend: price $81.27 sits below its 20-day EMA ($86.85) and 200-day EMA ($95.23); RSI 29.8 \u2014 timing is poor even if the business is fine."
+      ],
+      "flags": [
+        "One-off check: 2 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
+      ],
+      "analysts": {
+        "n_opinions": 27,
+        "target_mean": 120.62963,
+        "target_high": 156.0,
+        "target_low": 92.0,
+        "target_spread_div_mean": 0.531
+      },
+      "debt_fcf": null,
+      "indexes": [
+        "SP500"
+      ],
+      "market_cap": 19337624034.12,
+      "rel_vol": 1.2147,
+      "lynch": {
+        "value": 138.19,
+        "pegy": 1.7,
+        "growth_used": 0.0888,
+        "growth_cap": null,
+        "dividend_yield": 0.0304,
+        "pe_used": 7.01,
+        "eps": 11.5934,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
+    },
+    "EXEL": {
+      "name": "Exelixis, Inc.",
+      "sector": "Healthcare",
+      "price": 64.63,
+      "pillars": {
+        "conviction": {
+          "score": 56.5,
+          "detail": {
+            "story": 63.2,
+            "financials": 49.9
+          }
+        },
+        "valuation": {
+          "score": 74.7,
+          "detail": {
+            "legs": {
+              "dcf": {
+                "value": 74.16,
+                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $4.39, g=7.6% (implied 5y EPS growth 7.6%, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
+                "growth_scenario": 0.0756
+              },
+              "pegy": {
+                "value": 25.25,
+                "method": "PEGT = (7.6% growth capped at 30% + 0.00% div) / P/E 19.35 = 0.391; fair = price x PEGY",
+                "pegy": 0.391,
+                "growth_used": 0.0756,
+                "pe_used": 19.35,
+                "uncapped_pegy": 0.391
+              },
+              "forward_sector": {
+                "value": 77.72,
+                "method": "v1.2 Forward-sector: next-year EPS $4.27 x Health Care forward P/E 20.0 (FactSet Earnings Insight, 2026-11-13; cap 35x / floor 10x, not binding) / 1.10. Old Forward-22 value was $85.49 (x 22x).",
+                "sector_multiple": 20.0,
+                "sector_multiple_asof": "2026-11-13",
+                "forward22_value": 85.49
+              }
+            },
+            "triangulated_fv": 74.16,
+            "fv_method": "median of 3 legs",
+            "fv_override_applied": false,
+            "upside_pct": 0.147,
+            "leg_spread_div_fv": 0.708,
+            "ladder": {
+              "heavy": 44.5,
+              "buy": 59.33,
+              "fair": 74.16,
+              "exit": 88.99
+            },
+            "ladder_ratios": {
+              "heavy": 0.6,
+              "buy": 0.8,
+              "fair": 1.0,
+              "exit": 1.2
+            },
+            "dcf_capm_crosscheck": {
+              "value": 105.96,
+              "discount_capm": 0.0779,
+              "beta_raw": 0.418,
+              "beta_adjusted": 0.61006,
+              "rf_live": 0.051,
+              "rf_live_asof": "2026-11-12",
+              "erp": 0.0441,
+              "erp_asof": "2026-11-01",
+              "method": "v1.3 CAPM cross-check (SPEC v1.1 \u00a73(a)): same base FCF/share $4.39 and growth 7.6% as the decision DCF leg, discount = 10Y 5.10% (2026-11-12, FRED DGS10) + adjusted beta 0.610 x Damodaran implied ERP 4.41% (2026-11-01) = 7.79%. Cross-check only \u2014 does not change the fair value, score or verdict."
+            },
+            "dcf_sensitivity_grid": {
+              "values": {
+                "0%": {
+                  "4.0%": 62.07,
+                  "4.5%": 57.69,
+                  "5.0%": 53.89,
+                  "5.5%": 50.57,
+                  "6.0%": 47.64
+                },
+                "5%": {
+                  "4.0%": 77.07,
+                  "4.5%": 71.5,
+                  "5.0%": 66.68,
+                  "5.5%": 62.46,
+                  "6.0%": 58.73
+                },
+                "7.56%": {
+                  "4.0%": 85.87,
+                  "4.5%": 79.6,
+                  "5.0%": 74.16,
+                  "5.5%": 69.41,
+                  "6.0%": 65.22
+                },
+                "10%": {
+                  "4.0%": 95.02,
+                  "4.5%": 88.02,
+                  "5.0%": 81.95,
+                  "5.5%": 76.64,
+                  "6.0%": 71.96
+                },
+                "15%": {
+                  "4.0%": 116.35,
+                  "4.5%": 107.62,
+                  "5.0%": 100.06,
+                  "5.5%": 93.45,
+                  "6.0%": 87.63
+                },
+                "20%": {
+                  "4.0%": 141.52,
+                  "4.5%": 130.74,
+                  "5.0%": 121.41,
+                  "5.5%": 113.26,
+                  "6.0%": 106.08
+                }
+              },
+              "note": "v1.3 sensitivity grid (SPEC v1.1 \u00a73(a)): decision DCF leg across FCF growth 0\u201320% x rf 4.0\u20136.0%. Discount = rf + locked spread 5.0% (locked discount 10.0% - locked rf 5.00%). The rf 5.0% column reproduces the decision DCF leg exactly where the base growth is a grid row (NVDA, 20% in v1.3); otherwise the decision leg sits between two grid rows. Base FCF/share $4.39, terminal growth 2.5%, 5y horizon."
+            }
+          }
+        },
+        "quality": {
+          "score": 98.5,
+          "detail": {
+            "subscores": {
+              "ocf_vs_ni": 100,
+              "accruals": 100,
+              "receivables_trend": 100,
+              "fcf_conversion": 100,
+              "roa": 85,
+              "leverage": 100
+            },
+            "degenerate_ni": false,
+            "receivables_unreadable": false,
+            "inputs": {
+              "ocf_pct_ni_used": 1.325,
+              "accruals_sloan": -0.0358,
+              "receivables_change_pp": 0.13,
+              "fcf_conversion_used": 1.312,
+              "roa": 0.23517,
+              "debt_to_equity": 0.08845,
+              "ni_used": 885140000.0,
+              "ni_used_div_revenue": 0.3545
+            }
+          }
+        },
+        "technical": {
+          "score": 70.2,
+          "detail": {
+            "subscores": {
+              "trend_ema": 75,
+              "price_vs_200d": 100,
+              "rsi": 55,
+              "macd": 40
+            },
+            "inputs": {
+              "ema20": 67.39,
+              "ema50": 64.14,
+              "ema200": 55.2,
+              "rsi14": 43.4,
+              "macd_hist": -0.92,
+              "price_vs_200d_pct": 0.171
+            }
+          }
+        },
+        "trust": {
+          "score": 77.0,
+          "detail": {
+            "subscores": {
+              "completeness": 100,
+              "analyst_coverage": 80,
+              "target_dispersion": 60,
+              "insider": 60
+            },
+            "inputs": {
+              "n_analysts": 14,
+              "target_spread_div_mean": 0.603,
+              "insider_note": "mixed insider activity"
+            }
+          }
+        }
+      },
+      "overall_score": 74.8,
+      "verdict": "Growth",
+      "verdict_reason": "overall 74.8 \u2265 60, upside +15%, quality 98.5 \u2265 55, conviction 56.5 \u2265 50, 3y rev CAGR 13% \u2265 10%",
+      "triangulated_fv": 74.16,
+      "ladder": {
+        "heavy": 44.5,
+        "buy": 59.33,
+        "fair": 74.16,
+        "exit": 88.99
+      },
+      "pros": [
+        "Triangulated fair value $74.16 is +15% above the $64.63 price \u2014 the DCF/PEGY/Forward-sector legs span $25.25\u2013$77.72, so treat the midpoint, not any single leg, as the anchor.",
+        "Operating cash flow is 132% of net income \u2014 profit is backed by more cash than earnings.",
+        "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check.",
+        "Free-cash-flow conversion is strong: FCF is 131% of net income.",
+        "Uptrend: price sits above its 20-, 50- and 200-day averages."
+      ],
+      "cons": [],
+      "flags": [
+        "One-off check: 1 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
+      ],
+      "analysts": {
+        "n_opinions": 14,
+        "target_mean": 61.35714,
+        "target_high": 78.0,
+        "target_low": 41.0,
+        "target_spread_div_mean": 0.603
+      },
+      "debt_fcf": null,
+      "indexes": null,
+      "market_cap": 17076596508.48,
+      "rel_vol": 0.7387,
+      "lynch": {
+        "value": 25.25,
+        "pegy": 0.391,
+        "growth_used": 0.0756,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 19.35,
+        "eps": 3.3401,
         "eps_adjusted": false,
         "available": true,
         "reason": null
@@ -30422,6 +31090,231 @@
         "dividend_yield": 0.0172,
         "pe_used": 14.82,
         "eps": 1.9696,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
+    },
+    "GEV": {
+      "name": "GE Vernova Inc.",
+      "sector": "Industrials",
+      "price": 699.33,
+      "pillars": {
+        "conviction": {
+          "score": 64.4,
+          "detail": {
+            "story": 53.3,
+            "financials": 75.5
+          }
+        },
+        "valuation": {
+          "score": 29.1,
+          "detail": {
+            "legs": {
+              "dcf": {
+                "value": 1387.07,
+                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $62.73, g=14.2% (implied 5y EPS growth 14.2%, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
+                "growth_scenario": 0.1423
+              },
+              "pegy": {
+                "value": 553.45,
+                "method": "PEGT = (14.2% growth capped at 30% + 0.30% div) / P/E 18.36 = 0.791; fair = price x PEGY",
+                "pegy": 0.791,
+                "growth_used": 0.1423,
+                "pe_used": 18.36,
+                "uncapped_pegy": 0.791
+              },
+              "forward_sector": {
+                "value": 529.77,
+                "method": "v1.2 Forward-sector: next-year EPS $25.90 x Industrials forward P/E 22.5 (FactSet Earnings Insight, 2026-11-13; cap 35x / floor 10x, not binding) / 1.10. Old Forward-22 value was $517.99 (x 22x).",
+                "sector_multiple": 22.5,
+                "sector_multiple_asof": "2026-11-13",
+                "forward22_value": 517.99
+              }
+            },
+            "triangulated_fv": 553.45,
+            "fv_method": "median of 3 legs",
+            "fv_override_applied": false,
+            "upside_pct": -0.209,
+            "leg_spread_div_fv": 1.549,
+            "ladder": {
+              "heavy": 332.07,
+              "buy": 442.76,
+              "fair": 553.45,
+              "exit": 664.14
+            },
+            "ladder_ratios": {
+              "heavy": 0.6,
+              "buy": 0.8,
+              "fair": 1.0,
+              "exit": 1.2
+            },
+            "dcf_capm_crosscheck": {
+              "value": 1451.95,
+              "discount_capm": 0.0968,
+              "beta_raw": 1.058,
+              "beta_adjusted": 1.03886,
+              "rf_live": 0.051,
+              "rf_live_asof": "2026-11-12",
+              "erp": 0.0441,
+              "erp_asof": "2026-11-01",
+              "method": "v1.3 CAPM cross-check (SPEC v1.1 \u00a73(a)): same base FCF/share $62.73 and growth 14.2% as the decision DCF leg, discount = 10Y 5.10% (2026-11-12, FRED DGS10) + adjusted beta 1.039 x Damodaran implied ERP 4.41% (2026-11-01) = 9.68%. Cross-check only \u2014 does not change the fair value, score or verdict."
+            },
+            "dcf_sensitivity_grid": {
+              "values": {
+                "0%": {
+                  "4.0%": 886.91,
+                  "4.5%": 824.35,
+                  "5.0%": 770.12,
+                  "5.5%": 722.65,
+                  "6.0%": 680.76
+                },
+                "5%": {
+                  "4.0%": 1101.3,
+                  "4.5%": 1021.73,
+                  "5.0%": 952.78,
+                  "5.5%": 892.46,
+                  "6.0%": 839.25
+                },
+                "10%": {
+                  "4.0%": 1357.81,
+                  "4.5%": 1257.68,
+                  "5.0%": 1170.96,
+                  "5.5%": 1095.13,
+                  "6.0%": 1028.26
+                },
+                "14.23%": {
+                  "4.0%": 1612.21,
+                  "4.5%": 1491.55,
+                  "5.0%": 1387.07,
+                  "5.5%": 1295.73,
+                  "6.0%": 1215.22
+                },
+                "15%": {
+                  "4.0%": 1662.54,
+                  "4.5%": 1537.8,
+                  "5.0%": 1429.79,
+                  "5.5%": 1335.38,
+                  "6.0%": 1252.16
+                },
+                "20%": {
+                  "4.0%": 2022.17,
+                  "4.5%": 1868.18,
+                  "5.0%": 1734.88,
+                  "5.5%": 1618.4,
+                  "6.0%": 1515.76
+                }
+              },
+              "note": "v1.3 sensitivity grid (SPEC v1.1 \u00a73(a)): decision DCF leg across FCF growth 0\u201320% x rf 4.0\u20136.0%. Discount = rf + locked spread 5.0% (locked discount 10.0% - locked rf 5.00%). The rf 5.0% column reproduces the decision DCF leg exactly where the base growth is a grid row (NVDA, 20% in v1.3); otherwise the decision leg sits between two grid rows. Base FCF/share $62.73, terminal growth 2.5%, 5y horizon."
+            }
+          }
+        },
+        "quality": {
+          "score": 89.0,
+          "detail": {
+            "subscores": {
+              "ocf_vs_ni": 100,
+              "accruals": 100,
+              "receivables_trend": 70,
+              "fcf_conversion": 100,
+              "roa": 35,
+              "leverage": 100
+            },
+            "degenerate_ni": false,
+            "receivables_unreadable": false,
+            "inputs": {
+              "ocf_pct_ni_used": 1.853,
+              "accruals_sloan": -0.0016,
+              "receivables_change_pp": 2.34,
+              "fcf_conversion_used": 1.651,
+              "roa": 0.03217,
+              "debt_to_equity": 0.29893000000000003,
+              "ni_used": 10368000000.0,
+              "ni_used_div_revenue": 0.2354
+            }
+          }
+        },
+        "technical": {
+          "score": 29.2,
+          "detail": {
+            "subscores": {
+              "trend_ema": 15,
+              "price_vs_200d": 20,
+              "rsi": 55,
+              "macd": 40
+            },
+            "inputs": {
+              "ema20": 810.68,
+              "ema50": 872.56,
+              "ema200": 894.07,
+              "rsi14": 32.0,
+              "macd_hist": -6.5,
+              "price_vs_200d_pct": -0.218
+            }
+          }
+        },
+        "trust": {
+          "score": 87.0,
+          "detail": {
+            "subscores": {
+              "completeness": 100,
+              "analyst_coverage": 100,
+              "target_dispersion": 80,
+              "insider": 60
+            },
+            "inputs": {
+              "n_analysts": 33,
+              "target_spread_div_mean": 0.53,
+              "insider_note": "mixed insider activity"
+            }
+          }
+        }
+      },
+      "overall_score": 58.6,
+      "verdict": "Avoid",
+      "verdict_reason": "Avoid gate: valuation score 29.1 < 30; price $699.33 at/above our Exit $664.14",
+      "triangulated_fv": 553.45,
+      "ladder": {
+        "heavy": 332.07,
+        "buy": 442.76,
+        "fair": 553.45,
+        "exit": 664.14
+      },
+      "pros": [
+        "Operating cash flow is 185% of net income \u2014 profit is backed by more cash than earnings.",
+        "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check.",
+        "Free-cash-flow conversion is strong: FCF is 165% of net income.",
+        "Our Story-Tracker rates it 'Hold, don't add' (Story 53.3, Financials 75.5)."
+      ],
+      "cons": [
+        "Triangulated fair value $553.45 is -21% below the $699.33 price \u2014 even the most generous leg ($1,387.07) sits below the price.",
+        "Revenue compounded only 9% a year over the last 3 fiscal years \u2014 growth is no longer the story.",
+        "Downtrend: price $699.33 sits below its 20-day EMA ($810.68) and 200-day EMA ($894.07); RSI 32.0 \u2014 timing is poor even if the business is fine."
+      ],
+      "flags": [
+        "One-off check: 4 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
+      ],
+      "analysts": {
+        "n_opinions": 33,
+        "target_mean": 1162.4033,
+        "target_high": 1400.0,
+        "target_low": 783.86,
+        "target_spread_div_mean": 0.53
+      },
+      "debt_fcf": null,
+      "indexes": [
+        "SP500"
+      ],
+      "market_cap": 190806669289.65,
+      "rel_vol": 1.4246,
+      "lynch": {
+        "value": 553.45,
+        "pegy": 0.791,
+        "growth_used": 0.1423,
+        "growth_cap": null,
+        "dividend_yield": 0.003,
+        "pe_used": 18.36,
+        "eps": 38.0899,
         "eps_adjusted": false,
         "available": true,
         "reason": null
@@ -42311,6 +43204,229 @@
         "dividend_yield": 0.0247,
         "pe_used": 15.29,
         "eps": 5.2806,
+        "eps_adjusted": false,
+        "available": true,
+        "reason": null
+      }
+    },
+    "LEU": {
+      "name": "Centrus Energy Corp.",
+      "sector": "Energy",
+      "price": 81.43,
+      "pillars": {
+        "conviction": {
+          "score": 26.6,
+          "detail": {
+            "story": 39.8,
+            "financials": 13.5
+          }
+        },
+        "valuation": {
+          "score": 10,
+          "detail": {
+            "legs": {
+              "dcf": {
+                "value": -213.87,
+                "method": "LOCKED v1.1: own 5y DCF on TTM FCF/share $-12.22, g=8.4% (implied 5y EPS growth 8.4%, capped 20%), discount 10.0% (low-beta tier), terminal g 2.5%",
+                "growth_scenario": 0.0842
+              },
+              "pegy": {
+                "value": 28.38,
+                "method": "PEGT = (8.4% growth capped at 30% + 0.00% div) / P/E 24.16 = 0.349; fair = price x PEGY",
+                "pegy": 0.349,
+                "growth_used": 0.0842,
+                "pe_used": 24.16,
+                "uncapped_pegy": 0.349
+              },
+              "forward_sector": {
+                "value": 49.06,
+                "method": "v1.2 Forward-sector: next-year EPS $4.42 x Energy forward P/E 12.2 (FactSet Earnings Insight, 2026-11-13; cap 35x / floor 10x, not binding) / 1.10. Old Forward-22 value was $88.47 (x 22x).",
+                "sector_multiple": 12.2,
+                "sector_multiple_asof": "2026-11-13",
+                "forward22_value": 88.47
+              }
+            },
+            "triangulated_fv": 28.38,
+            "fv_method": "median of 3 legs",
+            "fv_override_applied": false,
+            "upside_pct": -0.651,
+            "leg_spread_div_fv": 9.265,
+            "ladder": {
+              "heavy": 17.03,
+              "buy": 22.7,
+              "fair": 28.38,
+              "exit": 34.06
+            },
+            "ladder_ratios": {
+              "heavy": 0.6,
+              "buy": 0.8,
+              "fair": 1.0,
+              "exit": 1.2
+            },
+            "dcf_capm_crosscheck": {
+              "value": -194.77,
+              "discount_capm": 0.1071,
+              "beta_raw": 1.407,
+              "beta_adjusted": 1.27269,
+              "rf_live": 0.051,
+              "rf_live_asof": "2026-11-12",
+              "erp": 0.0441,
+              "erp_asof": "2026-11-01",
+              "method": "v1.3 CAPM cross-check (SPEC v1.1 \u00a73(a)): same base FCF/share $-12.22 and growth 8.4% as the decision DCF leg, discount = 10Y 5.10% (2026-11-12, FRED DGS10) + adjusted beta 1.273 x Damodaran implied ERP 4.41% (2026-11-01) = 10.71%. Cross-check only \u2014 does not change the fair value, score or verdict."
+            },
+            "dcf_sensitivity_grid": {
+              "values": {
+                "0%": {
+                  "4.0%": -172.77,
+                  "4.5%": -160.59,
+                  "5.0%": -150.02,
+                  "5.5%": -140.77,
+                  "6.0%": -132.61
+                },
+                "5%": {
+                  "4.0%": -214.54,
+                  "4.5%": -199.04,
+                  "5.0%": -185.6,
+                  "5.5%": -173.85,
+                  "6.0%": -163.49
+                },
+                "8.42%": {
+                  "4.0%": -247.76,
+                  "4.5%": -229.6,
+                  "5.0%": -213.87,
+                  "5.5%": -200.11,
+                  "6.0%": -187.98
+                },
+                "10%": {
+                  "4.0%": -264.51,
+                  "4.5%": -245.0,
+                  "5.0%": -228.11,
+                  "5.5%": -213.33,
+                  "6.0%": -200.31
+                },
+                "15%": {
+                  "4.0%": -323.87,
+                  "4.5%": -299.57,
+                  "5.0%": -278.53,
+                  "5.5%": -260.14,
+                  "6.0%": -243.93
+                },
+                "20%": {
+                  "4.0%": -393.92,
+                  "4.5%": -363.93,
+                  "5.0%": -337.96,
+                  "5.5%": -315.27,
+                  "6.0%": -295.27
+                }
+              },
+              "note": "v1.3 sensitivity grid (SPEC v1.1 \u00a73(a)): decision DCF leg across FCF growth 0\u201320% x rf 4.0\u20136.0%. Discount = rf + locked spread 5.0% (locked discount 10.0% - locked rf 5.00%). The rf 5.0% column reproduces the decision DCF leg exactly where the base growth is a grid row (NVDA, 20% in v1.3); otherwise the decision leg sits between two grid rows. Base FCF/share $-12.22, terminal growth 2.5%, 5y horizon."
+            }
+          }
+        },
+        "quality": {
+          "score": 46.5,
+          "detail": {
+            "subscores": {
+              "ocf_vs_ni": 20,
+              "accruals": 75,
+              "receivables_trend": 100,
+              "fcf_conversion": 20,
+              "roa": 35,
+              "leverage": 40
+            },
+            "degenerate_ni": false,
+            "receivables_unreadable": false,
+            "inputs": {
+              "ocf_pct_ni_used": -0.781,
+              "accruals_sloan": 0.011,
+              "receivables_change_pp": -11.26,
+              "fcf_conversion_used": -3.878,
+              "roa": -0.00308,
+              "debt_to_equity": 1.06669,
+              "ni_used": 76200000.0,
+              "ni_used_div_revenue": 0.1677
+            }
+          }
+        },
+        "technical": {
+          "score": 29.2,
+          "detail": {
+            "subscores": {
+              "trend_ema": 15,
+              "price_vs_200d": 20,
+              "rsi": 55,
+              "macd": 40
+            },
+            "inputs": {
+              "ema20": 101.79,
+              "ema50": 119.97,
+              "ema200": 167.26,
+              "rsi14": 31.9,
+              "macd_hist": -0.5,
+              "price_vs_200d_pct": -0.513
+            }
+          }
+        },
+        "trust": {
+          "score": 72.0,
+          "detail": {
+            "subscores": {
+              "completeness": 100,
+              "analyst_coverage": 80,
+              "target_dispersion": 40,
+              "insider": 60
+            },
+            "inputs": {
+              "n_analysts": 20,
+              "target_spread_div_mean": 1.11,
+              "insider_note": "mixed insider activity"
+            }
+          }
+        }
+      },
+      "overall_score": 32.7,
+      "verdict": "Avoid",
+      "verdict_reason": "Avoid gate: overall 32.7 < 45; valuation score 10 < 30; price $81.43 at/above our Exit $34.06",
+      "triangulated_fv": 28.38,
+      "ladder": {
+        "heavy": 17.03,
+        "buy": 22.7,
+        "fair": 28.38,
+        "exit": 34.06
+      },
+      "pros": [
+        "Revenue compounded 15% a year over the last 3 fiscal years.",
+        "Accruals are low/negative (Sloan) \u2014 earnings quality looks clean on that check."
+      ],
+      "cons": [
+        "Triangulated fair value $28.38 is -65% below the $81.43 price \u2014 even the most generous leg ($49.06) sits below the price.",
+        "Operating cash flow is only -78% of net income \u2014 a large slice of profit is not cash yet.",
+        "Free-cash-flow conversion is weak: FCF is only -388% of net income \u2014 capex is eating the cash the business earns.",
+        "Downtrend: price $81.43 sits below its 20-day EMA ($101.79) and 200-day EMA ($167.26); RSI 31.9 \u2014 timing is poor even if the business is fine.",
+        "Our Story-Tracker rates it 'Out' (Story 39.8, Financials 13.5)."
+      ],
+      "flags": [
+        "One-off check: 3 of 4 TTM quarters showed unusually large earnings moves (flag only \u2014 no adjustment applied)."
+      ],
+      "analysts": {
+        "n_opinions": 20,
+        "target_mean": 180.25,
+        "target_high": 300.0,
+        "target_low": 100.0,
+        "target_spread_div_mean": 1.11
+      },
+      "debt_fcf": null,
+      "indexes": null,
+      "market_cap": 1969830460.68,
+      "rel_vol": 1.3444,
+      "lynch": {
+        "value": 28.38,
+        "pegy": 0.349,
+        "growth_used": 0.0842,
+        "growth_cap": null,
+        "dividend_yield": 0.0,
+        "pe_used": 24.16,
+        "eps": 3.3704,
         "eps_adjusted": false,
         "available": true,
         "reason": null
