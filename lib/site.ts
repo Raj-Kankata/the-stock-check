@@ -62,6 +62,12 @@ export const PICKS: {
   { symbol: 'GEN', entryPrice: 30.15, cohort: 'daily' as const, entryDate: '2026-11-19' },
   { symbol: 'DELL', entryPrice: 312.54, cohort: 'daily' as const, entryDate: '2026-11-19' },
   { symbol: 'DAVE', entryPrice: 237.57, cohort: 'daily' as const, entryDate: '2026-11-19' },
+  // Daily picks 2026-11-20 — top 5 by overall score: GEN 81.3, HPE 80.5, NXPI 79.3, DELL 78.1, SNDK 78.0.
+  { symbol: 'GEN', entryPrice: 29.19, cohort: 'daily' as const, entryDate: '2026-11-20' },
+  { symbol: 'HPE', entryPrice: 40.91, cohort: 'daily' as const, entryDate: '2026-11-20' },
+  { symbol: 'NXPI', entryPrice: 235.15, cohort: 'daily' as const, entryDate: '2026-11-20' },
+  { symbol: 'DELL', entryPrice: 278.02, cohort: 'daily' as const, entryDate: '2026-11-20' },
+  { symbol: 'SNDK', entryPrice: 79.24, cohort: 'daily' as const, entryDate: '2026-11-20' },
 ]
 
 /** S&P 500 close on each daily-picks entry date — one per daily
@@ -72,6 +78,7 @@ export const PICKS: {
 export const DAILY_BENCHMARK_CLOSES: Record<string, number> = {
   // One line per daily table, appended by scripts/daily_picks.py.
   '2026-11-19': 7175.83,
+  '2026-11-20': 6910.39,
 }
 
 /** S&P 500 benchmark — frozen closes from Yahoo Finance (yfinance
