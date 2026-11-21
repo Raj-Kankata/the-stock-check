@@ -7,6 +7,7 @@ import type {
   PublicEtfSearchEntry,
   PublicIndexSearchEntry,
   PublicIpoSearchEntry,
+  PublicNotScoredSearchEntry,
   PublicSearchEntry,
 } from '@/lib/public-types'
 import { scoreSpan } from '@/components/ui'
@@ -28,17 +29,22 @@ import { logSearch } from '@/lib/analytics'
  * or a fair value, because indexes have neither. IPO rows carry an
  * IPO pill, the price and the move vs the offer price — never a
  * verdict, a score or a fair value, because a dossier has none.
+ * Not-scored tier rows (RULEBOOK §34) carry a NOT SCORED pill and the
+ * price — never a verdict, a score or a fair value, because the tier
+ * has none; they link to the /stock page that explains why.
  */
 export default function SearchBox({
   entries,
   etfEntries = [],
   indexEntries = [],
   ipoEntries = [],
+  notScoredEntries = [],
 }: {
   entries: PublicSearchEntry[]
   etfEntries?: PublicEtfSearchEntry[]
   indexEntries?: PublicIndexSearchEntry[]
   ipoEntries?: PublicIpoSearchEntry[]
+  notScoredEntries?: PublicNotScoredSearchEntry[]
 }) {
   const [q, setQ] = useState('')
   const query = q.trim().toUpperCase()
@@ -58,7 +64,7 @@ export default function SearchBox({
   const aliasHit =
     nqRaw.length >= 3 &&
     TYPO_ALIASES[nqRaw] !== undefined &&
-    ![...entries, ...etfEntries, ...indexEntries, ...ipoEntries].some(
+    ![...entries, ...etfEntries, ...indexEntries, ...ipoEntries, ...notScoredEntries].some(
       (e) =>
         norm(e.symbol).startsWith(nqRaw) || norm(e.name).startsWith(nqRaw),
     )
@@ -111,6 +117,17 @@ export default function SearchBox({
             const bSym = norm(b.symbol).startsWith(nq) ? 0 : 1
             return aSym - bSym || a.symbol.localeCompare(b.symbol)
           })
+  // Not-scored tier names match the same way and rank after IPOs.
+  const notScoredMatches =
+    nq.length === 0
+      ? []
+      : notScoredEntries
+          .filter((e) => norm(e.symbol).startsWith(nq) || norm(e.name).startsWith(nq))
+          .sort((a, b) => {
+            const aSym = norm(a.symbol).startsWith(nq) ? 0 : 1
+            const bSym = norm(b.symbol).startsWith(nq) ? 0 : 1
+            return aSym - bSym || a.symbol.localeCompare(b.symbol)
+          })
   const firstHref =
     matches.length > 0
       ? `/stock/${matches[0].symbol}`
@@ -120,7 +137,9 @@ export default function SearchBox({
           ? `/index/${indexMatches[0].symbol}`
           : ipoMatches.length > 0
             ? `/ipo/${ipoMatches[0].symbol}`
-            : null
+            : notScoredMatches.length > 0
+              ? `/stock/${notScoredMatches[0].symbol}`
+              : null
   const firstTicker =
     matches.length > 0
       ? matches[0].symbol
@@ -130,13 +149,16 @@ export default function SearchBox({
           ? indexMatches[0].symbol
           : ipoMatches.length > 0
             ? ipoMatches[0].symbol
-            : null
+            : notScoredMatches.length > 0
+              ? notScoredMatches[0].symbol
+              : null
   const showNotCovered =
     query.length > 0 &&
     matches.length === 0 &&
     etfMatches.length === 0 &&
     indexMatches.length === 0 &&
-    ipoMatches.length === 0
+    ipoMatches.length === 0 &&
+    notScoredMatches.length === 0
 
   // Anonymous search count (see lib/analytics.ts): one log per distinct
   // no-result query — never per keystroke, never with personal data.
@@ -267,11 +289,35 @@ export default function SearchBox({
           ))}
         </ul>
       )}
+      {notScoredMatches.length > 0 && (
+        <ul className="search-results">
+          {notScoredMatches.map((t) => (
+            <li key={t.symbol}>
+              <Link
+                href={`/stock/${t.symbol}`}
+                onClick={() => {
+                  setQ('')
+                  logSearch({ query, ticker: t.symbol })
+                }}
+              >
+                <span>
+                  <strong>{t.symbol}</strong> — {t.name}{' '}
+                  <span className="pill notscored">NOT SCORED</span>
+                </span>
+                <span>
+                  {money(t.price)} · tracked, not scored — see why
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
       {showNotCovered && (
         <p className="footnote">
           “{q.trim()}” is not covered yet. {entries.length} tickers are scored,{' '}
           {etfEntries.length} ETFs are tracked, {indexEntries.length} indexes are
-          tracked and {ipoEntries.length} IPO dossiers are published — AAPL, AMZN, AVGO,
+          tracked, {ipoEntries.length} IPO dossiers are published and{' '}
+          {notScoredEntries.length} names are tracked without a score — AAPL, AMZN, AVGO,
           META, MSFT and NVDA among the stocks, SPY, QQQ and GLD among the ETFs, SPX, NDX
           and VIX among the indexes, ANT, SPCX, CRWV and NBIS among the IPOs — use the search
           above to find a covered name. No score is ever guessed for an unscored ticker,

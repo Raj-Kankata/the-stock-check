@@ -33,13 +33,19 @@ import {
   StockLiveWallStreetUpsides,
 } from '@/components/StockLive'
 import { ENGINE_VERSION } from '@/lib/site'
+import { NOTSCORED_SYMBOLS, getNotScored } from '@/lib/notscored-data'
+import NotScoredPage from '@/components/NotScoredPage'
 
 // Static export: one page per scored ticker, taken from results.json so
 // the generated set can never drift from the data. With `output: 'export'`
 // only these paths are generated; any other /stock/<ticker> URL 404s,
 // which is the same behaviour as before.
 export function generateStaticParams() {
-  return TICKER_SYMBOLS.map((ticker) => ({ ticker }))
+  // Scored cards plus the "Not scored — insufficient data" tier
+  // (RULEBOOK §34): a tier name with a scored card renders the card,
+  // so the scored set wins on any overlap.
+  const tier = NOTSCORED_SYMBOLS.filter((t) => !TICKER_SYMBOLS.includes(t))
+  return [...TICKER_SYMBOLS, ...tier].map((ticker) => ({ ticker }))
 }
 
 // NOTE: `export const dynamicParams = false` was removed — it is not
@@ -50,7 +56,11 @@ export async function generateMetadata({
 }: PageProps<'/stock/[ticker]'>): Promise<Metadata> {
   const { ticker } = await params
   const t = getTicker(ticker)
-  if (!t) return { title: 'Not found | The Stock Check' }
+  if (!t) {
+    const ns = getNotScored(ticker)
+    if (ns) return { title: `${ticker.toUpperCase()} — ${ns.name} (not scored) | The Stock Check` }
+    return { title: 'Not found | The Stock Check' }
+  }
   return { title: `${ticker.toUpperCase()} — ${t.name} | The Stock Check` }
 }
 
@@ -280,7 +290,14 @@ export default async function StockPage({ params }: PageProps<'/stock/[ticker]'>
   const { ticker } = await params
   const symbol = ticker.toUpperCase()
   const t: TickerData | null = getTicker(symbol)
-  if (!t) notFound()
+  if (!t) {
+    // Not a scored card — the "Not scored — insufficient data" tier
+    // (RULEBOOK §34) renders its own page at this route; anything
+    // else is a genuine 404.
+    const ns = getNotScored(symbol)
+    if (ns) return <NotScoredPage symbol={symbol} entry={ns} />
+    notFound()
+  }
 
   const { pillars } = t
   const val = pillars.valuation.detail

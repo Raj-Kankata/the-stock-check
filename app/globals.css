@@ -565,6 +565,12 @@ main {
   background: var(--amber-bg);
   color: var(--amber);
 }
+/* Not-scored tier badge (RULEBOOK §34) — amber, deliberately unlike
+   any verdict pill: these names have no verdict. */
+.pill.notscored {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
 .pill.neutral {
   background: var(--track-bg);
   color: var(--neutral-fg);

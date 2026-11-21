@@ -223,6 +223,7 @@
 <url><loc>https://www.thestockcheck.com/legal</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/A</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/AAL</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/AAOI</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/AAP</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/AAPL</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/ABBV</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
@@ -258,6 +259,7 @@
 <url><loc>https://www.thestockcheck.com/stock/ARDX</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/ARM</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/ASAN</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/ASTS</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/ASX</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/ASYS</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/ATNI</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
@@ -289,6 +291,7 @@
 <url><loc>https://www.thestockcheck.com/stock/CLOV</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/CMG</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/COHR</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/COIN</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/COST</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/CRCL</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/CRDO</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
@@ -296,6 +299,7 @@
 <url><loc>https://www.thestockcheck.com/stock/CRM</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/CROX</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/CRWD</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/CRWV</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/CSCO</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/CTOS</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/CTSH</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
@@ -399,9 +403,12 @@
 <url><loc>https://www.thestockcheck.com/stock/ILMN</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/INFY</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/INOD</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/INTC</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/INTU</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/IONQ</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/IPGP</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/IRDM</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/IREN</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/IRTC</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/JACK</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/JNJ</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
@@ -456,7 +463,9 @@
 <url><loc>https://www.thestockcheck.com/stock/MS</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/MSCI</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/MSFT</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/MSTR</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/MU</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/NBIS</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/NCLH</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/NDAQ</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/NE</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
@@ -542,6 +551,7 @@
 <url><loc>https://www.thestockcheck.com/stock/SMTI</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/SNAP</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/SNDK</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.thestockcheck.com/stock/SNDL</loc><lastmod>2026-11-21T17:41:50Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/SNDR</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/SNOW</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 <url><loc>https://www.thestockcheck.com/stock/SNPS</loc><lastmod>2026-11-21T17:31:29Z</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>

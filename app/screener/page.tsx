@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import Screener from '@/components/Screener'
+import NotScoredList from '@/components/NotScoredList'
+import { NOTSCORED_RESULTS } from '@/lib/notscored-data'
 import { RESULTS } from '@/lib/data'
-import { allPublicRows } from '@/lib/public'
+import { allPublicRows, allNotScoredRows } from '@/lib/public'
 
 export const metadata: Metadata = {
   title: 'Stock Screener',
@@ -24,6 +26,8 @@ export default function ScreenerPage() {
       </p>
 
       <Screener rows={rows} priceDate={RESULTS.price_date} />
+
+      <NotScoredList rows={allNotScoredRows()} priceDate={NOTSCORED_RESULTS.price_date} />
 
       <p>
         <strong>How to read this page.</strong> The filters use the Methodology wording:

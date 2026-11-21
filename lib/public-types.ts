@@ -157,6 +157,28 @@ export interface PublicIpoRow {
   change_pct: number | null
 }
 
+/** Header search entry for a "Not scored — insufficient data" tier
+    name (RULEBOOK §34). Carries the price only — never a score, a
+    verdict or a fair value, because the tier has none. */
+export interface PublicNotScoredSearchEntry {
+  symbol: string
+  name: string
+  price: number
+  change_pct: number | null
+}
+
+/** One row of the not-scored tier list shown under the scored tables
+    on /stocks and /screener (RULEBOOK §34). Display values only; the
+    short reason is the tier's reason title, never a score. */
+export interface PublicNotScoredRow {
+  symbol: string
+  name: string
+  sector: string
+  price: number
+  change_pct: number | null
+  reason_title: string
+}
+
 /** Homepage grid preview: one ticker's DCF sensitivity grid — the
     grid VALUES only (numbers), the decision leg value, the decision
     growth, and the price. The grid note is never included: it

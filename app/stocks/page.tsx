@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import StockBrowser from '@/components/StockBrowser'
+import NotScoredList from '@/components/NotScoredList'
+import { NOTSCORED_RESULTS } from '@/lib/notscored-data'
 import { RESULTS } from '@/lib/data'
 import { ETF_RESULTS } from '@/lib/etf-data'
-import { allPublicRows } from '@/lib/public'
+import { allPublicRows, allNotScoredRows } from '@/lib/public'
 
 export const metadata: Metadata = {
   title: 'All Stocks',
@@ -25,6 +27,8 @@ export default function StocksPage() {
       </p>
 
       <StockBrowser rows={allPublicRows()} priceDate={RESULTS.price_date} />
+
+      <NotScoredList rows={allNotScoredRows()} priceDate={NOTSCORED_RESULTS.price_date} />
     </>
   )
 }

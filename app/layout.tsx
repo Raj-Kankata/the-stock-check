@@ -9,7 +9,7 @@ import PageName from '@/components/PageName'
 import BrandMark from '@/components/BrandMark'
 import { SITE_NAME, SITE_URL, ENGINE_VERSION } from '@/lib/site'
 import { ANALYTICS_ENABLED, CF_BEACON_TOKEN } from '@/lib/analytics'
-import { searchIndex, etfSearchIndex, indexSearchIndex, ipoSearchIndex } from '@/lib/public'
+import { searchIndex, etfSearchIndex, indexSearchIndex, ipoSearchIndex, notScoredSearchIndex } from '@/lib/public'
 import { RESULTS } from '@/lib/data'
 
 export const metadata: Metadata = {
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
                 <span className="tagline">Five pillars. One honest check.</span>
               </div>
               <div className="header-search">
-                <SearchBox entries={searchIndex()} etfEntries={etfSearchIndex()} indexEntries={indexSearchIndex()} ipoEntries={ipoSearchIndex()} />
+                <SearchBox entries={searchIndex()} etfEntries={etfSearchIndex()} indexEntries={indexSearchIndex()} ipoEntries={ipoSearchIndex()} notScoredEntries={notScoredSearchIndex()} />
               </div>
               <ThemeToggle />
               <PageName />

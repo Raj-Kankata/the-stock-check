@@ -1,0 +1,97 @@
+{
+ "as_of": "2026-11-21",
+ "price_date": "2026-11-20",
+ "universe_count": 10,
+ "tickers": {
+  "IONQ": {
+   "name": "IonQ, Inc.",
+   "price": 20.72,
+   "change_pct": -0.0876,
+   "volume": 29921100,
+   "bars": 1255,
+   "high_52w": 73.65,
+   "low_52w": 20.51
+  },
+  "IREN": {
+   "name": "IREN Limited",
+   "price": 11.82,
+   "change_pct": -0.1797,
+   "volume": 131321100,
+   "bars": 1255,
+   "high_52w": 70.71,
+   "low_52w": 11.75
+  },
+  "AAOI": {
+   "name": "Applied Optoelectronics, Inc.",
+   "price": 32.93,
+   "change_pct": -0.1655,
+   "volume": 18770900,
+   "bars": 1255,
+   "high_52w": 233.67,
+   "low_52w": 20.63
+  },
+  "NBIS": {
+   "name": "Nebius Group N.V.",
+   "price": 81.31,
+   "change_pct": -0.1611,
+   "volume": 49539900,
+   "bars": 524,
+   "high_52w": 299.86,
+   "low_52w": 73.52
+  },
+  "CRWV": {
+   "name": "CoreWeave, Inc.",
+   "price": 39.51,
+   "change_pct": -0.1202,
+   "volume": 76629000,
+   "bars": 416,
+   "high_52w": 138.25,
+   "low_52w": 39.28
+  },
+  "ASTS": {
+   "name": "AST SpaceMobile, Inc.",
+   "price": 23.27,
+   "change_pct": -0.0892,
+   "volume": 24483100,
+   "bars": 1255,
+   "high_52w": 133.86,
+   "low_52w": 22.72
+  },
+  "COIN": {
+   "name": "Coinbase Global, Inc.",
+   "price": 101.97,
+   "change_pct": -0.0634,
+   "volume": 14096400,
+   "bars": 1255,
+   "high_52w": 284.74,
+   "low_52w": 101.71
+  },
+  "SNDL": {
+   "name": "SNDL Inc.",
+   "price": 1.17,
+   "change_pct": -0.0565,
+   "volume": 2579200,
+   "bars": 1255,
+   "high_52w": 2.34,
+   "low_52w": 1.13
+  },
+  "INTC": {
+   "name": "Intel Corporation",
+   "price": 51.28,
+   "change_pct": -0.0797,
+   "volume": 207757700,
+   "bars": 1255,
+   "high_52w": 142.35,
+   "low_52w": 34.68
+  },
+  "MSTR": {
+   "name": "Strategy Inc",
+   "price": 77.8,
+   "change_pct": -0.0967,
+   "volume": 35719400,
+   "bars": 1255,
+   "high_52w": 198.4,
+   "low_52w": 77.69
+  }
+ }
+}

@@ -15,6 +15,12 @@ import { RESULTS, TICKER_SYMBOLS, type TickerData } from './data'
 import { ETF_RESULTS, ETF_SYMBOLS, type EtfResult } from './etf-data'
 import { INDEX_RESULTS, INDEX_SYMBOLS, type IndexResult } from './index-data'
 import {
+  NOTSCORED_RESULTS,
+  NOTSCORED_SYMBOLS,
+  getNotScored,
+  getNotScoredResult,
+} from './notscored-data'
+import {
   IPO_DOSSIERS,
   IPO_RESULTS,
   IPO_SYMBOLS,
@@ -34,6 +40,8 @@ import type {
   PublicIndexSearchEntry,
   PublicIpoRow,
   PublicIpoSearchEntry,
+  PublicNotScoredRow,
+  PublicNotScoredSearchEntry,
   PublicRow,
   PublicSearchEntry,
   PublicStockRow,
@@ -313,4 +321,41 @@ export function allThemeRows(): PublicThemeRow[] {
   return THEME_MEMBERS.filter((m) => THEME_RESULTS.rows[m.ticker]).map((m) =>
     toThemeRow(m.ticker, THEME_RESULTS.rows[m.ticker]),
   )
+}
+
+// ---------------------------------------------------------------------------
+// Not-scored tier projections (RULEBOOK §34) — same server-only
+// pattern. A tier row carries name, sector, price and the reason
+// title ONLY: no score, no verdict, no fair value exists for these
+// names, so none can leak into a client bundle. A name with a scored
+// card is skipped here (graduation — the scored card wins).
+// ---------------------------------------------------------------------------
+
+export function notScoredSearchIndex(): PublicNotScoredSearchEntry[] {
+  return NOTSCORED_SYMBOLS.filter((symbol) => {
+    const r = getNotScoredResult(symbol)
+    return r !== null && !RESULTS.tickers[symbol]
+  }).map((symbol) => {
+    const r = getNotScoredResult(symbol)!
+    return { symbol, name: r.name, price: r.price, change_pct: r.change_pct }
+  })
+}
+
+export function allNotScoredRows(): PublicNotScoredRow[] {
+  return NOTSCORED_SYMBOLS.filter((symbol) => {
+    const e = getNotScored(symbol)
+    const r = getNotScoredResult(symbol)
+    return e !== null && r !== null && !RESULTS.tickers[symbol]
+  }).map((symbol) => {
+    const e = getNotScored(symbol)!
+    const r = getNotScoredResult(symbol)!
+    return {
+      symbol,
+      name: e.name,
+      sector: e.sector,
+      price: r.price,
+      change_pct: r.change_pct,
+      reason_title: e.reason_title,
+    }
+  })
 }
